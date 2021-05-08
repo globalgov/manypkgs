@@ -1,0 +1,79 @@
+Package: qCreate
+Title: Support for Creating Ensembled Global Governance Data
+Version: 0.0.1
+Date: 2021-05-08
+Authors@R:
+    c(person(given = "James",
+             family = "Hollway",
+             role = c("cre", "aut", "ctb"),
+             email = "james.hollway@graduateinstitute.ch",
+             comment = c("IHEID", ORCID = "0000-0002-8361-9647")),
+      person(given = "Henrique",
+             family = "Sposito",
+             role = "ctb",
+             comment = c("IHEID", ORCID = "0000-0003-3420-6085")),
+      person(given = "Bernhard",
+             family = "Bieri",
+             role = "ctb",
+             comment = c("IHEID", ORCID = "0000-0001-5943-9059")),
+      person(given = "Esther",
+             family = "Peev",
+             role = "ctb",
+             comment = c("IHEID", ORCID = "0000-0002-9678-2777")))
+Description: This is the core package for the qData ecosystem.
+    It includes functions to help researchers work with and contribute to 
+    event datasets on global governance.
+License: CC BY 4.0
+URL: https://github.com/globalgov/qData
+BugReports: https://github.com/globalgov/qData/issues
+Depends:
+    R (>= 2.10),
+    tibble
+Imports:
+    covr,
+    dplyr,
+    english,
+    lubridate,
+    pkgdown,
+    pointblank,
+    purrr,
+    rlang,
+    roxygen2,
+    stringr,
+    textclean,
+    usethis,
+    whisker,
+    fs,
+    jsonlite,
+    remotes,
+    httr,
+    qStates,
+    ggplot2,
+    stringi
+Suggests:
+    librarian,
+    testthat,
+    anytime,
+    mice,
+    xfun,
+    withr,
+    haven,
+    readxl,
+    readr,
+    knitr,
+    bibtex,
+    desc,
+    rorcid,
+    WVPlots,
+    translateR,
+    cld2, 
+    qEnviron,
+    stringdist
+Remotes: 
+    globalgov/qStates,
+    globalgov/qEnviron
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
