@@ -44,11 +44,8 @@ Imports:
     usethis,
     whisker,
     fs,
-    jsonlite,
     remotes,
-    httr,
     qStates,
-    ggplot2,
     stringi
 Suggests:
     librarian,
@@ -61,7 +58,6 @@ Suggests:
     readxl,
     readr,
     knitr,
-    bibtex,
     desc,
     rorcid,
     WVPlots,
