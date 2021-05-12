@@ -22,7 +22,7 @@
 #' @importFrom stringr str_replace_all str_split
 #' @examples
 #' \dontrun{
-#' setup_package("qStates", name = "Hollway, James"))
+#' setup_package("qStates", name = "Hollway, James")
 #' setup_package("qStates",
 #'                orcid = c("0000-0002-8361-9647"))
 #' }
@@ -296,7 +296,7 @@ setup_package <- function(package = NULL,
 #' @importFrom stringr str_detect str_split
 #' @examples
 #' \dontrun{
-#' add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb"))
+#' add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb")))
 #' add_author(name = "Smith, John",
 #' comment = "University of Somewhere")
 #' }
