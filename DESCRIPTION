@@ -64,7 +64,8 @@ Suggests:
     translateR,
     cld2, 
     qEnviron,
-    stringdist
+    stringdist,
+    rmarkdown
 Remotes: 
     globalgov/qStates,
     globalgov/qEnviron
