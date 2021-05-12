@@ -382,7 +382,7 @@ resequence <- function(data, vars, unity = "_") {
     dates <- sort(unlist(strsplit(unique(na.omit(x)),unity)))
 
     if (length(dates) < len) {
-      dates <- interleave(dates, which(is.na(x)))
+      dates <- qData::interleave(dates, which(is.na(x)))
     }
 
     if (length(dates) > len) {
