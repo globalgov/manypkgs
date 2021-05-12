@@ -1,5 +1,5 @@
 
-# qCreate
+# qCreate <img src="inst/qCreateLogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
@@ -48,11 +48,6 @@ packages are currently available.
 
 ``` r
 library(qData)
-```
-
-    ## Warning: package 'tibble' was built under R version 4.0.5
-
-``` r
 get_packages()
 ```
 
