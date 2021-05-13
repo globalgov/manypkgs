@@ -28,7 +28,7 @@
 #' dates_comparison %>% dplyr::mutate(
 #' lubridate = suppressWarnings(lubridate::as_date(OriginalDate)),
 #' anytime = anytime::anydate(OriginalDate),
-#' qData = qData::standardise_dates(OriginalDate)
+#' qCreate = qCreate::standardise_dates(OriginalDate)
 #' ) %>% print(n = 25)
 #' @export
 standardise_dates <- standardize_dates <- function(...) {
