@@ -1,6 +1,6 @@
 #' Code Agreement Titles
 #'
-#' Creates an ID column that contains information on the
+#' Creates an ID that contains information on the
 #' parties to an agreement, the type of agreement, the date
 #' and the linkage to other agreements in the dataset.
 #' @param title title column variable.
@@ -9,15 +9,13 @@
 #' @param date date column variable
 #' Ideally, date variable should come from a qPackage database/dataset
 #' for which dates were standardised with `standardise_dates()`
-#' @param dataset name of the dataset, optional. When provided with
-#' dataset argument, the function will return qID as a column in the dataset.
-#' If not provided, the function will return a character vector with qIDs.
+#' @return a character vector with the qIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom purrr map
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-#' code_agreements(IEADB$Title, IEADB$Signature)
+#' IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
 #' @export
 code_agreements <- function(title, date, dataset = NULL) {
   
@@ -79,14 +77,6 @@ code_agreements <- function(title, date, dataset = NULL) {
   qID <- out
   
   usethis::ui_done("Please run `vignette('agreements')` for more information.")
-  
-  # Step eight: add new qID column to data if dataset argument is provided
-  if (!is.null(dataset)) {
-    dataset_name <- deparse(substitute(dataset))
-    dataset_name <- cbind(get(dataset_name), qID)
-  } else {
-    qID
-  }
   
   qID
   

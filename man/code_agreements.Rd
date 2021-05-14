@@ -14,17 +14,16 @@ for which strings were standardised with \code{standardise_titles()}}
 \item{date}{date column variable
 Ideally, date variable should come from a qPackage database/dataset
 for which dates were standardised with \code{standardise_dates()}}
-
-\item{dataset}{name of the dataset, optional. When provided with
-dataset argument, the function will return qID as a column in the dataset.
-If not provided, the function will return a character vector with qIDs.}
+}
+\value{
+a character vector with the qIDs
 }
 \description{
-Creates an ID column that contains information on the
+Creates an ID that contains information on the
 parties to an agreement, the type of agreement, the date
 and the linkage to other agreements in the dataset.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-code_agreements(IEADB$Title, IEADB$Signature)
+IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
 }
