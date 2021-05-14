@@ -17,7 +17,7 @@
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
 #' @export
-code_agreements <- function(title, date, dataset = NULL) {
+code_agreements <- function(title, date) {
   
   if (missing(title)) {
     stop("Please declare a title column.")

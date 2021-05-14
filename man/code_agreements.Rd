@@ -4,7 +4,7 @@
 \alias{code_agreements}
 \title{Code Agreement Titles}
 \usage{
-code_agreements(title, date, dataset = NULL)
+code_agreements(title, date)
 }
 \arguments{
 \item{title}{title column variable.

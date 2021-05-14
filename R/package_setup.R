@@ -164,7 +164,7 @@ setup_package <- function(package = NULL,
   author <- paste0(authors, collapse = ", ")
 
   # Add R folder
-  create_directory(paste0(path, "/R"))
+  usethis:::create_directory(paste0(path, "/R"))
   usethis::ui_done("Created R/ folder. Here is where any scripts go.")
 
   # Add NAMESPACE
@@ -200,7 +200,7 @@ setup_package <- function(package = NULL,
   usethis::use_testthat()
 
   # Step three: ensure/create Github files
-  create_directory(paste0(path, "/.github"))
+  usethis:::create_directory(paste0(path, "/.github"))
   usethis::ui_done("Created .github folder.")
   qtemplate("qPackage-COC.md",
             fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
@@ -226,7 +226,7 @@ setup_package <- function(package = NULL,
             open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
 
-  create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
+  usethis:::create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
 
   qtemplate("qPackage-Bugs.md",
@@ -245,7 +245,7 @@ setup_package <- function(package = NULL,
             open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
 
-  create_directory(paste0(path, "/.github/workflows"))
+  usethis:::create_directory(paste0(path, "/.github/workflows"))
   usethis::ui_done("Created workflows folder.")
 
   if (interactive()) {
