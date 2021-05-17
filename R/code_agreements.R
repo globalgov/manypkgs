@@ -9,6 +9,10 @@
 #' @param date date column variable
 #' Ideally, date variable should come from a qPackage database/dataset
 #' for which dates were standardised with `standardise_dates()`
+#' @param dataset dataset name, optional.
+#' If provided in place of title and date,
+#' the function finds title and date conforming columns
+#' in the dataset automatically if available.
 #' @return a character vector with the qIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
@@ -16,14 +20,25 @@
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
+#' code_agreements(dataset = IEADB)
 #' @export
-code_agreements <- function(title, date) {
+code_agreements <- function(title, date, dataset = NULL) {
   
-  if (missing(title)) {
+  if (missing(title) & is.null(dataset)) {
     stop("Please declare a title column.")
   }
-  if (missing(date)) {
+  if (missing(date) & is.null(dataset)) {
     stop("Please declare a beginning date column.")
+  }
+  
+  if (missing(title) & !is.null(dataset)) {
+    if (exists("Title", dataset) & exists("Signature", dataset)) {
+    title <- dataset$Title
+    date <- dataset$Signature
+    usethis::ui_done("Title and date conforming columns in dataset automatically found")
+  } else if (!exists("Title", dataset) & !exists("Signature", dataset)) {
+    stop("Not able to find conforming title and date columns in dataset. Please declare a title and date column.")
+  }
   }
   
   # Step one: create a new qID column
