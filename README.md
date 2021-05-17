@@ -15,7 +15,7 @@ issues](https://img.shields.io/github/issues-raw/globalgov/qCreate)
 coverage](https://codecov.io/gh/globalgov/qCreate/branch/main/graph/badge.svg)](https://codecov.io/gh/globalgov/qCreate?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/globalgov/qCreate/badge)](https://www.codefactor.io/repository/github/globalgov/qCreate)
 [![CII Best
-Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4562)
+Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867)
 <!-- ![GitHub All Releases](https://img.shields.io/github/downloads/jhollway/roctopus/total) -->
 <!-- badges: end -->
 
@@ -67,7 +67,7 @@ get_packages()
     ## 4 qStates  globalgov/qStates 
     ##   description                                             installed latest    
     ##   <chr>                                                   <chr>     <chr>     
-    ## 1 Support for creating new qPackages                      0.1.0     Unreleased
+    ## 1 Support for creating new qPackages                      0.0.1     Unreleased
     ## 2 An R portal for ensembled global governance data        0.4.0     0.3.5     
     ## 3 qPackage for ensembled data on environmental agreements 0.0.2     0.0.2     
     ## 4 qPackage for ensembled data on sovereign states         0.0.3     0.0.3     
