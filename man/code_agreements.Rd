@@ -16,8 +16,9 @@ Ideally, date variable should come from a qPackage database/dataset
 for which dates were standardised with \code{standardise_dates()}}
 
 \item{dataset}{dataset name, optional.
-If provided the function finds title and date conforming columns
-in the dataset automatically, if available.}
+If provided in place of title and date,
+the function finds title and date conforming columns
+in the dataset automatically if available.}
 }
 \value{
 a character vector with the qIDs
