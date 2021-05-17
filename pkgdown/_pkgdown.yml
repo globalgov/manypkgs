@@ -43,3 +43,8 @@ reference:
       - import_data
       - export_data
       - starts_with("standardise")
+      - starts_with("code")
+      - depends
+      - retain
+      - resequence
+      - recent
