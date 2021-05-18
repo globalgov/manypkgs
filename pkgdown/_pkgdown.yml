@@ -27,10 +27,10 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Use
-        href: articles/user.html
       - text: Develop
-        href: articles/developer.html
+        href: articles/contributor.html
+      - text: Agreements
+        href: articles/agreements.html
     news:
       text: News
       href: news/index.html
@@ -43,3 +43,8 @@ reference:
       - import_data
       - export_data
       - starts_with("standardise")
+      - starts_with("code")
+      - depends
+      - retain
+      - resequence
+      - recent

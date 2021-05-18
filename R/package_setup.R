@@ -22,7 +22,7 @@
 #' @importFrom stringr str_replace_all str_split
 #' @examples
 #' \dontrun{
-#' setup_package("qStates", name = "Hollway, James"))
+#' setup_package("qStates", name = "Hollway, James")
 #' setup_package("qStates",
 #'                orcid = c("0000-0002-8361-9647"))
 #' }
@@ -282,7 +282,6 @@ setup_package <- function(package = NULL,
 #' @param email Character string of the author's email
 #' @param affiliation Character vector of the author's
 #' miscellaneous information such as his/her institution.
-#' @return Adds a new author to the description file of the package
 #' @details This function adds an author to the description file of
 #' the current package. This can be done in two ways.
 #' First you can specify the ORCID number
@@ -293,9 +292,11 @@ setup_package <- function(package = NULL,
 #' manually if the author does not have an ORCID number.
 #' Finally, note that by default the role of the new author
 #' is set to contributor.
+#' @return Adds a new author to the description file of the package
+#' @importFrom stringr str_detect str_split
 #' @examples
 #' \dontrun{
-#' add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb"))
+#' add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb")))
 #' add_author(name = "Smith, John",
 #' comment = "University of Somewhere")
 #' }

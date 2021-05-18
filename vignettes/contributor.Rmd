@@ -1,5 +1,5 @@
 ---
-title: "Contributing to qData ecosystem with qCreate"
+title: "Contributing with qCreate"
 author: "James Hollway"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -28,14 +28,14 @@ For author's name, please declare surname(s) first and then given name(s) separa
 The function accepts ORCID numbers instead of author names as well. 
 
 ```{r eval=FALSE}
-setup_package("qStates", name = "Hollway, James")
+qCreate::setup_package("qStates", name = "Hollway, James")
 ```
 
 For adding on package contributors or authors to q Package later on, use to the `add_author()` function.
 This function also accepts ORCID numbers instead of author names. 
 
 ```{r eval=FALSE}
-add_author(name = "Sposito, Henrique")
+qCreate::add_author(name = "Sposito, Henrique")
 ```
 
 ## Collecting data
@@ -51,7 +51,7 @@ three-dimensional databases that resembles a data cube
 (a list object where entries are tibbles).
 
 ```{r eval=FALSE}
-qData::import_data("COW", "states")
+qCreate::import_data("COW", "states")
 ```
 
 ## Correcting data
@@ -67,11 +67,11 @@ As well, the `standardise_title()` function capitalises all words in a string
 and removes unnecessary symbols to enable comparison.
 
 ```{r eval=FALSE}
-COW <- transmutate(ID = stateabb,
-                   Beg = standardise_dates(styear, stmonth, stday),
-                   End = standardise_dates(endyear, endmonth, endday),
-                   Label = standardise_titles(statenme),
-                   COW_Nr = standardise_titles(as.character(ccode)))
+COW <- qCreate::transmutate(ID = stateabb,
+                   Beg = qCreate::standardise_dates(styear, stmonth, stday),
+                   End = qCreate::standardise_dates(endyear, endmonth, endday),
+                   Label = qCreate::standardise_titles(statenme),
+                   COW_Nr = qCreate::standardise_titles(as.character(ccode)))
 ```
 
 Contributors should make sure the variables names in the datasets are in line with `{qData}` ecosystem.
@@ -90,7 +90,7 @@ The citation template helps cite the source of the raw data and and describe the
 The test template makes sure the corrected dataset is consistent with `{qCreate}` guidelines.
 
 ```{r eval=FALSE}
-qData::export_data(COW, "states", URL = "https://correlatesofwar.org/data-sets/state-system-membership")
+qCreate::export_data(COW, "states", URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 ```
 
 The test template is meant to ensure consistency for the corrected dataset. 

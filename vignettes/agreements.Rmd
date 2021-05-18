@@ -55,11 +55,11 @@ Let's take only titles of treaties established in a particular decade, the 1980s
 so that we can increase the probability of matches. 
 
 ```{r data, warning=FALSE, message=FALSE}
-library(qData)
-samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1980-01-01" & x$Beg < "1990-01-01", ])
+library(qCreate)
+samples <- lapply(qEnviron::agreements[1:3], function(x) x[x$Beg > "1980-01-01" & x$Beg < "1990-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
 titles <- na.omit(titles)
-titles <- standardise_titles(titles)
+titles <- qCreate::standardise_titles(titles)
 titles <- data.frame(titles)
 dates <- lubridate::as_date(unlist(purrr::map(samples, "Beg")))
 dates <- na.omit(lubridate::as_date(dates))
@@ -84,7 +84,7 @@ library(WVPlots)
 hand_coded_sample <- read_delim("hand-coded-sample.csv", ";", escape_double = FALSE, trim_ws = TRUE)
 hand_coded_sample <- dplyr::select(hand_coded_sample, "duplicate", "Linkage")
 agreements <- cbind(agreements, hand_coded_sample) %>%
-  dplyr::mutate(dates = qData::standardise_dates(dates))
+  dplyr::mutate(dates = qCreate::standardise_dates(dates))
 WVPlots::ROCPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # WVPlots::PRPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # Precision recall (PR) plots are also available for comparing solutions.
@@ -129,7 +129,7 @@ WVPlots::ROCPlot(agreements, "strict", "duplicate", 1, title = "Strict")
 # PR plot is consistent with ROC plot and shows little imporvement from a random match.
 ```
 
-Note that the AUC probably boosted by our use of `qData::standardise_titles()` in qPackages,
+Note that the AUC probably boosted by our use of `qCreate::standardise_titles()` in qPackages,
 but misses a number of more problematic cases.
 For example a "Treaty Of..." and "Treaty For..." would be considered distinct,
 as would "Antarctic Treaty" and "Antarctic Treaty 1959",
@@ -168,10 +168,10 @@ and addenda (e.g. the year at the end of the treaty title).
 The less information we require for a match, the higher the false positive rate,
 and the more information we require, the higher the false negative rate.
 
-Using our current version of `{qData}` we obtain:
+Using our current version of `{qCreate}` we obtain:
 
 ```{r qid, warning=FALSE, message=FALSE}
-agreements$qID <- qData::code_agreements(agreements$titles, agreements$dates)
+agreements$qID <- qCreate::code_agreements(agreements$titles, agreements$dates)
 agreements$idinfo <- ifelse(duplicated(agreements$qID) | 
                                   duplicated(agreements$qID, fromLast = TRUE), 1, 0)
 WVPlots::ROCPlot(agreements, "idinfo", "duplicate", 1, title = "ID Strict")
@@ -252,7 +252,7 @@ The first element extracted from the title is the state that is part to the trea
 The function `code_states()` from `qStates` is used. It returns 3 digit ISO codes for states.
 
 ```{r parties, eval=FALSE}
-qData::code_parties(agreements$titles)
+qCreate::code_parties(agreements$titles)
 ```
 
 ### Date
@@ -261,7 +261,7 @@ Each treaty contains a unique number in their qID which refer to the signature d
 The number has therefore eight numbers that are under the YYYYMMDD format. 
 
 ```{r dates, eval=FALSE}
-qData::code_dates(agreements$titles, agreements$dates)
+qCreate::code_dates(agreements$titles, agreements$dates)
 ```
 
 ### Type
@@ -269,7 +269,7 @@ qData::code_dates(agreements$titles, agreements$dates)
 The function detects the type of treaty and assign a letter that will be included in the final qID. 
 
 ```{r type, eval=FALSE}
-qData::code_type(agreements$titles)
+qCreate::code_type(agreements$titles)
 ```
 
 * Agreements = **A**
@@ -288,7 +288,7 @@ Some treaties already have known abbreviation.
 The qID of these treaties contain their abbreviation and signature date.
 
 ```{r known, eval=FALSE}
-qData::code_known_agreements(agreements$titles)
+qCreate::code_known_agreements(agreements$titles)
 ```
 
 **Know Agreements** | **Abbreviation**
@@ -312,7 +312,7 @@ Treaties from the same family can be detected by removing predictable words that
 The qID assigned to the "mother" treaty is used for all the other treaties deriving from it as the last digits in their qID.
 
 ```{r linkage, eval=FALSE}
-qData::code_linkage(agreements$titles, agreements$dates)
+qCreate::code_linkage(agreements$titles, agreements$dates)
 ```
 
 Once added together the information extracted from treaty title and date forms a qID which is more authoritative, comprehensible, succinct and intelligible 

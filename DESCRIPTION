@@ -1,7 +1,7 @@
 Package: qCreate
 Title: Support for Creating Ensembled Global Governance Data
 Version: 0.0.1
-Date: 2021-05-08
+Date: 2021-05-14
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -30,6 +30,7 @@ Depends:
     R (>= 2.10),
     tibble
 Imports:
+    qData,
     covr,
     dplyr,
     english,
@@ -44,15 +45,12 @@ Imports:
     usethis,
     whisker,
     fs,
-    jsonlite,
     remotes,
-    httr,
     qStates,
-    ggplot2,
     stringi
 Suggests:
-    librarian,
     testthat,
+    librarian,
     anytime,
     mice,
     xfun,
@@ -61,14 +59,15 @@ Suggests:
     readxl,
     readr,
     knitr,
-    bibtex,
     desc,
     rorcid,
     WVPlots,
     translateR,
     cld2, 
     qEnviron,
-    stringdist
+    stringdist,
+    rmarkdown,
+    bibtex
 Remotes: 
     globalgov/qStates,
     globalgov/qEnviron
