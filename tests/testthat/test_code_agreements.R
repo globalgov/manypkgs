@@ -45,3 +45,33 @@ test_that("code_dates() helper function treats date range correctly", {
                                                       "1971CAT01", "1982PTT01", 
                                                       "1976CPS01", "1983ALS01"))
 })
+
+# Test to be added one issue on false duplicates is solved!
+# data3 <- data.frame(title = c("Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing For King And Tanner Crab",
+#                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean",
+#                              "Agreement On Cooperation In The Field Of Environmental Protection",
+#                              "Agreement On Cooperation In The Field Of Protection, Regulation, And Recreation Living Water Resources In The Boundary Waters Of Amur And Ussuri Rivers",
+#                              "Agreement On The Lake Hanka Sanctuary",
+#                              "Agreement On Cooperation In The Field Of Peaceful Uses Of Atomic Energy",
+#                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Environmental Protection",
+#                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Plant Quarantine"),
+#                    date = c("1973-02-21", "1973-02-21", "1994-05-27", "1994-05-27", "1996-04-25", "1996-04-25", "1998-03-12", "1998-03-12"))
+# 
+# 
+# test_that("code_agreements() differentiates treaties signed the same day", {
+#   expect_equal(code_agreements(data3$title, data3$date), c("19730221_RUS-USA_AB", "19730221_RUS-USA_AN",
+#                                                            "19940527A_ON", "19940527A_RS", "19960425A_RY",
+#                                                            "19960425A_GY", "19980312_KAZ-MNG_ON", "19980312_KAZ-MNG_NE"))
+# })
+
+# As the dataset contains only 3 treaties, the linkage part is different from 
+data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
+                              "Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
+                              "Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing",
+                              "Protocol To The Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing"),
+                    date = c("2015-10-30", "2019-02-01", "1984-10-30", "1955-10-14"))
+
+test_that("code_agreements() link treaties correctly", {
+  expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P"))
+})
+
