@@ -46,7 +46,7 @@ test_that("code_dates() helper function treats date range correctly", {
                                                       "1976CPS01", "1983ALS01"))
 })
 
-# Test to be added one issue on false duplicates is solved!
+#Test to be added one issue on false duplicates is solved!
 # data3 <- data.frame(title = c("Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing For King And Tanner Crab",
 #                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean",
 #                              "Agreement On Cooperation In The Field Of Environmental Protection",
@@ -59,9 +59,9 @@ test_that("code_dates() helper function treats date range correctly", {
 # 
 # 
 # test_that("code_agreements() differentiates treaties signed the same day", {
-#   expect_equal(code_agreements(data3$title, data3$date), c("19730221_RUS-USA_AB", "19730221_RUS-USA_AN",
-#                                                            "19940527A_ON", "19940527A_RS", "19960425A_RY",
-#                                                            "19960425A_GY", "19980312_KAZ-MNG_ON", "19980312_KAZ-MNG_NE"))
+#   expect_equal(code_agreements(data3$title, data3$date), c("19730221_RUS-USA", "19730221_RUS-USA",
+#                                                            "19940527A", "19940527A", "19960425A",
+#                                                            "19960425A", "19980312_KAZ-MNG", "19980312_KAZ-MNG"))
 # })
 
 data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
