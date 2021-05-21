@@ -306,6 +306,8 @@ code_linkage <- function(title, date) {
   out <- gsub("-", "", out, ignore.case = FALSE)
   out <- stringr::str_replace_all(out, ",|-", "")
   out <- stringr::str_replace_all(out, " [:digit:]{1} | [:digit:]{2} ", "")
+  out <- stringr::str_replace_all(out, "[:digit:]{3}", "")
+  out <- stringr::str_replace_all(out, "[:digit:]{4}", "")
   out <- trimws(out)
   out <- stringr::str_squish(out)
   out <- textclean::add_comma_space(out)
