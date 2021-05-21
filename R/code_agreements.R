@@ -137,6 +137,10 @@ code_parties <- function(title) {
 #' @export
 code_type <- function(title) {
   
+  # When amendment and protocol are mentioned in the title, the first one appearing should be kept
+  title <- ifelse(grepl("Amendments.*Protocol|Amendment.*Protocol|Amendments.*Protocols|Amendment.*Protocols", title, ignore.case = T), stringr::str_replace(title, "Protocol|protocol|Protocols|protocols", ""), title)
+  title <- ifelse(grepl("Protocol.*Amendment|Protocols.*Amendments|Protocols.*Amendment|Protocol.*Amendments", title, ignore.case = T), stringr::str_replace(title, "Amendment|amendment|Amendements|amendements", ""), title)
+  
   type <- dplyr::case_when(
     # P stands for protocols
     grepl("^Protocol", title, ignore.case = T) ~ "P",
