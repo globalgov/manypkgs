@@ -405,7 +405,8 @@ order_agreements <- function(title) {
   oa <- gsub("\\<nineteen\\>|\\<nineteenth\\>", "19", oa)
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
   
-  oa <- stringr::str_extract(oa, "[:digit:]{1}|[:digit:]{2}")
+  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s")
+  oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
   
