@@ -1,11 +1,11 @@
 data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fisheries Development",
                              "Protocol to the Agreement Between Cape Verde And Portugal On Fisheries Development",
-                              "Traité De Délimitation Maritime, Signé À Paris Le 30 Janvier 1981",
-                              "Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
-                              "Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
-                              "Convention On The Protection Of The Rhine Against Pollution By Chlorides",
-                              "Amendment 1 to the Convention On The Protection Of The Rhine Against Pollution By Chlorides"),
-                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29"))
+                             "Traité De Délimitation Maritime, Signé À Paris Le 30 Janvier 1981",
+                             "Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
+                             "Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
+                             "Convention On The Protection Of The Rhine Against Pollution By Chlorides",
+                             "Amendment 1 to the Convention On The Protection Of The Rhine Against Pollution By Chlorides"),
+                   date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29"))
 
 test_that("Code_agreements() properly returns qIDs", {
   expect_equal(code_agreements(data$title, data$date), c("19800508_CPV-PRT", "19901231P_19800508_CPV-PRT",
@@ -29,16 +29,16 @@ test_that("Code_agreements helper functions work properly", {
                                                       "RAMSA19710202",
                                                       "19761203A", "19761203A"))
 })
-    
+
 # Add one test for dataset that have range as dates
 data2 <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fisheries Development",
-                             "Traité De Délimitation Maritime, Signé À Paris Le 30 Janvier 1981",
-                             "Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
-                             "Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
-                             "Convention On The Protection Of The Rhine Against Pollution By Chlorides",
-                             "Amendment 1 to the Convention On The Protection Of The Rhine Against Pollution By Chlorides"),
-                   date = c("1980-01-01:1980-12-31", "1981-01-01:1981-12-31", "1971-01-01:1971-12-31",
-                            "1982-01-01:1982-12-31", "1976-01-01:1976-12-31", "1983-01-01:1983-12-31"))
+                              "Traité De Délimitation Maritime, Signé À Paris Le 30 Janvier 1981",
+                              "Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
+                              "Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",
+                              "Convention On The Protection Of The Rhine Against Pollution By Chlorides",
+                              "Amendment 1 to the Convention On The Protection Of The Rhine Against Pollution By Chlorides"),
+                    date = c("1980-01-01:1980-12-31", "1981-01-01:1981-12-31", "1971-01-01:1971-12-31",
+                             "1982-01-01:1982-12-31", "1976-01-01:1976-12-31", "1983-01-01:1983-12-31"))
 test_that("code_dates() helper function treats date range correctly", {
   # Add title to the code_dates function arguments
   expect_equal(code_dates(data2$title, data2$date), c("1980ACT01", "1981TTO01",
@@ -72,9 +72,10 @@ data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooper
                               "Amendments To The Schedule To The International Convention For The Regulation Of Whaling, 20-1 Meeting"),
                     date = c("2015-10-30", "2019-02-01", "1984-10-30", "1955-10-14", "1960-02-05", "1969-06-27"))
 
-test_that("code_agreements() does not link treaties that are not agreements", {
+test_that("code_agreements() link treaties correctly", {
   expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19600205A", "19690627E2_19600205A"))
 })
+
 
 data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
                               "Amendments Of The Limitation Amounts In The 1992 Protocol To Amend The International Convention On Civil Liability For Oil Pollution Damage",
@@ -83,6 +84,18 @@ data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                     date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02"))
 
 test_that("code_agreements() recognizes the correct type of treaty", {
-  expect_equal(code_agreements(data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "19401107X", "19990302P"))
+  expect_equal(code_agreements(data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "19401107A", "19990302P"))
 })
+
+data6 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
+                              "Amendments 34 Of The Limitation Amounts In The 1992 Convention",
+                              "Protocol 2 Between The Government Of The United State Of America And The Government Of Canada Constituting An Agreement Regarding The Development Of Certain Portions Of The Great Lakes-St. Lawrence Basin Project",
+                              "Protocol To The Amendement 300 Of The Convention On Water"),
+                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02"))
+
+test_that("code_agreements() identify correct number of protocol or amendment", {
+  expect_equal(code_agreements(data6$title, data6$date), c("18991002E18", "20001018E34", "19401107P2", "19990302P300"))
+})
+
+
 
