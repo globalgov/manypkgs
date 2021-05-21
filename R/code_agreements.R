@@ -430,15 +430,9 @@ code_issue <- function(title, date) {
 
   date <- stringr::str_remove_all(date, "-")
   dup <- ifelse(duplicated(date), date, NA_character_)
-  # Issues are smaller levels than topic or domain.
-  # this is important for differentiating date duplicates as different
-  # treaties signed in the same day often concern the same broader topic.
-  # If the water is a topic oceans, rivers and lakes
-  # are issues.
-  # For the complete list of issues and their 2 letter abbreviations
-  # please refer to the issues list available in sysdata.
+  # Get issues list
   issues <- purrr::map(issues, as.character)
-  # Assign the specific abbreviation to the "known" treaties
+  # Assign the specific issue abbreviation to the date duplicates
   iss <- sapply(issues$word, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
   colnames(iss) <- paste0(issues$issue)
   rownames(iss) <- paste0(title)
@@ -454,7 +448,6 @@ code_issue <- function(title, date) {
   out
 
   issue <- ifelse(!is.na(dup), out, "")
-  issue <- ifelse(is.na(issue), "", issue)
   issue <- ifelse(issue == "", issue, paste0("[", issue, "]"))
 
   issue
