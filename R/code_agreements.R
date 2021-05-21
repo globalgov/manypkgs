@@ -226,9 +226,9 @@ code_dates <- function(title, date) {
   # There are often several different treaties that are signed in
   # the same day, in those cases we assign them a letter for their
   # issue to differentiate between them.
-  issue <- code_issue(title, uID)
+  action <- code_action(title, uID)
   # Adding issue for date duplicates
-  uID <- paste0(uID, issue)
+  uID <- paste0(uID, action)
 
   uID
   
@@ -418,7 +418,7 @@ order_agreements <- function(title) {
   
 }
 
-#' Code agreement issues for date duplicates
+#' Code agreement action for date duplicates
 #'
 #' Identifies issues to which agreements belong to for agreements
 #' signed in the same day.
@@ -431,30 +431,33 @@ order_agreements <- function(title) {
 #' For the complete list of issues and their 2 letter abbreviations
 #' please refer to the issues list available in sysdata.
 #' @return A character vector with 2 letter issue abbreviations for date duplicates
-code_issue <- function(title, date) {
+code_action <- function(title, date) {
 
   date <- stringr::str_remove_all(date, "-")
   dup <- ifelse(duplicated(date), date, NA_character_)
   # Get issues list
-  issues <- purrr::map(issues, as.character)
+  action <- purrr::map(action, as.character)
   # Assign the specific issue abbreviation to the date duplicates
-  iss <- sapply(issues$word, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
-  colnames(iss) <- paste0(issues$issue)
+  iss <- sapply(action$words, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+  colnames(iss) <- paste0(action$action)
   rownames(iss) <- paste0(title)
   out <- apply(iss, 1, function(x) paste(names(x[x==1])))
   out[out=="character(0)"] <- NA_character_
   out <- unname(out)
   out <- as.character(out)
+  # Temporary solution with str_sub function: extract only the first action detected
+  out <- ifelse(grepl("c\\(", out), stringr::str_sub(out, start = 4, end = 5), out)
+  
   
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
   ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-
+  
   out
 
-  issue <- ifelse(!is.na(dup), out, "")
-  issue <- ifelse(issue == "", issue, paste0("[", issue, "]"))
+  action <- ifelse(!is.na(dup), out, "")
+  action <- ifelse(action == "", action, paste0("[", action, "]"))
 
-  issue
+  action
 
 }
