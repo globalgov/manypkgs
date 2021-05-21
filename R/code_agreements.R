@@ -80,7 +80,7 @@ code_agreements <- function(title, date, dataset = NULL) {
                                         (ifelse((!is.na(parties) & (type == "A")), paste0(uID, "_", parties),
                                                 # if parties were identified and type is agreement
                                                 (ifelse((!is.na(parties) & (type != "A")), paste0(uID, type, "_", line), NA)))))))))))
-  # if parties were identified and type is not agreement
+                                                        # if parties were identified and type is not agreement
   
   # When line is left empty, the last "_" of the qID should be deleted
   out <- stringr::str_remove_all(out, "_$")
@@ -336,6 +336,10 @@ code_linkage <- function(title, date) {
   line <- out$line
   
   line <- stringr::str_replace_all(line, "^1$", "")
+  
+  # If, by mistake, linkage 
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}E$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}P$", "")
   
   line
   
