@@ -206,9 +206,9 @@ code_dates <- function(title, date) {
   # making observations duplicates.
   uID[is.na(uID)] <- paste0("9999",
                             sample(1000:9999, sum(is.na(uID)), replace = TRUE))
-  
-  # When the date is a range, the uID takes only
-  # the first value of the dates range.
+  # In some cases all dates are incomplete (e.g. year only) and become a range, 
+  # a lot of false duplicates might be created. In this case, we assign
+  # some specific letters from the titles to differentiate treaties.
   A <- suppressWarnings(stringr::str_extract_all(title, "^[:alpha:]"))
   A <- suppressWarnings(stringr::str_to_upper(A))
   B <- stringr::str_sub(title, start = 19, end = 19)
@@ -219,7 +219,13 @@ code_dates <- function(title, date) {
   C <- stringr::str_to_upper(C)
   uID <- stringr::str_replace_all(uID, "[:digit:]{4}\\:[:digit:]{8}$",
                                   paste0(A, B, C, "01"))
-  
+  # There are often several different treaties that are signed in
+  # the same day, in those cases we assign them a letter for their
+  # issue to differentiate between them.
+  issue <- code_issue(title, uID)
+  # Adding issue for date duplicates
+  uID <- paste0(uID, issue)
+
   uID
   
 }
@@ -285,6 +291,7 @@ code_linkage <- function(title, date) {
   type <- code_type(s)
   abbrev <- code_known_agreements(s)
   parties <- code_parties(s)
+  dates <- code_dates(title, date)
   
   # Step two: standardise words in title
   out <- standardise_titles(as.character(title))
@@ -306,10 +313,6 @@ code_linkage <- function(title, date) {
   
   # Step four: find duplicates
   dup <- duplicated(out)
-  dates <- stringr::str_remove_all(date, "-")
-  # When date is a range, remove the last
-  # date (temporary solution to deal with date range)
-  dates <- stringr::str_remove_all(dates, "\\:[:digit:]{8}$")
   
   id <- ifelse((!is.na(abbrev)), paste0(abbrev),
                (ifelse((is.na(parties)), paste0(dates, type),
@@ -406,4 +409,52 @@ order_agreements <- function(title) {
   
   oa
   
+}
+
+#' Code agreement issues for date duplicates
+#'
+#' Identifies issues to which agreements belong to for agreements
+#' signed in the same day.
+#' @param title A character vector of treaty title
+#' @param date A date variable
+#' @details Issues are smaller levels than topic or domain.
+#' this is important for differentiating date duplicates as different
+#' treaties signed in the same day often concern the same broader topic.
+#' If the water is a topic oceans, rivers and lakes are issues.
+#' For the complete list of issues and their 2 letter abbreviations
+#' please refer to the issues list available in sysdata.
+#' @return A character vector with 2 letter issue abbreviations for date duplicates
+code_issue <- function(title, date) {
+
+  date <- stringr::str_remove_all(date, "-")
+  dup <- ifelse(duplicated(date), date, NA_character_)
+  # Issues are smaller levels than topic or domain.
+  # this is important for differentiating date duplicates as different
+  # treaties signed in the same day often concern the same broader topic.
+  # If the water is a topic oceans, rivers and lakes
+  # are issues.
+  # For the complete list of issues and their 2 letter abbreviations
+  # please refer to the issues list available in sysdata.
+  issues <- purrr::map(issues, as.character)
+  # Assign the specific abbreviation to the "known" treaties
+  iss <- sapply(issues$word, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+  colnames(iss) <- paste0(issues$issue)
+  rownames(iss) <- paste0(title)
+  out <- apply(iss, 1, function(x) paste(names(x[x==1])))
+  out[out=="character(0)"] <- NA_character_
+  out <- unname(out)
+  out <- as.character(out)
+  
+  # If output is a list with no values, returns an empty list of the same length as title variable
+  lt <- as.numeric(length(title))
+  ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
+
+  out
+
+  issue <- ifelse(!is.na(dup), out, "")
+  issue <- ifelse(is.na(issue), "", issue)
+  issue <- ifelse(issue == "", issue, paste0("[", issue, "]"))
+
+  issue
+
 }

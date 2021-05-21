@@ -64,7 +64,6 @@ test_that("code_dates() helper function treats date range correctly", {
 #                                                            "19960425A_GY", "19980312_KAZ-MNG_ON", "19980312_KAZ-MNG_NE"))
 # })
 
-# As the dataset contains only 3 treaties, the linkage part is different from 
 data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
                               "Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
                               "Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing",
@@ -73,7 +72,7 @@ data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooper
                               "Convention For The Regulation Of Whaling"),
                     date = c("2015-10-30", "2019-02-01", "1984-10-30", "1955-10-14", "1969-06-27", "1960-02-05"))
 
-test_that("code_agreements() link treaties correctly", {
-  expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19690627E2_19600205", "19600205A"))
+test_that("code_agreements() does not link treaties that are not agreements", {
+  expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19690627E2", "19600205A"))
 })
 
