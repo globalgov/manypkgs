@@ -64,7 +64,6 @@ test_that("code_dates() helper function treats date range correctly", {
 #                                                            "19960425A_GY", "19980312_KAZ-MNG_ON", "19980312_KAZ-MNG_NE"))
 # })
 
-# As the dataset contains only 3 treaties, the linkage part is different from 
 data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
                               "Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
                               "Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing",
@@ -75,5 +74,16 @@ data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooper
 
 test_that("code_agreements() link treaties correctly", {
   expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19600205A", "19690627E2_19600205A"))
+})
+
+
+data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
+                              "Amendments Of The Limitation Amounts In The 1992 Protocol To Amend The International Convention On Civil Liability For Oil Pollution Damage",
+                              "Exchange Of Note Between The Government Of The United State Of America And The Government Of Canada Constituting An Agreement Regarding The Development Of Certain Portions Of The Great Lakes-St. Lawrence Basin Project",
+                              "Protocol To The Amendement Of The Convention On Water"),
+                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02"))
+
+test_that("code_agreements() recognizes the correct type of treaty", {
+  expect_equal(code_agreements(data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "19401107X", "P19990302"))
 })
 
