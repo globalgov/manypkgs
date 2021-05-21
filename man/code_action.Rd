@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_agreements.R
 \name{code_action}
 \alias{code_action}
-\title{Code agreement action for date duplicates}
+\title{Code agreement actions for date duplicates}
 \usage{
 code_action(title, date)
 }
@@ -12,17 +12,15 @@ code_action(title, date)
 \item{date}{A date variable}
 }
 \value{
-A character vector with 2 letter issue abbreviations for date duplicates
+A character vector with 2 letter action abbreviations for date duplicates
 }
 \description{
-Identifies issues to which agreements belong to for agreements
+Identifies actions performed by agreements
 signed in the same day.
 }
 \details{
-Issues are smaller levels than topic or domain.
-this is important for differentiating date duplicates as different
-treaties signed in the same day often concern the same broader topic.
-If the water is a topic oceans, rivers and lakes are issues.
-For the complete list of issues and their 2 letter abbreviations
-please refer to the issues list available in sysdata.
+Actions of agreements help differentiate date duplicates
+in the same dataset as different treaties.
+For the complete list of action and their 2 letter abbreviations
+please refer to the actions list available in sysdata.
 }

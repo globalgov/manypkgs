@@ -418,19 +418,19 @@ order_agreements <- function(title) {
   
 }
 
-#' Code agreement action for date duplicates
+#' Code agreement actions for date duplicates
 #'
-#' Identifies issues to which agreements belong to for agreements
+#' Identifies actions performed by agreements
 #' signed in the same day.
 #' @param title A character vector of treaty title
 #' @param date A date variable
-#' @details Issues are smaller levels than topic or domain.
-#' this is important for differentiating date duplicates as different
-#' treaties signed in the same day often concern the same broader topic.
-#' If the water is a topic oceans, rivers and lakes are issues.
-#' For the complete list of issues and their 2 letter abbreviations
-#' please refer to the issues list available in sysdata.
-#' @return A character vector with 2 letter issue abbreviations for date duplicates
+#' @importFrom stringr str_remove_all
+#' @importFrom purrr map
+#' @details Actions of agreements help differentiate date duplicates
+#' in the same dataset as different treaties.
+#' For the complete list of action and their 2 letter abbreviations
+#' please refer to the actions list available in sysdata.
+#' @return A character vector with 2 letter action abbreviations for date duplicates
 code_action <- function(title, date) {
 
   date <- stringr::str_remove_all(date, "-")
