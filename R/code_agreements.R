@@ -228,7 +228,7 @@ code_dates <- function(title, date) {
   # issue to differentiate between them.
   action <- code_action(title, uID)
   # Adding issue for date duplicates
-  uID <- paste0(uID, action)
+  uID <- ifelse(!is.na(action), paste0(uID, action), uID)
 
   uID
   
