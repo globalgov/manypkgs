@@ -447,15 +447,14 @@ code_action <- function(title, date) {
   out <- as.character(out)
   # Temporary solution with str_sub function: extract only the first action detected
   out <- ifelse(grepl("c\\(", out), stringr::str_sub(out, start = 4, end = 5), out)
-  
-  
+
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
   ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
+
   out
 
-  action <- ifelse(!is.na(dup), out, "")
+  action <- ifelse(is.na(dup), "", out)
   action <- ifelse(action == "", action, paste0("[", action, "]"))
 
   action
