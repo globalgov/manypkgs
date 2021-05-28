@@ -3,41 +3,38 @@
 #' Creates an ID that contains information on the
 #' parties to an agreement, the type of agreement, the date
 #' and the linkage to other agreements in the dataset.
+#' @param dataset dataset name.
+#' If provided without a title and date column,
+#' the function finds title and date conforming columns
+#' in the dataset automatically if available.
 #' @param title title column variable.
 #' Ideally, title variable should come from a qPackage database/dataset
 #' for which strings were standardised with `standardise_titles()`
 #' @param date date column variable
 #' Ideally, date variable should come from a qPackage database/dataset
 #' for which dates were standardised with `standardise_dates()`
-#' @param dataset dataset name, optional.
-#' If provided in place of title and date,
-#' the function finds title and date conforming columns
-#' in the dataset automatically if available.
 #' @return a character vector with the qIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom purrr map
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-#' IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
+#' IEADB$qID <- code_agreements(IEADB, IEADB$Title, IEADB$Signature)
 #' code_agreements(dataset = IEADB)
 #' @export
-code_agreements <- function(title, date, dataset = NULL) {
+code_agreements <- function(dataset = NULL, title, date) {
   
-  if (missing(title) & is.null(dataset)) {
-    stop("Please declare a title column.")
-  }
-  if (missing(date) & is.null(dataset)) {
-    stop("Please declare a beginning date column.")
+  if (is.null(dataset) & missing(title) & missing(date)) {
+    stop("Please declare a dataset or title and date columns.")
   }
   
-  if (missing(title) & !is.null(dataset)) {
+  if (!is.null(dataset) & missing(title) & missing(date)) {
     if (exists("Title", dataset) & exists("Signature", dataset)) {
     title <- dataset$Title
     date <- dataset$Signature
     usethis::ui_done("Title and date conforming columns in dataset automatically found")
   } else if (!exists("Title", dataset) & !exists("Signature", dataset)) {
-    stop("Not able to find conforming title and date columns in dataset. Please declare a title and date column.")
+    stop("Not able to find conforming title and date columns in dataset. Please declare title and date columns.")
   }
   }
   

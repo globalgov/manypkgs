@@ -4,9 +4,14 @@
 \alias{code_agreements}
 \title{Code Agreement Titles}
 \usage{
-code_agreements(title, date, dataset = NULL)
+code_agreements(dataset = NULL, title, date)
 }
 \arguments{
+\item{dataset}{dataset name.
+If provided without a title and date column,
+the function finds title and date conforming columns
+in the dataset automatically if available.}
+
 \item{title}{title column variable.
 Ideally, title variable should come from a qPackage database/dataset
 for which strings were standardised with \code{standardise_titles()}}
@@ -14,11 +19,6 @@ for which strings were standardised with \code{standardise_titles()}}
 \item{date}{date column variable
 Ideally, date variable should come from a qPackage database/dataset
 for which dates were standardised with \code{standardise_dates()}}
-
-\item{dataset}{dataset name, optional.
-If provided in place of title and date,
-the function finds title and date conforming columns
-in the dataset automatically if available.}
 }
 \value{
 a character vector with the qIDs
@@ -30,6 +30,6 @@ and the linkage to other agreements in the dataset.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-IEADB$qID <- code_agreements(IEADB$Title, IEADB$Signature)
+IEADB$qID <- code_agreements(IEADB, IEADB$Title, IEADB$Signature)
 code_agreements(dataset = IEADB)
 }
