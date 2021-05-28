@@ -47,22 +47,22 @@ test_that("code_dates() helper function treats date range correctly", {
 })
 
 #Test to be added one issue on false duplicates is solved!
-# data3 <- data.frame(title = c("Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing For King And Tanner Crab",
-#                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean",
-#                              "Agreement On Cooperation In The Field Of Environmental Protection",
-#                              "Agreement On Cooperation In The Field Of Protection, Regulation, And Recreation Living Water Resources In The Boundary Waters Of Amur And Ussuri Rivers",
-#                              "Agreement On The Lake Hanka Sanctuary",
-#                              "Agreement On Cooperation In The Field Of Peaceful Uses Of Atomic Energy",
-#                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Environmental Protection",
-#                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Plant Quarantine"),
-#                    date = c("1973-02-21", "1973-02-21", "1994-05-27", "1994-05-27", "1996-04-25", "1996-04-25", "1998-03-12", "1998-03-12"))
-# 
-# 
-# test_that("code_agreements() differentiates treaties signed the same day", {
-#   expect_equal(code_agreements(data3$title, data3$date), c("19730221_RUS-USA", "19730221_RUS-USA",
-#                                                            "19940527A", "19940527A", "19960425A",
-#                                                            "19960425A", "19980312_KAZ-MNG", "19980312_KAZ-MNG"))
-# })
+data3 <- data.frame(title = c("Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing For King And Tanner Crab",
+                             "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean",
+                             "Agreement On Cooperation In The Field Of Environmental Protection",
+                             "Agreement On Cooperation In The Field Of Protection, Regulation, And Recreation Living Water Resources In The Boundary Waters Of Amur And Ussuri Rivers",
+                             "Agreement On The Lake Hanka Sanctuary",
+                             "Agreement On Cooperation In The Field Of Peaceful Uses Of Atomic Energy",
+                             "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Environmental Protection",
+                             "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Plant Quarantine"),
+                   date = c("1973-02-21", "1973-02-21", "1994-05-27", "1994-05-27", "1996-04-25", "1996-04-25", "1998-03-12", "1998-03-12"))
+
+
+test_that("code_agreements() differentiates treaties signed the same day", {
+  expect_equal(code_agreements(data3, data3$title, data3$date), c("19730221_RUS-USA", "19730221[OP]_RUS-USA",
+                                                           "19940527A", "19940527[PO]A", "19960425A",
+                                                           "19960425[EN]A", "19980312_KAZ-MNG", "19980312[CR]_KAZ-MNG"))
+})
 
 data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
                               "Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
