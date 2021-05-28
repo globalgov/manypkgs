@@ -289,6 +289,7 @@ code_linkage <- function(title, date) {
   abbrev <- code_known_agreements(s)
   parties <- code_parties(s)
   dates <- code_dates(title, date)
+  dates <- stringr::str_replace_all(dates, "\\[[:alpha:]{2}\\]", "")
   
   # Step two: standardise words in title
   out <- standardise_titles(as.character(title))
