@@ -155,24 +155,20 @@ code_type <- function(title) {
           title, ignore.case = T) ~ "A",
     grepl("Act|Declaration|Covenant|Scheme|Government Of|Law",
           title, ignore.case = T) ~ "A",
-    grepl("Exchange|Letters|Notas", title, ignore.case = T) ~ "X",
-    # Y stands for memorandum of understanding
-    grepl("Memorandum|memorando|Principles of Conduct|Code of Conduct",
-          title, ignore.case = T) ~ "Y",
-    # W stands for resolutions
+    # N stands for exchange of notes and minutes as they both relate to description
+    grepl("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
+          First Meeting Of|Commission|Committee|Center", title, ignore.case = T) ~ "N",
+    # S stands for memorandum of understanding and strategy as they both relate to future plans
+    grepl("Memorandum|memorando|Principles of Conduct|Code of Conduct|
+          Strategy|Plan|Program|Improvement|Project|Study|Working Party|
+          Working Group",
+          title, ignore.case = T) ~ "S",
+    # W stands for resolutions and declarations as they both relate to law/policies
     grepl("Agreed Measures|Agreed Record|Consensus|Conclusions|
-          Decision|Directive|Regulation|
-          Reglamento|Resolution|Rules|Recommendation",
-          title, ignore.case = T) ~ "W",
-    # Q stands for minutes
-    grepl("Minute|Adjustment|First Session Of|First Meeting Of|Commission|
-          Committee|Center", title, ignore.case = T) ~ "Q",
-    # V stands for declarations
-    grepl("Statement|Communiq|Comminiq|Joint Declaration|Proclamation|
-          Administrative Order", title, ignore.case = T) ~ "V",
-    # S stands for strategies
-    grepl("Strategy|Plan|Program|Improvement|Project|Study|Working Party|
-          Working Group", title, ignore.case = T) ~ "S",
+          Decision|Directive|Regulation|Reglamento|Resolution|
+          Rules|Recommendation|Statement|Communiq|Comminiq|
+          Joint Declaration|Proclamation|Administrative Order",
+          title, ignore.case = T) ~ "R",
   )
   
   # Extracts meaningful ordering numbers for protocols and amendments
