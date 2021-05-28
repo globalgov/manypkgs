@@ -128,59 +128,63 @@ code_parties <- function(title) {
 #' @param title A character vector of treaty title
 #' @return A character vector of the treaty type
 #' @importFrom dplyr case_when
+#' @importFrom stringr str_extract str_replace_na
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_type(IEADB$Title)
 #' @export
 code_type <- function(title) {
   
-  # When amendment and protocol are mentioned in the title, the first one appearing should be kept
-  title <- ifelse(grepl("Amendments.*Protocol|Amendment.*Protocol|Amendments.*Protocols|Amendment.*Protocols", title, ignore.case = T), stringr::str_replace(title, "Protocol|protocol|Protocols|protocols", ""), title)
-  title <- ifelse(grepl("Protocol.*Amendment|Protocols.*Amendments|Protocols.*Amendment|Protocol.*Amendments", title, ignore.case = T), stringr::str_replace(title, "Amendment|amendment|Amendements|amendements", ""), title)
+  # Get types from title
+  type <- gsub("protocol|additional|subsidiary|supplementary|
+               complementaire|complementar|complementario|annex |annexes",
+               "PROTO", title, ignore.case = TRUE)
+  type <- gsub("amendment|modify|extend|proces-verbal|amend", "AMEND",
+               type, ignore.case = T)
+  type <- gsub("agreement|arrangement|accord|acuerdo|bilateral co|
+               technical co|treat|trait|tratado|convention|convencion|
+               convenio|constitution|charte|instrument|statute|estatuto|
+               provisional understanding|provisions relating|ubereinkunft|
+               Act|Declaration|Covenant|Scheme|Government Of|Law",
+               "AGREE", type, ignore.case = T)
+  type <- gsub("amendment|modify|extend|proces-verbal|amend", "AMEND",
+               type, ignore.case = T)
+  type <- gsub("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
+               First Meeting Of|Commission|Committee|Center", "NOTES",
+               type, ignore.case = T)
+  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|
+               Strategy|Plan|Program|Improvement|Project|Study|Working Party|
+               Working Group", "STRAT",
+               type, ignore.case = T)
+  type <- gsub("Agreed Measures|Agreed Record|Consensus|Conclusions|
+                Decision|Directive|Regulation|Reglamento|Resolution|
+                Rules|Recommendation|Statement|Communiq|Comminiq|
+                Joint Declaration|Proclamation|Administrative Order", "RESOL",
+                type, ignore.case = T)
   
+  # EXtract only first type
+  type <- stringr::str_extract(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
+  
+  # Assign type abbreviations
   type <- dplyr::case_when(
-    # P stands for protocols
-    grepl("^Protocol", title, ignore.case = T) ~ "P",
-    grepl("protocol|additional|subsidiary|supplementary|
-          complementaire|
-          complementar|complementario|annex |annexes ",
-          title, ignore.case = T) ~ "P",
-    # E stands for amendment
-    grepl("amend|modify|extend|proces-verbal", title, ignore.case = T) ~ "E",
-    # A stands for agreements
-    grepl("agreement|arrangement|accord|acuerdo|bilateral co|
-          technical co|treat|trait|tratado|convention|convencion|
-          convenio|constitution|charte|instrument|statute|estatuto|
-          provisional understanding|provisions relating|ubereinkunft",
-          title, ignore.case = T) ~ "A",
-    grepl("Act|Declaration|Covenant|Scheme|Government Of|Law",
-          title, ignore.case = T) ~ "A",
-    # N stands for exchange of notes and minutes as they both relate to description
-    grepl("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
-          First Meeting Of|Commission|Committee|Center", title, ignore.case = T) ~ "N",
-    # S stands for memorandum of understanding and strategy as they both relate to future plans
-    grepl("Memorandum|memorando|Principles of Conduct|Code of Conduct|
-          Strategy|Plan|Program|Improvement|Project|Study|Working Party|
-          Working Group",
-          title, ignore.case = T) ~ "S",
-    # W stands for resolutions and declarations as they both relate to law/policies
-    grepl("Agreed Measures|Agreed Record|Consensus|Conclusions|
-          Decision|Directive|Regulation|Reglamento|Resolution|
-          Rules|Recommendation|Statement|Communiq|Comminiq|
-          Joint Declaration|Proclamation|Administrative Order",
-          title, ignore.case = T) ~ "R",
+    grepl("PROTO", type) ~ "P", # protocol
+    grepl("AMEND", type) ~ "E", # amendment
+    grepl("AGREE", type) ~ "A", # agreement
+    grepl("NOTES", type) ~ "N", # notes
+    grepl("STRAT", type) ~ "S", # strategy
+    grepl("RESOL", type) ~ "R", # resolution
   )
   
   # Extracts meaningful ordering numbers for protocols and amendments
   number <- order_agreements(title)
-  
+
   # When no type is found
   type <- stringr::str_replace_na(type, "O")
-  
+
   type <- paste0(type, number)
-  
+
   type
-  
+ 
 }
 
 #' Creates Numerical IDs from Signature Dates
