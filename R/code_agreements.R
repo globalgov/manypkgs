@@ -445,7 +445,7 @@ code_action <- function(title, date) {
   out <- unname(out)
   out <- as.character(out)
   # Temporary solution with str_sub function: extract only the first action detected
-  out <- ifelse(grepl("c\\(", out), stringr::str_sub(out, start = 4, end = 5), out)
+  out <- ifelse(grepl("c\\(", out), substr(out, 4, 5), out)
 
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
