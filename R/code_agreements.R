@@ -128,7 +128,7 @@ code_parties <- function(title) {
 #' @param title A character vector of treaty title
 #' @return A character vector of the treaty type
 #' @importFrom dplyr case_when
-#' @importFrom stringr str_extract str_replace_na
+#' @importFrom stringr str_extract str_replace_na word
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_type(IEADB$Title)
@@ -163,7 +163,9 @@ code_type <- function(title) {
                 type, ignore.case = T)
   
   # EXtract only first type
-  type <- stringr::str_extract(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
+  type <- stringr::str_extract_all(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
+  type <- gsub("c\\(", "", type)
+  type <- stringr::word(type, 1)
   
   # Assign type abbreviations
   type <- dplyr::case_when(
