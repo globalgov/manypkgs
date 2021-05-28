@@ -145,21 +145,19 @@ code_type <- function(title) {
                technical co|treat|trait|tratado|convention|convencion|
                convenio|constitution|charte|instrument|statute|estatuto|
                provisional understanding|provisions relating|ubereinkunft|
-               Act|Declaration|Covenant|Scheme|Government Of|Law",
+               Act|Covenant|Scheme|Government Of|Law",
                "AGREE", type, ignore.case = T)
   type <- gsub("amendment|modify|extend|proces-verbal|amend", "AMEND",
                type, ignore.case = T)
   type <- gsub("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
                First Meeting Of|Commission|Committee|Center", "NOTES",
                type, ignore.case = T)
-  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|
-               Strategy|Plan|Program|Improvement|Project|Study|Working Party|
-               Working Group", "STRAT",
+  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|Strategy|Plan|Program|Improvement|Project|Study|Working Party|Working Group", "STRAT",
                type, ignore.case = T)
   type <- gsub("Agreed Measures|Agreed Record|Consensus|Conclusions|
                 Decision|Directive|Regulation|Reglamento|Resolution|
                 Rules|Recommendation|Statement|Communiq|Comminiq|
-                Joint Declaration|Proclamation|Administrative Order", "RESOL",
+                Joint Declaration|Declaration|Proclamation|Administrative Order", "RESOL",
                 type, ignore.case = T)
   
   # EXtract only first type
