@@ -341,7 +341,13 @@ code_linkage <- function(title, date) {
   
   # If, by mistake, linkage connects to protocol or amendment instead of agreements
   line <- stringr::str_replace_all(line, "^[:digit:]{8}E$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}E[:digit:]{1}$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}E[:digit:]{2}$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}E[:digit:]{3}$", "")
   line <- stringr::str_replace_all(line, "^[:digit:]{8}P$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}P[:digit:]{1}$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}P[:digit:]{2}$", "")
+  line <- stringr::str_replace_all(line, "^[:digit:]{8}P[:digit:]{3}$", "")
   
   line
   
