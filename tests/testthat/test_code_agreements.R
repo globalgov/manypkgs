@@ -88,14 +88,17 @@ test_that("code_agreements() recognizes the correct type of treaty", {
   expect_equal(code_agreements(data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "CLC19691129", "19401107A", "19990302P"))
 })
 
+# Test on the treaty types
 data6 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
                               "Amendments 34 Of The Limitation Amounts In The 1992 Convention",
                               "Protocol 2 Between The Government Of The United State Of America And The Government Of Canada Constituting An Agreement Regarding The Development Of Certain Portions Of The Great Lakes-St. Lawrence Basin Project",
-                              "Protocol To The Amendement 300 Of The Convention On Water"),
-                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02"))
+                              "Protocol To The Amendement 300 Of The Convention On Water",
+                              "Exchange Of Notes Constituting An Agreement On The Exploitation Of Border Rivers For Industrial Purposes",
+                              "Declaration Modifying Agreement on the River"),
+                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02", "1912-09-02", "1999-07-12"))
 
 test_that("code_agreements() identify correct number of protocol or amendment", {
-  expect_equal(code_agreements(data6$title, data6$date), c("18991002E18", "20001018E34", "19401107P2", "19990302P300"))
+  expect_equal(code_agreements(data6, data6$title, data6$date), c("18991002E18", "20001018E34", "19401107P2", "19990302P300", "19120902N", "19990712R"))
 })
 
 
