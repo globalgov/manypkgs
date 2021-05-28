@@ -73,32 +73,33 @@ data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooper
                     date = c("2015-10-30", "2019-02-01", "1984-10-30", "1955-10-14", "1960-02-05", "1969-06-27"))
 
 test_that("code_agreements() link treaties correctly", {
-  expect_equal(code_agreements(data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19600205A", "19690627E_19600205A"))
+  expect_equal(code_agreements(data4, data4$title, data4$date), c("20151030P", "20190201E", "19841030P", "19551014P", "19600205A", "19690627E_19600205A"))
 })
 
-
+# Test on the treaty type
 data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
                               "Amendments Of The Limitation Amounts In The 1992 Protocol To Amend The International Convention On Civil Liability For Oil Pollution Damage",
                               "International Convention On Civil Liability For Oil Pollution Damage",
                               "Exchange Of Note Between The Government Of The United State Of America And The Government Of Canada Constituting An Agreement Regarding The Development Of Certain Portions Of The Great Lakes-St. Lawrence Basin Project",
-                              "Protocol To The Amendement Of The Convention On Water"),
-                    date = c("1899-10-02", "2000-10-18", "1969-11-29", "1940-11-07", "1999-03-02"))
+                              "Protocol To The Amendement Of The Convention On Water", 
+                              "Declaration Modifying Agreement on the River",
+                              "Exchange Of Notes Constituting An Agreement On The Exploitation Of Border Rivers For Industrial Purposes",
+                              "Strategy On The Agreement On The River Basin"),
+                    date = c("1899-10-02", "2000-10-18", "1969-11-29", "1940-11-07", "1999-03-02", "1999-07-12", "1912-09-02", "2019-03-15"))
 
 test_that("code_agreements() recognizes the correct type of treaty", {
-  expect_equal(code_agreements(data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "CLC19691129", "19401107A", "19990302P"))
+  expect_equal(code_agreements(data5, data5$title, data5$date), c("18991002E18", "20001018E_CLC19691129", "CLC19691129", "19401107N", "19990302P", "19990712R", "19120902N", "20190315S"))
 })
 
-# Test on the treaty types
+# Test on number assign to procotol/amendment
 data6 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
                               "Amendments 34 Of The Limitation Amounts In The 1992 Convention",
                               "Protocol 2 Between The Government Of The United State Of America And The Government Of Canada Constituting An Agreement Regarding The Development Of Certain Portions Of The Great Lakes-St. Lawrence Basin Project",
-                              "Protocol To The Amendement 300 Of The Convention On Water",
-                              "Exchange Of Notes Constituting An Agreement On The Exploitation Of Border Rivers For Industrial Purposes",
-                              "Declaration Modifying Agreement on the River"),
-                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02", "1912-09-02", "1999-07-12"))
+                              "Protocol To The Amendement 300 Of The Convention On Water"),
+                    date = c("1899-10-02", "2000-10-18", "1940-11-07", "1999-03-02"))
 
 test_that("code_agreements() identify correct number of protocol or amendment", {
-  expect_equal(code_agreements(data6, data6$title, data6$date), c("18991002E18", "20001018E34", "19401107P2", "19990302P300", "19120902N", "19990712R"))
+  expect_equal(code_agreements(data6, data6$title, data6$date), c("18991002E18", "20001018E34", "19401107P2", "19990302P300"))
 })
 
 
