@@ -171,7 +171,7 @@ and the more information we require, the higher the false negative rate.
 Using our current version of `{qCreate}` we obtain:
 
 ```{r qid, warning=FALSE, message=FALSE}
-agreements$qID <- qCreate::code_agreements(agreements$titles, agreements$dates)
+agreements$qID <- qCreate::code_agreements(agreements, agreements$titles, agreements$dates)
 agreements$idinfo <- ifelse(duplicated(agreements$qID) | 
                                   duplicated(agreements$qID, fromLast = TRUE), 1, 0)
 WVPlots::ROCPlot(agreements, "idinfo", "duplicate", 1, title = "ID Strict")
@@ -263,7 +263,7 @@ In some cases, the date of signature for multiple bilateral or multilateral trea
 fall on the same day.
 In those cases, the unique number will also contain the abbreviation for the action
 extracted from agreement titles.
-Actions are abbreviations for the function of agreement (usually from verbs present in title).
+Actions are abbreviations for the function of agreement (usually from verbs in title).
 
 ```{r dates, eval=FALSE}
 qCreate::code_dates(agreements$titles, agreements$dates)
