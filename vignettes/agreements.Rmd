@@ -260,9 +260,10 @@ qCreate::code_parties(agreements$titles)
 Each treaty contains a unique number in their qID which refer to the signature date. 
 The number has therefore eight numbers that are under the YYYYMMDD format. 
 In some cases, the date of signature for multiple bilateral or multilateral treaties
-fall on the same day. 
-In that case, the ID will also contain the action extracted from agreement titles.
-Actions are abbreviations for the function of agreement (usually verbs present in title).
+fall on the same day.
+In those cases, the unique number will also contain the abbreviation for the action
+extracted from agreement titles.
+Actions are abbreviations for the function of agreement (usually from verbs present in title).
 
 ```{r dates, eval=FALSE}
 qCreate::code_dates(agreements$titles, agreements$dates)
