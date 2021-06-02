@@ -74,7 +74,7 @@ code_agreements <- function(dataset = NULL, title, date) {
                                 # if parties were not identified and type is agreement
                                 (ifelse((is.na(parties) & (type != "A")), paste0(uID, type, "_", line),
                                         # if parties were not identified and type is not agreement
-                                        (ifelse((!is.na(parties) & (type == "A")), paste0(uID, "_", parties),
+                                        (ifelse((!is.na(parties) & (type == "A")), paste0(parties, "_", uID),
                                                 # if parties were identified and type is agreement
                                                 (ifelse((!is.na(parties) & (type != "A")), paste0(uID, type, "_", line), NA)))))))))))
                                                         # if parties were identified and type is not agreement
@@ -320,7 +320,7 @@ code_linkage <- function(title, date) {
   
   id <- ifelse((!is.na(abbrev)), paste0(abbrev),
                (ifelse((is.na(parties)), paste0(dates, type),
-                       (ifelse((!is.na(parties) & (type == "A")), paste0(dates, "_", parties),
+                       (ifelse((!is.na(parties) & (type == "A")), paste0(parties, "_", dates),
                                (ifelse((!is.na(parties) & (type != "A")), paste0(dates, type), NA)))))))
   
   out <- cbind(out, dup, id)
