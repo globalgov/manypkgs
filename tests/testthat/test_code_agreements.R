@@ -34,6 +34,7 @@ test_that("Code_agreements helper functions work properly", {
 data2 <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fisheries Development",
                               "Traité De Délimitation Maritime, Signé À Paris Le 30 Janvier 19819"),
                     date = c("1980-01-01:1980-12-31", "1981-01-01:1981-12-31"))
+
 test_that("code_dates() helper function treats date range correctly", {
   # Add title to the code_dates function arguments
   expect_equal(code_dates(data2$title, data2$date), c("1980ACT01", "1981TTO01"))
@@ -45,7 +46,6 @@ data3 <- data.frame(title = c("Agreement Between The Government Of The United St
                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Environmental Protection",
                              "Agreement Between The Government Of Kazakhstan And The Government Of Mongolia On Cooperation In The Field Of Plant Quarantine"),
                    date = c("1973-02-21", "1973-02-21", "1998-03-12", "1998-03-12"))
-
 
 test_that("code_agreements() differentiates treaties signed the same day", {
   expect_equal(code_agreements(data3, data3$title, data3$date), c("RUS-USA_19730221", "RUS-USA_19730221[OP]", 

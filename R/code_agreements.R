@@ -64,30 +64,27 @@ code_agreements <- function(dataset = NULL, title, date) {
   usethis::ui_done("Coded agreement linkages")
   
   # Step seven: add items together correctly
-  # The following coding assumes that any other
-  # types than A (= Agreement) are linked to another treaty.
-  out <- ifelse((!is.na(abbrev) & (type == "A")), paste0(abbrev),
-                # if abrreviation is known and type is agreement
-                (ifelse((!is.na(abbrev) & (type != "A")), paste0(uID, type, "_", line),
-                        # if abrreviation is known and type is not agreement
-                        (ifelse((is.na(parties) & (type == "A")), paste0(uID, type),
-                                # if parties were not identified and type is agreement
-                                (ifelse((is.na(parties) & (type != "A")), paste0(uID, type, "_", line),
-                                        # if parties were not identified and type is not agreement
-                                        (ifelse((!is.na(parties) & (type == "A")), paste0(parties, "_", uID),
-                                                # if parties were identified and type is agreement
-                                                (ifelse((!is.na(parties) & (type != "A")), paste0(uID, type, "_", line), NA)))))))))))
-                                                        # if parties were identified and type is not agreement
+  out <- vector(mode = "character", length = length(title))
+  # initialize vector
+  qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev), out)
+  # for agreements (A) where abrreviation is known
+  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(uID, type, "_", line), qID)
+  # when abbreviation is known but treaty type is not agreement
+  qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(uID, type), qID)
+  # when parties were not identified and treaty type is agreement (A)
+  qID <- ifelse(is.na(parties) & (type != "A"), paste0(uID, type, "_", line), qID)
+  # when parties were not identified and type is not agreement
+  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID), qID)
+  # when parties were identified and type is agreement (A)
+  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(uID, type, "_", line), qID)
+  # when parties were identified and type is not agreement
+  qID <- stringr::str_remove_all(qID, "_$")
+  # deletes empty line
+  qID <- stringr::str_replace_all(qID, "NA_", NA_character_)
+  # makes sure NAs are standard
   
-  # When line is left empty, the last "_" of the qID should be deleted
-  out <- stringr::str_remove_all(out, "_$")
-  out <- stringr::str_replace_all(out, "NA_", NA_character_)
-  
-  cat(sum(is.na(out)), "entries were not matched at all.\n")
-  cat("There were", sum(duplicated(out, incomparables = NA)), "duplicated IDs.\n")
-  
-  qID <- out
-  
+  cat(sum(is.na(qID)), "entries were not matched at all.\n")
+  cat("There were", sum(duplicated(qID, incomparables = NA)), "duplicated IDs.\n")
   usethis::ui_done("Please run `vignette('agreements')` for more information.")
   
   qID
