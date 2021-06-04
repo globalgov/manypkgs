@@ -427,6 +427,7 @@ order_agreements <- function(title) {
 #' @param date A date variable
 #' @importFrom stringr str_remove_all
 #' @importFrom purrr map
+#' @importFrom dplyr group_by mutate
 #' @details Actions of agreements help differentiate date duplicates
 #' in the same dataset as different treaties.
 #' For the complete list of action and their 2 letter abbreviations
@@ -435,7 +436,12 @@ order_agreements <- function(title) {
 code_action <- function(title, date) {
 
   date <- stringr::str_remove_all(date, "-")
-  dup <- ifelse(duplicated(date), date, NA_character_)
+  # find duplicates and original observations
+  dup <- as.data.frame(date) %>% 
+    dplyr::group_by(date) %>% 
+    dplyr::mutate(n = n()) %>% 
+    dplyr::mutate(dup = ifelse(n > 1, paste0(date), NA_character_))
+  dup <- dup$dup
   # Get issues list
   action <- purrr::map(action, as.character)
   # Assign the specific issue abbreviation to the date duplicates

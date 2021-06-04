@@ -48,8 +48,8 @@ data3 <- data.frame(title = c("Agreement Between The Government Of The United St
                    date = c("1973-02-21", "1973-02-21", "1998-03-12", "1998-03-12"))
 
 test_that("code_agreements() differentiates treaties signed the same day", {
-  expect_equal(code_agreements(data3, data3$title, data3$date), c("RUS-USA_19730221", "RUS-USA_19730221[OP]", 
-                                                                    "KAZ-MNG_19980312", "KAZ-MNG_19980312[CR]"))
+  expect_equal(code_agreements(data3, data3$title, data3$date), c("RUS-USA_19730221[FI]", "RUS-USA_19730221[OP]", 
+                                                                    "KAZ-MNG_19980312[PO]", "KAZ-MNG_19980312[CR]"))
 })
 
 data4 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooperation In The Field Of Environmental Monitoring Of 13 January 1999",
