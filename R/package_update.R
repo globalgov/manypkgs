@@ -4,8 +4,9 @@
 #' @param package The name of the package to be updated, optional.
 #' When not declared package name is extracted from description.
 #' @param path The file path, optional.
-#' If not specified, function get's the working directory.
-#' @import  usethis
+#' If not specified, function get's the current working directory.
+#' @import usethis
+#' @import desc
 #' @importFrom stringr str_detect
 #' @examples
 #' \dontrun{
@@ -41,7 +42,8 @@ update_package <- function(package = NULL, path = getwd()) {
               ignore = TRUE,
               path = path,
               open = FALSE)
-    usethis::ui_done("Updated License.")
+    # desc::desc_set("License", "CC BY 4.0")
+    usethis::ui_done("Updated License file.")
   }
   
   # Step three: update Code of Conduct and Contributing files
@@ -103,4 +105,9 @@ update_package <- function(package = NULL, path = getwd()) {
     usethis::ui_done("Updated release workflow for merging push releases.")
   }
 
+  # step five: update Description file
+  # desc::desc_set_dep() 
+  desc::desc_add_remotes("globalgov/qCreate")
+  usethis::ui_done("Updated description file.")
+  
 }
