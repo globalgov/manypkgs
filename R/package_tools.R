@@ -1,6 +1,6 @@
 #' Helper function for finding and rendering templates
 #'
-#' Helper function for finding and rendering templates from the qData package
+#' Helper function for finding and rendering templates from the qCreate package
 #' @param template Template called
 #' @param save_as Path to where the rendered template should be saved
 #' @param data Any elements to be entered into the template via Whisker
@@ -25,10 +25,10 @@ qtemplate <- function(template,
                       ignore = FALSE,
                       path,
                       open = rlang::is_interactive(),
-                      package = "qData") {
+                      package = "qCreate") {
 
   # Set up find_template() helper function
-  find_template <- function(template_name, package = "qData") {
+  find_template <- function(template_name, package = "qCreate") {
     path <- tryCatch(fs::path_package(package = package, "templates",
                                       template_name),
                      error = function(e) ""
@@ -43,7 +43,7 @@ qtemplate <- function(template,
   }
 
   # Set up render_template() helper function
-  render_template <- function(template, data = list(), package = "qData") {
+  render_template <- function(template, data = list(), package = "qCreate") {
     template_path <- find_template(template, package = package)
     strsplit(whisker::whisker.render(xfun::read_utf8(template_path),
                                      data), "\n")[[1]]
@@ -264,7 +264,7 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
       removables <- unique(removables)
     }
     
-    # if anything has left to be removed
+    # if anything has left to be removedf
     if (length(removables)) {
       # get to total sum of the variables that are going to be removed in bytes
       total_size <- sum(vapply(removables,
