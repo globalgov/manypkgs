@@ -33,8 +33,9 @@ code_agreements <- function(dataset = NULL, title, date) {
     title <- dataset$Title
     date <- dataset$Signature
     usethis::ui_done("Title and date conforming columns in dataset automatically found")
-  } else if (!exists("Title", dataset) & !exists("Signature", dataset)) {
-    stop("Not able to find conforming title and date columns in dataset. Please declare title and date columns.")
+  } else if (!exists("Title", dataset) | !exists("Signature", dataset)) {
+    stop("Unable to find both 'Title' and 'Signature' columns in dataset. 
+         Please declare the name of these columns or rename them.")
   }
   }
   

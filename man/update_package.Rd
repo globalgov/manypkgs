@@ -11,7 +11,7 @@ update_package(package = NULL, path = getwd())
 When not declared package name is extracted from description.}
 
 \item{path}{The file path, optional.
-If not specified, function get's the working directory.}
+If not specified, function get's the current working directory.}
 }
 \value{
 Updated files in correct structure for qPackages.
