@@ -56,11 +56,11 @@ code_agreements <- function(dataset = NULL, title, date) {
   abbrev <- code_known_agreements(qID)
   usethis::ui_done("Coded known agreements")
   
-  #step five: give the observation a unique ID by dates
+  # Step five: give the observation a unique ID by dates
   uID <- code_dates(title, date)
   usethis::ui_done("Coded agreement dates")
   
-  # step six: detect treaties from the same 'family'
+  # Step six: detect treaties from the same 'family'
   line <- code_linkage(qID, date)
   usethis::ui_done("Coded agreement linkages")
   
