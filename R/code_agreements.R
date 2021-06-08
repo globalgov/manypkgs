@@ -468,3 +468,20 @@ code_action <- function(title, date) {
   action
 
 }
+
+#' @export
+code_acronym <- function(x){
+  x <- standardise_titles(tm::removeWords(tolower(x), tm::stopwords("en")))
+  x <- stringr::str_remove_all(x, "[0-9]")
+  x <- abbreviate(x, minlength = 4, method = 'both.sides')
+  
+  x <- purrr::map_chr(x, function(y){
+   if(nchar(y)<=6){
+     y
+   } else {
+     y <- paste0(substr(y, 1, 1), stringr::str_pad(nchar(y)-2, 2, pad = "0"), substr(y, nchar(y), nchar(y)))
+   }
+  })
+
+  x
+}
