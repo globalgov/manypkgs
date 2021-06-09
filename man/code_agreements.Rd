@@ -30,6 +30,6 @@ and the linkage to other agreements in the dataset.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-IEADB$qID <- code_agreements(IEADB, IEADB$Title, IEADB$Signature)
 code_agreements(dataset = IEADB)
+code_agreements(title = IEADB$Title, date = IEADB$Signature)
 }

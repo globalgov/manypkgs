@@ -356,15 +356,18 @@ code_linkage <- function(title, date) {
   
 }
 
-#' Remove dates from agreement titles
+#' Extracts Ordering Numbers from Titles
 #'
+#' Identifies and extracts meaningful numbers from agreements titles that
+#' are important information about the order of the agreement.
 #' Dates can cause an issue when trying to extract meaningful
-#' numbers from titles for ordering purposes, this function removes dates.
+#' numbers from titles for ordering purposes, this function also removes dates.
 #' @param title A character vector of treaty title
-#' @importFrom stringr str_remove
-#' @return A character vector without dates
-remove_dates <- function(title) {
+#' @import stringr
+#' @return A character vector with meangniful numbers from titles
+order_agreements <- function(title) {
   
+  # Step one: remove dates from title
   rd <- title
   rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
   rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}")
@@ -375,21 +378,7 @@ remove_dates <- function(title) {
   rd <- stringr::str_remove(rd, "[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}")
   rd <- stringr::str_remove(rd, "[:digit:]{4}")
   
-  rd
-  
-}
-
-#' Extracts Orders from Agreements 
-#'
-#' Identifies and extracts meaningful numbers from agreements titles that
-#' are important information about the order of the agreement.
-#' @param title A character vector of treaty title
-#' @import stringr
-#' @return A character vector with meangniful numbers from titles
-order_agreements <- function(title) {
-  
-  rd <- remove_dates(title)
-  
+  # Step two: standardises ordinal numbers and ordering text into digits
   oa <- gsub("\\<one\\>|\\<first\\>", "1", rd)
   oa <- gsub("\\<two\\>|\\<second\\>", "2", oa)
   oa <- gsub("\\<three\\>|\\<third\\>", "3", oa)
@@ -411,6 +400,7 @@ order_agreements <- function(title) {
   oa <- gsub("\\<nineteen\\>|\\<nineteenth\\>", "19", oa)
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
   
+  # Step three: make sure meaningful numbers extracted correctly
   oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
