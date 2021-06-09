@@ -6,7 +6,6 @@
 #' @param path The file path, optional.
 #' If not specified, function get's the current working directory.
 #' @import usethis
-#' @import desc
 #' @importFrom stringr str_detect
 #' @examples
 #' \dontrun{
@@ -35,6 +34,8 @@ update_package <- function(package = NULL, path = getwd()) {
            or use setwd() to setup directory beforehand.")
     }
   }
+  
+  depends("desc")
 
   # Step two: update License
   if(askYesNo("Would you like to update package LICENSE file?") == TRUE) {
@@ -107,7 +108,7 @@ update_package <- function(package = NULL, path = getwd()) {
 
   # step five: update Description file
   # desc::desc_set_dep() 
-  desc::desc_add_remotes("globalgov/qCreate")
-  usethis::ui_done("Updated description file.")
+  # desc::desc_add_remotes()
+  # usethis::ui_done("Updated description file.")
   
 }
