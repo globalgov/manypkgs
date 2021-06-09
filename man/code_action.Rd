@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_agreements.R
 \name{code_action}
 \alias{code_action}
-\title{Code agreement actions for date duplicates}
+\title{Code Actions for Date Duplicates}
 \usage{
 code_action(title, date)
 }
