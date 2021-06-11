@@ -47,7 +47,8 @@ Imports:
     fs,
     remotes,
     qStates,
-    stringi
+    stringi,
+    tm
 Suggests:
     testthat,
     librarian,
