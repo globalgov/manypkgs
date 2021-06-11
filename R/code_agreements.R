@@ -253,6 +253,7 @@ code_known_agreements <- function(title) {
   out[out=="character(0)"] <- NA_character_
   out <- unname(out)
   out <- as.character(out)
+  out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
   
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
