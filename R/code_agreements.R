@@ -58,6 +58,7 @@ code_agreements <- function(dataset = NULL, title, date) {
   
   # Step five: give the observation a unique ID and acronym
   uID <- code_dates(title, date)
+  action <- code_action(title, date)
   usethis::ui_done("Coded agreement dates")
   acronym <- code_acronym(title)
   usethis::ui_done("Coded acronyms for agreements")
@@ -77,9 +78,9 @@ code_agreements <- function(dataset = NULL, title, date) {
   # when parties were not identified and treaty type is agreement (A)
   qID <- ifelse(is.na(parties) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were not identified and type is not agreement
-  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID), qID)
+  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID, type, action), qID)
   # when parties were identified and type is agreement (A)
-  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(parties, "_", uID, type, action, ":", line), qID)
   # when parties were identified and type is not agreement
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
@@ -153,7 +154,8 @@ code_type <- function(title) {
   type <- gsub("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
                First Meeting Of|Commission|Committee|Center", "NOTES",
                type, ignore.case = T)
-  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|Strategy|Plan|Program|Improvement|Project|Study|Working Party|Working Group", "STRAT",
+  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|Strategy|
+               Plan|Program|Improvement|Project|Study|Working Party|Working Group", "STRAT",
                type, ignore.case = T)
   type <- gsub("Agreed Measures|Agreed Record|Consensus|Conclusions|
                 Decision|Directive|Regulation|Reglamento|Resolution|
@@ -221,14 +223,8 @@ code_dates <- function(title, date) {
   C <- stringr::str_to_upper(C)
   uID <- stringr::str_replace_all(uID, "[:digit:]{4}\\:[:digit:]{8}$",
                                   paste0(A, B, C, "01"))
-  # There are often several different treaties that are signed in
-  # the same day, in those cases we assign them a letter for their
-  # issue to differentiate between them.
-  action <- code_action(title, uID)
-  # Adding issue for date duplicates
-  uID <- ifelse(!is.na(action), paste0(uID, action), uID)
-  
-  uID
+
+  uID <- substr(uID, 1, nchar(uID) - 4)
   
 }
 
@@ -266,6 +262,50 @@ code_known_agreements <- function(title) {
   
 }
 
+#' Code Acronym for Titles
+#'
+#' Codes an acronym for agreement titles to facilitate identification
+#' and comparuison across datasets.
+#' @param title A character vector of treaty title
+#' @import stringr
+#' @importFrom purrr map_chr
+#' @importFrom tm stopwords
+#' @details Codes acronyms that are 4 to 6 digits long.
+#' For shorter treaty titles, six words or less, acronym
+#' includes first letter of each word.
+#' For longer treaty titles, seven words or more, acronym includes
+#' first letter of first word followed by the number of words in
+#' and title first letter of last word in title.
+#' @examples
+#' \dontrun{
+#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+#' code_acronym(IEADB$Title)
+#' }
+#' @export
+code_acronym <- function(title){
+  
+  # Step one: standardise titles
+  x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
+  
+  # Step two: remove numbers
+  x <- stringr::str_remove_all(x, "[0-9]")
+
+  # Step three: get abbreviations for words left
+  x <- abbreviate(x, minlength = 4, method = 'both.sides')
+  x <- toupper(x)
+  
+  # step four: cut longer abreviations into four digits
+  x <- purrr::map_chr(x, function(y){
+    if(nchar(y)<=6){
+      y
+    } else {
+      y <- paste0(substr(y, 1, 1), stringr::str_pad(nchar(y)-2, 2, pad = "0"), substr(y, nchar(y), nchar(y)))
+    }
+  })
+  
+  x
+}
+
 #' Code Agreement Linkages
 #'
 #' Identify the linkage between amendments and protocols to a main agreement.
@@ -293,48 +333,67 @@ code_linkage <- function(title, date) {
   type <- code_type(s)
   abbrev <- code_known_agreements(s)
   parties <- code_parties(s)
-  dates <- code_dates(title, date)
+  uID <- code_dates(title, date)
   acronym <- code_acronym(title)
   
-  # setp two: combine above to assign an ID to observations
-  id <- ifelse((!is.na(abbrev)), paste0(abbrev),
-               (ifelse((is.na(parties)), paste0(acronym, "_", dates, type),
-                       (ifelse((!is.na(parties) & (type == "A")), paste0(parties, "_", dates),
-                               (ifelse((!is.na(parties) & (type != "A")), paste0(acronym, "_", dates, type), NA)))))))
+  out <- standardise_titles(as.character(title))
   
-  # Step three: bind id and acronym in a data frame
-  acronym <- as.data.frame(acronym)
-  id <- as.data.frame(id)
-  out <- data.frame(cbind(acronym$acronym, id$id))
-  colnames(out) <- c("acronym", "id")
+  # Step two: remove 'predictable words' in agreements
+  predictable_words <- predictable_words$predictable_words
+  predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
+  predictable_words <- paste0("\\<", predictable_words, "\\>")
+  out <- gsub(predictable_words, "", out, ignore.case = TRUE)
+  out <- stringr::str_replace_all(out, predictable_words, "")
+  
+  #Setep three: remove numbers, signs and parentheses
+  out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
+  out <- gsub("-", "", out, ignore.case = FALSE)
+  out <- stringr::str_replace_all(out, ",|-", "")
+  out <- stringr::str_remove_all(out, "[0-9]")
+  out <- trimws(out)
+  out <- stringr::str_squish(out)
+  out <- textclean::add_comma_space(out)
+  out <- as.data.frame(out)
+  
+  # Step four: assign ID to observations
+  id <- ifelse((!is.na(abbrev)), paste0(abbrev),
+               (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
+                       (ifelse((!is.na(parties)), paste0(parties, "_", uID, type), NA)))))
+  
+  out <- cbind(out, id)
   
   # Initialize variables to suppress CMD notes
   ref <- NULL
   
-  # Step four: identify duplicates alongside original variables
+  # Step five: find duplicates and original values
   out <- out %>%
-    dplyr::group_by_at(dplyr::vars(acronym)) %>%
+    dplyr::group_by_at(dplyr::vars(out)) %>%
     dplyr::mutate(
       dup = dplyr::row_number() > 1,
       ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id)))
   
-  # Step five: make sure duplicates have the same ID number
+  # step six: assign same id to duplicates
   out <- out %>%
     dplyr::group_by(ref) %>%
     dplyr::mutate(n = dplyr::n()) %>%
     dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
-  
-  # Step six: keep only linkages
+
+  # Step seven: keep only linkages
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
   
-  # Step seven: remove linkages that are not agreements
-  line <- stringr::str_replace_all(line, "[:digit:]{8}E", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{8}P", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{8}s", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{8}N", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{8}R", "")
-  line <- ifelse(nchar(as.character(line)) < 8, "", line)
+  # Step eight: remove linkages that are not agreements
+  line <- stringr::str_replace_all(line, "[:digit:]{4}E", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}P", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}s", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}N", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}R", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]E", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]P", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]s", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]N", "")
+  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]R", "")
+  line <- ifelse(nchar(as.character(line)) < 7, "", line)
   
   line
   
@@ -385,7 +444,7 @@ order_agreements <- function(title) {
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
   
   # Step three: make sure meaningful numbers extracted correctly
-  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s")
+  oa <- stringr::str_extract(oa, "[:digit:]{1}|[:digit:]{2}|")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
@@ -408,8 +467,9 @@ order_agreements <- function(title) {
 #' For the complete list of action and their 2 letter abbreviations
 #' please refer to the actions list available in sysdata.
 #' @return A character vector with 2 letter action abbreviations for date duplicates
+#' @export
 code_action <- function(title, date) {
-  
+
   date <- stringr::str_remove_all(date, "-")
   # find duplicates and original observations
   dup <- as.data.frame(date) %>%
@@ -429,71 +489,16 @@ code_action <- function(title, date) {
   out <- as.character(out)
   # Extracts only the first action detected
   out <- ifelse(grepl("c\\(", out), substr(out, 4, 5), out)
-  
+
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
   ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
+
   out
-  
+
   action <- ifelse(is.na(dup), "", out)
   action <- ifelse(action == "", action, paste0("[", action, "]"))
-  
-  action
-  
-}
 
-#' Code Acronym for Titles
-#'
-#' Codes an acronym for agreement titles to facilitate identification
-#' and comparuison across datasets.
-#' @param title A character vector of treaty title
-#' @import stringr
-#' @importFrom purrr map_chr
-#' @details Codes acronyms that are 4 to 6 digits long.
-#' For shorter treaty titles, six words or less, acronym
-#' includes first letter of each word.
-#' For longer treaty titles, seven words or more, acronym includes
-#' first letter of first word followed by the number of words in
-#' and title first letter of last word in title.
-#' @examples
-#' \dontrun{
-#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-#' code_acronym(IEADB$Title)
-#' }
-#' @export
-code_acronym <- function(title){
-  
-  # Step one: standardise titles
-  #x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
-  x <- standardise_titles(as.character(title))
-  
-  # Step two: remove predictable words, stopwords, symbols and numbers
-  predictable_words <- predictable_words$predictable_words
-  predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
-  predictable_words <- paste0("\\<", predictable_words, "\\>")
-  x <- gsub(predictable_words, "", x, ignore.case = TRUE)
-  x <- stringr::str_replace_all(x, predictable_words, "")
-  x <- stringr::str_remove_all(x, "[0-9]")
-  x <- gsub("\\s*\\([^\\)]+\\)", "", x, ignore.case = FALSE)
-  x <- gsub("-", "", x, ignore.case = FALSE)
-  x <- stringr::str_replace_all(x, ",|-", "")
-  x <- trimws(x)
-  x <- stringr::str_squish(x)
-  x <- textclean::add_comma_space(x)
-  
-  # Step three: get abbreviations for core words left
-  x <- abbreviate(x, minlength = 4, method = 'both.sides')
-  x <- toupper(x)
-  
-  # step four: cut longer abreviations into four digits
-  x <- purrr::map_chr(x, function(y){
-    if(nchar(y)<=6){
-      y
-    } else {
-      y <- paste0(substr(y, 1, 1), stringr::str_pad(nchar(y)-2, 2, pad = "0"), substr(y, nchar(y), nchar(y)))
-    }
-  })
-  
-  x
+  action
+
 }
