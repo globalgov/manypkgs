@@ -57,36 +57,37 @@ code_agreements <- function(dataset = NULL, title, date) {
   usethis::ui_done("Coded known agreements")
   
   # Step five: give the observation a unique ID and acronym
-  uID <- code_dates(title, date)
-  action <- code_action(title, date)
+  uID <- code_dates(date)
+  action <- code_action(title)
   usethis::ui_done("Coded agreement dates")
+  
+  #Step six: code acronyms from titles
   acronym <- code_acronym(title)
   usethis::ui_done("Coded acronyms for agreements")
   
-  # Step six: detect treaties from the same 'family'
+  # Step seven: detect treaties from the same 'family'
   line <- code_linkage(qID, date)
   usethis::ui_done("Coded agreement linkages")
   
-  # Step seven: add items together correctly
-  out <- vector(mode = "character", length = length(title))
-  # initialize vector
-  qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev), out)
+  # Step eight: add items together correctly
+  out <- vector(mode = "character", length = length(title)) # initialize vector
   # for agreements (A) where abrreviation is known
-  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev, type), out)
   # when abbreviation is known but treaty type is not agreement
-  qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(acronym, "_", uID, type), qID)
+  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were not identified and treaty type is agreement (A)
-  qID <- ifelse(is.na(parties) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(acronym, "_", uID, type), qID)
   # when parties were not identified and type is not agreement
-  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID, type, action), qID)
+  qID <- ifelse(is.na(parties) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were identified and type is agreement (A)
-  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(parties, "_", uID, type, action, ":", line), qID)
+  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID, type, action), qID)
   # when parties were identified and type is not agreement
+  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(parties, "_", uID, type, action, ":", line), qID)
+  # deletes empty line or linkage
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
-  # deletes empty line
-  qID <- stringr::str_replace_all(qID, "NA_", NA_character_)
   # makes sure NAs are standard
+  qID <- stringr::str_replace_all(qID, "NA_", NA_character_)
   
   cat(sum(is.na(qID)), "entries were not matched at all.\n")
   cat("There were", sum(duplicated(qID, incomparables = NA)), "duplicated IDs.\n")
@@ -190,42 +191,89 @@ code_type <- function(title) {
   
 }
 
+#' Code Actions for Titles
+#'
+#' Identifies actions performed by agreements
+#' so that bidevtleteral treaties can be better distinguished.
+#' @param title A character vector of treaty title
+#' @importFrom stringr str_remove_all
+#' @importFrom purrr map
+#' @importFrom dplyr group_by mutate
+#' @details Actions of agreements help differentiate date duplicates
+#' in the same dataset as different treaties.
+#' For the complete list of action and their 2 letter abbreviations
+#' please refer to the actions list available in sysdata.
+#' @return A character vector with 2 letter action abbreviations for date duplicates
+#' @export
+code_action <- function(title) {
+  
+  # Get issues list
+  action <- purrr::map(action, as.character)
+  # Assign the specific issue abbreviation to agreements
+  iss <- sapply(action$words, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+  colnames(iss) <- paste0(action$action)
+  rownames(iss) <- paste0(title)
+  out <- apply(iss, 1, function(x) paste(names(x[x==1])))
+  out[out=="character(0)"] <- NA_character_
+  out <- unname(out)
+  out <- as.character(out)
+  # Extracts only the first action detected
+  out <- ifelse(grepl("c\\(", out), substr(out, 4, 5), out)
+  
+  # If output is a list with no values, returns an empty list of the same length as title variable
+  lt <- as.numeric(length(title))
+  ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
+  
+  out
+  
+  action <- ifelse(is.na(out), "", out)
+  action <- ifelse(action == "", action, paste0("[", action, "]"))
+
+  action
+  
+}
+
 #' Creates Numerical IDs from Signature Dates
 #'
 #' Agreements should have a unique identification number that is meaningful,
 #' we condense their signature dates to produce this number.
-#' @param title A title variable
 #' @param date A date variable
 #' @return A character vector with condensed dates
 #' @import stringr
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-#' code_dates(IEADB$Title, IEADB$Signature)
+#' code_dates(IEADB$Title)
 #' @export
-code_dates <- function(title, date) {
-  
+code_dates <- function(date) {
+
   uID <- stringr::str_remove_all(date, "-")
+  
   # For treaties without signature date, 9999 is assigned as a year and along
   # 4 ramdom to facilitate identification of missing dates without
   # making observations duplicates.
-  uID[is.na(uID)] <- paste0("9999",
-                            sample(1000:9999, sum(is.na(uID)), replace = TRUE))
+  # uID[is.na(uID)] <- paste0("9999",
+  #                           sample(1000:9999, sum(is.na(uID)), replace = TRUE))
   # In some cases all dates are incomplete (e.g. year only) and become a range, 
   # a lot of false duplicates might be created. In this case, we assign
   # some specific letters from the titles to differentiate treaties.
-  A <- suppressWarnings(stringr::str_extract_all(title, "^[:alpha:]"))
-  A <- suppressWarnings(stringr::str_to_upper(A))
-  B <- stringr::str_sub(title, start = 19, end = 19)
-  B <- suppressWarnings(ifelse(stringr::str_detect(B, "\\s"), "L", B))
-  B <- stringr::str_to_upper(B)
-  C <- stringr::str_extract_all(title, "[:alpha:]$")
-  C <- suppressWarnings(ifelse(!stringr::str_detect(C, "^[:alpha:]$"), "O", C))
-  C <- stringr::str_to_upper(C)
-  uID <- stringr::str_replace_all(uID, "[:digit:]{4}\\:[:digit:]{8}$",
-                                  paste0(A, B, C, "01"))
+  # A <- suppressWarnings(stringr::str_extract_all(title, "^[:alpha:]"))
+  # A <- suppressWarnings(stringr::str_to_upper(A))
+  # B <- stringr::str_sub(title, start = 19, end = 19)
+  # B <- suppressWarnings(ifelse(stringr::str_detect(B, "\\s"), "L", B))
+  # B <- stringr::str_to_upper(B)
+  # C <- stringr::str_extract_all(title, "[:alpha:]$")
+  # C <- suppressWarnings(ifelse(!stringr::str_detect(C, "^[:alpha:]$"), "O", C))
+  # C <- stringr::str_to_upper(C)
 
-  uID <- substr(uID, 1, nchar(uID) - 4)
-  
+  # NA dates will appear as far future dates to facilitate identification
+  uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
+  # Ranges are removed first year is taken
+  uID <- stringr::str_replace_all(uID, "\\:[:digit:]{8}$", "")
+  # keep year only
+  uID <- ifelse(nchar(uID) > 4, substr(uID, 1, nchar(uID) - 4), uID)
+
+  uID
+
 }
 
 #' Known agreements abbreviation
@@ -253,6 +301,7 @@ code_known_agreements <- function(title) {
   out[out=="character(0)"] <- NA_character_
   out <- unname(out)
   out <- as.character(out)
+  # keep year only
   out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
   
   # If output is a list with no values, returns an empty list of the same length as title variable
@@ -288,8 +337,11 @@ code_acronym <- function(title){
   # Step one: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
   
-  # Step two: remove numbers
+  # Step two: remove some agreement types, numbers and parenthesis from titles
+  x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
+            "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "[0-9]")
+  x <- stringr::str_remove_all(x, "\\(|\\)")
 
   # Step three: get abbreviations for words left
   x <- abbreviate(x, minlength = 4, method = 'both.sides')
@@ -303,8 +355,10 @@ code_acronym <- function(title){
       y <- paste0(substr(y, 1, 1), stringr::str_pad(nchar(y)-2, 2, pad = "0"), substr(y, nchar(y), nchar(y)))
     }
   })
-  
+
+  x <- as.character(x)
   x
+
 }
 
 #' Code Agreement Linkages
@@ -334,8 +388,9 @@ code_linkage <- function(title, date) {
   type <- code_type(s)
   abbrev <- code_known_agreements(s)
   parties <- code_parties(s)
-  uID <- code_dates(title, date)
-  acronym <- code_acronym(title)
+  uID <- code_dates(date)
+  acronym <- code_acronym(s)
+  action <- code_action(s)
   
   out <- standardise_titles(as.character(title))
   
@@ -357,9 +412,9 @@ code_linkage <- function(title, date) {
   out <- as.data.frame(out)
   
   # Step four: assign ID to observations
-  id <- ifelse((!is.na(abbrev)), paste0(abbrev),
+  id <- ifelse((!is.na(abbrev)), paste0(abbrev, type),
                (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
-                       (ifelse((!is.na(parties)), paste0(parties, "_", uID, type), NA)))))
+                       (ifelse((!is.na(parties)), paste0(parties, "_", uID, type, action), NA)))))
   
   out <- cbind(out, id)
   
@@ -389,12 +444,7 @@ code_linkage <- function(title, date) {
   line <- stringr::str_replace_all(line, "[:digit:]{4}s", "")
   line <- stringr::str_replace_all(line, "[:digit:]{4}N", "")
   line <- stringr::str_replace_all(line, "[:digit:]{4}R", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]E", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]P", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]s", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]N", "")
-  line <- stringr::str_replace_all(line, "[:digit:]{4}\\[[:alpha:]{2}\\]R", "")
-  line <- ifelse(nchar(as.character(line)) < 7, "", line)
+  line <- ifelse(nchar(as.character(line)) < 8, "", line)
   
   line
   
@@ -412,8 +462,7 @@ code_linkage <- function(title, date) {
 order_agreements <- function(title) {
   
   # Step one: remove dates from title
-  rd <- title
-  rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
+  rd <- stringr::str_remove(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
   rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}")
   rd <- stringr::str_remove(rd,  "[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}")
   rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}")
@@ -445,61 +494,11 @@ order_agreements <- function(title) {
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
   
   # Step three: make sure meaningful numbers extracted correctly
-  oa <- stringr::str_extract(oa, "[:digit:]{1}|[:digit:]{2}|")
+  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|\\s[:digit:]{1}|\\s[:digit:]{2}|\\s[:digit:]{3}")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
   
   oa
   
-}
-
-#' Code Actions for Date Duplicates
-#'
-#' Identifies actions performed by agreements
-#' signed in the same day.
-#' @param title A character vector of treaty title
-#' @param date A date variable
-#' @importFrom stringr str_remove_all
-#' @importFrom purrr map
-#' @importFrom dplyr group_by mutate
-#' @details Actions of agreements help differentiate date duplicates
-#' in the same dataset as different treaties.
-#' For the complete list of action and their 2 letter abbreviations
-#' please refer to the actions list available in sysdata.
-#' @return A character vector with 2 letter action abbreviations for date duplicates
-#' @export
-code_action <- function(title, date) {
-
-  date <- stringr::str_remove_all(date, "-")
-  # find duplicates and original observations
-  dup <- as.data.frame(date) %>%
-    dplyr::group_by(date) %>% 
-    dplyr::mutate(n = n()) %>% 
-    dplyr::mutate(dup = ifelse(n > 1, paste0(date), NA_character_))
-  dup <- dup$dup
-  # Get issues list
-  action <- purrr::map(action, as.character)
-  # Assign the specific issue abbreviation to the date duplicates
-  iss <- sapply(action$words, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
-  colnames(iss) <- paste0(action$action)
-  rownames(iss) <- paste0(title)
-  out <- apply(iss, 1, function(x) paste(names(x[x==1])))
-  out[out=="character(0)"] <- NA_character_
-  out <- unname(out)
-  out <- as.character(out)
-  # Extracts only the first action detected
-  out <- ifelse(grepl("c\\(", out), substr(out, 4, 5), out)
-
-  # If output is a list with no values, returns an empty list of the same length as title variable
-  lt <- as.numeric(length(title))
-  ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-
-  out
-
-  action <- ifelse(is.na(dup), "", out)
-  action <- ifelse(action == "", action, paste0("[", action, "]"))
-
-  action
-
 }
