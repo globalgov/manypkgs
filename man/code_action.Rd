@@ -2,21 +2,19 @@
 % Please edit documentation in R/code_agreements.R
 \name{code_action}
 \alias{code_action}
-\title{Code Actions for Date Duplicates}
+\title{Code Actions for Titles}
 \usage{
-code_action(title, date)
+code_action(title)
 }
 \arguments{
 \item{title}{A character vector of treaty title}
-
-\item{date}{A date variable}
 }
 \value{
 A character vector with 2 letter action abbreviations for date duplicates
 }
 \description{
 Identifies actions performed by agreements
-signed in the same day.
+so that bidevtleteral treaties can be better distinguished.
 }
 \details{
 Actions of agreements help differentiate date duplicates
