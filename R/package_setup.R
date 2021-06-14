@@ -6,9 +6,8 @@
 #' @param orcid A vector of strings of all the ORCID numbers of the authors.
 #' Needs `{rorcid}` package to be installed.
 #' Takes precedence over manual entries if specified.
-#' @param name A list of vectors giving the package
-#' author(s)' name(s). Authors(s)last name(s) and first
-#' name(s) are separated by a comma.
+#' @param name A list of vectors giving the package author(s)' name(s).
+#' Authors(s)last name(s) and first name(s) are separated by a comma.
 #' @param role A list of vectors of the roles the package authors have
 #' in the project.
 #' If there are no roles declared, roles are set contributor.
