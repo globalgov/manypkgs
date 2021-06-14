@@ -4,7 +4,7 @@
 \alias{update_package}
 \title{Updates qPackages}
 \usage{
-update_package(package = NULL, path = getwd())
+update_package(package = NULL, path = getwd(), name = NULL)
 }
 \arguments{
 \item{package}{The name of the package to be updated, optional.
@@ -12,6 +12,10 @@ When not declared package name is extracted from description.}
 
 \item{path}{The file path, optional.
 If not specified, function get's the current working directory.}
+
+\item{name}{A list of vectors giving the package author(s)' name(s).
+Optional.
+Authors(s)last name(s) and first name(s) are separated by a comma.}
 }
 \value{
 Updated files in correct structure for qPackages.
