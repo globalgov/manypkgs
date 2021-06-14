@@ -420,6 +420,7 @@ code_linkage <- function(title, date) {
   
   # Initialize variables to suppress CMD notes
   ref <- NULL
+  dup <- NULL
   
   # Step five: find duplicates and original values
   out <- out %>%
