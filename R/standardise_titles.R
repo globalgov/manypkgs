@@ -71,6 +71,13 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("U.S. ", "USA", out)
   out <- gsub("Art\\.", "Article", out)
   out <- gsub("\\#", "Number ", out)
+  out <- gsub("co-operation|coperation", "cooperation", out, ignore.case = TRUE)
+  out <- gsub("wild life|wild-life", "wildlife", out, ignore.case = TRUE)
+  out <- gsub("north-east", "northeast", out, ignore.case = TRUE)
+  out <- gsub("land-based|landbased", "land based", out, ignore.case = TRUE)
+  out <- gsub("public-participation", "public participation", out, ignore.case = TRUE)
+  out <- gsub(" '|' ","'", out)
+  
   out <- textclean::add_comma_space(out)
   out <- textclean::mgsub(out,
                           paste0("(?<!\\w)", as.roman(1:100), "(?!\\w)"),
