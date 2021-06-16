@@ -337,7 +337,7 @@ code_acronym <- function(title){
   # Step one: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
   
-  # Step two: remove some agreement types, numbers and parenthesis from titles
+  # Step two: remove some agreement types, numbers, punctuations marks, and parenthesis from titles
   x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "[0-9]")
