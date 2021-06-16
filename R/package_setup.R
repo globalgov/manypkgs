@@ -266,6 +266,30 @@ setup_package <- function(package = NULL,
 
 }
 
+
+
+# Helper function from usethis:::create_directory()
+#' Title
+#'
+#' @param path 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+create_directory <- function(path) {
+  if (dir.exists(path)) {
+    return(invisible(FALSE))
+  }
+  else if (file.exists(path)) {
+    usethis::ui_stop("{ui_path(path)} exists but is not a directory.")
+  }
+  dir.create(path, recursive = TRUE)
+  usethis::ui_done("Creating {ui_path(path)}")
+  invisible(TRUE)
+}
+
+
 #' Helper function for adding an author to the current package
 #'
 #' Helper function for adding an author to the description file of
