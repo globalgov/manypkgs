@@ -344,7 +344,7 @@ code_acronym <- function(title){
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{3}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{4}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{5}\\)")
-  x <- stringr::str_remove_all(x, "\\(|\\)|\\.")
+  x <- stringr::str_remove_all(x, "\\(|\\)|\\.|\\,")
 
   # Step three: get abbreviations for words left
   x <- abbreviate(x, minlength = 4, method = 'both.sides')
@@ -361,8 +361,8 @@ code_acronym <- function(title){
 
   x <- as.character(x)
   
-  # Replace the ' that can appear in the acronym by "I"
-  x <- ifelse(stringr::str_detect(x, "\'"), gsub("\'", "I", x, ignore.case = TRUE), x)
+  # Replace apostrophes, "-" or "/" that can appear in the acronym by "I"
+  x <- ifelse(stringr::str_detect(x, "\'|\\-|\\/"), gsub("\'|\\-|\\/", "I", x, ignore.case = TRUE), x)
   x
 
 }
