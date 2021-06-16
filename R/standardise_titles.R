@@ -81,6 +81,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("Test-ban", "Test Ban", out, ignore.case = TRUE)
   out <- gsub("Foot-And-Mouth", "Foot and Mouth", out, ignore.case = TRUE)
   out <- gsub("Nuclear-Weapon-Free", "Nuclear Weapon Free", out, ignore.case = TRUE)
+  out <- gsub("Weapon - Free", "Weapon Free", out, ignore.case = TRUE)
   out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
   out <- gsub("public-participation", "Public Participation", out, ignore.case = TRUE)
   out <- gsub(" '|' ","'", out)
