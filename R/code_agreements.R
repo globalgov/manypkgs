@@ -341,7 +341,11 @@ code_acronym <- function(title){
   x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "[0-9]")
+  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{3}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{4}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{5}\\)")
   x <- stringr::str_remove_all(x, "\\(|\\)")
+
 
   # Step three: get abbreviations for words left
   x <- abbreviate(x, minlength = 4, method = 'both.sides')
