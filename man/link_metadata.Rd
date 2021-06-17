@@ -24,3 +24,8 @@ This function returns the original dataset with the additional
 "metadata_orig" attribute that will be used later by \code{data_evolution()}
 to highlight changes that the dataset underwent during our import process.
 }
+\examples{
+\dontrun{
+link_metadata(COW)
+}
+}

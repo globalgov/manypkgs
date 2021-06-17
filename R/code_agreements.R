@@ -207,30 +207,24 @@ code_type <- function(title) {
 #' @export
 code_action <- function(title) {
   
-  # Get issues list
-  action <- purrr::map(action, as.character)
-  # Assign the specific issue abbreviation to agreements
-  iss <- sapply(action$words, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
-  colnames(iss) <- paste0(action$action)
-  rownames(iss) <- paste0(title)
-  out <- apply(iss, 1, function(x) paste(names(x[x==1])))
-  out[out=="character(0)"] <- NA_character_
-  out <- unname(out)
-  out <- as.character(out)
-  # Extracts only the first action detected
-  out <- ifelse(grepl("c\\(", out), substr(out, 4, 5), out)
-  
+  # get titles
+  out <- purrr::map(title, as.character)
+  # get dataframe
+  action <- as.data.frame(action)
+  # substitute matching words for abbreviations and extract
+  # only first matching action abbreviation per string
+  for (i in nrow(action)) {
+    out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
+  }
+  # keep abbreviations only
+  out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
   ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
-  out
-  
-  action <- ifelse(is.na(out), "", out)
-  action <- ifelse(action == "", action, paste0("[", action, "]"))
-
+  # return action abbreviations only
+  action <- out
   action
-  
+
 }
 
 #' Creates Numerical IDs from Signature Dates
@@ -246,24 +240,8 @@ code_action <- function(title) {
 #' @export
 code_dates <- function(date) {
 
+  # collapse dates
   uID <- stringr::str_remove_all(date, "-")
-  
-  # For treaties without signature date, 9999 is assigned as a year and along
-  # 4 ramdom to facilitate identification of missing dates without
-  # making observations duplicates.
-  # uID[is.na(uID)] <- paste0("9999",
-  #                           sample(1000:9999, sum(is.na(uID)), replace = TRUE))
-  # In some cases all dates are incomplete (e.g. year only) and become a range, 
-  # a lot of false duplicates might be created. In this case, we assign
-  # some specific letters from the titles to differentiate treaties.
-  # A <- suppressWarnings(stringr::str_extract_all(title, "^[:alpha:]"))
-  # A <- suppressWarnings(stringr::str_to_upper(A))
-  # B <- stringr::str_sub(title, start = 19, end = 19)
-  # B <- suppressWarnings(ifelse(stringr::str_detect(B, "\\s"), "L", B))
-  # B <- stringr::str_to_upper(B)
-  # C <- stringr::str_extract_all(title, "[:alpha:]$")
-  # C <- suppressWarnings(ifelse(!stringr::str_detect(C, "^[:alpha:]$"), "O", C))
-  # C <- stringr::str_to_upper(C)
 
   # NA dates will appear as far future dates to facilitate identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")

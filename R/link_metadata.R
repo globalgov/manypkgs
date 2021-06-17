@@ -14,6 +14,7 @@
 #' @examples
 #' \dontrun{
 #' link_metadata(COW)
+#' }
 #' @export
 
 link_metadata <- function(dataset){

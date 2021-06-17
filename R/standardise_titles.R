@@ -17,7 +17,7 @@
 #' @return A capitalised, trimmed and standardised string
 #' @importFrom textclean add_comma_space mgsub
 #' @importFrom english ordinal words
-#' @importFrom stringr str_count str_squish()
+#' @importFrom stringr str_count str_squish
 #' @importFrom utils as.roman
 #' @importFrom stringi stri_trans_general
 #' @import dplyr
@@ -122,6 +122,5 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # removes all punctuations but hyphen and parentheses, which may contain important
   # information for distinguishing treaties/words
   out <- stringr::str_squish(out)
-
   out
 }
