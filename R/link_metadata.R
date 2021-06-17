@@ -23,6 +23,7 @@ link_metadata <- function(dataset){
   ncol <- ncol(dataset)
   missdata <- paste0(round(sum(is.na(dataset)) * 100 / prod(dim(dataset)), digits = 2), " %")
   metadata_orig <- list(colnames, nobs, ncol, missdata)
+  names(metadata_orig) <- c("ColNames", "NObs", "NCol", "Missing_Data")
   attr(dataset, "metadata_orig") <- metadata_orig
   return(dataset)
 }
