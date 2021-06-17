@@ -344,25 +344,22 @@ code_acronym <- function(title){
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{3}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{4}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:lower:]{5}\\)")
-  x <- stringr::str_remove_all(x, "\\(|\\)|\\.|\\,")
+  x <- stringr::str_remove_all(x, "\\(|\\)")
 
   # Step three: get abbreviations for words left
-  x <- abbreviate(x, minlength = 4, method = 'both.sides')
+  x <- abbreviate(x, minlength = 6, method = 'both.sides')
   x <- toupper(x)
   
   # step four: cut longer abreviations into four digits
   x <- purrr::map_chr(x, function(y){
-    if(nchar(y)<=6){
+    if(nchar(y) == 6){
       y
     } else {
-      y <- paste0(substr(y, 1, 1), stringr::str_pad(nchar(y)-2, 2, pad = "0"), substr(y, nchar(y), nchar(y)))
+      y <- paste0(substr(y, 1, 2), stringr::str_pad(nchar(y)-3, 2, pad = "0"), substr(y, nchar(y)-1, nchar(y)))
     }
   })
 
   x <- as.character(x)
-  
-  # Replace apostrophes, "-" or "/" that can appear in the acronym by "I"
-  x <- ifelse(stringr::str_detect(x, "\'|\\-|\\/"), gsub("\'|\\-|\\/", "I", x, ignore.case = TRUE), x)
   x
 
 }
