@@ -207,21 +207,26 @@ code_type <- function(title) {
 #' @export
 code_action <- function(title) {
   
-  # get titles
+  # Get titles as list and character
   out <- purrr::map(title, as.character)
-  # get dataframe
+  
+  # Get action dataframe
   action <- as.data.frame(action)
-  # substitute matching words for abbreviations and extract
+  
+  # Substitute matching words for abbreviations and extract
   # only first matching action abbreviation per string
-  for (i in nrow(action)) {
+  for (i in 1:nrow(action)) {
     out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
   }
-  # keep abbreviations only
+  
+  # Keep abbreviations only
   out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
+  
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
   ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  # return action abbreviations only
+  
+  # Return action abbreviations
   action <- out
   action
 
@@ -240,16 +245,17 @@ code_action <- function(title) {
 #' @export
 code_dates <- function(date) {
 
-  # collapse dates
+  # Collapse dates
   uID <- stringr::str_remove_all(date, "-")
-
+  
   # NA dates will appear as far future dates to facilitate identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
+  
   # Ranges are removed first year is taken
   uID <- stringr::str_replace_all(uID, "\\:[:digit:]{8}$", "")
-  # keep year only
+  
+  # Keep year only
   uID <- ifelse(nchar(uID) > 4, substr(uID, 1, nchar(uID) - 4), uID)
-
   uID
 
 }
@@ -270,8 +276,10 @@ code_dates <- function(date) {
 #' @export
 code_known_agreements <- function(title) {
   
+  # Get abbreviations dataset
   abbreviations <- purrr::map(abbreviations, as.character)
-  # Assign the specific abbreviation to the "known" treaties
+  
+  # Assign the specific abbreviation to the "known" treaties when they match
   ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
   colnames(ab) <- paste0(abbreviations$abbreviation, as.character(stringr::str_remove_all(abbreviations$signature, "-")))
   rownames(ab) <- title
@@ -279,7 +287,8 @@ code_known_agreements <- function(title) {
   out[out=="character(0)"] <- NA_character_
   out <- unname(out)
   out <- as.character(out)
-  # keep year only
+  
+  # Keep year only for IDs
   out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
   
   # If output is a list with no values, returns an empty list of the same length as title variable

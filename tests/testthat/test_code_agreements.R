@@ -10,9 +10,9 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29", "1973-02-21", "1973-02-21"))
 
 test_that("Code_agreements() properly returns qIDs", {
-  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT_1980A[DE]", "CPV-PRT_1990P[DE]:CPV-PRT_1980A[DE]",
+  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT_1980A[FI]", "CPV-PRT_1990P[FI]:CPV-PRT_1980A[FI]",
                                                                "TD06LJ_1981A", "RAMSA1971A", "WIIEWH_1982P:RAMSA1971A", "PRTRPC_1976A", 
-                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA_1973A[FI]", "RUS-USA_1973A[OP]"))
+                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA_1973A[FI]", "RUS-USA_1973A[FI]"))
 })
 
 test_that("Code_agreements helper functions work properly", {
@@ -22,14 +22,14 @@ test_that("Code_agreements helper functions work properly", {
                                         "1981", "1971",
                                         "1982", "1976",
                                         "1983", "1973", "1973"))
-  expect_equal(code_action(data$title), c("[DE]", "[DE]", "[MT]", "[WT]", "[WT]", "[PO]", "[PO]", "[FI]", "[OP]"))
+  expect_equal(code_action(data$title), c("[FI]", "[FI]", "[MT]", "[WT]", "[WT]", "[PO]", "[PO]", "[FI]", "[FI]"))
   expect_equal(code_known_agreements(data$title), c(NA, NA, NA, "RAMSA1971",
                                                     "RAMSA1971", NA, NA, NA, NA))
   expect_equal(code_acronym(data$title), c("CPVPFD", "CPVPFD", "TD06LJ", "WIIEWH", "WIIEWH", "PRTRPC",
                                            "PRTRPC", "GU11TC", "GU12PO"))
-  expect_equal(code_linkage(data$title, data$date), c("CPV-PRT_1980A[DE]", "CPV-PRT_1980A[DE]", "",
+  expect_equal(code_linkage(data$title, data$date), c("CPV-PRT_1980A[FI]", "CPV-PRT_1980A[FI]", "",
                                                       "RAMSA1971A", "RAMSA1971A", "PRTRPC_1976A", 
-                                                      "PRTRPC_1976A" , "", ""))
+                                                      "PRTRPC_1976A" , "RUS-USA_1973A[FI]", "RUS-USA_1973A[FI]"))
 })
 
 # Test for datasets that have ranged dates
