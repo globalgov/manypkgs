@@ -86,8 +86,6 @@ code_agreements <- function(dataset = NULL, title, date) {
   # deletes empty line or linkage
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
-  # makes sure NAs are standard
-  qID <- stringr::str_replace_all(qID, "NA_", NA_character_)
   
   cat(sum(is.na(qID)), "entries were not matched at all.\n")
   cat("There were", sum(duplicated(qID, incomparables = NA)), "duplicated IDs.\n")
