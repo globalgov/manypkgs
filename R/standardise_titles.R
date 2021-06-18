@@ -77,16 +77,13 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("co-operation|coperation", "Cooperation", out, ignore.case = TRUE)
   out <- gsub("co-operative|coperative", "Cooperative", out, ignore.case = TRUE)
   out <- gsub("wild life|wild-life", "Wildlife", out, ignore.case = TRUE)
-  out <- gsub("north-east", "Northeast", out, ignore.case = TRUE)
-  out <- gsub("North-west", "Northwest", out, ignore.case = TRUE)
-  out <- gsub("South-east", "Southeast", out, ignore.case = TRUE)
-  out <- gsub("South-west", "Southwest", out, ignore.case = TRUE)
-  out <- gsub("Test-ban", "Test Ban", out, ignore.case = TRUE)
-  out <- gsub("Foot-And-Mouth", "Foot and Mouth", out, ignore.case = TRUE)
-  out <- gsub("Nuclear-Weapon-Free", "Nuclear Weapon Free", out, ignore.case = TRUE)
+  out <- ifelse(stringr::str_detect(out, "North-East|North-West|North-western|South-East|South-West"),
+                gsub("-", "", out), out)
+  out <- ifelse(stringr::str_detect(out, "Test-Ban|Foot-and-Mouth|Nuclear-Weapon-Free|Public-Participation"),
+                gsub("-", " ", out), out)
+  out <- stringr::str_to_title(out)
   out <- gsub("Weapon - Free", "Weapon Free", out, ignore.case = TRUE)
   out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
-  out <- gsub("public-participation", "Public Participation", out, ignore.case = TRUE)
   # standardises spaces before and after apostrophes and comma spaces
   out <- gsub(" '|' ","'", out)
   out <- textclean::add_comma_space(out)
