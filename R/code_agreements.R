@@ -217,8 +217,13 @@ code_action <- function(title) {
     out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
   }
   
-  # Keep abbreviations only
+  # Keep first abbreviation only
   out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
+  
+  # # Keep all abbreviations
+  # out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract_all(out, "\\[[:alpha:]{2}\\]"), "")
+  # # Get last action if more than one are coded
+  # out <- ifelse(nchar(out) > 4, substr(out, nchar(out) - 5, nchar(out) -2), out)
   
   # If output is a list with no values, returns an empty list of the same length as title variable
   lt <- as.numeric(length(title))
