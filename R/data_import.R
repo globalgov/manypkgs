@@ -111,6 +111,6 @@ import_data <- function(dataset = NULL,
 
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
-  usethis::ui_todo("Use {usethis::ui_code('qData::export_data()')} to add prepared data to package")
+  usethis::ui_todo("Use {usethis::ui_code('qCreate::export_data()')} to add prepared data to package")
 
 }
