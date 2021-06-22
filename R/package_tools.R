@@ -74,7 +74,7 @@ qtemplate <- function(template,
 #' For CRAN packages the package name is required as argument,
 #' for GitHub username/repo are required as argument.
 #' @examples
-#' depends("qData")
+#' depends("qStates")
 #' @export
 depends <- function(packages) {
   lapply(packages,
