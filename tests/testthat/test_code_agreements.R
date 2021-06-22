@@ -22,7 +22,7 @@ test_that("Code_agreements helper functions work properly", {
                                         "1981", "1971",
                                         "1982", "1976",
                                         "1983", "1973", "1973"))
-  expect_equal(code_action(data$title), c("[FI]", "[FI]", "[MT]", "[WT]", "[WT]", "[PO]", "[PO]", "[FI]", "[FI]"))
+  expect_equal(code_action(data$title), c("[FI]", "[FI]", "[LI]", "", "", "[PO]", "[PO]", "[FI]", "[FI]"))
   expect_equal(code_known_agreements(data$title), c(NA, NA, NA, "RAMSA1971",
                                                     "RAMSA1971", NA, NA, NA, NA))
   expect_equal(code_acronym(data$title), c("CPVPFD", "CPVPFD", "TD06LJ", "WIIEWH", "WIIEWH", "PRTRPC",
@@ -68,5 +68,5 @@ data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                     date = c("1899-10-02", "2000-10-18", "2010-10-10"))
 
 test_that("code_agreements() identify correct number of protocol or amendment", {
-  expect_equal(code_agreements(data5, data5$title, data5$date), c("TCSRNR_1899E18", "LMTTNA_2000E34", "LMTTNA_2010E4"))
+  expect_equal(code_agreements(data5, data5$title, data5$date), c("TCSRNR_1899E18", "LMTTNA_2000E34", "LMTTAA_2010E4"))
 })
