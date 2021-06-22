@@ -354,7 +354,7 @@ treat_range_dates <- function(dates) {
 #' }
 #' @export
 recent <- function(dates, sep = NULL) {
-  .Deprecated("qData::standardise_dates")
+  .Deprecated("qCreate::standardise_dates")
 }
 
 #' Resorting and filtering dates
@@ -382,7 +382,7 @@ resequence <- function(data, vars, unity = "_") {
     dates <- sort(unlist(strsplit(unique(na.omit(x)),unity)))
 
     if (length(dates) < len) {
-      dates <- qData::interleave(dates, which(is.na(x)))
+      dates <- qCreate::interleave(dates, which(is.na(x)))
     }
 
     if (length(dates) > len) {
@@ -401,4 +401,32 @@ resequence <- function(data, vars, unity = "_") {
 
   t(out)
 
+}
+
+#' Interleaving two vectors by position
+#'
+#' Insert elements in different positions for vectors  
+#' @param vect Main vector
+#' @param pos Positions to be inserted
+#' @param elems Elements to be inserted at those positions.
+#' By default, these are NAs (missing values).
+#' @return A vector the length of the sum of \code{vect}
+#' and \code{pos}.
+#' @examples
+#' interleave(1:5, c(2,4))
+#' @export
+interleave <- function(vect, pos, elems = NA) {
+  
+  l <- length(vect)
+  j <- 0
+  for (i in 1:length(pos)) {
+    if (pos[i] == 1)
+      vect <- c(elems[j + 1], vect)
+    else if (pos[i] == length(vect) + 1)
+      vect <- c(vect, elems[j + 1])
+    else
+      vect <- c(vect[1:(pos[i] - 1)], elems[j + 1], vect[(pos[i]):length(vect)])
+    j <- j + 1
+  }
+  return(vect)
 }
