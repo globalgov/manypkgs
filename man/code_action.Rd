@@ -10,15 +10,18 @@ code_action(title)
 \item{title}{A character vector of treaty title}
 }
 \value{
-A character vector with 2 letter action abbreviations for date duplicates
+A character vector with 2 letter action abbreviations
+for bilateral treaties
 }
 \description{
 Identifies actions performed by agreements
-so that bidevtleteral treaties can be better distinguished.
+so that bileteral treaties can be better distinguished.
 }
 \details{
 Actions of agreements help differentiate date duplicates
 in the same dataset as different treaties.
-For the complete list of action and their 2 letter abbreviations
-please refer to the actions list available in sysdata.
+Actions refers to verbs coded from title.
+For the complete list of actions and their 2 letter abbreviations
+please refer to the actions list by running the function without
+argument (i.e. \code{code_action()}).
 }
