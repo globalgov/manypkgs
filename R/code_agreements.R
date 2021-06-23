@@ -183,6 +183,7 @@ code_type <- function(title) {
   # When no type is found
   type <- stringr::str_replace_na(type, "O")
   
+  # Add type and number if found
   type <- paste0(type, number)
   
   type
@@ -192,47 +193,50 @@ code_type <- function(title) {
 #' Code Actions for Titles
 #'
 #' Identifies actions performed by agreements
-#' so that bidevtleteral treaties can be better distinguished.
+#' so that bileteral treaties can be better distinguished.
 #' @param title A character vector of treaty title
 #' @importFrom stringr str_remove_all
 #' @importFrom purrr map
 #' @importFrom dplyr group_by mutate
 #' @details Actions of agreements help differentiate date duplicates
 #' in the same dataset as different treaties.
-#' For the complete list of action and their 2 letter abbreviations
-#' please refer to the actions list available in sysdata.
-#' @return A character vector with 2 letter action abbreviations for date duplicates
+#' Actions refers to verbs coded from title.
+#' For the complete list of actions and their 2 letter abbreviations
+#' please refer to the actions list by running the function without
+#' argument (i.e. `code_action()`).
+#' @return A character vector with 2 letter action abbreviations
+#' for bilateral treaties
 #' @export
 code_action <- function(title) {
   
-  # Get titles as list and character
-  out <- purrr::map(title, as.character)
-  
-  # Get action dataframe
-  action <- as.data.frame(action)
-  
-  # Substitute matching words for abbreviations and extract
-  # only first matching action abbreviation per string
-  for (i in 1:nrow(action)) {
-    out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
-  }
-  
-  # Keep first abbreviation only
-  out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
-  
-  # # Keep all abbreviations
-  # out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract_all(out, "\\[[:alpha:]{2}\\]"), "")
-  # # Get last action if more than one are coded
-  # out <- ifelse(nchar(out) > 4, substr(out, nchar(out) - 5, nchar(out) -2), out)
-  
-  # If output is a list with no values, returns an empty list of the same length as title variable
-  lt <- as.numeric(length(title))
-  ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
-  # Return action abbreviations
-  action <- out
-  action
+  # If missing argument, function returns list of actions
+  if (missing(title)) {
+    action <- as.data.frame(action)
+  } else {
+    # Get titles as list and character
+    out <- purrr::map(title, as.character)
+    # Get action dataframe
+    action <- as.data.frame(action)
+    # Substitute matching words for abbreviations and extract
+    # only first matching action abbreviation per string
+    for (i in 1:nrow(action)) {
+      out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
+    }
+    # Keep first abbreviation only
+    out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
 
+    # # Keep all abbreviations
+    # out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract_all(out, "\\[[:alpha:]{2}\\]"), "")
+    # # Get last action if more than one are coded
+    # out <- ifelse(nchar(out) > 4, substr(out, nchar(out) - 5, nchar(out) -2), out)
+
+    # If output is a list with no values, returns an empty list of the same length as title variable
+    lt <- as.numeric(length(title))
+    ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
+  
+    action <- out
+  }
+  action
 }
 
 #' Creates Numerical IDs from Signature Dates
@@ -279,27 +283,30 @@ code_dates <- function(date) {
 #' @export
 code_known_agreements <- function(title) {
   
-  # Get abbreviations dataset
-  abbreviations <- purrr::map(abbreviations, as.character)
-  
-  # Assign the specific abbreviation to the "known" treaties when they match
-  ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
-  colnames(ab) <- paste0(abbreviations$abbreviation, as.character(stringr::str_remove_all(abbreviations$signature, "-")))
-  rownames(ab) <- title
-  out <- apply(ab, 1, function(x) paste(names(x[x==1])))
-  out[out=="character(0)"] <- NA_character_
-  out <- unname(out)
-  out <- as.character(out)
-  
-  # Keep year only for IDs
-  out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
-  
-  # If output is a list with no values, returns an empty list of the same length as title variable
-  lt <- as.numeric(length(title))
-  ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
+  # If missing argument, function returns list of known agreements
+  if (missing(title)) {
+    out <- as.data.frame(abbreviations)
+  } else {
+    # Get abbreviations dataset
+    abbreviations <- purrr::map(abbreviations, as.character)
+
+    # Assign the specific abbreviation to the "known" treaties when they match
+    ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+    colnames(ab) <- paste0(abbreviations$abbreviation, as.character(stringr::str_remove_all(abbreviations$signature, "-")))
+    rownames(ab) <- title
+    out <- apply(ab, 1, function(x) paste(names(x[x==1])))
+    out[out=="character(0)"] <- NA_character_
+    out <- unname(out)
+    out <- as.character(out)
+
+    # Keep year only for IDs
+    out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
+
+    # If output is a list with no values, returns an empty list of the same length as title variable
+    lt <- as.numeric(length(title))
+    ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
+  }
   out
-  
 }
 
 #' Code Acronym for Titles
