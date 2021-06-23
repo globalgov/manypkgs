@@ -108,11 +108,13 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @export
 code_parties <- function(title) {
   
+  # Get ISO country codes from qStates and matches in title variable
   parties <- qStates::code_states(title)
   parties <- stringr::str_replace_all(parties, "_", "-")
+  # Add NAs to observations not matched
   parties[!grepl("-", parties)] <- NA
   
-  # Only considers bilateral agreements where two parties have been identified
+  # Only considers bilateral agreements where two parties have been identified not 3 or more
   parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
                     ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
@@ -162,10 +164,8 @@ code_type <- function(title) {
                 Joint Declaration|Declaration|Proclamation|Administrative Order", "RESOL",
                type, ignore.case = T)
   
-  # EXtract only first type
-  type <- stringr::str_extract_all(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
-  type <- gsub("c\\(", "", type)
-  type <- stringr::word(type, 1)
+  # EXtract only first type identified
+  type <- stringr::str_extract(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
   
   # Assign type abbreviations
   type <- dplyr::case_when(
