@@ -119,7 +119,24 @@ code_parties <- function(title) {
                     ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
-  parties
+  # # Reduce number of false duplicates
+  # # OPTION ONE: Add the number of words once the predictable words have been deleted
+  # title <- as.character(title)
+  # 
+  # predictable_words <- predictable_words$predictable_words
+  # predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
+  # predictable_words <- paste0("\\<", predictable_words, "\\>")
+  # title <- gsub(predictable_words, "", title, ignore.case = TRUE)
+  # title <- stringr::str_replace_all(title, predictable_words, "")
+  # 
+  # length <- sapply(strsplit(title, " "), length)
+  # parties <- paste0(parties, "[", length, "]")
+  
+  # # OPTION TWO: Add acronym pasted to parties
+  # acronym <- code_acronym(title)
+  # acronym <- stringr::str_remove_all(acronym, "^[:alpha:]{2}")
+  # parties <- ifelse(!is.na(parties), paste0(parties, "[", acronym , "]"), NA)
+  # parties
   
 }
 
