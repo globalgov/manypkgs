@@ -147,6 +147,13 @@ code_type <- function(title) {
   # Get types from title
   if (missing(title)) {
     type <- data.frame(agreement_type)
+    type <- type %>% 
+      huxtable::as_hux() %>% 
+      huxtable::theme_basic() %>% 
+      huxtable::set_tb_padding(2) %>% 
+      huxtable::set_all_borders(TRUE) %>% 
+      huxtable::set_col_width(c(0.5, 0.25, 0.25))
+    type
   } else {
     # Get titles as list and character
     out <- purrr::map(title, as.character)
@@ -199,7 +206,16 @@ code_action <- function(title) {
   
   # If missing argument, function returns list of actions
   if (missing(title)) {
-    action <- as.data.frame(action)
+    # action <- as.data.frame(action)
+    
+    #One simple way of printing the action table in the console
+    action <- action %>%
+      knitr::kable("simple")
+    action
+    
+    # Another way making the output appear in the Viewer
+    # action <- gt::gt(action)
+    # action
   } else {
     # Get titles as list and character
     out <- purrr::map(title, as.character)
@@ -270,6 +286,12 @@ code_known_agreements <- function(title) {
   # If missing argument, function returns list of known agreements
   if (missing(title)) {
     out <- as.data.frame(abbreviations)
+    out <- out %>%
+      knitr::kable(align = "lcc") %>%
+      kableExtra::column_spec(1, width = "12cm", border_right = TRUE) %>%
+      kableExtra::column_spec(2, width = "4cm", border_right = TRUE) %>%
+      kableExtra::column_spec(3, width = "4cm")
+    out
   } else {
     # Get abbreviations dataset
     abbreviations <- purrr::map(abbreviations, as.character)
