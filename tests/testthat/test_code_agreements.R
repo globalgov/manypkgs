@@ -70,3 +70,10 @@ data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
 test_that("code_agreements() identify correct number of protocol or amendment", {
   expect_equal(code_agreements(data5, data5$title, data5$date), c("TCSRNR_1899E18", "LMTTNA_2000E34", "LMTTAA_2010E4"))
 })
+
+# Test that some functions return coding information when argument is missing
+test_that("certain functions return coding information when argument is missing", {
+  expect_type(code_action(), "list")
+  expect_type(code_known_agreements(), "list")
+  expect_type(code_type(), "list")
+})
