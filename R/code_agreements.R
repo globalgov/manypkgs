@@ -131,7 +131,8 @@ code_parties <- function(title) {
 #' @param title A character vector of treaty title
 #' @return A character vector of the treaty type
 #' @importFrom dplyr case_when
-#' @importFrom stringr str_extract str_replace_na word
+#' @importFrom stringr str_extract str_replace_na
+#' @importFrom purrr map
 #' @details Types of agreements differentiate agreements from protocols or
 #' amendments, for example.
 #' For the complete list of words coded for type and their type
