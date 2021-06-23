@@ -132,62 +132,49 @@ code_parties <- function(title) {
 #' @return A character vector of the treaty type
 #' @importFrom dplyr case_when
 #' @importFrom stringr str_extract str_replace_na word
+#' @details Types of agreements differentiate agreements from protocols or
+#' amendments, for example.
+#' For the complete list of words coded for type and their type
+#' abbreviations please run the function without and argument
+#' (i.e. `code_action()`).
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_type(IEADB$Title)
 #' @export
 code_type <- function(title) {
-  
+
   # Get types from title
-  type <- gsub("protocol|additional|subsidiary|supplementary|
-               complementaire|complementar|complementario|annex |annexes",
-               "PROTO", title, ignore.case = TRUE)
-  type <- gsub("amendment|modify|extend|proces-verbal|amend", "AMEND",
-               type, ignore.case = T)
-  type <- gsub("agreement|arrangement|accord|acuerdo|bilateral co|
-               technical co|treat|trait|tratado|convention|convencion|
-               convenio|constitution|charte|instrument|statute|estatuto|
-               provisional understanding|provisions relating|ubereinkunft|
-               Act|Covenant|Scheme|Government Of|Law",
-               "AGREE", type, ignore.case = T)
-  type <- gsub("amendment|modify|extend|proces-verbal|amend", "AMEND",
-               type, ignore.case = T)
-  type <- gsub("Exchange|Letters|Notas|Minute|Adjustment|First Session Of|
-               First Meeting Of|Commission|Committee|Center", "NOTES",
-               type, ignore.case = T)
-  type <- gsub("Memorandum|memorando|Principles of Conduct|Code of Conduct|Strategy|
-               Plan|Program|Improvement|Project|Study|Working Party|Working Group", "STRAT",
-               type, ignore.case = T)
-  type <- gsub("Agreed Measures|Agreed Record|Consensus|Conclusions|
-                Decision|Directive|Regulation|Reglamento|Resolution|
-                Rules|Recommendation|Statement|Communiq|Comminiq|
-                Joint Declaration|Declaration|Proclamation|Administrative Order", "RESOL",
-               type, ignore.case = T)
-  
-  # EXtract only first type identified
-  type <- stringr::str_extract(type, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
-  
-  # Assign type abbreviations
-  type <- dplyr::case_when(
-    grepl("PROTO", type) ~ "P", # protocol
-    grepl("AMEND", type) ~ "E", # amendment
-    grepl("AGREE", type) ~ "A", # agreement
-    grepl("NOTES", type) ~ "N", # notes
-    grepl("STRAT", type) ~ "S", # strategy
-    grepl("RESOL", type) ~ "R", # resolution
-  )
-  
-  # Extracts meaningful ordering numbers for protocols and amendments
-  number <- order_agreements(title)
-  
-  # When no type is found
-  type <- stringr::str_replace_na(type, "O")
-  
-  # Add type and number if found
-  type <- paste0(type, number)
-  
+  if (missing(title)) {
+    type <- data.frame(agreement_type)
+  } else {
+    # Get titles as list and character
+    out <- purrr::map(title, as.character)
+    # Get action dataframe
+    type <- as.data.frame(agreement_type)
+    # Substitute matching words for abbreviations and extract
+    # only first matching action abbreviation per string
+    for (i in 1:nrow(type)) {
+      out <- gsub(paste0(type$word[[i]]), paste0(type$category[[i]]), out, ignore.case = TRUE, perl = T)
+    }
+    # EXtract only first type identified
+    type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
+    # Assign type abbreviations
+    type <- dplyr::case_when(
+      grepl("PROTO", type) ~ "P", # protocol
+      grepl("AMEND", type) ~ "E", # amendment
+      grepl("AGREE", type) ~ "A", # agreement
+      grepl("NOTES", type) ~ "N", # notes
+      grepl("STRAT", type) ~ "S", # strategy
+      grepl("RESOL", type) ~ "R", # resolution
+    )
+    # Extracts meaningful ordering numbers for protocols and amendments
+    number <- order_agreements(title)
+    # When no type is found
+    type <- stringr::str_replace_na(type, "O")
+    # Add type and number if found
+    type <- paste0(type, number)
+  }
   type
-  
 }
 
 #' Code Actions for Titles
@@ -224,16 +211,9 @@ code_action <- function(title) {
     }
     # Keep first abbreviation only
     out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
-
-    # # Keep all abbreviations
-    # out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract_all(out, "\\[[:alpha:]{2}\\]"), "")
-    # # Get last action if more than one are coded
-    # out <- ifelse(nchar(out) > 4, substr(out, nchar(out) - 5, nchar(out) -2), out)
-
-    # If output is a list with no values, returns an empty list of the same length as title variable
     lt <- as.numeric(length(title))
+    # In case no actions are coded, returns empty list same length as argument
     ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-  
     action <- out
   }
   action
@@ -277,6 +257,9 @@ code_dates <- function(date) {
 #' @details The function identifies agreements that match
 #' the list of known agreements with their titles, abbreviations
 #' and signature dates and substitutes the known titles for abbreviations.
+#' For the complete list of known agreements coded for and their
+#' respective abbreviations please run the function without and argument
+#' (i.e. `code_known_agreements()`).
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_known_agreements(IEADB$Title)
