@@ -73,7 +73,8 @@ test_that("code_agreements() identify correct number of protocol or amendment", 
 
 # Test that some functions return coding information when argument is missing
 test_that("certain functions return coding information when argument is missing", {
-  expect_type(code_action(), "list")
-  expect_type(code_known_agreements(), "list")
-  expect_type(code_type(), "list")
+  expect_type(code_action(), "character")
+  expect_type(code_known_agreements(), "character")
+  expect_type(code_type(), "character")
+  expect_type(pred_words(), "character")
 })
