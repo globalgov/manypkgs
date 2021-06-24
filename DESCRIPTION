@@ -47,7 +47,8 @@ Imports:
     remotes,
     qStates,
     stringi,
-    tm
+    tm,
+    knitr
 Suggests:
     testthat,
     librarian,
@@ -58,7 +59,6 @@ Suggests:
     haven,
     readxl,
     readr,
-    knitr,
     rorcid,
     desc,
     WVPlots,
