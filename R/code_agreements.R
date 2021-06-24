@@ -119,25 +119,18 @@ code_parties <- function(title) {
                     ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
-  # # Reduce number of false duplicates
-  # # OPTION ONE: Add the number of words once the predictable words have been deleted
-  # title <- as.character(title)
-  # 
-  # predictable_words <- predictable_words$predictable_words
-  # predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
-  # predictable_words <- paste0("\\<", predictable_words, "\\>")
-  # title <- gsub(predictable_words, "", title, ignore.case = TRUE)
-  # title <- stringr::str_replace_all(title, predictable_words, "")
-  # 
-  # length <- sapply(strsplit(title, " "), length)
-  # parties <- paste0(parties, "[", length, "]")
-  
-  # # OPTION TWO: Add acronym pasted to parties
-  # acronym <- code_acronym(title)
-  # acronym <- stringr::str_remove_all(acronym, "^[:alpha:]{2}")
-  # parties <- ifelse(!is.na(parties), paste0(parties, "[", acronym , "]"), NA)
-  # parties
-  
+  # Add number of meaningfull words in title to reduce number of false duplicates
+  tt <- as.character(title)
+  pw <- predictable_words$predictable_words
+  pw <- paste(pw, collapse = '\\>|\\<')
+  pw <- paste0("\\<", pw, "\\>")
+  tt <- gsub(pw, "", tt, ignore.case = TRUE)
+  tt <- gsub("[0-9]", "", tt)
+  lt <- lengths(gregexpr("\\W+", tt))
+  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, "]"))
+
+  parties
+
 }
 
 #' Code Agreement Type
