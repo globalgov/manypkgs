@@ -27,7 +27,6 @@ code_agreements <- function(dataset = NULL, title, date) {
   if (is.null(dataset) & missing(title) & missing(date)) {
     stop("Please declare a dataset or title and date columns.")
   }
-  
   if (!is.null(dataset) & missing(title) & missing(date)) {
     if (exists("Title", dataset) & exists("Signature", dataset)) {
       title <- dataset$Title
@@ -87,12 +86,11 @@ code_agreements <- function(dataset = NULL, title, date) {
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
   
+  # step nine: inform users about observations not matched and duplicates
   cat(sum(is.na(qID)), "entries were not matched at all.\n")
   cat("There were", sum(duplicated(qID, incomparables = NA)), "duplicated IDs.\n")
   usethis::ui_done("Please run `vignette('agreements')` for more information.")
-  
   qID
-  
 }
 
 #' Code Agreement Parties
@@ -102,35 +100,46 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @importFrom qStates code_states
 #' @importFrom stringr str_replace_all
 #' @return A character vector of parties that are mentioned in the treaty title
+#' @details The function codes states in treaties alongside, returning only
+#' parties for bileteral treaties (i.e. 2 parties coded).
+#' The number of meaningful words (removes articles, numbers and other common
+#' words)in title for bilateral tretaies is returned next to parties.
+#' For the complete list of words removed from title to identify
+#' duplicates please run `pred_words()`.
+#' This is done to avoid false duplicates as often bileteral treaties between
+#' the same two countries are signed in the same day.
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_parties(IEADB$Title)
 #' @export
 code_parties <- function(title) {
   
-  # Get ISO country codes from qStates and matches in title variable
+  # Step one: get ISO country codes from qStates and matches in title variable
   parties <- qStates::code_states(title)
   parties <- stringr::str_replace_all(parties, "_", "-")
-  # Add NAs to observations not matched
+  
+  # Step two: add NAs to observations not matched
   parties[!grepl("-", parties)] <- NA
   
-  # Only considers bilateral agreements where two parties have been identified not 3 or more
+  # Step three:: get bilateral agreements where two parties have been identified
   parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
                     ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
-  # Add number of meaningfull words in title to reduce number of false duplicates
+  # Step four: count words in title to reduce number of false duplicates
   tt <- as.character(title)
+  # Get list of predictable words
   pw <- predictable_words$predictable_words
   pw <- paste(pw, collapse = '\\>|\\<')
   pw <- paste0("\\<", pw, "\\>")
+  # Remove these words and numbers from title
   tt <- gsub(pw, "", tt, ignore.case = TRUE)
   tt <- gsub("[0-9]", "", tt)
+  # Count number of words left
   lt <- lengths(gregexpr("\\W+", tt))
+  # Add words and parties
   parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, "]"))
-
   parties
-
 }
 
 #' Code Agreement Type
@@ -143,6 +152,7 @@ code_parties <- function(title) {
 #' @importFrom dplyr case_when
 #' @importFrom stringr str_extract str_replace_na
 #' @importFrom purrr map
+#' @importFrom knitr kable
 #' @details Types of agreements differentiate agreements from protocols or
 #' amendments, for example.
 #' For the complete list of words coded for type and their type
@@ -154,29 +164,27 @@ code_parties <- function(title) {
 #' @export
 code_type <- function(title) {
 
-  # Get types from title
   if (missing(title)) {
-    type <- data.frame(agreement_type)
-    type <- type %>% 
-      huxtable::as_hux() %>% 
-      huxtable::theme_basic() %>% 
-      huxtable::set_tb_padding(2) %>% 
-      huxtable::set_all_borders(TRUE) %>% 
-      huxtable::set_col_width(c(0.5, 0.25, 0.25))
-    type
-  } else {
-    # Get titles as list and character
-    out <- purrr::map(title, as.character)
-    # Get action dataframe
+    # If missing argument, function returns list of types and words coded
     type <- as.data.frame(agreement_type)
-    # Substitute matching words for abbreviations and extract
-    # only first matching action abbreviation per string
+    type$words[3] <- paste(substr(type$words[3], 0, 120), "...")
+    type$words[5] <- paste(substr(type$words[5], 0, 120), "...")
+    type$words[6] <- paste(substr(type$words[6], 0, 120), "...")
+    type <- knitr::kable(type, "simple")
+  }  else {
+    # Step one: get type codes
+    out <- purrr::map(title, as.character)
+    type <- as.data.frame(agreement_type)
+    
+    # Step two: substitute matching words for categories
     for (i in 1:nrow(type)) {
       out <- gsub(paste0(type$word[[i]]), paste0(type$category[[i]]), out, ignore.case = TRUE, perl = T)
     }
-    # EXtract only first type identified
+    
+    # Step three: eXtract only first category identified
     type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
-    # Assign type abbreviations
+    
+    # Step four: assign type abbreviations
     type <- dplyr::case_when(
       grepl("PROTO", type) ~ "P", # protocol
       grepl("AMEND", type) ~ "E", # amendment
@@ -185,11 +193,12 @@ code_type <- function(title) {
       grepl("STRAT", type) ~ "S", # strategy
       grepl("RESOL", type) ~ "R", # resolution
     )
-    # Extracts meaningful ordering numbers for protocols and amendments
+    
+    # step 5: extracts meaningful ordering numbers for protocols and amendments
     number <- order_agreements(title)
-    # When no type is found
+    # Assign other (O) no type is found
     type <- stringr::str_replace_na(type, "O")
-    # Add type and number if found
+    # Add type and number if available
     type <- paste0(type, number)
   }
   type
@@ -203,6 +212,7 @@ code_type <- function(title) {
 #' @importFrom stringr str_remove_all
 #' @importFrom purrr map
 #' @importFrom dplyr group_by mutate
+#' @importFrom knitr kable
 #' @details Actions of agreements help differentiate date duplicates
 #' in the same dataset as different treaties.
 #' Actions refers to verbs coded from title.
@@ -214,32 +224,25 @@ code_type <- function(title) {
 #' @export
 code_action <- function(title) {
   
-  # If missing argument, function returns list of actions
   if (missing(title)) {
-    # action <- as.data.frame(action)
-    
-    #One simple way of printing the action table in the console
-    action <- action %>%
-      knitr::kable("simple")
-    action
-    
-    # Another way making the output appear in the Viewer
-    # action <- gt::gt(action)
-    # action
+    # If missing argument, function returns list of actions coded for
+    ac <- as.data.frame(action)
+    action <- knitr::kable(ac, "simple")
   } else {
-    # Get titles as list and character
+    # Step one: get action list
     out <- purrr::map(title, as.character)
-    # Get action dataframe
     action <- as.data.frame(action)
-    # Substitute matching words for abbreviations and extract
-    # only first matching action abbreviation per string
+
+    # Step two: substitute matching words for action abbreviations
     for (i in 1:nrow(action)) {
       out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
     }
-    # Keep first abbreviation only
+    
+    # Step three: keep first action only
     out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
+    
+    # step four: in case no actions are coded, returns empty list same length as argument
     lt <- as.numeric(length(title))
-    # In case no actions are coded, returns empty list same length as argument
     ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
     action <- out
   }
@@ -259,19 +262,18 @@ code_action <- function(title) {
 #' @export
 code_dates <- function(date) {
 
-  # Collapse dates
+  # Step one: collapse dates
   uID <- stringr::str_remove_all(date, "-")
-  
-  # NA dates will appear as far future dates to facilitate identification
+
+  # Step two: get NA dates to appear as far future dates to facilitate identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
-  
-  # Ranges are removed first year is taken
+
+  # Step three: remove ranges, first date is taken
   uID <- stringr::str_replace_all(uID, "\\:[:digit:]{8}$", "")
-  
-  # Keep year only
+
+  # Step four: keep year only
   uID <- ifelse(nchar(uID) > 4, substr(uID, 1, nchar(uID) - 4), uID)
   uID
-
 }
 
 #' Known agreements abbreviation
@@ -293,32 +295,30 @@ code_dates <- function(date) {
 #' @export
 code_known_agreements <- function(title) {
   
-  # If missing argument, function returns list of known agreements
   if (missing(title)) {
-    out <- as.data.frame(abbreviations)
-    out <- out %>%
-      knitr::kable(align = "lcc") %>%
-      kableExtra::column_spec(1, width = "12cm", border_right = TRUE) %>%
-      kableExtra::column_spec(2, width = "4cm", border_right = TRUE) %>%
-      kableExtra::column_spec(3, width = "4cm")
-    out
+    # If missing argument, function returns list of known agreements coded
+    ka <- as.data.frame(abbreviations)
+    ka$title[15] <- paste(substr( ka$title[15] , 0, 90), "...")
+    ka$title[17] <- paste(substr( ka$title[17] , 0, 90), "...")
+    out <- knitr::kable(ka, "simple")
   } else {
-    # Get abbreviations dataset
+    # Step one: get abbreviations dataset
     abbreviations <- purrr::map(abbreviations, as.character)
 
-    # Assign the specific abbreviation to the "known" treaties when they match
+    # Step two: assign the specific abbreviation to the "known" treaties when they match
     ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
     colnames(ab) <- paste0(abbreviations$abbreviation, as.character(stringr::str_remove_all(abbreviations$signature, "-")))
     rownames(ab) <- title
     out <- apply(ab, 1, function(x) paste(names(x[x==1])))
+    # Assign NA when observation is not matched
     out[out=="character(0)"] <- NA_character_
     out <- unname(out)
     out <- as.character(out)
 
-    # Keep year only for IDs
+    # Step three: keep year only for IDs
     out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
 
-    # If output is a list with no values, returns an empty list of the same length as title variable
+    # Step four: if output is a list with no values, returns an empty list of the same length as argument
     lt <- as.numeric(length(title))
     ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
   }
@@ -371,10 +371,8 @@ code_acronym <- function(title){
       y <- paste0(substr(y, 1, 2), stringr::str_pad(nchar(y)-3, 2, pad = "0"), substr(y, nchar(y)-1, nchar(y)))
     }
   })
-
   x <- as.character(x)
   x
-
 }
 
 #' Code Agreement Linkages
@@ -392,15 +390,16 @@ code_acronym <- function(title){
 #' to identify and link duplicates.
 #' This is a choice that considers errors should lie on the side of false
 #' negatives rather than false positives.
+#' For the complete list of words removed from title to identify
+#' duplicates please run `pred_words()`.
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_linkage(IEADB$Title, IEADB$Signature)
 #' @export
 code_linkage <- function(title, date) {
-  
-  s <-  purrr::map(title, as.character)
-  
+
   # Step one: find type, parties, known agreements and acronyms
+  s <-  purrr::map(title, as.character)
   type <- code_type(s)
   abbrev <- code_known_agreements(s)
   parties <- code_parties(s)
@@ -408,16 +407,17 @@ code_linkage <- function(title, date) {
   acronym <- code_acronym(s)
   action <- code_action(s)
   
+  # Step two: standardise titles to improve accuracy
   out <- standardise_titles(as.character(title))
   
-  # Step two: remove 'predictable words' in agreements
+  # Step three: remove 'predictable words' in agreements
   predictable_words <- predictable_words$predictable_words
   predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
   predictable_words <- paste0("\\<", predictable_words, "\\>")
   out <- gsub(predictable_words, "", out, ignore.case = TRUE)
   out <- stringr::str_replace_all(out, predictable_words, "")
   
-  #Setep three: remove numbers, signs and parentheses
+  #Setep four: remove numbers, signs and parentheses
   out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
   out <- gsub("-", "", out, ignore.case = FALSE)
   out <- stringr::str_replace_all(out, ",|-", "")
@@ -427,44 +427,54 @@ code_linkage <- function(title, date) {
   out <- textclean::add_comma_space(out)
   out <- as.data.frame(out)
   
-  # Step four: assign ID to observations
+  # Step five: assign ID to observations
   id <- ifelse((!is.na(abbrev)), paste0(abbrev, type),
                (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
                        (ifelse((!is.na(parties)), paste0(parties, "_", uID, type, action), NA)))))
   
+  # Step six: bind data
   out <- cbind(out, id)
-  
   # Initialize variables to suppress CMD notes
   ref <- NULL
   dup <- NULL
   
-  # Step five: find duplicates and original values
+  # Step seven: find duplicates and original values
   out <- out %>%
     dplyr::group_by_at(dplyr::vars(out)) %>%
     dplyr::mutate(
       dup = dplyr::row_number() > 1,
       ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id)))
   
-  # step six: assign same id to duplicates
+  # step eight: assign same id to duplicates
   out <- out %>%
     dplyr::group_by(ref) %>%
     dplyr::mutate(n = dplyr::n()) %>%
     dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
 
-  # Step seven: keep only linkages
+  # Step nine: keep only linkages
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
   
-  # Step eight: remove linkages that are not agreements
+  # Step ten: remove linkages that are not agreements
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}E", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}P", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}s", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}N", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}R", "")
   line <- ifelse(nchar(as.character(line)) < 8, "", line)
-  
   line
-  
+}
+
+#' Predictable words list
+#'
+#' @return A list of predicatble words removed
+#' in code_linkages() and code_parties().
+#' @importFrom knitr kable
+#' @export
+pred_words <- function() {
+  pred <- as.data.frame(predictable_words)
+  pred_words <- knitr::kable(pred, "simple")
+  pred_words
 }
 
 #' Extracts Ordering Numbers from Titles
@@ -515,7 +525,5 @@ order_agreements <- function(title) {
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
-  
   oa
-  
 }
