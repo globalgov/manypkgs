@@ -77,15 +77,27 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("co-operation|coperation", "Cooperation", out, ignore.case = TRUE)
   out <- gsub("co-operative|coperative", "Cooperative", out, ignore.case = TRUE)
   out <- gsub("wild life|wild-life", "Wildlife", out, ignore.case = TRUE)
-  out <- ifelse(stringr::str_detect(out, "North-East|North-West|North-western|South-East|South-West"),
-                gsub("-", "", out), out)
   out <- ifelse(stringr::str_detect(out, "Test-Ban|Foot-and-Mouth|Nuclear-Weapon-Free|Public-Participation"),
                 gsub("-", " ", out), out)
-  out <- stringr::str_to_title(out)
-  out <- gsub("Weapon - Free", "Weapon Free", out, ignore.case = TRUE)
   out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
+  out <- gsub("Vietnam", "Viet Nam", out, ignore.case = TRUE)
+  # standardises regions spelling
+  out <- gsub("North-East|Northeast", "North East", out, ignore.case = TRUE)
+  out <- gsub("North-Eastern|Northeastern", "North Eastern", out, ignore.case = TRUE)
+  out <- gsub("North-West|Northwest", "North West", out, ignore.case = TRUE)
+  out <- gsub("North-western|Northwestern", "North Western", out, ignore.case = TRUE)
+  out <- gsub("South-East|Southeast", "South East", out, ignore.case = TRUE)
+  out <- gsub("South-Eastern|Southeastern", "South Eastern", out, ignore.case = TRUE)
+  out <- gsub("South-West|Southwest", "South West", out, ignore.case = TRUE)
+  out <- gsub("South-Western|Southwestern", "South Western", out, ignore.case = TRUE)
+  out <- stringr::str_to_title(out)
   # standardises spaces before and after apostrophes and comma spaces
   out <- gsub(" '|' ","'", out)
+  # Delete hyphens when separating two part of the title (when there is a space before and after)
+  out <- gsub(" - ", " ", out)
+  # Delete special character found in some treaty titles
+  out <- gsub("¬í", " ", w)
+  # Add space after a comma
   out <- textclean::add_comma_space(out)
   
   # Step four: Standardises how ordinal numbers are returned
