@@ -350,13 +350,14 @@ code_acronym <- function(title){
   # Step one: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
   
-  # Step two: remove some agreement types, numbers, punctuations marks, and parenthesis from titles
+  # Step two: remove some agreement types, numbers, punctuations marks, and parenthesis with
+  # short abbreviations from titles
   x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "[0-9]")
-  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{3}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{4}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\([:lower:]{5}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{4}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{5}\\)")
   x <- stringr::str_remove_all(x, "\\(|\\)")
 
   # Step three: get abbreviations for words left
