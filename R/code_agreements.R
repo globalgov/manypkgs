@@ -461,6 +461,11 @@ code_linkage <- function(title, date) {
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}s", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}N", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}R", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}E", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}P", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}S", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}N", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}R", "")
   line <- ifelse(nchar(as.character(line)) < 8, "", line)
   line
 }
