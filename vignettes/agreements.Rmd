@@ -208,39 +208,42 @@ The qID allows users to identify date, type and linkage.
 
 **Type** | **Pasting** | **Pasting**
 --- | --- |--- 
-Bilateral | MEX-USA_19060521 | parties_uID
-Bilateral + Protocol | M07R_18840921E3:BAD-CHE_18830703 | acronym_uID,type(number):linkage
+Bilateral | MEX-USA[8]_1906A | parties[number of words]_uID(type)
+Bilateral + Protocol | RUS-USA[17]_1971P[FI]:[17]_1967A[FI] | parties[number of words]_uID(type)[action]:linkage
 
 A bilateral treaty that is an agreement will have the following qID: "MEX-USA_19060521_". 
 This is a combination of the parties to agreement (MEX-USA) with the date of signature (19060521).
 A bilateral treaty that is any other type than an agreement (e.g. protocol, amendments) will have 
-the qID under this format: "M07R_18840921E3:BAD-CHE_18830703 ". 
-The acronym of the core words in title (M07R), the date of signature of the amendment (18840921), the type (E) which refers 
-to amendment, the number of amendment (3) and linkage to another the "mother" treaty (BAD-CHE_18830703)
-which is the qID of the "mother" treaty.
+the qID under this format: "RUS-USA[17]_1971P[FI]:RUS-USA[17]_1967A[FI]". 
+It is composed of the parties (RUS-USA), the number of words that are contained in the treaty
+title (17), the date of signature of the protocol (1971), the type (P) which refers to Protocol.
+The action [FI] which stands for "fishing" is only added in the qID when other treaties from the same 
+parties signed other treaties on the same year. It allows to differentiate them. Finally, the linkage 
+part is linking the agreement to its "mother" treaty qID but without repeating the 
+parties ([17]_1967A[FI]).
 
 **Type** | **Pasting** | **Pasting**
 --- | --- |--- 
-Multilateral | HSPDF_20050205A | acronym, uID, type
-Multilateral + Protocol | SFDP_20070817E2:H08F_19920817A | acronym, uID,type(number):linkage
+Multilateral | HSPDF_2005A | acronym_uID(type)
+Multilateral + Protocol | SFDP_2007E2:H08F_1992A | acronym, uID,type(number):linkage
 
-A multilateral treaty that is an agreement will have the following qID: "HSPDF_20050205A" which 
-indicates the acronym (HSPDF), the signature date of the agreement (20050205) and the type (A). 
-A multilateral treaty that is not an agreement will have this qID format: "SFDP_19920817E2:H08F_20070817". 
-This represents the acronym (SFDP), the signature date of the amendment (20070817), the type (E),
-the number of amendment (2) and the linkage number (H08F_20070817) of the "mother" treaty. 
+A multilateral treaty that is an agreement will have the following qID: "HSPDF_2005A" which 
+indicates the acronym (HSPDF), the signature year of the agreement (2005) and the type (A). 
+A multilateral treaty that is not an agreement will have this qID format: "SFDP_1992E2:H08F_2007". 
+This represents the acronym (SFDP), the signature year of the amendment (20070817), the type (E),
+the number of amendment (2) and the linkage number (H08F_2007) of the "mother" treaty. 
 
 **Type** | **Pasting** | **Pasting**
 --- | --- |--- 
-Known treaties | 	UNCLOS19821210 | abbreviation, uID
-Amendment of known treaties | J09H_19900316E2:MARPOL19731102| acronym, uID,type(number):linkage
+Known treaties | 	UNCLOS1982A | abbreviation, uID, type
+Amendment of known treaties | J09H_1990E2:MARPOL1973A | acronym_uID,type(number):linkage,type
 
 Famous multilateral treaties have a simplified qID with a known abbreviation. 
-For example, the United Nations Convention On The Law Of The Sea will have the following qID: "UNCLOC19821210". 
-This is the known abbreviation (UNCLOS) and the signature date (19821210). 
-The protocols or amendments of the known treaties will have this qID format: "19890317E2_MARPOL19731102". 
+For example, the United Nations Convention On The Law Of The Sea will have the following qID: "UNCLOC1982". 
+This is the known abbreviation (UNCLOS) and the signature year (1982). 
+The protocols or amendments of the known treaties will have this qID format: "1989E2_MARPOL1973A". 
 It indicates the acronym (J09H), the signature date of this specific amendment (19900316), the type of treaty (E),
-its number (2) and the qID of the "mother" treaty (MARPOL19731102).
+its number (2) and the qID of the "mother" treaty (MARPOL19731102) followed by the type (A).
 
 ## How `code_agreements()` work
 
@@ -258,8 +261,9 @@ qCreate::code_parties(agreements$titles)
 
 ### Date
 
-Each treaty contains a unique number in their qID which refer to the signature date. 
-The number has therefore eight numbers that are under the YYYYMMDD format. 
+Each treaty contains a unique number in their qID which refer to the signature date (called 
+"uID"). 
+The number has therefore four numbers which refers to the year only under YYYY format. 
 In some cases, the date of signature for multiple bilateral or multilateral treaties
 fall on the same day.
 In those cases, the unique number will also contain the abbreviation for the action
@@ -299,16 +303,16 @@ qCreate::code_known_agreements(agreements$titles)
 
 **Know Agreements** | **Abbreviation**
 --- | ---
-"United Nations Convention On The Law Of The Sea" | UNCLOS19821210
-"Convention On Biological Diversity" | CBD19920605
-"Convention On The Conservation Of Antarctic Marine Living Resources" | CCAMLR19800520
-"Convention On International Trade In Endangered Species Of Wild Fauna And Flora" | CITES19730303
-"International Convention On Civil Liability For Oil Pollution Damage" | CLC19691129
-"International Convention For The Prevention Of Pollution From Ships" | MARPOL 19731102
-"Constitutional Agreement Of The Latin American Organization For Fisheries Development" | OLDEPESCA19821029
-"Paris Agreement Under The United Nations Framework Convention On Climate Change" | PARIS20151212
-"Convention On Wetlands Of International Importance Especially As Waterfowl Habitat" | RAMSA19710202
-"United Nations Framework Convention On Climate Change" | UNFCCC19920509
+"United Nations Convention On The Law Of The Sea" | UNCLOS1982
+"Convention On Biological Diversity" | CBD1992
+"Convention On The Conservation Of Antarctic Marine Living Resources" | CCAMLR1980
+"Convention On International Trade In Endangered Species Of Wild Fauna And Flora" | CITES1973
+"International Convention On Civil Liability For Oil Pollution Damage" | CLC1969
+"International Convention For The Prevention Of Pollution From Ships" | MARPOL 1973
+"Constitutional Agreement Of The Latin American Organization For Fisheries Development" | OLDEPESCA1982
+"Paris Agreement Under The United Nations Framework Convention On Climate Change" | PARIS2015
+"Convention On Wetlands Of International Importance Especially As Waterfowl Habitat" | RAMSA1971
+"United Nations Framework Convention On Climate Change" | UNFCCC1992
 
 ### Linkage
 
