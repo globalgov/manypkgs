@@ -455,7 +455,7 @@ code_linkage <- function(title, date) {
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
   
-  # Step ten: remove linkages that are not agreements
+  # Step ten: removes all linkages that are not agreements
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}E", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}P", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}s", "")
@@ -467,6 +467,9 @@ code_linkage <- function(title, date) {
   line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}N", "")
   line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}R", "")
   line <- ifelse(nchar(as.character(line)) < 8, "", line)
+  
+  # Step eleven: remove parties from linkage to avoid repetintion
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}", "")
   line
 }
 
