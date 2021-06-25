@@ -10,7 +10,7 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29", "1973-02-21", "1973-02-21"))
 
 test_that("Code_agreements() properly returns qIDs", {
-  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[5]_1990P[FI]:CPV-PRT[5]_1980A[FI]",
+  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[5]_1990P[FI]:[5]_1980A[FI]",
                                                                "TD06LJ_1981A", "RAMSA1971A", "WIIEWH_1982P:RAMSA1971A", "PRTRPC_1976A", 
                                                                "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[11]_1973A[FI]", "RUS-USA[12]_1973A[FI]"))
 })
@@ -27,7 +27,7 @@ test_that("Code_agreements helper functions work properly", {
                                                     "RAMSA1971", NA, NA, NA, NA))
   expect_equal(code_acronym(data$title), c("CPVPFD", "CPVPFD", "TD06LJ", "WIIEWH", "WIIEWH", "PRTRPC",
                                            "PRTRPC", "GU11TC", "GU12PO"))
-  expect_equal(code_linkage(data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[5]_1980A[FI]", "",
+  expect_equal(code_linkage(data$title, data$date), c("[5]_1980A[FI]", "[5]_1980A[FI]", "",
                                                       "RAMSA1971A", "RAMSA1971A", "PRTRPC_1976A", 
                                                       "PRTRPC_1976A" , "", ""))
 })
