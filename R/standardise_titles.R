@@ -96,7 +96,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # Delete hyphens when separating two part of the title (when there is a space before and after)
   out <- gsub(" - ", " ", out)
   # Delete special character found in some treaty titles
-  out <- gsub("¬í", " ", w)
+  out <- gsub("¬í", " ", out)
   # Add space after a comma
   out <- textclean::add_comma_space(out)
   
