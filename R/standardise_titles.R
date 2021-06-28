@@ -90,10 +90,11 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("South-Eastern|Southeastern", "South Eastern", out, ignore.case = TRUE)
   out <- gsub("South-West|Southwest", "South West", out, ignore.case = TRUE)
   out <- gsub("South-Western|Southwestern", "South Western", out, ignore.case = TRUE)
+  out <- gsub("Indo-Pacific|Indopacific|Asia-Pacific|Asiapacific", "Asia Pacific", out, ignore.case = TRUE)
   out <- stringr::str_to_title(out)
   # standardises spaces before and after apostrophes and comma spaces
   out <- gsub(" '|' ","'", out)
-  # Delete hyphens when separating two part of the title (when there is a space before and after)
+  # Delete hyphens when separating two parts of the title (when there is a space before and after)
   out <- gsub(" - ", " ", out)
   # Delete special character found in some treaty titles
   out <- gsub("¬í", " ", out)
