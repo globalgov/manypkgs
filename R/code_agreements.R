@@ -350,8 +350,8 @@ code_acronym <- function(title){
   # Step one: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
   
-  # Step two: remove some agreement types, numbers, punctuations marks, and parenthesis with
-  # short abbreviations from titles
+  # Step two: remove agreement types, numbers, punctuations marks, and
+  # short abbreviations within parenthesis from titles
   x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "[0-9]")
@@ -359,12 +359,20 @@ code_acronym <- function(title){
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{4}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{5}\\)")
   x <- stringr::str_remove_all(x, "\\(|\\)")
+  
+  # Step three: remove known agreement cities or short titles
+  # (these often appear inconsistently accross datasets)
+  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>", "", x)
+  
+  # Step four: remove uimportant but differentiating words
+  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>",
+            "", x, ignore.case = TRUE)
 
-  # Step three: get abbreviations for words left
+  # Step five: get abbreviations for words left
   x <- abbreviate(x, minlength = 6, method = 'both.sides')
   x <- toupper(x)
   
-  # step four: cut longer abreviations into four digits
+  # step six: cut longer abreviations into four digits
   x <- purrr::map_chr(x, function(y){
     if(nchar(y) == 6){
       y
