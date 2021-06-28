@@ -11,7 +11,7 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
 
 test_that("Code_agreements() properly returns qIDs", {
   expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[5]_1990P[FI]:[5]_1980A[FI]",
-                                                               "TD06LJ_1981A", "RAMSA1971A", "WIIEWH_1982P:RAMSA1971A", "PRTRPC_1976A", 
+                                                               "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P:RAMSA_1971A", "PRTRPC_1976A", 
                                                                "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[11]_1973A[FI]", "RUS-USA[12]_1973A[FI]"))
 })
 
@@ -23,12 +23,12 @@ test_that("Code_agreements helper functions work properly", {
                                         "1982", "1976",
                                         "1983", "1973", "1973"))
   expect_equal(code_action(data$title), c("[FI]", "[FI]", "[LI]", "", "", "[PO]", "[PO]", "[FI]", "[FI]"))
-  expect_equal(code_known_agreements(data$title), c(NA, NA, NA, "RAMSA1971",
-                                                    "RAMSA1971", NA, NA, NA, NA))
+  expect_equal(code_known_agreements(data$title), c(NA, NA, NA, "RAMSA_1971",
+                                                    "RAMSA_1971", NA, NA, NA, NA))
   expect_equal(code_acronym(data$title), c("CPVPFD", "CPVPFD", "TD06LJ", "WIIEWH", "WIIEWH", "PRTRPC",
-                                           "PRTRPC", "GU11TC", "GU12PO"))
+                                           "PRTRPC", "GU11TC", "GU13PO"))
   expect_equal(code_linkage(data$title, data$date), c("[5]_1980A[FI]", "[5]_1980A[FI]", "",
-                                                      "RAMSA1971A", "RAMSA1971A", "PRTRPC_1976A", 
+                                                      "RAMSA_1971A", "RAMSA_1971A", "PRTRPC_1976A", 
                                                       "PRTRPC_1976A" , "", ""))
 })
 
@@ -58,7 +58,7 @@ data4 <- data.frame(title = c("Declaration Modifying Agreement on the River",
                     date = c("1999-07-12", "1912-09-02", "2019-03-15"))
 
 test_that("code_agreements() recognizes the correct type of treaty", {
-  expect_equal(code_agreements(data4, data4$title, data4$date), c( "DCLRMR_1999R", "CEBRIP_1912N", "RVRBSN_2019S"))
+  expect_equal(code_agreements(data4, data4$title, data4$date), c( "DCLRMR_1999R", "CEBRIP_1912N", "RI02ER_2019S"))
 })
 
 # Test numbers assigned to procotol/amendment
@@ -68,7 +68,7 @@ data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                     date = c("1899-10-02", "2000-10-18", "2010-10-10"))
 
 test_that("code_agreements() identify correct number of protocol or amendment", {
-  expect_equal(code_agreements(data5, data5$title, data5$date), c("TCSRNR_1899E18", "LMTTNA_2000E34", "LMTTAA_2010E4"))
+  expect_equal(code_agreements(data5, data5$title, data5$date), c("TRCSNR_1899E18", "LMTTNA_2000E34", "LMTTAA_2010E4"))
 })
 
 # Test that some functions return coding information when argument is missing
