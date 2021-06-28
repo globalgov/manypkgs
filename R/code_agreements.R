@@ -307,7 +307,7 @@ code_known_agreements <- function(title) {
 
     # Step two: assign the specific abbreviation to the "known" treaties when they match
     ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
-    colnames(ab) <- paste0(abbreviations$abbreviation, as.character(stringr::str_remove_all(abbreviations$signature, "-")))
+    colnames(ab) <- paste0(abbreviations$abbreviation, "_", as.character(stringr::str_remove_all(abbreviations$signature, "-")))
     rownames(ab) <- title
     out <- apply(ab, 1, function(x) paste(names(x[x==1])))
     # Assign NA when observation is not matched
@@ -365,7 +365,7 @@ code_acronym <- function(title){
   x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>", "", x)
   
   # Step four: remove uimportant but differentiating words
-  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>",
+  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
