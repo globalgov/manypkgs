@@ -50,7 +50,7 @@ Imports:
     tm,
     knitr
 Suggests:
-    testthat,
+    testthat (>= 3.0.0),
     librarian,
     anytime,
     mice,
@@ -63,7 +63,7 @@ Suggests:
     desc,
     WVPlots,
     translateR,
-    cld2, 
+    cld2,
     qEnviron,
     stringdist,
     rmarkdown,
@@ -76,3 +76,4 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Config/testthat/edition: 3
