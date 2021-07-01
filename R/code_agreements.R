@@ -135,6 +135,7 @@ code_parties <- function(title) {
   # Remove these words and numbers from title
   tt <- gsub(pw, "", tt, ignore.case = TRUE)
   tt <- gsub("[0-9]", "", tt)
+  tt <- gsub("\\(|\\)", "", tt)
   # Count number of words left
   lt <- lengths(gregexpr("\\W+", tt))
   # Add words and parties
@@ -364,9 +365,10 @@ code_acronym <- function(title){
   # Step three: remove known agreement cities or short titles
   # (these often appear inconsistently accross datasets)
   x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>", "", x)
+  x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
   
   # Step four: remove uimportant but differentiating words
-  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>",
+  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
