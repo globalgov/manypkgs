@@ -363,11 +363,11 @@ code_acronym <- function(title){
   x <- stringr::str_remove_all(x, "\\(|\\)")
   
   # Step three: remove known agreement cities or short titles
-  # (these often appear inconsistently accross datasets)
+  # (these often appear inconsistently across datasets)
   x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>", "", x)
   x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
   
-  # Step four: remove uimportant but differentiating words
+  # Step four: remove unimportant but differentiating words
   x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>",
             "", x, ignore.case = TRUE)
 
