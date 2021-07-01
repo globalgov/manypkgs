@@ -77,6 +77,8 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("co-operation|coperation", "Cooperation", out, ignore.case = TRUE)
   out <- gsub("co-operative|coperative", "Cooperative", out, ignore.case = TRUE)
   out <- gsub("wild life|wild-life", "Wildlife", out, ignore.case = TRUE)
+  out <- gsub("Decision Making", "Decision-Making", out, ignore.case = TRUE)
+  out <- gsub("MaasMeuse", "Maas", out, ignore.case = TRUE)
   out <- ifelse(stringr::str_detect(out, "Test-Ban|Foot-and-Mouth|Nuclear-Weapon-Free|Public-Participation"),
                 gsub("-", " ", out), out)
   out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
