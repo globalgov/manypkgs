@@ -358,14 +358,15 @@ code_acronym <- function(title){
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{4}\\)")
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{5}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{6}\\)")
   x <- stringr::str_remove_all(x, "\\(|\\)")
   
   # Step three: remove known agreement cities or short titles
   # (these often appear inconsistently accross datasets)
-  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>", "", x)
+  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>", "", x)
   
   # Step four: remove uimportant but differentiating words
-  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>",
+  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
