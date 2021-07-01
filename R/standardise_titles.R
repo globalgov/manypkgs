@@ -67,6 +67,14 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # standardises NAs
   out[out == "NANA"] <- NA
   out <- gsub("\\.(?=\\.*$)", "", out, perl = TRUE)
+  # standardises spaces before and after apostrophes and comma spaces
+  out <- gsub(" '|' ","'", out)
+  # Delete hyphens when separating two parts of the title (when there is a space before and after)
+  out <- gsub(" - ", " ", out)
+  # Delete special character found in some treaty titles
+  out <- gsub("\\¬[[:alpha:]]{1}|\\¬", "", out)
+  # Add space after a comma
+  out <- textclean::add_comma_space(out)
   # standardises some country abbreviations
   out <- gsub("U.K.", "UK", out)
   out <- gsub("U.S.S.R.", "USSR", out)
@@ -83,6 +91,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
                 gsub("-", " ", out), out)
   out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
   out <- gsub("Vietnam", "Viet Nam", out, ignore.case = TRUE)
+  out <- gsub("shipsballast|ship's ballast", "ships ballast", out, ignore.case = TRUE)
   # standardises regions spelling
   out <- gsub("North-East|Northeast", "North East", out, ignore.case = TRUE)
   out <- gsub("North-Eastern|Northeastern", "North Eastern", out, ignore.case = TRUE)
@@ -94,14 +103,6 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("South-Western|Southwestern", "South Western", out, ignore.case = TRUE)
   out <- gsub("Indo-Pacific|Indopacific|Asia-Pacific|Asiapacific", "Asia Pacific", out, ignore.case = TRUE)
   out <- stringr::str_to_title(out)
-  # standardises spaces before and after apostrophes and comma spaces
-  out <- gsub(" '|' ","'", out)
-  # Delete hyphens when separating two parts of the title (when there is a space before and after)
-  out <- gsub(" - ", " ", out)
-  # Delete special character found in some treaty titles
-  out <- gsub("\\¬[[:alpha:]]{1}", " ", out)
-  # Add space after a comma
-  out <- textclean::add_comma_space(out)
   
   # Step four: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
