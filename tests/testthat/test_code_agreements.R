@@ -48,7 +48,7 @@ data3 <- data.frame(title = c("Protocol On Amendments To The Agreement On Cooper
                     date = c("2015-10-30", "2019-02-01"))
 
 test_that("code_agreements() links only agreements as mather treaties", {
-  expect_equal(code_agreements(data3, data3$title, data3$date), c("CPFEMJ_2015P", "CPFEMJ_2019E"))
+  expect_equal(code_agreements(data3, data3$title, data3$date), c("CPREMJ_2015P", "CPREMJ_2019E"))
 })
 
 # Test that treaty types are assigned correctly
