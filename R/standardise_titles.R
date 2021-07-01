@@ -70,7 +70,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # standardises some country abbreviations
   out <- gsub("U.K.", "UK", out)
   out <- gsub("U.S.S.R.", "USSR", out)
-  out <- gsub("U.S. ", "USA", out)
+  out <- gsub("U.S. ", "USA ", out)
   # standardises some specific word spellings
   out <- gsub("Art\\.", "Article", out)
   out <- gsub("\\#", "Number ", out)
