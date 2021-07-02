@@ -115,6 +115,8 @@ code_agreements <- function(dataset = NULL, title, date) {
 code_parties <- function(title) {
   
   # Step one: get ISO country codes from qStates and matches in title variable
+  title <- as.character(title)
+  title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title), gsub("\\s*\\([^\\)]+\\)", "", title), title)
   parties <- qStates::code_states(title)
   parties <- stringr::str_replace_all(parties, "_", "-")
   
