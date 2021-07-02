@@ -352,7 +352,7 @@ code_known_agreements <- function(title) {
 code_acronym <- function(title){
   
   # Step one: standardise titles
-  x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
+  x <- standardise_titles(tm::removeWords(toupper(title), tm::stopwords("en")))
   
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
@@ -376,7 +376,6 @@ code_acronym <- function(title){
 
   # Step five: get abbreviations for words left
   x <- abbreviate(x, minlength = 6, method = 'both.sides')
-  x <- toupper(x)
   
   # step six: cut longer abreviations into four digits
   x <- purrr::map_chr(x, function(y){
