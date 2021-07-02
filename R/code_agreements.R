@@ -130,13 +130,8 @@ code_parties <- function(title) {
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
   # Step four: count words in title to reduce number of false duplicates
+  # Remove stop words and numbers from title
   tt <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
-  # # Get list of predictable words
-  # pw <- predictable_words$predictable_words
-  # pw <- paste(pw, collapse = '\\>|\\<')
-  # pw <- paste0("\\<", pw, "\\>")
-  # # Remove these words and numbers from title
-  # tt <- gsub(stops, "", tt, ignore.case = TRUE)
   tt <- gsub("[0-9]", "", tt)
   tt <- gsub("\\s\\(|\\)", "", tt)
   # Remove specific words generating false negatives 
