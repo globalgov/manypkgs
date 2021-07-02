@@ -73,15 +73,15 @@ code_agreements <- function(dataset = NULL, title, date) {
   # for agreements (A) where abrreviation is known
   qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev, type), out)
   # when abbreviation is known but treaty type is not agreement
-  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", abbrev), qID)
   # when parties were not identified and treaty type is agreement (A)
   qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(acronym, "_", uID, type), qID)
   # when parties were not identified and type is not agreement
-  qID <- ifelse(is.na(parties) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(is.na(parties) & (type != "A") & is.na(abbrev), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were identified and type is agreement (A)
-  qID <- ifelse(!is.na(parties) & (type == "A"), paste0(parties, "_", uID, type, action), qID)
+  qID <- ifelse(!is.na(parties) & (type == "A") & is.na(abbrev), paste0(parties, "_", uID, type, action), qID)
   # when parties were identified and type is not agreement
-  qID <- ifelse(!is.na(parties) & (type != "A"), paste0(parties, "_", uID, type, action, ":", line), qID)
+  qID <- ifelse(!is.na(parties) & (type != "A") & is.na(abbrev), paste0(parties, "_", uID, type, action, ":", line), qID)
   # deletes empty line or linkage
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
