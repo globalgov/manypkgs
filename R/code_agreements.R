@@ -99,6 +99,7 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @param title A character vector of treaty titles
 #' @importFrom qStates code_states
 #' @importFrom stringr str_replace_all
+#' @importFrom tm removewords stopwords
 #' @return A character vector of parties that are mentioned in the treaty title
 #' @details The function codes states in treaties alongside, returning only
 #' parties for bileteral treaties (i.e. 2 parties coded).
@@ -127,13 +128,13 @@ code_parties <- function(title) {
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
   # Step four: count words in title to reduce number of false duplicates
-  tt <- as.character(title)
-  # Get list of predictable words
-  pw <- predictable_words$predictable_words
-  pw <- paste(pw, collapse = '\\>|\\<')
-  pw <- paste0("\\<", pw, "\\>")
-  # Remove these words and numbers from title
-  tt <- gsub(pw, "", tt, ignore.case = TRUE)
+  tt <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
+  # # Get list of predictable words
+  # pw <- predictable_words$predictable_words
+  # pw <- paste(pw, collapse = '\\>|\\<')
+  # pw <- paste0("\\<", pw, "\\>")
+  # # Remove these words and numbers from title
+  # tt <- gsub(stops, "", tt, ignore.case = TRUE)
   tt <- gsub("[0-9]", "", tt)
   tt <- gsub("\\s\\(|\\)", "", tt)
   # Remove specific words generating false negatives 
@@ -336,7 +337,7 @@ code_known_agreements <- function(title) {
 #' @param title A character vector of treaty title
 #' @import stringr
 #' @importFrom purrr map_chr
-#' @importFrom tm stopwords
+#' @importFrom tm removewords stopwords
 #' @details Codes acronyms that are 4 to 6 digits long.
 #' For shorter treaty titles, six words or less, acronym
 #' includes first letter of each word.
@@ -352,7 +353,7 @@ code_known_agreements <- function(title) {
 code_acronym <- function(title){
   
   # Step one: standardise titles
-  x <- standardise_titles(tm::removeWords(toupper(title), tm::stopwords("en")))
+  x <- standardise_titles(tm::removeWords(tolower(title), tm::stopwords("en")))
   
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
@@ -376,6 +377,7 @@ code_acronym <- function(title){
 
   # Step five: get abbreviations for words left
   x <- abbreviate(x, minlength = 6, method = 'both.sides')
+  x <- toupper(x)
   
   # step six: cut longer abreviations into four digits
   x <- purrr::map_chr(x, function(y){

@@ -10,13 +10,13 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29", "1973-02-21", "1973-02-21"))
 
 test_that("Code_agreements() properly returns qIDs", {
-  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[5]_1990P[FI]:[5]_1980A[FI]",
+  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[6]_1990P[FI]:[5]_1980A[FI]",
                                                                "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P:RAMSA_1971A", "PRTRPC_1976A", 
-                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[11]_1973A[FI]", "RUS-USA[12]_1973A[FI]"))
+                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[14]_1973A[FI]", "RUS-USA[15]_1973A[FI]"))
 })
 
 test_that("Code_agreements helper functions work properly", {
-  expect_equal(code_parties(data$title), c("CPV-PRT[5]", "CPV-PRT[5]", NA, NA, NA, NA, NA, "RUS-USA[11]", "RUS-USA[12]"))
+  expect_equal(code_parties(data$title), c("CPV-PRT[5]", "CPV-PRT[6]", NA, NA, NA, NA, NA, "RUS-USA[14]", "RUS-USA[15]"))
   expect_equal(code_type(data$title), c("A", "P", "A", "A", "P", "A", "E1", "A", "A"))
   expect_equal(code_dates(data$date), c("1980", "1990",
                                         "1981", "1971",
