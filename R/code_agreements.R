@@ -135,8 +135,8 @@ code_parties <- function(title) {
   tt <- gsub("[0-9]", "", tt)
   tt <- gsub("\\s\\(|\\)", "", tt)
   # Remove specific words generating false negatives 
-  tt <- ifelse(grepl("^Fisheries", tt), gsub("Fisheries ", "", tt), tt)
-  tt <- gsub("\\<Text\\>", "", tt)
+  tt <- ifelse(grepl("^fisheries", tt), gsub("fisheries ", "", tt), tt)
+  tt <- gsub("\\<text\\>", "", tt)
   # Count number of words left
   lt <- lengths(gregexpr("\\W+", tt))
   # Add words and parties
