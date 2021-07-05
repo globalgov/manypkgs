@@ -468,21 +468,14 @@ code_linkage <- function(title, date) {
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
   
-  # Step ten: removes all linkages that are not agreements
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}E", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}P", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}s", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}N", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}_[:digit:]{4}R", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}E", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}P", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}S", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}N", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}\\[[:digit:]{2}\\]_[:digit:]{4}R", "")
-  line <- ifelse(nchar(as.character(line)) < 8, "", line)
-  
-  # Step eleven: remove parties from bilateral agreements to avoid repetintion
+  # Step ten: remove parties from bilateral agreements to avoid repetintion
   line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{2}-[:alpha:]{3}", "")
+  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{2}", "")
+  
+  # Step ten: removes all linkages that are not agreements
+  line <- gsub("[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxx", line)
+  line <- ifelse(nchar(as.character(line)) > 20, "", line)
   line
 }
 
@@ -510,14 +503,14 @@ pred_words <- function() {
 order_agreements <- function(title) {
   
   # Step one: remove dates from title
-  rd <- stringr::str_remove(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd,  "[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}")
-  rd <- stringr::str_remove(rd, "[:digit:]{4}")
+  rd <- stringr::str_remove_all(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd,  "[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(rd, "[:digit:]{4}| [:digit:]{2}\\s[:digit:]{4}")
   
   # Step two: standardises ordinal numbers and ordering text into digits
   oa <- gsub("\\<one\\>|\\<first\\>", "1", rd)
