@@ -376,7 +376,7 @@ code_acronym <- function(title){
   x <- abbreviate(x, minlength = 6, method = 'both.sides')
   x <- toupper(x)
   
-  # step six: cut longer abreviations into four digits
+  # step six: cut longer abbreviations into four digits
   x <- purrr::map_chr(x, function(y){
     if(nchar(y) == 6){
       y
