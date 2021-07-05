@@ -1,0 +1,201 @@
+;Source;titles;dates;duplicate;Row duplicate;ID duplicate;Linkage;qID;Ambiguous duplicates
+1;GNEVAR1;Convention Between The Government Of The French Republic And The Government Of The Kingdom Of Tonga On The Delimitation Of Economic Zones;11.01.80;1;1;FRA-TON[9]_1980A[LI];No;FRA-TON[9]_1980A[LI];
+2;ECOLEX1;Convention Between The Government Of The French Republic And The Government Of The Kingdom Of Tonga On The Delimitation Of Economic Zones;11.01.80;1;1;FRA-TON[9]_1980A[LI];No;FRA-TON[9]_1980A[LI];
+3;GNEVAR2;Agreement Between The Government Of The Republic Of Finland And The Government Of The Union Of Soviet Socialist Republics Regarding The Delimitation Of The Areas Of Finnish And Soviet Jurisdiction In The Field Of Fishing In The Gulf Of Finland And The North Eastern Part Of The Baltic Sea;25.02.80;1;3;FIN-RUS[22]_1980A[LI];No;FIN-RUS[22]_1980A[LI];
+4;ECOLEX2;Agreement Between The Government Of The Republic Of Finland And The Government Of The Union Of Soviet Socialist Republics Regarding The Delimitation Of The Areas Of Finnish And Soviet Jurisdiction In The Field Of Fishing In The Gulf Of Finland And The North Eastern Part Of The Baltic Sea;25.02.80;1;3;FIN-RUS[22]_1980A[LI];No;FIN-RUS[22]_1980A[LI];
+5;IEADB1;Bilateral Agreement Between Norway And The European Economic Community On Fishing;27.02.80;1;5;BNEECF_1980A;No;BNEECF_1980A;
+6;GNEVAR3;Agreement Between The Government Of The Republic Of Guinea Bissau And The European Economic Community On Fishing Off The Coast Of Guinea Bissau Protocol Between The European Economic Community And The Government Of The Republic Of Guinea Bissau;27.02.80;0;;NA;No;GR15GB_1980A;
+7;GNEVAR4;Bilateral Agreement Between Norway And The European Economic Community On Fishing;27.02.80;1;5;BNEECF_1980A;No;BNEECF_1980A;
+8;IEADB2;Convention On The Physical Protection Of Nuclear Material;03.03.80;1;8;PHYPNM_1980A;No;PHYPNM_1980A;
+9;GNEVAR5;Convention On The Physical Protection Of Nuclear Material;03.03.80;1;8;PHYPNM_1980A;No;PHYPNM_1980A;
+10;ECOLEX3;Agreement Between The Government Of Portugal And Mexico On The Centre For The Development Of Corn And Wheat;05.03.80;0;;NA;No;MEX-PRT[7]_1980A[DE];
+11;IEADB3;Convention Between Belgium And Luxembourg Regarding The Waters Of The River Sure;17.03.80;1;11;KB04WS_1980A, EL14LS_1980A;No;BLRWRS_1980A;X
+12;GNEVAR6;Agreement Between The Kingdom Of Belgium And The Grand Duchy Of Luxembourg On The Waters Of The Sauer;17.03.80;1;11;BLRWRS_1980A, EL14LS_1980A;No;KB04WS_1980A;X
+13;ECOLEX4;Convention Entre Le Royaume De Belgique Et Le Grand-Duche De Luxembourg Au Sujet Des Eaux De La Sure;17.03.80;0;;;No;EL14LS_1980A;Different language
+14;IEADB4;Amendment To The Technical Exchange And Cooperative Arrangement Between The United States Of America And The Federal Republic Of Germany Of December 20 1974 In The Field Of Management Of Radioactive Wastes;19.03.80;1;14;DEU-USA[15]_1980E20[MA];No;DEU-USA[15]_1980E20[MA];
+15;GNEVAR7;Amendment To The Technical Exchange And Cooperative Arrangement Between The United States Of America And The Federal Republic Of Germany Of December 20 1974 In The Field Of Management Of Radioactive Wastes;19.03.80;1;14;DEU-USA[15]_1980E20[MA];No;DEU-USA[15]_1980E20[MA];
+16;IEADB5;Agreement Between Spain And Portugal On Cooperation In Matters Affecting The Safety Of Nuclear Installations In The Vicinity Of The Frontier;31.03.80;1;16;ESP-PRT[10]_1980A[IS];No;ESP-PRT[10]_1980A[IS];
+17;GNEVAR8;Agreement Between Spain And Portugal On Cooperation In Matters Affecting The Safety Of Nuclear Installations In The Vicinity Of The Frontier;31.03.80;1;16;ESP-PRT[10]_1980A[IS];No;ESP-PRT[10]_1980A[IS];
+18;GNEVAR9;Convention Between The Government Of The French Republic And The Government Of Mauritius On The Delimitation Of The French And Mauritian Economic Zones Between The Islands Of Reunion And Mauritius;02.04.80;1;18;FRA-MUS[13]_1980A[LI];No;FRA-MUS[13]_1980A[LI];
+19;ECOLEX5;Convention Between The Government Of The French Republic And The Government Of Mauritius On The Delimitation Of The French And Mauritian Economic Zones Between The Islands Of Reunion And Mauritius;02.04.80;1;18;FRA-MUS[13]_1980A[LI];No;FRA-MUS[13]_1980A[LI];
+20;GNEVAR10;Protocol On Procedures And Conditions For Japanese Salmon Fishing In The North West Pacific Ocean In 1980;15.04.80;0;;NA;No;PC06PO_1980P;
+21;ECOLEX6;Decree No 11780 Approving The Agreement Between Cape Verde And Portugal On Fisheries Development;20.04.80;0;;NA;A19800420;CPV-PRT[7]_1980A0[FI];
+22;IEADB6;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Paragraph B Of Regulation 4 Of Annex Iv);08.05.80;1;22;PE07AI_1980E4;E19800508;PE07AI_1980E4;
+23;GNEVAR11;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Paragraph B Of Regulation 4 Of Annex Iv);08.05.80;1;22;PE07AI_1980E4;E19800508;PE07AI_1980E4;
+24;ECOLEX7;Convention Concerning International Carriage Of Goods By Rail;09.05.80;0;;NA;No;INTCGR_1980A;
+25;IEADB7;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
+26;IEADB8;Treaty Approving The Shared Water Resources Of The Border Sections Of The Uruguay River And The Pepiri-Guazu River;17.05.80;1;26;TA07PR_1980A, TP20RP_1980A;No;TA07PR_1980A;
+27;GNEVAR12;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
+28;GNEVAR13;Treaty Approving The Shared Water Resources Of The Border Sections Of The Uruguay River And The Pepiri-Guazu River;17.05.80;1;26;TA07PR_1980A, TP20RP_1980A;No;TA07PR_1980A;
+29;ECOLEX8;Tratado Para El Aprovechamiento De Los Recursos Hidricos Compartidos De Los Tramos Limitrofes Del Rio Uruguay Y De Su Afluente El Rio Pepiri-Guazu;17.05.80;0;;;No;TP20RP_1980A;Different language
+30;ECOLEX9;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
+31;IEADB9;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
+32;GNEVAR14;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
+33;ECOLEX10;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
+34;IEADB10;European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities;21.05.80;1;34;EO04CA_1980A;No;EO04CA_1980A;
+35;ECOLEX11;European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities;21.05.80;1;34;EO04CA_1980A;No;EO04CA_1980A;
+36;IEADB11;Agreement Between Norway And Iceland On Fishery And Continental Shelf Questions;28.05.80;1;36;ISL-NOR[5]_1980A[FI], ISL-NOR[7]_1980A[FI];No;ISL-NOR[6]_1980A[FI];X
+37;IEADB12;Bilateral Agreement Between Norway And Iceland Concerning Fisheries And Continental Shelf Questions;28.05.80;1;36;ISL-NOR[5]_1980A[FI], ISL-NOR[6]_1980A[FI];No;ISL-NOR[7]_1980A[FI];X
+38;IEADB13;Agreement On Fisheries And The Continental Shelf Between Norway And Iceland (Herring);28.05.80;1;36;ISL-NOR[7]_1980A[FI], ISL-NOR[6]_1980A[FI];No;ISL-NOR[5]_1980A[FI];X
+39;ECOLEX12;Regulation No41 Uniform Provisions Concerning The Approval Of Motor Cycles With Regard To Noise;01.06.80;0;;NA;No;RN06RN_1980R;
+40;ECOLEX13;Treaty Between The United States Of America And The Cook Islands On Friendship And Delimitation Of The Maritime Boundary Between The United States Of America And The Cook Islands;11.06.80;0;;NA;No;TU12CI_1980A;
+41;ECOLEX14;Agreement On Fisheries Between The European Economic Community And The Kingdom Of Norway;27.06.80;0;;NA;No;FEECKN_1980A;
+42;ECOLEX15;Exchange Of Notes Regarding The Delimitation Of The Border Between Brazil And French Guyana;03.07.80;0;;NA;No;BRA-GUY[6]_1980N[LI];
+43;IEADB14;Agreement Establishing The Caribbean Environmental Health Institute;10.07.80;0;;NA;No;ESCEHI_1980A;
+44;IEADB15;Agreement Of Cooperation Between Mexico And The United States On The Contamination Of The Marine Environment By Hydrocarbon Spills And Other Harmful Substances;24.07.80;0;;NA;No;CM07HS_1980A;
+45;ECOLEX16;Agreement Between The Government Of The Kingdom Of Thailand And The Government Of Socialist Republic Of The Union Of Burma On The Delimitation Of The Maritime Boundary Between The 2 Countries In The Andaman Sea;25.07.80;0;;NA;No;MMR-THA[14]_1980A2[LI];
+46;IEADB16;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 30-2 Meeting;26.07.80;0;;NA;E19800726;SIRW-M_1980E3:SIRW-M_1980E3;
+47;ECOLEX17;Extension Of The Effect Of Minute No 260 Relating To The Emergency Deliveries Of Colorado River Water For Use In Tijuana (Minute No 263);06.08.80;0;;NA;E19800806;EE09TM_1980N260;
+48;IEADB17;Agreement Between The Government Of Portugal And The Government Of Netherlands Concerning The Cooperation In The Agricultural And Water Sectors;08.08.80;1;48;NLD-PRT[8]_1980A;No;NLD-PRT[8]_1980A;
+49;ECOLEX18;Agreement Between The Government Of Portugal And The Government Of Netherlands Concerning The Cooperation In The Agricultural And Water Sectors;08.08.80;1;48;NLD-PRT[8]_1980A;No;NLD-PRT[8]_1980A;
+50;ECOLEX19;Recommendations For Solution On The New River Border Sanitation Problem At Calexico California Mexicali Baja California (Minute No 264);26.08.80;0;;NA;No;RS10CM_1980R2;
+51;IEADB18;Amendment To The List Of Substances In Annexes 1 And Ii To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter (Concerning The Prohibition Of Dumping At Sea Of Crude Oil And Oily Substances And Mixtures);24.09.80;1;51;APPDWM_1980E;No;LS14SM_1980E1;X
+52;ECOLEX20;Amendments To The Annexes To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter;24.09.80;1;51;LS14SM_1980E1;No;APPDWM_1980E;X
+53;IEADB19;Amendment To The Treaty On The International Recognition Of The Deposit Of Microorganisms For The Purposes Of Patent Procedure;26.09.80;0;;NA;E19800926;TI05PP_1980E;
+54;IEADB20;Protocol Amending The Interim Convention On Conservation Of North Pacific Fur Seals;14.10.80;0;;NA;No;II04FS_1980P;
+55;IEADB21;Exchange Of Notes Amending The Convention For The Preservation Of The Halibut Fishery Of The North Pacific Ocean And The Bering Sea;15.10.80;0;;NA;No;IP06BS_1980N;
+56;GNEVAR15;Exchange Of Letters Constituting An Agreement Concerning German-French-Luxembourg Cooperation In The Frontier Areas;16.10.80;1;56;LCGCFA_1980N;No;LCGCFA_1980N;
+57;ECOLEX21;Exchange Of Letters Constituting An Agreement Concerning German-French-Luxembourg Cooperation In The Frontier Areas;16.10.80;1;56;LCGCFA_1980N;No;LCGCFA_1980N;
+58;IEADB22;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;30.10.80;1;58;AUS-JPN[11]_1980P[FI];A19821028;AUS-JPN[11]_1980P[FI];
+59;GNEVAR16;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;30.10.80;1;58;AUS-JPN[11]_1980P[FI];A19821028;AUS-JPN[11]_1980P[FI];
+60;ECOLEX22;General Peace Treaty Between El Salvador And Honduras (With Minutes Of 17 April 1980 Relating To The Establishment Of The El Salvador-Honduras Joint Frontier Commission Point 5 Of The Minutes No Xxx Of The Special Commission Representing El Salvador Guatemala And Honduras Drawn Up On 23 And 24 June 1935 And Special Minutes Drawn Up On 26 March 1936 On The Occasion Of The Official Acceptance Of The 3-Country Boundary Matker);30.10.80;0;;NA;No;HND-SLV[5]_1980A5[ES];
+61;IEADB23;Agreement Between Cape Verde And Portugal On Fisheries Development;05.11.80;0;;NA;A19800420;CPV-PRT[5]_1980A[FI];
+62;IEADB24;Convention On Future Multilateral Cooperation In North East Atlantic Fisheries;18.11.80;1;62;FCNEAF_1980A;No;FCNEAF_1980A;
+63;ECOLEX23;Convention On Future Multilateral Cooperation In North East Atlantic Fisheries;18.11.80;1;62;FCNEAF_1980A;No;FCNEAF_1980A;
+64;IEADB25;Agreement Concerning Fishing In Lac Leman;20.11.80;1;65;DPHWLL_1980A, GR11LL_1980A, RF04IR_1980A;No;FSHNLL_1980A;X
+65;IEADB26;Agreement On The Dephosphatation Of The Waters Of Lac Leman;20.11.80;1;65;FSHNLL_1980A, GR11LL_1980A, RF04IR_1980A;No;DPHWLL_1980A;X
+66;ECOLEX24;Agreement Regarding Fishing In Lake Geneva (With Annex And Implementing Regulations);20.11.80;1;65;FSHNLL_1980A, DPHWLL_1980A, GR11LL_1980A;No;RF04IR_1980A;X
+67;ECOLEX25;Agreement Between The Government Of The Republic Of France And The Federal Council Of Switzerland On Behalf Of The Republic And The Canton Of Geneva On The Dephosphatization Of The Waters Of Leman Lake;20.11.80;1;65;FSHNLL_1980A, DPHWLL_1980A, RF04IR_1980A;No;GR11LL_1980A;X
+68;IEADB27;Convention Creating The Niger Basin Authority;21.11.80;0;;NA;A19801121;CRTNNA_1980A;
+69;IEADB28;Protocol Relating To The Development Fund Of The Niger Basin;21.11.80;1;69;ER11LN_1980P;A19801121;RLTDFN_1980P;X
+70;ECOLEX26;Protocole Relatif Au Fonds De Developpement Du Bassin Du Niger Signe A Faranah Le 21 Novembre 1980;21.11.80;1;69;RLTDFN_1980P;A19801121;ER11LN_1980P;X
+71;ECOLEX27;Treaty Between The United States Of America And New Zealand On The Delimitation Of The Maritime Boundary Between Tokelau And The United States Of America;02.12.80;0;;NA;No;TU10SA_1980A;
+72;IEADB29;Fishing Regulations Applicable In The International Section Of The Minho River (With Annex);03.12.80;0;;NA;No;FR05RA_1980R;
+73;IEADB30;Agreement Between The United States Of America And Canada On Icebreaking Operations In The Great Lakes And St Lawrence Seaway System;05.12.80;1;73;CAN-USA[12]_1980A[OP];No;CAN-USA[12]_1980A[OP];
+74;ECOLEX28;Agreement Between The United States Of America And Canada On Icebreaking Operations In The Great Lakes And St Lawrence Seaway System;05.12.80;1;73;CAN-USA[12]_1980A[OP];No;CAN-USA[12]_1980A[OP];
+75;ECOLEX29;Agreement Between The Government Of The Republic Of Indonesia And The Government Of Papua New Guinea Concerning Maritime Boundaries Between The Republic Of Indonesia And Papua New Guinea And Cooperation On Related Matters 1980;13.12.80;0;;NA;No;GR14RM_1980A;
+76;IEADB31;Agreement Between The Government Of Australia And The Government Of The French Republic Concerning Nuclear Transfers Between Australia And An Associated Exchange Of Letters;07.01.81;0;;NA;No;AUS-FRA[10]_1981A;
+77;IEADB32;Amendment To The Treaty On The International Recognition Of The Deposit Of Microorganisms For The Purposes Of Patent Procedure;20.01.81;0;;NA;E19800926;TI05PP_1981E;
+78;IEADB33;Bilateral Agreement Between Norway And Spain On Fisheries;21.01.81;0;;NA;No;ESP-NOR[4]_1981A[FI];
+79;IEADB34;Agreement On Plant Protection;22.01.81;0;;NA;No;PLNTPR_1981A;
+80;ECOLEX30;Traite De Delimitation Maritime Signe A Paris Le 30 Janvier 1981;30.01.81;0;;NA;No;TD05LJ_1981A;Different language
+81;IEADB35;Agreement Between The Bolivian And Argentinian Governments For The Protection And Conservation Of Vicuna;16.02.81;0;;NA;No;ARG-BOL[6]_1981A[PO];
+82;IEADB36;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Regulation 5 Of Annex Iv);18.02.81;0;;NA;E19800508;PE05AI_1981E5;
+83;IEADB37;Agreement Between The Government Of The United States Of America And The Government Of Portugal On The Fisheries Off The Coasts Of The United States;20.02.81;1;83;PRT-USA[10]_1981A[FI];No;PRT-USA[10]_1981A[FI];
+84;ECOLEX31;Agreement Between The Government Of The United States Of America And The Government Of Portugal On The Fisheries Off The Coasts Of The United States;20.02.81;1;83;PRT-USA[10]_1981A[FI];No;PRT-USA[10]_1981A[FI];
+85;IEADB38;Articles Of Association Of The South Asia Cooperative Environment Programme;25.02.81;0;;NA;No;AA04EP_1981S;
+86;ECOLEX32;Convention De Delimitation Signee A Paris Le 4 Mars 1981;04.03.81;0;;NA;No;DDSPLM_1981A;Different language
+87;IEADB39;Amendments To Appendices 1 And Ii To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Cop-3 1981);08.03.81;0;;NA;E19810308;AI07FC_1981E1:CITES_1973;
+88;IEADB40;Agreement Between The Government Of Australia And The Government Of Canada Concerning The Peaceful Use Of Nuclear Energy;09.03.81;0;;NA;No;AUS-CAN[7]_1981A;
+89;IEADB41;Agreement Between The Government Of Australia And The Government Of Sweden On Conditions And Controls For Nuclear Transfers For Peaceful Purposes Between Australia And Sweden And Exchange Of Letters;18.03.81;0;;NA;No;AUS-SWE[14]_1981A[CT];
+90;IEADB42;Convention For Cooperation In The Protection And Development Of The Marine And Coastal Environment Of The West And Central African Region;23.03.81;1;90;CP06AR_1981A;No;CP06AR_1981A;
+91;IEADB43;Protocol Concerning Cooperation In Combating Pollution In Cases Of Emergency;23.03.81;1;91;CPCPCE_1981P;No;CPCPCE_1981P;
+92;ECOLEX33;Protocol Concerning Cooperation In Combating Pollution In Cases Of Emergency;23.03.81;1;91;CPCPCE_1981P;No;CPCPCE_1981P;
+93;ECOLEX34;Convention For Cooperation In The Protection And Development Of The Marine And Coastal Environment Of The West And Central African Region;23.03.81;1;90;CP06AR_1981A;No;CP06AR_1981A;
+94;ECOLEX35;Protocolo Al Tratado Relativo A La Neutralidad Permanente Y Al Funcionamiento Del Canal De Panama;09.04.81;0;;NA;No;OA11DP_1981P;Different language
+95;IEADB44;Amendment Allowing The Accession Of Uganda To The Agreement For The Establishment Of An Organization To Manage And Develop The Kagera River Basin;19.05.81;0;;;No;AA06KR_1981E;
+96;ECOLEX36;Accession De 50ouganda A 50accord Portant Creation De 50organisation Pour 50amenagement Et Le Developpement Du Bassin De La Riviere Kagera Bujumbura Le 19 Mai 1981;19.05.81;0;;;No;AD19LM_1981A5;Different language
+97;IEADB45;Treaty Between The Government Of The United States Of America And The Government Of Canada On Pacific Coast Albacore Tuna Vessels And Port Privileges;26.05.81;0;;NA;No;CAN-USA[13]_1981A;
+98;IEADB46;Amendment Of Article 4 To The Convention Relating To The Status Of The River Gambia;05.06.81;0;;NA;E19810605;ARRSRG_1981E4;X
+99;IEADB47;Amendment To The Convention Relating To The Creation Of The Gambia River Basin Development Organization And The Convention Relating To The Status Of The River Gambia (Adhesion Of Guinee);06.06.81;1;99;PR05AG_1981E, PR10NC_1981E;E19810605;RC09AG_1981E;X
+100;IEADB48;Amendment Of The Preamble To The Convention Relating To The Creation Of The Gambia River Basin Development Organization (To Reflect Adhesion Of Guinee And Add New Clause);06.06.81;1;99;PR05AG_1981E, RC09AG_1981E;E19810605;PR10NC_1981E;X
+101;IEADB49;Amendment Of The Preamble To The Convention Relating To The Status Of The River Gambia (To Reflect Adhesion Of Guinee);06.06.81;1;99;PR10NC_1981E, RC09AG_1981E;E19810605;PR05AG_1981E;X
+102;IEADB50;Amendment Of Articles 17 And 18 To The Convention Relating To The Creation Of The Gambia River Basin Development Organization;06.06.81;0;;NA;E19810605;AR04DO_1981E17;X
+103;ECOLEX37;Convention Relating To The Creation Of The Gambia River Basin Development Organization Signed At Kaolack On 30 June 1978;06.06.81;1;103;RS04KJ_1981A;E19810605;RC06KJ_1981A;X
+104;ECOLEX38;Convention Relating To The Status Of The River Gambia Signed At Kaolack On 30 June 1978;06.06.81;1;103;RC06KJ_1981A;E19810605;RS04KJ_1981A;X
+105;IEADB51;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 30-3 Meeting;25.07.81;0;;NA;E19800726;SIRW-M_1981E3:SIRW-M_1980E3;
+106;ECOLEX39;Extension Of The Effect Of Minute No 263 Relating To The Emergency Deliveries Of Colorado River Water For Use In Tijuana (Minute No 266);03.08.81;0;;NA;E19800806;EE09TM_1981N263;
+107;IEADB52;Supplementary Convention To The Basic Convention For Technical Cooperation Between Colombia And Brasil On Technical Scientific And Technological Cooperation In The Area Of Basic Sanitation And Environmental Protection;02.09.81;0;;NA;No;SB12EP_1981P;X
+108;ECOLEX40;Convenio Complementario Del Basico De Cooperacion Tecnica Entre El Gobierno De La Republica De Colombia Y Gobierno De La Republica Federativa Del Brasil Sobre Cooperacion Tecnica Cientifica Y Tecnologica En El Area De Saneamiento Basico Y Proteccion Del Medio Ambiente;02.09.81;0;;NA;No;CC37MA_1981A;Different language
+109;ECOLEX41;Agreement For The Establishment Of A Regional Centre On Agrarian Reform And Rural Development Of Latin America And The Caribbean;11.09.81;0;;NA;No;ER07AC_1981A;
+110;ECOLEX42;Agreement On The Continental Shelf Between Iceland And Jan Mayen;22.10.81;0;;NA;No;CNSIJM_1981A;
+111;IEADB53;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;29.10.81;1;111;AUS-JPN[11]_1981P[FI];A19821028;AUS-JPN[11]_1981P[FI];
+112;GNEVAR17;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;29.10.81;1;111;AUS-JPN[11]_1981P[FI];A19821028;AUS-JPN[11]_1981P[FI];
+113;ECOLEX43;Regulation No47 Uniform Provisions Concerning The Approval Of Mopeds Equipped With A Positive-Ignition Engine With Regard To The Emission Of Gaseous Pollutants By The Engine;01.11.81;0;;NA;No;RN11PE_1981R;
+114;IEADB54;Convention For The Protection Of The Marine Environment And Coastal Area Of The South East Pacific;12.11.81;1;114;PE04EP_1981A;No;PE04EP_1981A;
+115;IEADB55;Agreement On Regional Cooperation In Combating Pollution Of The South East Pacific By Oil And Other Harmful Substances In Cases Of Emergency;12.11.81;1;115;RC09CE_1981A;No;RC09CE_1981A;
+116;ECOLEX44;Convention For The Protection Of The Marine Environment And Coastal Area Of The South East Pacific;12.11.81;1;114;PE04EP_1981A;No;PE04EP_1981A;
+117;ECOLEX45;Agreement On Regional Cooperation In Combating Pollution Of The South East Pacific By Hydrocarbons Or Other Harmful Substances In Cases Of Emergency;12.11.81;1;115;RC09CE_1981A;No;RC09CE_1981A;
+118;IEADB56;Agreement Between France And India On Cooperation In The Field Of Environmental Management;13.11.81;0;;NA;No;FRA-IND[6]_1981A[MA];
+119;IEADB57;Protocol To The Agreement Between Between Cameroon And Equatorial Guinea Regarding Livestock Breeding;26.11.81;0;;NA;No;CEGRLB_1981P;X
+120;ECOLEX46;Protocole Daccord Relatif A 50elevage Entre La Republique Unie Du Cameroun Et La Republique De Guinee Equatoriale;26.11.81;0;;NA;No;ED13GE_1981P5;Different language
+121;IEADB58;Agreement On Cooperation In The Field Of Fisheries;07.12.81;1;121;CPRTNF_1981A;No;CPRTNF_1981A;
+122;GNEVAR18;Agreement On Cooperation In The Field Of Fisheries;07.12.81;1;121;CPRTNF_1981A;No;CPRTNF_1981A;
+123;ECOLEX47;Agreement On Fisheries Between The European Economic Community And The Government Of Canada Community Declaration Concerning Article Xi Of The Agreement On Fisheries Between The European Economic Community And The Government Of Canada;29.12.81;0;;NA;No;FE13GC_1981A;
+124;IEADB59;Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique Concerning Fisheries;01.01.82;1;124;ESP-MOZ[7]_1982A[FI];A19820101;ESP-MOZ[7]_1982A[FI];
+125;IEADB60;Protocol For The Application Of The Fisheries Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique;01.01.82;1;125;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];A19820101;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];
+126;ECOLEX48;Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique Concerning Fisheries;01.01.82;1;124;ESP-MOZ[7]_1982A[FI];A19820101;ESP-MOZ[7]_1982A[FI];
+127;ECOLEX49;Protocol For The Application Of The Fisheries Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique;01.01.82;1;125;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];A19820101;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];
+128;ECOLEX50;Agreement On Marine Delimitation Between The Government Of Australia And The Government Of The French Republic;04.01.82;0;;NA;No;AUS-FRA[7]_1982A[LI];
+129;IEADB61;Protocol Agreement On The Conservation Of Common Natural Resources;24.01.82;1;129;CNSRCN_1982P;No;CNSRCN_1982P;
+130;ECOLEX51;Protocol Agreement On The Conservation Of Common Natural Resources;24.01.82;1;129;CNSRCN_1982P;No;CNSRCN_1982P;
+131;IEADB62;Convention Between The French Republic And The Kingdom Of Belgium Concerning Improvement Of The Common River Lys Between Deulemont And Menin;03.02.82;1;131;BEL-FRA[10]_1982A;No;BEL-FRA[10]_1982A;
+132;ECOLEX52;Convention Between The French Republic And The Kingdom Of Belgium Concerning Improvement Of The Common River Lys Between Deulemont And Menin;03.02.82;1;131;BEL-FRA[10]_1982A;No;BEL-FRA[10]_1982A;
+133;IEADB63;Nauru Agreement Concerning Cooperation In The Management Of Fisheries Of Common Interest;11.02.82;1;133;NCMFCI_1982A;A19820211;NCMFCI_1982A;
+134;IEADB64;1 Arrangement Implementing The Nauru Agreement Setting Forth Minimum Terms And Conditions Of Access To The Fisheries Zones Of The Parties;11.02.82;0;;NA;A19820211;AI09ZP_1982A;
+135;ECOLEX53;Nauru Agreement Concerning The Cooperation In The Management Of Fisheries Of Common Interest;11.02.82;1;133;NCMFCI_1982A;A19820211;NCMFCI_1982A;
+136;IEADB65;Regional Convention For The Conservation Of The Red Sea And Gulf Of Aden Environment;14.02.82;1;136;RC04AE_1982A;A19820214;RC04AE_1982A;
+137;IEADB66;Protocol Concerning Regional Cooperation In Combating Pollution By Oil And Other Harmful Substances In Cases Of Emergency To The Regional Convention For The Conservation Of The Red Sea And Of The Gulf Of Aden Environment;14.02.82;1;137;RC06CE_1982P;A19820214;RC13AE_1982P;X
+138;ECOLEX54;Protocol Concerning Regional Cooperation In Combating Pollution By Oil And Other Harmful Substances In Cases Of Emergency;14.02.82;1;137;RC13AE_1982P;A19820214;RC06CE_1982P;X
+139;ECOLEX55;Regional Convention For The Conservation Of The Red Sea And Of The Gulf Of Aden Environment;14.02.82;1;136;RC04AE_1982A;A19820214;RC04AE_1982A;
+140;IEADB67;Agreement Regarding Environmental Protection Between France And Cote Divoire;22.02.82;0;;NA;No;CIV-FRA[5]_1982A[PO];
+141;IEADB68;Convention For The Conservation Of Salmon In The North Atlantic Ocean;02.03.82;1;141;CNSNAO_1982A;No;CNSNAO_1982A;
+142;ECOLEX56;Convention For The Conservation Of Salmon In The North Atlantic Ocean;02.03.82;1;141;CNSNAO_1982A;No;CNSNAO_1982A;
+143;IEADB69;Agreement Between The Government Of Australia And The Government Of Japan For Cooperation In The Peaceful Uses Of Nuclear Energy;05.03.82;0;;NA;No;AUS-JPN[8]_1982A;
+144;IEADB70;Exchange Of Notes Amending The Agreement Between The Government Of Canada And The Government Of The United States Of America Concerning A Joint Marine Pollution Contingency Plan;17.03.82;0;;NA;No;CAN-USA[14]_1982N[PL];
+145;ECOLEX57;Agreement Between Argentina And Hungary On Cooperation In The Field Of Animal Health;01.04.82;0;;NA;No;ARG-HUN[6]_1982A;
+146;IEADB71;Protocol Concerning Mediterranean Specially Protected Areas;03.04.82;0;;NA;No;MDTSPA_1982P;
+147;ECOLEX58;Regulation No49 Uniform Provisions Concerning The Measures To Be Taken Against The Emission Of Gaseous And Particulate Pollutants From Compression-Ignition Engines For Use In Vehicles And The Emission Of Gaseous Pollutants From Positive-Ignition Engines Fuelled With Natural Gas Or Liquefied Petroleum Gas For Use In Vehicles;15.04.82;0;;NA;No;RN24UV_1982R;
+148;IEADB72;Convention Regarding The Methods Of Financing Joint Works;12.05.82;0;;NA;No;RGMFJW_1982A;
+149;IEADB73;Benelux Convention On Nature Conservation And Landscape Protection;08.06.82;1;150;BNNCLP_1982A;No;BNNCLP_1982A;
+150;ECOLEX59;Benelux Convention On Nature Conservation And Landscape Protection;08.06.82;1;150;BNNCLP_1982A;No;BNNCLP_1982A;
+151;IEADB74;Agreement Between Sudhevea And Embrada Of Brazil And Rrim Of Malaysia For The Accomplishment Of A Cooperation Research Programme On Rubber Tree Disease In Brazil;22.06.82;0;;NA;No;BRA-MYS[13]_1982A[RS];
+152;ECOLEX60;Agreement Between The Government Of The French Republic And The Government Of The United Kingdom Of Great Britain And Northern Ireland Relating To The Delimitation Of The Continental Shelf In The Area East Of 30 Minutes West Of The Greenwich Meridian;24.06.82;0;;NA;No;FRA-GBR[20]_1982A30[LI];
+153;ECOLEX61;Regulation No51 Uniform Provisions Concerning The Approval Of Motor Vehicles Having At Least 4 Wheels With Regard To Their Noise Emissions;15.07.82;0;;NA;No;RN09NE_1982R4;
+154;ECOLEX62;Agreement Between The European Economic Community And The Government Of The Republic Of Senegal Amending The Agreement On Fishing Off The Coast Of Senegal Signed On 15 June 1979;19.07.82;0;;NA;No;EE09SJ_1982A;
+155;IEADB75;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 34 Meeting;24.07.82;0;;NA;E19800726;SCIRWM_1982E34:SIRW-M_1980E3;
+156;IEADB76;Amendments To The Convention For The Establishment Of The European And Mediterranean Plant Protection Organization;23.09.82;0;;NA;No;EEMPPO_1982E;
+157;ECOLEX63;Indo-Bangladesh Memorandum Of Understanding On The Sharing Of Ganga Waters At Farakka;07.10.82;0;;NA;No;IM04WF_1982S;
+158;IEADB77;Convention On Protection Of Migratory Birds;08.10.82;0;;NA;No;PRTCMB_1982A;
+159;IEADB78;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;28.10.82;1;159;AUS-JPN[11]_1982P[FI];A19821028;AUS-JPN[11]_1982P[FI];
+160;GNEVAR19;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;28.10.82;1;159;AUS-JPN[11]_1982P[FI];A19821028;AUS-JPN[11]_1982P[FI];
+161;IEADB79;Constitutional Agreement Of The Latin American Organization For Fisheries Development;29.10.82;0;;NA;No;OLDEPESCA_1982A;
+162;IEADB80;Protocol To The Agreement Of Cooperation Between Congo And Gabon On Marine Fisheries;09.11.82;0;;COG-GAB[17]_1982P;No;COG-GAB[6]_1982P[FI];X
+163;ECOLEX64;Protocole Daccord De Cooperation Entre La Republique Du Congo Et La Republique Gabonaise En Matiere De Peche Maritime 1982;09.11.82;0;;COG-GAB[6]_1982P[FI];No;COG-GAB[17]_1982P;Different language
+164;IEADB81;Protocol Amending The Convention On Fishing And Conservation Of The Living Resources In The Baltic Sea And The Belts To Provide For Eec Membership;11.11.82;1;164;FCLBSB_1982E;P19821111;IF07EM_1982P;X
+165;ECOLEX65;Amendments To The Convention On Fishing And Conservation Of The Living Resources In The Baltic Sea And The Belts;11.11.82;1;164;IF07EM_1982P;P19821111;FCLBSB_1982E;X
+166;IEADB82;Protocol To Amend The Convention On 3 Party Liability In The Field Of Nuclear Energy;16.11.82;1;166;SPPLNE_1982P3, PL07TJ_1982P3;No;PRTLNE_1982P3;X
+167;IEADB83;Protocol To Amend The Convention Supplementary To The Convention On 3 Party Liability In The Field Of Nuclear Energy;16.11.82;1;166;PRTLNE_1982P3, PL07TJ_1982P3;No;SPPLNE_1982P3;X
+168;ECOLEX66;Protocol To Amend The Convention On 3 Party Liability In The Field Of Nuclear Energy Of 29th July 1960 As Amended By The Additional Protocol Of 28th January 1964;16.11.82;1;166;PRTLNE_1982P3, SPPLNE_1982P3;No;PL07TJ_1982P3;X
+169;IEADB84;Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat;03.12.82;1;169;WIIEWH_1982P:RAMSA_1971;No;WIIEWH_1982P:RAMSA_1971;
+170;ECOLEX67;Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat;03.12.82;1;169;WIIEWH_1982P:RAMSA_1971;No;WIIEWH_1982P:RAMSA_1971;
+171;IEADB85;Convention Amending And Completing The Supplementary Convention To The Convention Regarding Management Of The Rhine Between StrasbourgKehl And LauterbourgNeuburgweiler;06.12.82;0;;ME30LD_1982A5;No;IC05SL_1982A;X
+172;GNEVAR20;Tokyo Protocol Extending The Period Of Validity Of The Agreement On Fishing Off The Coast Of Japan In 1977;06.12.82;0;;NA;No;TE04CJ_1982P;
+173;ECOLEX68;Convention Modifiant Et Completant La Convention Additionelle Du 16 Juillet 1975 A La Convention Du 4 Juillet 1969 Entre La Republique Francaise Et La Republique Federale Dallemagne Au Sujet De 50amenagement Du Rhin Entre Strasbourg-Kehl Et Lauterbourg-Neuburgweier Signee A Bonn Le 6 Decembre 1982;06.12.82;0;;IC05SL_1982A;No;ME30LD_1982A5;Different language
+174;IEADB86;United Nations Convention On The Law Of The Sea;10.12.82;1;174;UNCLOS_1982A;No;UNCLOS_1982A;
+175;ECOLEX69;United Nations Convention On The Law Of The Sea;10.12.82;1;174;UNCLOS_1982A;No;UNCLOS_1982A;
+176;IEADB87;Agreement Between The Government Of Tuvalu And The Deep-Sea Fisheries Association Of The Republic Of Korea Concerning The Licensing Of Fishing Vessels Of The Republic Of Korea To Fish Within The Fishery Limits Of Tuvalu;14.12.82;1;176;KOR-TUV[17]_1982A[FI];No;KOR-TUV[17]_1982A[FI];
+177;ECOLEX70;Agreement Between The Government Of Tuvalu And The Deep-Sea Fisheries Association Of The Republic Of Korea Concerning The Licensing Of Fishing Vessels Of The Republic Of Korea To Fish Within The Fishery Limits Of Tuvalu;14.12.82;1;176;KOR-TUV[17]_1982A[FI];No;KOR-TUV[17]_1982A[FI];
+178;ECOLEX71;Agreement Between The Government Of The Republic Of France And The Government Of Fiji Relating To The Delimitation Of Their Economic Zone;19.01.83;0;;NA;No;FJI-FRA[9]_1983A[LI];
+179;IEADB88;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Annex 1);01.02.83;0;;NA;E19800508;PEBSAA_1983E1;
+180;ECOLEX72;Agreement Between The European Economic Community And The Government Of The Revolutionary Peoples Republic Of Guinea On Fishing Off The Guinean Coast Protocol Defining The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Revolutionary Peoples Republic Of Guinea Exchange Of Letters;07.02.83;0;;NA;No;EE22GL_1983A;
+181;IEADB89;Agreement Regarding Economic And Technical Cooperation In The Field Of Agriculture;15.02.83;0;;NA;No;RGETCA_1983A;
+182;IEADB90;Agreement Between South Africa Swaziland And Mozambique Relative To The Establishment Of A Tripartite Permanent Technical Committee Regarding Rivers Of Common Interest;17.02.83;1;182;GR14TC_1983A;No;SA11CI_1983A;X
+183;ECOLEX73;Agreement Between The Government Of The Republic Of South Africa The Government Of The Kingdom Of Swaziland And The Government Of The Peoples Republic Of Mozambique Relative To The Establishment Of A Tripartite Permanent Technical Committee;17.02.83;1;182;SA11CI_1983A;No;GR14TC_1983A;X
+184;IEADB91;Protocol Amending The Convention For The Prevention Of Marine Pollution By Dumping From Ships And Aircraft;02.03.83;0;;NA;No;IPPDSA_1983P;
+185;ECOLEX74;Eastern Pacific Ocean Tuna Fishing Agreement;14.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
+186;IEADB92;Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
+187;IEADB93;Protocol To The Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;0;;NA;A19830314;ESPOTF_1983P:ESPOTF_1983A;
+188;ECOLEX75;Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
+189;IEADB94;Convention For The Protection And Development Of The Marine Environment Of The Wider Caribbean Region;24.03.83;1;189;PDEWCR_1983A;A19830324;PDEWCR_1983A;
+190;IEADB95;Protocol Concerning Cooperation In Combating Oil Spills In The Wider Caribbean Region;24.03.83;1;190;CC04CR_1983P;A19830324;CC04CR_1983P;
+191;ECOLEX76;Convention For The Protection And Development Of The Marine Environment Of The Wider Caribbean Region;24.03.83;1;189;PDEWCR_1983A;A19830324;PDEWCR_1983A;
+192;ECOLEX77;Protocol Concerning Cooperation In Combating Oil Spills In The Wider Caribbean Region;24.03.83;1;190;CC04CR_1983P;A19830324;CC04CR_1983P;
+193;IEADB96;Agreement For Cooperation And Consultation Between The Central African States For The Conservation Of Wild Fauna;16.04.83;1;193;CC05WF_1983A;No;CC05WF_1983A;
+194;IEADB97;Agreement Between The Central African States Concerning The Creation Of A Special Fund For The Conservation Of Wild Fauna;16.04.83;1;194;CA06WF_1983A;No;CA06WF_1983A;
+195;ECOLEX78;Agreement Between The Central African States Concerning The Creation Of A Special Fund For The Conservation Of Wild Fauna;16.04.83;1;194;CA06WF_1983A;No;CA06WF_1983A;
+196;ECOLEX79;Agreement For Cooperation And Consultation Between The Central African States For The Conservation Of Wild Fauna;16.04.83;1;193;CC05WF_1983A;No;CC05WF_1983A;
+197;IEADB98;Amendments To The Convention On The Protection Of The Rhine Against Pollution By Chlorides;29.04.83;0;;NA;No;PRTRPC_1983E;
+198;IEADB99;Gaborone Amendment Of Article Xxi To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Permit Accession By Regional Economic Integration Organizations);30.04.83;0;;NA;E19810308;GA13IO_1983E:CITES_1973;
+199;IEADB100;Amendments To Appendices 1 And Ii To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Cop-4 1983);30.04.83;0;;NA;E19810308;AI07FC_1983E1:CITES_1973;X
+200;ECOLEX80;Amendment To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Article Xxi);30.04.83;0;;NA;E19810308;IT06AX_1983E:CITES_1973;X
