@@ -126,7 +126,7 @@ agreements$strict <- ifelse(duplicated(agreements$titles) |
                                   duplicated(agreements$titles, fromLast = TRUE), 1, 0)
 WVPlots::ROCPlot(agreements, "strict", "duplicate", 1, title = "Strict")
 # WVPlots::PRPlot(agreements, "strict", "duplicate", 1, title = "Strict")
-# PR plot is consistent with ROC plot and shows little imporvement from a random match.
+# PR plot is consistent with ROC plot and shows little improvement from a random match.
 ```
 
 Note that the AUC probably boosted by our use of `qCreate::standardise_titles()` in qPackages,
