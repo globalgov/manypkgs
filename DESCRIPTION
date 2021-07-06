@@ -65,7 +65,7 @@ Suggests:
     translateR,
     cld2,
     qEnviron,
-    fuzzyjoin,
+    stringdist,
     rmarkdown,
     bibtex
 Remotes:
