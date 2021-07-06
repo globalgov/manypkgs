@@ -10,26 +10,25 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29", "1973-02-21", "1973-02-21"))
 
 test_that("Code_agreements() properly returns qIDs", {
-  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[5]_1980A[FI]", "CPV-PRT[6]_1990P[FI]:[5]_1980A[FI]",
+  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[PFD]_1980A", "CPV-PRT[PFD]_1990P:1980A",
                                                                "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P:RAMSA_1971A", "PRTRPC_1976A", 
-                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[14]_1973A[FI]", "RUS-USA[15]_1973A[FI]"))
+                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[KTC]_1973A", "RUS-USA[NPO]_1973A"))
 })
 
 test_that("Code_agreements helper functions work properly", {
-  expect_equal(code_parties(data$title), c("CPV-PRT[5]", "CPV-PRT[6]", NA, NA, NA, NA, NA, "RUS-USA[14]", "RUS-USA[15]"))
+  expect_equal(code_parties(data$title), c("CPV-PRT[PFD]", "CPV-PRT[PFD]", NA, NA, NA, NA, NA, "RUS-USA[KTC]", "RUS-USA[NPO]"))
   expect_equal(code_type(data$title), c("A", "P", "A", "A", "P", "A", "E1", "A", "A"))
   expect_equal(code_dates(data$date), c("1980", "1990",
                                         "1981", "1971",
                                         "1982", "1976",
                                         "1983", "1973", "1973"))
-  expect_equal(code_action(data$title), c("[FI]", "[FI]", "[LI]", "", "", "[PO]", "[PO]", "[FI]", "[FI]"))
   expect_equal(code_known_agreements(data$title), c(NA, NA, NA, "RAMSA_1971",
                                                     "RAMSA_1971", NA, NA, NA, NA))
   expect_equal(code_acronym(data$title), c("CPVPFD", "CPVPFD", "TD06LJ", "WIIEWH", "WIIEWH", "PRTRPC",
                                            "PRTRPC", "GU11TC", "GU13PO"))
-  expect_equal(code_linkage(data$title, data$date), c("[5]_1980A[FI]", "[5]_1980A[FI]", "",
+  expect_equal(code_linkage(data$title, data$date), c("1980A", "1980A", "",
                                                       "RAMSA_1971A", "RAMSA_1971A", "PRTRPC_1976A", 
-                                                      "PRTRPC_1976A" , "", ""))
+                                                      "PRTRPC_1976A" , "1973A", "1973A"))
 })
 
 # Test for datasets that have ranged dates
@@ -73,7 +72,6 @@ test_that("code_agreements() identify correct number of protocol or amendment", 
 
 # Test that some functions return coding information when argument is missing
 test_that("certain functions return coding information when argument is missing", {
-  expect_type(code_action(), "character")
   expect_type(code_known_agreements(), "character")
   expect_type(code_type(), "character")
   expect_type(pred_words(), "character")
