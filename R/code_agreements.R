@@ -72,7 +72,7 @@ code_agreements <- function(dataset = NULL, title, date) {
   # for agreements (A) where abrreviation is known
   qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev, type), out)
   # when abbreviation is known but treaty type is not agreement
-  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", abbrev), qID)
+  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were not identified and treaty type is agreement (A)
   qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(acronym, "_", uID, type), qID)
   # when parties were not identified and type is not agreement
@@ -131,13 +131,13 @@ code_parties <- function(title) {
   # Step four: get activity in title to reduce number of false duplicates
   # Remove stop words and numbers from title
   out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
-  out <- gsub("[0-9]", "", tt)
-  tt <- gsub("\\s\\(|\\)", "", tt)
+  out <- gsub("[0-9]", "", out)
+  out <- gsub("\\s\\(|\\)", "", out)
   # remove months
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
               "", out)
   # removed some unimportant words
-  out <- gsub("signed")
+  out <- gsub("signed", "", out)
   # remove white spaces
   out <- stringr::str_squish(out)
   # get two last words
@@ -381,7 +381,6 @@ code_linkage <- function(title, date) {
   parties <- code_parties(s)
   uID <- code_dates(date)
   acronym <- code_acronym(s)
-  action <- code_action(s)
   
   # Step two: standardise titles to improve accuracy
   out <- standardise_titles(as.character(title))
@@ -404,9 +403,9 @@ code_linkage <- function(title, date) {
   out <- as.data.frame(out)
   
   # Step five: assign ID to observations
-  id <- ifelse((!is.na(abbrev)), paste0(abbrev, type),
+  id <- ifelse((!is.na(abbrev)), paste0(abbrev, "A"),
                (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
-                       (ifelse((!is.na(parties)), paste0(parties, "_", uID, type, action), NA)))))
+                       (ifelse((!is.na(parties)), paste0(uID, type), NA)))))
   
   # Step six: bind data
   out <- cbind(out, id)
@@ -430,11 +429,6 @@ code_linkage <- function(title, date) {
   # Step nine: keep only linkages
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
-  
-  # Step ten: remove parties from bilateral agreements to avoid repetintion
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{3}", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{2}-[:alpha:]{3}", "")
-  line <- stringr::str_replace_all(line, "[:alpha:]{3}-[:alpha:]{2}", "")
   
   # Step ten: removes all linkages that are not agreements
   line <- gsub("[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxx", line)
