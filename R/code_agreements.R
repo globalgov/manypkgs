@@ -57,7 +57,6 @@ code_agreements <- function(dataset = NULL, title, date) {
   
   # Step five: give the observation a unique ID and acronym
   uID <- code_dates(date)
-  action <- code_action(title)
   usethis::ui_done("Coded agreement dates")
   
   #Step six: code acronyms from titles
@@ -79,9 +78,9 @@ code_agreements <- function(dataset = NULL, title, date) {
   # when parties were not identified and type is not agreement
   qID <- ifelse(is.na(parties) & (type != "A") & is.na(abbrev), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were identified and type is agreement (A)
-  qID <- ifelse(!is.na(parties) & (type == "A") & is.na(abbrev), paste0(parties, "_", uID, type, action), qID)
+  qID <- ifelse(!is.na(parties) & (type == "A") & is.na(abbrev), paste0(parties, "_", uID, type), qID)
   # when parties were identified and type is not agreement
-  qID <- ifelse(!is.na(parties) & (type != "A") & is.na(abbrev), paste0(parties, "_", uID, type, action, ":", line), qID)
+  qID <- ifelse(!is.na(parties) & (type != "A") & is.na(abbrev), paste0(parties, "_", uID, type, ":", line), qID)
   # deletes empty line or linkage
   qID <- stringr::str_remove_all(qID, "_$")
   qID <- stringr::str_remove_all(qID, ":$")
@@ -129,18 +128,27 @@ code_parties <- function(title) {
                     ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
-  # Step four: count words in title to reduce number of false duplicates
+  # Step four: get activity in title to reduce number of false duplicates
   # Remove stop words and numbers from title
-  tt <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
-  tt <- gsub("[0-9]", "", tt)
+  out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
+  out <- gsub("[0-9]", "", tt)
   tt <- gsub("\\s\\(|\\)", "", tt)
-  # Remove specific words generating false negatives 
-  tt <- ifelse(grepl("^fisheries", tt), gsub("fisheries ", "", tt), tt)
-  tt <- gsub("\\<text\\>", "", tt)
-  # Count number of words left
-  lt <- lengths(gregexpr("\\W+", tt))
+  # remove months
+  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
+              "", out)
+  # removed some unimportant words
+  out <- gsub("signed")
+  # remove white spaces
+  out <- stringr::str_squish(out)
+  # get two last words
+  out <- stringr::word(out, -3, -1)
+  # abbreviate
+  out <- abbreviate(out, minlength = 3, method = 'both.sides')
+  # make sure all is upper case
+  out <- toupper(out)
+  out
   # Add words and parties
-  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, "]"))
+  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", out, "]"))
   parties
 }
 
@@ -204,51 +212,6 @@ code_type <- function(title) {
     type <- paste0(type, number)
   }
   type
-}
-
-#' Code Actions for Titles
-#'
-#' Identifies actions performed by agreements
-#' so that bileteral treaties can be better distinguished.
-#' @param title A character vector of treaty title
-#' @importFrom stringr str_remove_all
-#' @importFrom purrr map
-#' @importFrom dplyr group_by mutate
-#' @importFrom knitr kable
-#' @details Actions of agreements help differentiate date duplicates
-#' in the same dataset as different treaties.
-#' Actions refers to verbs coded from title.
-#' For the complete list of actions and their 2 letter abbreviations
-#' please refer to the actions list by running the function without
-#' argument (i.e. `code_action()`).
-#' @return A character vector with 2 letter action abbreviations
-#' for bilateral treaties
-#' @export
-code_action <- function(title) {
-  
-  if (missing(title)) {
-    # If missing argument, function returns list of actions coded for
-    ac <- as.data.frame(action)
-    action <- knitr::kable(ac, "simple")
-  } else {
-    # Step one: get action list
-    out <- purrr::map(title, as.character)
-    action <- as.data.frame(action)
-
-    # Step two: substitute matching words for action abbreviations
-    for (i in 1:nrow(action)) {
-      out <- gsub(paste0(action$word[[i]]), paste0("[", action$action[[i]], "]"), out, ignore.case = TRUE, perl = T)
-    }
-    
-    # Step three: keep first action only
-    out <- ifelse(stringr::str_detect(out, "\\[[:alpha:]{2}\\]"), stringr::str_extract(out, "\\[[:alpha:]{2}\\]"), "")
-    
-    # step four: in case no actions are coded, returns empty list same length as argument
-    lt <- as.numeric(length(title))
-    ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
-    action <- out
-  }
-  action
 }
 
 #' Creates Numerical IDs from Signature Dates
