@@ -96,7 +96,6 @@ code_agreements <- function(dataset = NULL, title, date) {
 #'
 #' Identify the countries that are part of an agreement.
 #' @param title A character vector of treaty titles
-#' @importFrom qStates code_states
 #' @importFrom stringr str_replace_all
 #' @importFrom tm removeWords stopwords
 #' @return A character vector of parties that are mentioned in the treaty title
@@ -135,7 +134,7 @@ code_parties <- function(title) {
   
   # Step four: get activity in title to reduce number of false duplicates
   out <- code_activity(title)
-  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, out, "]"))
+  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", out, "]"))
   parties
 }
 
@@ -153,12 +152,21 @@ code_parties <- function(title) {
 #' @return A character vector of abbreviations of last words in treaty title
 #' @export
 code_activity <- function(title) {
-  
+
+  if (missing(title)) {
+    # If missing argument, function returns list of states and abbreviations
+    out <- as.data.frame(countryregex)
+    out$Regex[56] <- paste(substr(out$Regex[56], 0, 100), "...")
+    out <- knitr::kable(out, "simple")
+  } else {
+
   # Step one: remove states' names
   out <- as.character(title)
   states <- countryregex$Label
   states <- paste(states, collapse = '|')
   out <- gsub(states, "", out, ignore.case = TRUE)
+  # Some states and abbreviations are missed
+  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>\\<US\\>", "", out)
   
   # Step two: remove stop words, numbers and parenthesis
   out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
@@ -176,6 +184,7 @@ code_activity <- function(title) {
   out <- stringr::word(out, -3, -1)
   out <- abbreviate(out, minlength = 3, method = 'both.sides')
   out <- toupper(out)
+  }
   out
 }
 
