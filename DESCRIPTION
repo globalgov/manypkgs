@@ -63,8 +63,8 @@ Suggests:
     WVPlots,
     translateR,
     cld2,
-    qStates,
     qEnviron,
+    qStates,
     stringdist,
     rmarkdown,
     bibtex
