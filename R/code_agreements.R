@@ -139,6 +139,46 @@ code_parties <- function(title) {
   parties
 }
 
+#' Code Abbreviations for Activity
+#' 
+#' Code abbreviations for activity in bilateral treaty titles
+#' @param title A character vector of treaty titles
+#' @details Bilateral agreements usully detail their activity and specify area
+#' in the last words of the titles.
+#' These last words are abbreviated by the function to differentiate between
+#' bilateral treaties and avoid false positives being generated since
+#' multiple, different, bileteral treaties are often signed in the same day.
+#' @importFrom stringr str_squish word
+#' @importFrom tm removeWords stopwords
+#' @return A character vector of abbreviations of last words in treaty title
+#' @export
+code_activity <- function(title) {
+  
+  # Step one: remove states' names
+  out <- as.character(title)
+  states <- countryregex$Label
+  states <- paste(states, collapse = '|')
+  out <- gsub(states, "", out, ignore.case = TRUE)
+  
+  # Step two: remove stop words, numbers and parenthesis
+  out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
+  out <- gsub("[0-9]", "", out)
+  out <- gsub("\\s\\(|\\)", "", out)
+  
+  # Step three: remove months and uimportant words
+  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
+              "", out)
+  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|\\<confederation\\>",
+              "", out)
+  
+  # Step four: get abbreviations for last three words
+  out <- stringr::str_squish(out)
+  out <- stringr::word(out, -3, -1)
+  out <- abbreviate(out, minlength = 3, method = 'both.sides')
+  out <- toupper(out)
+  out
+}
+
 #' Code Agreement Type
 #'
 #' Identify the type of international agreement from titles.
@@ -283,7 +323,6 @@ code_known_agreements <- function(title) {
 #' and comparuison across datasets.
 #' @param title A character vector of treaty title
 #' @import stringr
-#' @importFrom purrr map_chr
 #' @importFrom tm removeWords stopwords
 #' @details Codes acronyms that are 4 to 6 digits long.
 #' For shorter treaty titles, six words or less, acronym
@@ -377,14 +416,12 @@ code_linkage <- function(title, date) {
   predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
   predictable_words <- paste0("\\<", predictable_words, "\\>")
   out <- gsub(predictable_words, "", out, ignore.case = TRUE)
-  out <- stringr::str_replace_all(out, predictable_words, "")
   
   #Setep four: remove numbers, signs and parentheses
   out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
   out <- gsub("-", " ", out, ignore.case = FALSE)
   out <- stringr::str_replace_all(out, ",|-", "")
   out <- stringr::str_remove_all(out, "[0-9]")
-  out <- trimws(out)
   out <- stringr::str_squish(out)
   out <- textclean::add_comma_space(out)
   out <- as.data.frame(out)
