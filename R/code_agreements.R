@@ -136,6 +136,20 @@ code_parties <- function(title) {
   # remove months
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
               "", out)
+  # Remove specific words generating false negatives
+  tt <- ifelse(grepl("^fisheries", out), gsub("fisheries ", "", out), out)
+  tt <- gsub("\\<text\\>", "", tt)
+  # Count number of words left
+  lt <- lengths(gregexpr("\\W+", tt))
+  
+  #remove states
+  # label <- qStates::states$ISD$Label
+  # label <- paste(label, collapse = '\\>|\\<')
+  # label <- paste0("\\<", label, "\\>")
+  # out <- gsub(label, "", out, ignore.case = TRUE)
+  # out <- stringr::str_replace_all(out, label, "")
+  # out <- gsub("government|republic|federal|states|confederation",
+  #             "", out)
   # removed some unimportant words
   out <- gsub("signed", "", out)
   # remove white spaces
@@ -148,7 +162,7 @@ code_parties <- function(title) {
   out <- toupper(out)
   out
   # Add words and parties
-  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", out, "]"))
+  parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, out, "]"))
   parties
 }
 
@@ -394,7 +408,7 @@ code_linkage <- function(title, date) {
   
   #Setep four: remove numbers, signs and parentheses
   out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
-  out <- gsub("-", "", out, ignore.case = FALSE)
+  out <- gsub("-", " ", out, ignore.case = FALSE)
   out <- stringr::str_replace_all(out, ",|-", "")
   out <- stringr::str_remove_all(out, "[0-9]")
   out <- trimws(out)
