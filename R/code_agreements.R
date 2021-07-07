@@ -422,6 +422,7 @@ code_linkage <- function(title, date) {
   parties <- code_parties(s)
   uID <- code_dates(date)
   acronym <- code_acronym(s)
+  activity <- code_activity(s)
   
   # Step two: standardise titles to improve accuracy
   out <- standardise_titles(as.character(title))
@@ -444,7 +445,7 @@ code_linkage <- function(title, date) {
   # Step five: assign ID to observations
   id <- ifelse((!is.na(abbrev)), paste0(abbrev, "A"),
                (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
-                       (ifelse((!is.na(parties)), paste0(uID, type), NA)))))
+                       (ifelse((!is.na(parties)), paste0(activity, "_", uID, type), NA)))))
   
   # Step six: bind data
   out <- cbind(out, id)
