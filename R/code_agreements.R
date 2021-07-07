@@ -320,6 +320,7 @@ code_known_agreements <- function(title) {
     out[out=="character(0)"] <- NA_character_
     out <- unname(out)
     out <- as.character(out)
+    out <- ifelse(grepl("c\\(", out), "PARIS_20151212", out)
 
     # Step three: keep year only for IDs
     out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
