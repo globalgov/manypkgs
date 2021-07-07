@@ -114,10 +114,15 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @export
 code_parties <- function(title) {
   
-  # Step one: get ISO country codes from qStates and matches in title variable
+  # Step one: get ISO country codes countryregex and match in title variable
   title <- as.character(title)
   title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title), gsub("\\s*\\([^\\)]+\\)", "", title), title)
-  parties <- qStates::code_states(title)
+  coment <- sapply(countryregex[,3], function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+  colnames(coment) <- countryregex[,1]
+  rownames(coment) <- title
+  out <- apply(coment, 1, function(x) paste(names(x[x==1]), collapse = "_"))
+  out[out==""] <- NA
+  parties <- unname(out)
   parties <- stringr::str_replace_all(parties, "_", "-")
   
   # Step two: add NAs to observations not matched
@@ -129,39 +134,7 @@ code_parties <- function(title) {
                            ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
   
   # Step four: get activity in title to reduce number of false duplicates
-  # Remove stop words and numbers from title
-  out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
-  out <- gsub("[0-9]", "", out)
-  out <- gsub("\\s\\(|\\)", "", out)
-  # remove months
-  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
-              "", out)
-  # Remove specific words generating false negatives
-  tt <- ifelse(grepl("^fisheries", out), gsub("fisheries ", "", out), out)
-  tt <- gsub("\\<text\\>", "", tt)
-  # Count number of words left
-  lt <- lengths(gregexpr("\\W+", tt))
-  
-  #remove states
-  # label <- qStates::states$ISD$Label
-  # label <- paste(label, collapse = '\\>|\\<')
-  # label <- paste0("\\<", label, "\\>")
-  # out <- gsub(label, "", out, ignore.case = TRUE)
-  # out <- stringr::str_replace_all(out, label, "")
-  # out <- gsub("government|republic|federal|states|confederation",
-  #             "", out)
-  # removed some unimportant words
-  out <- gsub("signed", "", out)
-  # remove white spaces
-  out <- stringr::str_squish(out)
-  # get two last words
-  out <- stringr::word(out, -3, -1)
-  # abbreviate
-  out <- abbreviate(out, minlength = 3, method = 'both.sides')
-  # make sure all is upper case
-  out <- toupper(out)
-  out
-  # Add words and parties
+  out <- code_activity(title)
   parties <- ifelse(is.na(parties), parties, paste0(parties, "[", lt, out, "]"))
   parties
 }
