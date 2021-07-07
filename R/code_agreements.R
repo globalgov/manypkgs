@@ -166,17 +166,22 @@ code_activity <- function(title) {
   states <- paste(states, collapse = '|')
   out <- gsub(states, "", out, ignore.case = TRUE)
   # Some states and abbreviations are missed
-  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>\\<US\\>", "", out)
+  out <- gsub("Union of Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>
+              |\\<Argentine\\>|\\<Germany\\>", "", out)
   
   # Step two: remove stop words, numbers and parenthesis
   out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
   out <- gsub("[0-9]", "", out)
   out <- gsub("\\s\\(|\\)", "", out)
   
-  # Step three: remove months and uimportant words
+  # Step three: remove months and unimportant words
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
               "", out)
-  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|\\<confederation\\>",
+  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
+              \\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
+              "", out)
+  out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
+              \\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>",
               "", out)
   
   # Step four: get abbreviations for last three words
