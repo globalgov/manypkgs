@@ -377,7 +377,7 @@ code_acronym <- function(title){
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
-  x <- abbreviate(x, minlength = 6, method = 'both.sides')
+  x <- suppressWarnings(abbreviate(x, minlength = 6, method = 'both.sides', strict = TRUE))
   x <- toupper(x)
   
   # step six: cut longer abbreviations into four digits
