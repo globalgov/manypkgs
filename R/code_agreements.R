@@ -471,7 +471,7 @@ code_linkage <- function(title, date) {
   line <- stringr::str_replace_all(line, "^1$", "")
   
   # Step ten: removes all linkages that are not agreements
-  line <- gsub("[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxx", line)
+  line <- gsub("[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx", line)
   line <- ifelse(nchar(as.character(line)) > 20, "", line)
   line
 }
