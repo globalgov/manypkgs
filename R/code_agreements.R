@@ -160,35 +160,42 @@ code_activity <- function(title) {
     out <- knitr::kable(out, "simple")
   } else {
 
-  # Step one: remove states' names
-  out <- as.character(title)
+  # Step one: remove states' names and agreements' type
+  out <- as.character(title) 
   states <- countryregex$Label
   states <- paste(states, collapse = '|')
+  words <- agreement_type$words
+  words <- paste(words, collapse = '|')
   out <- gsub(states, "", out, ignore.case = TRUE)
+  out <- gsub(words, "", out, ignore.case = TRUE)
   # Some states and abbreviations are missed
-  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>
-              |\\<Argentine\\>|\\<Germany\\>", "", out)
+  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>", "", out, ignore.case = TRUE)
   
   # Step two: remove stop words, numbers and parenthesis
-  out <- tm::removeWords(tolower(title), tm::stopwords('SMART'))
+  out <- tm::removeWords(tolower(out), tm::stopwords('SMART'))
   out <- gsub("[0-9]", "", out)
   out <- gsub("\\s\\(|\\)", "", out)
+  out <- gsub("-", " ", out)
   
   # Step three: remove months and unimportant words
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
-              "", out)
+              "", out, ignore.case = TRUE)
   out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
               \\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
-              "", out)
+              "", out, ignore.case = TRUE)
   out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
-              \\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>",
-              "", out)
+              \\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
+              "", out, ignore.case = TRUE)
+  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|\\<basic\\>|\\<border\\>|\\<environmental\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>",
+              "", out, ignore.case = TRUE)
   
-  # Step four: get abbreviations for last three words
+  # Step four: get abbreviations for last three words and counting of words
   out <- stringr::str_squish(out)
-  out <- abbreviate(out, minlength = 3, method = 'both.sides', strict = TRUE)
+  # lt <- lengths(gregexpr("\\W+", out))
+  out <- suppressWarnings(abbreviate(out, minlength = 3, method = 'both.sides', strict = TRUE))
   out <- stringr::str_extract(out, ".{3}$")
   out <- toupper(out)
+  # out <- paste0(lt,out)
   }
   out
 }
