@@ -69,10 +69,12 @@ code_agreements <- function(dataset = NULL, title, date) {
   
   # Step eight: add items together correctly
   out <- vector(mode = "character", length = length(title)) # initialize vector
-  # for agreements (A) where abrreviation is known
-  qID <- ifelse(!is.na(abbrev) & (type == "A"), paste0(abbrev, type), out)
+  # for agreements (A) where abbreviation is known and bilateral agreement is made subsequently
+  qID <- ifelse(!is.na(abbrev) & (type == "A") & !is.na(parties), paste0(parties, "_",uID, type, ":",line), out)
+  # for agreements (A) where abbreviation is known
+  qID <- ifelse(!is.na(abbrev) & (type == "A") & is.na(parties), paste0(abbrev, type), out)
   # when abbreviation is known but treaty type is not agreement
-  qID <- ifelse(!is.na(abbrev) & (type != "A"), paste0(acronym, "_", uID, type, ":", line), qID)
+  qID <- ifelse(!is.na(abbrev) & (type != "A") & is.na(parties), paste0(acronym, "_", uID, type, ":", line), qID)
   # when parties were not identified and treaty type is agreement (A)
   qID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev), paste0(acronym, "_", uID, type), qID)
   # when parties were not identified and type is not agreement
