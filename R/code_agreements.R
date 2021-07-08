@@ -511,10 +511,15 @@ order_agreements <- function(title) {
   
   # Step two: standardises ordinal numbers and ordering text into digits
   oa <- gsub("\\<one\\>|\\<first\\>", "1", rd)
+  oa <- gsub(" I ", " 1 ", oa)
   oa <- gsub("\\<two\\>|\\<second\\>", "2", oa)
+  oa <- gsub(" Ii ", " 2 ", oa)
   oa <- gsub("\\<three\\>|\\<third\\>", "3", oa)
+  oa <- gsub(" Iii ", " 3 ", oa)
   oa <- gsub("\\<four\\>|\\<fourth\\>", "4", oa)
+  oa <- gsub(" Iv ", " 4 ", oa, ignore.case = T)
   oa <- gsub("\\<five\\>|\\<fifth\\>", "5", oa)
+  oa <- gsub(" V ", " 5 ", oa)
   oa <- gsub("\\<six\\>|\\<sixth\\>", "6", oa)
   oa <- gsub("\\<seven\\>|\\<seventh\\>", "7", oa)
   oa <- gsub("\\<eight\\>|\\<eighth\\>", "8", oa)
