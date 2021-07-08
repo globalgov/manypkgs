@@ -166,7 +166,7 @@ code_activity <- function(title) {
   states <- paste(states, collapse = '|')
   out <- gsub(states, "", out, ignore.case = TRUE)
   # Some states and abbreviations are missed
-  out <- gsub("Union of Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>
+  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>
               |\\<Argentine\\>|\\<Germany\\>", "", out)
   
   # Step two: remove stop words, numbers and parenthesis
@@ -186,8 +186,8 @@ code_activity <- function(title) {
   
   # Step four: get abbreviations for last three words
   out <- stringr::str_squish(out)
-  out <- stringr::word(out, -3, -1)
-  out <- abbreviate(out, minlength = 3, method = 'both.sides')
+  out <- abbreviate(out, minlength = 3, method = 'both.sides', strict = TRUE)
+  out <- stringr::str_extract(out, ".{3}$")
   out <- toupper(out)
   }
   out
