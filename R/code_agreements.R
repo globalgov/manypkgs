@@ -371,9 +371,10 @@ code_acronym <- function(title){
   x <- gsub("protocol|protocols|amendment|amendments|amend|amending|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3,9}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\(.{3,15}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\(.{3,20}\\)")
   x <- stringr::str_remove_all(x, "[0-9]")
-  x <- stringr::str_remove_all(x, "\\(\\)")
+  x <- stringr::str_remove_all(x, "\\(|\\)")
+  x <- gsub("-", " ", x)
   
   # Step three: remove known agreement cities or short titles
   # (these often appear inconsistently across datasets)
