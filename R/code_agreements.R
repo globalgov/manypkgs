@@ -368,22 +368,20 @@ code_acronym <- function(title){
   
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
-  x <- gsub("protocol|protocols|amendment|amendments|amend|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
+  x <- gsub("protocol|protocols|amendment|amendments|amend|amending|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
+  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3,9}\\)")
+  x <- stringr::str_remove_all(x, "\\s\\(.{3,15}\\)")
   x <- stringr::str_remove_all(x, "[0-9]")
-  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{4}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{5}\\)")
-  x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{6}\\)")
-  x <- stringr::str_remove_all(x, "\\(|\\)")
+  x <- stringr::str_remove_all(x, "\\(\\)")
   
   # Step three: remove known agreement cities or short titles
   # (these often appear inconsistently across datasets)
-  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>|\\<Kyoto\\>", "", x)
+  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>|\\<Kyoto\\>|\\<Hong Kong\\>", "", x)
   x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
   
   # Step four: remove unimportant but differentiating words
-  x <- gsub("\\<basin\\>|\\<resources\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>",
+  x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>|\\<activities\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
