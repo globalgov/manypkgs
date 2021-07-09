@@ -549,7 +549,7 @@ order_agreements <- function(title) {
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
   
   # Step three: make sure meaningful numbers extracted correctly
-  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|\\s[:digit:]{1}|\\s[:digit:]{2}|\\s[:digit:]{3}")
+  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|^[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|\\s[:digit:]{1}|\\s[:digit:]{2}|\\s[:digit:]{3}")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
