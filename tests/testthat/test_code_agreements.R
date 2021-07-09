@@ -67,7 +67,7 @@ data5 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                     date = c("1899-10-02", "2000-10-18", "2010-10-10"))
 
 test_that("code_agreements() identify correct number of protocol or amendment", {
-  expect_equal(code_agreements(data5, data5$title, data5$date), c("TRCSNR_1899E18", "LMTTNA_2000E34", "LMTTAA_2010E4"))
+  expect_equal(code_agreements(data5, data5$title, data5$date), c("TRCSNR_1899E18", "LMTTNA_2000E34", "LMTTNA_2010E4"))
 })
 
 # Test that some functions return coding information when argument is missing
