@@ -518,6 +518,8 @@ order_agreements <- function(title) {
   rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}")
   rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}")
   rd <- stringr::str_remove_all(rd, "[:digit:]{4}| [:digit:]{2}\\s[:digit:]{4}")
+  # remove also numbers in parenthesis
+  rd <- stringr::str_remove_all(rd, "\\s\\(No\\s.{3,7}\\)")
   
   # Step two: standardises ordinal numbers and ordering text into digits
   oa <- gsub("\\<one\\>|\\<first\\>", "1", rd)
