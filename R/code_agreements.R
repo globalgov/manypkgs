@@ -177,7 +177,7 @@ code_activity <- function(title) {
   # Step two: remove stop words, numbers and parenthesis
   out <- tm::removeWords(tolower(out), tm::stopwords('SMART'))
   out <- gsub("[0-9]", "", out)
-  out <- gsub("\\s\\(|\\)", "", out)
+  out <- gsub("\\(|\\)|¬ñ ", "", out)
   out <- gsub("-", " ", out)
   
   # Step three: remove months and unimportant words
@@ -189,7 +189,7 @@ code_activity <- function(title) {
   out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
               \\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
               "", out, ignore.case = TRUE)
-  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|\\<basic\\>|\\<border\\>|\\<environmental\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>",
+  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|\\<partnership\\>|\\<science\\>|\\<matters\\>",
               "", out, ignore.case = TRUE)
   
   # Step four: get abbreviations for last three words and counting of words
