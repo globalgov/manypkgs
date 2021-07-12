@@ -208,21 +208,18 @@ The qID allows users to identify date, type and linkage.
 
 **Type** | **Pasting** | **Pasting**
 --- | --- |--- 
-Bilateral | MEX-USA[8]_1906A | parties[number of words]_uID(type)
-Bilateral + Protocol | RUS-USA[17]_1971P[FI]:[17]_1967A[FI] | parties[number of words]_uID(type)[action]:linkage
+Bilateral | FRA-TON[DEZ]_1980A | parties[activity]_uID(type)
+Bilateral + Protocol | 	RUS-USA[FKC]_1967E:FKC_1965A | parties[activity]_uID(type)[action]:linkage
 
-A bilateral treaty that is an agreement will have the following qID: "MEX-USA_1906A". 
-This is a combination of the parties to agreement (MEX-USA) with the year of signature (1906) 
-followed by the type (A = Agreement.
+A bilateral treaty that is an agreement will have the following qID: "FRA-TON[DEZ]_1980A". 
+This is a combination of the parties to agreement (FRA-TON), the activity described in the treaty,
+which is here "Delimitation of Economic Zone (DEZ)", with the year of signature (1980) 
+followed by the type (A = Agreement).
 A bilateral treaty that is any other type than an agreement (e.g. protocol, amendments) will have 
-the qID under this format: "RUS-USA[17]_1971P[FI]:[17]_1967A[FI]". 
-It is composed of the parties (RUS-USA), the number of words that are contained in the treaty
-title (17) when common words (e.g. "of", "the", or "for") are ignored, the year of signature 
-of the protocol (1971), the type (P) which refers to Protocol.
-The action [FI] which stands for "fishing" is only added in the qID when other treaties from the same 
-parties signed other treaties on the same year because it allows to differentiate them. Finally, the linkage 
+the qID under this format: "RUS-USA[FKC]_1967E:FKC_1965A". 
+It is composed of the parties (RUS-USA), the activity abbreviation from treaty title "Fishing for King Crab (FKC)", the year of signature of the amendment (1965), the type (E) which refers to Amendment. Finally, the linkage 
 part is linking the agreement to its "mother" treaty qID but without repeating the 
-parties ([17]_1967A[FI]).
+parties ([FKC]_1965A).
 
 **Type** | **Pasting** | **Pasting**
 --- | --- |--- 
