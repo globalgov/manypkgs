@@ -212,12 +212,12 @@ Bilateral | FRA-TON[DEZ]_1980A | parties[activity]_uID(type)
 Bilateral + Protocol | 	RUS-USA[FKC]_1967E:FKC_1965A | parties[activity]_uID(type)[action]:linkage
 
 A bilateral treaty that is an agreement will have the following qID: "FRA-TON[DEZ]_1980A". 
-This is a combination of the parties to agreement (FRA-TON), the activity described in the treaty,
-which is here "Delimitation of Economic Zone (DEZ)", with the year of signature (1980) 
+This is a combination of the parties to the agreement (FRA-TON), the activity described in the treaty,
+which is here "Delimitation of Economic Zone (DEZ)", with the year of signature (1980), 
 followed by the type (A = Agreement).
 A bilateral treaty that is any other type than an agreement (e.g. protocol, amendments) will have 
 the qID under this format: "RUS-USA[FKC]_1967E:FKC_1965A". 
-It is composed of the parties (RUS-USA), the activity abbreviation from treaty title "Fishing for King Crab (FKC)", the year of signature of the amendment (1965), the type (E) which refers to Amendment. Finally, the linkage 
+It is composed of the parties (RUS-USA), the activity abbreviation from treaty title "Fishing for King Crab (FKC)", the year of signature of the amendment (1967), the type (E) which refers to Amendment. Finally, the linkage 
 part is linking the agreement to its "mother" treaty qID but without repeating the 
 parties ([FKC]_1965A).
 
@@ -229,7 +229,7 @@ Multilateral + Protocol | SFDP_2007E2:H08F_1992A | acronym, uID,type(number):lin
 A multilateral treaty that is an agreement will have the following qID: "HSPDF_2005A" which 
 indicates the acronym (HSPDF), the signature year of the agreement (2005) and the type (A). 
 A multilateral treaty that is not an agreement will have this qID format: "SFDP_1992E2:H08F_2007". 
-This represents the acronym (SFDP), the signature year of the amendment (20070817), the type (E = Amendment),
+This represents the acronym (SFDP), the signature year of the amendment (2007), the type (E = Amendment),
 the number of amendment (2) and the linkage number (H08F_2007) of the "mother" treaty. 
 
 **Type** | **Pasting** | **Pasting**
