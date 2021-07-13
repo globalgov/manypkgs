@@ -21,8 +21,8 @@ test_that("object has the correct variables", {
 
 # Variables with dates are standardized
 test_that("dates are standardised", {
-  expect_col_is_date({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  expect_col_is_date({{{dab}}}[["{{{dat}}}"]], vars(End))
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "messydt")
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$End), "messydt")
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$End)))
 })
