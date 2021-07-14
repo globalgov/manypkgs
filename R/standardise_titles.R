@@ -11,7 +11,7 @@
 #' It trims white spaces from the start, middle and end of the strings.
 #' Removes ambiguous punctions and symbols from strings.
 #' All the strings are transformed into to ASCII character encoding.
-#' Written numbers in ordinal form are transformed into numerical form.  
+#' Written numbers in ordinal form are transformed into numerical form.
 #' If a google API key is provided as an argument, the function detects
 #' strings in other languages and translates them to English.
 #' @return A capitalised, trimmed and standardised string

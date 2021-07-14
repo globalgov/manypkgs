@@ -133,7 +133,7 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   }
 
   # step six: update Description file
-  # desc::desc_set_dep() 
+  # desc::desc_set_dep()
   # desc::desc_add_remotes()
   # usethis::ui_done("Updated description file.")
 

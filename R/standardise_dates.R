@@ -405,7 +405,7 @@ resequence <- function(data, vars, unity = "_") {
 
 #' Interleaving two vectors by position
 #'
-#' Insert elements in different positions for vectors  
+#' Insert elements in different positions for vectors
 #' @param vect Main vector
 #' @param pos Positions to be inserted
 #' @param elems Elements to be inserted at those positions.

@@ -33,7 +33,7 @@ code_agreements <- function(dataset = NULL, title, date) {
       date <- dataset$Signature
       usethis::ui_done("Title and date conforming columns in dataset automatically found")
     } else if (!exists("Title", dataset) | !exists("Signature", dataset)) {
-      stop("Unable to find both 'Title' and 'Signature' columns in dataset. 
+      stop("Unable to find both 'Title' and 'Signature' columns in dataset.
          Please declare the name of these columns or rename them.")
     }
   }
@@ -142,7 +142,7 @@ code_parties <- function(title) {
 }
 
 #' Code Abbreviations for Activity
-#' 
+#'
 #' Code abbreviations for activity in bilateral treaty titles
 #' @param title A character vector of treaty titles
 #' @details Bilateral agreements usully detail their activity and specify area
@@ -164,7 +164,7 @@ code_activity <- function(title) {
   } else {
 
   # Step one: remove states' names and agreements' type
-  out <- as.character(title) 
+  out <- as.character(title)
   states <- countryregex$Label
   states <- paste(states, collapse = '|')
   words <- agreement_type$words
@@ -181,7 +181,7 @@ code_activity <- function(title) {
   out <- gsub("-", " ", out)
   
   # Step three: remove months and unimportant words
-  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december", 
+  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december",
               "", out, ignore.case = TRUE)
   out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
               \\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
@@ -335,7 +335,8 @@ code_known_agreements <- function(title) {
     # Step three: keep year only for IDs
     out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
 
-    # Step four: if output is a list with no values, returns an empty list of the same length as argument
+    # Step four: if output is a list with no values, returns an 
+    # empty list of the same length as argument
     lt <- as.numeric(length(title))
     ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
   }
