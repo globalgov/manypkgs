@@ -40,7 +40,8 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
     qCreate::depends("cld2", "translateR")
     # Initialize variables to suppress CMD notes
     . <- NULL
-    # For titles in other languages than English, we need to detect language first
+    # For titles in other languages than English, we need to
+    # detect language first
     lang <- out %>%
       vapply(., purrr::map_chr, "", cld2::detect_language) %>%
       data.frame(check.names = FALSE)
@@ -69,7 +70,8 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("\\.(?=\\.*$)", "", out, perl = TRUE)
   # standardises spaces before and after apostrophes and comma spaces
   out <- gsub(" '|' ","'", out)
-  # Delete hyphens when separating two parts of the title (when there is a space before and after)
+  # Delete hyphens when separating two parts of the title
+  # (when there is a space before and after)
   out <- gsub(" - ", " ", out)
   # Delete special character found in some treaty titles
   out <- gsub("\U00AC[[:alpha:]]{1}\\s|\U00AC\\s", "", out)
@@ -130,10 +132,12 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
                           safe = TRUE, perl = TRUE,
                           ignore.case = TRUE, fixed = FALSE)
   
-  # Step five: make sure most punctuations are removed and whitespaces trimmed
+  # Step five: make sure most punctuations are removed
+  #and whitespaces trimmed
   out <- gsub("(?!\\-|\\(|\\))[[:punct:]]", "", out, perl=TRUE)
-  # removes all punctuations but hyphen and parentheses, which may contain important
-  # information for distinguishing treaties/words
+  # removes all punctuations but hyphen and parentheses,
+  # which may contain important information for distinguishing
+  # treaties/words
   out <- stringr::str_squish(out)
   out
 }

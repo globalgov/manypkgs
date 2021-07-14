@@ -4,7 +4,7 @@
 #' attributes to the imported objects to power the data_evolution() function
 #' in qData. To be used in every data preparation script right after loading
 #' the dataset in the environment.
-#' 
+#'
 #' @param dataset Name of the imported dataset.
 #' @details This function returns the original dataset with the additional
 #' "metadata_orig" attribute that will be used later by `data_evolution()`

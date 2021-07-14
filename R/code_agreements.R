@@ -69,7 +69,8 @@ code_agreements <- function(dataset = NULL, title, date) {
   
   # Step eight: add items together correctly
   out <- vector(mode = "character", length = length(title)) # initialize vector
-  # for agreements (A) where abbreviation is known and bilateral agreement is made subsequently
+  # for agreements (A) where abbreviation is known and
+  # bilateral agreement is made subsequently
   qID <- ifelse(!is.na(abbrev) & (type == "A") & !is.na(parties), paste0(parties, "_", uID, type, ":", abbrev), out)
   qID <- ifelse(!is.na(abbrev) & (type != "A") & !is.na(parties), paste0(parties, "_", uID, type, ":", line), qID)
   # for agreements (A) where abbreviation is known
@@ -281,7 +282,8 @@ code_dates <- function(date) {
   # Step one: collapse dates
   uID <- stringr::str_remove_all(date, "-")
 
-  # Step two: get NA dates to appear as far future dates to facilitate identification
+  # Step two: get NA dates to appear as far future dates to facilitate
+  # identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
 
   # Step three: remove ranges, first date is taken
@@ -299,11 +301,11 @@ code_dates <- function(date) {
 #' @return A character vector of abbreviation of known treaties
 #' @importFrom dplyr case_when
 #' @importFrom purrr map
-#' @details The function identifies agreements that match
-#' the list of known agreements with their titles, abbreviations
-#' and signature dates and substitutes the known titles for abbreviations.
-#' For the complete list of known agreements coded for and their
-#' respective abbreviations please run the function without and argument
+#' @details The function identifies agreements that match the list of known
+#' agreements with their titles, abbreviations and signature dates and
+#' substitutes the known titles for abbreviations.For the complete list of
+#' known agreements coded for and their respective abbreviations please run
+#' the function without and argument
 #' (i.e. `code_known_agreements()`).
 #' @examples
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
@@ -321,7 +323,8 @@ code_known_agreements <- function(title) {
     # Step one: get abbreviations dataset
     abbreviations <- purrr::map(abbreviations, as.character)
 
-    # Step two: assign the specific abbreviation to the "known" treaties when they match
+    # Step two: assign the specific abbreviation to the "known" treaties
+    # when they match
     ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
     colnames(ab) <- paste0(abbreviations$abbreviation, "_", as.character(stringr::str_remove_all(abbreviations$signature, "-")))
     rownames(ab) <- title
@@ -500,10 +503,10 @@ pred_words <- function() {
 
 #' Extracts Ordering Numbers from Titles
 #'
-#' Identifies and extracts meaningful numbers from agreements titles that
-#' are important information about the order of the agreement.
-#' Dates can cause an issue when trying to extract meaningful
-#' numbers from titles for ordering purposes, this function also removes dates.
+#' Identifies and extracts meaningful numbers from agreements titles
+#' that are important information about the order of the agreement.
+#' Dates can cause an issue when trying to extract meaningful numbers
+#' from titles for ordering purposes, this function also removes dates.
 #' @param title A character vector of treaty title
 #' @import stringr
 #' @return A character vector with meangniful numbers from titles
