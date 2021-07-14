@@ -1,4 +1,4 @@
-# qCreate 0.1.0.
+# qCreate 0.1.0
 
 ## Package
 * Added `link_metadata()`
