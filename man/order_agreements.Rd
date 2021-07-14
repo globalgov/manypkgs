@@ -13,8 +13,8 @@ order_agreements(title)
 A character vector with meangniful numbers from titles
 }
 \description{
-Identifies and extracts meaningful numbers from agreements titles that
-are important information about the order of the agreement.
-Dates can cause an issue when trying to extract meaningful
-numbers from titles for ordering purposes, this function also removes dates.
+Identifies and extracts meaningful numbers from agreements titles
+that are important information about the order of the agreement.
+Dates can cause an issue when trying to extract meaningful numbers
+from titles for ordering purposes, this function also removes dates.
 }
