@@ -177,7 +177,7 @@ code_activity <- function(title) {
   # Step two: remove stop words, numbers and parenthesis
   out <- tm::removeWords(tolower(out), tm::stopwords('SMART'))
   out <- gsub("[0-9]", "", out)
-  out <- gsub("\\(|\\)|¬ñ ", "", out)
+  out <- gsub("\\(|\\)|\U00AC|\U00F1 ", "", out)
   out <- gsub("-", " ", out)
   
   # Step three: remove months and unimportant words
