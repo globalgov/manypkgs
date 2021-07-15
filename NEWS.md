@@ -6,6 +6,7 @@
 * Moved `interleave()` from `{qData}` to `{qCreate}` to avoid dependency knots among q Packages
   * Added tests for `interleave()`
 * Updated templates and scripts to correctly call `{qCreate}` instead of `{qData}` where necessary
+* Updated agreements vignette to reflect new changes with `code_agreements()` function
 
 ## Correction
 
