@@ -2,7 +2,7 @@
 % Please edit documentation in R/standardise_dates.R
 \name{standardise_dates}
 \alias{standardise_dates}
-\title{Standardises a wide range of of date inputs}
+\title{Standardises a wide range of date inputs}
 \usage{
 standardise_dates(...)
 }
@@ -10,10 +10,11 @@ standardise_dates(...)
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
 }
 \value{
-Nested vector of POSIXct dates that includes a range of dates
+Nested vector of dates under messydt class
 }
 \description{
-The function standardises a wide range of date inputs parsed through it.
+The function standardises a wide range of date inputs parsed through it,
+and convert it into a messydt class
 It accepts date inputs in different formats, incomplete dates,
 historical dates and future dates. It also creates nested
 vectors of dates for vague date inputs, ambiguous and ranged dates,
