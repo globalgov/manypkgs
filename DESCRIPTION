@@ -47,7 +47,8 @@ Imports:
     remotes,
     stringi,
     tm,
-    knitr
+    knitr,
+    messydates
 Suggests:
     testthat (>= 3.0.0),
     librarian,
