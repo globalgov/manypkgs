@@ -394,7 +394,7 @@ code_acronym <- function(title){
   x <- toupper(x)
   
   # step six: cut longer abbreviations into four digits
-  x <- ifelse(grepl("^[:alpha:]{6}$", x), x, paste0(substr(x, 1, 2), stringr::str_pad(nchar(x)-3, 2, pad = "0"), substr(x, nchar(x)-1, nchar(x))))
+  x <- ifelse(stringr::str_detect(x, "[:upper:]{7}"), paste0(substr(x, 1, 2), stringr::str_pad(nchar(x)-3, 2, pad = "0"), substr(x, nchar(x)-1, nchar(x))), x)
   x <- as.character(x)
   x
 }
