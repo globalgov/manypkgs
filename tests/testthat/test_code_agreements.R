@@ -57,7 +57,7 @@ data4 <- data.frame(title = c("Declaration Modifying Agreement on the River",
                     date = c("1999-07-12", "1912-09-02", "2019-03-15"))
 
 test_that("code_agreements() recognizes the correct type of treaty", {
-  expect_equal(code_agreements(data4, data4$title, data4$date), c( "DCLRMR_1999R", "CEBRIP_1912N", "RI02ER_2019S"))
+  expect_equal(code_agreements(data4, data4$title, data4$date), c( "DCLRMR_1999R", "CEBRIP_1912N", "RIVER_2019S"))
 })
 
 # Test numbers assigned to procotol/amendment
