@@ -16,11 +16,11 @@ A character vector of abbreviation of known treaties
 Some agreements have known abbreviations that facilitate their identification.
 }
 \details{
-The function identifies agreements that match
-the list of known agreements with their titles, abbreviations
-and signature dates and substitutes the known titles for abbreviations.
-For the complete list of known agreements coded for and their
-respective abbreviations please run the function without and argument
+The function identifies agreements that match the list of known
+agreements with their titles, abbreviations and signature dates and
+substitutes the known titles for abbreviations.For the complete list of
+known agreements coded for and their respective abbreviations please run
+the function without and argument
 (i.e. \code{code_known_agreements()}).
 }
 \examples{
