@@ -15,7 +15,7 @@ library(qCreate)
 # below (in stage three) passes all the tests.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   transmutate(ID = {id_variable_name_here},
-              Beg = messydates::as_messydate({date_variable_name_here})) %>%
+              Beg = standardise_dates({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
 # qData includes several functions that should help cleaning
 # and standardising your data.

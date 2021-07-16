@@ -23,7 +23,3 @@ data9 <- data.frame(title = c("A treaty for the South-Eastern region", "The Conv
 test_that("Regions are spelled correctly",{
   expect_equal(standardise_titles(data9$title), c("A Treaty For The South Eastern Region", "The Convention For North West States"))
 })
-
-# test_that("titles in other languages than english are translated",{
-#   expect_match(standardise_titles("La Convention Pour La Protection De La Flore, De La Faune Et Des Beautés Panoramiques Naturelles Des Pays De l'Amérique", api_key = "KEY"), "The Convention for the Protection of Flora, Fauna and Panoramic Natural Beauty of the Countries of America")
-# })

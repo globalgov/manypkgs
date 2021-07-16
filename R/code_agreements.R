@@ -239,8 +239,8 @@ code_type <- function(title) {
     type <- as.data.frame(agreement_type)
     
     # Step two: substitute matching words for categories
-    for (i in 1:nrow(type)) {
-      out <- gsub(paste0(type$word[[i]]), paste0(type$category[[i]]), out, ignore.case = TRUE, perl = T)
+    for (k in seq_len(nrow(type))) {
+      out <- gsub(paste0(type$word[[k]]), paste0(type$category[[k]]), out, ignore.case = TRUE, perl = T)
     }
     
     # Step three: eXtract only first category identified
