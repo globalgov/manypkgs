@@ -9,11 +9,6 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean"),
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1971-02-02", "1982-12-03", "1976-12-03", "1983-04-29", "1973-02-21", "1973-02-21"))
 
-test_that("Code_agreements() properly returns qIDs", {
-  expect_equal(code_agreements(data, data$title, data$date), c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A",
-                                                               "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P:RAMSA_1971A", "PRTRPC_1976A", 
-                                                               "PRTRPC_1983E1:PRTRPC_1976A", "RUS-USA[KTC]_1973A", "RUS-USA[FON]_1973A"))
-})
 
 test_that("Code_agreements helper functions work properly", {
   expect_equal(code_parties(data$title), c("CPV-PRT[FSD]", "CPV-PRT[FSD]", NA, NA, NA, NA, NA, "RUS-USA[KTC]", "RUS-USA[FON]"))
