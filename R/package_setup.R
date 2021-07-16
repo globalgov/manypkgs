@@ -6,9 +6,8 @@
 #' @param orcid A vector of strings of all the ORCID numbers of the authors.
 #' Needs `{rorcid}` package to be installed.
 #' Takes precedence over manual entries if specified.
-#' @param name A list of vectors giving the package
-#' author(s)' name(s). Authors(s)last name(s) and first
-#' name(s) are separated by a comma.
+#' @param name A list of vectors giving the package author(s)' name(s).
+#' Authors(s)last name(s) and first name(s) are separated by a comma.
 #' @param role A list of vectors of the roles the package authors have
 #' in the project.
 #' If there are no roles declared, roles are set contributor.
@@ -249,15 +248,15 @@ setup_package <- function(package = NULL,
   usethis::ui_done("Created workflows folder.")
 
   if (interactive()) {
-    file.copy(fs::path_package(package = "qData",
+    file.copy(fs::path_package(package = "qCreate",
                                "templates", "qPackage-Check.yml"),
               fs::path(".github", "workflows", "prchecks.yml"))
     usethis::ui_done("Added checks workflow upon opening a push release.")
-    file.copy(fs::path_package(package = "qData",
+    file.copy(fs::path_package(package = "qCreate",
                                "templates", "qPackage-Commands.yml"),
               fs::path(".github", "workflows", "prcommands.yml"))
     usethis::ui_done("Added commands workflow upon labelling a push release.")
-    file.copy(fs::path_package(package = "qData",
+    file.copy(fs::path_package(package = "qCreate",
                                "templates", "qPackage-Release.yml"),
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Added release workflow upon merging a push release.")
@@ -367,4 +366,19 @@ add_author <- function(orcid = NULL,
                         role = role,
                         email = email,
                         comment = c(affiliation = affiliation, ORCID = orcid))
+}
+
+#' Helper function from usethis:::create_directory()
+#' @param path path to directory
+#' @return a path to the directory
+create_directory <- function(path) {
+  if (dir.exists(path)) {
+    return(invisible(FALSE))
+  }
+  else if (file.exists(path)) {
+    usethis::ui_stop("{ui_path(path)} exists but is not a directory.")
+  }
+  dir.create(path, recursive = TRUE)
+  usethis::ui_done("Creating {ui_path(path)}")
+  invisible(TRUE)
 }

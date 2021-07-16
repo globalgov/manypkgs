@@ -22,5 +22,5 @@ For CRAN packages the package name is required as argument,
 for GitHub username/repo are required as argument.
 }
 \examples{
-depends("qData")
+depends("qStates")
 }

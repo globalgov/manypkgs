@@ -15,6 +15,16 @@ A character vector of parties that are mentioned in the treaty title
 \description{
 Identify the countries that are part of an agreement.
 }
+\details{
+The function codes states in treaties alongside, returning only
+parties for bileteral treaties (i.e. 2 parties coded).
+The number of meaningful words (removes articles, numbers and other common
+words)in title for bilateral tretaies is returned next to parties.
+For the complete list of words removed from title to identify
+duplicates please run \code{pred_words()}.
+This is done to avoid false duplicates as often bileteral treaties between
+the same two countries are signed in the same day.
+}
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_parties(IEADB$Title)

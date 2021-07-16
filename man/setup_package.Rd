@@ -17,9 +17,8 @@ setup_package(
 \item{package}{A string giving the desired name of the package,
 must start with "q"}
 
-\item{name}{A list of vectors giving the package
-author(s)' name(s). Authors(s)last name(s) and first
-name(s) are separated by a comma.}
+\item{name}{A list of vectors giving the package author(s)' name(s).
+Authors(s)last name(s) and first name(s) are separated by a comma.}
 
 \item{role}{A list of vectors of the roles the package authors have
 in the project.

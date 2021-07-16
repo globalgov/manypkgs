@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_agreements.R
 \name{order_agreements}
 \alias{order_agreements}
-\title{Extracts Orders from Agreements}
+\title{Extracts Ordering Numbers from Titles}
 \usage{
 order_agreements(title)
 }
@@ -13,6 +13,8 @@ order_agreements(title)
 A character vector with meangniful numbers from titles
 }
 \description{
-Identifies and extracts meaningful numbers from agreements titles that
-are important information about the order of the agreement.
+Identifies and extracts meaningful numbers from agreements titles
+that are important information about the order of the agreement.
+Dates can cause an issue when trying to extract meaningful numbers
+from titles for ordering purposes, this function also removes dates.
 }

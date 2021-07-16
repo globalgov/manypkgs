@@ -2,7 +2,7 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the qPackage.
-library(qData)
+library(qCreate)
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
@@ -14,7 +14,7 @@ library(qData)
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   transmutate(ID = {id_variable_name_here},
               Beg = standardise_dates({date_variable_name_here})) %>%
-  dplyr::arrange(Beg, ID)
+  dplyr::arrange(Beg)
 # qData includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.

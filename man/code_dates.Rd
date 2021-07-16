@@ -4,11 +4,9 @@
 \alias{code_dates}
 \title{Creates Numerical IDs from Signature Dates}
 \usage{
-code_dates(title, date)
+code_dates(date)
 }
 \arguments{
-\item{title}{A title variable}
-
 \item{date}{A date variable}
 }
 \value{
@@ -20,5 +18,5 @@ we condense their signature dates to produce this number.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-code_dates(IEADB$Title, IEADB$Signature)
+code_dates(IEADB$Title)
 }

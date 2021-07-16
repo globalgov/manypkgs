@@ -9,7 +9,7 @@
 #' Abbreviations make good dataset names, such as "COW" or "DESTA".
 #' @param database Intended name of the database or datacube.
 #' That is, the name of the population or phenomenon to which the dataset
-#' relates. 
+#' relates.
 #' For consistency reasons, this should be a unique name
 #' in small letters. Concepts make good database names,
 #' such as "states" or "colonial_relations".
@@ -111,6 +111,6 @@ import_data <- function(dataset = NULL,
 
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
-  usethis::ui_todo("Use {usethis::ui_code('qData::export_data()')} to add prepared data to package")
+  usethis::ui_todo("Use {usethis::ui_code('qCreate::export_data()')} to add prepared data to package")
 
 }

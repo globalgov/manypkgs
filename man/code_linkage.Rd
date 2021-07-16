@@ -23,6 +23,8 @@ The function identifies duplicates by excluding
 to identify and link duplicates.
 This is a choice that considers errors should lie on the side of false
 negatives rather than false positives.
+For the complete list of words removed from title to identify
+duplicates please run \code{pred_words()}.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)

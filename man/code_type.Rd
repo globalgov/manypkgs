@@ -17,6 +17,13 @@ Identify the type of international agreement from titles.
 Agreements can be, for example, multilateral treaties or coventions (A),
 protocols (P) or amendments (E), if they contain words in title.
 }
+\details{
+Types of agreements differentiate agreements from protocols or
+amendments, for example.
+For the complete list of words coded for type and their type
+abbreviations please run the function without and argument
+(i.e. \code{code_action()}).
+}
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_type(IEADB$Title)
