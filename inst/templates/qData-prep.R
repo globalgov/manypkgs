@@ -7,7 +7,6 @@ library(qCreate)
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
-{{{dataset}}} <- qCreate::link_metadata({{{dataset}}})
 
 # Stage two: Correcting data
 # In this stage you will want to correct the variable names and
