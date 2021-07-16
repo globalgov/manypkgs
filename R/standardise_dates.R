@@ -39,7 +39,6 @@ standardise_dates <- standardize_dates <- function(...) {
     x <- messydates::as_messydate(...)
   } else if (length(dots) == 3) {
     x <- messydates::make_messydate(...)
-    x <- messydates::as_messydate(x)
   } 
 }
 
