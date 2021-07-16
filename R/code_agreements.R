@@ -185,12 +185,16 @@ code_activity <- function(title) {
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december",
               "", out, ignore.case = TRUE)
   out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
-              \\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
+              |\\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
               "", out, ignore.case = TRUE)
   out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
-              \\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
+              |\\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
               "", out, ignore.case = TRUE)
-  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|\\<partnership\\>|\\<science\\>|\\<matters\\>",
+  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|
+              |\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|
+              |\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|
+              |\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|
+              |\\<partnership\\>|\\<science\\>|\\<matters\\>",
               "", out, ignore.case = TRUE)
   
   # Step four: get abbreviations for last three words and counting of words
@@ -372,7 +376,8 @@ code_acronym <- function(title){
   
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
-  x <- gsub("protocol|protocols|amendment|amendments|amend|amending|Agreement|agreements|convention|Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
+  x <- gsub("protocol|protocols|amendment|amendments|amend|amending|Agreement|agreements|convention|
+            |Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3,9}\\)")
   x <- stringr::str_remove_all(x, "\\s\\(.{3,20}\\)")
@@ -386,7 +391,9 @@ code_acronym <- function(title){
   x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
   
   # Step four: remove unimportant but differentiating words
-  x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>|\\<activities\\>",
+  x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|\\<concerning\\>|\\<priority\\>|
+            |\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|
+            |\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>|\\<activities\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
