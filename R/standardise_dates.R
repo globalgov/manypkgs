@@ -1,5 +1,7 @@
 #' Standardises a wide range of date inputs
 #'
+#' 
+#' The function is wrapper for `messydates::as_messydate()`. 
 #' The function standardises a wide range of date inputs parsed through it,
 #' and convert it into a messydt class
 #' It accepts date inputs in different formats, incomplete dates,
@@ -12,13 +14,13 @@
 #' There are several limitations of other date wrangling packages
 #' and/or functions for dealing with incomplete dates, dates with
 #' different or inconsistent formats or historical dates for which
-#' `standardise_dates()` can be used.
+#' `standardise_dates()`, and `{messydates}` more broadly, can be used.
 #' It also converts  ambiguous and ranged dates into a
-#' range of dates. The function allows only for dmy or ymd
-#' date formats at present, since mdy may introduce errors.
+#' range of dates.
 #' @return Nested vector of dates under messydt class
 #' @importFrom messydates make_messydate as_messydate
-#' @examples dates_comparison <- tibble::tribble(~Example, ~OriginalDate,
+#' @examples
+#' dates_comparison <- tibble::tribble(~Example, ~OriginalDate,
 #' "A normal date", "2010-01-01",
 #' "A historical date", "1712-01-01",
 #' "A really historical date", "712-01-01",
@@ -37,6 +39,7 @@ standardise_dates <- standardize_dates <- function(...) {
     x <- messydates::as_messydate(...)
   } else if (length(dots) == 3) {
     x <- messydates::make_messydate(...)
+    x <- messydates::as_messydate(x)
   } 
 }
 
