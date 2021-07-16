@@ -47,7 +47,8 @@ Imports:
     remotes,
     stringi,
     tm,
-    knitr
+    knitr,
+    messydates
 Suggests:
     testthat (>= 3.0.0),
     librarian,
@@ -67,8 +68,7 @@ Suggests:
     qStates,
     stringdist,
     rmarkdown,
-    bibtex,
-    messydates
+    bibtex
 Remotes:
     globalgov/qStates,
     globalgov/qEnviron,
