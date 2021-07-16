@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Standardises a wide range of of date inputs — standardise_dates • qCreate</title>
+<title>Standardises a wide range of date inputs — standardise_dates • qCreate</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Standardises a wide range of of date inputs — standardise_dates" />
-<meta property="og:description" content="The function standardises a wide range of date inputs parsed through it.
+<meta property="og:title" content="Standardises a wide range of date inputs — standardise_dates" />
+<meta property="og:description" content="The function is wrapper for messydates::as_messydate().
+The function standardises a wide range of date inputs parsed through it,
+and convert it into a messydt class
 It accepts date inputs in different formats, incomplete dates,
 historical dates and future dates. It also creates nested
 vectors of dates for vague date inputs, ambiguous and ranged dates,
@@ -76,7 +78,7 @@ into a range of dates." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -84,7 +86,7 @@ into a range of dates." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +114,7 @@ into a range of dates." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/globalgov/qData/">
+  <a href="https://github.com/globalgov/qCreate/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -130,13 +132,15 @@ into a range of dates." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Standardises a wide range of of date inputs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qData/blob/master/R/standardise_dates.R'><code>R/standardise_dates.R</code></a></small>
+    <h1>Standardises a wide range of date inputs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/standardise_dates.R'><code>R/standardise_dates.R</code></a></small>
     <div class="hidden name"><code>standardise_dates.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The function standardises a wide range of date inputs parsed through it.
+    <p>The function is wrapper for <code><a href='https://rdrr.io/pkg/messydates/man/as_messydate.html'>messydates::as_messydate()</a></code>.
+The function standardises a wide range of date inputs parsed through it,
+and convert it into a messydt class
 It accepts date inputs in different formats, incomplete dates,
 historical dates and future dates. It also creates nested
 vectors of dates for vague date inputs, ambiguous and ranged dates,
@@ -156,7 +160,7 @@ into a range of dates.</p>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Nested vector of POSIXct dates that includes a range of dates</p>
+    <p>Nested vector of dates under messydt class</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function seeks to convert a wide range of dates into
@@ -164,10 +168,9 @@ dates so that these can be meaningfully used for analysis.
 There are several limitations of other date wrangling packages
 and/or functions for dealing with incomplete dates, dates with
 different or inconsistent formats or historical dates for which
-<code>standardise_dates()</code> can be used.
+<code>standardise_dates()</code>, and <code>{messydates}</code> more broadly, can be used.
 It also converts  ambiguous and ranged dates into a
-range of dates. The function allows only for dmy or ymd
-date formats at present, since mdy may introduce errors.</p>
+range of dates.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>dates_comparison</span> <span class='op'>&lt;-</span> <span class='fu'>tibble</span><span class='fu'>::</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>Example</span>, <span class='op'>~</span><span class='va'>OriginalDate</span>,
@@ -182,15 +185,15 @@ lubridate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/
 anytime <span class='op'>=</span> <span class='fu'>anytime</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/anytime/man/anytime.html'>anydate</a></span><span class='op'>(</span><span class='va'>OriginalDate</span><span class='op'>)</span>,
 qCreate <span class='op'>=</span> <span class='fu'>qCreate</span><span class='fu'>::</span><span class='fu'>standardise_dates</span><span class='op'>(</span><span class='va'>OriginalDate</span><span class='op'>)</span>
 <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 5</span>
 #&gt;   Example                      OriginalDate lubridate  anytime    qCreate   
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;date&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> A normal date                2010-01-01   2010-01-01 2010-01-01 2010-01-01
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> A historical date            1712-01-01   1712-01-01 1712-01-01 1712-01-01
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> A really historical date     712-01-01    </span><span style='color: #BB0000;'>NA</span><span>         </span><span style='color: #BB0000;'>NA</span><span>         0712-01-01
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> A very historical date       012-01-01    </span><span style='color: #BB0000;'>NA</span><span>         </span><span style='color: #BB0000;'>NA</span><span>         0012-01-01
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> A clearly future date        9999-12-31   9999-12-31 9999-12-31 9999-12-31
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> A not so clearly future date 2599-12-31   2599-12-31 2599-12-31 9999-12-31</div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;date&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;messydt&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> A normal date                2010-01-01   2010-01-01 2010-01-01 2010-01-01
+#&gt; <span style='color: #BCBCBC;'>2</span> A historical date            1712-01-01   1712-01-01 1712-01-01 1712-01-01
+#&gt; <span style='color: #BCBCBC;'>3</span> A really historical date     712-01-01    <span style='color: #BB0000;'>NA</span>         <span style='color: #BB0000;'>NA</span>         712-01-01 
+#&gt; <span style='color: #BCBCBC;'>4</span> A very historical date       012-01-01    <span style='color: #BB0000;'>NA</span>         <span style='color: #BB0000;'>NA</span>         012-01-01 
+#&gt; <span style='color: #BCBCBC;'>5</span> A clearly future date        9999-12-31   9999-12-31 9999-12-31 9999-12-31
+#&gt; <span style='color: #BCBCBC;'>6</span> A not so clearly future date 2599-12-31   2599-12-31 2599-12-31 2599-12-31</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

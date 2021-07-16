@@ -74,7 +74,7 @@ protocols (P) or amendments (E), if they contain words in title." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ protocols (P) or amendments (E), if they contain words in title." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@ protocols (P) or amendments (E), if they contain words in title." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/globalgov/qData/">
+  <a href="https://github.com/globalgov/qCreate/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -129,7 +129,7 @@ protocols (P) or amendments (E), if they contain words in title." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Code Agreement Type</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qData/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
     <div class="hidden name"><code>code_type.Rd</code></div>
     </div>
 
@@ -153,11 +153,18 @@ protocols (P) or amendments (E), if they contain words in title.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A character vector of the treaty type</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Types of agreements differentiate agreements from protocols or
+amendments, for example.
+For the complete list of words coded for type and their type
+abbreviations please run the function without and argument
+(i.e. <code>code_action()</code>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'>code_type</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "A"  "A"  "P"  "P"  "A"  "A"  "A"  "A"  "A"  "E1"</div></pre>
+</div><div class='output co'>#&gt;  [1] "A"  "A"  "A"  "R1" "A"  "A"  "P"  "A"  "P"  "A" </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

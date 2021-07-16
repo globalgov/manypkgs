@@ -7,6 +7,12 @@
     <loc>https://globalgov.github.io/qCreate//reference/add_author.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/code_acronym.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/code_activity.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/code_agreements.html</loc>
   </url>
   <url>
@@ -25,6 +31,9 @@
     <loc>https://globalgov.github.io/qCreate//reference/code_type.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/create_directory.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/depends.html</loc>
   </url>
   <url>
@@ -34,16 +43,19 @@
     <loc>https://globalgov.github.io/qCreate//reference/import_data.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/interleave.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/order_agreements.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/pred_words.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/qtemplate.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/recent.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/qCreate//reference/remove_dates.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/resequence.html</loc>
@@ -59,6 +71,9 @@
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/standardise_titles.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/update_package.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//articles/agreements.html</loc>
