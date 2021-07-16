@@ -71,7 +71,7 @@ Suggests:
     messydates
 Remotes:
     globalgov/qStates,
-    globalgov/qEnviron
+    globalgov/qEnviron,
     globalgov/messydates
 Encoding: UTF-8
 LazyData: true
