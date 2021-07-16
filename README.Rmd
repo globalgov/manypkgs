@@ -1,7 +1,7 @@
 ---
 output: github_document
 ---
-# qCreate <img src="inst/qCreateLogo.png" align="right" width="220"/>
+# qCreate <img src="man/figures/qcreatelogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
