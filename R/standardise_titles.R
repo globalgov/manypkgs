@@ -17,7 +17,7 @@
 #' @return A capitalised, trimmed and standardised string
 #' @importFrom textclean add_comma_space mgsub
 #' @importFrom english ordinal words
-#' @importFrom stringr str_count str_squish
+#' @importFrom stringr str_count str_squish str_to_title
 #' @importFrom utils as.roman
 #' @importFrom stringi stri_trans_general
 #' @import dplyr
