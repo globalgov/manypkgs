@@ -1,6 +1,5 @@
 #' Standardises a wide range of date inputs
 #'
-#' 
 #' The function is wrapper for `messydates::as_messydate()`. 
 #' The function standardises a wide range of date inputs parsed through it,
 #' and convert it into a messydt class
