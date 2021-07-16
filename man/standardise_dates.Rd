@@ -13,6 +13,7 @@ standardise_dates(...)
 Nested vector of dates under messydt class
 }
 \description{
+The function is wrapper for \code{messydates::as_messydate()}.
 The function standardises a wide range of date inputs parsed through it,
 and convert it into a messydt class
 It accepts date inputs in different formats, incomplete dates,
@@ -26,10 +27,9 @@ dates so that these can be meaningfully used for analysis.
 There are several limitations of other date wrangling packages
 and/or functions for dealing with incomplete dates, dates with
 different or inconsistent formats or historical dates for which
-\code{standardise_dates()} can be used.
+\code{standardise_dates()}, and \code{{messydates}} more broadly, can be used.
 It also converts  ambiguous and ranged dates into a
-range of dates. The function allows only for dmy or ymd
-date formats at present, since mdy may introduce errors.
+range of dates.
 }
 \examples{
 dates_comparison <- tibble::tribble(~Example, ~OriginalDate,
