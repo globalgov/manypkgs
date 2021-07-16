@@ -129,13 +129,13 @@ interleave <- function(vect, pos, elems = NA) {
   
   l <- length(vect)
   j <- 0
-  for (i in 1:length(pos)) {
-    if (pos[i] == 1)
+  for (k in seq_len(pos)) {
+    if (pos[k] == 1)
       vect <- c(elems[j + 1], vect)
-    else if (pos[i] == length(vect) + 1)
+    else if (pos[k] == length(vect) + 1)
       vect <- c(vect, elems[j + 1])
     else
-      vect <- c(vect[1:(pos[i] - 1)], elems[j + 1], vect[(pos[i]):length(vect)])
+      vect <- c(vect[1:(pos[k] - 1)], elems[j + 1], vect[(pos[k]):length(vect)])
     j <- j + 1
   }
   return(vect)
