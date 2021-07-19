@@ -26,13 +26,6 @@
 #' e==c("A Treaty Concerning Things")
 #' @export
 standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key = NULL) {
-  # If no arguments, the list of corrected words appears
-  if (missing(s)) {
-    # If missing argument, function returns list of specific corrected words
-    corrected_words <- as.data.frame(corrected_words)
-    corrected_words <- knitr::kable(corrected_words, "simple")
-    corrected_words
-  }  else {
   # Step one: capitalises first letter in words
   cap <- function(s) paste(toupper(substring(s, 1, 1)), {
     s <- substring(s, 2)
@@ -124,7 +117,6 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # treaties/words
   out <- stringr::str_squish(out)
   out
-  }
 }
 
 
@@ -141,10 +133,17 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
 #' @examples 
 #' IEADB$Title <- correct_words(IEADB$Title)
 standardise_words <- function(s){
-  corrected_words <- as.data.frame(corrected_words)
-  # Step two: substitute matching words for categories
-  for (k in seq_len(nrow(corrected_words))) {
-    s <- gsub(paste0(corrected_words$words[[k]]), paste0(corrected_words$corr_words[[k]]), s, ignore.case = TRUE, perl = T)
+  # If no arguments, the list of corrected words appears
+  if (missing(s)) {
+    corrected_words <- as.data.frame(corrected_words)
+    corrected_words <- knitr::kable(corrected_words, "simple")
+    corrected_words
+  }  else {
+    # Substitute matching words for corrected words
+    corrected_words <- as.data.frame(corrected_words)
+    for (k in seq_len(nrow(corrected_words))) {
+      s <- gsub(paste0(corrected_words$words[[k]]), paste0(corrected_words$corr_words[[k]]), s, ignore.case = TRUE, perl = T)
+      }
+    s
   }
-  s
 }
