@@ -23,3 +23,13 @@ data9 <- data.frame(title = c("A treaty for the South-Eastern region", "The Conv
 test_that("Regions are spelled correctly",{
   expect_equal(standardise_titles(data9$title), c("A Treaty For The South Eastern Region", "The Convention For North West States"))
 })
+
+# Test standardise_words()
+title <- c("Treaty between U.K. and U.R.S.S.", "Protocol Amending Treaty A Between U.S. and Vietnam", "Federation Of Japan Tuna Fisheries Co-Operative Associations",
+           "Wild-Life Protection Agreement", "South-East Protocol", "Northwestern Asia Agreement", "Deep-Sea and Land-Based Treaty")
+
+test_that("words are correctly standardised",{
+  expect_equal(standardise_words(title), c("Treaty between UK and U.R.S.S.", "Protocol Amending Treaty A Between USA and Viet Nam",
+                                           "Federation Of Japan Tuna Fisheries Cooperative Associations", "Wildlife Protection Agreement",
+                                           "South East Protocol", "North Western Asia Agreement", "Deep Sea and Land Based Treaty"))
+})
