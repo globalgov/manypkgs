@@ -88,11 +88,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   
   # standardise some country abbreviations and specific words
   out <- purrr::map(out, as.character)
-  corrected_words <- as.data.frame(corrected_words)
-  # Step two: substitute matching words for categories
-  for (k in seq_len(nrow(corrected_words))) {
-    out <- gsub(paste0(corrected_words$words[[k]]), paste0(corrected_words$corr_words[[k]]), out, ignore.case = TRUE, perl = T)
-  }
+  out <- standardise_words(out)
   
   # Step four: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
@@ -129,4 +125,26 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- stringr::str_squish(out)
   out
   }
+}
+
+
+
+#' Standardises some words spelling
+#'
+#' Change some words spelling, specifically those that can vary
+#' from one text to another.
+#' @param s A list of character vector
+#'
+#' @return A list of character vector with the words changed
+#' @export
+#'
+#' @examples 
+#' IEADB$Title <- correct_words(IEADB$Title)
+standardise_words <- function(s){
+  corrected_words <- as.data.frame(corrected_words)
+  # Step two: substitute matching words for categories
+  for (k in seq_len(nrow(corrected_words))) {
+    s <- gsub(paste0(corrected_words$words[[k]]), paste0(corrected_words$corr_words[[k]]), s, ignore.case = TRUE, perl = T)
+  }
+  s
 }
