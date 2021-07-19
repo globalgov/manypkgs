@@ -26,7 +26,13 @@
 #' e==c("A Treaty Concerning Things")
 #' @export
 standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key = NULL) {
-
+  # If no arguments, the list of corrected words appears
+  if (missing(s)) {
+    # If missing argument, function returns list of specific corrected words
+    corrected_words <- as.data.frame(corrected_words)
+    corrected_words <- knitr::kable(corrected_words, "simple")
+    corrected_words
+  }  else {
   # Step one: capitalises first letter in words
   cap <- function(s) paste(toupper(substring(s, 1, 1)), {
     s <- substring(s, 2)
@@ -77,34 +83,16 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out <- gsub("\U00AC[[:alpha:]]{1}\\s|\U00AC\\s", "", out)
   # Add space after a comma
   out <- textclean::add_comma_space(out)
-  # standardises some country abbreviations
-  out <- gsub("U.K.", "UK", out)
-  out <- gsub("U.S.S.R.", "USSR", out)
-  out <- gsub("U.S. ", "USA ", out)
-  # standardises some specific word spellings
-  out <- gsub("Art\\.", "Article", out)
-  out <- gsub("\\#", "Number ", out)
-  out <- gsub("co-operation|coperation", "Cooperation", out, ignore.case = TRUE)
-  out <- gsub("co-operative|coperative", "Cooperative", out, ignore.case = TRUE)
-  out <- gsub("wild life|wild-life", "Wildlife", out, ignore.case = TRUE)
-  out <- gsub("Decision Making", "Decision-Making", out, ignore.case = TRUE)
-  out <- gsub("MaasMeuse", "Maas", out, ignore.case = TRUE)
-  out <- ifelse(stringr::str_detect(out, "Test-Ban|Foot-and-Mouth|Nuclear-Weapon-Free|Public-Participation|Deep-Sea"),
-                gsub("-", " ", out), out)
-  out <- gsub("land-based|landbased", "Land Based", out, ignore.case = TRUE)
-  out <- gsub("Vietnam", "Viet Nam", out, ignore.case = TRUE)
-  out <- gsub("shipsballast|ship's ballast", "ships ballast", out, ignore.case = TRUE)
-  # standardises regions spelling
-  out <- gsub("North-East|Northeast", "North East", out, ignore.case = TRUE)
-  out <- gsub("North-Eastern|Northeastern", "North Eastern", out, ignore.case = TRUE)
-  out <- gsub("North-West|Northwest", "North West", out, ignore.case = TRUE)
-  out <- gsub("North-western|Northwestern", "North Western", out, ignore.case = TRUE)
-  out <- gsub("South-East|Southeast", "South East", out, ignore.case = TRUE)
-  out <- gsub("South-Eastern|Southeastern", "South Eastern", out, ignore.case = TRUE)
-  out <- gsub("South-West|Southwest", "South West", out, ignore.case = TRUE)
-  out <- gsub("South-Western|Southwestern", "South Western", out, ignore.case = TRUE)
-  out <- gsub("Indo-Pacific|Indopacific|Asia-Pacific|Asiapacific", "Asia Pacific", out, ignore.case = TRUE)
-  out <- stringr::str_to_title(out)
+  # Change number symbol into word
+  out <- gsub("\\#", "Number ", out) 
+  
+  # standardise some country abbreviations and specific words
+  out <- purrr::map(out, as.character)
+  corrected_words <- as.data.frame(corrected_words)
+  # Step two: substitute matching words for categories
+  for (k in seq_len(nrow(corrected_words))) {
+    out <- gsub(paste0(corrected_words$words[[k]]), paste0(corrected_words$corr_words[[k]]), out, ignore.case = TRUE, perl = T)
+  }
   
   # Step four: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
@@ -140,4 +128,5 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   # treaties/words
   out <- stringr::str_squish(out)
   out
+  }
 }
