@@ -140,6 +140,24 @@ export_data <- function(..., database, URL) {
               open = FALSE,
               ignore = FALSE,
               path = getwd())
+  } else if (database == "memberships") {
+    qtemplate("test_memberships.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
+  } else if (database == "actors") {
+    qtemplate("test_actors.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
   } else {
     qtemplate("test_general.R",
               save_as = fs::path("tests", "testthat",
