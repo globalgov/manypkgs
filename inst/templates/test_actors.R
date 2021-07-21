@@ -11,18 +11,26 @@ test_that("missing observations are reported correctly", {
   expect_false(any(grepl("n\\.a\\.$", {{{dab}}}[["{{{dat}}}"]])))
 })
 
-# At least one column named ID
-test_that("a column indicating an ID source exists", {
-  expect_true(any(grepl("ID$", colnames({{{dab}}}[["{{{dat}}}"]]))))
+# Contains the required variables
+test_that("object has the correct variables", {
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Actor))
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
+})
+
+# Column Beg is in messydt class
+test_that("Beg column is in messydt class", {
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "messydt")
 })
 
 # Country column is standardized
-test_that("labels are standardised", {
+test_that("Country column is standardised", {
   if (!is.null({{{dab}}}[["{{{dat}}}"]]$Country)) {
-    expect_false(any(grepl("U.S.", {{{dab}}}[["{{{dat}}}"]])))
-    expect_false(any(grepl("U.K.", {{{dab}}}[["{{{dat}}}"]])))
-    expect_false(any(grepl("!", {{{dab}}}[["{{{dat}}}"]])))
-    expect_false(any(grepl("NANA.", {{{dab}}}[["{{{dat}}}"]])))
+    expect_false(any(grepl("U.S.", {{{dab}}}[["{{{dat}}}"]]$Country)))
+    expect_false(any(grepl("U.K.", {{{dab}}}[["{{{dat}}}"]]$Country)))
+    expect_false(any(grepl("!", {{{dab}}}[["{{{dat}}}"]]$Country)))
+    expect_false(any(grepl("NANA.", {{{dab}}}[["{{{dat}}}"]]$Country)))
   }
 })
 
