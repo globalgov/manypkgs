@@ -20,8 +20,17 @@ test_that("object has the correct variables", {
 })
 
 # Column Beg is in messydt class
-test_that("Beg column is in messydt class", {
+test_that("Beg column is in messydt class and standardized", {
   expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "messydt")
+  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  expect_false(any(grepl("^[:alpha:]$",
+                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  # expect_false(any(grepl("^[:digit:]{2}$",
+  #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  # expect_false(any(grepl("^[:digit:]{3}$",
+  #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  # expect_false(any(grepl("^[:digit:]{1}$",
+  #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
 })
 
 # Country column is standardized
@@ -40,6 +49,5 @@ test_that("dataset is arranged by date variable", {
   if (!is.null({{{dab}}}[["{{{dat}}}"]]$Beg)) {
     expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[1] < {{{dab}}}[["{{{dat}}}"]]$Beg[10])
     expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[50] < {{{dab}}}[["{{{dat}}}"]]$Beg[75])
-    expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[100] < {{{dab}}}[["{{{dat}}}"]]$Beg[120])
   }
 })

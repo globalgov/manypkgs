@@ -32,6 +32,12 @@ test_that("Columns with dates are standardized", {
     expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
     expect_false(any(grepl("^[:alpha:]$",
                            {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    # expect_false(any(grepl("^[:digit:]{2}$",
+    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    # expect_false(any(grepl("^[:digit:]{3}$",
+    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    # expect_false(any(grepl("^[:digit:]{1}$",
+    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
   }
 })
 
