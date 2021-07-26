@@ -11,6 +11,13 @@ test_that("missing observations are reported correctly", {
   expect_false(any(grepl("n\\.a\\.$", {{{dab}}}[["{{{dat}}}"]])))
 })
 
+# Date columns should be in messydt class
+test_that("Columns are not in date, POSIXct or POSIXlt class", {
+  expect_false(lubridate::is.Date({{{dab}}}[["{{{dat}}}"]]))
+  expect_false(lubridate::is.POSIXct({{{dab}}}[["{{{dat}}}"]]))
+  expect_false(lubridate::is.POSIXlt({{{dab}}}[["{{{dat}}}"]]))
+})
+
 # Contains the required variables
 test_that("object has the correct variables", {
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))

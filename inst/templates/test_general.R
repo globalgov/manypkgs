@@ -25,6 +25,13 @@ test_that("labels are standardised", {
   }
 })
 
+# Date columns should be in messydt class
+test_that("Columns are not in date, POSIXct or POSIXlt class", {
+  expect_false(lubridate::is.Date({{{dab}}}[["{{{dat}}}"]]))
+  expect_false(lubridate::is.POSIXct({{{dab}}}[["{{{dat}}}"]]))
+  expect_false(lubridate::is.POSIXlt({{{dab}}}[["{{{dat}}}"]]))
+})
+
 # Dates are standardized
 test_that("Columns with dates are standardized", {
   if (!is.null({{{dab}}}[["{{{dat}}}"]]$Beg)) {
@@ -32,12 +39,12 @@ test_that("Columns with dates are standardized", {
     expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
     expect_false(any(grepl("^[:alpha:]$",
                            {{{dab}}}[["{{{dat}}}"]]$Beg)))
-    # expect_false(any(grepl("^[:digit:]{2}$",
-    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
-    # expect_false(any(grepl("^[:digit:]{3}$",
-    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
-    # expect_false(any(grepl("^[:digit:]{1}$",
-    #                        {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    expect_false(any(grepl("^[:digit:]{2}$",
+                           {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    expect_false(any(grepl("^[:digit:]{3}$",
+                           {{{dab}}}[["{{{dat}}}"]]$Beg)))
+    expect_false(any(grepl("^[:digit:]{1}$",
+                           {{{dab}}}[["{{{dat}}}"]]$Beg)))
   }
 })
 
