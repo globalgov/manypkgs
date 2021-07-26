@@ -29,7 +29,9 @@ export_data({{{dataset}}}, database = "{{{database}}}")
 # to run these tests locally at any point.
 # Any test failures should be pretty self-explanatory and may require
 # you to return to stage two and further clean, standardise, or wrangle
-# your data into the expected format.
+# your data into the expected format.
 # Second, it also creates a documentation file for you to fill in.
-# Please make sure that you cite any sources appropriately and fill in as
-# much detail about the variables etc as possible.
+# Please note that the export_data() function requires a .bib file to be
+# present in the data_raw folder of the package for citation purposes.
+# Therefore, please make sure that you have permission to use the dataset
+# that you're including in the package.

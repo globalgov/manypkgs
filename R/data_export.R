@@ -11,7 +11,9 @@
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with qData requirements.
 #' As well, it creates a documentation script to help documenting data
-#' sources and describing variables.
+#' sources and describing variables. Note that users need to provide a `.bib`
+#' file for citation purposes alongside their dataset in the corresponding
+#' `data-raw` subfolder.
 #' @return This function saves the dataset to the named database,
 #' silently creates a set of tests for this dataset,
 #' and creates and opens documentation for the dataset.
@@ -33,8 +35,14 @@ export_data <- function(..., database, URL) {
   if (!is.character(URL)) {
     stop("Please provide a valid URL argument.")
   }
+  
   dataset_name <- deparse(substitute(...))
   dataset <- get(dataset_name)
+  
+  # Check if bibliography file exists
+  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))){
+    stop("bib file not found. Please provide a .bib file in the data-raw folder alongside your data.")
+  }
 
   # Step one: coerce dataset into correct format if not
   # already and creates data folder
