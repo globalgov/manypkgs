@@ -15,7 +15,6 @@ test_that("missing observations are reported correctly", {
 test_that("datasets have the required variables", {
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  expect_true(any(grepl("ID", colnames({{{dab}}}[["{{{dat}}}"]]))))
 })
 
 # Date columns should be in messydt class
