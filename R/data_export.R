@@ -110,8 +110,8 @@ export_data <- function(..., database, URL) {
   dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",
-                            "{A dataset with ", dsobs, " observations and the following ",
-                            dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
+                            "{A dataset with ", dsobs, " observations and the following\n",
+                            "#' ", dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   qtemplate("qDataDBDoc.R",
