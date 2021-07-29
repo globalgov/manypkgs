@@ -26,7 +26,7 @@
 #' URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 #' }
 #' @export
-export_data <- function(..., database, URL) {
+export_data <- function(..., database, URL, package = NULL) {
 
   #Check if URL is present and is of the character form.
   if (missing(URL)) {
@@ -115,7 +115,7 @@ export_data <- function(..., database, URL) {
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   qtemplate("qDataDBDoc.R",
-            save_as = fs::path("R", paste0("qData-", database, ".R")),
+            save_as = fs::path("R", paste0(package, "-", database, ".R")),
             data = list(dat = dataset_name,
                         nd = dblen,
                         strdsnames = strdsnames,
