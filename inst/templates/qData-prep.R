@@ -2,7 +2,6 @@
 
 # This is a template for importing, cleaning, and exporting data
 # ready for the qPackage.
-library(qCreate)
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
@@ -12,17 +11,17 @@ library(qCreate)
 # formats of the '{{{dataset}}}' object until the object created
 # below (in stage three) passes all the tests.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
-  transmutate(ID = {id_variable_name_here},
-              Beg = standardise_dates({date_variable_name_here})) %>%
+  qData::transmutate(ID = {id_variable_name_here},
+              Beg = qCreate::standardise_dates({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
-# qData includes several functions that should help cleaning
+# qCreate includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
 # Next run the following line to make {{{dataset}}} available
 # within the qPackage.
-export_data({{{dataset}}}, database = "{{{database}}}")
+qCreate::export_data({{{dataset}}}, database = "{{{database}}}")
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
