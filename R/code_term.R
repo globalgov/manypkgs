@@ -10,6 +10,7 @@
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
 #' GNEVAR$Term_Date <- code_term_date(GNEVAR$Title)
+#' @export
 code_term_date <- function(title, text = NULL) {
   # Step one: extract term date if present in treaty title
   title <- as.character(title)
@@ -36,6 +37,7 @@ code_term_date <- function(title, text = NULL) {
 #' of the treaty
 #' @examples
 #' GNEVAR$Term_Type <- code_term_type(GNEVAR$Title)
+#' @export
 code_term_type <- function(title, text = NULL){
   # Step one: if the term date is mentioned in the treaty title,
   # it should be classified as "Sunset/Expiry"
