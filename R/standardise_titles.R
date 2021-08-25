@@ -119,8 +119,6 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   out
 }
 
-
-
 #' Standardises some words spelling
 #'
 #' Change some words spelling, specifically those that can vary

@@ -20,5 +20,7 @@ Creates a column with the type of termination
 of the treaty.
 }
 \examples{
+\dontrun{
 GNEVAR$Term_Type <- code_term_type(GNEVAR$Title)
+}
 }

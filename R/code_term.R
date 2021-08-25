@@ -4,12 +4,13 @@
 #' of the treaty.
 #' @param title title column variable.
 #' @param text treaty text column variable
-#'
 #' @return a character vector with the term date of the
 #' treaty
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
+#' \dontrun{
 #' GNEVAR$Term_Date <- code_term_date(GNEVAR$Title)
+#' }
 #' @export
 code_term_date <- function(title, text = NULL) {
   # Step one: extract term date if present in treaty title
@@ -25,18 +26,18 @@ code_term_date <- function(title, text = NULL) {
   # TO DO: Step two: extract term date from treaty text
 }
 
-
 #' Code treaty termination type
 #'
 #' Creates a column with the type of termination
 #' of the treaty.
 #' @param title title column variable
 #' @param text treaty text column variable
-#'
 #' @return a character vector with the termination clause type
 #' of the treaty
 #' @examples
+#' \dontrun{
 #' GNEVAR$Term_Type <- code_term_type(GNEVAR$Title)
+#' }
 #' @export
 code_term_type <- function(title, text = NULL){
   
