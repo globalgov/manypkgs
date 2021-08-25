@@ -8,6 +8,7 @@ import_data(
   dataset = NULL,
   database = NULL,
   path = NULL,
+  codebook = NULL,
   delete_original = FALSE,
   open = rlang::is_interactive()
 )
@@ -28,6 +29,8 @@ such as "states" or "colonial_relations".}
 \item{path}{Path to raw data file.
 If left unspecified, a dialogue box is raised to
 select the file via the system.}
+
+\item{codebook}{Path to the codebook to be imported into the raw-data folder}
 
 \item{delete_original}{Whether the original file is
 moved (TRUE) or copied (FALSE). By default FALSE.}
@@ -51,7 +54,7 @@ The function assists with importing existing raw data
 into a qPackage. The function does two main things.
 
 First, it moves or copies a chosen file into the "data-raw/"
-folder of thecurrent qPackage.
+folder of the current qPackage.
 A hierarchy to this folder is established.
 It first checks whether there is already a folder under "data-raw/" on
 the harddrive that is the same as the name of the database and, if there
@@ -65,13 +68,14 @@ just been downloaded to your "Downloads" folder.
 
 Second, the function creates a new script in the dataset-level folder,
 alongside the raw data file.
-By default, it also opens this script in RStudio or equivalent.
-The purpose of this script is for reading the file into R,
+By default, it also opens this script in RStudio or equivalent IDE.
+The purpose of this script is to read the file into R,
 cleaning the data and wrangling it into a qData-consistent format,
 and then exporting it for use in the package.
 Quite a bit of this is pre-populated either using information
 given to \code{import_data()}, or inferring what is required from
-the name or format of the file.
+the name or format of the file. Currently supported formats include: \code{.txt}
+\code{.csv}, \code{.xlsx}, \code{.xls}, \code{.dta} and, \code{.RData}.
 }
 \examples{
 \dontrun{

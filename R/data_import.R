@@ -16,6 +16,7 @@
 #' @param path Path to raw data file.
 #' If left unspecified, a dialogue box is raised to
 #' select the file via the system.
+#' @param codebook Path to the codebook to be imported into the raw-data folder
 #' @param delete_original Whether the original file is
 #' moved (TRUE) or copied (FALSE). By default FALSE.
 #' @param open Whether the resulting preparation script will be opened.
@@ -27,7 +28,7 @@
 #' into a qPackage. The function does two main things.
 #'
 #' First, it moves or copies a chosen file into the "data-raw/"
-#' folder of thecurrent qPackage.
+#' folder of the current qPackage.
 #' A hierarchy to this folder is established.
 #' It first checks whether there is already a folder under "data-raw/" on
 #' the harddrive that is the same as the name of the database and, if there
@@ -41,13 +42,14 @@
 #'
 #' Second, the function creates a new script in the dataset-level folder,
 #' alongside the raw data file.
-#' By default, it also opens this script in RStudio or equivalent.
-#' The purpose of this script is for reading the file into R,
+#' By default, it also opens this script in RStudio or equivalent IDE.
+#' The purpose of this script is to read the file into R,
 #' cleaning the data and wrangling it into a qData-consistent format,
 #' and then exporting it for use in the package.
 #' Quite a bit of this is pre-populated either using information
 #' given to `import_data()`, or inferring what is required from
-#' the name or format of the file.
+#' the name or format of the file. Currently supported formats include: `.txt`
+#' `.csv`, `.xlsx`, `.xls`, `.dta` and, `.RData`.
 #'
 #' @return Places the chosen file into a folder hierarchy within
 #' the package such as "data-raw/\{database\}/\{dataset\}/" and
@@ -61,14 +63,21 @@
 import_data <- function(dataset = NULL,
                         database = NULL,
                         path = NULL,
+                        codebook = NULL,
                         delete_original = FALSE,
                         open = rlang::is_interactive()) {
 
   # Step one: checks and setup
   if (is.null(dataset))
-    stop("You need to name the dataset. We suggest a short, unique name, all capital letters, such as 'COW'.")
+    stop("You need to name the dataset. We suggest a short, unique name,
+         all capital letters, such as 'COW'.")
   if (is.null(database))
-    stop("You need to name the database to which the dataset would belong. We suggest a short, descriptive name, all small letters, such as 'states'.")
+    stop("You need to name the database to which the dataset would belong.
+         We suggest a short, descriptive name, all small letters, such as
+         'states'.")
+  if (is.null(codebook))
+    usethis::ui_info("Consider adding a codebook by importing it manually
+                     into the newly created raw data folder.")
   stopifnot(rlang::is_string(dataset)) # Could also check if ASCII
   stopifnot(rlang::is_string(database)) # Could also check if ASCII
   usethis::use_directory("data-raw", ignore = TRUE)
@@ -83,6 +92,14 @@ import_data <- function(dataset = NULL,
   file.copy(path, new_path)
   usethis::ui_done("Copied data to {new_path}.")
   if (delete_original) file.remove(path)
+  # Import codebook if its path is specified
+  if (!is.null(codebook)) {
+    new_path_codebook <- fs::path("data-raw",
+                                  database,
+                                  dataset,
+                                  fs::path_file(codebook))
+    file.copy(codebook, new_path_codebook) 
+  }
 
   # Step three: create preparation template
   # Get data type
@@ -94,6 +111,8 @@ import_data <- function(dataset = NULL,
       import_type <- "haven::read_dta"
     } else if (grepl("RData$", path)) {
       import_type <- "load"
+    } else if (grepl("txt$", path)) {
+      import_type <- "read.table"
     } else stop("File type not recognised")
 
   # Create preparation template
