@@ -13,11 +13,8 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Title))
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  expect_true(any(grepl("ID$", colnames({{{dab}}}[["{{{dat}}}"]]))))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Signature))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Force))
 })
 
 # Date columns should be in messydt class
@@ -41,34 +38,8 @@ test_that("Column `Beg` has standardised dates", {
                          {{{dab}}}[["{{{dat}}}"]]$Beg)))
 })
 
-test_that("Column `Signature` has standardised dates", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Signature), "messydt")
-  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Signature)))
-  expect_false(any(grepl("^[:alpha:]$",
-                         {{{dab}}}[["{{{dat}}}"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{2}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{3}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Signature)))
-  expect_false(any(grepl("^[:digit:]{1}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Signature)))
-})
-
-test_that("Column `Force` has standardised dates", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Force), "messydt")
-  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Force)))
-  expect_false(any(grepl("^[:alpha:]$",
-                         {{{dab}}}[["{{{dat}}}"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{2}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{3}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Force)))
-  expect_false(any(grepl("^[:digit:]{1}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Force)))
-})
-
 # Dataset should be ordered according to the "Beg" column
-test_that("dataset is arranged by date variable", {
+test_that("dataset is arranged by the `Beg` variable", {
   expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[1] <
                 {{{dab}}}[["{{{dat}}}"]]$Beg[10])
   expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[50] <

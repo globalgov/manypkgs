@@ -11,7 +11,9 @@
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with qData requirements.
 #' As well, it creates a documentation script to help documenting data
-#' sources and describing variables.
+#' sources and describing variables. Note that users need to provide a `.bib`
+#' file for citation purposes alongside their dataset in the corresponding
+#' `data-raw` subfolder.
 #' @return This function saves the dataset to the named database,
 #' silently creates a set of tests for this dataset,
 #' and creates and opens documentation for the dataset.
@@ -24,7 +26,7 @@
 #' URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 #' }
 #' @export
-export_data <- function(..., database, URL) {
+export_data <- function(..., database, URL, package = NULL) {
 
   #Check if URL is present and is of the character form.
   if (missing(URL)) {
@@ -33,8 +35,14 @@ export_data <- function(..., database, URL) {
   if (!is.character(URL)) {
     stop("Please provide a valid URL argument.")
   }
+  
   dataset_name <- deparse(substitute(...))
   dataset <- get(dataset_name)
+  
+  # Check if bibliography file exists
+  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))){
+    stop("bib file not found. Please provide a .bib file in the data-raw folder alongside your data.")
+  }
 
   # Step one: coerce dataset into correct format if not
   # already and creates data folder
@@ -102,12 +110,12 @@ export_data <- function(..., database, URL) {
   dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",
-                            "{A dataset with ", dsobs, " observations and the following ",
-                            dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
+                            "{A dataset with ", dsobs, " observations and the following\n",
+                            "#' ", dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   qtemplate("qDataDBDoc.R",
-            save_as = fs::path("R", paste0("qData-", database, ".R")),
+            save_as = fs::path("R", paste0(package, "-", database, ".R")),
             data = list(dat = dataset_name,
                         nd = dblen,
                         strdsnames = strdsnames,
@@ -133,6 +141,24 @@ export_data <- function(..., database, URL) {
               path = getwd())
   } else if (database == "agreements") {
     qtemplate("test_agreements.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
+  } else if (database == "memberships") {
+    qtemplate("test_memberships.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
+  } else if (database == "actors") {
+    qtemplate("test_actors.R",
               save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
               data = list(dat = dataset_name,
