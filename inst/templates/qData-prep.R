@@ -21,7 +21,8 @@
 # Stage three: Connecting data
 # Next run the following line to make {{{dataset}}} available
 # within the qPackage.
-qCreate::export_data({{{dataset}}}, database = "{{{database}}}")
+qCreate::export_data({{{dataset}}}, database = "{{{database}}}",
+                     URL = NULL)
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)
