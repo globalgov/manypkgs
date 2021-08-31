@@ -17,5 +17,6 @@ Change some words spelling, specifically those that can vary
 from one text to another.
 }
 \examples{
+IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 IEADB$Title <- standardise_words(IEADB$Title)
 }
