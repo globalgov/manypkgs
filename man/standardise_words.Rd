@@ -17,5 +17,5 @@ Change some words spelling, specifically those that can vary
 from one text to another.
 }
 \examples{
-IEADB$Title <- correct_words(IEADB$Title)
+IEADB$Title <- standardise_words(IEADB$Title)
 }
