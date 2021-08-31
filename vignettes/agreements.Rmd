@@ -83,9 +83,9 @@ The area under the curve (AUC score), in dark grey, in the graph is maximized (e
 library(readr)
 library(WVPlots)
 hand_coded_sample <- read_delim("hand-coded-sample2.csv", ";", escape_double = FALSE, trim_ws = TRUE)
-hand_coded_sample <- dplyr::select(hand_coded_sample, "duplicate", "Linkage")
-agreements <- cbind(agreements, hand_coded_sample) %>%
-  dplyr::mutate(dates = qCreate::standardise_dates(dates))
+agreements <- hand_coded_sample %>%
+  dplyr::select("Source", "titles", "duplicate", "dates", "Linkage") %>% 
+  dplyr::mutate(dates = qCreate::standardise_dates(lubridate::dmy(dates)))
 WVPlots::ROCPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # WVPlots::PRPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # Precision recall (PR) plots are also available for comparing solutions.
