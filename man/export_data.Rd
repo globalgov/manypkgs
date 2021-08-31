@@ -36,6 +36,7 @@ file for citation purposes alongside their dataset in the corresponding
 \examples{
 \dontrun{
 export_data(COW, database = "states",
-URL = "https://correlatesofwar.org/data-sets/state-system-membership")
+URL = "https://correlatesofwar.org/data-sets/state-system-membership",
+package = "qStates")
 }
 }
