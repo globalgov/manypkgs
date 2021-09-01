@@ -41,6 +41,10 @@ qCreate::add_author(name = "Sposito, Henrique")
 For automatically updating packages for changes in templates, documentation, and file structure,
 contributors can use the `update_package()` function.
 
+```{r eval=FALSE}
+qCreate::update_package("qStates")
+```
+
 ## Collecting data
 
 For data collection and loading into a new package with `{qCreate}`, the function `import_data()` 

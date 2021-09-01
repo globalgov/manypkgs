@@ -65,14 +65,11 @@ Suggests:
     translateR,
     cld2,
     qEnviron,
-    qStates,
     stringdist,
     rmarkdown,
     bibtex
 Remotes:
-    globalgov/qStates,
-    globalgov/qEnviron,
-    globalgov/messydates
+    globalgov/qEnviron
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
