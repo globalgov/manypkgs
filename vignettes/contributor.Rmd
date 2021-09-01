@@ -38,12 +38,8 @@ This function also accepts ORCID numbers instead of author names.
 qCreate::add_author(name = "Sposito, Henrique")
 ```
 
-For updating packages for changes in templates, documentation and file structure, 
-use to the `update_package()` function.
-
-```{r eval=FALSE}
-qCreate::update_package("qStates")
-```
+For automatically updating packages for changes in templates, documentation, and file structure,
+contributors can use the `update_package()` function.
 
 ## Collecting data
 
