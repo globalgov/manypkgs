@@ -129,6 +129,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
 #' @examples 
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' IEADB$Title <- standardise_words(IEADB$Title)
+#' @export
 standardise_words <- function(s){
   # If no arguments, the list of corrected words appears
   if (missing(s)) {
