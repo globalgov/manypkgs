@@ -1,13 +1,12 @@
 # qCreate 0.1.1
 
 ## Package
-* Added the helper function `standardise_words()` into `standardise_titles()`
+* Closes #40 by adding the helper function `correct_words()` into `standardise_titles()`
 * Added `code_term_date()` which extracts the date term from the treaty title
 * Added `code_term_type()` which indicates the type of termination clause the treaty has
 
 ## Correction
 * Updated the countryregex table with more regex options for certain countries
-* Closes #40 by adding `standardise_words` to `standardise_titles()`
 * Closes #41 by adding test templates for actor databases and memberships databases
 * Closes #43 by adding qPackage name as an argument of `export_data()` 
 
