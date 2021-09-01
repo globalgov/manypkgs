@@ -20,3 +20,8 @@ test_that("treaty term date is identified from treaty title", {
   expect_equal(code_term_date(data$title),
                as.Date(c("1998-04-18", "1998-04-18", NA, "1999-04-18", NA, "2009-03-12", "1998-09-18")))
 })
+
+# Test that table appears if no argument is mentioned
+test_that("function returns information when no argument is mentioned", {
+  expect_type(code_term_type(), "character")
+})
