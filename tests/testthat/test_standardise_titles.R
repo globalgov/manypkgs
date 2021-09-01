@@ -24,7 +24,7 @@ test_that("Regions are spelled correctly",{
 })
 
 test_that("words are correctly standardised",{
-  expect_equal(standardise_words(c("Treaty between U.K. and U.R.S.S.", "Deep-Sea and Land-Based Treaty")), 
+  expect_equal(correct_words(c("Treaty between U.K. and U.R.S.S.", "Deep-Sea and Land-Based Treaty")), 
                c("Treaty between UK and U.R.S.S.", "Deep Sea and Land Based Treaty"))
 })
 
