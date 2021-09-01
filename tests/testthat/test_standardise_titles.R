@@ -29,10 +29,10 @@ test_that("words are correctly standardised",{
 })
 
 test_that("function returns information when no argument is mentioned", {
-  expect_type(standardise_words(), "character")
+  expect_type(correct_words(), "character")
 })
 
 test_that("Words are corrected", {
   example <- c("Co-operation Agreement","Treaty Between U.S. and U.S.S.R.", "Treaty About Deep-Sea", "Vietnam Treaty")
-  expect_equal(standardise_words(example), c("Cooperation Agreement","Treaty Between USA and USSR", "Treaty About Deep Sea", "Viet Nam Treaty"))
+  expect_equal(correct_words(example), c("Cooperation Agreement","Treaty Between USA and USSR", "Treaty About Deep Sea", "Viet Nam Treaty"))
 })
