@@ -13,6 +13,8 @@ export_data(..., database, URL, package = NULL)
 be created.}
 
 \item{URL}{website URL to the source of a dataset.}
+
+\item{package}{the name of the package in which the dataset is exported.}
 }
 \value{
 This function saves the dataset to the named database,

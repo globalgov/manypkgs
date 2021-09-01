@@ -7,6 +7,7 @@
 #' @param database Quoted name of any existing database or of the database to
 #' be created.
 #' @param URL website URL to the source of a dataset.
+#' @param package the name of the package in which the dataset is exported.
 #' @details The function creates a data directory, if nonexistent, and
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with qData requirements.
