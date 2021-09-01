@@ -38,7 +38,7 @@ code_agreements <- function(dataset = NULL, title, date) {
     }
   }
   
-  # Step one: create a new qID column
+  # Step one: create a qID vector
   qID <- purrr::map(title, as.character)
   # Eventually this will connect to a centralized GitHub repo or SQL file for
   # smarter, interactive and more consistent coding of agreement titles.
