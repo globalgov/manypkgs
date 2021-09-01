@@ -67,21 +67,11 @@ test_that("code_agreements() identify correct number of protocol or amendment", 
 
 # Test that some functions return coding information when argument is missing
 test_that("certain functions return coding information when argument is missing", {
-  expect_type(code_known_agreements(), "character")
   expect_type(code_type(), "character")
-  expect_type(code_activity(), "character")
-  expect_type(pred_words(), "character")
 })
 
 # Test that the punctuation marks are not in the qID
-data7 <- data.frame(title = c("Agreement (No 4151985) Between Austria And Hungary On Cooperation In The Protection Of The Environment",
-                              "International Plant-Protection Convention (1979 Revised Text)",
-                              "Amendement on the-Convention for the Deep-Sea"),
-                    date = c("1899-10-02", "2000-10-18", "2010-10-10"))
-data7$qID <- code_agreements(data7, data7$title, data7$date)
-
 test_that("Punctation marks are not in the qID", {
-  expect_false(any(grepl("-",data7$qID)))
-  expect_false(any(grepl("\\(",data7$qID)))
-  expect_false(any(grepl("\\)",data7$qID)))
+  qID <- code_agreements(data5, data5$title, data5$date)
+  expect_false(any(grepl("\\(|\\)", qID)))
 })
