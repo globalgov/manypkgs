@@ -20,7 +20,6 @@ Creates a column with the date of termination
 of the treaty.
 }
 \examples{
-\dontrun{
+GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 10)
 GNEVAR$Term_Date <- code_term_date(GNEVAR$Title)
-}
 }

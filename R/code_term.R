@@ -8,9 +8,8 @@
 #' treaty
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
-#' \dontrun{
+#' GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 10)
 #' GNEVAR$Term_Date <- code_term_date(GNEVAR$Title)
-#' }
 #' @export
 code_term_date <- function(title, text = NULL) {
   # Step one: extract term date if present in treaty title
@@ -35,9 +34,8 @@ code_term_date <- function(title, text = NULL) {
 #' @return a character vector with the termination clause type
 #' of the treaty
 #' @examples
-#' \dontrun{
+#' GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 10)
 #' GNEVAR$Term_Type <- code_term_type(GNEVAR$Title)
-#' }
 #' @export
 code_term_type <- function(title, text = NULL){
   

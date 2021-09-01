@@ -124,10 +124,8 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
 #' Change some words spelling, specifically those that can vary
 #' from one text to another.
 #' @param s A list of character vector
-#'
 #' @return A list of character vector with the words changed
-#' @export
-#'
+#' @importFrom knitr kable
 #' @examples 
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' IEADB$Title <- standardise_words(IEADB$Title)
