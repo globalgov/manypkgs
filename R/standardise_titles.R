@@ -127,9 +127,10 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
 #' @return A list of character vector with the words changed
 #' @importFrom knitr kable
 #' @examples 
-#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+#' \dontrun{
+#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 100)
 #' IEADB$Title <- correct_words(IEADB$Title)
-#' @export
+#' }
 correct_words <- function(s){
   # If no arguments, the list of corrected words appears
   if (missing(s)) {
