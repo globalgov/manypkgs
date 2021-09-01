@@ -15,9 +15,3 @@ The name of the package
 \description{
 Get the name of the package
 }
-\examples{
-\dontrun{
-x <- get_package_name()
-x
-}
-}
