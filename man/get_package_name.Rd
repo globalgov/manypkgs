@@ -16,5 +16,8 @@ The name of the package
 Get the name of the package
 }
 \examples{
-get_package_name()
+\dontrun{
+x <- get_package_name()
+x
+}
 }

@@ -186,7 +186,10 @@ export_data <- function(..., database, URL) {
 #' @param path A string, if missing default is path to the working directory
 #' @return The name of the package
 #' @examples
-#' get_package_name()
+#' \dontrun{
+#' x <- get_package_name()
+#' x
+#' }
 #' @export
 get_package_name <- function(path = getwd()){
   file.exists(paste0(path, "/DESCRIPTION"))
