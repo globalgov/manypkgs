@@ -7,7 +7,6 @@
 #' @param database Quoted name of any existing database or of the database to
 #' be created.
 #' @param URL website URL to the source of a dataset.
-#' @param package the name of the package in which the dataset is exported.
 #' @details The function creates a data directory, if nonexistent, and
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with qData requirements.
@@ -24,11 +23,10 @@
 #' @examples
 #' \dontrun{
 #' export_data(COW, database = "states",
-#' URL = "https://correlatesofwar.org/data-sets/state-system-membership",
-#' package = "qStates")
+#' URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 #' }
 #' @export
-export_data <- function(..., database, URL, package = NULL) {
+export_data <- function(..., database, URL) {
 
   #Check if URL is present and is of the character form.
   if (missing(URL)) {
@@ -116,6 +114,7 @@ export_data <- function(..., database, URL, package = NULL) {
                             "#' ", dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
+  package <- get_package_name()
   qtemplate("qDataDBDoc.R",
             save_as = fs::path("R", paste0(package, "-", database, ".R")),
             data = list(dat = dataset_name,
@@ -180,4 +179,17 @@ export_data <- function(..., database, URL, package = NULL) {
   }
   ui_done("A test script has been created for this data.")
   ui_todo("Press Cmd/Ctrl-Shift-T to run all tests or run devtools::test().")
+}
+
+#' Get the name of the package
+#'
+#' @param path A string, if missing default is path to the working directory
+#' @return The name of the package
+#' @examples
+#' get_package_name()
+#' @export
+get_package_name <- function(path = getwd()){
+  file.exists(paste0(path, "/DESCRIPTION"))
+  package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
+  package
 }
