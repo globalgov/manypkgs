@@ -81,7 +81,7 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
   
   # standardise some country abbreviations and specific words
   out <- purrr::map(out, as.character)
-  out <- standardise_words(out)
+  out <- correct_words(out)
   
   # Step four: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
@@ -128,9 +128,9 @@ standardise_titles <- standardize_titles <- function(s, strict = FALSE, api_key 
 #' @importFrom knitr kable
 #' @examples 
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
-#' IEADB$Title <- standardise_words(IEADB$Title)
+#' IEADB$Title <- correct_words(IEADB$Title)
 #' @export
-standardise_words <- function(s){
+correct_words <- function(s){
   # If no arguments, the list of corrected words appears
   if (missing(s)) {
     corrected_words <- as.data.frame(corrected_words)
