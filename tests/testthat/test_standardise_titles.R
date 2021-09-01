@@ -27,3 +27,12 @@ test_that("words are correctly standardised",{
   expect_equal(standardise_words(c("Treaty between U.K. and U.R.S.S.", "Deep-Sea and Land-Based Treaty")), 
                c("Treaty between UK and U.R.S.S.", "Deep Sea and Land Based Treaty"))
 })
+
+test_that("function returns information when no argument is mentioned", {
+  expect_type(standardise_words(), "character")
+})
+
+test_that("Words are corrected", {
+  example <- c("Co-operation Agreement","Treaty Between U.S. and U.S.S.R.", "Treaty About Deep-Sea", "Vietnam Treaty")
+  expect_equal(standardise_words(example), c("Cooperation Agreement","Treaty Between USA and USSR", "Treaty About Deep Sea", "Viet Nam Treaty"))
+})
