@@ -48,7 +48,8 @@ Imports:
     stringi,
     tm,
     knitr,
-    messydates
+    messydates,
+    tidyr
 Suggests:
     testthat (>= 3.0.0),
     librarian,
@@ -67,8 +68,7 @@ Suggests:
     qEnviron,
     stringdist,
     rmarkdown,
-    bibtex,
-    tidyr
+    bibtex
 Remotes:
     globalgov/qEnviron
 Encoding: UTF-8
