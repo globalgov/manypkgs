@@ -67,7 +67,8 @@ Suggests:
     qEnviron,
     stringdist,
     rmarkdown,
-    bibtex
+    bibtex,
+    tidyr
 Remotes:
     globalgov/qEnviron
 Encoding: UTF-8
