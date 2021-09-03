@@ -4,7 +4,7 @@
 \alias{export_data}
 \title{Adding datasets to the qPackage}
 \usage{
-export_data(..., database, URL, package = NULL)
+export_data(..., database, URL)
 }
 \arguments{
 \item{...}{Unquoted name of the dataset object to save.}
@@ -13,8 +13,6 @@ export_data(..., database, URL, package = NULL)
 be created.}
 
 \item{URL}{website URL to the source of a dataset.}
-
-\item{package}{the name of the package in which the dataset is exported.}
 }
 \value{
 This function saves the dataset to the named database,
@@ -38,7 +36,6 @@ file for citation purposes alongside their dataset in the corresponding
 \examples{
 \dontrun{
 export_data(COW, database = "states",
-URL = "https://correlatesofwar.org/data-sets/state-system-membership",
-package = "qStates")
+URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 }
 }

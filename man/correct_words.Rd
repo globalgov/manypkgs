@@ -17,6 +17,8 @@ Change some words spelling, specifically those that can vary
 from one text to another.
 }
 \examples{
-IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+\dontrun{
+IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 100)
 IEADB$Title <- correct_words(IEADB$Title)
+}
 }

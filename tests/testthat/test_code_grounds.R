@@ -7,9 +7,14 @@ data <- data.frame(title = c("Treaty For The Period From 1 September 1992 To 18 
                              "Amendments For The Period 19 May 1992 To 18 September 1998 Convention For The Prevention Of Pollution From Ships"),
                    date = c("1783-10-03", "1783-10-03", "1876-10-28", "1876-10-28", "1982-12-10", "1876-10-28", "1876-10-28"))
 
-# Test term date is correctly identified from treaty title
-test_that("treaty term date is identified from treaty title", {
+# Test term type is detected correctly from treaty title
+test_that("treaty type is identified from treaty title", {
   # Add title to the code_dates function arguments
-  expect_equal(code_term(data$title),
-               as.Date(c("1998-04-18", "1998-04-18", NA, "1999-04-18", NA, "2009-03-12", "1998-09-18")))
+  expect_equal(code_grounds(data$title), 
+               c("EXP", "EXP", NA, "EXP", NA, "EXP", "EXP"))
+})
+
+# Test that table appears if no argument is mentioned
+test_that("function returns information when no argument is mentioned", {
+  expect_type(code_grounds(), "character")
 })
