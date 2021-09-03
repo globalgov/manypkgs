@@ -24,6 +24,10 @@ condense_qID <- function(...) {
   qID <- unlist(c(...))
   qID <- data.frame(qID = qID)
   qID <- qID %>% dplyr::distinct(qID)
+  
+  # Initialize variables to avoid CMD notes
+  ID <- NULL
+  linkage <- NULL
 
   # step two: Split qIDs and get linkages standardized
   similar <- qID %>%
