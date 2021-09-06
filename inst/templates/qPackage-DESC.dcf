@@ -9,18 +9,22 @@ Description: Collection, correction, and connection.
 License: CC BY 4.0
 Depends: 
     R (>= 2.10),
-    tibble
+    tibble,
+    pointblank
 Imports: 
     qData,
+    qCreate,
     dplyr,
     lubridate,
     roxygen2,
-    usethis,
-    pointblank
+    usethis
 Suggests: 
     purrr, 
     rlang,
     testthat
+Remotes:
+    globalgov/qData,
+    globalgov/qCreate    
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
