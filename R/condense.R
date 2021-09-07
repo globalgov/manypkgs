@@ -8,7 +8,6 @@
 #' first qID argument entered as a replacement.
 #' @param ... Two or more qID variables
 #' @import dplyr
-#' @importFrom tidyr fill
 #' @importFrom purrr map
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
