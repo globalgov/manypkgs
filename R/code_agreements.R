@@ -467,24 +467,21 @@ code_linkage <- function(title, date) {
   ref <- NULL
   dup <- NULL
   
-  # Step seven: find duplicates and original values
+  # Step seven: find duplicates and original values, and assign same id to duplicates
   out <- out %>%
     dplyr::group_by_at(dplyr::vars(out)) %>%
     dplyr::mutate(
       dup = dplyr::row_number() > 1,
-      ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id)))
-  
-  # step eight: assign same id to duplicates
-  out <- out %>%
+      ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id))) %>% 
     dplyr::group_by(ref) %>%
     dplyr::mutate(n = dplyr::n()) %>%
     dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
 
-  # Step nine: keep only linkages
+  # Step eight: keep only linkages
   line <- out$line
   line <- stringr::str_replace_all(line, "^1$", "")
   
-  # Step ten: removes all linkages that are not agreements
+  # Step nine: removes all linkages that are not agreements
   line <- gsub("[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx", line)
   line <- ifelse(nchar(as.character(line)) > 20, "", line)
   line
