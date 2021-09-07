@@ -70,7 +70,6 @@ test_that("certain functions return coding information when argument is missing"
   expect_type(code_type(), "character")
   expect_type(code_known_agreements(), "character")
   expect_type(code_activity(), "character")
-  expect_type(pred_words(), "character")
 })
 
 # Test that the punctuation marks are not in the qID
