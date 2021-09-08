@@ -9,7 +9,7 @@
 #' @param ... Two or more qID variables
 #' @import dplyr
 #' @importFrom purrr map
-#' @importFrom stringr str_detect
+#' @importFrom stringr str_detect str_trim
 #' @return A dataframe of similar qIDs
 #' @examples
 #' data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A",
@@ -25,7 +25,9 @@ condense_qID <- function(...) {
   # Step one: rbind variables and remove duplicates
   qID <- unlist(c(...))
   qID <- data.frame(qID = qID)
-  qID <- qID %>% dplyr::distinct(qID)
+  qID <- qID %>% 
+    dplyr::distinct(qID) %>%
+    dplyr::mutate(qID = stringr::str_trim(qID, "both"))
 
   # Initialize variables to avoid CMD notes
   ID <- linkage <- ID1 <- ID2 <- dup <- year_type <- qID_ref <- NULL
@@ -45,9 +47,10 @@ condense_qID <- function(...) {
   fuzzy <- data.frame(fuzzy = apply(fuzzy, 2, max),
                       acronym = similar$acronym)
   fuzzy <- fuzzy[as.character(fuzzy$fuzzy) < as.character(fuzzy$acronym),]
-  similar <- merge(similar, fuzzy)
+  similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
+  similar$fuzzy <- ifelse(is.na(similar$fuzzy), 0, similar$fuzzy)
   # Works only for multilateral at the moment
-  similar$fuzzy <- ifelse(stringr::str_detect(similar$fuzzy, "\\-"), 0, similar$fuzzy) 
+  similar$fuzzy <- ifelse(stringr::str_detect(similar$fuzzy, "\\-"), 0, similar$fuzzy)
   
   # Step five: assign same acronyms to very similar observation
   similar <- similar %>%
@@ -60,7 +63,7 @@ condense_qID <- function(...) {
     dplyr::group_by(ID) %>% 
     tidyr::fill(linkage, .direction = "updown") %>% 
     dplyr::ungroup() %>%
-    dplyr::mutate(qID_ref = ifelse(is.na(linkage), ID, paste0(ID, ":", linkage))) %>%
+    dplyr::mutate(qID_ref = stringr::str_trim((ifelse(is.na(linkage), ID, paste0(ID, ":", linkage))), "both")) %>%
     dplyr::select(qID, qID_ref) %>%
     dplyr::distinct()
 
