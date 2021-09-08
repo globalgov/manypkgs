@@ -41,33 +41,6 @@ standardise_dates <- standardize_dates <- function(...) {
   } 
 }
 
-#' Resetting century of future events
-#'
-#' Resets the century of (unlikely) future events
-#' @param dates First variable to be used, required.
-#' Can be a character or date variable.
-#' @param sep Year from which to make a cut-off and return the last century.
-#' By default this is the system date, but can be specified.
-#' @return A vector the same length as \code{dates}
-#' @details This function will use the system date as the cut-off
-#' for identifying past or future events.
-#' It is geared towards numeric dates (i.e. "12") not named dates (i.e. "Dec"),
-#' though these dates should be correctly parsed regardless of order or separator.
-#' It will return any datestamps of "9999-12-31",
-#' which may be interpreted as unknown/future date, as is.
-#' Please note that different types of separators in the same vector,
-#' for example c("2004-12-12","12/12/2004", "12.12.2004"),
-#' may confuse the algorithm.
-#' In other words, this function is built for internally consistent codes.
-#' @examples
-#' \dontrun{
-#' recent(head(tfd_agree$Sign))
-#' }
-#' @export
-recent <- function(dates, sep = NULL) {
-  .Deprecated("qCreate::standardise_dates")
-}
-
 #' Resorting and filtering dates
 #'
 #' Resorting and filtering dates
