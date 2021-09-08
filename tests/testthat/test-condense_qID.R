@@ -1,21 +1,42 @@
-data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A",
-                           "TD06LJ_1981A", "RAMSAI_1971A", "WIIEWH_1982P"))
-data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSEI_1971A", "WIIEWH_1982P:RAMSA_1971A",
-                            "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
-data3 <- data.frame(qID = c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A", "RAMSAI_1971A",
+data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",
+                            "CPV-PRT[FSD]_1990P:FSD_1980A",
+                           "TD06LJ_1981A", "RAMSAI_1971A",
+                           "WIIEWH_1982P"))
+data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSEI_1971A",
+                            "WIIEWH_1982P:RAMSA_1971A",
+                            "PRTRPC_1976A",
+                            "PRTRPC_1983E1:PRTRPC_1976A"))
+data3 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",
+                            "CPV-PRT[FSD]_1990P:FSD_1980A",
+                            "RAMSAI_1971A",
                            "TD06LJ_1981A", "WIIEWH_1982P"),
-                   qID_ref = c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A", "RAMSAI_1971A",
-                               "TD06LJ_1981A", "WIIEWH_1982P:RAMSA_1971A"))
-data4 <- data.frame(qID = c("PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A", "RAMSEI_1971A",
-                            "TD06LJ_1981A", "WIIEWH_1982P:RAMSA_1971A" ),
-                    qID_ref = c("PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A", "RAMSAI_1971A",
-                                "TD06LJ_1981A", "WIIEWH_1982P:RAMSA_1971A" ))
+                   qID_ref = c("CPV-PRT[FSD]_1980A",
+                               "CPV-PRT[FSD]_1990P:FSD_1980A",
+                               "RAMSAI_1971A",
+                               "TD06LJ_1981A",
+                               "WIIEWH_1982P:RAMSA_1971A"))
+data4 <- data.frame(qID = c("PRTRPC_1976A",
+                            "PRTRPC_1983E1:PRTRPC_1976A",
+                            "RAMSEI_1971A",
+                            "TD06LJ_1981A",
+                            "WIIEWH_1982P:RAMSA_1971A"),
+                    qID_ref = c("PRTRPC_1976A",
+                                "PRTRPC_1983E1:PRTRPC_1976A",
+                                "RAMSAI_1971A",
+                                "TD06LJ_1981A",
+                                "WIIEWH_1982P:RAMSA_1971A"))
 
 test_that("Linkages are added correctly", {
   a <- condense_qID(data1$qID, data2$qID)
-  expect_equal(a$qID_ref, c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A", "TD06LJ_1981A",
-                            "RAMSAI_1971A", "WIIEWH_1982P:RAMSA_1971A", "RAMSAI_1971A", "WIIEWH_1982P:RAMSA_1971A",
-                            "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A" ))
+  expect_equal(a$qID_ref, c("CPV-PRT[FSD]_1980A",
+                            "CPV-PRT[FSD]_1990P:FSD_1980A",
+                            "TD06LJ_1981A",
+                            "RAMSAI_1971A",
+                            "WIIEWH_1982P:RAMSA_1971A",
+                            "RAMSAI_1971A",
+                            "WIIEWH_1982P:RAMSA_1971A",
+                            "PRTRPC_1976A",
+                            "PRTRPC_1983E1:PRTRPC_1976A"))
   m1 <- merge(data1, a)
   expect_equal(m1, data3)
   m2 <- merge(data2, a)

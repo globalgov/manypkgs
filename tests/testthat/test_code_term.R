@@ -11,5 +11,9 @@ data <- data.frame(title = c("Treaty For The Period From 1 September 1992 To 18 
 test_that("treaty term date is identified from treaty title", {
   # Add title to the code_dates function arguments
   expect_equal(code_term(data$title),
-               as.Date(c("1998-04-18", "1998-04-18", NA, "1999-04-18", NA, "2009-03-12", "1998-09-18")))
+               as.Date(c("1998-04-18",
+                         "1998-04-18",
+                         NA, "1999-04-18",
+                         NA, "2009-03-12",
+                         "1998-09-18")))
 })

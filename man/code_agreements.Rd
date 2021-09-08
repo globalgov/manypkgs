@@ -13,12 +13,16 @@ the function finds title and date conforming columns
 in the dataset automatically if available.}
 
 \item{title}{title column variable.
-Ideally, title variable should come from a qPackage database/dataset
-for which strings were standardised with \code{standardise_titles()}}
+Ideally, title variable should come
+from a qPackage database/dataset
+for which strings were standardised
+with \code{standardise_titles()}}
 
 \item{date}{date column variable
-Ideally, date variable should come from a qPackage database/dataset
-for which dates were standardised with \code{standardise_dates()}}
+Ideally, date variable should come from
+a qPackage database/dataset
+for which dates were standardised
+with \code{standardise_dates()}}
 }
 \value{
 a character vector with the qIDs

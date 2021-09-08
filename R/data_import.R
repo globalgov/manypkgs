@@ -98,7 +98,7 @@ import_data <- function(dataset = NULL,
                                   database,
                                   dataset,
                                   fs::path_file(codebook))
-    file.copy(codebook, new_path_codebook) 
+    file.copy(codebook, new_path_codebook)
   }
 
   # Step three: create preparation template

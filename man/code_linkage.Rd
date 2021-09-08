@@ -15,7 +15,8 @@ code_linkage(title, date)
 A character vector of the agreements that are linked
 }
 \description{
-Identify the linkage between amendments and protocols to a main agreement.
+Identify the linkage between amendments and protocols
+to a main agreement.
 }
 \details{
 The function identifies duplicates by excluding

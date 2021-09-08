@@ -11,5 +11,6 @@ test_that("package name must start with the letter q", {
 })
 
 test_that("additional authors are added correctly", {
-  expect_error(add_author(), "Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
+  expect_error(add_author(),
+               "Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
 })

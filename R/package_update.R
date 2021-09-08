@@ -29,26 +29,26 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   }
 
   if (!is.null(package) & path == getwd()) {
-    if(stringr::str_detect(path, package)) {
-      path = getwd()
+    if (stringr::str_detect(path, package)) {
+      path <- getwd()
     } else {
       stop("Package path differs from current working directory.
            Please either declare a path to package directory
            or use setwd() to setup directory beforehand.")
     }
   }
-  
+
   depends("desc")
-  
+
   # Step two: Get author's name
   if (!is.null(name)) {
-    if(length(name) > 1) {
+    if (length(name) > 1) {
       author <- paste(name, collapse = " and ")
     } else {
       author <- paste(name)
     }
   }
-  
+
   if (is.null(name)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
       author <- read.dcf(paste0(path, "/DESCRIPTION"))[[4]]
@@ -57,14 +57,16 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
       author <- stringr::str_replace_all(author, "person\\(given = \"", "")
       author <- stringr::str_replace_all(author, "\\n", "")
       author <- stringr::str_replace_all(author, "\".*", "")
-      usethis::ui_done("Obtained lead author name from existing DESCRIPTION file.")
+      usethis::ui_done(
+        "Obtained lead author name from existing DESCRIPTION file.")
     } else {
       stop("Please declare author(s) name(s)")
     }
   }
 
   # Step three: update License
-  if(utils::askYesNo("Would you like to update package LICENSE file?") == TRUE) {
+  if (utils::askYesNo(
+    "Would you like to update package LICENSE file?") == TRUE) {
     qtemplate("LICENSE.md",
               ignore = TRUE,
               path = path,
@@ -72,9 +74,9 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
     # desc::desc_set("License", "CC BY 4.0")
     usethis::ui_done("Updated License file.")
   }
-  
+
   # Step four: update Code of Conduct and Contributing files
-  if(utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
+  if (utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
     qtemplate("qPackage-COC.md",
               fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
               data = list(package = package,
@@ -82,7 +84,7 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
               path = path,
               open = FALSE)
     usethis::ui_done("Updated CODE_OF_CONDUCT.")
-    
+
     qtemplate("qPackage-CONTRIB.md",
               fs::path(".github", "CONTRIBUTING.md"),
               data = list(package = package,

@@ -10,14 +10,16 @@ code_parties(title)
 \item{title}{A character vector of treaty titles}
 }
 \value{
-A character vector of parties that are mentioned in the treaty title
+A character vector of parties
+that are mentioned in the treaty title
 }
 \description{
 Identify the countries that are part of an agreement.
 }
 \details{
-The function codes states in treaties alongside, returning only
-parties for bileteral treaties (i.e. 2 parties coded).
+The function codes states in treaties alongside,
+returning only parties for bileteral treaties
+(i.e. 2 parties coded).
 The number of meaningful words (removes articles, numbers and other common
 words)in title for bilateral tretaies is returned next to parties.
 For the complete list of words removed from title to identify

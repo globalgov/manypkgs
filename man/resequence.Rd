@@ -9,9 +9,11 @@ resequence(data, vars, unity = "_")
 \arguments{
 \item{data}{a dataframe}
 
-\item{vars}{a character vector identifying columns in the dataframe to sequence}
+\item{vars}{a character vector identifying columns
+in the dataframe to sequence}
 
-\item{unity}{a string identifying how multiple entries may be glued together.
+\item{unity}{a string identifying how multiple
+entries may be glued together.
 By default, tidyr::unite() glues using the underscore "_".}
 }
 \value{
@@ -22,8 +24,10 @@ Resorting and filtering dates
 }
 \examples{
 \dontrun{
-data <- data.frame(Sign = c("2000-01-01", "2001-01-01", "2001-01-01_2000-01-01", "2000-01-01", NA),
-                   Force = c("2001-01-01", "2000-01-01", "2001-01-01", NA, "2001-01-01"))
+data <- data.frame(Sign = c("2000-01-01", "2001-01-01",
+"2001-01-01_2000-01-01", "2000-01-01", NA),
+Force = c("2001-01-01", "2000-01-01",
+"2001-01-01", NA, "2001-01-01"))
 resequence(data, c("Sign", "Force"))
 }
 }

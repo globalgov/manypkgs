@@ -33,14 +33,7 @@ setup_package <- function(package = NULL,
                           update = TRUE,
                           path = getwd()) {
 
-  # Checks to see whether inputs are correct
-  # usethis:::check_path_is_directory(fs::path_dir(path))
-  pname <- fs::path_file(fs::path_abs(path))
-  # usethis:::check_not_nested(fs::path_dir(path), name)
-  # usethis:::create_directory(path)
-
-  # Initialize variables to suppress an annoying note when running
-  # devtools_check
+  # Initialize variables to suppress CMD notes
   given <- NULL
   family <- NULL
   comment <- NULL
@@ -70,7 +63,8 @@ setup_package <- function(package = NULL,
       given <- stringr::str_split(author, " ")[[1]][[1]]
       family <- stringr::str_split(author, " ")[[1]][[2]]
       comment <- NULL
-      usethis::ui_done("Obtained lead author name from existing DESCRIPTION file.")
+      usethis::ui_done(
+        "Obtained lead author name from existing DESCRIPTION file.")
     } else {
       stop("Please declare one author")
     }
@@ -93,11 +87,8 @@ setup_package <- function(package = NULL,
     }
     # Authenticate the user, might be useful to add a stop here.
     rorcid::orcid_auth()
-    # orcid <- c("0000-0001-5943-9059", "0000-0003-3420-6085")
-    # orcid <- "0000-0001-5943-9059"
     # Get the data from the ORCID API
     personal <- rorcid::orcid_person(orcid)
-    employments <- rorcid::orcid_employments(orcid)
     # Disentangle the data and get get them into vectors
     given <- as.character(personal[[orcid]][["name"]]
                           [["given-names"]][["value"]])
@@ -307,7 +298,8 @@ add_author <- function(orcid = NULL,
                        affiliation = NULL) {
 
   # Check for correct input
-  if (is.null(orcid) & is.null(name)) stop("Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
+  if (is.null(orcid) & is.null(name)) stop(
+    "Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
 
   # Initialize variables to suppress an annoying note when running
   # devtools_check

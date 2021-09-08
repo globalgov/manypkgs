@@ -35,23 +35,16 @@ export_data <- function(..., database, URL) {
   if (!is.character(URL)) {
     stop("Please provide a valid URL argument.")
   }
-  
+
   dataset_name <- deparse(substitute(...))
   dataset <- get(dataset_name)
-  
+
   # Check if bibliography file exists
-  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))){
+  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
     stop("bib file not found. Please provide a .bib file in the data-raw folder alongside your data.")
   }
 
-  # Step one: coerce dataset into correct format if not
-  # already and creates data folder
-  # if(!"Beg" %in% colnames(dataset))
-  # stop("Please ensure there is at least one date column named 'Beg' for beginning")
-  # if(!"ID" %in% colnames(dataset))
-  # stop("Please ensure there is at least one identification column named 'ID'")
-  # dataset <- as_tibble(dataset) %>% dplyr::arrange(.data$Beg, .data$ID)
-  # dataset
+  # Step one: set up directory
   usethis::use_directory("data", ignore = FALSE)
 
   # Step two: join dataset to any related datasets in a database
@@ -110,8 +103,10 @@ export_data <- function(..., database, URL) {
   dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",
-                            "{A dataset with ", dsobs, " observations and the following\n",
-                            "#' ", dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
+                            "{A dataset with ", dsobs,
+                            " observations and the following\n",
+                            "#' ", dsnvar, " variables: ", dsvarstr,
+                            ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   package <- get_package_name()
@@ -187,7 +182,7 @@ export_data <- function(..., database, URL) {
 #' @return The name of the package
 #' @examples
 #' @export
-get_package_name <- function(path = getwd()){
+get_package_name <- function(path = getwd()) {
   file.exists(paste0(path, "/DESCRIPTION"))
   package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
   package

@@ -1,6 +1,6 @@
 #' Standardises a wide range of date inputs
 #'
-#' The function is wrapper for `messydates::as_messydate()`. 
+#' The function is wrapper for `messydates::as_messydate()`.
 #' The function standardises a wide range of date inputs parsed through it,
 #' and convert it into a messydt class
 #' It accepts date inputs in different formats, incomplete dates,
@@ -38,23 +38,27 @@ standardise_dates <- standardize_dates <- function(...) {
     x <- messydates::as_messydate(...)
   } else if (length(dots) == 3) {
     x <- messydates::make_messydate(...)
-  } 
+  }
 }
 
 #' Resorting and filtering dates
 #'
 #' Resorting and filtering dates
 #' @param data a dataframe
-#' @param vars a character vector identifying columns in the dataframe to sequence
-#' @param unity a string identifying how multiple entries may be glued together.
+#' @param vars a character vector identifying columns
+#' in the dataframe to sequence
+#' @param unity a string identifying how multiple
+#' entries may be glued together.
 #' By default, tidyr::unite() glues using the underscore "_".
 #' @return a dataframe/columns
 #' @import lubridate
 #' @importFrom stats na.omit
 #' @examples
 #' \dontrun{
-#' data <- data.frame(Sign = c("2000-01-01", "2001-01-01", "2001-01-01_2000-01-01", "2000-01-01", NA),
-#'                    Force = c("2001-01-01", "2000-01-01", "2001-01-01", NA, "2001-01-01"))
+#' data <- data.frame(Sign = c("2000-01-01", "2001-01-01",
+#' "2001-01-01_2000-01-01", "2000-01-01", NA),
+#' Force = c("2001-01-01", "2000-01-01",
+#' "2001-01-01", NA, "2001-01-01"))
 #' resequence(data, c("Sign", "Force"))
 #' }
 #' @export
@@ -62,8 +66,8 @@ resequence <- function(data, vars, unity = "_") {
 
   len <- length(vars)
 
-  out <- apply(data[,vars], 1, function(x) {
-    dates <- sort(unlist(strsplit(unique(na.omit(x)),unity)))
+  out <- apply(data[, vars], 1, function(x) {
+    dates <- sort(unlist(strsplit(unique(na.omit(x)), unity)))
 
     if (length(dates) < len) {
       dates <- qCreate::interleave(dates, which(is.na(x)))
@@ -77,7 +81,7 @@ resequence <- function(data, vars, unity = "_") {
                                                   dates[2 : (length(dates))])))
       dmax <- which(lubridate::as.duration(interval(dates[1 : (length(dates)-1)],
                                                     dates[2 : (length(dates))])) == as.duration(dmax))
-      dates <- dates[c(1,dmax + 1)]
+      dates <- dates[c(1, dmax + 1)]
     }
 
     dates
@@ -100,7 +104,7 @@ resequence <- function(data, vars, unity = "_") {
 #' interleave(1:5, c(2,4))
 #' @export
 interleave <- function(vect, pos, elems = NA) {
-  
+
   l <- length(vect)
   j <- 0
   for (k in seq_len(length(pos))) {
@@ -109,7 +113,9 @@ interleave <- function(vect, pos, elems = NA) {
     else if (pos[k] == length(vect) + 1)
       vect <- c(vect, elems[j + 1])
     else
-      vect <- c(vect[1:(pos[k] - 1)], elems[j + 1], vect[(pos[k]):length(vect)])
+      vect <- c(vect[1:(pos[k] - 1)],
+                elems[j + 1],
+                vect[(pos[k]):length(vect)])
     j <- j + 1
   }
   return(vect)

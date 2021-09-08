@@ -13,7 +13,8 @@ code_known_agreements(title)
 A character vector of abbreviation of known treaties
 }
 \description{
-Some agreements have known abbreviations that facilitate their identification.
+Some agreements have known abbreviations that facilitate
+their identification.
 }
 \details{
 The function identifies agreements that match the list of known

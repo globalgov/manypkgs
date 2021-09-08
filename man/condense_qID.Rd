@@ -21,9 +21,11 @@ The function finds these occurences and returns the
 first qID argument entered as a replacement.
 }
 \examples{
-data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A", "CPV-PRT[FSD]_1990P:FSD_1980A",
+data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",
+"CPV-PRT[FSD]_1990P:FSD_1980A",
 "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P"))
-data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P:RAMSA_1971A",
+data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSA_1971A",
+"WIIEWH_1982P:RAMSA_1971A",
 "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
 qID_ref <- condense_qID(data1$qID, data2$qID)
 data1 <- merge(data1, qID_ref)

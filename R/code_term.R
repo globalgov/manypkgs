@@ -14,8 +14,9 @@
 code_term <- function(title, text = NULL) {
   # Step one: extract term date if present in treaty title
   title <- as.character(title)
-  # All the treaties having the term date in the title had the word "For the Period"
-  date <- ifelse(grepl("For The Period", title), stringr::str_extract_all(title, "\\d{1,2}.\\w{3,}.\\d{4}"), NA)
+  # Treaties with the term date in the title had the word "For the Period"
+  date <- ifelse(grepl("For The Period", title),
+                 stringr::str_extract_all(title, "\\d{1,2}.\\w{3,}.\\d{4}"), NA)
   # Extract only the term date
   date <- suppressWarnings(stringr::str_remove_all(date, "^c|\\(|\\)|\""))
   date <- stringr::str_extract_all(date, "\\d{1,2}.\\w{3,}.\\d{4}$")

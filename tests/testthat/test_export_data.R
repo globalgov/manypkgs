@@ -3,5 +3,6 @@ test_that("url is declared", {
 })
 
 test_that("url is valid", {
-  expect_error(export_data("COW", databse = "states", URL = 5), "Please provide a valid URL argument.")
+  expect_error(export_data("COW", databse = "states", URL = 5),
+               "Please provide a valid URL argument.")
 })

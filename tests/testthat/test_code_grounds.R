@@ -10,7 +10,7 @@ data <- data.frame(title = c("Treaty For The Period From 1 September 1992 To 18 
 # Test term type is detected correctly from treaty title
 test_that("treaty type is identified from treaty title", {
   # Add title to the code_dates function arguments
-  expect_equal(code_grounds(data$title), 
+  expect_equal(code_grounds(data$title),
                c("EXP", "EXP", NA, "EXP", NA, "EXP", "EXP"))
 })
 
