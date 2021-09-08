@@ -15,7 +15,6 @@ test_that("standardise_dates() treats reverse ordered dates correctly", {
 })
 
 test_that("standardise_dates() treats future dates correctly",{
-  expect_warning(recent(), "is deprecated")
   expect_match(standardise_dates("9999-12-31"), messydates::as_messydate("9999-12-31"))
 })
 
