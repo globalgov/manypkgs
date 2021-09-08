@@ -45,11 +45,8 @@ Imports:
     whisker,
     fs,
     remotes,
-    stringi,
-    tm,
     knitr,
     messydates,
-    tidyr,
     stringdist
 Suggests:
     testthat (>= 3.0.0),
@@ -60,8 +57,11 @@ Suggests:
     withr,
     haven,
     readxl,
+    tidyr,
     readr,
     rorcid,
+    stringi,
+    tm,
     desc,
     WVPlots,
     translateR,

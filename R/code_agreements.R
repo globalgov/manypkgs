@@ -101,7 +101,6 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' Identify the countries that are part of an agreement.
 #' @param title A character vector of treaty titles
 #' @importFrom stringr str_replace_all
-#' @importFrom tm removeWords stopwords
 #' @return A character vector of parties that are mentioned in the treaty title
 #' @details The function codes states in treaties alongside, returning only
 #' parties for bileteral treaties (i.e. 2 parties coded).
@@ -152,7 +151,6 @@ code_parties <- function(title) {
 #' bilateral treaties and avoid false positives being generated since
 #' multiple, different, bileteral treaties are often signed in the same day.
 #' @importFrom stringr str_squish word
-#' @importFrom tm removeWords stopwords
 #' @return A character vector of abbreviations of last words in treaty title
 #' @export
 code_activity <- function(title) {
@@ -356,7 +354,6 @@ code_known_agreements <- function(title) {
 #' and comparuison across datasets.
 #' @param title A character vector of treaty title
 #' @import stringr
-#' @importFrom tm removeWords stopwords
 #' @details Codes acronyms that are 4 to 6 digits long.
 #' For shorter treaty titles, six words or less, acronym
 #' includes first letter of each word.

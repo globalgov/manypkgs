@@ -19,7 +19,6 @@
 #' @importFrom english ordinal words
 #' @importFrom stringr str_count str_squish str_to_title
 #' @importFrom utils as.roman
-#' @importFrom stringi stri_trans_general
 #' @import dplyr
 #' @examples
 #' e <- standardise_titles("A treaty concerning things")
