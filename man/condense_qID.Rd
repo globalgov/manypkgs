@@ -7,7 +7,9 @@
 condense_qID(database = NULL, var = NULL)
 }
 \arguments{
-\item{...}{Two or more qID variables}
+\item{database}{A qPackage database}
+
+\item{var}{Two or more qID variables}
 }
 \value{
 A dataframe of similar qIDs
