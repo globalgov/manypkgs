@@ -27,7 +27,7 @@ data4 <- data.frame(qID = c("PRTRPC_1976A",
                                 "WIIEWH_1982P:RAMSA_1971A"))
 
 test_that("Linkages are added correctly", {
-  a <- condense_qID(data1$qID, data2$qID)
+  a <- condense_qID(var = c(data1$qID, data2$qID))
   expect_equal(a$qID_ref, c("CPV-PRT[FSD]_1980A",
                             "CPV-PRT[FSD]_1990P:FSD_1980A",
                             "TD06LJ_1981A",

@@ -19,14 +19,21 @@
 #' data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSA_1971A",
 #' "WIIEWH_1982P:RAMSA_1971A",
 #' "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
-#' qID_ref <- condense_qID(data1$qID, data2$qID)
+#' qID_ref <- condense_qID(var = c(data1$qID, data2$qID))
 #' data1 <- merge(data1, qID_ref)
 #' data2 <- merge(data2, qID_ref)
 #' @export
-condense_qID <- function(...) {
+condense_qID <- function(database = NULL, var = NULL) {
 
-  # Step one: rbind variables and remove duplicates
-  qID <- unlist(c(...))
+  # Step one: identify if database is present
+  if (is.null(var)) {
+    qID <- lapply(database, function(x) x[["qID"]])
+    qID <- unname(unlist(purrr::map(qID, as.character)))
+  } else {
+    qID <- unlist(var)
+  }
+  
+  # Step two: rbind variables and remove duplicates
   qID <- data.frame(qID = qID)
   qID <- qID %>%
     dplyr::distinct(qID) %>%

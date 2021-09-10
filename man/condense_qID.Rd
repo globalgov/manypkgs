@@ -4,7 +4,7 @@
 \alias{condense_qID}
 \title{Condense similar qIDs}
 \usage{
-condense_qID(...)
+condense_qID(database = NULL, var = NULL)
 }
 \arguments{
 \item{...}{Two or more qID variables}
@@ -27,7 +27,7 @@ data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",
 data2 <- data.frame(qID = c("TD06LJ_1981A", "RAMSA_1971A",
 "WIIEWH_1982P:RAMSA_1971A",
 "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
-qID_ref <- condense_qID(data1$qID, data2$qID)
+qID_ref <- condense_qID(var = c(data1$qID, data2$qID))
 data1 <- merge(data1, qID_ref)
 data2 <- merge(data2, qID_ref)
 }
