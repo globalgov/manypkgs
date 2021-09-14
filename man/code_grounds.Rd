@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_grounds.R
 \name{code_grounds}
 \alias{code_grounds}
-\title{Code treaty termination type}
+\title{Code Treaty Termination Type}
 \usage{
 code_grounds(title, text = NULL)
 }

@@ -335,7 +335,7 @@ code_dates <- function(date) {
   uID
 }
 
-#' Known agreements abbreviation
+#' Code Known Agreements Abbreviation
 #'
 #' Some agreements have known abbreviations that facilitate
 #' their identification.
@@ -371,9 +371,9 @@ code_known_agreements <- function(title) {
     colnames(ab) <- paste0(abbreviations$abbreviation, "_",
                            as.character(stringr::str_remove_all(abbreviations$signature, "-")))
     rownames(ab) <- title
-    out <- apply(ab, 1, function(x) paste(names(x[x==1])))
+    out <- apply(ab, 1, function(x) paste(names(x[x == 1])))
     # Assign NA when observation is not matched
-    out[out=="character(0)"] <- NA_character_
+    out[out == "character(0)"] <- NA_character_
     out <- unname(out)
     out <- as.character(out)
     out <- ifelse(grepl("c\\(", out), "PARIS_20151212", out)

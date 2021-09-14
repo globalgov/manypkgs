@@ -1,4 +1,4 @@
-#' Code treaty termination type
+#' Code Treaty Termination Type
 #'
 #' Creates a column with the type of termination
 #' of the treaty.
