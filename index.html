@@ -6,12 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Support for Creating Ensembled Global Governance Data • qCreate</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Support for Creating Ensembled Global Governance Data">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="Support for Creating Ensembled Global Governance Data">
 <meta property="og:description" content="This is the developer's package of the qData ecosystem.
     It includes functions to help contributors develop qPackages and
     prepare event datasets on global governance.">
@@ -33,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -41,7 +42,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -108,25 +109,25 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/globalgov/qData">qData</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/qData/man/get_packages.html">get_packages</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## # A tibble: 4 x 6</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co">##   name     full_name         </span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">##   &lt;chr&gt;    &lt;chr&gt;             </span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">## 1 qCreate  globalgov/qCreate </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">## 2 qData    globalgov/qData   </span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">## 3 qEnviron globalgov/qEnviron</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">## 4 qStates  globalgov/qStates </span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">##   description                                             installed latest</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">##   &lt;chr&gt;                                                   &lt;chr&gt;     &lt;chr&gt; </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">## 1 Support for creating new qPackages                      0.1.0     0.0.1 </span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">## 2 An R portal for ensembled global governance data        0.5.0     0.4.0 </span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">## 3 qPackage for ensembled data on environmental agreements 0.0.2     0.0.2 </span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">## 4 qPackage for ensembled data on sovereign states         0.0.3     0.0.3 </span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">##   updated   </span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">##   &lt;date&gt;    </span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">## 1 2021-05-18</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">## 2 2021-05-17</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">## 3 2021-02-22</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">## 4 2021-02-22</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 4 x 6</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   name     full_name         </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;    &lt;chr&gt;             </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 qCreate  globalgov/qCreate </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 qData    globalgov/qData   </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 qEnviron globalgov/qEnviron</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 qStates  globalgov/qStates </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   description                                             installed latest</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                   &lt;chr&gt;     &lt;chr&gt; </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Support for creating new qPackages                      0.1.0     0.0.1 </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 An R portal for ensembled global governance data        0.5.0     0.4.0 </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 qPackage for ensembled data on environmental agreements 0.0.2     0.0.2 </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 qPackage for ensembled data on sovereign states         0.0.3     0.0.3 </span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="do">##   updated   </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;date&gt;    </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2021-05-18</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 2021-05-17</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 2021-02-22</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 2021-02-22</span></span></code></pre></div>
 <p>Please see <a href="https://globalgov.github.io/qCreate/">the website</a> for more information about how to use <a href="https://github.com/globalgov/qCreate">qCreate</a> as a developer or a data contributor. For more information on <a href="https://github.com/globalgov/qData">qData</a>, please see <a href="https://globalgov.github.io/qData/">the website</a>.</p>
 </div>
 </div>

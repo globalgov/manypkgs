@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Predictable words list — pred_words • qCreate</title>
+<title>Condense similar qIDs — condense_qID • qCreate</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,13 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Predictable words list — pred_words" />
-<meta property="og:description" content="Predictable words list" />
+<meta property="og:title" content="Condense similar qIDs — condense_qID" />
+<meta property="og:description" content="Different qIDs generated for different datasets
+might have minor differences in terms of acronym or linkage.
+Some minor differences in qIDs could mean different qIDS
+in different datasets actually refer to the same agreement.
+The function finds these occurences and returns the
+first qID argument entered as a replacement." />
 
 
 
@@ -128,23 +133,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Predictable words list</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
-    <div class="hidden name"><code>pred_words.Rd</code></div>
+    <h1>Condense similar qIDs</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/condense.R'><code>R/condense.R</code></a></small>
+    <div class="hidden name"><code>condense_qID.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Predictable words list</p>
+    <p>Different qIDs generated for different datasets
+might have minor differences in terms of acronym or linkage.
+Some minor differences in qIDs could mean different qIDS
+in different datasets actually refer to the same agreement.
+The function finds these occurences and returns the
+first qID argument entered as a replacement.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pred_words</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>condense_qID</span><span class='op'>(</span>database <span class='op'>=</span> <span class='cn'>NULL</span>, var <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>database</th>
+      <td><p>A qPackage database</p></td>
+    </tr>
+    <tr>
+      <th>var</th>
+      <td><p>Two or more qID variables</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of predicatble words removed
-in code_linkages() and code_parties().</p>
+    <p>A dataframe of similar qIDs</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CPV-PRT[FSD]_1980A"</span>,
+<span class='st'>"CPV-PRT[FSD]_1990P:FSD_1980A"</span>,
+<span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>, <span class='st'>"WIIEWH_1982P"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>,
+<span class='st'>"WIIEWH_1982P:RAMSA_1971A"</span>,
+<span class='st'>"PRTRPC_1976A"</span>, <span class='st'>"PRTRPC_1983E1:PRTRPC_1976A"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>qID_ref</span> <span class='op'>&lt;-</span> <span class='fu'>condense_qID</span><span class='op'>(</span>var <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>data1</span><span class='op'>$</span><span class='va'>qID</span>, <span class='va'>data2</span><span class='op'>$</span><span class='va'>qID</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data1</span>, <span class='va'>qID_ref</span><span class='op'>)</span>
+<span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data2</span>, <span class='va'>qID_ref</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

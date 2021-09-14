@@ -12,7 +12,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
@@ -38,10 +38,13 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Creates Numerical IDs from Signature Dates — code_dates" />
-<meta property="og:description" content="Agreements should have a unique identification number that is meaningful,
-we condense their signature dates to produce this number." />
+<meta property="og:description" content="Agreements should have a unique identification
+number that is meaningful, we condense their
+signature dates to produce this number." />
 
 
 
@@ -73,7 +76,7 @@ we condense their signature dates to produce this number." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -81,7 +84,7 @@ we condense their signature dates to produce this number." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -133,8 +136,9 @@ we condense their signature dates to produce this number." />
     </div>
 
     <div class="ref-description">
-    <p>Agreements should have a unique identification number that is meaningful,
-we condense their signature dates to produce this number.</p>
+    <p>Agreements should have a unique identification
+number that is meaningful, we condense their
+signature dates to produce this number.</p>
     </div>
 
     <pre class="usage"><span class='fu'>code_dates</span><span class='op'>(</span><span class='va'>date</span><span class='op'>)</span></pre>
@@ -155,16 +159,16 @@ we condense their signature dates to produce this number.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'>code_dates</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "Convention To Ban The Importation Into The Forum Island Countries Of Hazardous And Radioactive Wastes And To Control The Transboundary Movement And Management Of Hazardous Wastes Within The South Pacific Re"                                                               
-#&gt;  [2] "Agreement Between The Kingdom Of Hungary And The Czechoslovak Republic Concerning The Fixing Of A Uniform General Close Season For Fishing And The Conditions For The Authorization Of Night Fishing In The Czechoslovak Hungarian Frontier Watercou"                         
-#&gt;  [3] "Agreement On Economic, Scientific And Technical Cooperation In The Fields Of Agriculture And Food Industry Between Governments Of Hungary And Bel"                                                                                                                            
-#&gt;  [4] "Agreement Of Application Of The Agreement On Flood Warning For The Catchment Basin Of The M"                                                                                                                                                                                  
-#&gt;  [5] "Amendments Of 1991 To The Technical Annex Of The Protocol To The Convention On LongRange Transboundary Air Pollution Concerning The Control Of Nitrogen Oxides Or Their Transboundary Fl"                                                                                     
-#&gt;  [6] "Agreement Between The Government Of The Russian Federation And The Government Of The Kingdom Of Morocco On Cooperation In The Area Of Marine Fishe"                                                                                                                           
-#&gt;  [7] "Agreement Between The Government Of The Federal Republic Of Germany And The Government Of The Republic Of Rwanda Concerning Financial Cooperation In 2011/2013 And Concerning Additional Measures For Climate Change Adaptation Under The Special Energy And Climate Fund In "
-#&gt;  [8] "Agreement Between The Government Of The United States Of America And The Government Of Canada On East Coast Fishery Resou"                                                                                                                                                    
-#&gt;  [9] "Agreement Amending Article 22 Of The Treaty Of The Southern African Development Commu"                                                                                                                                                                                        
-#&gt; [10] "Exchange Of Letters Constituting An Agreement Between France And Spain Amending The Arrangement Of 12 July 1958 Relating To Lake La"                                                                                                                                          </div></pre>
+</div><div class='output co'>#&gt;  [1] "Amendment To The Convention For The Establishment Of A SubRegional Commission On Fishe"                                                                                                                              
+#&gt;  [2] "Convention Respecting The Liquor Traffic In The North"                                                                                                                                                               
+#&gt;  [3] "International Convention For The Prevention Of Pollution From S"                                                                                                                                                     
+#&gt;  [4] "Agreement Between The Government Of The Federal Republic Of Germany And The Government Of The Dominican Republic Concerning Financial Cooperation (ProjectSmall Hydroelectric Power Stations Nizaito And Canal Sant" 
+#&gt;  [5] "Agreement On Cooperation Between The Republic Of El Salvador And The Republic Of Nicaragua For The Utilization Of The Fishing Resou"                                                                                 
+#&gt;  [6] "Amendments To Appendices 1 And Ii Of The Convention On The Conservation Of Migratory Species Of Wild Ani"                                                                                                            
+#&gt;  [7] "Amendment No 2 To The Agreement Between The Government Of The Republic Of Finland And The Government Of The Lao Peoples Democratic Republic On The Cooperation In The Sustainable Forestry And Rural Development Pro"
+#&gt;  [8] "Exchange Of Notes Constituting An Agreement Between Canada And The United States Of America Concerning The Treaty Relating To Cooperative Development Of The Water Resources Of The Columbia River B"                
+#&gt;  [9] "Agreement On Bilateral Cooperation Between The Government Of The French Republic And The Government Of The Republic Of Chile On Climate Ch"                                                                          
+#&gt; [10] "Protocol Amending The Benelux Convention On The Hunting And Protection Of B"                                                                                                                                         </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

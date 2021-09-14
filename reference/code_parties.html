@@ -12,7 +12,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
@@ -38,6 +38,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Code Agreement Parties — code_parties" />
 <meta property="og:description" content="Identify the countries that are part of an agreement." />
@@ -72,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -80,7 +82,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -148,11 +150,13 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of parties that are mentioned in the treaty title</p>
+    <p>A character vector of parties
+that are mentioned in the treaty title</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function codes states in treaties alongside, returning only
-parties for bileteral treaties (i.e. 2 parties coded).
+    <p>The function codes states in treaties alongside,
+returning only parties for bileteral treaties
+(i.e. 2 parties coded).
 The number of meaningful words (removes articles, numbers and other common
 words)in title for bilateral tretaies is returned next to parties.
 For the complete list of words removed from title to identify
@@ -163,8 +167,8 @@ the same two countries are signed in the same day.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'>code_parties</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] NA             NA             "BLR-UKR[UVM]" NA             NA            
-#&gt;  [6] "HRV-TUR[VTC]" NA             "FIN-NOR[FAT]" "NOR-SWE[RND]" "MLT-TUN[ENV]"</div></pre>
+</div><div class='output co'>#&gt;  [1] NA             "ISL-RUS[FRF]" NA             NA             NA            
+#&gt;  [6] NA             NA             NA             "GIN-GNQ[FCG]" "ABK-RUS[FEP]"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

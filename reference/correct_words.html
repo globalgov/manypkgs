@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Predictable words list — pred_words • qCreate</title>
+<title>Standardises some words spelling — correct_words • qCreate</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Predictable words list — pred_words" />
-<meta property="og:description" content="Predictable words list" />
+<meta property="og:title" content="Standardises some words spelling — correct_words" />
+<meta property="og:description" content="Change some words spelling, specifically those that can vary
+from one text to another." />
 
 
 
@@ -128,23 +129,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Predictable words list</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
-    <div class="hidden name"><code>pred_words.Rd</code></div>
+    <h1>Standardises some words spelling</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/standardise_titles.R'><code>R/standardise_titles.R</code></a></small>
+    <div class="hidden name"><code>correct_words.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Predictable words list</p>
+    <p>Change some words spelling, specifically those that can vary
+from one text to another.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pred_words</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>correct_words</span><span class='op'>(</span><span class='va'>s</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>s</th>
+      <td><p>A list of character vector</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of predicatble words removed
-in code_linkages() and code_parties().</p>
+    <p>A list of character vector with the words changed</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span> <span class='op'>&lt;-</span> <span class='fu'>correct_words</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

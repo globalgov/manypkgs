@@ -12,7 +12,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
@@ -38,6 +38,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Changelog" />
 
@@ -71,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -79,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -129,12 +131,36 @@
       <small>Source: <a href='https://github.com/globalgov/qCreate/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="qcreate-010" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.0">
-<a href="#qcreate-010" class="anchor"></a>qCreate 0.1.0</h1>
+    <div id="qcreate-011" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#qcreate-011" class="anchor"></a>qCreate 0.1.1</h1>
 <div id="package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package" class="anchor"></a>Package</h2>
+<ul>
+<li>Closes <a href='https://github.com/globalgov/qCreate/issues/40'>#40</a> by adding the helper function <code><a href="../reference/correct_words.html">correct_words()</a></code> into <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
+</li>
+<li>Added <code>code_term_date()</code> which extracts the date term from the treaty title</li>
+<li>Added <code>code_term_type()</code> which indicates the type of termination clause the treaty has</li>
+</ul>
+</div>
+<div id="correction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#correction" class="anchor"></a>Correction</h2>
+<ul>
+<li>Updated the countryregex table with more regex options for certain countries</li>
+<li>Closes <a href='https://github.com/globalgov/qCreate/issues/41'>#41</a> by adding test templates for actor databases and memberships databases</li>
+<li>Closes <a href='https://github.com/globalgov/qCreate/issues/43'>#43</a> by adding qPackage name as an argument of <code><a href="../reference/export_data.html">export_data()</a></code>
+</li>
+</ul>
+</div>
+</div>
+    <div id="qcreate-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#qcreate-010" class="anchor"></a>qCreate 0.1.0</h1>
+<div id="package-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#package-1" class="anchor"></a>Package</h2>
 <ul>
 <li>Added <code><a href="../reference/update_package.html">update_package()</a></code> function which updates packages created with <code><a href="../reference/setup_package.html">setup_package()</a></code>
 </li>
@@ -148,9 +174,9 @@
 <li>Updated agreements vignette to reflect new changes with <code><a href="../reference/code_agreements.html">code_agreements()</a></code> function</li>
 </ul>
 </div>
-<div id="correction" class="section level2">
+<div id="correction-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correction" class="anchor"></a>Correction</h2>
+<a href="#correction-1" class="anchor"></a>Correction</h2>
 <ul>
 <li>Updated <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
 <ul>
@@ -190,9 +216,9 @@
     <div id="qcreate-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#qcreate-001" class="anchor"></a>qCreate 0.0.1</h1>
-<div id="package-1" class="section level2">
+<div id="package-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package-1" class="anchor"></a>Package</h2>
+<a href="#package-2" class="anchor"></a>Package</h2>
 <ul>
 <li>Setup the <a href="https://github.com/globalgov/qCreate">qCreate</a> package for developers and data contributors
 <ul>
@@ -208,9 +234,9 @@
 </li>
 </ul>
 </div>
-<div id="correction-1" class="section level2">
+<div id="correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correction-1" class="anchor"></a>Correction</h2>
+<a href="#correction-2" class="anchor"></a>Correction</h2>
 <ul>
 <li>Moved <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code> from <a href="https://github.com/globalgov/qData">qData</a> to <a href="https://github.com/globalgov/qCreate">qCreate</a>
 <ul>

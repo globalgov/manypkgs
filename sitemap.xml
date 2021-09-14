@@ -19,6 +19,9 @@
     <loc>https://globalgov.github.io/qCreate//reference/code_dates.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/code_grounds.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/code_known_agreements.html</loc>
   </url>
   <url>
@@ -28,7 +31,16 @@
     <loc>https://globalgov.github.io/qCreate//reference/code_parties.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/code_term.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/code_type.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/condense_qID.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/correct_words.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/create_directory.html</loc>
@@ -38,6 +50,9 @@
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/export_data.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/get_package_name.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/import_data.html</loc>
@@ -53,9 +68,6 @@
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/qtemplate.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/qCreate//reference/recent.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/resequence.html</loc>

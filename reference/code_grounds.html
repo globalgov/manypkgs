@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Predictable words list — pred_words • qCreate</title>
+<title>Code treaty termination type — code_grounds • qCreate</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Predictable words list — pred_words" />
-<meta property="og:description" content="Predictable words list" />
+<meta property="og:title" content="Code treaty termination type — code_grounds" />
+<meta property="og:description" content="Creates a column with the type of termination
+of the treaty." />
 
 
 
@@ -128,23 +129,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Predictable words list</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
-    <div class="hidden name"><code>pred_words.Rd</code></div>
+    <h1>Code treaty termination type</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_grounds.R'><code>R/code_grounds.R</code></a></small>
+    <div class="hidden name"><code>code_grounds.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Predictable words list</p>
+    <p>Creates a column with the type of termination
+of the treaty.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pred_words</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>code_grounds</span><span class='op'>(</span><span class='va'>title</span>, text <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>title</th>
+      <td><p>title column variable</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>treaty text column variable</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of predicatble words removed
-in code_linkages() and code_parties().</p>
+    <p>a character vector with the termination clause type
+of the treaty</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>GNEVAR</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>GNEVAR</span>, n <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span>
+<span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Term_Type</span> <span class='op'>&lt;-</span> <span class='fu'>code_grounds</span><span class='op'>(</span><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

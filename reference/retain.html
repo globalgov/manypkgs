@@ -12,7 +12,7 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
@@ -38,6 +38,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 
 <meta property="og:title" content="Helper function for keeping  objects from the global environment — retain" />
 <meta property="og:description" content="Helper function for keeping objects from the global environment.
@@ -75,7 +77,7 @@ regular expression or both." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -83,7 +85,7 @@ regular expression or both." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -203,8 +205,11 @@ preparing and assembling a pipeline</p>
 #&gt; 1 New Zealand       1
 #&gt; 2      Brazil       1
 #&gt; 3 Switzerland       2</div><div class='input'><span class='fu'>retain</span><span class='op'>(</span><span class='st'>"origins"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in retain("origins"): All the items in the keep should be a real existing variable or valid regular expressions.</span>
-#&gt; <span class='error'>The following is/are not among variables of selected environment or patterns that match anything!</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in retain("origins"): All the items in the keep should be a real existing</span>
+#&gt; <span class='error'>                   variable or valid regular expressions.</span>
+#&gt; <span class='error'>The following</span>
+#&gt; <span class='error'>                   is/are not among variables of selected environment or</span>
+#&gt; <span class='error'>                   patterns that match anything!</span>
 #&gt; <span class='error'> origins</span></div><div class='input'><span class='va'>origins</span>
 </div><div class='output co'>#&gt; [1] "New Zealand" "Brazil"      "Switzerland"</div></pre>
   </div>
