@@ -7,6 +7,8 @@ template:
 authors:
   James Hollway:
     href: https://jameshollway.com
+  Bernhard Bieri:
+    href: https://bernhardbieri.ch
 navbar:
   structure:
     left:
@@ -35,15 +37,22 @@ navbar:
       text: News
       href: news/index.html
 reference:
-  - title: "Functions for data providers"
-    desc: "These functions are to assist data providers with disseminating data on particular parts of global governance:"
+  - title: "qPackage setup functions"
+    desc: "These functions were created to assist data providers with the setup of new qVerse packages"
     contents:
       - setup_package
       - add_author
+  - title: "Processing functions"
+    desc: "These functions were created to assist data providers with the processing of data when creating qVerse packages"
+    contents:
       - import_data
       - export_data
       - starts_with("standardise")
       - starts_with("code")
+  - title: "Other utility functions"
+    desc: "Other utility functions that are useful during the creation of a new qPackage"
+    contents:
+      - get_package_name
       - depends
       - retain
       - resequence
