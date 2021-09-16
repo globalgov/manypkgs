@@ -1,69 +1,6 @@
-#' Helper function for finding and rendering templates
+#' Loading packages
 #'
-#' Helper function for finding and rendering templates from the qCreate package
-#' @param template Template called
-#' @param save_as Path to where the rendered template should be saved
-#' @param data Any elements to be entered into the template via Whisker
-#' @param ignore For use with usethis::use_build_ignore()
-#' @param path Path to where template was gathered from
-#' @param open Whether the resulting template will be opened
-#' @param package Package called
-#' @details This function is an adaptation of the usethis variant
-#' for use in the qData ecosystem.
-#' @return A rendered template, saved into the correct folder
-#' @importFrom whisker whisker.render
-#' @examples
-#' \dontrun{
-#' qtemplate("test_states.R",
-#' save_as = fs::path("tests", "testthat", paste0("test_", dataset_name, ".R")),
-#' open = FALSE,
-#' path = getwd())
-#' }
-qtemplate <- function(template,
-                      save_as = template,
-                      data = list(),
-                      ignore = FALSE,
-                      path,
-                      open = rlang::is_interactive(),
-                      package = "qCreate") {
-
-  # Set up find_template() helper function
-  find_template <- function(template_name, package = "qCreate") {
-    path <- tryCatch(fs::path_package(package = package, "templates",
-                                      template_name),
-                     error = function(e) ""
-    )
-    if (identical(path, "")) {
-      usethis::ui_stop(
-        "Could not find template {usethis::ui_value(template_name)} \\
-      in package {usethis::ui_value(package)}."
-      )
-    }
-    path
-  }
-
-  # Set up render_template() helper function
-  render_template <- function(template, data = list(), package = "qCreate") {
-    template_path <- find_template(template, package = package)
-    strsplit(whisker::whisker.render(xfun::read_utf8(template_path),
-                                     data), "\n")[[1]]
-  }
-
-  # Render and save the template as correct file
-  template_contents <- render_template(template, data, package = package)
-  new <- usethis::write_over(paste0(path, "/", save_as), template_contents)
-  if (ignore) {
-    usethis::use_build_ignore(save_as)
-  }
-  if (open && new) {
-    usethis::edit_file(usethis::proj_path(save_as))
-  }
-  invisible(new)
-}
-
-#' Helper function for loading packages
-#'
-#' Helper function for loading and, if necessary, installing packages
+#' Function for loading and, if necessary, installing packages
 #' @param packages Character vector of packages to install from CRAN or GitHub
 #' @importFrom utils install.packages
 #' @importFrom remotes install_github
@@ -94,9 +31,9 @@ depends <- function(packages) {
          })
 }
 
-#' Helper function for keeping  objects from the global environment
+#' Keep objects from the global environment
 #'
-#' Helper function for keeping objects from the global environment.
+#' Function for keeping objects from the global environment.
 #' It removes all variables of a dataset in the global environment
 #' except those which are specified in the given character vector,
 #' regular expression or both.
@@ -302,3 +239,67 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
     }
   }
 }
+
+#' Helper function for finding and rendering templates
+#'
+#' Helper function for finding and rendering templates from the qCreate package
+#' @param template Template called
+#' @param save_as Path to where the rendered template should be saved
+#' @param data Any elements to be entered into the template via Whisker
+#' @param ignore For use with usethis::use_build_ignore()
+#' @param path Path to where template was gathered from
+#' @param open Whether the resulting template will be opened
+#' @param package Package called
+#' @details This function is an adaptation of the usethis variant
+#' for use in the qData ecosystem.
+#' @return A rendered template, saved into the correct folder
+#' @importFrom whisker whisker.render
+#' @examples
+#' \dontrun{
+#' qtemplate("test_states.R",
+#' save_as = fs::path("tests", "testthat", paste0("test_", dataset_name, ".R")),
+#' open = FALSE,
+#' path = getwd())
+#' }
+qtemplate <- function(template,
+                      save_as = template,
+                      data = list(),
+                      ignore = FALSE,
+                      path,
+                      open = rlang::is_interactive(),
+                      package = "qCreate") {
+  
+  # Set up find_template() helper function
+  find_template <- function(template_name, package = "qCreate") {
+    path <- tryCatch(fs::path_package(package = package, "templates",
+                                      template_name),
+                     error = function(e) ""
+    )
+    if (identical(path, "")) {
+      usethis::ui_stop(
+        "Could not find template {usethis::ui_value(template_name)} \\
+      in package {usethis::ui_value(package)}."
+      )
+    }
+    path
+  }
+  
+  # Set up render_template() helper function
+  render_template <- function(template, data = list(), package = "qCreate") {
+    template_path <- find_template(template, package = package)
+    strsplit(whisker::whisker.render(xfun::read_utf8(template_path),
+                                     data), "\n")[[1]]
+  }
+  
+  # Render and save the template as correct file
+  template_contents <- render_template(template, data, package = package)
+  new <- usethis::write_over(paste0(path, "/", save_as), template_contents)
+  if (ignore) {
+    usethis::use_build_ignore(save_as)
+  }
+  if (open && new) {
+    usethis::edit_file(usethis::proj_path(save_as))
+  }
+  invisible(new)
+}
+

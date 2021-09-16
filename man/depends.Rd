@@ -2,7 +2,7 @@
 % Please edit documentation in R/package_tools.R
 \name{depends}
 \alias{depends}
-\title{Helper function for loading packages}
+\title{Loading packages}
 \usage{
 depends(packages)
 }
@@ -13,7 +13,7 @@ depends(packages)
 Loads and, if necessary, first installs packages
 }
 \description{
-Helper function for loading and, if necessary, installing packages
+Function for loading and, if necessary, installing packages
 }
 \details{
 The function looks up required packages and loads the ones
