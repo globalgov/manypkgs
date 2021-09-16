@@ -52,27 +52,25 @@ and what this codes might represent.
 To test different solutions to the problem, 
 we construct a sample of treaty titles from three different datasets in the `qEnviron::agreements` database.
 Let's take only titles of treaties established in a particular decade, the 1980s, 
-so that we can increase the probability of matches. 
+so that we can increase the probability of matches.
+
+The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known.
 
 ```{r data, warning=FALSE, message=FALSE}
 library(qCreate)
-samples <- lapply(qEnviron::agreements[1:3], function(x) x[x$Beg > "1980-01-01" & x$Beg < "1990-01-01", ])
+samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
-titles <- na.omit(titles)
-titles <- qCreate::standardise_titles(titles)
-titles <- data.frame(titles)
 dates <- lubridate::as_date(unlist(purrr::map(samples, "Beg")))
-dates <- na.omit(lubridate::as_date(dates))
-agreements <- data.frame(cbind(titles, dates))
-agreements <- agreements[order(dates),]
-agreements <- head(agreements, 200)
+sample <- cbind(titles, dates)
+
+# We hand coded 400 agreements from the sample to compare duplicates identification.
+library(readr)
+agreements <- read_delim("hand-coded-sample.csv", ";", escape_double = FALSE, trim_ws = TRUE)
 ```
 
 ## Options for solutions
 
 ### A perfect match
-
-The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known.
 
 If we use the hand coded duplicates to correctly identify all duplicates in the sample, we get a perfect match! 
 That is, we identify all true positives and no false positives.
@@ -80,12 +78,7 @@ The rates of true positives and false positives are represented the receiver ope
 The area under the curve (AUC score), in dark grey, in the graph is maximized (equals 1). 
 
 ```{r hand-code, warning=FALSE, message=FALSE}
-library(readr)
 library(WVPlots)
-hand_coded_sample <- read_delim("hand-coded-sample.csv", ";", escape_double = FALSE, trim_ws = TRUE)
-agreements <- hand_coded_sample %>%
-  dplyr::select("Source", "titles", "duplicate", "dates", "Linkage") %>% 
-  dplyr::mutate(dates = qCreate::standardise_dates(lubridate::dmy(dates)))
 WVPlots::ROCPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # WVPlots::PRPlot(agreements, "duplicate", "duplicate", 1, title = "Duplicates Match")
 # Precision recall (PR) plots are also available for comparing solutions.
