@@ -61,11 +61,21 @@ library(qCreate)
 samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
 dates <- lubridate::as_date(unlist(purrr::map(samples, "Beg")))
-sample <- cbind(titles, dates)
+sample <- cbind.data.frame(titles, dates)
+sample <- sample[complete.cases(sample), ]
+sample$language <- cld2::detect_language(sample$titles)
+sample <- sample %>% 
+  dplyr::filter(language == "en")
+
+small_sample <- dplyr::sample_n(sample, 400)
+small_sample <- small_sample %>% 
+  dplyr::arrange(dates) %>% 
+  dplyr::select(titles, dates)
 
 # We hand coded 400 agreements from the sample to compare duplicates identification.
 library(readr)
-agreements <- read_delim("hand-coded-sample.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+agreements <- readr::read_delim("hand-coded-sample-2.csv", ";", escape_double = FALSE, trim_ws = TRUE)
+agreements$dates <- lubridate::dmy(agreements$dates)
 ```
 
 ## Options for solutions
@@ -95,7 +105,7 @@ That is, we would find zero false positives as well as zero true positives, as t
 
 ```{r unique, warning=FALSE, message=FALSE}
 agreements$unique <- 0
-WVPlots::ROCPlot(agreements, "unique", "duplicate", 1, title = "Unique")
+WVPlots::ROCPlot(frame = agreements, xvar = unique, truthVar = duplicate, truthTarget = 1, title = "Unique")
 # WVPlots::PRPlot(agreements, "unique", "duplicate", 1, title = "Unique")
 ```
 
@@ -105,7 +115,7 @@ If we randomly create a variable with 200 values and use it to find duplicates, 
 The ROC plot illustrates how some true positives as well as a few false positives are matched.
 
 ```{r random, warning=FALSE, message=FALSE}
-agreements$random <- runif(200)
+agreements$random <- runif(400)
 WVPlots::ROCPlot(agreements, "random", "duplicate", 1, title = "Random")
 # WVPlots::PRPlot(agreements, "random", "duplicate", 1, title = "Random")
 # PR results also illustrate well how Unique duplicate matches work.
