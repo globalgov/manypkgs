@@ -1,201 +1,401 @@
-;Source;titles;dates;duplicate;Row duplicate;ID duplicate;Linkage;qID;Ambiguous duplicates
-1;GNEVAR1;Convention Between The Government Of The French Republic And The Government Of The Kingdom Of Tonga On The Delimitation Of Economic Zones;11.01.80;1;1;FRA-TON[9]_1980A[LI];No;FRA-TON[9]_1980A[LI];
-2;ECOLEX1;Convention Between The Government Of The French Republic And The Government Of The Kingdom Of Tonga On The Delimitation Of Economic Zones;11.01.80;1;1;FRA-TON[9]_1980A[LI];No;FRA-TON[9]_1980A[LI];
-3;GNEVAR2;Agreement Between The Government Of The Republic Of Finland And The Government Of The Union Of Soviet Socialist Republics Regarding The Delimitation Of The Areas Of Finnish And Soviet Jurisdiction In The Field Of Fishing In The Gulf Of Finland And The North Eastern Part Of The Baltic Sea;25.02.80;1;3;FIN-RUS[22]_1980A[LI];No;FIN-RUS[22]_1980A[LI];
-4;ECOLEX2;Agreement Between The Government Of The Republic Of Finland And The Government Of The Union Of Soviet Socialist Republics Regarding The Delimitation Of The Areas Of Finnish And Soviet Jurisdiction In The Field Of Fishing In The Gulf Of Finland And The North Eastern Part Of The Baltic Sea;25.02.80;1;3;FIN-RUS[22]_1980A[LI];No;FIN-RUS[22]_1980A[LI];
-5;IEADB1;Bilateral Agreement Between Norway And The European Economic Community On Fishing;27.02.80;1;5;BNEECF_1980A;No;BNEECF_1980A;
-6;GNEVAR3;Agreement Between The Government Of The Republic Of Guinea Bissau And The European Economic Community On Fishing Off The Coast Of Guinea Bissau Protocol Between The European Economic Community And The Government Of The Republic Of Guinea Bissau;27.02.80;0;;NA;No;GR15GB_1980A;
-7;GNEVAR4;Bilateral Agreement Between Norway And The European Economic Community On Fishing;27.02.80;1;5;BNEECF_1980A;No;BNEECF_1980A;
-8;IEADB2;Convention On The Physical Protection Of Nuclear Material;03.03.80;1;8;PHYPNM_1980A;No;PHYPNM_1980A;
-9;GNEVAR5;Convention On The Physical Protection Of Nuclear Material;03.03.80;1;8;PHYPNM_1980A;No;PHYPNM_1980A;
-10;ECOLEX3;Agreement Between The Government Of Portugal And Mexico On The Centre For The Development Of Corn And Wheat;05.03.80;0;;NA;No;MEX-PRT[7]_1980A[DE];
-11;IEADB3;Convention Between Belgium And Luxembourg Regarding The Waters Of The River Sure;17.03.80;1;11;KB04WS_1980A, EL14LS_1980A;No;BLRWRS_1980A;X
-12;GNEVAR6;Agreement Between The Kingdom Of Belgium And The Grand Duchy Of Luxembourg On The Waters Of The Sauer;17.03.80;1;11;BLRWRS_1980A, EL14LS_1980A;No;KB04WS_1980A;X
-13;ECOLEX4;Convention Entre Le Royaume De Belgique Et Le Grand-Duche De Luxembourg Au Sujet Des Eaux De La Sure;17.03.80;0;;;No;EL14LS_1980A;Different language
-14;IEADB4;Amendment To The Technical Exchange And Cooperative Arrangement Between The United States Of America And The Federal Republic Of Germany Of December 20 1974 In The Field Of Management Of Radioactive Wastes;19.03.80;1;14;DEU-USA[15]_1980E20[MA];No;DEU-USA[15]_1980E20[MA];
-15;GNEVAR7;Amendment To The Technical Exchange And Cooperative Arrangement Between The United States Of America And The Federal Republic Of Germany Of December 20 1974 In The Field Of Management Of Radioactive Wastes;19.03.80;1;14;DEU-USA[15]_1980E20[MA];No;DEU-USA[15]_1980E20[MA];
-16;IEADB5;Agreement Between Spain And Portugal On Cooperation In Matters Affecting The Safety Of Nuclear Installations In The Vicinity Of The Frontier;31.03.80;1;16;ESP-PRT[10]_1980A[IS];No;ESP-PRT[10]_1980A[IS];
-17;GNEVAR8;Agreement Between Spain And Portugal On Cooperation In Matters Affecting The Safety Of Nuclear Installations In The Vicinity Of The Frontier;31.03.80;1;16;ESP-PRT[10]_1980A[IS];No;ESP-PRT[10]_1980A[IS];
-18;GNEVAR9;Convention Between The Government Of The French Republic And The Government Of Mauritius On The Delimitation Of The French And Mauritian Economic Zones Between The Islands Of Reunion And Mauritius;02.04.80;1;18;FRA-MUS[13]_1980A[LI];No;FRA-MUS[13]_1980A[LI];
-19;ECOLEX5;Convention Between The Government Of The French Republic And The Government Of Mauritius On The Delimitation Of The French And Mauritian Economic Zones Between The Islands Of Reunion And Mauritius;02.04.80;1;18;FRA-MUS[13]_1980A[LI];No;FRA-MUS[13]_1980A[LI];
-20;GNEVAR10;Protocol On Procedures And Conditions For Japanese Salmon Fishing In The North West Pacific Ocean In 1980;15.04.80;0;;NA;No;PC06PO_1980P;
-21;ECOLEX6;Decree No 11780 Approving The Agreement Between Cape Verde And Portugal On Fisheries Development;20.04.80;0;;NA;A19800420;CPV-PRT[7]_1980A0[FI];
-22;IEADB6;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Paragraph B Of Regulation 4 Of Annex Iv);08.05.80;1;22;PE07AI_1980E4;E19800508;PE07AI_1980E4;
-23;GNEVAR11;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Paragraph B Of Regulation 4 Of Annex Iv);08.05.80;1;22;PE07AI_1980E4;E19800508;PE07AI_1980E4;
-24;ECOLEX7;Convention Concerning International Carriage Of Goods By Rail;09.05.80;0;;NA;No;INTCGR_1980A;
-25;IEADB7;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
-26;IEADB8;Treaty Approving The Shared Water Resources Of The Border Sections Of The Uruguay River And The Pepiri-Guazu River;17.05.80;1;26;TA07PR_1980A, TP20RP_1980A;No;TA07PR_1980A;
-27;GNEVAR12;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
-28;GNEVAR13;Treaty Approving The Shared Water Resources Of The Border Sections Of The Uruguay River And The Pepiri-Guazu River;17.05.80;1;26;TA07PR_1980A, TP20RP_1980A;No;TA07PR_1980A;
-29;ECOLEX8;Tratado Para El Aprovechamiento De Los Recursos Hidricos Compartidos De Los Tramos Limitrofes Del Rio Uruguay Y De Su Afluente El Rio Pepiri-Guazu;17.05.80;0;;;No;TP20RP_1980A;Different language
-30;ECOLEX9;Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources;17.05.80;1;25;PM04BS_1980P;No;PM04BS_1980P;
-31;IEADB9;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
-32;GNEVAR14;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
-33;ECOLEX10;Convention On The Conservation Of Antarctic Marine Living Resources;20.05.80;1;31;CCAMLR_1980A;No;CCAMLR_1980A;
-34;IEADB10;European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities;21.05.80;1;34;EO04CA_1980A;No;EO04CA_1980A;
-35;ECOLEX11;European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities;21.05.80;1;34;EO04CA_1980A;No;EO04CA_1980A;
-36;IEADB11;Agreement Between Norway And Iceland On Fishery And Continental Shelf Questions;28.05.80;1;36;ISL-NOR[5]_1980A[FI], ISL-NOR[7]_1980A[FI];No;ISL-NOR[6]_1980A[FI];X
-37;IEADB12;Bilateral Agreement Between Norway And Iceland Concerning Fisheries And Continental Shelf Questions;28.05.80;1;36;ISL-NOR[5]_1980A[FI], ISL-NOR[6]_1980A[FI];No;ISL-NOR[7]_1980A[FI];X
-38;IEADB13;Agreement On Fisheries And The Continental Shelf Between Norway And Iceland (Herring);28.05.80;1;36;ISL-NOR[7]_1980A[FI], ISL-NOR[6]_1980A[FI];No;ISL-NOR[5]_1980A[FI];X
-39;ECOLEX12;Regulation No41 Uniform Provisions Concerning The Approval Of Motor Cycles With Regard To Noise;01.06.80;0;;NA;No;RN06RN_1980R;
-40;ECOLEX13;Treaty Between The United States Of America And The Cook Islands On Friendship And Delimitation Of The Maritime Boundary Between The United States Of America And The Cook Islands;11.06.80;0;;NA;No;TU12CI_1980A;
-41;ECOLEX14;Agreement On Fisheries Between The European Economic Community And The Kingdom Of Norway;27.06.80;0;;NA;No;FEECKN_1980A;
-42;ECOLEX15;Exchange Of Notes Regarding The Delimitation Of The Border Between Brazil And French Guyana;03.07.80;0;;NA;No;BRA-GUY[6]_1980N[LI];
-43;IEADB14;Agreement Establishing The Caribbean Environmental Health Institute;10.07.80;0;;NA;No;ESCEHI_1980A;
-44;IEADB15;Agreement Of Cooperation Between Mexico And The United States On The Contamination Of The Marine Environment By Hydrocarbon Spills And Other Harmful Substances;24.07.80;0;;NA;No;CM07HS_1980A;
-45;ECOLEX16;Agreement Between The Government Of The Kingdom Of Thailand And The Government Of Socialist Republic Of The Union Of Burma On The Delimitation Of The Maritime Boundary Between The 2 Countries In The Andaman Sea;25.07.80;0;;NA;No;MMR-THA[14]_1980A2[LI];
-46;IEADB16;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 30-2 Meeting;26.07.80;0;;NA;E19800726;SIRW-M_1980E3:SIRW-M_1980E3;
-47;ECOLEX17;Extension Of The Effect Of Minute No 260 Relating To The Emergency Deliveries Of Colorado River Water For Use In Tijuana (Minute No 263);06.08.80;0;;NA;E19800806;EE09TM_1980N260;
-48;IEADB17;Agreement Between The Government Of Portugal And The Government Of Netherlands Concerning The Cooperation In The Agricultural And Water Sectors;08.08.80;1;48;NLD-PRT[8]_1980A;No;NLD-PRT[8]_1980A;
-49;ECOLEX18;Agreement Between The Government Of Portugal And The Government Of Netherlands Concerning The Cooperation In The Agricultural And Water Sectors;08.08.80;1;48;NLD-PRT[8]_1980A;No;NLD-PRT[8]_1980A;
-50;ECOLEX19;Recommendations For Solution On The New River Border Sanitation Problem At Calexico California Mexicali Baja California (Minute No 264);26.08.80;0;;NA;No;RS10CM_1980R2;
-51;IEADB18;Amendment To The List Of Substances In Annexes 1 And Ii To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter (Concerning The Prohibition Of Dumping At Sea Of Crude Oil And Oily Substances And Mixtures);24.09.80;1;51;APPDWM_1980E;No;LS14SM_1980E1;X
-52;ECOLEX20;Amendments To The Annexes To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter;24.09.80;1;51;LS14SM_1980E1;No;APPDWM_1980E;X
-53;IEADB19;Amendment To The Treaty On The International Recognition Of The Deposit Of Microorganisms For The Purposes Of Patent Procedure;26.09.80;0;;NA;E19800926;TI05PP_1980E;
-54;IEADB20;Protocol Amending The Interim Convention On Conservation Of North Pacific Fur Seals;14.10.80;0;;NA;No;II04FS_1980P;
-55;IEADB21;Exchange Of Notes Amending The Convention For The Preservation Of The Halibut Fishery Of The North Pacific Ocean And The Bering Sea;15.10.80;0;;NA;No;IP06BS_1980N;
-56;GNEVAR15;Exchange Of Letters Constituting An Agreement Concerning German-French-Luxembourg Cooperation In The Frontier Areas;16.10.80;1;56;LCGCFA_1980N;No;LCGCFA_1980N;
-57;ECOLEX21;Exchange Of Letters Constituting An Agreement Concerning German-French-Luxembourg Cooperation In The Frontier Areas;16.10.80;1;56;LCGCFA_1980N;No;LCGCFA_1980N;
-58;IEADB22;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;30.10.80;1;58;AUS-JPN[11]_1980P[FI];A19821028;AUS-JPN[11]_1980P[FI];
-59;GNEVAR16;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;30.10.80;1;58;AUS-JPN[11]_1980P[FI];A19821028;AUS-JPN[11]_1980P[FI];
-60;ECOLEX22;General Peace Treaty Between El Salvador And Honduras (With Minutes Of 17 April 1980 Relating To The Establishment Of The El Salvador-Honduras Joint Frontier Commission Point 5 Of The Minutes No Xxx Of The Special Commission Representing El Salvador Guatemala And Honduras Drawn Up On 23 And 24 June 1935 And Special Minutes Drawn Up On 26 March 1936 On The Occasion Of The Official Acceptance Of The 3-Country Boundary Matker);30.10.80;0;;NA;No;HND-SLV[5]_1980A5[ES];
-61;IEADB23;Agreement Between Cape Verde And Portugal On Fisheries Development;05.11.80;0;;NA;A19800420;CPV-PRT[5]_1980A[FI];
-62;IEADB24;Convention On Future Multilateral Cooperation In North East Atlantic Fisheries;18.11.80;1;62;FCNEAF_1980A;No;FCNEAF_1980A;
-63;ECOLEX23;Convention On Future Multilateral Cooperation In North East Atlantic Fisheries;18.11.80;1;62;FCNEAF_1980A;No;FCNEAF_1980A;
-64;IEADB25;Agreement Concerning Fishing In Lac Leman;20.11.80;1;65;DPHWLL_1980A, GR11LL_1980A, RF04IR_1980A;No;FSHNLL_1980A;X
-65;IEADB26;Agreement On The Dephosphatation Of The Waters Of Lac Leman;20.11.80;1;65;FSHNLL_1980A, GR11LL_1980A, RF04IR_1980A;No;DPHWLL_1980A;X
-66;ECOLEX24;Agreement Regarding Fishing In Lake Geneva (With Annex And Implementing Regulations);20.11.80;1;65;FSHNLL_1980A, DPHWLL_1980A, GR11LL_1980A;No;RF04IR_1980A;X
-67;ECOLEX25;Agreement Between The Government Of The Republic Of France And The Federal Council Of Switzerland On Behalf Of The Republic And The Canton Of Geneva On The Dephosphatization Of The Waters Of Leman Lake;20.11.80;1;65;FSHNLL_1980A, DPHWLL_1980A, RF04IR_1980A;No;GR11LL_1980A;X
-68;IEADB27;Convention Creating The Niger Basin Authority;21.11.80;0;;NA;A19801121;CRTNNA_1980A;
-69;IEADB28;Protocol Relating To The Development Fund Of The Niger Basin;21.11.80;1;69;ER11LN_1980P;A19801121;RLTDFN_1980P;X
-70;ECOLEX26;Protocole Relatif Au Fonds De Developpement Du Bassin Du Niger Signe A Faranah Le 21 Novembre 1980;21.11.80;1;69;RLTDFN_1980P;A19801121;ER11LN_1980P;X
-71;ECOLEX27;Treaty Between The United States Of America And New Zealand On The Delimitation Of The Maritime Boundary Between Tokelau And The United States Of America;02.12.80;0;;NA;No;TU10SA_1980A;
-72;IEADB29;Fishing Regulations Applicable In The International Section Of The Minho River (With Annex);03.12.80;0;;NA;No;FR05RA_1980R;
-73;IEADB30;Agreement Between The United States Of America And Canada On Icebreaking Operations In The Great Lakes And St Lawrence Seaway System;05.12.80;1;73;CAN-USA[12]_1980A[OP];No;CAN-USA[12]_1980A[OP];
-74;ECOLEX28;Agreement Between The United States Of America And Canada On Icebreaking Operations In The Great Lakes And St Lawrence Seaway System;05.12.80;1;73;CAN-USA[12]_1980A[OP];No;CAN-USA[12]_1980A[OP];
-75;ECOLEX29;Agreement Between The Government Of The Republic Of Indonesia And The Government Of Papua New Guinea Concerning Maritime Boundaries Between The Republic Of Indonesia And Papua New Guinea And Cooperation On Related Matters 1980;13.12.80;0;;NA;No;GR14RM_1980A;
-76;IEADB31;Agreement Between The Government Of Australia And The Government Of The French Republic Concerning Nuclear Transfers Between Australia And An Associated Exchange Of Letters;07.01.81;0;;NA;No;AUS-FRA[10]_1981A;
-77;IEADB32;Amendment To The Treaty On The International Recognition Of The Deposit Of Microorganisms For The Purposes Of Patent Procedure;20.01.81;0;;NA;E19800926;TI05PP_1981E;
-78;IEADB33;Bilateral Agreement Between Norway And Spain On Fisheries;21.01.81;0;;NA;No;ESP-NOR[4]_1981A[FI];
-79;IEADB34;Agreement On Plant Protection;22.01.81;0;;NA;No;PLNTPR_1981A;
-80;ECOLEX30;Traite De Delimitation Maritime Signe A Paris Le 30 Janvier 1981;30.01.81;0;;NA;No;TD05LJ_1981A;Different language
-81;IEADB35;Agreement Between The Bolivian And Argentinian Governments For The Protection And Conservation Of Vicuna;16.02.81;0;;NA;No;ARG-BOL[6]_1981A[PO];
-82;IEADB36;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Regulation 5 Of Annex Iv);18.02.81;0;;NA;E19800508;PE05AI_1981E5;
-83;IEADB37;Agreement Between The Government Of The United States Of America And The Government Of Portugal On The Fisheries Off The Coasts Of The United States;20.02.81;1;83;PRT-USA[10]_1981A[FI];No;PRT-USA[10]_1981A[FI];
-84;ECOLEX31;Agreement Between The Government Of The United States Of America And The Government Of Portugal On The Fisheries Off The Coasts Of The United States;20.02.81;1;83;PRT-USA[10]_1981A[FI];No;PRT-USA[10]_1981A[FI];
-85;IEADB38;Articles Of Association Of The South Asia Cooperative Environment Programme;25.02.81;0;;NA;No;AA04EP_1981S;
-86;ECOLEX32;Convention De Delimitation Signee A Paris Le 4 Mars 1981;04.03.81;0;;NA;No;DDSPLM_1981A;Different language
-87;IEADB39;Amendments To Appendices 1 And Ii To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Cop-3 1981);08.03.81;0;;NA;E19810308;AI07FC_1981E1:CITES_1973;
-88;IEADB40;Agreement Between The Government Of Australia And The Government Of Canada Concerning The Peaceful Use Of Nuclear Energy;09.03.81;0;;NA;No;AUS-CAN[7]_1981A;
-89;IEADB41;Agreement Between The Government Of Australia And The Government Of Sweden On Conditions And Controls For Nuclear Transfers For Peaceful Purposes Between Australia And Sweden And Exchange Of Letters;18.03.81;0;;NA;No;AUS-SWE[14]_1981A[CT];
-90;IEADB42;Convention For Cooperation In The Protection And Development Of The Marine And Coastal Environment Of The West And Central African Region;23.03.81;1;90;CP06AR_1981A;No;CP06AR_1981A;
-91;IEADB43;Protocol Concerning Cooperation In Combating Pollution In Cases Of Emergency;23.03.81;1;91;CPCPCE_1981P;No;CPCPCE_1981P;
-92;ECOLEX33;Protocol Concerning Cooperation In Combating Pollution In Cases Of Emergency;23.03.81;1;91;CPCPCE_1981P;No;CPCPCE_1981P;
-93;ECOLEX34;Convention For Cooperation In The Protection And Development Of The Marine And Coastal Environment Of The West And Central African Region;23.03.81;1;90;CP06AR_1981A;No;CP06AR_1981A;
-94;ECOLEX35;Protocolo Al Tratado Relativo A La Neutralidad Permanente Y Al Funcionamiento Del Canal De Panama;09.04.81;0;;NA;No;OA11DP_1981P;Different language
-95;IEADB44;Amendment Allowing The Accession Of Uganda To The Agreement For The Establishment Of An Organization To Manage And Develop The Kagera River Basin;19.05.81;0;;;No;AA06KR_1981E;
-96;ECOLEX36;Accession De 50ouganda A 50accord Portant Creation De 50organisation Pour 50amenagement Et Le Developpement Du Bassin De La Riviere Kagera Bujumbura Le 19 Mai 1981;19.05.81;0;;;No;AD19LM_1981A5;Different language
-97;IEADB45;Treaty Between The Government Of The United States Of America And The Government Of Canada On Pacific Coast Albacore Tuna Vessels And Port Privileges;26.05.81;0;;NA;No;CAN-USA[13]_1981A;
-98;IEADB46;Amendment Of Article 4 To The Convention Relating To The Status Of The River Gambia;05.06.81;0;;NA;E19810605;ARRSRG_1981E4;X
-99;IEADB47;Amendment To The Convention Relating To The Creation Of The Gambia River Basin Development Organization And The Convention Relating To The Status Of The River Gambia (Adhesion Of Guinee);06.06.81;1;99;PR05AG_1981E, PR10NC_1981E;E19810605;RC09AG_1981E;X
-100;IEADB48;Amendment Of The Preamble To The Convention Relating To The Creation Of The Gambia River Basin Development Organization (To Reflect Adhesion Of Guinee And Add New Clause);06.06.81;1;99;PR05AG_1981E, RC09AG_1981E;E19810605;PR10NC_1981E;X
-101;IEADB49;Amendment Of The Preamble To The Convention Relating To The Status Of The River Gambia (To Reflect Adhesion Of Guinee);06.06.81;1;99;PR10NC_1981E, RC09AG_1981E;E19810605;PR05AG_1981E;X
-102;IEADB50;Amendment Of Articles 17 And 18 To The Convention Relating To The Creation Of The Gambia River Basin Development Organization;06.06.81;0;;NA;E19810605;AR04DO_1981E17;X
-103;ECOLEX37;Convention Relating To The Creation Of The Gambia River Basin Development Organization Signed At Kaolack On 30 June 1978;06.06.81;1;103;RS04KJ_1981A;E19810605;RC06KJ_1981A;X
-104;ECOLEX38;Convention Relating To The Status Of The River Gambia Signed At Kaolack On 30 June 1978;06.06.81;1;103;RC06KJ_1981A;E19810605;RS04KJ_1981A;X
-105;IEADB51;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 30-3 Meeting;25.07.81;0;;NA;E19800726;SIRW-M_1981E3:SIRW-M_1980E3;
-106;ECOLEX39;Extension Of The Effect Of Minute No 263 Relating To The Emergency Deliveries Of Colorado River Water For Use In Tijuana (Minute No 266);03.08.81;0;;NA;E19800806;EE09TM_1981N263;
-107;IEADB52;Supplementary Convention To The Basic Convention For Technical Cooperation Between Colombia And Brasil On Technical Scientific And Technological Cooperation In The Area Of Basic Sanitation And Environmental Protection;02.09.81;0;;NA;No;SB12EP_1981P;X
-108;ECOLEX40;Convenio Complementario Del Basico De Cooperacion Tecnica Entre El Gobierno De La Republica De Colombia Y Gobierno De La Republica Federativa Del Brasil Sobre Cooperacion Tecnica Cientifica Y Tecnologica En El Area De Saneamiento Basico Y Proteccion Del Medio Ambiente;02.09.81;0;;NA;No;CC37MA_1981A;Different language
-109;ECOLEX41;Agreement For The Establishment Of A Regional Centre On Agrarian Reform And Rural Development Of Latin America And The Caribbean;11.09.81;0;;NA;No;ER07AC_1981A;
-110;ECOLEX42;Agreement On The Continental Shelf Between Iceland And Jan Mayen;22.10.81;0;;NA;No;CNSIJM_1981A;
-111;IEADB53;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;29.10.81;1;111;AUS-JPN[11]_1981P[FI];A19821028;AUS-JPN[11]_1981P[FI];
-112;GNEVAR17;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;29.10.81;1;111;AUS-JPN[11]_1981P[FI];A19821028;AUS-JPN[11]_1981P[FI];
-113;ECOLEX43;Regulation No47 Uniform Provisions Concerning The Approval Of Mopeds Equipped With A Positive-Ignition Engine With Regard To The Emission Of Gaseous Pollutants By The Engine;01.11.81;0;;NA;No;RN11PE_1981R;
-114;IEADB54;Convention For The Protection Of The Marine Environment And Coastal Area Of The South East Pacific;12.11.81;1;114;PE04EP_1981A;No;PE04EP_1981A;
-115;IEADB55;Agreement On Regional Cooperation In Combating Pollution Of The South East Pacific By Oil And Other Harmful Substances In Cases Of Emergency;12.11.81;1;115;RC09CE_1981A;No;RC09CE_1981A;
-116;ECOLEX44;Convention For The Protection Of The Marine Environment And Coastal Area Of The South East Pacific;12.11.81;1;114;PE04EP_1981A;No;PE04EP_1981A;
-117;ECOLEX45;Agreement On Regional Cooperation In Combating Pollution Of The South East Pacific By Hydrocarbons Or Other Harmful Substances In Cases Of Emergency;12.11.81;1;115;RC09CE_1981A;No;RC09CE_1981A;
-118;IEADB56;Agreement Between France And India On Cooperation In The Field Of Environmental Management;13.11.81;0;;NA;No;FRA-IND[6]_1981A[MA];
-119;IEADB57;Protocol To The Agreement Between Between Cameroon And Equatorial Guinea Regarding Livestock Breeding;26.11.81;0;;NA;No;CEGRLB_1981P;X
-120;ECOLEX46;Protocole Daccord Relatif A 50elevage Entre La Republique Unie Du Cameroun Et La Republique De Guinee Equatoriale;26.11.81;0;;NA;No;ED13GE_1981P5;Different language
-121;IEADB58;Agreement On Cooperation In The Field Of Fisheries;07.12.81;1;121;CPRTNF_1981A;No;CPRTNF_1981A;
-122;GNEVAR18;Agreement On Cooperation In The Field Of Fisheries;07.12.81;1;121;CPRTNF_1981A;No;CPRTNF_1981A;
-123;ECOLEX47;Agreement On Fisheries Between The European Economic Community And The Government Of Canada Community Declaration Concerning Article Xi Of The Agreement On Fisheries Between The European Economic Community And The Government Of Canada;29.12.81;0;;NA;No;FE13GC_1981A;
-124;IEADB59;Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique Concerning Fisheries;01.01.82;1;124;ESP-MOZ[7]_1982A[FI];A19820101;ESP-MOZ[7]_1982A[FI];
-125;IEADB60;Protocol For The Application Of The Fisheries Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique;01.01.82;1;125;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];A19820101;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];
-126;ECOLEX48;Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique Concerning Fisheries;01.01.82;1;124;ESP-MOZ[7]_1982A[FI];A19820101;ESP-MOZ[7]_1982A[FI];
-127;ECOLEX49;Protocol For The Application Of The Fisheries Agreement Between The Government Of Spain And The Government Of The Peoples Republic Of Mozambique;01.01.82;1;125;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];A19820101;ESP-MOZ[9]_1982P[FI]:[9]_1982P[FI];
-128;ECOLEX50;Agreement On Marine Delimitation Between The Government Of Australia And The Government Of The French Republic;04.01.82;0;;NA;No;AUS-FRA[7]_1982A[LI];
-129;IEADB61;Protocol Agreement On The Conservation Of Common Natural Resources;24.01.82;1;129;CNSRCN_1982P;No;CNSRCN_1982P;
-130;ECOLEX51;Protocol Agreement On The Conservation Of Common Natural Resources;24.01.82;1;129;CNSRCN_1982P;No;CNSRCN_1982P;
-131;IEADB62;Convention Between The French Republic And The Kingdom Of Belgium Concerning Improvement Of The Common River Lys Between Deulemont And Menin;03.02.82;1;131;BEL-FRA[10]_1982A;No;BEL-FRA[10]_1982A;
-132;ECOLEX52;Convention Between The French Republic And The Kingdom Of Belgium Concerning Improvement Of The Common River Lys Between Deulemont And Menin;03.02.82;1;131;BEL-FRA[10]_1982A;No;BEL-FRA[10]_1982A;
-133;IEADB63;Nauru Agreement Concerning Cooperation In The Management Of Fisheries Of Common Interest;11.02.82;1;133;NCMFCI_1982A;A19820211;NCMFCI_1982A;
-134;IEADB64;1 Arrangement Implementing The Nauru Agreement Setting Forth Minimum Terms And Conditions Of Access To The Fisheries Zones Of The Parties;11.02.82;0;;NA;A19820211;AI09ZP_1982A;
-135;ECOLEX53;Nauru Agreement Concerning The Cooperation In The Management Of Fisheries Of Common Interest;11.02.82;1;133;NCMFCI_1982A;A19820211;NCMFCI_1982A;
-136;IEADB65;Regional Convention For The Conservation Of The Red Sea And Gulf Of Aden Environment;14.02.82;1;136;RC04AE_1982A;A19820214;RC04AE_1982A;
-137;IEADB66;Protocol Concerning Regional Cooperation In Combating Pollution By Oil And Other Harmful Substances In Cases Of Emergency To The Regional Convention For The Conservation Of The Red Sea And Of The Gulf Of Aden Environment;14.02.82;1;137;RC06CE_1982P;A19820214;RC13AE_1982P;X
-138;ECOLEX54;Protocol Concerning Regional Cooperation In Combating Pollution By Oil And Other Harmful Substances In Cases Of Emergency;14.02.82;1;137;RC13AE_1982P;A19820214;RC06CE_1982P;X
-139;ECOLEX55;Regional Convention For The Conservation Of The Red Sea And Of The Gulf Of Aden Environment;14.02.82;1;136;RC04AE_1982A;A19820214;RC04AE_1982A;
-140;IEADB67;Agreement Regarding Environmental Protection Between France And Cote Divoire;22.02.82;0;;NA;No;CIV-FRA[5]_1982A[PO];
-141;IEADB68;Convention For The Conservation Of Salmon In The North Atlantic Ocean;02.03.82;1;141;CNSNAO_1982A;No;CNSNAO_1982A;
-142;ECOLEX56;Convention For The Conservation Of Salmon In The North Atlantic Ocean;02.03.82;1;141;CNSNAO_1982A;No;CNSNAO_1982A;
-143;IEADB69;Agreement Between The Government Of Australia And The Government Of Japan For Cooperation In The Peaceful Uses Of Nuclear Energy;05.03.82;0;;NA;No;AUS-JPN[8]_1982A;
-144;IEADB70;Exchange Of Notes Amending The Agreement Between The Government Of Canada And The Government Of The United States Of America Concerning A Joint Marine Pollution Contingency Plan;17.03.82;0;;NA;No;CAN-USA[14]_1982N[PL];
-145;ECOLEX57;Agreement Between Argentina And Hungary On Cooperation In The Field Of Animal Health;01.04.82;0;;NA;No;ARG-HUN[6]_1982A;
-146;IEADB71;Protocol Concerning Mediterranean Specially Protected Areas;03.04.82;0;;NA;No;MDTSPA_1982P;
-147;ECOLEX58;Regulation No49 Uniform Provisions Concerning The Measures To Be Taken Against The Emission Of Gaseous And Particulate Pollutants From Compression-Ignition Engines For Use In Vehicles And The Emission Of Gaseous Pollutants From Positive-Ignition Engines Fuelled With Natural Gas Or Liquefied Petroleum Gas For Use In Vehicles;15.04.82;0;;NA;No;RN24UV_1982R;
-148;IEADB72;Convention Regarding The Methods Of Financing Joint Works;12.05.82;0;;NA;No;RGMFJW_1982A;
-149;IEADB73;Benelux Convention On Nature Conservation And Landscape Protection;08.06.82;1;150;BNNCLP_1982A;No;BNNCLP_1982A;
-150;ECOLEX59;Benelux Convention On Nature Conservation And Landscape Protection;08.06.82;1;150;BNNCLP_1982A;No;BNNCLP_1982A;
-151;IEADB74;Agreement Between Sudhevea And Embrada Of Brazil And Rrim Of Malaysia For The Accomplishment Of A Cooperation Research Programme On Rubber Tree Disease In Brazil;22.06.82;0;;NA;No;BRA-MYS[13]_1982A[RS];
-152;ECOLEX60;Agreement Between The Government Of The French Republic And The Government Of The United Kingdom Of Great Britain And Northern Ireland Relating To The Delimitation Of The Continental Shelf In The Area East Of 30 Minutes West Of The Greenwich Meridian;24.06.82;0;;NA;No;FRA-GBR[20]_1982A30[LI];
-153;ECOLEX61;Regulation No51 Uniform Provisions Concerning The Approval Of Motor Vehicles Having At Least 4 Wheels With Regard To Their Noise Emissions;15.07.82;0;;NA;No;RN09NE_1982R4;
-154;ECOLEX62;Agreement Between The European Economic Community And The Government Of The Republic Of Senegal Amending The Agreement On Fishing Off The Coast Of Senegal Signed On 15 June 1979;19.07.82;0;;NA;No;EE09SJ_1982A;
-155;IEADB75;Amendments To The Schedule To The International Convention For The Regulation Of Whaling 34 Meeting;24.07.82;0;;NA;E19800726;SCIRWM_1982E34:SIRW-M_1980E3;
-156;IEADB76;Amendments To The Convention For The Establishment Of The European And Mediterranean Plant Protection Organization;23.09.82;0;;NA;No;EEMPPO_1982E;
-157;ECOLEX63;Indo-Bangladesh Memorandum Of Understanding On The Sharing Of Ganga Waters At Farakka;07.10.82;0;;NA;No;IM04WF_1982S;
-158;IEADB77;Convention On Protection Of Migratory Birds;08.10.82;0;;NA;No;PRTCMB_1982A;
-159;IEADB78;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;28.10.82;1;159;AUS-JPN[11]_1982P[FI];A19821028;AUS-JPN[11]_1982P[FI];
-160;GNEVAR19;Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing;28.10.82;1;159;AUS-JPN[11]_1982P[FI];A19821028;AUS-JPN[11]_1982P[FI];
-161;IEADB79;Constitutional Agreement Of The Latin American Organization For Fisheries Development;29.10.82;0;;NA;No;OLDEPESCA_1982A;
-162;IEADB80;Protocol To The Agreement Of Cooperation Between Congo And Gabon On Marine Fisheries;09.11.82;0;;COG-GAB[17]_1982P;No;COG-GAB[6]_1982P[FI];X
-163;ECOLEX64;Protocole Daccord De Cooperation Entre La Republique Du Congo Et La Republique Gabonaise En Matiere De Peche Maritime 1982;09.11.82;0;;COG-GAB[6]_1982P[FI];No;COG-GAB[17]_1982P;Different language
-164;IEADB81;Protocol Amending The Convention On Fishing And Conservation Of The Living Resources In The Baltic Sea And The Belts To Provide For Eec Membership;11.11.82;1;164;FCLBSB_1982E;P19821111;IF07EM_1982P;X
-165;ECOLEX65;Amendments To The Convention On Fishing And Conservation Of The Living Resources In The Baltic Sea And The Belts;11.11.82;1;164;IF07EM_1982P;P19821111;FCLBSB_1982E;X
-166;IEADB82;Protocol To Amend The Convention On 3 Party Liability In The Field Of Nuclear Energy;16.11.82;1;166;SPPLNE_1982P3, PL07TJ_1982P3;No;PRTLNE_1982P3;X
-167;IEADB83;Protocol To Amend The Convention Supplementary To The Convention On 3 Party Liability In The Field Of Nuclear Energy;16.11.82;1;166;PRTLNE_1982P3, PL07TJ_1982P3;No;SPPLNE_1982P3;X
-168;ECOLEX66;Protocol To Amend The Convention On 3 Party Liability In The Field Of Nuclear Energy Of 29th July 1960 As Amended By The Additional Protocol Of 28th January 1964;16.11.82;1;166;PRTLNE_1982P3, SPPLNE_1982P3;No;PL07TJ_1982P3;X
-169;IEADB84;Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat;03.12.82;1;169;WIIEWH_1982P:RAMSA_1971;No;WIIEWH_1982P:RAMSA_1971;
-170;ECOLEX67;Protocol To Amend The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat;03.12.82;1;169;WIIEWH_1982P:RAMSA_1971;No;WIIEWH_1982P:RAMSA_1971;
-171;IEADB85;Convention Amending And Completing The Supplementary Convention To The Convention Regarding Management Of The Rhine Between StrasbourgKehl And LauterbourgNeuburgweiler;06.12.82;0;;ME30LD_1982A5;No;IC05SL_1982A;X
-172;GNEVAR20;Tokyo Protocol Extending The Period Of Validity Of The Agreement On Fishing Off The Coast Of Japan In 1977;06.12.82;0;;NA;No;TE04CJ_1982P;
-173;ECOLEX68;Convention Modifiant Et Completant La Convention Additionelle Du 16 Juillet 1975 A La Convention Du 4 Juillet 1969 Entre La Republique Francaise Et La Republique Federale Dallemagne Au Sujet De 50amenagement Du Rhin Entre Strasbourg-Kehl Et Lauterbourg-Neuburgweier Signee A Bonn Le 6 Decembre 1982;06.12.82;0;;IC05SL_1982A;No;ME30LD_1982A5;Different language
-174;IEADB86;United Nations Convention On The Law Of The Sea;10.12.82;1;174;UNCLOS_1982A;No;UNCLOS_1982A;
-175;ECOLEX69;United Nations Convention On The Law Of The Sea;10.12.82;1;174;UNCLOS_1982A;No;UNCLOS_1982A;
-176;IEADB87;Agreement Between The Government Of Tuvalu And The Deep-Sea Fisheries Association Of The Republic Of Korea Concerning The Licensing Of Fishing Vessels Of The Republic Of Korea To Fish Within The Fishery Limits Of Tuvalu;14.12.82;1;176;KOR-TUV[17]_1982A[FI];No;KOR-TUV[17]_1982A[FI];
-177;ECOLEX70;Agreement Between The Government Of Tuvalu And The Deep-Sea Fisheries Association Of The Republic Of Korea Concerning The Licensing Of Fishing Vessels Of The Republic Of Korea To Fish Within The Fishery Limits Of Tuvalu;14.12.82;1;176;KOR-TUV[17]_1982A[FI];No;KOR-TUV[17]_1982A[FI];
-178;ECOLEX71;Agreement Between The Government Of The Republic Of France And The Government Of Fiji Relating To The Delimitation Of Their Economic Zone;19.01.83;0;;NA;No;FJI-FRA[9]_1983A[LI];
-179;IEADB88;Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Annex 1);01.02.83;0;;NA;E19800508;PEBSAA_1983E1;
-180;ECOLEX72;Agreement Between The European Economic Community And The Government Of The Revolutionary Peoples Republic Of Guinea On Fishing Off The Guinean Coast Protocol Defining The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Revolutionary Peoples Republic Of Guinea Exchange Of Letters;07.02.83;0;;NA;No;EE22GL_1983A;
-181;IEADB89;Agreement Regarding Economic And Technical Cooperation In The Field Of Agriculture;15.02.83;0;;NA;No;RGETCA_1983A;
-182;IEADB90;Agreement Between South Africa Swaziland And Mozambique Relative To The Establishment Of A Tripartite Permanent Technical Committee Regarding Rivers Of Common Interest;17.02.83;1;182;GR14TC_1983A;No;SA11CI_1983A;X
-183;ECOLEX73;Agreement Between The Government Of The Republic Of South Africa The Government Of The Kingdom Of Swaziland And The Government Of The Peoples Republic Of Mozambique Relative To The Establishment Of A Tripartite Permanent Technical Committee;17.02.83;1;182;SA11CI_1983A;No;GR14TC_1983A;X
-184;IEADB91;Protocol Amending The Convention For The Prevention Of Marine Pollution By Dumping From Ships And Aircraft;02.03.83;0;;NA;No;IPPDSA_1983P;
-185;ECOLEX74;Eastern Pacific Ocean Tuna Fishing Agreement;14.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
-186;IEADB92;Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
-187;IEADB93;Protocol To The Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;0;;NA;A19830314;ESPOTF_1983P:ESPOTF_1983A;
-188;ECOLEX75;Eastern Pacific Ocean Tuna Fishing Agreement;15.03.83;1;185;ESPOTF_1983A;A19830314;ESPOTF_1983A;
-189;IEADB94;Convention For The Protection And Development Of The Marine Environment Of The Wider Caribbean Region;24.03.83;1;189;PDEWCR_1983A;A19830324;PDEWCR_1983A;
-190;IEADB95;Protocol Concerning Cooperation In Combating Oil Spills In The Wider Caribbean Region;24.03.83;1;190;CC04CR_1983P;A19830324;CC04CR_1983P;
-191;ECOLEX76;Convention For The Protection And Development Of The Marine Environment Of The Wider Caribbean Region;24.03.83;1;189;PDEWCR_1983A;A19830324;PDEWCR_1983A;
-192;ECOLEX77;Protocol Concerning Cooperation In Combating Oil Spills In The Wider Caribbean Region;24.03.83;1;190;CC04CR_1983P;A19830324;CC04CR_1983P;
-193;IEADB96;Agreement For Cooperation And Consultation Between The Central African States For The Conservation Of Wild Fauna;16.04.83;1;193;CC05WF_1983A;No;CC05WF_1983A;
-194;IEADB97;Agreement Between The Central African States Concerning The Creation Of A Special Fund For The Conservation Of Wild Fauna;16.04.83;1;194;CA06WF_1983A;No;CA06WF_1983A;
-195;ECOLEX78;Agreement Between The Central African States Concerning The Creation Of A Special Fund For The Conservation Of Wild Fauna;16.04.83;1;194;CA06WF_1983A;No;CA06WF_1983A;
-196;ECOLEX79;Agreement For Cooperation And Consultation Between The Central African States For The Conservation Of Wild Fauna;16.04.83;1;193;CC05WF_1983A;No;CC05WF_1983A;
-197;IEADB98;Amendments To The Convention On The Protection Of The Rhine Against Pollution By Chlorides;29.04.83;0;;NA;No;PRTRPC_1983E;
-198;IEADB99;Gaborone Amendment Of Article Xxi To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Permit Accession By Regional Economic Integration Organizations);30.04.83;0;;NA;E19810308;GA13IO_1983E:CITES_1973;
-199;IEADB100;Amendments To Appendices 1 And Ii To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Cop-4 1983);30.04.83;0;;NA;E19810308;AI07FC_1983E1:CITES_1973;X
-200;ECOLEX80;Amendment To The Convention On International Trade In Endangered Species Of Wild Fauna And Flora (Article Xxi);30.04.83;0;;NA;E19810308;IT06AX_1983E:CITES_1973;X
+"titles","dates","duplicate","source"
+"Agreement Between The Government Of Australia And The Government Of The Union Of The Soviet Socialist Republics Relating To Cooperation In Fisheries","15.02.90",0,"IEADB5"
+"Protocol For The Protection Of The Marine Environment Against Pollution From Land Based Sources","21.02.90",0,"ECOLEX3"
+"Agreement Between The Government Of Portugal And The Government Of Sao Tome And Principe For The Cooperation In The Water Sector","02.03.90",0,"GNEVAR4"
+"Amendments Regarding The BUKCarriage (IBC Code) To The International Convention For The Prevention Of Pollution From Ships","16.03.90",0,"IEADB14"
+"Agreement Between The United States Of America And The Peoples Republic Of China Concerning Fisheries Off The United States Coast","22.03.90",1,"IEADB17"
+"Agreement Between The United States Of America And The Peoples Republic Of China Concerning Fisheries Off The United States Coast","22.03.90",1,"GNEVAR6"
+"Fisheries Off The United States Coast Agreement Between The United States Of America And The Peoples Republic Of China","22.03.90",1,"ECOLEX6"
+"Agreement Between The United States Of America And Japan Regarding Squid And Large-mesh Drifinet Fisheries In The North Pacific Ocean (with Attachment)","12.04.90",0,"GNEVAR8"
+"Memorandum Of Understanding Between The United States DepArticleent Of Agriculture And Forestry Canada On Cooperation In The Field Of Forestry-related Programs","17.05.90",0,"ECOLEX16"
+"Protocol Establishing For The Period 1 January 1990 To 31 December 1991 The Fishing Opportunities And The Financial Contribution Provided For In The Agreement Between The European Economic Community And The Government Of The Peoples Republic Of Mozambique On Fisheries Relations","28.05.90",0,"GNEVAR18"
+"Agreement On The Creation Of A Fund For Studies And Experts Destined To The Protection Of The Environment","05.06.90",0,"IEADB25"
+"Agreement On Trade And Economic Cooperation Between Australia And The Socialist Republic Of Viet Nam","14.06.90",0,"ECOLEX19"
+"Adjustment To The Montreal Protocol On Substances That Deplete The Ozone Layer","29.06.90",0,"IEADB28"
+"Protocol Between Cyprus And Syria For Establishing A Joint General Committee For Cooperation In The Economic Commercial Industrial Agricultural Tourist Communications And Other Fields","01.07.90",0,"IEADB30"
+"Agreement Between The Government Of The Federal Republic Of Germany And The Republic Of Tunisia On The Environment","17.07.90",0,"IEADB34"
+"2 Arrangement Implementing The Nauru Agreement Setting Forth Additional Terms And Conditions Of Access To The Fisheries Zones Of The PArticlees","19.09.90",0,"IEADB42"
+"Agreement On Fisheries Enforcement","26.09.90",0,"ECOLEX37"
+"Agreement Between The Government Of The French Republic And The Government Of The Kingdom Of Belgium Relating To The Delimitation Of The Continental Shelf Signed In Brussels October 8 1990","08.10.90",0,"GNEVAR37"
+"Convention On The International Commission For The Protection Of The Elbe","08.10.90",0,"ECOLEX41"
+"Agreement On Cooperation In The Field Of Atomic Energy","25.10.90",0,"IEADB52"
+"Environmental Cooperation Memorandum Between The United States Of America And Brazil 1990","16.11.90",0,"ECOLEX51"
+"Agreement For The Development Of The South American Camelids (Vicuna)","21.11.90",0,"IEADB55"
+"Fishing Agreement Between The Government Of The Republic Of Trinidad And Tobago And The Government Of Barbados","23.11.90",1,"GNEVAR44"
+"Fishing Agreement Between The Government Of The Republic Of Trinidad And Tobago And The Government Of Barbados","23.11.90",1,"ECOLEX52"
+"Fishing Agreement Between The Government Of The Republic Of Trinidad And Tobago And The Government Of Barbados","23.11.90",1,"IEADB56"
+"Joint Declaration On The Conservation Of Fishery Resources Of The Governments Of Argentina And The United Kingdom Of Great Britain","28.11.90",0,"GNEVAR45"
+"Agreement Between The European Economic Community And The Government Of Mauritius On Fishing In Mauritian Waters","29.11.90",0,"GNEVAR46"
+"Agreement Between The Government Of The Russian Federation And The Swiss Federal Council In Case Of Disasters And Major Accidents","01.12.90",0,"ECOLEX56"
+"Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing","12.12.90",0,"GNEVAR48"
+"Convention On The Ban Of The Import Into Africa And The Control Of Transboundary Movement And Management Of Hazardous Wastes Within Africa","30.01.91",0,"IEADB63"
+"Agreement Establishing Common Fisheries Surveillance Zones Of PArticlecipating Member States Of The Organisation Of Eastern Caribbean States","01.02.91",0,"IEADB64"
+"Agreement Between Committee On Peaceful Uses Of Atomic Energy Of The Republic Of Bulgaria And The Greek Committee On Atomic Energy On Early Notification Of Nuclear Accidents And Exchange Of Information About Nuclear Facilities","15.02.91",0,"GNEVAR56"
+"Agreement Of Cooperation In The Domain Of MArticleme Fisheries Between Cameroon And Senegal","19.02.91",0,"GNEVAR57"
+"Agreement Between The Government Of United States Of America And The Government Of The French Republic On Matters Relating To Fishing In The Economic Zones Of The French Overseas Territories New Caledonia And Wallis And Futuna Islands","01.03.91",0,"ECOLEX65"
+"Agreement Between Canada And The United States On Air Quality","13.03.91",0,"IEADB73"
+"Arrangement Between The Government Of The United States And The Government Of Panama For Support And Assistance From The USA Coast Guard For The National Maritime Service Of The Ministry Of Government And Justice","18.03.91",0,"ECOLEX70"
+"Amendments To The International Convention For The Protection Of New Varieties Of Plants","19.03.91",0,"IEADB75"
+"Treaty Establishing A Common Market Between The Argentine Republic The Federal Republic Of Brazil The Republic Of Paraguay And The Eastern Republic Of Uruguay","26.03.91",0,"IEADB77"
+"Agreement Of Technical Cooperation On Coffee Between The Republic Of Portugal And The Peoples Republic Of Angola","12.04.91",0,"ECOLEX72"
+"Fisheries North Pacific Driftnet Agreement Between The United States Of America And Japan","23.04.91",0,"ECOLEX74"
+"Agreement On Veterinary Services Between Malta And Tunisia","24.05.91",0,"IEADB87"
+"Agreement In The Form Of Exchange Of Notes On The Further Extension Of And Amendments To The Agreement Between The United States Of America And The European Economic Community Concerning Fishing Off The Coast Of The United States","10.06.91",0,"GNEVAR69"
+"Fisheries Off The United States Coast Agreement Between The United States Of America And The Republic Of Korea Of 1991","19.06.91",0,"ECOLEX81"
+"Western Indian Ocean Tuna Organization Convention","19.06.91",0,"ECOLEX82"
+"Agreement Between The Republic Of Estonia And RSFSR On The Use And Protection Of Natural Resources Of The Lake Peipsi From 1991 To 1995","01.08.91",0,"GNEVAR76"
+"Exchange Of Notes Between Canada And The United States Extending Annex 4 Of The Treaty Concerning Pacific Salmon","12.08.91",0,"GNEVAR80"
+"Agreement Between The Government Of The Russian Federation And The Government Of The Republic Of Korea On Cooperation In The Sphere Of Fisheries","16.09.91",0,"ECOLEX94"
+"Exchange Of Notes Between The Government Of Canada And The Government Of The Kingdom Of Denmark Constituting An Agreement To Amend Annex B Of The 1983 Agreement Relating To The Marine Environment","07.10.91",0,"GNEVAR83"
+"Annex 5 To The Protocol On Environmental Protection To The Antarctic Treaty (area Protection And Management) Approval Of Recommendation 16-10","17.10.91",0,"IEADB118"
+"Agreement Between The Government Of The United States Of America And The Government Of Bolivia Concerning The Establishment Of An Enterprise For The Americas Environmental Account At The National Fund For The Environment","26.11.91",0,"ECOLEX106"
+"Agreement On The Conservation Of Populations Of European Bats","04.12.91",0,"IEADB127"
+"Agreement For The Establishment Of The Intergovernmental Organization For Marketing Information And Cooperation Services For Fishery Products In Africa","13.12.91",0,"IEADB131"
+"Memorandum Of Understanding Between The Government Of The United States Of America And The Government Of The Peoples Republic Of China On Effective Cooperation And Implementation Of United Nations General Assembly Resolution 46215 Of December 20 1991","20.12.91",0,"GNEVAR104"
+"Bilateral Agreement Between Jordan And Libya In Sea Trade Transportation And Sea Navigation","20.01.92",0,"ECOLEX115"
+"Agreement On The Terms Of Trade Of Live Shellfish Between The Government Of The French Republic And The Government Of The Republic Of Iceland (all 8 Annexes) Signed In Paris January 30 1992","30.01.92",0,"GNEVAR108"
+"Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Regulaton 6 Of Annex 4)","04.02.92",0,"IEADB133"
+"Convention For The Conservation Of Anadromous Stocks","11.02.92",0,"ECOLEX121"
+"Amendments To Annex 1 Of The International Convention For The Prevention Of Pollution From Ships","06.03.92",0,"IEADB142"
+"Treaty On The Establishment And Functioning Of The Joint Water Commission Between The Government Of The Republic Of South Africa And The Government Of The Kingdom Of Swaziland","13.03.92",0,"IEADB146"
+"Treaty On The Development And Utilisation Of The Water Resources Of The Komati River Basin Between The Government Of The Republic Of South Africa And The Government Of The Kingdom Of Swaziland","13.03.92",1,"IEADB145"
+"Treaty On The Development And Utilisation Of The Water Resources Of The Komati River Basin Between The Government Of The Republic Of South Africa And The Government Of The Kingdom Of Swaziland","13.03.92",1,"GNEVAR112"
+"Treaty On Development And Utilisation Of The Water Resources Of The Komati River Basin Between The Kingdom Of Swaziland And The Government Of The Republic Of South Africa","13.03.92",1,"GNEVAR111"
+"Convention On The Transboundary Effects Of Industrial Accidents","17.03.92",0,"ECOLEX129"
+"Convention On The Protection And Use Of Transboundary Watercourses And International Lakes","17.03.92",0,"ECOLEX130"
+"Protocol Defining For The Period 3 May 1990 To 2 May 1992 The Fishing Opportunities And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Peoples Republic Of Angola On Fishing Off Angola","07.04.92",0,"GNEVAR115"
+"Convention On The Protection Of The Black Sea Against Pollution","21.04.92",0,"IEADB159"
+"Environmental Cooperation-Agreement Between The United States Of America And Ukraine Of 1992","07.05.92",1,"ECOLEX146"
+"Environmental Cooperation Agreement Between The United States Of America And Ukraine Of 1992","07.05.92",1,"IEADB164"
+"United Nations Framework Convention On Climate Change","09.05.92",0,"ECOLEX147"
+"Agreement Establishing The Inter-American Institute For Global Change Research","13.05.92",1,"ECOLEX148"
+"Agreement Establishing The Inter-American Institute For Global Change Research","13.05.92",1,"IEADB166"
+"Memorandum Of Understanding Between The Government Of Canada And The Government Of Lithuania On Mutual Fisheries Relations","15.05.92",0,"ECOLEX149"
+"Agreement Between The Ministry Of Ecology And Natural Resources Of The Russian Federation And The Federal Ministry Of Environment Conservation And Safety Of Nuclear Reactors About Assistance To Development Of The Economic Cooperation Directed On The Solution Of Problems In The Field Of Environmental Protection (about Creation Of Ecological Bureau)","28.05.92",0,"IEADB171"
+"Convention On Biological Diversity","05.06.92",0,"IEADB173"
+"Agreement On Cooperation In The Field Of Plant Quarantine And Plant Protection Between Hungary And Albania","12.06.92",0,"ECOLEX158"
+"Agreement Between Denmark (on Behalf Of Greenland) Iceland And Norway Concerning The Stock Of Capelin In The Waters Between Greenland Iceland And Jan Mayen","25.06.92",0,"IEADB183"
+"Cooperation Agreement On The Forecast Prevention And Mitigation Of Natural And Technological Disasters","18.07.92",0,"IEADB187"
+"Memorandum Of Understanding Between The Belize Ministry Of Agriculture And Fisheries And The Ministry Of Agriculture Of Jamaica","18.08.92",0,"GNEVAR133"
+"Agreement Between The Ministry Of Energy And Electrification The Ministry Of Environmental Protection Of Ukraine And The Federal Minister For The Environment Nature Conservation And Nuclear Safety On The Implementation Of The Pilot Project Facility For The Removal Of Sulphur From Combustion Gas For The 9th Power-generating Unit Of The Dobrotvir Thermoelectric Power Plant","27.08.92",0,"ECOLEX171"
+"Ancillary Agreement To The Deed Of Undertaking And Relevant Agreements Entered Into Between The Lesotho Highlands Development Authority And The Government Of The Republic Of South Africa","31.08.92",0,"GNEVAR135"
+"Agreement Between The Government Of The Republic Of Namibia And The Government Of The Republic Of South Africa On The Establishment Of A Permanent Water Commission Signed At Noordoewer 14 September 1992","14.09.92",0,"ECOLEX175"
+"International Boundary Agreement Between The Sultanate Of Oman And The Republic Of Yemen","01.10.92",0,"GNEVAR141"
+"Palau Arrangement For The Management Of The Western Pacific PUSA Seine Fishery","28.10.92",0,"IEADB200"
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Norway","02.11.92",1,"IEADB206"
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Norway","02.11.92",1,"ECOLEX183"
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The United States Of America Concerning Fisheries Off The Coasts Of The United States","12.11.92",0,"GNEVAR150"
+"Minute No 289 Of The International Boundary And Water Commission United States And Mexico Entitled Observation On The Quality Of The Waters Along The United States And Mexico Border","13.11.92",0,"ECOLEX187"
+"Amendment To The Montreal Protocol On Substances That Deplete The Ozone Layer","25.11.92",0,"ECOLEX189"
+"Amendment 3 To The Constitutional Agreement Of The Latin American Organization For Fisheries Development","27.11.92",0,"IEADB216"
+"Agreement On Relations In The Sea Fisheries Sector Between The European Economic Community And The Argentine Republic Exchange Of Letters Protocol 1 Establishing The Fishing Opportunities And Financial Compensation Provided For In The Agreement On Relations In The Sea Fisheries Sector Betweeen The Argentine Republic And The European Economic Community","30.11.92",0,"ECOLEX192"
+"Protocol Supplementary To The Agreement Between The Government Of Ireland And The Government Of The United Kingdom Concerning The Delimitation Of Areas Of The Continental Shelf Between The 2 Countries","08.12.92",0,"GNEVAR154"
+"Treaty Between The Czech Republic Government And The Slovak Republic Government On Mutual Relations And Principles Of Cooperation In Agriculture Food Industry Forestry And Water Economy Under The Conditions Of The Customs Union","10.12.92",0,"ECOLEX195"
+"Agreement Between The Republic Of Italy And The Republic Of Albania On The Reciprocal Delimitation Of The Continental Shelf With Final Act Made At Tirana On 18 December 1992","18.12.92",0,"GNEVAR158"
+"Agreement On The Exchange Of Information And Experience On Early Notification Of Nuclear Accidents And On Nuclear Safety And Protection Of Radiation","21.12.92",0,"IEADB225"
+"Agreement Between The Government Of The Russian Federation And The Kingdom Denmark Government About Cooperation In The Field Of Environmental Protection","05.01.93",0,"IEADB227"
+"Fisheries Of The United States Coast-Agreement Between The United States Of America And Latvia","08.04.93",0,"GNEVAR173"
+"Agreement Between The Ministry Of Agriculture And Food Of Ukraine And The Ministry Of Agriculture Of The Czech Republic On Economic Scientific Technical And Production Cooperation","09.04.93",0,"ECOLEX222"
+"Agreement Between The Federal Republic Of Germany And The Republic Of Lithuania On Protection Of The Environment","16.04.93",0,"IEADB248"
+"Arrangement Implementing The Nauru Agreement Setting Forth Minimum Terms And Conditions Of Access To The Fisheries Zones Of The PArticlees","05.05.93",0,"ECOLEX225"
+"Amendments To The Schedule To The International Convention For The Regulation Of Whaling 45 Meeting","14.05.93",0,"IEADB255"
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Republic Of Finland On Fisheries","07.06.93",1,"ECOLEX233"
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Republic Of Finland On Fisheries","07.06.93",1,"IEADB261"
+"Convention On Civil Liability For Damage Resulting From Activities Dangerous To The Environment","21.06.93",0,"IEADB265"
+"Convention Concerning The Prevention Of Major Industrial Accidents","22.06.93",0,"IEADB266"
+"Agreement On Fisheries And The Marine Environment Between The European Economic Community And The Republic Of Iceland","24.06.93",0,"GNEVAR182"
+"Constitution Of The Centre For Marketing Information And Advisory Services For Fishery Products In The Arab Region (INFOSAMAK)","24.06.93",0,"ECOLEX240"
+"Protocol Establishing The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Republic Of The Gambia On Fishing Off The Coast Of The Gambia For The Period 1 July 1993 To 30 June 1996","01.07.93",0,"ECOLEX244"
+"Amendment To The Convention For The Establishment Of A Sub-Regional Commission On Fisheries","14.07.93",1,"GNEVAR190"
+"Amendment Of The Convention Of 29 March 1985 On The Creation Of The Fisheries Sub-Regional Commission","14.07.93",1,"ECOLEX245"
+"Agreement Between The Government Of The Russian Federation And The Government Of Czech Republic On Economic Scientific And Technical Cooperation In The Sphere Of Agro-industrial Complex","13.08.93",0,"ECOLEX249"
+"Agreement Between State Committee Of Fisheries And Fishing Industry Of The Ukraine And Federal Fisheries Committee Of The Russian Federation Regarding Fisheries (1993)","14.09.93",0,"ECOLEX257"
+"Agreement Between The Government Of Kazakhstan And The Government Of The Russian Federation On Cooperation In The Field Of Peaceful Use Of Atomic Energy","23.09.93",0,"IEADB284"
+"Agreement Between The Russian Federation And Armenia On Cooperation In The Sphere Of Geodesy CArticlegraphy Cadastre And Distant Zoning Of The EArticle","04.10.93",0,"ECOLEX260"
+"Protocol Amending Articlecle 1 (A) Articlecle 14 (1) And Articlecle 14 (3) (B) Of The European Agreement Of 30 September 1957 Concerning The International Carriage Of Dangerous Goods By Road (ADR)","28.10.93",1,"GNEVAR214"
+"Protocol Amending Articlecle 1 (a) Articlecle 14 (1) And Articlecle 14 (3) (b) Of The European Agreement Of 30 September 1957 Concerning The International Carriage Of Dangerous Goods By Road (ADR)","28.10.93",1,"ECOLEX265"
+"Regional Convention For The Management And Conservation Of The Natural Forest Ecosystems And The Development Of Forest Plantations","29.10.93",0,"GNEVAR215"
+"Agreement Between The Republic Of Portugal And The Democratic Republic Of Sao Tome E Principe On Agricultural Cooperation","29.10.93",0,"ECOLEX266"
+"Regulation No 92 Uniform Provisions Concerning The Approval Of Non-original Replacement Exhaust Silencing Systems (RESS) For Motorcycles Mopeds And 3-wheeled Vehicles","01.11.93",0,"ECOLEX269"
+"Protocol Setting Out The Fishing Opportunities And Financial Contribution Provided For In The Agreement Between The European Community And The Islamic Republic Of Mauritania On Fishing Off The Coast Of Mauritania For The Period 1 August 1993 To 31 July 1996","05.11.93",0,"ECOLEX272"
+"Agreement Between The Government Of Malta And The Government Of The Republic Of Tunisia Concerning Cooperation In The Environmental Field","10.11.93",0,"IEADB288"
+"Protocol Establishing Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Democratic Republic Of Sao Tome E Principe On Fishing Off Sao Tome E Principe For The Period 1 June 1993 To 31 May 1996","22.11.93",0,"GNEVAR233"
+"Agreement To Promote Compliance With International Conservation And Management Measures By Fishing Vessels On The High Seas","24.11.93",1,"IEADB294"
+"Agreement To Promote Compliance With International Conservation And Management Measures By Fishing Vessels On The High Seas","29.11.93",1,"ECOLEX287"
+"Protocol On Conditions Relating To Reciprocal Access For Fishing Vessels Of Both PArticlees","29.11.93",0,"GNEVAR238"
+"Amendments To Appendix 1 Of The Convention On The Conservation Of European Wildlife And Natural Habitats","03.12.93",0,"IEADB297"
+"Agreement In The Form Of An Exchange Of Letters Between The European Economic Community And The Republic Of Iceland Concerning Fisheries","13.12.93",0,"GNEVAR246"
+"Agreement On Grant For The Program On The Import Of Energy Conservation And Nature Conservation Equipment And Materials","16.12.93",0,"IEADB302"
+"Agreement In The Form Of Exchanges Of Letters Between The European Community And The Government Of Canada Concerning Fisheries Relations","20.12.93",0,"GNEVAR249"
+"Agreement Between The Government Of The Russian Federation And The Government Of Kazakhstan On Cooperation In The Sphere Of Fuel And Energy Sector","25.12.93",0,"GNEVAR252"
+"Cooperation Agreement Between Egypt And Ukraine On Fisheries","01.01.94",1,"GNEVAR253"
+"Agreement On Cooperation In The Field Of Radiation Influence Research To Minimize Influence Of Radioactive Pollution On Public Health And Environment","14.01.94",0,"GNEVAR255"
+"Treaty Between The Government Of The Republic Of Croatia And The Government Of The Republic Of Slovenia On Maritime Fishing","07.02.94",0,"GNEVAR261"
+"Agreement Between The Government Of The Russian Federation And The Government Of Mongolia On Cooperation In The Sphere Of Environmental Protection","15.02.94",0,"ECOLEX306"
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Latvia On Cooperation In The Field Of Environmental Protection","18.02.94",1,"IEADB313"
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Latvia On Cooperation In The Field Of Environmental Protection","18.02.94",1,"GNEVAR265"
+"Agreement On Mineral And Energy Matters Relating To Walvis Bay","04.03.94",0,"IEADB317"
+"Agreement On Plant Protection Signed On 8 March 1994 Between Hungary And The Czech Republic In Prague","08.03.94",1,"ECOLEX312"
+"Agreement On Plant Protection Between Hungary And The Czech Republic In Prague","08.03.94",1,"GNEVAR275"
+"Agreement Between The Government Of The Russian Federation And The Government Of Armenia On Deconservation And Renewed Operation Of The Armenian Atomic Power-plant","17.03.94",0,"GNEVAR278"
+"Environmental Treaty","17.03.94",0,"GNEVAR279"
+"Agreement Between The Environmental Protection Ministry Of The Republic Of Lithuania And The Ministry Of Environmental Protection Nature Conservation And Forestry Of The Republic Poland","21.03.94",0,"IEADB322"
+"Agreement On The Reserve","29.03.94",0,"GNEVAR283"
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Federal Republic Of Germany On Cooperation In Environmental Protection","07.04.94",0,"IEADB326"
+"Agreement Between The Government Of The Russian Federation And The Government Of The Kingdom Of Spain About Cooperation In The Field Of Environment","11.04.94",0,"IEADB327"
+"Agreement Between The Government Of The Russian Federation And The Government Of TUKenistan On Cooperation In The Sphere Of Fuel And Energy Sector","15.04.94",0,"GNEVAR287"
+"World Trade Organization Agreement On The Application Of Sanitary And Phytosanitary Measures","15.04.94",0,"IEADB329"
+"Amendments To The Palau Arrangement For The Management Of The Western Pacific PUSA Seine Fishery","29.04.94",0,"IEADB335"
+"Treaty Between The Government Of The Republic Of Estonia And The Government Of The Russian Federation On The Conservation And Use Of Fishing Stocks In Lake Peipsi Lake Lammi And Lake Pihkva","04.05.94",0,"GNEVAR300"
+"Agreement Between The Ministry Of Agriculture And Food Of The Russian Federation And The Ministry Of Agriculture And Food Of Poland On Cooperation In The Sphere Of Plant Quarantine And Plant Protection","05.05.94",0,"ECOLEX330"
+"Technical Protocol On Water Resources Between Egypt And Romania","17.05.94",0,"GNEVAR304"
+"Agreement On Relations In The Sea Fisheries Sector Between The European Economic Community And The Argentine Republic Exchange Of Letters Protocol 1 Establishing The Fishing Opportunities And Financial Compensation Provided For In The Agreement On Relations In The Sea Fisheries Sector Between The Argentine Republic And The European Economic Community","24.05.94",0,"GNEVAR307"
+"Agreement On Cooperation In The Field Of Protection Regulation And Recreation Living Water Resources In The Boundary Waters Of Amur And Ussuri Rivers","27.05.94",0,"IEADB344"
+"Agreement On Cooperation In The Field Of Environmental Protection","27.05.94",0,"GNEVAR309"
+"Agreement Between The Government Of The Russian Federation And The Government Of The People<U+0092>s Republic Of China On Economic Scientific And Technical Cooperation In The Sphere Of Agro-industrial Complex","27.05.94",0,"ECOLEX336"
+"Cooperation Agreement On Fisheries Between The Government Of Egypt And The Ukraine","29.05.94",1,"IEADB346"
+"Agreement Between The Government Of The Russian Federation And The Government Of Estonia On Cooperation In The Sphere Of Standardization Metrology And Certification","30.05.94",0,"ECOLEX338"
+"Agreement Between The Republic Of Korea And The Russian Federation On The Protection Of Migratory Birds With Annex","02.06.94",0,"GNEVAR315"
+"Agreement Between The Government Of The Republic Of Croatia And The Government Of The Republic Of Hungary On Water Management Relations","10.06.94",0,"IEADB348"
+"Amendments To Appendices 1 And 2 Of The Convention On The Conservation Of Migratory Species Of Wild Animals","11.06.94",0,"GNEVAR318"
+"Agreement Between The State Subsoil Board Of Armenia And The State Geology And Subsoil Management Committee On Cooperation In The Sphere Of Geological Exploration And Management Of Subsoil","16.06.94",0,"ECOLEX345"
+"Convention On Cooperation For The Protection And Sustainable Use Of The Danube River","29.06.94",1,"GNEVAR322"
+"Convention On Cooperation For The Protection And Sustainable Use Of The Danube River","29.06.94",1,"ECOLEX348"
+"Agreement Concerning Improvement To The Conveying Capacity Of The International Boundary Segment Of The Colorado River Effected By Minute No 291 Of The International Boundary And Water Commission","16.07.94",0,"GNEVAR324"
+"Agreement Relating To The Implementation Of PArticleXI Of The United Nations Convention On The Law Of The Sea","28.07.94",0,"IEADB362"
+"Agreement Between Belarus And Russia On Cooperation In Development Of Fuel-Energy Industries","01.09.94",0,"IEADB369"
+"Framework Agreement Between The Government Of The Hellenic Republic And The Government Of The Republic Of Chile On Economic Scientific And Technical Cooperation","15.09.94",1,"ECOLEX370"
+"Framework Agreement Between The Government Of The Hellenic Republic And The Government Of The Republic Of Chile On Economic Scientific And Technical Cooperation","15.09.94",1,"GNEVAR331"
+"Protocol For The Protection Of The Mediterranean Sea Against Pollution Resulting From Exploration And Exploitation Of The Continental Shelf And The Seabed And Its Subsoil","14.10.94",0,"IEADB382"
+"Treaty Of Peace Between The State Of Israel And The Hashemite Kingdom Of Jordan","26.10.94",0,"GNEVAR339"
+"Amendments To Annex 3 Regarding Implementation To The International Convention For The Prevention Of Pollution From Ships","13.11.94",0,"IEADB387"
+"Federated States Of Micronesia Arrangement For Regional Fisheries Access","14.11.94",1,"GNEVAR344"
+"Agreement On Animal Health Signed In Prague On 8 March 1994 Between The Governments Of Hungary And The Czech Republic","17.11.94",0,"ECOLEX382"
+"Agreement Between The Government Of The Republic Of Moldova And The Government Of Ukraine On The Joint Use And Protection Of Transboundary Waters","23.11.94",0,"IEADB391"
+"Federated States Of Micronesia Arrangement For Regional Fisheries Access","30.11.94",1,"IEADB392"
+"Proces-Verbal Applying The 1972 Agreement Between Canada And France On Their Mutual Fishing Relations","02.12.94",0,"GNEVAR347"
+"Agreement Between The Government Of Belarus And The Government Of Ukraine On Cooperation In The Sphere Of Environmental Protection","16.12.94",0,"ECOLEX385"
+"Protocol On Energy Efficiency And Related Environmental Aspects To The Energy ChArticler Treaty","17.12.94",0,"IEADB399"
+"Agreement Between The Federal Republic Of Germany And The Czech Republic On The Implementation Of The Common Environmental Project Waste Water Treatment Plants In The North Of Bohemia","19.12.94",0,"ECOLEX391"
+"Protocol For The Implementation Of The Alpine Convention Concerning Nature Protection And Landscape Conservation","20.12.94",0,"IEADB404"
+"Protocol For The Implementation Of The Alpine Convention In The Field Of Mountain Agriculture","20.12.94",0,"ECOLEX393"
+"Amendment To The Convention Establishing The Agency For The Development Of Joint Works","11.01.95",0,"IEADB407"
+"Agreement Between The Kingdom Of The Netherlands And The Flemish Region Concerning The Drainage Of Water From The Meuse","17.01.95",0,"GNEVAR357"
+"Agreement Between The Government Of The Russian Federation And The Government Of Mongolia On Cooperation In The Sphere Of The Prevention Of Industrial Accidents Natural Disasters And Mitigation Of The Consequences Thereof","11.02.95",0,"ECOLEX402"
+"Bilateral Agreement Between Jordan And Sudan In Sea Navigation Commercial Sea Transportation And Ports","19.02.95",0,"GNEVAR366"
+"Decree No 97-576 Promulgating The Agreement In The Form Of An Exchange Of Notes Between The Government Of The French Republic And The Swiss Federal Council Amending The Agreement Of 20 November 1980 On Fishing In Lake Geneva (with 2 Annexes) Signed In Paris On 7 And 17 November 1995","17.03.95",0,"GNEVAR367"
+"Protocol Establishing For The Period From 1 January 1990 To 31 December 1991 The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Republic Of Guinea On Fishing Off The Guinean Coas","17.03.95",0,"GNEVAR368"
+"Agreement On The Cooperation For The Sustainable Development Of The Mekong River Basin","05.04.95",0,"GNEVAR373"
+"Exchange Of Notes Constituting An Agreement To Amend And To Provide For International Obligation Exchanges Under The Agreement Between The Government Of Australia And The Government Of Canada Concerning The Peaceful Use Of Nuclear Energy","10.04.95",0,"IEADB424"
+"Works Of An Emergency Nature That Should Be Undertaken Promptly For Treatment Of Sinkholes That Have Developed In The Reservoir At Amistad Dam (Minute No 292)","28.04.95",0,"GNEVAR381"
+"Agreement Between The Government Of The United States Of America And The Government Of Malaysia Concerning The Transboundary Movement Of Hazardous Wastes Form Malaysia To The United States","10.05.95",0,"GNEVAR382"
+"Agreement Between The Government Of The Russian Federation And The Government Of TUKenistan On Cooperation In Oil And Natural Gas Sectors","17.05.95",0,"GNEVAR384"
+"Agreement On Cooperation In The Field Of Plant Quarantine","18.05.95",0,"IEADB426"
+"Agreement Between The Government Of The Russian Federation And The Government Of TUKenistan On Cooperation In The Sphere Of Plant Quarantine","18.05.95",0,"ECOLEX418"
+"Agreement On Plant Health And Plant Protection Between Hungary And Ukraine","19.05.95",0,"ECOLEX420"
+"Agreement Regarding The Statutes Of The Binational Administrative Commission Of The Lower River Pilcomayo Basin","26.05.95",0,"GNEVAR386"
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Republic Of Lithuania On Early Notification Of A Nuclear Accident And On Cooperation In The Field Of Nuclear Safety And Radiation Protection","02.06.95",0,"GNEVAR389"
+"Regulation Applying The Agreement Between Switzerland And France Regarding Fishing Rights And Protection Of The Aquatic Environment In That PArticleOf The Doubs Forming The Frontier Between The 2 States","02.06.95",0,"GNEVAR388"
+"Agreement For The Improvement Of The Resources Of The Upper Basin Of The Bermejo River And The Rio Grande De Tarija","09.06.95",0,"IEADB435"
+"Amendments To The Convention For The Protection Of The Mediterranean Sea Against Pollution","10.06.95",1,"GNEVAR392"
+"Amendments To The Protocol For The Prevention Of Pollution Of The Mediterranean Sea By Dumping From Ships And Aircraft","10.06.95",1,"GNEVAR393"
+"Bilateral Agreement Between Jordan And Yemen In Sea Navigation Sea Commercial Transportation And Ports","18.06.95",0,"GNEVAR397"
+"Convention Between The Government Of The Russian Federation And The Government Of The People<U+0092>s Republic Of China On Plant Quarantine And Plant Protection","26.06.95",0,"ECOLEX433"
+"Protocol Defining For The Period 18 January 1993 To 17 January 1996 The Fishing Opportunities And The Financial Contribution Provided For By The Agreement Between The European Community And The Republic Of Seychelles On Fishing Off Seychelles","27.06.95",0,"GNEVAR399"
+"Protocol Establishing The Fishing Possibilities And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Republic Of Senegal On Fishing Off The Coast Of Senegal For The Period From 2 October 1994 To 1 October 1996","29.06.95",0,"GNEVAR403"
+"Amendments To The International Convention On Standards Of Training Certification And Watchkeeping For Seafarers Major Revisions","07.07.95",0,"IEADB445"
+"Agreement Between The Republic Of TUKy And The Republic Of Uzbekistan On Cooperation In The Field Of Science And Technology","09.07.95",0,"ECOLEX437"
+"Agreement On The Exchange Of Information In Case Of Nuclear Accidents","11.07.95",0,"IEADB447"
+"Extension Of The Agreement On Enviornomental Management Of The Lielupe River Basin","21.07.95",1,"IEADB451"
+"Extension Agreement On Environmental Managament Of The Lielupe River Basin","21.07.95",1,"GNEVAR408"
+"Agreement Between The Government Of The Republic Of Lithuania Government Of The Republic Of Estonia And The Government Of The Republic Of Latvia On Cooperation In The Field Of Environment Protection","21.07.95",0,"ECOLEX442"
+"Agreement Between The Government Of The Russian Federation And The Government Of Ukraine On Cooperation In The Operation Of Main Oil-products Pipelines","26.07.95",0,"ECOLEX443"
+"Agreement Between The Government Of Uzbekistan And The Government Of Georgia On Cooperation In The Sphere Of Agriculture And Food Industry","04.09.95",0,"ECOLEX454"
+"Agreement In The Form Of Exchange Of Notes Between The Government Of The French Republic And The Swiss Federal Council Amending The Agreement Of 20 November 1980 On The Removal Of Phosphorus From The Waters Of Lake Geneva Signed In Paris On 10 April And 19 September 1995","19.09.95",0,"GNEVAR417"
+"Agreement Regarding Rapid Notification Of A Nuclear Accident And Exchange Of Information On Nuclear Installations","03.10.95",0,"IEADB465"
+"Emergency Cooperative Measures To Supply Municipal Needs Of Mexican Communities Located Along The Rio Grande Downstream Of Amistad Dam (Minute No 293)","04.10.95",0,"ECOLEX461"
+"Protocol Of The 14 Session Of The Hellenic Romanian Intergovernmental Joint Committee On Economic Industrial And Technical Cooperation","05.10.95",0,"ECOLEX462"
+"Agreement Between The Government Of The Russian Federation And The Government Of Azerbaijan On Cooperation In The Sphere Of Electric Energy","07.10.95",0,"GNEVAR423"
+"Agreement On Veterinary Cooperation Between The Government Of The Republic Of Croatia And The Government Of The Former Yugoslav Republic Of Macedonia","17.11.95",0,"IEADB475"
+"Agreement In The Form Of An Exchange Of Notes Concerning The Agreement Concerning Fishing In Lac Leman","17.11.95",0,"IEADB474"
+"Protocol Of Application Of The Convention On Marine Fisheries Of The Dakar Agreement Of 22 December 1978","24.11.95",0,"GNEVAR429"
+"Agreement Between The Federal Republic Of Germany And The Czech Republic On Cooperation On Water Resource Management","12.12.95",0,"IEADB484"
+"Treaty On The South East Asia Nuclear Weapon Free Zone","15.12.95",1,"GNEVAR432"
+"Protocol To The Treaty On South East Asia Nuclear Weapon Free Zone","15.12.95",0,"IEADB487"
+"Treaty On The South East Asia Nuclear Weapon Free Zone","15.12.95",1,"IEADB486"
+"Agreement Between The Government Of Kazakhstan And The Government Of Israel On Cooperation In The Sphere Of Environmental Protection","27.12.95",0,"ECOLEX486"
+"Exchange Of Notes Between Switzerland And France Regarding The Interpretation Of Articlecle 6 Of The Agreement Between Switzerland And France Regarding Fishing Rights And Protection Of The Aquatic Environment In That PArticleOf The Doubs Forming The Frontier Between The 2 States","30.12.95",0,"GNEVAR435"
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Russian Federation On Cooperation In The Field Of Environment","11.01.96",0,"IEADB493"
+"Maritime Boundary Agreement Between The Government Of The State Of Israel And The Government Of The Hashemite Kingdom Of Jordan","18.01.96",0,"ECOLEX490"
+"Amendments To Appendices 2 And 3 Of The Convention On The Conservation Of European Wildlife And Natural Habitats","26.01.96",0,"IEADB495"
+"Treaty Between His Majestys Government Of Nepal And The Government Of India Concerning The Integrated Development Of The Makahali River Including Sarada Barrage Tanakpur Barrage And Pancheshwar Project","12.02.96",1,"ECOLEX494"
+"Treaty Between His Majestys Government Of Nepal And The Government Of India Concerning The Integrated Development Of The Mahakali River Including Sarada Barrage Tanakpur Barrage And Pancheshwar Project","12.02.96",1,"IEADB498"
+"Veterinary And Sanitary Convention Between The Government Of Belarus And The Government Of Bulgaria","21.02.96",0,"ECOLEX499"
+"Convention Between The Government Of Belarus And The Government Of Bulgaria On Cooperation In The Field Of Quarantine And Protection Of Plants","21.02.96",0,"IEADB500"
+"Protocol Of The 1 Joint Greek Ukrainian Inter-governmental Committee On Economic Industrial Technical And Scientific Cooperation","29.02.96",0,"ECOLEX502"
+"Amendments To The Protocol For The Protection Of The Mediterranean Sea Against Pollution From Land Based Sources And Activities","07.03.96",0,"IEADB503"
+"Bilateral Agreement Between Norway And The Faroe Islands On Fishing In The North East Atlantic","13.03.96",1,"IEADB504"
+"Bilateral Agreement Between Norway And The Faroe Islands On Fishing In The North East Atlantic","13.03.96",1,"GNEVAR450"
+"Convention Between The Government Of The Russian Federation And The Government Of Bulgaria On Cooperation In The Sphere Of Veterinary Medicine","15.03.96",0,"ECOLEX505"
+"Agreement Between The Government Of The Russian Federation And The Government Of Kyrgyzstan On Cooperation In The Sphere Of Electric Energy","28.03.96",0,"ECOLEX506"
+"Agreement Between The Government Of Kazakhstan The Government Of Kyrgyzstan And The Government Of Uzbekistan On Management Of Water Resources In Central Asia","05.04.96",0,"IEADB505"
+"The African Nuclear Weapon Free Zone Treaty","11.04.96",0,"GNEVAR455"
+"Protocol 2 To The African Nuclear Weapon Free Zone Treaty","11.04.96",0,"IEADB509"
+"Agreement Between The Government Of The Russian Federation And The Government Of France On Cooperation In The Sphere Of Nuclear Energy","19.04.96",0,"ECOLEX513"
+"Agreement Between The Government Of The Russian Federation And The Government Of The People<U+0092>s Republic Of China On Cooperation In The Sphere Of Compliance Of Imported And Exported Commodities With The Established Standards","25.04.96",0,"ECOLEX516"
+"Agreement Between The Government Of The Russian Federation And The Government Of People<U+0092>s Republic Of China On Protection Of Intellectual Property Rights","25.04.96",0,"ECOLEX519"
+"Agreement Between The Russian Federation And The People<U+0092>s Republic Of China Regarding Lake Hanka National Natural Preserve","25.04.96",0,"ECOLEX518"
+"Agreement On Cooperation Between The Government Of The Russian Federation And The Government Of The United Mexican States In The Sphere Of Research And Management Of Outer Space For Peaceful Purposes","20.05.96",0,"ECOLEX525"
+"Agreement Between The Government Of Uzbekistan And The Government Of Georgia On Cooperation In The Sphere Of Geodesy CArticlegraphy And Geoinformatics","28.05.96",0,"ECOLEX527"
+"Bilateral Agreement On Plant Protection Between The Government Of The Republic Of Croatia And The Government Of The Republic Of Bulgaria","24.06.96",0,"ECOLEX530"
+"Agreement On Maritime Delimitation Between The Government Of The French Republic And The Government Of The United Kingdom Of Great Britain And Northern Ireland Concerning Guadeloupe And Montserrat 27 June 1996","27.06.96",0,"GNEVAR472"
+"Amendments To The Schedule To The International Convention For The Regulation Of Whaling 40-8 Meeting","28.06.96",0,"IEADB526"
+"Protocol To The Agreement Between The Republic Of Estonia And The Republic Of Latvia On The Maritime Delimitation In The Gulf Of Riga The Strait Of Irbe And The Baltic Sea Between The Prime Minister Of The Republic Of Estonia And The Minister President Of The Republic Of Latvia","12.07.96",0,"ECOLEX533"
+"Protocol On Energy","24.08.96",0,"GNEVAR480"
+"Agreement Between The Government Of The Russian Federation And The Government Of The United Kingdom Of Great Britain And Northern Ireland On Cooperation In The Sphere Of Peaceful Utilization Of Nuclear Energy","03.09.96",0,"GNEVAR481"
+"Comprehensive Nuclear Test Ban Treaty","10.09.96",0,"IEADB541"
+"Agreement Between Austria And Egypt On Economic Industrial Technical And Technological Cooperation","12.09.96",0,"ECOLEX546"
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Slovak Republic On Early Notification Of Nuclear Accidents On Exchange Of Information And Cooperation In The Field Of Nuclear Safety And Radiation Protection","17.09.96",0,"GNEVAR486"
+"Agreement On Cooperation In The Field Of Plant Quarantine And Plant Protection Between The Government Of The Federal Republic Of Yugoslavia And The Government Of Romania","21.09.96",0,"IEADB545"
+"Protocol To The Comprehensive Nuclear Test Ban Treaty","24.09.96",0,"GNEVAR487"
+"Amendments To The Benelux Convention On The Hunting And Protection Of Birds (deleting Paragraph 100 Of Articlecle 1)","02.10.96",0,"IEADB549"
+"Agreement On Veterinary Cooperation Between The Government Of The Federal Republic Of Yugoslavia And The Government Of The Slovak Republic","03.10.96",1,"ECOLEX550"
+"Agreement Between The Federal Government Of The Federal Republic Of Yugoslavia And The Government Of The Slovak Republic On Cooperation In The Field Of Veterinary Medicine","03.10.96",1,"IEADB551"
+"Agreement For Cooperation Between The General Naval Prefecture Of Paraguay And Argentina Naval Prefecture","25.10.96",0,"GNEVAR494"
+"Convention On Conservation And Development Of Fishery Resources In The Border Sections Of The Parana And Paraguay Rivers Between Argentina And Paraguay","25.10.96",0,"GNEVAR495"
+"Agreement Between The Government Of The Russian Federation And The Government Of Romania On The Expansion Of Capacity Of Transit Pipeline On The Territory Of Romania For The Increase Of Delivery Of Natural Gas From The Russian Federation To The 3 Countries And To Romania (1996)","25.10.96",0,"ECOLEX558"
+"Agreement On The Conservation Of Cetaceans Of The Black Sea Mediterranean Sea And Contiguous Atlantic Area","24.11.96",0,"GNEVAR502"
+"Agreement On Fisheries Relations Between The European Community And The Republic Of Estonia","20.12.96",0,"ECOLEX574"
+"Protocol Laying Down The Conditions Relating To Temporary Joint Ventures And Joint Enterprises Provided For In The Agreement On Fisheries Relations Between The European Community And The Republic Of Lithuania","20.12.96",0,"GNEVAR509"
+"Agreement On Eternal Friendship Between Uzbekistan And Kyrgyzstan","24.12.96",0,"ECOLEX577"
+"Agreement Between The Government Of Uzbekistan And The Government Of Kyrgyzstan On Transport Of Mercury And Mercurides","25.12.96",0,"ECOLEX579"
+"Agreement On Freight And Passenger Transport Along The Lancang-Mekong River","07.01.97",0,"GNEVAR512"
+"Agreement Between The Government Of The Federal Republic Of Germany And The Government Of The Grand Duchy Of Luxembourg Concerning Flood Warning Systems In The Moselle Catchment Area","04.02.97",0,"GNEVAR514"
+"Agreement Between The Government Of The Russian Federation And The Government Of Kazakhstan On Cooperation And Integration Of Oil And Gas Sectors","25.02.97",0,"GNEVAR515"
+"Agreement In The Form Of An Exchange Of Letters Concerning The Provisional Application Of The Agreement Between The European Community And New Zealand On Sanitary Measures Applicable To Trade In Live Animals And Animal Products","26.02.97",0,"ECOLEX595"
+"Amendments To IBC Code Of The International Convention For The Prevention Of Pollution From Ships","10.03.97",0,"IEADB575"
+"Treaty Between The Government Of Australia And The Government Of The Republic Of Indonesia Establishing An Exclusive Economic Zone Boundary And Certain Seabed Boundaries","14.03.97",0,"ECOLEX601"
+"Protocol To The Agreement Between The Government Of India And The Royal Government Of Bhutan Regarding The Chukha Hydroelectric Project","19.03.97",0,"GNEVAR519"
+"Agreement On Plant Protection Collabration Between The Government Of The Federal Republic Of Yugoslavia And The Government Of The Republic Of Hungary","20.03.97",0,"ECOLEX603"
+"Agreement On Border Management And Cooperation","25.03.97",0,"GNEVAR521"
+"Agreement Between The Republic Of TUKy And The Republic Of Slovakia On Cooperation For The Protection Of The Environment","02.04.97",0,"IEADB582"
+"Protocol Defining For The Period From 18 January 1996 To 17 January 1999 The Fishing Opportunities And Financial Contribution Provided For By The Agreement Between The European Economic Community And The Republic Of Seychelles On Fishing Off Seychelles","04.04.97",0,"GNEVAR523"
+"Agreement Between The Government Of The Hellenic Republic And The Government Of Georgia In The Field Of Agriculture","10.04.97",0,"ECOLEX607"
+"Distribution Of Construction Operation And Maintenance Costs For The International Wastewater Treatment Plant Constructed Under The Agreements In Commission Minute No 283 For The Solution Of The Border Sanitation Problem At San Diego CaliforniaTijuana Baja California (Minute No 296 Of 1997)","16.04.97",1,"GNEVAR525"
+"Agreement On Cooperation In The Field Of Plant Quarantine And Plant Protection Between The Government Of The Federal Republic Of Yugoslavia And The Government Of The Former Yugoslav Republic Of Macedonia","23.04.97",1,"ECOLEX612"
+"Agreement Between The Federal Government Of The Federal Republic Of Yugoslavia And The Government Of The Republic Of Macedonia In The Field Of Plant Protection And Plant Quarantine","23.04.97",1,"IEADB586"
+"Amendment To Articlecle 21 Of The International Hydrographic Organisation Convention","25.04.97",0,"IEADB588"
+"Protocol Establishing The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Republic Of Senegal On Fishing Off The Coast Of Senegal For The Period From 1 May 1997 To 30 April 2001","01.05.97",0,"ECOLEX617"
+"Agreement On Cooperation In The Field Of Quarantine And Protection Of Plants","03.05.97",0,"IEADB591"
+"Supplementary Adjustment To The Agreement For Cooperation For Improvement Of Natural Resources And Development Of The Cuareim River Basin Between Uruguay And Brazil","06.05.97",0,"GNEVAR532"
+"Agreement Between The Government Of Belarus And The Government Of Ukraine On Joint Action For The Mitigation Of Consequences Of The Chernobyl Disaster","12.05.97",0,"ECOLEX623"
+"Protocol Defining (for The Period Between 3 May 1996 To 2 May 1999) The Fishing Opportunities And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Peoples Republic Of Angola On Fishing Off Angola","14.05.97",0,"ECOLEX626"
+"Bilateral Agreement Between Jordan And Algeria In Commercial Sea Transportation And Ports","20.05.97",0,"GNEVAR535"
+"Convention On The Law Of The Non-Navigational Uses Of International Watercourses","21.05.97",0,"ECOLEX631"
+"Agreement Between Romania And Hungary Regarding Rapid Notification Of A Nuclear Accident","26.05.97",0,"GNEVAR537"
+"Agreement Between The Government Of The Russian Federation And The Government Of Ukraine On Cooperation In The Sphere Of Mercury Waste Recycling","28.05.97",0,"GNEVAR538"
+"Operations And Maintenance Program And Distribution Of Costs Costs For The International Project To Improve The Quality Of The Waters Of The Rio Grande At Laredo Texas-Nuevo Laredo Tamaulipas (Minute No 297)","31.05.97",0,"GNEVAR540"
+"Agreement On Cooperation In The Field Of Plant Protection Between The Government Of The Federal Republic Of Yugoslavia And The Government Of The Republic Of Poland","12.06.97",1,"ECOLEX642"
+"Agreement On Cooperation In The Field Of Plant Protection Between The Government Of The Federal Republic Of Yugoslavia And The Government Of The Republic Of Poland","12.06.97",1,"IEADB611"
+"Supplementary Protocol To The Convention On Conservation And Development Of Fishery Resources In The Border Sections Of The Parana And Paraguay Rivers Between Argentina And Paraguay","18.06.97",0,"IEADB612"
+"Agreement Between The Government Of Ukraine And The Government Of Czech Republic On Cooperation In The Sphere Of Nuclear Energy And Nuclear Industry","30.06.97",0,"GNEVAR548"
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Russian Federation On Cooperation In The Field Of Protection And Sustainable Use Of Transboundary Watercourses","20.08.97",0,"IEADB621"
+"Joint Convention On The Safety Of Spent Fuel Management And On The Safety Of Radioactive Waste Management","05.09.97",0,"GNEVAR559"
+"Amendment To The Montreal Protocol On Substances That Deplete The Ozone Layer","17.09.97",0,"ECOLEX665"
+"Protocol Between TUKy And Uzbekistan On Agricultural Cooperation","23.09.97",0,"ECOLEX669"
+"Protocol Related To Forestry Between The Republic Of TUKy And The Republic Of Uzbekistan","15.10.97",0,"ECOLEX673"
+"Amendment Of The Agreement For The Establishment Of A General Fisheries Commission For The Mediterranean 1949","04.11.97",1,"ECOLEX678"
+"Amendment Of The Agreement For The Establishment Of A General Fisheries Commission For The Mediterranean 1949","04.11.97",1,"GNEVAR569"
+"Protocol Between The Russian Federation And People<U+0092>s Republic Of China On Protection Of Tiger","10.11.97",0,"ECOLEX679"
+"Agreement On Transboundary Waters Between Hungary And Ukraine","11.11.97",0,"GNEVAR575"
+"Bilateral Agreement In The Form Of An Exchange Of Notes Between Costa Rica And The United States On The Transfrontier Movement Of Dangerous Waste To Allow The Export Of Dangerous Waste To The United States Of America","17.11.97",0,"IEADB648"
+"Additional Protocol To The Agreement Of 28 May 1980 Between Norway And Iceland Concerning Fishery And Continental Shelf Questions And The Agreement Derived Therefrom Of 22 October 1981 On The Continental Shelf Between Jan Mayen And Iceland","17.11.97",1,"ECOLEX685"
+"Additional Protocol To The Agreement Of 28 May 1980 Between Norway And Iceland Concerning Fishery And Continental Shelf Questions And The Agreement Derived Therefrom Of 22 October 1981 On The Continental Shelf Between Jan Mayen And Iceland","17.11.97",1,"GNEVAR577"
+"Agreement On Cooperation In The Field Of Building Sustainable Housing And Spatial Planning","21.11.97",0,"IEADB652"
+"Agreement Between On The Principles Of Relations Between The Russian Federation And The Republic Of Panama","27.11.97",0,"GNEVAR581"
+"Agreement In The Form Of An Exchange Of Letters Concerning The Amendment To The Agreement On Cooperation In The Sea Fisheries Sector Between The European Community And The Islamic Republic Of Mauritania Initialled In Brussels On 20 June 1996","04.12.97",0,"ECOLEX692"
+"Agreement For Scientific And Technological Cooperation Between The European Community And The Government Of The United States Of America","05.12.97",0,"GNEVAR587"
+"Kyoto Protocol To The United Nations Framework Convention On Climate Change","11.12.97",0,"ECOLEX697"
+"Amendment To The List In Annex 1 To The United Nations Framework Convention On Climate Change (deleting Czechoslovakia And Adding Croatia The Czech Republic Liechtenstein Monaco Slovakia And Slovenia)","11.12.97",0,"IEADB657"
+"Agricultural And Forestry Cooperation Agreement","18.12.97",0,"IEADB659"
+"Agreement Between The Government Of The Russian Federation And The Government Of Uzbekistan On Cooperation In The Sphere Of Peaceful Utilization Of Nuclear Energy","22.12.97",0,"GNEVAR594"
+"Memorandum On Mutual Cooperation Between The Ministry Of Forestry Of The Republic Of TUKy And The Ministry Of Nature Utilisation And Environmental Protection Of TUKenistan","28.12.97",0,"ECOLEX705"
+"Agreement Between The European Community And The United States Of America On Sanitary Measures To Protect Public And Animal Health In Trade In Live Animals And Animal Products","01.01.98",0,"ECOLEX707"
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Czech Republic On Cooperation In The Field Of Environmental Protection","15.01.98",0,"IEADB663"
+"Agreement Of Unified Terms Of Transit of Hazardous Wastes Through The Territories Of States-Members Of The Custom Union (Commonwealth Of Independent States)","22.01.98",0,"IEADB665"
+"Agreement Between The Government Of Belarus And The Cabinet Of Ministers Of Ukraine On Inland Waterways Navigation","06.02.98",0,"GNEVAR598"
+"Agreement Between The Government Of Uzbekistan And The Government Of Moldova On Producers<U+0092> Cooperatives","10.02.98",0,"ECOLEX715"
+"Agreement Of PArticleal Scope On Energy Integration Between The Republic Of Argentina And The Republic Of Bolivia","16.02.98",0,"GNEVAR599"
+"Agreement On The Use Of Water And Energy Resources Of The Syr Darya Basin","17.03.98",0,"IEADB684"
+"Agreement Between The Government Of The Hellenic Republic And The Government Of The Republic Of Moldova On Economic And Technological Cooperation","23.03.98",0,"ECOLEX731"
+"Agreement Between The Government Of The Russian Federation And The Government Of Kyrgyzstan On Cooperation In The Sphere Of Civil Protection Prevention And Mitigation Of Emergency Situations","23.03.98",0,"ECOLEX730"
+"Agreement (No 641998) Between The Austrian Federal Government And Hungary On The Establishment Of A Veterinary Border Control Point At RabafuzesHeiligenkreuz On Hungarian Territory","01.04.98",1,"IEADB690"
+"Agreement Between The Austrian Federal Government And Hungary On The Establishment Of A Veterinary Border Control Point At RabafuzesHeiligenkreuz On Hungarian Territory","01.04.98",1,"ECOLEX732"
+"Bilateral Technical And Scientific Cooperation Agreement Between Syria And Italy Signed In Damascus On 23 April 1998","23.04.98",0,"GNEVAR608"
+"Protocol No 2 To The European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities Concerning Interterritorial Cooperation","05.05.98",0,"IEADB697"
+"Amendments To The Schedule To The International Convention For The Regulation Of Whaling 50 Meeting","20.05.98",0,"IEADB701"
+"Bilateral Agreement Between Jordan And The Islamic Republic Of Iran In Sea Navigation And Transportation","16.06.98",0,"ECOLEX751"
+"Convention On Access To Information Public PArticlecipation In Decision-Making And Access To Justice In Environmental Matters","25.06.98",0,"ECOLEX755"
+"Convention On Cooperation Related To Quarantine And Phytosanitary Protection Between Argentina And Russia","26.06.98",0,"IEADB710"
+"Agreement Between Government Of Bulgaria And Government Of Slovenia On Cooperation In The Field Of Quarantine And Protection Of Plants","30.06.98",0,"IEADB712"
+"Agreement Between Government Of Bulgaria And Government Of Slovenia In The Field Of Veterinary Medicine","30.06.98",0,"IEADB711"
+"Agreement Between Romania And The United States Regarding The Application Of The Peaceful Uses Of Nuclear Energy","05.07.98",0,"GNEVAR616"
+"Bilateral Agreement Between Jordan And United Arab Emirates In Sea Navigation Sea Commercial Transportation And Ports","23.07.98",1,"ECOLEX761"
+"Bilateral Agreement Between Jordan And United Arab Emirates In Sea Navigation Sea Commercial Transportation And Ports","23.07.98",1,"GNEVAR620"
+"Convention On The Prior Informed Consent Procedure For Certain Hazardous Chemicals And Pesticides In International Trade","10.09.98",0,"IEADB723"
+"Agreement On Cooperation In The Forestry Sector And Forestry","11.09.98",1,"IEADB725"
+"CIS Agreement On Cooperation In The Sphere Of Timber Industry And Forestry","11.09.98",1,"ECOLEX773"
+"Agreement On Basic Principles Of Mutual Activity In The Area Of The Rational Use And Protection Of Transboundary Water Bodies","11.09.98",0,"IEADB726"
+"Agricultural Cooperation Agreement Between Egypt And Jordan","16.09.98",0,"ECOLEX778"
+"Agreement Between The Government Of The Republic Of Croatia And The Government Of Romania Regarding Collaboration On Veterinary Matters","29.09.98",0,"IEADB727"
+"Agreement Between The Government Of The Russian Federation And Portugal On Cooperation In The Sphere Of Civil Protection Prevention And Mitigation Of Emergency Situations","09.10.98",0,"ECOLEX783"
+"Protocol Establishing For The Period From 1 July 1997 To 30 June 2000 The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Republic Of Equatorial Guinea On Fishing Off The Coast Of Equatorial Guinea","14.10.98",0,"GNEVAR626"
+"Protocol For The Implementation Of The Alpine Convention Of 1991 In The Field Of Tourism","16.10.98",1,"ECOLEX791"
+"Protocol For The Implementation Of The 1991 Alpine Convention On Soil Protection","16.10.98",0,"ECOLEX789"
+"Protocol For The Implementation Of The Alpine Convention Concerning Tourism","16.10.98",1,"IEADB731"
+"Agreement Between The Government Of Kazakhstan And The Executive Branch Of Georgia On Cooperation In The Field Of Environmentally Clean Automotive Special Transportation And Its Infrastructure","22.10.98",0,"IEADB734"
+"Memorandum Of Understanding Between The Republic Of Kenya The United Repubic Of Tanzania And The Republic Of Uganda For Cooperation On Environment Management","22.10.98",0,"ECOLEX794"
+"Agreement In The Form Of An Exchange Of Letters Between The European Community And The Government Of The Republic Of Guinea Concerning The Provisional Application Of The Protocol Establishing The Fishing Possibilities And The Financial Compensation Provided For In The Agreement Between The European Economic Community And The Government Of The Revolutionary Peoples Republic Of Guinea On Fishing Off The Guinean Coast For The Period 1 January 1998 To 31 December 1999","27.10.98",0,"ECOLEX799"
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Kingdom Of Sweden On The Delimitation Of The Maritime Zones In The Baltic Sea","02.11.98",0,"GNEVAR637"
+"Convention On The Protection Of The Environment Through Criminal Law","04.11.98",0,"ECOLEX804"
+"Agreement Between Denmark Finland Iceland Norway And Sweden On The Nordic Environment Finance Corporation","06.11.98",0,"IEADB737"
+"Agreement Between The Government Of The Hellenic Republic And The Government Of The Republic Of Kenya On Economic Scientific And Technological Cooperation","16.11.98",0,"ECOLEX806"
+"Agreement Between The European Community And The Gabonese Republic On Fishing Off The Coast Of Gabon Protocol Setting Out The Fishing Opportunities And Financial Compensation Provided For In The Agreement Between The European Community And The Gabonese Republic On Fishing Off The Coast Of Gabon","03.12.98",0,"GNEVAR641"
+"Amendments To The International Convention For The Safety Of Life At Sea Adoption Of Resolution And Annexes On Ship Reporting Systems For North Atlantic Right Whales Off The North Eastern And South Eastern Coasts Of The United States","07.12.98",0,"IEADB745"
+"Agreement Between The Federal Government Of The Federal Republic Of Yugoslavia And The Government Of The Republic Of Bulgaria On Cooperation In The Field Of Veterinary Medicine","14.12.98",0,"IEADB749"
+"Agreement Between Canada And The European Atomic Energy Community For Cooperation In The Area Of Nuclear Research","17.12.98",0,"ECOLEX814"
+"Agreement Between The European Community And The Government Of Canada On Sanitary Measures To Protect Public And Animal Health In Respect Of Trade In Live Animals And Animal Products","17.12.98",0,"ECOLEX815"
+"Agreement On Cooperation In The Area Of Environmental Monitoring","13.01.99",0,"IEADB753"
+"Agreement Between The Republic Of Niger And The Republic Of Benin Relative To The Realization Of The Hydroelectric Management Of The Dyondyonga Site On The Mekrou River","14.01.99",1,"IEADB754"
+"Protocol Setting Out The Fishing Opportunities And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Republic Of Madagascar On Fishing Off Madagascar For The Period From 21 May 1998 To 20 May 2001","20.01.99",0,"GNEVAR647"
+"Agreement On Plant Protection Cooperation Between The Government Of The Republic Of Croatia And The Government Of The Republic Of TUKy","10.02.99",0,"ECOLEX824"
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia On Cooperation In The Field Of Water Protection (1999)","12.02.99",0,"GNEVAR649"
+"Agreement On Transboundary Cooperation","26.02.99",0,"ECOLEX826"
+"Agreement Between The Government Of The Hellenic Republic And The Government Of The Republic Of Latvia On Economic And Technological Cooperation","17.03.99",0,"ECOLEX829"
+"Agreement On An Exchange Of Information In The Field Of Nuclear Safety And Radiation Protection","19.03.99",0,"GNEVAR652"
+"Resolution Of The Heads Of States Of Central Asia On Approval Of The Statute Of The International Aral Sea Fund And Agreement On The Status Of IASF And Its Organizations","09.04.99",0,"ECOLEX831"
+"Agreement On Cooperation In The Field Of Veterinary","16.04.99",0,"IEADB766"
+"Agreement Between The Republic Of Brazil And The Republic Of Russian Federation On Animal Health Cooperation","23.04.99",0,"IEADB767"
+"Agreement On Cooperation Concerning Protection Of Animal Health Between The Government Of Ukraine And The Government Of Argentina","29.04.99",0,"ECOLEX838"
+"Agreement Between The Hellenic Republic And The Islamic Republic Of Iran For Economic Scientific And Technical Cooperation In The Field Of Agriculture","01.05.99",0,"ECOLEX839"
+"Agreement In The Form Of An Exchange Of Letters Concerning The Provisional Application Of The Protocol Defining For The Period 18 January 1999 To 17 January 2002 The Fishing Opportunities And The Financial Contribution Provided For By The Agreement Between The European Economic Community And The Republic Of Seychelles On Fishing Off Seychelles","10.05.99",0,"ECOLEX841"
+"Agreement Between Niger And Benin Regarding The Creation And Hydroelectric Management Of The Site At Dyodyonga On The River Mekrou","14.05.99",1,"IEADB771"
+"Protocol Between Iceland And Russia To The Agreement Between Iceland Norway And Russia Concerning Certain Aspects Of Cooperation In The Area Of Fisheries","15.05.99",0,"GNEVAR660"
+"Agreement Between Iceland Norway And Russia Concerning Certain Aspects Of Cooperation In The Area Of Fisheries","15.05.99",0,"IEADB772"
+"Agreement Between The Government Of The Kingdom Of Denmark Together With The Home Government Of The Faeroe Islands On The 1 Hand And The Government Of The United Kingdom Of Great Britain And Northern Ireland On The Other Hand Relating To Maritime Delimitation In The Area Between The Faeroe Islands And The United Kingdom","18.05.99",0,"ECOLEX847"
+"Agreement Between The Government Of The Republic Of Kazakhstan And The Government Of The Kyrgyz Republic On Comprehensive Use Of Water And Energy Resources Of The Naryn Syr Darya Cascade Reservoirs In 1999 (for The Toktogul Reservoir Operation Between Kyrgyzstan Kazakhstan And Uzbekistan)","22.05.99",0,"GNEVAR663"
+"Memorandum Of Understanding Concerning Conservation Measures For Marine Turtles Of The Atlantic Coast Of Africa","29.05.99",0,"ECOLEX852"
+"Protocol Of 3 June 1999 For The Modification Of The Convention Concerning International Carriage By Rail (COTIF) Of 9 May 1980 (1999 Protocol)","03.06.99",0,"ECOLEX853"
+"Wildfire Protection Agreement Between The DepArticlement Of The Interior And The DepArticleent Of Agriculture Of The United States Of America And The Secretariat Of Environment Natural Resources And Fisheries Of The United Mexican States For The Common Border","04.06.99",0,"ECOLEX854"
+"Protocol To Amend The Convention For The Establishment Of An Inter-American Tropical Tuna Commission","11.06.99",0,"IEADB780"
+"Intergovernmental Agreement Between Bulgaria And Denmark On Cooperation In The Field Of Environment","14.06.99",0,"IEADB782"
+"Protocol On Water And Health To The Convention On The Protection And Use Of Transboundary Watercourses And International Lakes","17.06.99",0,"IEADB784"
+"Protocol Defining For The Period 18 January 1999 To 17 January 2002 The Fishing Opportunities And The Financial Contribution Provided For By The Agreement Between The European Economic Community And The Republic Of Seychelles On Fishing Off Seychelles","07.07.99",0,"GNEVAR669"
+"Agreement For Cooperation Between The Cabinet Of Ministers Of Ukraine And The European Atomic Energy In The Field Of Controlled Nuclear Fusion","23.07.99",0,"ECOLEX865"
+"Treaty On The State Border Between The Republic Of Croatia And Bosnia And Herzegovina","30.07.99",0,"GNEVAR674"
+"Agreement Between The Government Of The Republic Of Croatia And The Government Of The Republic Of Albania On Cooperation In The Sphere Of Plant Protection","18.08.99",0,"IEADB794"
+"Agreement On Scientific Technological And Environmental Cooperation Between Romania And The Socialist Republic Of Viet Nam","13.09.99",0,"IEADB797"
+"Amendments To The Convention For The Establishment Of The European And Mediterranean Plant Protection Organization","15.09.99",0,"IEADB798"
+"Memorandum Of Understanding On Agriculture Between The Hellenic Republic And The Palestine Liberation Organisation","09.10.99",0,"ECOLEX876"
+"Protocol On The 6 Session Of The Greek-Czech Joint Committee For Science And Technology","03.11.99",0,"ECOLEX885"
+"Agreed Minutes Of The Greek-Czech Meeting For Economic Cooperation","14.12.99",0,"ECOLEX901"
