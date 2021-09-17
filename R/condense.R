@@ -41,7 +41,7 @@ condense_qID <- function(database = NULL, var = NULL) {
     dplyr::mutate(qID = stringr::str_trim(qID, "both"))
 
   # Initialize variables to avoid CMD notes
-  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- NULL
+  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- acronym <- NULL
 
   # step two: split qID and organize data
   similar <- qID %>%
