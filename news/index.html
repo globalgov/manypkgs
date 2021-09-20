@@ -108,8 +108,29 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/globalgov/qCreate/">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Other packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://globalgov.github.io/qData/">qData</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/globalgov/qStates">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -138,10 +159,16 @@
 <h2 class="hasAnchor">
 <a href="#package" class="anchor"></a>Package</h2>
 <ul>
-<li>Closes <a href='https://github.com/globalgov/qCreate/issues/40'>#40</a> by adding the helper function <code><a href="../reference/correct_words.html">correct_words()</a></code> into <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
+<li>Closed <a href='https://github.com/globalgov/qCreate/issues/40'>#40</a> by adding the helper function <code><a href="../reference/correct_words.html">correct_words()</a></code> into <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
 </li>
+<li>Created code_term family of functions
+<ul>
 <li>Added <code>code_term_date()</code> which extracts the date term from the treaty title</li>
 <li>Added <code>code_term_type()</code> which indicates the type of termination clause the treaty has</li>
+<li>Added tests for new functions</li>
+</ul>
+</li>
+<li>Updated agreements vignette by simplifying code chunks and expanding hand-coded sample</li>
 </ul>
 </div>
 <div id="correction" class="section level2">
@@ -149,9 +176,16 @@
 <a href="#correction" class="anchor"></a>Correction</h2>
 <ul>
 <li>Updated the countryregex table with more regex options for certain countries</li>
-<li>Closes <a href='https://github.com/globalgov/qCreate/issues/41'>#41</a> by adding test templates for actor databases and memberships databases</li>
-<li>Closes <a href='https://github.com/globalgov/qCreate/issues/43'>#43</a> by adding qPackage name as an argument of <code><a href="../reference/export_data.html">export_data()</a></code>
+<li>Closed <a href='https://github.com/globalgov/qCreate/issues/41'>#41</a> by adding test templates for actor databases and memberships databases</li>
+<li>Closed <a href='https://github.com/globalgov/qCreate/issues/43'>#43</a> by adding qPackage name as an argument of <code><a href="../reference/export_data.html">export_data()</a></code>
 </li>
+</ul>
+</div>
+<div id="connection" class="section level2">
+<h2 class="hasAnchor">
+<a href="#connection" class="anchor"></a>Connection</h2>
+<ul>
+<li>Closed <a href='https://github.com/globalgov/qCreate/issues/50'>#50</a> by adding <code><a href="../reference/condense_qID.html">condense_qID()</a></code> function to standardise qIDs for multiple datasets in a database</li>
 </ul>
 </div>
 </div>
@@ -194,9 +228,9 @@
 </li>
 </ul>
 </div>
-<div id="connection" class="section level2">
+<div id="connection-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#connection" class="anchor"></a>Connection</h2>
+<a href="#connection-1" class="anchor"></a>Connection</h2>
 <ul>
 <li>Updated code_agreements() and added more functions
 <ul>
@@ -247,9 +281,9 @@
 </li>
 </ul>
 </div>
-<div id="connection-1" class="section level2">
+<div id="connection-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#connection-1" class="anchor"></a>Connection</h2>
+<a href="#connection-2" class="anchor"></a>Connection</h2>
 <ul>
 <li>Added <code><a href="../reference/code_agreements.html">code_agreements()</a></code> that extracts meaningful information from agreements titles and dates
 <ul>

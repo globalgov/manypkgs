@@ -67,8 +67,29 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Other packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="https://github.com/globalgov/qCreate/">
+      <a href="https://globalgov.github.io/qData/">qData</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/globalgov/qStates">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -83,13 +104,13 @@
 
       
 
-      </header><script src="agreements_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="agreements_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Agreements</h1>
                         <h4 class="author">James Hollway</h4>
             
-            <h4 class="date">2021-09-14</h4>
+            <h4 class="date">2021-09-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/globalgov/qCreate/blob/master/vignettes/agreements.Rmd"><code>vignettes/agreements.Rmd</code></a></small>
       <div class="hidden name"><code>agreements.Rmd</code></div>
@@ -121,18 +142,17 @@
 <h2 class="hasAnchor">
 <a href="#setting-up-the-problem" class="anchor"></a>Setting up the problem</h2>
 <p>To test different solutions to the problem, we construct a sample of treaty titles from three different datasets in the <code><a href="https://rdrr.io/pkg/qEnviron/man/agreements.html">qEnviron::agreements</a></code> database. Let’s take only titles of treaties established in a particular decade, the 1980s, so that we can increase the probability of matches.</p>
+<p>The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/globalgov/qCreate">qCreate</a></span><span class="op">)</span>
-<span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu">qEnviron</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/qEnviron/man/agreements.html">agreements</a></span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">x</span><span class="op">$</span><span class="va">Beg</span> <span class="op">&gt;</span> <span class="st">"1980-01-01"</span> <span class="op">&amp;</span> <span class="va">x</span><span class="op">$</span><span class="va">Beg</span> <span class="op">&lt;</span> <span class="st">"1990-01-01"</span>, <span class="op">]</span><span class="op">)</span>
+<span class="va">samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu">qEnviron</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/qEnviron/man/agreements.html">agreements</a></span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">[</span><span class="va">x</span><span class="op">$</span><span class="va">Beg</span> <span class="op">&gt;</span> <span class="st">"1990-01-01"</span> <span class="op">&amp;</span> <span class="va">x</span><span class="op">$</span><span class="va">Beg</span> <span class="op">&lt;</span> <span class="st">"2000-01-01"</span>, <span class="op">]</span><span class="op">)</span>
 <span class="va">titles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">samples</span>, <span class="st">"Title"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">titles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">titles</span><span class="op">)</span>
-<span class="va">titles</span> <span class="op">&lt;-</span> <span class="fu">qCreate</span><span class="fu">::</span><span class="fu"><a href="../reference/standardise_titles.html">standardise_titles</a></span><span class="op">(</span><span class="va">titles</span><span class="op">)</span>
-<span class="va">titles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">titles</span><span class="op">)</span>
 <span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">samples</span>, <span class="st">"Beg"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/as_date.html">as_date</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span><span class="op">)</span>
-<span class="va">agreements</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">titles</span>, <span class="va">dates</span><span class="op">)</span><span class="op">)</span>
-<span class="va">agreements</span> <span class="op">&lt;-</span> <span class="va">agreements</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span>,<span class="op">]</span>
-<span class="va">agreements</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="fl">200</span><span class="op">)</span></code></pre></div>
+<span class="va">sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">titles</span>, <span class="va">dates</span><span class="op">)</span>
+
+<span class="co"># We hand coded 400 agreements from the sample to compare duplicates identification.</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
+<span class="va">agreements</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"hand-coded-sample.csv"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="options-for-solutions" class="section level2">
 <h2 class="hasAnchor">
@@ -140,15 +160,9 @@
 <div id="a-perfect-match" class="section level3">
 <h3 class="hasAnchor">
 <a href="#a-perfect-match" class="anchor"></a>A perfect match</h3>
-<p>The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known.</p>
 <p>If we use the hand coded duplicates to correctly identify all duplicates in the sample, we get a perfect match! That is, we identify all true positives and no false positives. The rates of true positives and false positives are represented the receiver operating characteristics (ROC) graph below. The area under the curve (AUC score), in dark grey, in the graph is maximized (equals 1).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/WinVector/WVPlots">WVPlots</a></span><span class="op">)</span>
-<span class="va">hand_coded_sample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span><span class="op">(</span><span class="st">"hand-coded-sample.csv"</span>, <span class="st">";"</span>, escape_double <span class="op">=</span> <span class="cn">FALSE</span>, trim_ws <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">agreements</span> <span class="op">&lt;-</span> <span class="va">hand_coded_sample</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"Source"</span>, <span class="st">"titles"</span>, <span class="st">"duplicate"</span>, <span class="st">"dates"</span>, <span class="st">"Linkage"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dates <span class="op">=</span> <span class="fu">qCreate</span><span class="fu">::</span><span class="fu"><a href="../reference/standardise_dates.html">standardise_dates</a></span><span class="op">(</span><span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="http://lubridate.tidyverse.org/reference/ymd.html">dmy</a></span><span class="op">(</span><span class="va">dates</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/WinVector/WVPlots">WVPlots</a></span><span class="op">)</span>
 <span class="fu">WVPlots</span><span class="fu">::</span><span class="fu"><a href="https://winvector.github.io/WVPlots//reference/ROCPlot.html">ROCPlot</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="st">"duplicate"</span>, <span class="st">"duplicate"</span>, <span class="fl">1</span>, title <span class="op">=</span> <span class="st">"Duplicates Match"</span><span class="op">)</span></code></pre></div>
 <p><img src="agreements_files/figure-html/hand-code-1.png" width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -172,7 +186,7 @@
 <a href="#random" class="anchor"></a>Random</h3>
 <p>If we randomly create a variable with 200 values and use it to find duplicates, the AUC scores marginally. The ROC plot illustrates how some true positives as well as a few false positives are matched.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">agreements</span><span class="op">$</span><span class="va">random</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">agreements</span><span class="op">$</span><span class="va">random</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">400</span><span class="op">)</span>
 <span class="fu">WVPlots</span><span class="fu">::</span><span class="fu"><a href="https://winvector.github.io/WVPlots//reference/ROCPlot.html">ROCPlot</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="st">"random"</span>, <span class="st">"duplicate"</span>, <span class="fl">1</span>, title <span class="op">=</span> <span class="st">"Random"</span><span class="op">)</span></code></pre></div>
 <p><img src="agreements_files/figure-html/random-1.png" width="700"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -220,7 +234,7 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">agreements</span><span class="op">$</span><span class="va">qID</span> <span class="op">&lt;-</span> <span class="fu">qCreate</span><span class="fu">::</span><span class="fu"><a href="../reference/code_agreements.html">code_agreements</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="va">agreements</span><span class="op">$</span><span class="va">titles</span>, <span class="va">agreements</span><span class="op">$</span><span class="va">dates</span><span class="op">)</span>
 <span class="co">#&gt; 0 entries were not matched at all.</span>
-<span class="co">#&gt; There were 45 duplicated IDs.</span>
+<span class="co">#&gt; There were 126 duplicated IDs.</span>
 <span class="va">agreements</span><span class="op">$</span><span class="va">idinfo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">agreements</span><span class="op">$</span><span class="va">qID</span><span class="op">)</span> <span class="op">|</span> 
                                   <span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">agreements</span><span class="op">$</span><span class="va">qID</span>, fromLast <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>
 <span class="fu">WVPlots</span><span class="fu">::</span><span class="fu"><a href="https://winvector.github.io/WVPlots//reference/ROCPlot.html">ROCPlot</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="st">"idinfo"</span>, <span class="st">"duplicate"</span>, <span class="fl">1</span>, title <span class="op">=</span> <span class="st">"qID Strict"</span><span class="op">)</span></code></pre></div>
@@ -235,7 +249,7 @@
 <a href="#condensing-qid-matches" class="anchor"></a>Condensing qID matches</h3>
 <p>We can also improve the AUC scores by fuzzy matching the new qIDs generated by <code><a href="../reference/code_agreements.html">code_agreements()</a></code> from different datasets with the <code><a href="../reference/condense_qID.html">condense_qID()</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">qsim</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/condense_qID.html">condense_qID</a></span><span class="op">(</span>var <span class="op">=</span> <span class="va">agreements</span><span class="op">$</span><span class="va">qID</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">qsim</span> <span class="op">&lt;-</span> <span class="fu">qCreate</span><span class="fu">::</span><span class="fu"><a href="../reference/condense_qID.html">condense_qID</a></span><span class="op">(</span>var <span class="op">=</span> <span class="va">agreements</span><span class="op">$</span><span class="va">qID</span><span class="op">)</span>
 <span class="va">agreements</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">agreements</span>, <span class="va">qsim</span>, by <span class="op">=</span> <span class="st">"qID"</span><span class="op">)</span>
 <span class="va">agreements</span><span class="op">$</span><span class="va">qsim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">agreements</span><span class="op">$</span><span class="va">qID_ref</span><span class="op">)</span> <span class="op">|</span>
                             <span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">agreements</span><span class="op">$</span><span class="va">qID_ref</span>, fromLast <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span>

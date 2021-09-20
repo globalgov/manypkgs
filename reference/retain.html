@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function for keeping objects from the global environment — retain • qCreate</title>
+<title>Keep objects from the global environment — retain • qCreate</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Function for keeping objects from the global environment — retain" />
+<meta property="og:title" content="Keep objects from the global environment — retain" />
 <meta property="og:description" content="Function for keeping objects from the global environment.
 It removes all variables of a dataset in the global environment
 except those which are specified in the given character vector,
@@ -112,8 +112,29 @@ regular expression or both." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/globalgov/qCreate/">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Other packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://globalgov.github.io/qData/">qData</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
+    </li>
+    <li>
+      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="https://github.com/globalgov/qStates">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -131,7 +152,7 @@ regular expression or both." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function for keeping objects from the global environment</h1>
+    <h1>Keep objects from the global environment</h1>
     <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/package_tools.R'><code>R/package_tools.R</code></a></small>
     <div class="hidden name"><code>retain.Rd</code></div>
     </div>
@@ -191,8 +212,8 @@ regular expression in keep (TRUE or FALSE) or auto detect ("auto")</p></td>
     <p>Clears the environment except for the stated objects.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function is is suitable for small to semi-large projects
-with a big amount of data as it performs variable operations in a fast
+    <p>The function is is suitable for Small to semi-large projects
+with massive amount of data as it performs variable operations in a fast
 and efficient way. The function is also useful for developers
 preparing and assembling a pipeline</p>
 
