@@ -56,9 +56,9 @@ condense_qID <- function(database = NULL, var = NULL) {
                                        similar$acronym, method = "lv")
   fuzzy <- ifelse(fuzzy == 1, 0, fuzzy)
   rownames(fuzzy) <- similar$acronym
-  colnames(fuzzy) <- similar$acronym
+  colnames(fuzzy) <- similar$ID1
   # Add names for the very similar acronyms (1 letter change)
-  fuzzy <- ifelse(fuzzy > 0.83, rownames(fuzzy), 0)
+  fuzzy <- ifelse(fuzzy > 0.6, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match = colnames(fuzzy)[row(fuzzy)],
                       acronym = c(t(fuzzy)), stringsAsFactors = FALSE)
@@ -69,19 +69,20 @@ condense_qID <- function(database = NULL, var = NULL) {
   fuzzy$acronym <- as.character(fuzzy$acronym)
   # Join data
   similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
-  # Tranform NAs into 0
-  similar$fuzzy <- ifelse(is.na(similar$match), 0, similar$match)
   # Remove bilaterals (works only for multilateral at the moment)
-  similar$fuzzy <- ifelse(stringr::str_detect(similar$fuzzy, "\\-"),
-                          0, similar$fuzzy)
+  similar$match <- ifelse(stringr::str_detect(similar$match, "\\-"),
+                          0, similar$match)
+  # Tranform NAs into 0
+  similar$match <- ifelse(is.na(similar$match), 0, similar$match)
 
   # Step five: assign same acronyms to very similar observation
   similar <- similar %>%
     dplyr::distinct(qID, .keep_all = TRUE) %>% # join can add duplication
-    dplyr::group_by_at(dplyr::vars(year_type)) %>%
-    dplyr::mutate(dup = dplyr::row_number() > 1,
-                  ID = ifelse(fuzzy != 0 & dup == TRUE,
+    dplyr::mutate(fuzzy = gsub("\\_.*", "", match),
+                  match_yt = gsub(".*_", "", match)) %>%
+    dplyr::mutate(ID = ifelse(fuzzy != 0 & match_yt == year_type,
                               paste0(fuzzy, "_", year_type), ID1))
+  
 
   # Step six: Get linkages standardized and return only pertinent columns
   similar <- similar %>%

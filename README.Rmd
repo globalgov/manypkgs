@@ -42,5 +42,5 @@ library(qData)
 get_packages()
 ```
 
-Please see [the website](https://globalgov.github.io/qCreate/) for more information about how to use `{qCreate}` as a developer or a data contributor.
+Please see [the website](https://globalgov.github.io/qCreate/) for more information about how to use `{qCreate}` as a developer or as a data contributor.
 For more information on `{qData}`, please see [the website](https://globalgov.github.io/qData/).

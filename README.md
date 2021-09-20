@@ -19,13 +19,15 @@ Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](ht
 <!-- ![GitHub All Releases](https://img.shields.io/github/downloads/jhollway/roctopus/total) -->
 <!-- badges: end -->
 
-`{qCreate}` provides contributors the necessary tools to put their data
-in the hands of users. The package includes many functions to make this
-easier. It includes functions to help set up a qPackage, import their
-existing data, and export them in structures consistent with the rest of
-the data ecosystem. This facilitates the interoperability, contrast, and
-comparison of data. Specific coding system should be followed by the
-contributors. For more details on that, please see the
+`{qCreate}` is a qPackage in the
+[qData](https://github.com/globalgov/qData) ecosystem. It provides
+contributors the necessary tools to put their data in the hands of
+users. The package includes many functions to make this easier,
+including functions to help set up a qPackage, import their existing
+data, and export them in structures consistent with the rest of the data
+ecosystem. This facilitates the interoperability, contrast, and
+comparison of data. There is a specific coding system that should be
+followed by contributors. For more details, please see the
 [vignette](https://globalgov.github.io/qCreate/articles/developer.html).
 
 ## Downloading and installing qCreate
@@ -40,38 +42,47 @@ remotes::install_github("globalgov/qCreate")
 
 ## qPackages
 
-`{qData}` is the central package in an ecosystem of packages aimed at
+The [qData](https://github.com/globalgov/qData) ecosystem aimed at
 collecting, connecting and correcting network data across issue-domains
-of global governance. The `{qData}` is designed for users but the
-`qData::get_packages()` function in can be used to discover which
-packages are currently available.
+of global governance. The `qData::get_packages()` function can be used
+to discover the qPackages currently available.
 
 ``` r
 library(qData)
+```
+
+    ## Warning: package 'tibble' was built under R version 4.0.5
+
+``` r
 get_packages()
 ```
 
-    ## # A tibble: 4 x 6
+    ## Warning: 1 failed to parse.
+
+    ## # A tibble: 5 x 6
     ##   name     full_name         
     ##   <chr>    <chr>             
     ## 1 qCreate  globalgov/qCreate 
     ## 2 qData    globalgov/qData   
     ## 3 qEnviron globalgov/qEnviron
     ## 4 qStates  globalgov/qStates 
-    ##   description                                             installed latest
-    ##   <chr>                                                   <chr>     <chr> 
-    ## 1 Support for creating new qPackages                      0.1.0     0.0.1 
-    ## 2 An R portal for ensembled global governance data        0.5.0     0.4.0 
-    ## 3 qPackage for ensembled data on environmental agreements 0.0.2     0.0.2 
-    ## 4 qPackage for ensembled data on sovereign states         0.0.3     0.0.3 
+    ## 5 qTrade   globalgov/qTrade  
+    ##   description                                             installed latest    
+    ##   <chr>                                                   <chr>     <chr>     
+    ## 1 Support for creating new qPackages                      0.1.1     0.1.0     
+    ## 2 An R portal for ensembled global governance data        0.5.0     0.5.0     
+    ## 3 qPackage for ensembled data on environmental agreements 0.0.3     0.0.3     
+    ## 4 qPackage for ensembled data on sovereign states         0.0.5     0.0.4     
+    ## 5 qPackage for ensembled data on trade agreements         0.0.1     Unreleased
     ##   updated   
     ##   <date>    
-    ## 1 2021-05-18
-    ## 2 2021-05-17
-    ## 3 2021-02-22
-    ## 4 2021-02-22
+    ## 1 2021-07-16
+    ## 2 2021-07-26
+    ## 3 2021-08-03
+    ## 4 2021-08-19
+    ## 5 NA
 
 Please see [the website](https://globalgov.github.io/qCreate/) for more
-information about how to use `{qCreate}` as a developer or a data
+information about how to use `{qCreate}` as a developer or as a data
 contributor. For more information on `{qData}`, please see [the
 website](https://globalgov.github.io/qData/).
