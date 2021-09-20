@@ -58,7 +58,7 @@ condense_qID <- function(database = NULL, var = NULL) {
   rownames(fuzzy) <- similar$acronym
   colnames(fuzzy) <- similar$ID1
   # Add names for the very similar acronyms (1 letter change)
-  fuzzy <- ifelse(fuzzy > 0.6, rownames(fuzzy), 0)
+  fuzzy <- ifelse(fuzzy > 0.7, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match = colnames(fuzzy)[row(fuzzy)],
                       acronym = c(t(fuzzy)), stringsAsFactors = FALSE)
