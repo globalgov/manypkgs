@@ -18,7 +18,7 @@
 #' folder structures required for a qData-consistent data package.
 #' @return A new package structure
 #' @import usethis
-#' @importFrom stringr str_replace_all str_split
+#' @importFrom stringr str_replace_all str_split word
 #' @examples
 #' \dontrun{
 #' setup_package("qStates", name = "Hollway, James")
@@ -37,6 +37,7 @@ setup_package <- function(package = NULL,
   given <- NULL
   family <- NULL
   comment <- NULL
+  year = NULL
 
   # Step zero: get details from existing files, if present
   if (is.null(package)) {
@@ -215,7 +216,7 @@ setup_package <- function(package = NULL,
             path = path,
             open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
-
+  
   create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
 
@@ -234,6 +235,19 @@ setup_package <- function(package = NULL,
             path = path,
             open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
+
+  # Add CITATION file
+  create_directory(paste0(path, "/inst"))
+  year <- date()
+  year <- stringr::word(year, -1)
+  qtemplate("qPackage-cite",
+            fs::path("inst", "CITATION"),
+            data = list(package = package,
+                        author = name,
+                        year = year),
+            path = path,
+            open = FALSE)
+  usethis::ui_done("Added CITATION file to inst folder. Please do not forget to complete.")
 
   create_directory(paste0(path, "/.github/workflows"))
   usethis::ui_done("Created workflows folder.")
