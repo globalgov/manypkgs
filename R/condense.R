@@ -53,7 +53,7 @@ condense_qID <- function(database = NULL, var = NULL) {
   # Step three: identify very similar acronyms
   # Get similar qIDs using the Levenshtein distance
   fuzzy <- stringdist::stringsimmatrix(similar$acronym,
-                                       similar$acronym, method = "lv")
+                                       similar$acronym, method = "jaccard")
   fuzzy <- ifelse(fuzzy == 1, 0, fuzzy)
   rownames(fuzzy) <- similar$acronym
   colnames(fuzzy) <- similar$ID1
