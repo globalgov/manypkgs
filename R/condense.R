@@ -39,8 +39,9 @@ condense_qID <- function(database = NULL, var = NULL) {
   qID <- qID %>%
     dplyr::distinct(qID) %>%
     dplyr::mutate(qID = stringr::str_trim(qID, "both"))
-  # Initialize variables to avoid CMD notes
-  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- match_yt <- acronym <- NULL
+  # Initialize variables to avoid CMD notes/issues
+  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- NULL
+  activity <- bi <- match_bi <- match_yt <- acronym <- NULL
 
   # step two: split qID and organize data
   similar <- qID %>%
@@ -61,7 +62,7 @@ condense_qID <- function(database = NULL, var = NULL) {
   fuzzy <- ifelse(fuzzy > 0.7, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match = colnames(fuzzy)[row(fuzzy)],
-                      acronym = c(t(fuzzy)), stringsAsFactors = FALSE)
+                      acronym = as.character(c(t(fuzzy))), stringsAsFactors = FALSE)
   # Keep only named obs
   fuzzy <- filter(fuzzy, acronym != 0)
   # Delete first match and keep only additional matches
@@ -84,7 +85,7 @@ condense_qID <- function(database = NULL, var = NULL) {
   # Tranform matrix into data frame
   fuzzy_bi <- data.frame(match_bi = colnames(fuzzy_bi)[row(fuzzy_bi)],
                          bi = gsub("\\[[^][]*]", "", colnames(fuzzy_bi)[row(fuzzy_bi)]),
-                         activity = c(t(fuzzy_bi)), stringsAsFactors = FALSE)
+                         activity = as.character(c(t(fuzzy_bi))), stringsAsFactors = FALSE)
   # Keep only named obs
   fuzzy_bi <- filter(fuzzy_bi, activity != 0)
   # Keep only one match per pair of strings
@@ -115,8 +116,7 @@ condense_qID <- function(database = NULL, var = NULL) {
     tidyr::fill(linkage, .direction = "updown") %>%
     dplyr::ungroup() %>%
     dplyr::mutate(qID_ref = stringr::str_trim((ifelse(is.na(linkage), ID,
-                                                      paste0(ID, ":", linkage))),
-                                              "both")) %>%
+                                                      paste0(ID, ":", linkage))), "both")) %>%
     dplyr::select(qID, qID_ref) %>%
     dplyr::distinct()
 
