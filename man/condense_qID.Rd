@@ -12,7 +12,7 @@ condense_qID(database = NULL, var = NULL)
 \item{var}{Two or more qID variables}
 }
 \value{
-A dataframe of similar qIDs
+A dataframe of qID and qID references
 }
 \description{
 Different qIDs generated for different datasets

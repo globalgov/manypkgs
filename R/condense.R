@@ -10,9 +10,9 @@
 #' @param var Two or more qID variables
 #' @import dplyr
 #' @importFrom purrr map
-#' @importFrom stringr str_detect str_trim
+#' @importFrom stringr str_detect str_trim str_extract_all
 #' @importFrom stringdist stringsimmatrix
-#' @return A dataframe of similar qIDs
+#' @return A dataframe of qID and qID references
 #' @examples
 #' data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",
 #' "CPV-PRT[FSD]_1990P:FSD_1980A",
@@ -39,7 +39,6 @@ condense_qID <- function(database = NULL, var = NULL) {
   qID <- qID %>%
     dplyr::distinct(qID) %>%
     dplyr::mutate(qID = stringr::str_trim(qID, "both"))
-
   # Initialize variables to avoid CMD notes
   ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- match_yt <- acronym <- NULL
 
@@ -47,11 +46,12 @@ condense_qID <- function(database = NULL, var = NULL) {
   similar <- qID %>%
     dplyr::mutate(linkage = ifelse(grepl(":", qID), gsub(".*:", "", qID), NA),
                   ID1 = gsub("\\:.*", "", qID),
-                  acronym = gsub("\\_.*", "", ID1),
-                  year_type = gsub(".*_", "", ID1))
+                  acronym = as.character(gsub("\\_.*", "", ID1)),
+                  year_type = gsub(".*_", "", ID1),
+                  activity = as.character(ifelse(stringr::str_detect(qID, "\\["), 
+                                                 stringr::str_extract_all(qID, "\\[[^\\]\\[]*]"), 0)))
 
-  # Step three: identify very similar acronyms
-  # Get similar qIDs using the Levenshtein distance
+  # Step three: identify very similar acronyms, for multilateral treaties
   fuzzy <- stringdist::stringsimmatrix(similar$acronym,
                                        similar$acronym, method = "jaccard")
   fuzzy <- ifelse(fuzzy == 1, 0, fuzzy)
@@ -65,24 +65,49 @@ condense_qID <- function(database = NULL, var = NULL) {
   # Keep only named obs
   fuzzy <- filter(fuzzy, acronym != 0)
   # Delete first match and keep only additional matches
-  fuzzy <- fuzzy[as.character(fuzzy$match) < as.character(fuzzy$acronym), ]
-  fuzzy$acronym <- as.character(fuzzy$acronym)
+  fuzzy <- fuzzy[as.character(fuzzy$match) < fuzzy$acronym, ]
   # Join data
   similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
-  # Remove bilaterals (works only for multilateral at the moment)
-  similar$match <- ifelse(stringr::str_detect(similar$match, "\\-"),
-                          0, similar$match)
+  # Remove bilateral treaties
+  similar$match <- ifelse(stringr::str_detect(similar$match, "\\-"), 0, similar$match)
   # Tranform NAs into 0
   similar$match <- ifelse(is.na(similar$match), 0, similar$match)
 
-  # Step five: assign same acronyms to very similar observation
+  # Step four: repeat same operations for bilateral treaties
+  fuzzy_bi <- stringdist::stringsimmatrix(similar$activity,
+                                          similar$activity, method = "jaccard")
+  fuzzy_bi <- ifelse(fuzzy_bi == 1, 0, fuzzy_bi)
+  rownames(fuzzy_bi) <- similar$activity
+  colnames(fuzzy_bi) <- similar$ID1
+  # Add names for the very similar activity
+  fuzzy_bi <- ifelse(fuzzy_bi > 0.65, rownames(fuzzy_bi), 0)
+  # Tranform matrix into data frame
+  fuzzy_bi <- data.frame(match_bi = colnames(fuzzy_bi)[row(fuzzy_bi)],
+                         bi = gsub("\\[[^][]*]", "", colnames(fuzzy_bi)[row(fuzzy_bi)]),
+                         activity = c(t(fuzzy_bi)), stringsAsFactors = FALSE)
+  # Keep only named obs
+  fuzzy_bi <- filter(fuzzy_bi, activity != 0)
+  # Keep only one match per pair of strings
+  fuzzy_bi <- fuzzy_bi %>% 
+    distinct(bi, .keep_all = TRUE) %>%
+    select(-bi)
+  # Join data
+  similar <- dplyr::full_join(similar, fuzzy_bi, by = "activity")
+  # Tranform NAs into 0
+  similar$match_bi <- ifelse(is.na(similar$match_bi), 0, similar$match_bi)
+  
+  # Step five: assign fuzzy matches to observation
   similar <- similar %>%
     dplyr::distinct(qID, .keep_all = TRUE) %>% # join can add duplication
     dplyr::mutate(fuzzy = gsub("\\_.*", "", match),
-                  match_yt = gsub(".*_", "", match)) %>%
+                  match_yt = gsub(".*_", "", match),
+                  fuzzy_bi = gsub("\\_.*", "", match_bi),
+                  match_yt_bi = gsub(".*_", "", match_bi)) %>%
     dplyr::mutate(ID = ifelse(fuzzy != 0 & match_yt == year_type,
                               paste0(fuzzy, "_", year_type), ID1))
-  
+  # Assign fuzzy matches to bilaterals
+  similar$ID <- ifelse(similar$fuzzy_bi != 0 & similar$match_yt_bi == similar$year_type,
+                       paste0(similar$fuzzy_bi, "_", similar$year_type), similar$ID)
 
   # Step six: Get linkages standardized and return only pertinent columns
   similar <- similar %>%
