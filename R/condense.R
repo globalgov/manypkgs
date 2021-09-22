@@ -75,12 +75,12 @@ condense_qID <- function(database = NULL, var = NULL) {
 
   # Step four: repeat same operations for bilateral treaties
   bt <- stringdist::stringsimmatrix(similar$acronym,
-                                    similar$acronym, method = "jaccard")
+                                    similar$acronym, method = "lv")
   bt <- ifelse(bt == 1, 0, bt)
   rownames(bt) <- similar$acronym
   colnames(bt) <- similar$ID1
   # Add names for the very similar acronyms (1 letter change)
-  bt <- ifelse(bt > 0.8, rownames(bt), 0)
+  bt <- ifelse(bt > 0.6, rownames(bt), 0)
   # Tranform matrix into data frame
   bt <- data.frame(match_bt = colnames(bt)[row(bt)],
                    acronym = as.character(c(t(bt))), stringsAsFactors = FALSE)
