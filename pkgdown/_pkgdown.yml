@@ -18,7 +18,9 @@ navbar:
     - articles
     - tutorials
     - news
-    right: github
+    right:
+    - packages
+    - github
   components:
     home:
       icon: fa-home fa-lg
@@ -36,6 +38,20 @@ navbar:
     news:
       text: News
       href: news/index.html
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/globalgov/qStates
+    packages:
+      text: Other packages
+      menu:
+        - text: qData
+          href: https://globalgov.github.io/qData/
+        - text: qCreate
+          href: https://globalgov.github.io/qCreate/
+        - text: qEnviron
+          href: https://globalgov.github.io/qEnviron/
+        - text: qTrade
+          href: https://globalgov.github.io/qTrade/
 reference:
   - title: "qPackage setup functions"
     desc: "These functions were created to assist data providers with the setup of new qVerse packages"
