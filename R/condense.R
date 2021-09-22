@@ -10,7 +10,7 @@
 #' @param var Two or more qID variables
 #' @import dplyr
 #' @importFrom purrr map
-#' @importFrom stringr str_detect str_trim
+#' @importFrom stringr str_detect str_trim str_extract_all
 #' @importFrom stringdist stringsimmatrix
 #' @return A dataframe of qID and qID references
 #' @examples
@@ -40,16 +40,15 @@ condense_qID <- function(database = NULL, var = NULL) {
     dplyr::distinct(qID) %>%
     dplyr::mutate(qID = stringr::str_trim(qID, "both"))
   # Initialize variables to avoid CMD notes/issues
-  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- match_bt <- acronym <- NULL
+  ID <- linkage <- ID1 <- dup <- year_type <- qID_ref <- match_bt <- match_yt <- acronym <- NULL
 
   # step two: split qID and organize data
   similar <- qID %>%
     dplyr::mutate(linkage = ifelse(grepl(":", qID), gsub(".*:", "", qID), NA),
                   ID1 = gsub("\\:.*", "", qID),
                   acronym = as.character(gsub("\\_.*", "", ID1)),
-                  parties = gsub("\\[.*", "", ID1),
-                  activity = as.character(ifelse(stringr::str_detect(qID, "\\["), 
-                                                 stringr::str_extract_all(qID, "\\[[^\\]\\[]*]"), 0)),
+                  parties = as.character(ifelse(stringr::str_detect(qID, "\\["),
+                                                gsub("\\[.*", "", ID1), 0)),
                   year_type = gsub(".*_", "", ID1))
 
   # Step three: identify very similar acronyms, for multilateral treaties
@@ -75,22 +74,22 @@ condense_qID <- function(database = NULL, var = NULL) {
   similar$match <- ifelse(is.na(similar$match), 0, similar$match)
 
   # Step four: repeat same operations for bilateral treaties
-  bt <- stringdist::stringsimmatrix(similar$activity,
-                                    similar$activity, method = "lv")
+  bt <- stringdist::stringsimmatrix(similar$acronym,
+                                    similar$acronym, method = "jaccard")
   bt <- ifelse(bt == 1, 0, bt)
-  rownames(bt) <- similar$activity
+  rownames(bt) <- similar$acronym
   colnames(bt) <- similar$ID1
   # Add names for the very similar acronyms (1 letter change)
-  bt <- ifelse(bt > 0.7, rownames(bt), 0)
+  bt <- ifelse(bt > 0.8, rownames(bt), 0)
   # Tranform matrix into data frame
   bt <- data.frame(match_bt = colnames(bt)[row(bt)],
-                   activity = as.character(c(t(bt))), stringsAsFactors = FALSE)
+                   acronym = as.character(c(t(bt))), stringsAsFactors = FALSE)
   # Keep only named obs
-  bt <- dplyr::filter(bt, activity != 0)
+  bt <- dplyr::filter(bt, acronym != 0)
   # Delete first match and keep only additional matches
-  bt <- bt[as.character(bt$match_bt) < bt$activity, ]
+  bt <- bt[as.character(bt$match_bt) < bt$acronym, ]
   # Join data
-  similar <- dplyr::full_join(similar, bt, by = "activity")
+  similar <- dplyr::full_join(similar, bt, by = "acronym")
   # Remove multilateral treaties
   similar$match_bt <- ifelse(stringr::str_detect(similar$match_bt, "\\-", negate = TRUE), 0, similar$match_bt)
   # Tranform NAs into 0
@@ -103,11 +102,12 @@ condense_qID <- function(database = NULL, var = NULL) {
                   match_yt = gsub(".*_", "", match),
                   fuzzy_bi = gsub("\\_.*", "", match_bt),
                   match_yt_bi = gsub(".*_", "", match_bt),
-                  match_parties = gsub("\\[.*", "", match_bt)) %>%
+                  match_pt = gsub("\\[.*", "", match_bt)) %>%
     dplyr::mutate(ID = ifelse(fuzzy != 0 & match_yt == year_type,
                               paste0(fuzzy, "_", year_type), ID1))
   # Assign fuzzy matches to bilaterals
-  similar$ID <- ifelse(similar$fuzzy_bi != 0 & similar$match_yt_bi == similar$year_type & similar$match_parties == similar$parties,
+  similar$ID <- ifelse(similar$fuzzy_bi != 0 & similar$match_yt_bi == similar$year_type &
+                         similar$match_pt == similar$parties,
                        paste0(similar$fuzzy_bi, "_", similar$year_type), similar$ID)
 
   # Step six: Get linkages standardized and return only pertinent columns
