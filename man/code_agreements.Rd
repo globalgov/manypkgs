@@ -8,21 +8,21 @@ code_agreements(dataset = NULL, title, date)
 }
 \arguments{
 \item{dataset}{dataset name.
-If provided without a title and date column,
-the function finds title and date conforming columns
-in the dataset automatically if available.}
+If provided without a title and date variables,
+the function finds title and date conforming
+columns in the dataset.
+The function "expects" that there are variables
+named \code{Title} and \code{Signature} that they have been
+standardised using \code{standardise_titles()} and
+\code{standardise_dates()}, respectively.}
 
-\item{title}{title column variable.
-Ideally, title variable should come
-from a qPackage database/dataset
-for which strings were standardised
-with \code{standardise_titles()}}
+\item{title}{title variable.
+The function "expects" that the variable has been
+standardised using \code{standardise_titles()}}
 
-\item{date}{date column variable
-Ideally, date variable should come from
-a qPackage database/dataset
-for which dates were standardised
-with \code{standardise_dates()}}
+\item{date}{date variable.
+The function "expects" that the variable has been
+standardised using \code{standardise_dates()}}
 }
 \value{
 a character vector with the qIDs
