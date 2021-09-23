@@ -1,20 +1,23 @@
 # qCreate 0.1.1
 
 ## Package
+
 * Closed #40 by adding the helper function `correct_words()` into `standardise_titles()`
-* Created code_term family of functions
-  * Added `code_term()` which extracts the date term from the treaty title
-  * Added `code_grounds()` which indicates the type of termination clause the treaty has
-  * Added tests for new functions
+* Added `code_term()` which extracts the date term from the treaty title
+* Added `code_grounds()` which indicates the type of termination clause the treaty has
+* Added tests for `code_term()` and `code_grounds()` functions
 * Updated agreements vignette by simplifying code chunks and expanding hand-coded sample
 
 ## Correction
+
 * Updated the countryregex table with more regex options for certain countries
 * Closed #41 by adding test templates for actor databases and memberships databases
-* Closed #43 by adding qPackage name as an argument of `export_data()`
+* Closed #43 by adding qPackage name as an argument of `export_data()` 
 
 ## Connection
-* Closed #50 by adding `condense_qID()` function to standardise qIDs for multiple datasets in a database
+
+* Closed #50 by adding `condense_qID()` function to match similar, but not identical, qIDs for a database and return a qID_ref vector
+* Added tests for `condense_qID()`
 
 # qCreate 0.1.0
 
