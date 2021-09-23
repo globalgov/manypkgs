@@ -6,7 +6,11 @@
 * Added `code_term()` which extracts the date term from the treaty title
 * Added `code_grounds()` which indicates the type of termination clause the treaty has
 * Added tests for `code_term()` and `code_grounds()` functions
+* Added `add_bib()` function to help developers cite datasets in the expected formats
 * Updated agreements vignette by simplifying code chunks and expanding hand-coded sample
+* Updated `setup_package()` function
+  * Added a package citation template to be exported to new qPackage
+  * Updated exported workflow templates to remove unnecessary PR checks for data packages
 
 ## Correction
 
