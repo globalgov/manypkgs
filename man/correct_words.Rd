@@ -2,7 +2,7 @@
 % Please edit documentation in R/standardise_titles.R
 \name{correct_words}
 \alias{correct_words}
-\title{Standardises some words spelling}
+\title{Helper function for standardising words spelling}
 \usage{
 correct_words(s)
 }
@@ -13,12 +13,8 @@ correct_words(s)
 A list of character vector with the words changed
 }
 \description{
-Change some words spelling, specifically those that can vary
+Change some words spelling,
+specifically those that can vary
 from one text to another.
-}
-\examples{
-\dontrun{
-IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 100)
-IEADB$Title <- correct_words(IEADB$Title)
-}
+The function uses Britsh English spellings.
 }

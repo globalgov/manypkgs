@@ -4,12 +4,12 @@
 \alias{add_bib}
 \title{Add .bib file}
 \usage{
-add_bib(database, dataset, path = getwd())
+add_bib(database, dataset)
 }
 \arguments{
 \item{database}{Name of the database dataset is a part of}
 
-\item{dataset}{NAme of the dataset}
+\item{dataset}{Name of the dataset}
 }
 \value{
 A .bib template saved to the data-raw folder to be completed

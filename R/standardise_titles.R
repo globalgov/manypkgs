@@ -125,7 +125,7 @@ standardise_titles <- standardize_titles <- function(s,
   out
 }
 
-#' Standardises some words spelling
+#' Helper function for standardising words spelling
 #'
 #' Change some words spelling,
 #' specifically those that can vary
@@ -134,11 +134,6 @@ standardise_titles <- standardize_titles <- function(s,
 #' @param s A list of character vector
 #' @return A list of character vector with the words changed
 #' @importFrom knitr kable
-#' @examples
-#' \dontrun{
-#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 100)
-#' IEADB$Title <- correct_words(IEADB$Title)
-#' }
 correct_words <- function(s) {
   # If no arguments, the list of corrected words appears
   if (missing(s)) {

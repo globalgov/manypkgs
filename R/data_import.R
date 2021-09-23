@@ -138,7 +138,7 @@ import_data <- function(dataset = NULL,
 #'
 #' Add .bib file template to help cite the datasets in a qPackage
 #' @param database Name of the database dataset is a part of
-#' @param dataset NAme of the dataset
+#' @param dataset Name of the dataset
 #' @importFrom fs path
 #' @importFrom usethis ui_done ui_todo
 #' @return A .bib template saved to the data-raw folder to be completed
@@ -147,17 +147,16 @@ import_data <- function(dataset = NULL,
 #' add_bib("states", "COW")
 #' }
 #' @export
-add_bib <- function(database, dataset, path = getwd()) {
+add_bib <- function(database, dataset) {
 
-  path <- match.arg(path)
   qtemplate(
     "qData-bib",
     save_as = fs::path("data-raw", database, dataset,
                        dataset, ext = "bib"),
     data = list(dataset = dataset),
     ignore = FALSE,
-    open = TRUE, 
-    path = path)
+    open = TRUE,
+    path = getwd())
 
   usethis::ui_done("The file was added to the data-raw folder.")
   usethis::ui_todo("Please complete the .bib file.")
