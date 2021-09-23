@@ -246,7 +246,7 @@ setup_package <- function(package = NULL,
                         author = name,
                         year = year),
             path = path,
-            open = FALSE)
+            open = TRUE)
   usethis::ui_done("Added CITATION file to inst folder. Please do not forget to complete.")
 
   create_directory(paste0(path, "/.github/workflows"))
