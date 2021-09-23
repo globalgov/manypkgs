@@ -127,8 +127,10 @@ standardise_titles <- standardize_titles <- function(s,
 
 #' Standardises some words spelling
 #'
-#' Change some words spelling, specifically those that can vary
+#' Change some words spelling,
+#' specifically those that can vary
 #' from one text to another.
+#' The function uses Britsh English spellings. 
 #' @param s A list of character vector
 #' @return A list of character vector with the words changed
 #' @importFrom knitr kable
