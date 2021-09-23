@@ -1,0 +1,7 @@
+@misc{{{{dataset}}},
+  title        = "Please add a full title for the dataset",
+  author       = "Please add a the authors of the dataset",
+  howpublished = "Please add a the name of the article or a website URL for the dataset",
+  year         = "Please add a the year of the dataset",
+  note         = "Any additional notes? If not remove this line."
+}

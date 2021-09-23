@@ -41,7 +41,7 @@ export_data <- function(..., database, URL) {
 
   # Check if bibliography file exists
   if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
-    stop("bib file not found. Please provide a .bib file in the data-raw folder alongside your data.")
+    stop("Bibliography file not found. Please run `qCreate::add_bib()` to add a .bib file to the data-raw folder before proceding.")
   }
 
   # Step one: set up directory
@@ -124,8 +124,6 @@ export_data <- function(..., database, URL) {
             path = getwd())
 
   # Step four: create the right kind of test script for the type of object it is
-  # TODO: decide on what kinds of objects can be contained in qData packages
-  # (actors, agreements, relations, etc)
   if (database == "states") {
     qtemplate("test_states.R",
               save_as = fs::path("tests", "testthat",

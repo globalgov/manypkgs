@@ -133,3 +133,32 @@ import_data <- function(dataset = NULL,
   usethis::ui_todo("Use {usethis::ui_code('qCreate::export_data()')} to add prepared data to package")
 
 }
+
+#' Add .bib file
+#'
+#' Add .bib file template to help cite the datasets in a qPackage
+#' @param database Name of the database dataset is a part of
+#' @param dataset NAme of the dataset
+#' @importFrom fs path
+#' @importFrom usethis ui_done ui_todo
+#' @return A .bib template saved to the data-raw folder to be completed
+#' @example
+#' \dontrun{
+#' add_bib("states", "COW")
+#' }
+#' @export
+add_bib <- function(database, dataset, path = getwd()) {
+
+  path <- match.arg(path)
+  qtemplate(
+    "qData-bib",
+    save_as = fs::path("data-raw", database, dataset,
+                       dataset, ext = "bib"),
+    data = list(dataset = dataset),
+    ignore = FALSE,
+    open = TRUE, 
+    path = path)
+
+  usethis::ui_done("The file was added to the data-raw folder.")
+  usethis::ui_todo("Please complete the .bib file.")
+}
