@@ -3,8 +3,8 @@
 ## Package
 * Closed #40 by adding the helper function `correct_words()` into `standardise_titles()`
 * Created code_term family of functions
-  * Added `code_term_date()` which extracts the date term from the treaty title
-  * Added `code_term_type()` which indicates the type of termination clause the treaty has
+  * Added `code_term()` which extracts the date term from the treaty title
+  * Added `code_grounds()` which indicates the type of termination clause the treaty has
   * Added tests for new functions
 * Updated agreements vignette by simplifying code chunks and expanding hand-coded sample
 
