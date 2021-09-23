@@ -4,4 +4,3 @@ test_that("missing values dropped", {
   expect_equal(as.character(interleave(1:5, c(2, 4))), dat)
   expect_length(interleave(1:5, c(2, 4)), 7)
 })
-
