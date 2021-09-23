@@ -23,5 +23,4 @@ code_term <- function(title, text = NULL) {
   # Standardise the date format
   date <- as.Date(as.character(date), format = "%d %B %Y")
   date
-  # TO DO: Step two: extract term date from treaty text
 }
