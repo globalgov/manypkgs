@@ -31,7 +31,5 @@ code_grounds <- function(title, text = NULL) {
     type <- ifelse(grepl("For The Period", title) & grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                                                           title, ignore.case = T), paste0("EXP"), NA)
     type
-    # TO DO: Step two: use treaty text to identify which termination
-    # clause type the treaty has.
   }
 }
