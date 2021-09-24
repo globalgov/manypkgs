@@ -17,7 +17,8 @@ Imports:
     dplyr,
     roxygen2,
     usethis,
-    remotes
+    remotes,
+    messydates
 Suggests:
     rlang,
     testthat (>= 3.0.0)
