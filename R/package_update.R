@@ -1,10 +1,16 @@
 #' Updates qPackages
 #'
-#' Updates files for qPackages setup with setup_package()
+#' As qPackages evolve, expectations about package structures
+#' as well as templates might also change.
+#' This function updates files for qPackages setup with `setup_package()`.
+#' @details Some of the files in the .github folder, such as workflow actions,
+#' pull request templates, and issue templates, are automatically updated.
+#' The function also asks developers if other files such as the package license,
+#' contributing file, and code of conduct should be updated.
 #' @param package The name of the package to be updated, optional.
 #' When not declared package name is extracted from description.
 #' @param path The file path, optional.
-#' If not specified, function get's the current working directory.
+#' If not specified, function gets the current working directory.
 #' @param name A list of vectors giving the package author(s)' name(s).
 #' Optional.
 #' Authors(s)last name(s) and first name(s) are separated by a comma.
