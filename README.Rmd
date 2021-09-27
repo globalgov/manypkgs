@@ -23,6 +23,7 @@ This facilitates the interoperability, contrast, and comparison of data.
 There is a specific coding system that should be followed by contributors.
 For more details, please see the [vignette](https://globalgov.github.io/qCreate/articles/developer.html).
 
+
 ## Downloading and installing qCreate
 
 The development version of the package `{qCreate}` can be downloaded from GitHub. 
@@ -31,6 +32,11 @@ The development version of the package `{qCreate}` can be downloaded from GitHub
 # install.packages("remotes")
 remotes::install_github("globalgov/qCreate")
 ```
+
+## Cheat Sheet
+
+Please, click [here](https://github.com/globalgov/qCreate/blob/develop/man/figures/cheatsheet.pdf) to access the cheatsheet.
+
 
 ## qPackages
 
