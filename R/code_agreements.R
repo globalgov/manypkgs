@@ -228,7 +228,7 @@ code_activity <- function(title) {
   # Step four: get abbreviations for last three words and counting of words
   out <- stringr::str_squish(out)
   out <- suppressWarnings(abbreviate(out, minlength = 3,
-                                     method = 'both.sides', strict = TRUE))
+                                     method = "both.sides", strict = TRUE))
   out <- stringr::str_extract(out, ".{3}$")
   out <- toupper(out)
   }
@@ -368,7 +368,7 @@ code_known_agreements <- function(title) {
     # when they match
     ab <- sapply(abbreviations$title, function(x) grepl(x, title,
                                                         ignore.case = T,
-                                                        perl = T)*1)
+                                                        perl = T) * 1)
     colnames(ab) <- paste0(abbreviations$abbreviation, "_",
                            as.character(stringr::str_remove_all(
                              abbreviations$signature, "-")))
@@ -447,7 +447,7 @@ code_acronym <- function(title) {
   x <- ifelse(stringr::str_detect(x, "[:upper:]{7}"),
               paste0(substr(x, 1, 2),
                      stringr::str_pad(nchar(x) - 3, 2, pad = "0"),
-                     substr(x, nchar(x)-1, nchar(x))), x)
+                     substr(x, nchar(x) - 1, nchar(x))), x)
   x <- as.character(x)
   x
 }
@@ -490,7 +490,7 @@ code_linkage <- function(title, date) {
 
   # Step three: remove 'predictable words' in agreements
   predictable_words <- predictable_words$predictable_words
-  predictable_words <- paste(predictable_words, collapse = '\\>|\\<')
+  predictable_words <- paste(predictable_words, collapse = "\\>|\\<")
   predictable_words <- paste0("\\<", predictable_words, "\\>")
   out <- gsub(predictable_words, "", out, ignore.case = TRUE)
 
@@ -514,7 +514,7 @@ code_linkage <- function(title, date) {
   ref <- NULL
   dup <- NULL
 
-  # Step seven: find duplicates and original values, and assign same id to duplicates
+  # Step seven: find duplicates and original values, and assign same id
   out <- out %>%
     dplyr::group_by_at(dplyr::vars(out)) %>%
     dplyr::mutate(
