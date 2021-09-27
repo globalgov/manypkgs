@@ -29,7 +29,9 @@ The function creates a data directory, if nonexistent, and
 saves cleaned data. The functions also creates a script for testing
 the cleaned data and make sure it complies with qData requirements.
 As well, it creates a documentation script to help documenting data
-sources and describing variables.
+sources and describing variables. Note that users need to provide a \code{.bib}
+file for citation purposes alongside their dataset in the corresponding
+\code{data-raw} subfolder.
 }
 \examples{
 \dontrun{

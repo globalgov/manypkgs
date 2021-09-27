@@ -1,0 +1,10 @@
+citHeader("To cite in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "{{{package}}}",
+  author   = "{{{author}}}",
+  year     = "{{{year}}}",
+  note = "For more information on the qVerse: https://github.com/globalgov/qData"
+  textVersion = paste("{{{author}}}", "{{{package}}}", "{{{year}}}", sep = ".")
+)

@@ -15,13 +15,21 @@ Optional.
 Authors(s)last name(s) and first name(s) are separated by a comma.}
 
 \item{path}{The file path, optional.
-If not specified, function get's the current working directory.}
+If not specified, function gets the current working directory.}
 }
 \value{
 Updated files in correct structure for qPackages.
 }
 \description{
-Updates files for qPackages setup with setup_package()
+As qPackages evolve, expectations about package structures
+as well as templates might also change.
+This function updates files for qPackages setup with \code{setup_package()}.
+}
+\details{
+Some of the files in the .github folder, such as workflow actions,
+pull request templates, and issue templates, are automatically updated.
+The function also asks developers if other files such as the package license,
+contributing file, and code of conduct should be updated.
 }
 \examples{
 \dontrun{

@@ -11,7 +11,9 @@
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with qData requirements.
 #' As well, it creates a documentation script to help documenting data
-#' sources and describing variables.
+#' sources and describing variables. Note that users need to provide a `.bib`
+#' file for citation purposes alongside their dataset in the corresponding
+#' `data-raw` subfolder.
 #' @return This function saves the dataset to the named database,
 #' silently creates a set of tests for this dataset,
 #' and creates and opens documentation for the dataset.
@@ -33,17 +35,15 @@ export_data <- function(..., database, URL) {
   if (!is.character(URL)) {
     stop("Please provide a valid URL argument.")
   }
-  dataset_name <- deparse(substitute(...))
-  dataset <- get(dataset_name)
 
-  # Step one: coerce dataset into correct format if not
-  # already and creates data folder
-  # if(!"Beg" %in% colnames(dataset))
-  # stop("Please ensure there is at least one date column named 'Beg' for beginning")
-  # if(!"ID" %in% colnames(dataset))
-  # stop("Please ensure there is at least one identification column named 'ID'")
-  # dataset <- as_tibble(dataset) %>% dplyr::arrange(.data$Beg, .data$ID)
-  # dataset
+  dataset_name <- deparse(substitute(...))
+
+  # Check if bibliography file exists
+  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
+    stop("Bibliography file not found. Please run `qCreate::add_bib()` to add a .bib file to the data-raw folder before proceding.")
+  }
+
+  # Step one: set up directory
   usethis::use_directory("data", ignore = FALSE)
 
   # Step two: join dataset to any related datasets in a database
@@ -98,16 +98,18 @@ export_data <- function(..., database, URL) {
   strdsnames <- str_c(names(db), collapse = ", ")
   dsobs <- lapply(db, nrow)
   dsnvar <- lapply(db, ncol)
-  dsvar <- lapply(db, colnames)
   dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",
-                            "{A dataset with ", dsobs, " observations and the following ",
-                            dsnvar, " variables: ", dsvarstr, ".}\n", collapse = ""), "#' }")
+                            "{A dataset with ", dsobs,
+                            " observations and the following\n",
+                            "#' ", dsnvar, " variables: ", dsvarstr,
+                            ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
+  package <- get_package_name()
   qtemplate("qDataDBDoc.R",
-            save_as = fs::path("R", paste0("qData-", database, ".R")),
+            save_as = fs::path("R", paste0(package, "-", database, ".R")),
             data = list(dat = dataset_name,
                         nd = dblen,
                         strdsnames = strdsnames,
@@ -120,8 +122,6 @@ export_data <- function(..., database, URL) {
             path = getwd())
 
   # Step four: create the right kind of test script for the type of object it is
-  # TODO: decide on what kinds of objects can be contained in qData packages
-  # (actors, agreements, relations, etc)
   if (database == "states") {
     qtemplate("test_states.R",
               save_as = fs::path("tests", "testthat",
@@ -133,6 +133,24 @@ export_data <- function(..., database, URL) {
               path = getwd())
   } else if (database == "agreements") {
     qtemplate("test_agreements.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
+  } else if (database == "memberships") {
+    qtemplate("test_memberships.R",
+              save_as = fs::path("tests", "testthat",
+                                 paste0("test_", dataset_name, ".R")),
+              data = list(dat = dataset_name,
+                          dab = database),
+              open = FALSE,
+              ignore = FALSE,
+              path = getwd())
+  } else if (database == "actors") {
+    qtemplate("test_actors.R",
               save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
               data = list(dat = dataset_name,
@@ -152,4 +170,19 @@ export_data <- function(..., database, URL) {
   }
   ui_done("A test script has been created for this data.")
   ui_todo("Press Cmd/Ctrl-Shift-T to run all tests or run devtools::test().")
+}
+
+#' Get the name of the package
+#'
+#' @param path A string, if missing default is path to the working directory
+#' @return The name of the package
+#' @examples
+#' \dontrun{
+#' get_package_name()
+#' }
+#' @export
+get_package_name <- function(path = getwd()) {
+  file.exists(paste0(path, "/DESCRIPTION"))
+  package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
+  package
 }

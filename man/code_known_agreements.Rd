@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_agreements.R
 \name{code_known_agreements}
 \alias{code_known_agreements}
-\title{Known agreements abbreviation}
+\title{Code Known Agreements Abbreviation}
 \usage{
 code_known_agreements(title)
 }
@@ -13,7 +13,8 @@ code_known_agreements(title)
 A character vector of abbreviation of known treaties
 }
 \description{
-Some agreements have known abbreviations that facilitate their identification.
+Some agreements have known abbreviations that facilitate
+their identification.
 }
 \details{
 The function identifies agreements that match the list of known

@@ -13,8 +13,9 @@ code_dates(date)
 A character vector with condensed dates
 }
 \description{
-Agreements should have a unique identification number that is meaningful,
-we condense their signature dates to produce this number.
+Agreements should have a unique identification
+number that is meaningful, we condense their
+signature dates to produce this number.
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)

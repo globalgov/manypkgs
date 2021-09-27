@@ -1,10 +1,16 @@
 #' Updates qPackages
 #'
-#' Updates files for qPackages setup with setup_package()
+#' As qPackages evolve, expectations about package structures
+#' as well as templates might also change.
+#' This function updates files for qPackages setup with `setup_package()`.
+#' @details Some of the files in the .github folder, such as workflow actions,
+#' pull request templates, and issue templates, are automatically updated.
+#' The function also asks developers if other files such as the package license,
+#' contributing file, and code of conduct should be updated.
 #' @param package The name of the package to be updated, optional.
 #' When not declared package name is extracted from description.
 #' @param path The file path, optional.
-#' If not specified, function get's the current working directory.
+#' If not specified, function gets the current working directory.
 #' @param name A list of vectors giving the package author(s)' name(s).
 #' Optional.
 #' Authors(s)last name(s) and first name(s) are separated by a comma.
@@ -29,26 +35,26 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   }
 
   if (!is.null(package) & path == getwd()) {
-    if(stringr::str_detect(path, package)) {
-      path = getwd()
+    if (stringr::str_detect(path, package)) {
+      path <- getwd()
     } else {
       stop("Package path differs from current working directory.
            Please either declare a path to package directory
            or use setwd() to setup directory beforehand.")
     }
   }
-  
+
   depends("desc")
-  
+
   # Step two: Get author's name
   if (!is.null(name)) {
-    if(length(name) > 1) {
+    if (length(name) > 1) {
       author <- paste(name, collapse = " and ")
     } else {
       author <- paste(name)
     }
   }
-  
+
   if (is.null(name)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
       author <- read.dcf(paste0(path, "/DESCRIPTION"))[[4]]
@@ -57,14 +63,16 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
       author <- stringr::str_replace_all(author, "person\\(given = \"", "")
       author <- stringr::str_replace_all(author, "\\n", "")
       author <- stringr::str_replace_all(author, "\".*", "")
-      usethis::ui_done("Obtained lead author name from existing DESCRIPTION file.")
+      usethis::ui_done(
+        "Obtained lead author name from existing DESCRIPTION file.")
     } else {
       stop("Please declare author(s) name(s)")
     }
   }
 
   # Step three: update License
-  if(utils::askYesNo("Would you like to update package LICENSE file?") == TRUE) {
+  if (utils::askYesNo(
+    "Would you like to update package LICENSE file?") == TRUE) {
     qtemplate("LICENSE.md",
               ignore = TRUE,
               path = path,
@@ -72,9 +80,9 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
     # desc::desc_set("License", "CC BY 4.0")
     usethis::ui_done("Updated License file.")
   }
-  
+
   # Step four: update Code of Conduct and Contributing files
-  if(utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
+  if (utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
     qtemplate("qPackage-COC.md",
               fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
               data = list(package = package,
@@ -82,7 +90,7 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
               path = path,
               open = FALSE)
     usethis::ui_done("Updated CODE_OF_CONDUCT.")
-    
+
     qtemplate("qPackage-CONTRIB.md",
               fs::path(".github", "CONTRIBUTING.md"),
               data = list(package = package,

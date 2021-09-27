@@ -11,6 +11,13 @@ test_that("missing observations are reported correctly", {
   expect_false(any(grepl("n\\.a\\.$", {{{dab}}}[["{{{dat}}}"]])))
 })
 
+# Date columns should be in messydt class
+test_that("Columns are not in date, POSIXct or POSIXlt class", {
+  expect_false(any(lubridate::is.Date({{{dab}}}[["{{{dat}}}"]])))
+  expect_false(any(lubridate::is.POSIXct({{{dab}}}[["{{{dat}}}"]])))
+  expect_false(any(lubridate::is.POSIXlt({{{dab}}}[["{{{dat}}}"]])))
+})
+
 # Contains the required variables
 test_that("object has the correct variables", {
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
@@ -29,8 +36,8 @@ test_that("dates are standardised", {
 
 # Labels are standardized
 test_that("labels are standardised", {
-  expect_false(any(grepl("U.S.", {{{dab}}}[["{{{dat}}}"]])))
-  expect_false(any(grepl("U.K.", {{{dab}}}[["{{{dat}}}"]])))
+  expect_false(any(grepl("U\\.S\\.", {{{dab}}}[["{{{dat}}}"]])))
+  expect_false(any(grepl("U\\.K\\.", {{{dab}}}[["{{{dat}}}"]])))
   expect_false(any(grepl("!", {{{dab}}}[["{{{dat}}}"]])))
   expect_false(any(grepl("NANA.", {{{dab}}}[["{{{dat}}}"]])))
 })

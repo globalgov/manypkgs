@@ -15,13 +15,14 @@ output: github_document
 <!-- ![GitHub All Releases](https://img.shields.io/github/downloads/jhollway/roctopus/total) -->
 <!-- badges: end -->
 
-`{qCreate}` provides contributors the necessary tools to put their data in the hands of users.
-The package includes many functions to make this easier.
-It includes functions to help set up a qPackage, import their existing data, 
-and export them in structures consistent with the rest of the data ecosystem.
+`{qCreate}` is a qPackage in the [qData](https://github.com/globalgov/qData) ecosystem. 
+It provides contributors the necessary tools to put their data in the hands of users.
+The package includes many functions to make this easier, including functions to help set up a qPackage, 
+import their existing data, and export them in structures consistent with the rest of the data ecosystem.
 This facilitates the interoperability, contrast, and comparison of data.
-Specific coding system should be followed by the contributors.
-For more details on that, please see the [vignette](https://globalgov.github.io/qCreate/articles/developer.html).
+There is a specific coding system that should be followed by contributors.
+For more details, please see the [vignette](https://globalgov.github.io/qCreate/articles/developer.html).
+
 
 ## Downloading and installing qCreate
 
@@ -32,16 +33,20 @@ The development version of the package `{qCreate}` can be downloaded from GitHub
 remotes::install_github("globalgov/qCreate")
 ```
 
+## Cheat Sheet
+
+<a href="https://github.com/globalgov/qCreate/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/main/man/figures/cheatsheet.png" width="525" height="378"/></a>  
+
+
 ## qPackages
 
-`{qData}` is the central package in an ecosystem of packages aimed at collecting, connecting and correcting network
-data across issue-domains of global governance. 
-The `{qData}` is designed for users but the `qData::get_packages()` function in can be used to discover which packages are currently available.
+The [qData](https://github.com/globalgov/qData) ecosystem aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
+The `qData::get_packages()` function can be used to discover the qPackages currently available.
 
 ```{r, message=FALSE}
 library(qData)
 get_packages()
 ```
 
-Please see [the website](https://globalgov.github.io/qCreate/) for more information about how to use `{qCreate}` as a developer or a data contributor.
+Please see [the website](https://globalgov.github.io/qCreate/) for more information about how to use `{qCreate}` as a developer or as a data contributor.
 For more information on `{qData}`, please see [the website](https://globalgov.github.io/qData/).

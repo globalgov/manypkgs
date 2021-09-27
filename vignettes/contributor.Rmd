@@ -38,8 +38,8 @@ This function also accepts ORCID numbers instead of author names.
 qCreate::add_author(name = "Sposito, Henrique")
 ```
 
-For updating packages for changes in templates, documentation and file structure, 
-use to the `update_package()` function.
+For automatically updating packages for changes in templates, documentation, and file structure,
+contributors can use the `update_package()` function.
 
 ```{r eval=FALSE}
 qCreate::update_package("qStates")
@@ -52,7 +52,9 @@ creates a data-raw folder into the package, copies the raw data into the folder 
 provides a script to facilitate data loading.
 The function requires that a name for the dataset - two dimensional data sheet being 
 imported - is declared, in upper case letters, as well as the name of the issue-domain, 
-in lower case letters, the dataset belongs. 
+in lower case letters, the dataset belongs.
+Note that for transparency and citation purposes, contributors need to provide
+a `.bib` file alongside their data in the corresponding data-raw subfolder.
 The domain issue name will be used to connect two-dimensional datasets into 
 three-dimensional databases that resembles a data cube 
 (a list object where entries are tibbles).

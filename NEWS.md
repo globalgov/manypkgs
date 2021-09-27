@@ -1,3 +1,32 @@
+# qCreate 0.1.1
+
+## Package
+
+* Updated `setup_package()` function
+  * Added a package citation template to be exported to new qPackage
+  * Updated exported workflow templates to remove unnecessary PR checks for data packages
+* Updated `import_data()` function
+  * Closed #44 by adding argument to import codebook if available
+  * Closed #45 by allowing text function to accept text delimited files
+* Updated `export_data()` function
+  * Closed #43 by adding qPackage name as an argument of `export_data()` 
+  * Closed #41 by adding test templates for actor databases and memberships databases
+* Closed #42 by adding `add_bib()` function to help developers cite datasets in the expected formats
+* Updated agreements vignette by simplifying code chunks and expanding hand-coded sample
+
+## Correction
+
+* Closed #40 by adding the helper function `correct_words()` into `standardise_titles()`
+
+## Connection
+
+* Added `code_term()` which extracts the date term from the treaty title
+* Added `code_grounds()` which indicates the type of termination clause the treaty has
+* Added tests for `code_term()` and `code_grounds()` functions
+* Updated the countryregex table with more regex options for certain countries
+* Closed #50 and #23 by adding `condense_qID()` function to match similar, but not identical, qIDs for a database and return a qID_ref vector
+* Added tests for `condense_qID()`
+
 # qCreate 0.1.0
 
 ## Package

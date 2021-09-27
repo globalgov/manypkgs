@@ -52,6 +52,6 @@ is set to contributor.
 \dontrun{
 add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb")))
 add_author(name = "Smith, John",
-comment = "University of Somewhere")
+affiliation = "University of Somewhere")
 }
 }
