@@ -42,7 +42,7 @@ remotes::install_github("globalgov/qCreate")
 
 ## Cheat Sheet
 
-<a href="https://github.com/globalgov/qCreate/blob/develop/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/develop/man/figures/cheatsheet.png" width="525" height="378"/></a>
+<a href="https://github.com/globalgov/qCreate/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/main/man/figures/cheatsheet.png" width="525" height="378"/></a>
 
 ## qPackages
 
@@ -53,11 +53,16 @@ to discover the qPackages currently available.
 
 ``` r
 library(qData)
+```
+
+    ## Warning: package 'tibble' was built under R version 4.0.5
+
+``` r
 get_packages()
 ```
 
     ## # A tibble: 0 x 1
-    ## # … with 1 variable: updated <date>
+    ## # ... with 1 variable: updated <date>
 
 Please see [the website](https://globalgov.github.io/qCreate/) for more
 information about how to use `{qCreate}` as a developer or as a data
