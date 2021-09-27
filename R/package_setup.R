@@ -37,7 +37,7 @@ setup_package <- function(package = NULL,
   given <- NULL
   family <- NULL
   comment <- NULL
-  year = NULL
+  year <- NULL
 
   # Step zero: get details from existing files, if present
   if (is.null(package)) {
@@ -216,7 +216,7 @@ setup_package <- function(package = NULL,
             path = path,
             open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
-  
+
   create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
 
@@ -302,7 +302,7 @@ setup_package <- function(package = NULL,
 #' \dontrun{
 #' add_author(orcid = "0000-0002-8361-9647", role = list(c("aut", "cre", "ctb")))
 #' add_author(name = "Smith, John",
-#' comment = "University of Somewhere")
+#' affiliation = "University of Somewhere")
 #' }
 #' @export
 add_author <- function(orcid = NULL,
@@ -314,10 +314,6 @@ add_author <- function(orcid = NULL,
   # Check for correct input
   if (is.null(orcid) & is.null(name)) stop(
     "Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
-
-  # Initialize variables to suppress an annoying note when running
-  # devtools_check
-  comment <- NULL
 
   # Use ORCID data if available
   if (!is.null(orcid)) {
@@ -342,7 +338,8 @@ add_author <- function(orcid = NULL,
                             [["given-names"]][["value"]])
       family <- as.character(author[[orcid]][["name"]]
                              [["family-name"]][["value"]])
-      if (is.null(email) & length(author[[orcid]][["emails"]][["email"]]) != 0) {
+      if (is.null(email) &
+          length(author[[orcid]][["emails"]][["email"]]) != 0) {
         email <- as.character(author[[orcid]][["emails"]][["email"]][[1]])
       }
     }

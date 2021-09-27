@@ -37,7 +37,6 @@ export_data <- function(..., database, URL) {
   }
 
   dataset_name <- deparse(substitute(...))
-  dataset <- get(dataset_name)
 
   # Check if bibliography file exists
   if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
@@ -99,7 +98,6 @@ export_data <- function(..., database, URL) {
   strdsnames <- str_c(names(db), collapse = ", ")
   dsobs <- lapply(db, nrow)
   dsnvar <- lapply(db, ncol)
-  dsvar <- lapply(db, colnames)
   dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",

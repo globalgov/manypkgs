@@ -26,7 +26,7 @@ qtemplate <- function(template,
                       path,
                       open = rlang::is_interactive(),
                       package = "qCreate") {
-  
+
   # Set up find_template() helper function
   find_template <- function(template_name, package = "qCreate") {
     path <- tryCatch(fs::path_package(package = package, "templates",
@@ -41,14 +41,14 @@ qtemplate <- function(template,
     }
     path
   }
-  
+
   # Set up render_template() helper function
   render_template <- function(template, data = list(), package = "qCreate") {
     template_path <- find_template(template, package = package)
     strsplit(whisker::whisker.render(xfun::read_utf8(template_path),
                                      data), "\n")[[1]]
   }
-  
+
   # Render and save the template as correct file
   template_contents <- render_template(template, data, package = package)
   new <- usethis::write_over(paste0(path, "/", save_as), template_contents)

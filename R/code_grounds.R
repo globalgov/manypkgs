@@ -28,8 +28,9 @@ code_grounds <- function(title, text = NULL) {
     title <- as.character(title)
     # All the treaties having the term date in the title had the
     # word "For the Period"
-    type <- ifelse(grepl("For The Period", title) & grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
-                                                          title, ignore.case = T), paste0("EXP"), NA)
+    type <- ifelse(grepl("For The Period", title) &
+                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}", 
+                           title, ignore.case = T), paste0("EXP"), NA)
     type
   }
 }

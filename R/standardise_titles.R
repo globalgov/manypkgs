@@ -120,7 +120,7 @@ standardise_titles <- standardize_titles <- function(s,
   out <- gsub("(?!\\-|\\(|\\))[[:punct:]]", "", out, perl = TRUE)
   # removes all punctuations but hyphen and parentheses,
   # which may contain important information for distinguishing
-  # treaties/words
+  # treaties
   out <- stringr::str_squish(out)
   out
 }
@@ -130,7 +130,7 @@ standardise_titles <- standardize_titles <- function(s,
 #' Change some words spelling,
 #' specifically those that can vary
 #' from one text to another.
-#' The function uses Britsh English spellings. 
+#' The function uses Britsh English spellings.
 #' @param s A list of character vector
 #' @return A list of character vector with the words changed
 #' @importFrom knitr kable

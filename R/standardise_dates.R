@@ -55,7 +55,6 @@ standardise_dates <- standardize_dates <- function(...) {
 #' @export
 interleave <- function(vect, pos, elems = NA) {
 
-  l <- length(vect)
   j <- 0
   for (k in seq_len(length(pos))) {
     if (pos[k] == 1)

@@ -7,10 +7,10 @@
 #' If provided without a title and date variables,
 #' the function finds title and date conforming
 #' columns in the dataset.
-#' The function "expects" that there are variables 
+#' The function "expects" that there are variables
 #' named `Title` and `Signature` that they have been
 #' standardised using `standardise_titles()` and
-#' `standardise_dates()`, respectively. 
+#' `standardise_dates()`, respectively.
 #' @param title title variable.
 #' The function "expects" that the variable has been
 #' standardised using `standardise_titles()`
@@ -139,20 +139,20 @@ code_parties <- function(title) {
   title <- as.character(title)
   title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
                   gsub("\\s*\\([^\\)]+\\)", "", title), title)
-  coment <- sapply(countryregex[,3], function(x) grepl(x, title,
+  coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
                                                        ignore.case = T,
-                                                       perl = T)*1)
-  colnames(coment) <- countryregex[,1]
+                                                       perl = T) * 1)
+  colnames(coment) <- countryregex[, 1]
   rownames(coment) <- title
-  out <- apply(coment, 1, function(x) paste(names(x[x==1]),
+  out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
                                             collapse = "_"))
-  out[out==""] <- NA
+  out[out == ""] <- NA
   parties <- unname(out)
   parties <- stringr::str_replace_all(parties, "_", "-")
-  
+
   # Step two: add NAs to observations not matched
   parties[!grepl("-", parties)] <- NA
-  
+
   # Step three:: get bilateral agreements where
   # two parties have been identified
   parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
@@ -194,9 +194,9 @@ code_activity <- function(title) {
   # Step one: remove states' names and agreements' type
   out <- as.character(title)
   states <- countryregex$Label
-  states <- paste(states, collapse = '|')
+  states <- paste(states, collapse = "|")
   words <- agreement_type$words
-  words <- paste(words, collapse = '|')
+  words <- paste(words, collapse = "|")
   out <- gsub(states, "", out, ignore.case = TRUE)
   out <- gsub(words, "", out, ignore.case = TRUE)
   # Some states and abbreviations are missed
@@ -204,7 +204,7 @@ code_activity <- function(title) {
               "", out, ignore.case = TRUE)
 
   # Step two: remove stop words, numbers and parenthesis
-  out <- tm::removeWords(tolower(out), tm::stopwords('SMART'))
+  out <- tm::removeWords(tolower(out), tm::stopwords("SMART"))
   out <- gsub("[0-9]", "", out)
   out <- gsub("\\(|\\)|\U00AC|\U00F1 ", "", out)
   out <- gsub("-", " ", out)
@@ -227,11 +227,10 @@ code_activity <- function(title) {
 
   # Step four: get abbreviations for last three words and counting of words
   out <- stringr::str_squish(out)
-  # lt <- lengths(gregexpr("\\W+", out))
-  out <- suppressWarnings(abbreviate(out, minlength = 3, method = 'both.sides', strict = TRUE))
+  out <- suppressWarnings(abbreviate(out, minlength = 3,
+                                     method = 'both.sides', strict = TRUE))
   out <- stringr::str_extract(out, ".{3}$")
   out <- toupper(out)
-  # out <- paste0(lt,out)
   }
   out
 }
@@ -358,8 +357,8 @@ code_known_agreements <- function(title) {
   if (missing(title)) {
     # If missing argument, function returns list of known agreements coded
     ka <- as.data.frame(abbreviations)
-    ka$title[15] <- paste(substr( ka$title[15] , 0, 90), "...")
-    ka$title[17] <- paste(substr( ka$title[17] , 0, 90), "...")
+    ka$title[15] <- paste(substr(ka$title[15], 0, 90), "...")
+    ka$title[17] <- paste(substr(ka$title[17], 0, 90), "...")
     out <- knitr::kable(ka, "simple")
   } else {
     # Step one: get abbreviations dataset
@@ -367,9 +366,12 @@ code_known_agreements <- function(title) {
 
     # Step two: assign the specific abbreviation to the "known" treaties
     # when they match
-    ab <- sapply(abbreviations$title, function(x) grepl(x, title, ignore.case = T, perl = T)*1)
+    ab <- sapply(abbreviations$title, function(x) grepl(x, title,
+                                                        ignore.case = T,
+                                                        perl = T)*1)
     colnames(ab) <- paste0(abbreviations$abbreviation, "_",
-                           as.character(stringr::str_remove_all(abbreviations$signature, "-")))
+                           as.character(stringr::str_remove_all(
+                             abbreviations$signature, "-")))
     rownames(ab) <- title
     out <- apply(ab, 1, function(x) paste(names(x[x == 1])))
     # Assign NA when observation is not matched
@@ -381,7 +383,7 @@ code_known_agreements <- function(title) {
     # Step three: keep year only for IDs
     out <- ifelse(is.na(out), out, substr(out, 1, nchar(out) - 4))
 
-    # Step four: if output is a list with no values, returns an 
+    # Step four: if output is a list with no values, returns an
     # empty list of the same length as argument
     lt <- as.numeric(length(title))
     ifelse(length(out) == 0, out <- rep(NA_character_, lt), out)
@@ -407,7 +409,7 @@ code_known_agreements <- function(title) {
 #' code_acronym(IEADB$Title)
 #' }
 #' @export
-code_acronym <- function(title){
+code_acronym <- function(title) {
 
   # Step one: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title),
@@ -437,14 +439,14 @@ code_acronym <- function(title){
 
   # Step five: get abbreviations for words left
   x <- suppressWarnings(abbreviate(x, minlength = 6,
-                                   method = 'both.sides',
+                                   method = "both.sides",
                                    strict = TRUE))
   x <- toupper(x)
 
   # step six: cut longer abbreviations into four digits
   x <- ifelse(stringr::str_detect(x, "[:upper:]{7}"),
               paste0(substr(x, 1, 2),
-                     stringr::str_pad(nchar(x)-3, 2, pad = "0"),
+                     stringr::str_pad(nchar(x) - 3, 2, pad = "0"),
                      substr(x, nchar(x)-1, nchar(x))), x)
   x <- as.character(x)
   x
@@ -517,7 +519,7 @@ code_linkage <- function(title, date) {
     dplyr::group_by_at(dplyr::vars(out)) %>%
     dplyr::mutate(
       dup = dplyr::row_number() > 1,
-      ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id))) %>% 
+      ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id))) %>%
     dplyr::group_by(ref) %>%
     dplyr::mutate(n = dplyr::n()) %>%
     dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))

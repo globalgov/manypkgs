@@ -223,7 +223,8 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
       # to be removed in bytes
       total_size <- sum(vapply(removables,
                                function(x) {
-                                 utils::object.size(get(x, envir = as.environment(envir)))
+                                 utils::object.size(
+                                   get(x, envir = as.environment(envir)))
                                }, numeric(1)))
 
       # remove the variables

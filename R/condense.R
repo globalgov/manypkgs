@@ -39,7 +39,7 @@ condense_qID <- function(database = NULL, var = NULL) {
     dplyr::distinct(qID) %>%
     dplyr::mutate(qID = stringr::str_trim(qID, "both"))
   # Initialize variables to avoid CMD notes/issues
-  ID <- linkage <- ID1 <- year_type <- qID_ref <- match_bt <- match_yt <- acronym <- NULL
+  ID <- linkage <- ID1 <- year_type <- qID_ref <- match_bt <- match_yt <- NULL
 
   # step two: split qID and organize data
   similar <- qID %>%
@@ -75,17 +75,19 @@ condense_qID <- function(database = NULL, var = NULL) {
     dplyr::mutate(ID = ifelse(fuzzy != 0 & match_yt == year_type,
                               paste0(fuzzy, "_", year_type), ID1))
   # Assign fuzzy matches to bilaterals
-  similar$ID <- ifelse(similar$fuzzy_bi != 0 & similar$match_yt_bi == similar$year_type &
+  similar$ID <- ifelse(similar$fuzzy_bi != 0 &
+                         similar$match_yt_bi == similar$year_type &
                          similar$match_pt == similar$parties,
-                       paste0(similar$fuzzy_bi, "_", similar$year_type), similar$ID)
+                       paste0(similar$fuzzy_bi, "_",
+                              similar$year_type), similar$ID)
 
   # Step six: Get linkages standardized and return only pertinent columns
   similar <- similar %>%
     dplyr::group_by(ID) %>%
     tidyr::fill(linkage, .direction = "updown") %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(qID_ref = stringr::str_trim((ifelse(is.na(linkage), ID,
-                                                      paste0(ID, ":", linkage))), "both")) %>%
+    dplyr::mutate(qID_ref = stringr::str_trim((
+      ifelse(is.na(linkage), ID, paste0(ID, ":", linkage))), "both")) %>%
     dplyr::select(qID, qID_ref) %>%
     dplyr::distinct()
 
@@ -93,7 +95,7 @@ condense_qID <- function(database = NULL, var = NULL) {
 }
 
 #' Helper function for fuzzy matching multilateral agreements
-#' 
+#'
 #' Fuzzy match agreements' acronyms for multilateral treaties
 #' @details Extracts agreement acronyms from qIDs and fuzzy
 #' match their similarities.
@@ -103,10 +105,10 @@ condense_qID <- function(database = NULL, var = NULL) {
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
 #' @return A data frame with acronyms and qID matches without linkages
-fuzzy_agreements <- function(qID){
+fuzzy_agreements <- function(qID) {
 
   # Split qID
-  ID <- as.character(gsub("\\:.*", "", qID)) 
+  ID <- as.character(gsub("\\:.*", "", qID))
   acronym <- as.character(gsub("\\_.*", "", qID))
 
   # Fuzzy match acronyms
@@ -118,13 +120,15 @@ fuzzy_agreements <- function(qID){
   fuzzy <- ifelse(fuzzy > 0.7, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match = colnames(fuzzy)[row(fuzzy)],
-                      acronym = as.character(c(t(fuzzy))), stringsAsFactors = FALSE)
+                      acronym = as.character(c(t(fuzzy))),
+                      stringsAsFactors = FALSE)
   # Keep only named obs
   fuzzy <- dplyr::filter(fuzzy, acronym != 0)
   # Delete first match and keep only additional matches
   fuzzy <- fuzzy[as.character(fuzzy$match) < fuzzy$acronym, ]
   # Remove bilateral treaties
-  fuzzy$acronym <- ifelse(stringr::str_detect(fuzzy$acronym, "\\-"), 0, fuzzy$acronym)
+  fuzzy$acronym <- ifelse(stringr::str_detect(fuzzy$acronym, "\\-"),
+                          0, fuzzy$acronym)
   fuzzy <- dplyr::filter(fuzzy, acronym != 0)
   # make sure returned acronym is character
   fuzzy$acronym <- as.character(fuzzy$acronym)
@@ -132,7 +136,7 @@ fuzzy_agreements <- function(qID){
 }
 
 #' Helper function for fuzzy matching bilateral agreements
-#' 
+#'
 #' Fuzzy match agreements' acronyms for bilateral treaties
 #' @details Extracts agreement acronyms from qIDs and fuzzy
 #' match their similarities.
@@ -142,13 +146,13 @@ fuzzy_agreements <- function(qID){
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
 #' @return A data frame with acronyms and qID matches without linkages
-fuzzy_agreements_bilateral <- function(qID){
+fuzzy_agreements_bilateral <- function(qID) {
 
   # Get acronyms and IDs from qIDs
-  ID <- as.character(gsub("\\:.*", "", qID)) 
+  ID <- as.character(gsub("\\:.*", "", qID))
   acronym <- as.character(gsub("\\_.*", "", qID))
 
-  # Fuuzy match acronyms
+  # Fuzzy match acronyms
   fuzzy <- stringdist::stringsimmatrix(acronym, acronym)
   fuzzy <- ifelse(fuzzy == 1, 0, fuzzy)
   rownames(fuzzy) <- acronym
@@ -157,13 +161,16 @@ fuzzy_agreements_bilateral <- function(qID){
   fuzzy <- ifelse(fuzzy > 0.8, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match_bt = colnames(fuzzy)[row(fuzzy)],
-                      acronym = as.character(c(t(fuzzy))), stringsAsFactors = FALSE)
+                      acronym = as.character(c(t(fuzzy))),
+                      stringsAsFactors = FALSE)
   # Keep only named obs
   fuzzy <- dplyr::filter(fuzzy, acronym != 0)
   # Delete first match and keep only additional matches
   fuzzy <- fuzzy[as.character(fuzzy$match_bt) < fuzzy$acronym, ]
   # Remove multilateral treaties
-  fuzzy$acronym <- ifelse(stringr::str_detect(fuzzy$acronym, "\\-", negate = TRUE), 0, fuzzy$acronym)
+  fuzzy$acronym <- ifelse(stringr::str_detect(fuzzy$acronym, "\\-",
+                                              negate = TRUE),
+                          0, fuzzy$acronym)
   fuzzy <- dplyr::filter(fuzzy, acronym != 0)
   # Make sure returns are character
   fuzzy$acronym <- as.character(fuzzy$acronym)
