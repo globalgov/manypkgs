@@ -51,7 +51,7 @@ condense_qID <- function(database = NULL, var = NULL) {
                   year_type = gsub(".*_", "", ID1))
 
   # Step three: identify very similar acronyms, for multilateral treaties
-  fuzzy <- fuzzy_agreements(qID$qID)
+  fuzzy <- fuzzy_agreements_multilateral(qID$qID)
   # Join data
   similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
   # Tranform match NAs into 0
@@ -105,7 +105,7 @@ condense_qID <- function(database = NULL, var = NULL) {
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
 #' @return A data frame with acronyms and qID matches without linkages
-fuzzy_agreements <- function(qID) {
+fuzzy_agreements_multilateral <- function(qID) {
 
   # Split qID
   ID <- as.character(gsub("\\:.*", "", qID))
