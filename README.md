@@ -42,7 +42,7 @@ remotes::install_github("globalgov/qCreate")
 
 ## Cheat Sheet
 
-<a href="https://github.com/globalgov/qCreate/blob/develop/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/develop/man/figures/cheatsheet.png" width="450" height="252"/></a>
+<a href="https://github.com/globalgov/qCreate/blob/develop/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/develop/man/figures/cheatsheet.png" width="525" height="378"/></a>
 
 ## qPackages
 
@@ -56,30 +56,8 @@ library(qData)
 get_packages()
 ```
 
-    ## Warning: 1 failed to parse.
-
-    ## # A tibble: 5 x 6
-    ##   name     full_name         
-    ##   <chr>    <chr>             
-    ## 1 qCreate  globalgov/qCreate 
-    ## 2 qData    globalgov/qData   
-    ## 3 qEnviron globalgov/qEnviron
-    ## 4 qStates  globalgov/qStates 
-    ## 5 qTrade   globalgov/qTrade  
-    ##   description                                             installed latest    
-    ##   <chr>                                                   <chr>     <chr>     
-    ## 1 Support for creating new qPackages                      0.1.1     0.1.0     
-    ## 2 An R portal for ensembled global governance data        0.5.0     0.5.0     
-    ## 3 qPackage for ensembled data on environmental agreements 0.0.3     0.0.3     
-    ## 4 qPackage for ensembled data on sovereign states         0.0.5     0.0.4     
-    ## 5 qPackage for ensembled data on trade agreements         0.0.1     Unreleased
-    ##   updated   
-    ##   <date>    
-    ## 1 2021-07-16
-    ## 2 2021-07-26
-    ## 3 2021-08-03
-    ## 4 2021-08-19
-    ## 5 NA
+    ## # A tibble: 0 x 1
+    ## # … with 1 variable: updated <date>
 
 Please see [the website](https://globalgov.github.io/qCreate/) for more
 information about how to use `{qCreate}` as a developer or as a data
