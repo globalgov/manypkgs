@@ -72,9 +72,11 @@ Suggests:
     cld2,
     qEnviron,
     rmarkdown,
+    qData,
     bibtex
 Remotes:
-    globalgov/qEnviron
+    globalgov/qEnviron,
+    globalgov/qData
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

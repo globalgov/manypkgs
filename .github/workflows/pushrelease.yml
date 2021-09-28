@@ -188,9 +188,9 @@ jobs:
       - name: install required packages
         run: Rscript -e 'install.packages(c("rmarkdown","remotes"))'
 
-      # install qCreate
+      # install qData
       - name: install qCreate package
-        run: Rscript -e 'remotes::install_github("globalgov/qCreate")'
+        run: Rscript -e 'remotes::install_github("globalgov/qData")'
 
       # Render README.md using rmarkdown
       - name: render README
