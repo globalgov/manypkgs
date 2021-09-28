@@ -174,8 +174,9 @@ jobs:
           asset_name: winOS_version.zip
           asset_content_type: application/zip
 
- render:
+  render:
     name: Update README.md and push
+    needs: build
     runs-on: macOS-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -185,14 +186,18 @@ jobs:
 
       # install packages needed
       - name: install required packages
-        run: Rscript -e 'install.packages(c("rmarkdown","gratia"))'
+        run: Rscript -e 'install.packages(c("rmarkdown","remotes"))'
 
-      # Render READEME.md using rmarkdown
+      # install qData
+      - name: install qCreate package
+        run: Rscript -e 'remotes::install_github("globalgov/qData")'
+
+      # Render README.md using rmarkdown
       - name: render README
         run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
 
       - name: commit rendered README
         run: |
-          git add README.md man/figures/README-*
+          git add README.md
           git commit -m "Re-build README.md" || echo "No changes to commit"
           git push origin master || echo "No changes to commit"
