@@ -41,9 +41,9 @@ test_that("Column `Beg` has standardised dates", {
 # Dataset should be ordered according to the "Beg" column
 test_that("dataset is arranged by the `Beg` variable", {
   expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[1] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[10])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[50] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[75])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[100] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[120])
+                {{{dab}}}[["{{{dat}}}"]]$Beg[100])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[120] <
+                {{{dab}}}[["{{{dat}}}"]]$Beg[220])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[250] <
+                {{{dab}}}[["{{{dat}}}"]]$Beg[350])
 })
