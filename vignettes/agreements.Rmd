@@ -60,7 +60,7 @@ The sample has been hand coded so that the exact number of agreements that are d
 library(qCreate)
 samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
-dates <- lubridate::as_date(unlist(purrr::map(samples, "Beg")))
+dates <- unlist(purrr::map(samples, "Beg"))
 sample <- cbind.data.frame(titles, dates)
 
 # We hand coded 400 agreements from the sample to compare duplicates identification.
