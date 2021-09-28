@@ -45,7 +45,7 @@ The `qData::get_packages()` function can be used to discover the qPackages curre
 
 ```{r, message=FALSE}
 library(qData)
-get_packages()
+qData::get_packages()
 ```
 
 Please see [the website](https://globalgov.github.io/qCreate/) for more information about how to use `{qCreate}` as a developer or as a data contributor.
