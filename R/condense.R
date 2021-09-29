@@ -11,6 +11,7 @@
 #' @import dplyr
 #' @importFrom purrr map
 #' @importFrom stringr str_detect str_trim
+#' @importFrom tidyr fill
 #' @return A dataframe of qID and qID references
 #' @examples
 #' data1 <- data.frame(qID = c("CPV-PRT[FSD]_1980A",

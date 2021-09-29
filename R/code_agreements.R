@@ -178,6 +178,7 @@ code_parties <- function(title) {
 #' multiple, different, bileteral treaties are
 #' often signed in the same day.
 #' @importFrom stringr str_squish word
+#' @importFrom tm stopwords removeWords
 #' @return A character vector of abbreviations of
 #' last words in treaty title
 #' @export
@@ -397,6 +398,7 @@ code_known_agreements <- function(title) {
 #' and comparuison across datasets.
 #' @param title A character vector of treaty title
 #' @import stringr
+#' @importFrom tm stopwords removeWords
 #' @details Codes acronyms that are 4 to 6 digits long.
 #' For shorter treaty titles, six words or less, acronym
 #' includes first letter of each word.

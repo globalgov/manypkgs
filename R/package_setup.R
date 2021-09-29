@@ -19,6 +19,7 @@
 #' @return A new package structure
 #' @import usethis
 #' @importFrom stringr str_replace_all str_split word
+#' @importFrom fs path
 #' @examples
 #' \dontrun{
 #' setup_package("qStates", name = "Hollway, James")
