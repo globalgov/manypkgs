@@ -7,6 +7,9 @@
     <loc>https://globalgov.github.io/qCreate//reference/add_author.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/add_bib.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/code_acronym.html</loc>
   </url>
   <url>
@@ -52,6 +55,12 @@
     <loc>https://globalgov.github.io/qCreate//reference/export_data.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/qCreate//reference/fuzzy_agreements_bilateral.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/qCreate//reference/fuzzy_agreements_multilateral.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/qCreate//reference/get_package_name.html</loc>
   </url>
   <url>
@@ -68,9 +77,6 @@
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/qtemplate.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/qCreate//reference/resequence.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/qCreate//reference/retain.html</loc>

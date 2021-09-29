@@ -42,7 +42,9 @@
   
 
 <meta property="og:title" content="Updates qPackages — update_package" />
-<meta property="og:description" content="Updates files for qPackages setup with setup_package()" />
+<meta property="og:description" content="As qPackages evolve, expectations about package structures
+as well as templates might also change.
+This function updates files for qPackages setup with setup_package()." />
 
 
 
@@ -109,29 +111,8 @@
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Other packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://globalgov.github.io/qData/">qData</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="https://github.com/globalgov/qStates">
+        <li>
+  <a href="https://github.com/globalgov/qCreate/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -155,7 +136,9 @@
     </div>
 
     <div class="ref-description">
-    <p>Updates files for qPackages setup with setup_package()</p>
+    <p>As qPackages evolve, expectations about package structures
+as well as templates might also change.
+This function updates files for qPackages setup with <code><a href='setup_package.html'>setup_package()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>update_package</span><span class='op'>(</span>package <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -177,13 +160,19 @@ Authors(s)last name(s) and first name(s) are separated by a comma.</p></td>
     <tr>
       <th>path</th>
       <td><p>The file path, optional.
-If not specified, function get's the current working directory.</p></td>
+If not specified, function gets the current working directory.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Updated files in correct structure for qPackages.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Some of the files in the .github folder, such as workflow actions,
+pull request templates, and issue templates, are automatically updated.
+The function also asks developers if other files such as the package license,
+contributing file, and code of conduct should be updated.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>

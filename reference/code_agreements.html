@@ -111,29 +111,8 @@ and the linkage to other agreements in the dataset." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Other packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="https://globalgov.github.io/qData/">qData</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="https://github.com/globalgov/qStates">
+        <li>
+  <a href="https://github.com/globalgov/qCreate/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -170,25 +149,25 @@ and the linkage to other agreements in the dataset.</p>
     <tr>
       <th>dataset</th>
       <td><p>dataset name.
-If provided without a title and date column,
-the function finds title and date conforming columns
-in the dataset automatically if available.</p></td>
+If provided without a title and date variables,
+the function finds title and date conforming
+columns in the dataset.
+The function "expects" that there are variables
+named <code>Title</code> and <code>Signature</code> that they have been
+standardised using <code><a href='standardise_titles.html'>standardise_titles()</a></code> and
+<code><a href='standardise_dates.html'>standardise_dates()</a></code>, respectively.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>title column variable.
-Ideally, title variable should come
-from a qPackage database/dataset
-for which strings were standardised
-with <code><a href='standardise_titles.html'>standardise_titles()</a></code></p></td>
+      <td><p>title variable.
+The function "expects" that the variable has been
+standardised using <code><a href='standardise_titles.html'>standardise_titles()</a></code></p></td>
     </tr>
     <tr>
       <th>date</th>
-      <td><p>date column variable
-Ideally, date variable should come from
-a qPackage database/dataset
-for which dates were standardised
-with <code><a href='standardise_dates.html'>standardise_dates()</a></code></p></td>
+      <td><p>date variable.
+The function "expects" that the variable has been
+standardised using <code><a href='standardise_dates.html'>standardise_dates()</a></code></p></td>
     </tr>
     </table>
 
@@ -199,13 +178,13 @@ with <code><a href='standardise_dates.html'>standardise_dates()</a></code></p></
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 <span class='fu'>code_agreements</span><span class='op'>(</span>dataset <span class='op'>=</span> <span class='va'>IEADB</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Title and date conforming columns in dataset automatically found</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement parties</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement type</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded known agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement dates</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded acronyms for agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement linkages</span></div><div class='output co'>#&gt; 0 entries were not matched at all.
-#&gt; There were 0 duplicated IDs.</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Please run `vignette('agreements')` for more information.</span></div><div class='output co'>#&gt;  [1] "DEU-ESP[PNE]_1978A" "CPWSAR_1985A"       "ITA-SMR[SMT]_2000A"
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Title and date conforming columns in dataset automatically found</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement parties</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement type</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded known agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement dates</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded acronyms for agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement linkages</span></div><div class='output co'>#&gt; 0 entries were not matched at all.
+#&gt; There were 0 duplicated IDs.</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Please run `vignette('agreements')` for more information.</span></div><div class='output co'>#&gt;  [1] "DEU-ESP[PNE]_1978A" "CPWSAR_1985A"       "ITA-SMR[SMT]_2000A"
 #&gt;  [4] "ANWFZT_1996P3"      "EP07AB_1961A"       "EB06DB_1993A"      
 #&gt;  [7] "AUS-CZE[TNM]_2001A" "BOL-PRY[ENB]_2006A" "AUS-KOR[JFV]_1986P"
 #&gt; [10] "AA12IC_2010E6"     </div><div class='input'><span class='fu'>code_agreements</span><span class='op'>(</span>title <span class='op'>=</span> <span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span>, date <span class='op'>=</span> <span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Signature</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement parties</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement type</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded known agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement dates</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded acronyms for agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Coded agreement linkages</span></div><div class='output co'>#&gt; 0 entries were not matched at all.
-#&gt; There were 0 duplicated IDs.</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>v</span> Please run `vignette('agreements')` for more information.</span></div><div class='output co'>#&gt;  [1] "DEU-ESP[PNE]_1978A" "CPWSAR_1985A"       "ITA-SMR[SMT]_2000A"
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement parties</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement type</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded known agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement dates</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded acronyms for agreements</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Coded agreement linkages</span></div><div class='output co'>#&gt; 0 entries were not matched at all.
+#&gt; There were 0 duplicated IDs.</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BB00;'>✔</span> Please run `vignette('agreements')` for more information.</span></div><div class='output co'>#&gt;  [1] "DEU-ESP[PNE]_1978A" "CPWSAR_1985A"       "ITA-SMR[SMT]_2000A"
 #&gt;  [4] "ANWFZT_1996P3"      "EP07AB_1961A"       "EB06DB_1993A"      
 #&gt;  [7] "AUS-CZE[TNM]_2001A" "BOL-PRY[ENB]_2006A" "AUS-KOR[JFV]_1986P"
 #&gt; [10] "AA12IC_2010E6"     </div></pre>

@@ -69,29 +69,8 @@
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Other packages
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="https://globalgov.github.io/qData/">qData</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
-    </li>
-    <li>
-      <a href="https://globalgov.github.io/qTrade/">qTrade</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="https://github.com/globalgov/qStates">
+  <a href="https://github.com/globalgov/qCreate/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -123,39 +102,44 @@
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"globalgov/qCreate"</span><span class="op">)</span></code></pre></div>
 </div>
+<div id="cheat-sheet" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cheat-sheet" class="anchor"></a>Cheat Sheet</h2>
+<p><a href="https://github.com/globalgov/qCreate/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/main/man/figures/cheatsheet.png" width="525" height="378"></a></p>
+</div>
 <div id="qpackages" class="section level2">
 <h2 class="hasAnchor">
 <a href="#qpackages" class="anchor"></a>qPackages</h2>
 <p>The <a href="https://github.com/globalgov/qData">qData</a> ecosystem aimed at collecting, connecting and correcting network data across issue-domains of global governance. The <code><a href="https://rdrr.io/pkg/qData/man/get_packages.html">qData::get_packages()</a></code> function can be used to discover the qPackages currently available.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/globalgov/qData">qData</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: package 'tibble' was built under R version 4.0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## Warning: package 'tibble' was built under R version 4.0.5</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/qData/man/get_packages.html">get_packages</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: 1 failed to parse.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 5 x 6</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   name     full_name         </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;    &lt;chr&gt;             </span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 qCreate  globalgov/qCreate </span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 qData    globalgov/qData   </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 qEnviron globalgov/qEnviron</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 qStates  globalgov/qStates </span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 qTrade   globalgov/qTrade  </span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   description                                             installed latest    </span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                                                   &lt;chr&gt;     &lt;chr&gt;     </span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 Support for creating new qPackages                      0.1.1     0.1.0     </span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 An R portal for ensembled global governance data        0.5.0     0.5.0     </span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 qPackage for ensembled data on environmental agreements 0.0.3     0.0.3     </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 qPackage for ensembled data on sovereign states         0.0.5     0.0.4     </span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 qPackage for ensembled data on trade agreements         0.0.1     Unreleased</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="do">##   updated   </span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;date&gt;    </span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 2021-07-16</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 2021-07-26</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 2021-08-03</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 2021-08-19</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 NA</span></span></code></pre></div>
+<code class="sourceCode R"><span class="fu">qData</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/qData/man/get_packages.html">get_packages</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## Warning: 1 failed to parse.</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">## # A tibble: 5 x 6</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">##   name     full_name         </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">##   &lt;chr&gt;    &lt;chr&gt;             </span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">## 1 qCreate  globalgov/qCreate </span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## 2 qData    globalgov/qData   </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">## 3 qEnviron globalgov/qEnviron</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">## 4 qStates  globalgov/qStates </span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## 5 qTrade   globalgov/qTrade  </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">##   description                                             installed latest    </span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">##   &lt;chr&gt;                                                   &lt;chr&gt;     &lt;chr&gt;     </span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">## 1 Support for creating new qPackages                      0.1.1     0.1.0     </span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">## 2 An R portal for ensembled global governance data        0.5.0     0.5.0     </span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">## 3 qPackage for ensembled data on environmental agreements 0.0.3     0.0.3     </span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## 4 qPackage for ensembled data on sovereign states         0.0.5     0.0.4     </span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">## 5 qPackage for ensembled data on trade agreements         0.0.1     Unreleased</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">##   updated   </span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">##   &lt;date&gt;    </span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co">## 1 2021-07-16</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co">## 2 2021-07-26</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co">## 3 2021-08-03</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co">## 4 2021-08-19</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co">## 5 NA</span></span></code></pre></div>
 <p>Please see <a href="https://globalgov.github.io/qCreate/">the website</a> for more information about how to use <a href="https://github.com/globalgov/qCreate">qCreate</a> as a developer or as a data contributor. For more information on <a href="https://github.com/globalgov/qData">qData</a>, please see <a href="https://globalgov.github.io/qData/">the website</a>.</p>
 </div>
 </div>
