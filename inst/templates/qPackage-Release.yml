@@ -60,6 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_github("globalgov/qData")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
@@ -92,9 +93,6 @@ jobs:
         with:
           name: ${{ matrix.config.asset_name }}
           path: build/
-
-      - name: Calculate code coverage
-        run: Rscript -e "covr::codecov()"
 
   release:
     name: Bump version and release
@@ -186,11 +184,11 @@ jobs:
 
       # install packages needed
       - name: install required packages
-        run: Rscript -e 'install.packages(c("rmarkdown","remotes"))'
+        run: Rscript -e 'install.packages("rmarkdown")'
 
       # install qData
-      - name: install qCreate package
-        run: Rscript -e 'remotes::install_github("globalgov/qData")'
+      #- name: install qCreate package
+      #  run: Rscript -e 'remotes::install_github("globalgov/qData")'
 
       # Render README.md using rmarkdown
       - name: render README

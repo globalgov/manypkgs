@@ -19,6 +19,7 @@
 #' @importFrom english ordinal words
 #' @importFrom stringr str_count str_squish str_to_title
 #' @importFrom utils as.roman
+#' @importFrom stringi stri_trans_general
 #' @import dplyr
 #' @examples
 #' e <- standardise_titles("A treaty concerning things")
@@ -39,7 +40,7 @@ standardise_titles <- standardize_titles <- function(s,
 
   # Step two: translate strings if API is provided
   if (!is.null(api_key)) {
-    qCreate::depends("cld2", "translateR")
+    qCreate::depends(c("cld2", "translateR"))
     # Initialize variables to suppress CMD notes
     . <- NULL
     # For titles in other languages than English, we need to

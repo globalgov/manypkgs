@@ -37,7 +37,6 @@ Imports:
     covr,
     dplyr,
     english,
-    lubridate,
     pkgdown,
     pointblank,
     purrr,
@@ -51,32 +50,31 @@ Imports:
     remotes,
     knitr,
     messydates,
-    stringdist
+    stringdist,
+    tidyr,
+    tm,
+    stringi
 Suggests:
     testthat (>= 3.0.0),
     librarian,
+    lubridate,
     anytime,
     mice,
     xfun,
     withr,
     haven,
     readxl,
-    tidyr,
     readr,
     rorcid,
-    stringi,
-    tm,
     desc,
     WVPlots,
     translateR,
     cld2,
     qEnviron,
     rmarkdown,
-    qData,
     bibtex
 Remotes:
-    globalgov/qEnviron,
-    globalgov/qData
+    globalgov/qEnviron
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

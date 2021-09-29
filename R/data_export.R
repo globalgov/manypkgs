@@ -18,8 +18,7 @@
 #' silently creates a set of tests for this dataset,
 #' and creates and opens documentation for the dataset.
 #' @importFrom fs path
-#' @importFrom usethis ui_info
-#' @importFrom usethis ui_done
+#' @importFrom usethis ui_info ui_done
 #' @examples
 #' \dontrun{
 #' export_data(COW, database = "states",
