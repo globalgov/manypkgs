@@ -1,10 +1,10 @@
-pandoc: 2.7.3
+pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   agreements: agreements.html
   contributor: contributor.html
-last_built: 2021-09-29T12:36Z
+last_built: 2021-09-29T13:09Z
 urls:
   reference: https://globalgov.github.io/qCreate//reference
   article: https://globalgov.github.io/qCreate//articles
