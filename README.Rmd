@@ -23,7 +23,6 @@ This facilitates the interoperability, contrast, and comparison of data.
 There is a specific coding system that should be followed by contributors.
 For more details, please see the [vignette](https://globalgov.github.io/qCreate/articles/developer.html).
 
-
 ## Downloading and installing qCreate
 
 The development version of the package `{qCreate}` can be downloaded from GitHub. 
@@ -35,16 +34,15 @@ remotes::install_github("globalgov/qCreate")
 
 ## Cheat Sheet
 
-<a href="https://github.com/globalgov/qCreate/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/main/man/figures/cheatsheet.png" width="525" height="378"/></a>  
-
+<a href="https://github.com/globalgov/qCreate/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/qCreate/main/man/figures/cheatsheet.png" width="525" height="378"/></a>
 
 ## qPackages
 
 The [qData](https://github.com/globalgov/qData) ecosystem aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
 The `qData::get_packages()` function can be used to discover the qPackages currently available.
 
-```{r, message=FALSE}
-library(qData)
+```{r, eval=FALSE}
+remotes::install_github("globalgov/qData")
 qData::get_packages()
 ```
 
