@@ -41,8 +41,8 @@ remotes::install_github("globalgov/qCreate")
 The [qData](https://github.com/globalgov/qData) ecosystem aimed at collecting, connecting and correcting network data across issue-domains of global governance. 
 The `qData::get_packages()` function can be used to discover the qPackages currently available.
 
-```{r, eval=FALSE}
-remotes::install_github("globalgov/qData")
+```{r get, eval=FALSE}
+# remotes::install_github("globalgov/qData")
 qData::get_packages()
 ```
 

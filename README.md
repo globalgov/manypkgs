@@ -52,7 +52,7 @@ of global governance. The `qData::get_packages()` function can be used
 to discover the qPackages currently available.
 
 ``` r
-remotes::install_github("globalgov/qData")
+# remotes::install_github("globalgov/qData")
 qData::get_packages()
 ```
 
