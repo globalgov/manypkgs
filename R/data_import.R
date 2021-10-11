@@ -83,7 +83,7 @@ import_data <- function(dataset = NULL,
   usethis::use_directory("data-raw", ignore = TRUE)
   usethis::use_directory(paste("data-raw", database, sep = "/"), ignore = TRUE)
   usethis::use_directory(paste(paste("data-raw", database, sep = "/"),
-                               dataset, sep = "/"), ignore = TRUE)
+                               dataset, sep = "/"))
   usethis::ui_done("Made sure data folder hierarchy exists.")
 
   # Step two: move raw data file to correct location
