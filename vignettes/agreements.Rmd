@@ -1,6 +1,6 @@
 ---
 title: "Agreements"
-author: "James Hollway"
+authors: "James Hollway, Henrique Sposito, and Esther Peev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
