@@ -5,7 +5,7 @@
 #' @param textvar text variable
 #' @importFrom stringr str_detect
 #' @importFrom stringi stri_trans_general
-#' @return A structured list for each agreement. 
+#' @return A structured list for each agreement
 #' @examples
 #' \dontrun{
 #' t <- head(qEnviron::texts$IEADB_TXT$Text)
@@ -41,7 +41,7 @@ split_treaty <- function(textvar) {
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
 #' @importFrom purrr map_chr
-#' @return
+#' @return A list of treaty sections of the same length
 #' @examples
 #' \dontrun{
 #' t <- head(qEnviron::texts$IEADB_TXT$Text)

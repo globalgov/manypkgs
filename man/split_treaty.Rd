@@ -10,7 +10,7 @@ split_treaty(textvar)
 \item{textvar}{text variable}
 }
 \value{
-A structured list for each agreement.
+A structured list for each agreement
 }
 \description{
 Split treaty texts into lists that reflect a structure

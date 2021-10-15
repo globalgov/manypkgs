@@ -142,7 +142,7 @@ import_data <- function(dataset = NULL,
 #' @importFrom fs path
 #' @importFrom usethis ui_done ui_todo
 #' @return A .bib template saved to the data-raw folder to be completed
-#' @example
+#' @examples
 #' \dontrun{
 #' add_bib("states", "COW")
 #' }

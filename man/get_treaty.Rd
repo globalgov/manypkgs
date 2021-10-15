@@ -19,7 +19,7 @@ all treaties.}
 For multiple words, please use "|" to divide them.}
 }
 \value{
-
+A list of treaty sections of the same length
 }
 \description{
 Once articles were split, you can access all the "preambles",
