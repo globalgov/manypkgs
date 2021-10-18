@@ -8,7 +8,7 @@
 #' @return A structured list for each agreement
 #' @examples
 #' \dontrun{
-#' t <- head(qEnviron::texts$IEADB_TXT$Text)
+#' t <- tail(qEnviron::texts$IEADB_TXT$Text)
 #' split_treaty(t)
 #' }
 #' @export
@@ -17,7 +17,7 @@ split_treaty <- function(textvar) {
   # Lower case and standardizes all, just in case
   t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
   # Split list
-  articles <- ifelse(stringr::str_detect(t, "\n"), strsplit(t, "\narticle"),
+  articles <- ifelse(stringr::str_detect(t, "\n"), strsplit(t, "\narticle|\nart\\."),
                      strsplit(t, "\\. article"))
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
