@@ -8,7 +8,7 @@
 #' @return A structured list for each agreement
 #' @examples
 #' \dontrun{
-#' t <- tail(qEnviron::texts$IEADB_TXT$Text)
+#' t <- head(qEnviron::texts$IEADB_TXT$Text)
 #' split_treaty(t)
 #' }
 #' @export
