@@ -68,11 +68,11 @@ Suggests:
     rorcid,
     desc,
     WVPlots,
-    translateR,
-    cld2,
     qEnviron,
     rmarkdown,
-    bibtex
+    bibtex,
+    translateR,
+    cld2
 Remotes:
     globalgov/qEnviron
 Encoding: UTF-8

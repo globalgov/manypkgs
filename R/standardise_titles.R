@@ -40,36 +40,12 @@ standardise_titles <- standardize_titles <- function(s,
 
   # Step two: translate strings if API is provided
   if (!is.null(api_key)) {
-    qCreate::depends(c("cld2", "translateR"))
-    # Initialize variables to suppress CMD notes
-    . <- NULL
-    # For titles in other languages than English, we need to
-    # detect language first
-    lang <- out %>%
-      vapply(., purrr::map_chr, "", cld2::detect_language) %>%
-      data.frame(check.names = FALSE)
-    out <- cbind(out, lang)
-    # Translates only the titles not in English
-    for (k in seq_len(nrow(out))) {
-    if (is.na(out$.[k])) {
-      out$out[k] == out$out[k]
-    } else if (out$.[k] == "en") {
-      out$out[k] == out$out[k]
-    } else {
-      out$out[k] <- suppressWarnings(
-        translateR::translate(content.vec = out$out[k],
-                              google.api.key = api_key,
-                              source.lang = out$.[k],
-                              target.lang = "en"))
-    }
-  }
-  out <- out$out
+    out <- lingua(out, api_key == api_key)
   }
 
   # Step three: standardise strings returned
   # Transforms strings to ASCII character encoding
-  out <- suppressWarnings(stringi::stri_trans_general(out,
-                                                      id = "Latin-ASCII"))
+  out <- suppressWarnings(stringi::stri_trans_general(out, id = "Latin-ASCII"))
   # standardises NAs
   out[out == "NANA"] <- NA
   out <- gsub("\\.(?=\\.*$)", "", out, perl = TRUE)
@@ -92,28 +68,22 @@ standardise_titles <- standardize_titles <- function(s,
   # Step four: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
                           paste0("(?<!\\w)", as.roman(1:100), "(?!\\w)"),
-                          as.numeric(1:100),
-                          safe = TRUE, perl = TRUE)
+                          as.numeric(1:100), safe = TRUE, perl = TRUE)
   ords <- english::ordinal(1:100)
   ords <- paste0(ords,
                  dplyr::if_else(stringr::str_count(ords, "\\S+") == 2,
-                         paste0("|", gsub(" ", "-", as.character(ords))),
-                         ""))
+                         paste0("|", gsub(" ", "-", as.character(ords))), ""))
   out <- textclean::mgsub(out,
                           paste0("(?<!\\w)", ords, "(?!\\w)"),
-                          as.numeric(1:100),
-                          safe = TRUE, perl = TRUE,
+                          as.numeric(1:100), safe = TRUE, perl = TRUE,
                           ignore.case = TRUE, fixed = FALSE)
   num <- english::words(1:100)
   num <- paste0(num,
                  dplyr::if_else(stringr::str_count(num, "\\S+") == 2,
-                                paste0("|",
-                                       gsub(" ", "-",
-                                            as.character(num))), ""))
+                                paste0("|", gsub(" ", "-",  as.character(num))), ""))
   out <- textclean::mgsub(out,
                           paste0("(?<!\\w)", num, "(?!\\w)"),
-                          as.numeric(1:100),
-                          safe = TRUE, perl = TRUE,
+                          as.numeric(1:100), safe = TRUE, perl = TRUE,
                           ignore.case = TRUE, fixed = FALSE)
 
   # Step five: make sure most punctuations are removed
@@ -123,6 +93,66 @@ standardise_titles <- standardize_titles <- function(s,
   # which may contain important information for distinguishing
   # treaties
   out <- stringr::str_squish(out)
+  out
+}
+
+#' Translate Strings
+#'
+#' Tranlates strings in data and returns object of the same lenght as original string.
+#' The function automacally identifies language from strings by rows
+#' so that tranlations to target language are more accurate and allows
+#' for text in multiple languages to be present in string.
+#' @param s A character string
+#' @param api_key Google API key.
+#' For more information please go to: https://cloud.google.com/translate/docs/setup
+#' @param target_lang Which language would you like this translated to?
+#' Please provide a two letter language abbreviation (e.g. "en" or "pt").
+#' By default english.
+#' @param translate Do you want strings to be translated?
+#' By default TRUE.
+#' If FALSE returns source language for each string. 
+#' @importFrom purrr map map_chr
+#' @return A character vector of the same length of original.
+#' @export
+lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
+
+  depends(c("translateR", "cld2"))
+
+  # Check if API key is declared
+  if(missing(api_key) & translate == TRUE) {
+    stop("Please declare a Google API key.
+         For more information please go to: https://cloud.google.com/translate/docs/setup")
+  }
+  
+  # Get strings as character and initialize varibles
+  out <- purrr::map(s, as.character)
+  . <- NULL
+
+  # Find source language
+  source_lang <- out %>%
+    vapply(., purrr::map_chr, "", cld2::detect_language) %>%
+    data.frame(check.names = FALSE)
+  
+  # Return source language if translate is false, else translate string
+  if (missing(api_key) & translate == FALSE) {
+    out <- source_lang
+  } else {
+    out <- cbind(out, source_lang)
+    for (k in seq_len(nrow(out))) {
+      if (is.na(out$.[k])) {
+        out$out[k] == out$out[k]
+        # print(paste0("Could not translate ", [k], ", langauge not detect."))
+      } else if (out$.[k] == target_lang) {
+        out$out[k] == out$out[k]
+        } else {
+          out$out[k] <- suppressWarnings(translateR::translate(content.vec = out$out[k],
+                                                               google.api.key = api_key,
+                                                               source.lang = out$.[k],
+                                                               target.lang = target_lang))
+        }
+      }
+    out <- out$out
+  }
   out
 }
 
