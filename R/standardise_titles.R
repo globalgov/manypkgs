@@ -132,7 +132,8 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
   # Find source language
   source_lang <- s %>%
     vapply(., purrr::map_chr, "", cld2::detect_language) %>%
-    data.frame(check.names = FALSE)
+    data.frame(check.names = FALSE) %>% 
+    dplyr::rename(language = ".")
   
   # Return source language if translate is false, else translate string
   if (missing(api_key) & translate == FALSE) {
@@ -140,15 +141,15 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
   } else {
     out <- cbind(out, source_lang)
     for (k in seq_len(nrow(out))) {
-      if (is.na(out$.[k])) {
+      if (is.na(out$language[k])) {
         out$out[k] == out$out[k]
         # print(paste0("Could not translate ", [k], ", langauge not detect."))
-      } else if (out$.[k] == target_lang) {
+      } else if (out$language[k] == target_lang) {
         out$out[k] == out$out[k]
         } else {
           out$out[k] <- suppressWarnings(translateR::translate(content.vec = out$out[k],
                                                                google.api.key = api_key,
-                                                               source.lang = out$.[k],
+                                                               source.lang = out$language[k],
                                                                target.lang = target_lang))
         }
       }
