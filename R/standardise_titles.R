@@ -125,11 +125,12 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
   }
   
   # Get strings as character and initialize varibles
-  out <- purrr::map(s, as.character)
+  out <- data.frame(out = as.character(s))
+  s <- purrr::map(s, as.character)
   . <- NULL
 
   # Find source language
-  source_lang <- out %>%
+  source_lang <- s %>%
     vapply(., purrr::map_chr, "", cld2::detect_language) %>%
     data.frame(check.names = FALSE)
   
