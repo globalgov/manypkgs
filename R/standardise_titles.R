@@ -112,6 +112,7 @@ standardise_titles <- standardize_titles <- function(s,
 #' By default TRUE.
 #' If FALSE returns source language for each string. 
 #' @importFrom purrr map map_chr
+#' @importFrom dplyr rename
 #' @return A character vector of the same length of original.
 #' @export
 lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
