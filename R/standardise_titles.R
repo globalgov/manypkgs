@@ -98,9 +98,9 @@ standardise_titles <- standardize_titles <- function(s,
 
 #' Translate Strings
 #'
-#' Tranlates strings in data and returns object of the same lenght as original string.
-#' The function automacally identifies language from strings by rows
-#' so that tranlations to target language are more accurate and allows
+#' Translates strings in data and returns object of the same length as original string.
+#' The function automatically identifies language from strings by rows
+#' so that translations to target language are more accurate and allows
 #' for text in multiple languages to be present in string.
 #' @param s A character string
 #' @param api_key Google API key.
