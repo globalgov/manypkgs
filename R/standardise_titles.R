@@ -53,16 +53,13 @@ standardise_titles <- standardize_titles <- function(s,
   out <- gsub(" '|' ", "'", out)
   # Delete hyphens when separating two parts of the title
   # (when there is a space before and after)
-  out <- gsub(" - ", " ", out)
   # Delete special character found in some treaty titles
   out <- gsub("\U00AC[[:alpha:]]{1}\\s|\U00AC\\s", "", out)
   # Add space after a comma
   out <- textclean::add_comma_space(out)
   # Change number symbol into word
   out <- gsub("\\#", "Number ", out)
-
   # standardise some country abbreviations and specific words
-  out <- purrr::map(out, as.character)
   out <- correct_words(out)
 
   # Step four: Standardises how ordinal numbers are returned
@@ -167,8 +164,11 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
 #' The function uses Britsh English spellings.
 #' @param s A list of character vector
 #' @return A list of character vector with the words changed
+#' @importFrom purrr map
 #' @importFrom knitr kable
 correct_words <- function(s) {
+
+  s <- purrr::map(s, as.character)
   # If no arguments, the list of corrected words appears
   if (missing(s)) {
     corrected_words <- as.data.frame(corrected_words)
