@@ -54,7 +54,7 @@ standardise_titles <- standardize_titles <- function(s,
   # Delete hyphens when separating two parts of the title
   # (when there is a space before and after)
   # Delete special character found in some treaty titles
-  out <- gsub("\U00AC[[:alpha:]]{1}\\s|\U00AC\\s", "", out)
+  out <- gsub("\U00AC[[:alpha:]]{1}\\s|\U00AC\\s| -", "", out)
   # Add space after a comma
   out <- textclean::add_comma_space(out)
   # Change number symbol into word
