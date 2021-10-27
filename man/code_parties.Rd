@@ -4,10 +4,13 @@
 \alias{code_parties}
 \title{Code Agreement Parties}
 \usage{
-code_parties(title)
+code_parties(title, activity = TRUE)
 }
 \arguments{
 \item{title}{A character vector of treaty titles}
+
+\item{activity}{Do you want the activity of treaty to be coded?
+By default, TRUE.}
 }
 \value{
 A character vector of parties
@@ -20,12 +23,17 @@ Identify the countries that are part of an agreement.
 The function codes states in treaties alongside,
 returning only parties for bileteral treaties
 (i.e. 2 parties coded).
-The number of meaningful words (removes articles, numbers and other common
-words)in title for bilateral tretaies is returned next to parties.
-For the complete list of words removed from title to identify
-duplicates please run \code{pred_words()}.
-This is done to avoid false duplicates as often bileteral treaties between
-the same two countries are signed in the same day.
+The function also returns the "activity" for bilateral
+treaties coded, if activity is TRUE.
+Bilateral agreements usully detail their
+activity and specify area in the last words of the titles.
+These last words are abbreviated by the function to
+differentiate between bilateral treaties and avoid
+false positives being generated since
+multiple, different, bileteral treaties are
+often signed in the same day.
+For the complete list of parties coded please run the
+function without and argument (i.e. \code{code_parties()}).
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)

@@ -22,9 +22,9 @@ if they contain words in title.
 \details{
 Types of agreements differentiate agreements
 from protocols or amendments, for example.
-For the complete list of words coded for type and their type
-abbreviations please run the function without and argument
-(i.e. \code{code_action()}).
+For the complete list of types of agreements coded
+please run the function without and argument
+(i.e. \code{code_type()}).
 }
 \examples{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
