@@ -103,8 +103,8 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @param title A character vector of treaty titles
 #' @param activity Do you want the activity of treaty to be coded?
 #' By default, TRUE.
-#' @importFrom stringr str_replace_all str_squish str_extract
-#' @importFrom tm stopwords removeWords
+#' @importFrom stringr str_replace_all str_detect
+#' @importFrom knitr kable
 #' @return A character vector of parties
 #' that are mentioned in the treaty title
 #' @details The function codes states in treaties alongside,
@@ -137,63 +137,99 @@ code_parties <- function(title, activity = TRUE) {
     out <- knitr::kable(out, "simple")
     out
   } else {
-  # Step one: get ISO country codes
-  # countryregex and match in title variable
-  title <- as.character(title)
-  title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
-                  gsub("\\s*\\([^\\)]+\\)", "", title), title)
-  coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
-                                                       ignore.case = T,
-                                                       perl = T) * 1)
-  colnames(coment) <- countryregex[, 1]
-  rownames(coment) <- title
-  out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
-                                            collapse = "_"))
-  out[out == ""] <- NA
-  parties <- unname(out)
-  parties <- stringr::str_replace_all(parties, "_", "-")
-
-  # Step two:: get bilateral agreements where
-  # two parties have been identified
-  parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
-                    ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
-                           ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
-
-  # Step three: get activity in title to reduce number of false duplicates
-  if(isTRUE(activity)) {
-    words <- paste0(paste(agreement_type$words, collapse = "|"), "|",
-                    paste(countryregex$Label, collapse = "|"), "|",
-                    "Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>")
-    out <- gsub(words, "", title, ignore.case = TRUE)
-    # Remove months and other non-wanted words
-    out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december|
-                |\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
-                |\\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>|
-                |\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|
-                |\\<west\\>|\\<east\\>||\\<southern\\>|\\<northern\\>|\\<middle\\>|
-                |\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>|\\<between\\>|
-                |\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|
-                |\\<technical\\|\\<basic\\>|\\<border\\>|\\<pollution\\>|
-                |\\<river\\>|\\<basin\\>|\\<water\\>|\\<resources\\>|\\<aim\\>|
-                |\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\|
-                |\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|
-                |\\<field\\>|\\<partnership\\>|\\<science\\>|\\<matters\\> ",
-                "", out, ignore.case = TRUE)
-    # remove stopwords
-    out <- tm::removeWords(tolower(out), tm::stopwords("SMART"))
-    out <- gsub("[0-9]|\\(|\\)|\U00AC|\U00F1 ", "", out)
-    out <- gsub("-", " ", out)
-    # get abbreviations for last three words and counting of words
-    out <- suppressWarnings(abbreviate(out, minlength = 3,
-                                       method = "both.sides", strict = TRUE))
-    out <- toupper(stringr::str_extract(out, ".{3}$"))
+    # Step one: get ISO country codes
+    # countryregex and match in title variable
+    title <- as.character(title)
+    title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
+                    gsub("\\s*\\([^\\)]+\\)", "", title), title)
+    coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+                                                          ignore.case = T,
+                                                          perl = T) * 1)
+    colnames(coment) <- countryregex[, 1]
+    rownames(coment) <- title
+    out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                              collapse = "_"))
+    out[out == ""] <- NA
+    parties <- unname(out)
+    parties <- stringr::str_replace_all(parties, "_", "-")
+    
+    # Step two: add NAs to observations not matched
+    parties[!grepl("-", parties)] <- NA
+    
+    # Step three:: get bilateral agreements where
+    # two parties have been identified
+    parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
+                      ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
+                             ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
+    
+    # Step four: get activity
+    if (isTRUE(activity)) {
+      out <- code_activity(title)
+      parties <- ifelse(is.na(parties), parties,
+                      paste0(parties, "[", out, "]"))
+    }
+    parties
   }
+}
+
+#' Code Abbreviations for Activity
+#'
+#' Code abbreviations for activity in bilateral treaty titles
+#' @param title A character vector of treaty titles
+#' @details Bilateral agreements usully detail their
+#' activity and specify area in the last words of the titles.
+#' These last words are abbreviated by the function to
+#' differentiate between bilateral treaties and avoid
+#' false positives being generated since
+#' multiple, different, bileteral treaties are
+#' often signed in the same day.
+#' @importFrom stringr str_squish str_extract
+#' @importFrom tm stopwords removeWords
+#' @return A character vector of abbreviations of
+#' last words in treaty title
+code_activity <- function(title) {
   
-  # Step four: paste together
-  parties <- ifelse(is.na(parties), parties,
-                    paste0(parties, "[", out, "]"))
-  parties
-  }
+  # Step one: remove states' names and agreements' type
+  out <- as.character(title)
+  states <- countryregex$Label
+  states <- paste(states, collapse = "|")
+  words <- agreement_type$words
+  words <- paste(words, collapse = "|")
+  out <- gsub(states, "", out, ignore.case = TRUE)
+  out <- gsub(words, "", out, ignore.case = TRUE)
+  # Some states and abbreviations are missed
+  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>",
+              "", out, ignore.case = TRUE)
+    
+  # Step two: remove stop words, numbers and parenthesis
+  out <- tm::removeWords(tolower(out), tm::stopwords("SMART"))
+  out <- gsub("[0-9]", "", out)
+  out <- gsub("\\(|\\)|\U00AC|\U00F1 ", "", out)
+  out <- gsub("-", " ", out)
+    
+  # Step three: remove months and unimportant words
+  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december",
+              "", out, ignore.case = TRUE)
+  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
+              |\\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
+              "", out, ignore.case = TRUE)
+  out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
+              |\\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
+               "", out, ignore.case = TRUE)
+  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|
+              |\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|
+              |\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|
+              |\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|
+              |\\<partnership\\>|\\<science\\>|\\<matters\\>",
+              "", out, ignore.case = TRUE)
+    
+  # Step four: get abbreviations for last three words and counting of words
+  out <- stringr::str_squish(out)
+  out <- suppressWarnings(abbreviate(out, minlength = 3,
+                                     method = "both.sides", strict = TRUE))
+  out <- stringr::str_extract(out, ".{3}$")
+  out <- toupper(out)
+  out
 }
 
 #' Code Agreement Type
@@ -507,7 +543,8 @@ code_linkage <- function(title, date, return_all = FALSE) {
 
     # Step twelve: keep only linkages for agreements
     line <- stringr::str_replace_all(out$line, "^1$", "")
-    line <- stringr::str_replace_all(line, "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx")
+    line <- stringr::str_replace_all(line, "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|
+                                     |[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx")
     line <- ifelse(nchar(as.character(line)) > 20, "", line)
     
     if (return_all == TRUE) {
