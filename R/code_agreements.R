@@ -22,9 +22,11 @@
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom purrr map
 #' @examples
-#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+#' \donttest{
+#' #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_agreements(dataset = IEADB)
 #' code_agreements(title = IEADB$Title, date = IEADB$Signature)
+#' }
 #' @export
 code_agreements <- function(dataset = NULL, title, date) {
 
@@ -43,11 +45,11 @@ code_agreements <- function(dataset = NULL, title, date) {
     }
   }
 
-  # Step one: get parties, acronym, type, and dates and lineage for treaties
+  # Step one: get parties, acronym, type, dates, and lineage for treaties
   # code_linkage() runs all other functions if specified
   line <- code_linkage(title, date, return_all = TRUE)
   usethis::ui_done("Coded agreement linkages")
-  # Get variables from list
+  # Get variables from table
   abbrev <- line$abbrev
   type <- line$type
   parties <- line$parties
@@ -120,8 +122,10 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' For the complete list of parties coded please run the
 #' function without and argument (i.e. `code_parties()`).
 #' @examples
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_parties(IEADB$Title)
+#' }
 #' @export
 code_parties <- function(title, activity = TRUE) {
 
@@ -211,8 +215,10 @@ code_parties <- function(title, activity = TRUE) {
 #' please run the function without and argument
 #' (i.e. `code_type()`).
 #' @examples
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_type(IEADB$Title)
+#' }
 #' @export
 code_type <- function(title) {
 
@@ -271,8 +277,10 @@ code_type <- function(title) {
 #' @return A character vector with condensed dates
 #' @import stringr
 #' @examples
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_dates(IEADB$Title)
+#' }
 #' @export
 code_dates <- function(date) {
 
@@ -306,8 +314,10 @@ code_dates <- function(date) {
 #' the function without an argument
 #' (i.e. `code_known_agreements()`).
 #' @examples
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_known_agreements(IEADB$Title)
+#' }
 #' @export
 code_known_agreements <- function(title) {
 
@@ -362,7 +372,7 @@ code_known_agreements <- function(title) {
 #' first letter of first word followed by the number of words in
 #' and title first letter of last word in title.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_acronym(IEADB$Title)
 #' }
@@ -431,8 +441,10 @@ code_acronym <- function(title) {
 #' duplicates please run the function without arguments
 #' (i.e. `code_linkage()`.)
 #' @examples
+#' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_linkage(IEADB$Title, IEADB$Signature)
+#' }
 #' @export
 code_linkage <- function(title, date, return_all = FALSE) {
 
@@ -517,14 +529,21 @@ code_linkage <- function(title, date, return_all = FALSE) {
 order_agreements <- function(title) {
 
   # Step one: remove dates from title
-  rd <- stringr::str_remove_all(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd,  "[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}| [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}")
-  rd <- stringr::str_remove_all(rd, "[:digit:]{4}| [:digit:]{2}\\s[:digit:]{4}")
+  rd <- stringr::str_remove_all(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{6}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}|
+                                | [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}|
+                                |[:digit:]{4}| [:digit:]{2}\\s[:digit:]{4}")
   # remove also numbers in parenthesis
   rd <- stringr::str_remove_all(rd, "\\s\\(No\\s.{3,7}\\)")
 
@@ -551,7 +570,10 @@ order_agreements <- function(title) {
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
 
   # Step three: make sure meaningful numbers extracted correctly
-  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|^[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|\\s[:digit:]{1}|\\s[:digit:]{2}|\\s[:digit:]{3}")
+  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|^[:digit:]{1}\\s|
+                             |\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|
+                             |\\s[:digit:]{1}|\\s[:digit:]{2}|
+                             |\\s[:digit:]{3}")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")

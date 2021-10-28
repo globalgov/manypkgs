@@ -32,6 +32,8 @@ duplicates please run the function without arguments
 (i.e. \code{code_linkage()}.)
 }
 \examples{
+\donttest{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_linkage(IEADB$Title, IEADB$Signature)
+}
 }

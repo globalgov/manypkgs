@@ -18,6 +18,8 @@ number that is meaningful, we condense their
 signature dates to produce this number.
 }
 \examples{
+\donttest{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_dates(IEADB$Title)
+}
 }
