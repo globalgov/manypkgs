@@ -34,7 +34,7 @@ and the linkage to other agreements in the dataset.
 }
 \examples{
 \donttest{
-#' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_agreements(dataset = IEADB)
 code_agreements(title = IEADB$Title, date = IEADB$Signature)
 }
