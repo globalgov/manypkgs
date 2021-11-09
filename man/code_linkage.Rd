@@ -4,12 +4,14 @@
 \alias{code_linkage}
 \title{Code Agreement Linkages}
 \usage{
-code_linkage(title, date, return_all = FALSE)
+code_linkage(title, date, memberships = NULL, return_all = FALSE)
 }
 \arguments{
 \item{title}{A character vector of treaty title}
 
 \item{date}{A date variable}
+
+\item{memberships}{A memberships variable}
 
 \item{return_all}{Do you want all the variables to be returned in a list?
 By default, FALSE.}

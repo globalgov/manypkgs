@@ -4,7 +4,7 @@
 \alias{code_parties}
 \title{Code Agreement Parties}
 \usage{
-code_parties(title, activity = TRUE)
+code_parties(title, memberships = NULL, activity = TRUE)
 }
 \arguments{
 \item{title}{A character vector of treaty titles}
