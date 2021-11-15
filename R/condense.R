@@ -100,8 +100,8 @@ condense_qID <- function(database = NULL, var = NULL) {
 #' Fuzzy match agreements' acronyms for multilateral treaties
 #' @details Extracts agreement acronyms from qIDs and fuzzy
 #' match their similarities.
-#' See `qCreate::code_acronym()` for more details on acronyms.
-#' @param qID qID variable created with `qCreate::code_agreements()`
+#' See `manypkgs::code_acronym()` for more details on acronyms.
+#' @param qID qID variable created with `manypkgs::code_agreements()`
 #' @importFrom dplyr filter
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
@@ -141,8 +141,8 @@ fuzzy_agreements_multilateral <- function(qID) {
 #' Fuzzy match agreements' acronyms for bilateral treaties
 #' @details Extracts agreement acronyms from qIDs and fuzzy
 #' match their similarities.
-#' See `qCreate::code_acronym()` for more details on acronyms.
-#' @param qID qID variable created with `qCreate::code_agreements()`
+#' See `manypkgs::code_acronym()` for more details on acronyms.
+#' @param qID qID variable created with `manypkgs::code_agreements()`
 #' @importFrom dplyr filter
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix

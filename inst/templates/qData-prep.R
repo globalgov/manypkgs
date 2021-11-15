@@ -12,9 +12,9 @@
 # below (in stage three) passes all the tests.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   qData::transmutate(ID = {id_variable_name_here},
-              Beg = qCreate::standardise_dates({date_variable_name_here})) %>%
+              Beg = manypkgs::standardise_dates({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
-# qCreate includes several functions that should help cleaning
+# manypkgs includes several functions that should help cleaning
 # and standardising your data.
 # Please see the vignettes or website for more details.
 
@@ -45,6 +45,6 @@
 # present in the data_raw folder of the package for citation purposes.
 # Please make sure that you have permission to use the dataset.
 # To add a template of .bib file to package,
-# run `qCreate::add_bib({{{database}}}, {{{dataset}}})`.
-qCreate::export_data({{{dataset}}}, database = "{{{database}}}",
+# run `manypkgs::add_bib({{{database}}}, {{{dataset}}})`.
+manypkgs::export_data({{{dataset}}}, database = "{{{database}}}",
                      URL = NULL)

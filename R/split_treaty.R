@@ -33,7 +33,7 @@ split_treaty <- function(textvar) {
 #' or first articles, or articles that contain certain words
 #' with this function.
 #' @param t A list of treaty texts that has been "splitted" with
-#' `qCreate::split_treaty()`
+#' `manypkgs::split_treaty()`
 #' @param article Either the "preamble" or an article number
 #' across all treties to be returned.
 #' It can be left NULL if user intends to look for a word in

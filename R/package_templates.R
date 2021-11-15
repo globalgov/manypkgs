@@ -1,6 +1,6 @@
 #' Helper function for finding and rendering templates
 #'
-#' Helper function for finding and rendering templates from the qCreate package
+#' Helper function for finding and rendering templates from the manypkgs package
 #' @param template Template called
 #' @param save_as Path to where the rendered template should be saved
 #' @param data Any elements to be entered into the template via Whisker
@@ -25,10 +25,10 @@ qtemplate <- function(template,
                       ignore = FALSE,
                       path,
                       open = rlang::is_interactive(),
-                      package = "qCreate") {
+                      package = "manypkgs") {
 
   # Set up find_template() helper function
-  find_template <- function(template_name, package = "qCreate") {
+  find_template <- function(template_name, package = "manypkgs") {
     path <- tryCatch(fs::path_package(package = package, "templates",
                                       template_name),
                      error = function(e) ""
@@ -43,7 +43,7 @@ qtemplate <- function(template,
   }
 
   # Set up render_template() helper function
-  render_template <- function(template, data = list(), package = "qCreate") {
+  render_template <- function(template, data = list(), package = "manypkgs") {
     template_path <- find_template(template, package = package)
     strsplit(whisker::whisker.render(xfun::read_utf8(template_path),
                                      data), "\n")[[1]]

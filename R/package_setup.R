@@ -254,15 +254,15 @@ setup_package <- function(package = NULL,
   usethis::ui_done("Created workflows folder.")
 
   if (interactive()) {
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Check.yml"),
               fs::path(".github", "workflows", "prchecks.yml"))
     usethis::ui_done("Added checks workflow upon opening a push release.")
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Commands.yml"),
               fs::path(".github", "workflows", "prcommands.yml"))
     usethis::ui_done("Added commands workflow upon labelling a push release.")
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Release.yml"),
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Added release workflow upon merging a push release.")

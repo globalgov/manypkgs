@@ -8,7 +8,7 @@ get_treaty(t, article = NULL, match = NULL)
 }
 \arguments{
 \item{t}{A list of treaty texts that has been "splitted" with
-\code{qCreate::split_treaty()}}
+\code{manypkgs::split_treaty()}}
 
 \item{article}{Either the "preamble" or an article number
 across all treties to be returned.

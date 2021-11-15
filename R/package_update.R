@@ -126,15 +126,15 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   usethis::ui_done("Updated feature request issue template.")
 
   if (interactive()) {
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Check.yml"),
               fs::path(".github", "workflows", "prchecks.yml"))
     usethis::ui_done("Updated workflow checks for push releases.")
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Commands.yml"),
               fs::path(".github", "workflows", "prcommands.yml"))
     usethis::ui_done("Updated commands workflow for push releases.")
-    file.copy(fs::path_package(package = "qCreate",
+    file.copy(fs::path_package(package = "manypkgs",
                                "templates", "qPackage-Release.yml"),
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Updated release workflow for merging push releases.")

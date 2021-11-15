@@ -39,7 +39,7 @@ export_data <- function(..., database, URL) {
 
   # Check if bibliography file exists
   if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
-    stop("Bibliography file not found. Please run `qCreate::add_bib()` to add a .bib file to the data-raw folder before proceding.")
+    stop("Bibliography file not found. Please run `manypkgs::add_bib()` to add a .bib file to the data-raw folder before proceding.")
   }
 
   # Step one: set up directory

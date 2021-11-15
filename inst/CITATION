@@ -1,11 +1,11 @@
-citHeader("To cite qCreate in publications use:")
+citHeader("To cite manypkgs in publications use:")
 
 citEntry(
   entry    = "Manual",
-  title    = "qCreate: Support for Creating Ensembled Global Governance Data",
+  title    = "manypkgs: Support for Creating Ensembled Global Governance Data",
   author   = "James Hollway",
   year     = "2021",
-  url      = "https://github.com/globalgov/qCreate",
-  textVersion = paste("J. Hollway. qCreate: Support for Creating Ensembled Global Governance Data. 2021."
+  url      = "https://github.com/globalgov/manypkgs",
+  textVersion = paste("J. Hollway. manypkgs: Support for Creating Ensembled Global Governance Data. 2021."
   )
 )

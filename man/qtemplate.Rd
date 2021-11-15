@@ -11,7 +11,7 @@ qtemplate(
   ignore = FALSE,
   path,
   open = rlang::is_interactive(),
-  package = "qCreate"
+  package = "manypkgs"
 )
 }
 \arguments{
@@ -33,7 +33,7 @@ qtemplate(
 A rendered template, saved into the correct folder
 }
 \description{
-Helper function for finding and rendering templates from the qCreate package
+Helper function for finding and rendering templates from the manypkgs package
 }
 \details{
 This function is an adaptation of the usethis variant
