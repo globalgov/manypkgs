@@ -4,7 +4,7 @@
 \alias{code_agreements}
 \title{Code Agreement Titles}
 \usage{
-code_agreements(dataset = NULL, title, date, memberships = NULL)
+code_agreements(dataset = NULL, title, date)
 }
 \arguments{
 \item{dataset}{dataset name.
@@ -23,8 +23,6 @@ standardised using \code{standardise_titles()}}
 \item{date}{date variable.
 The function "expects" that the variable has been
 standardised using \code{standardise_dates()}}
-
-\item{memberships}{A memberships variable}
 }
 \value{
 a character vector with the qIDs

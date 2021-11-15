@@ -17,7 +17,6 @@
 #' @param date date variable.
 #' The function "expects" that the variable has been
 #' standardised using `standardise_dates()`
-#' @param memberships A memberships variable
 #' @return a character vector with the qIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
@@ -29,7 +28,7 @@
 #' code_agreements(title = IEADB$Title, date = IEADB$Signature)
 #' }
 #' @export
-code_agreements <- function(dataset = NULL, title, date, memberships = NULL) {
+code_agreements <- function(dataset = NULL, title, date) {
 
   if (is.null(dataset) & missing(title) & missing(date)) {
     stop("Please declare a dataset or title and date columns.")
@@ -48,8 +47,7 @@ code_agreements <- function(dataset = NULL, title, date, memberships = NULL) {
 
   # Step one: get parties, acronym, type, dates, and lineage for treaties
   # code_linkage() runs all other functions if specified
-  
-  line <- code_linkage(title, date, memberships, return_all = TRUE)
+  line <- code_linkage(title, date, return_all = TRUE)
   usethis::ui_done("Coded agreement linkages")
   # Get variables from table
   abbrev <- line$abbrev
@@ -129,20 +127,8 @@ code_agreements <- function(dataset = NULL, title, date, memberships = NULL) {
 #' code_parties(IEADB$Title)
 #' }
 #' @export
-code_parties <- function(title, memberships = NULL, activity = TRUE) {
-  if (!missing(memberships)) {
-    parties <- memberships
-    parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties, NA)
-    
-    # Step four: get activity
-    if (isTRUE(activity)) {
-      out <- code_activity(title)
-      parties <- ifelse(is.na(parties), parties,
-                        paste0(parties, "[", out, "]"))
-    }
-    parties
-  }  else {
-    
+code_parties <- function(title, activity = TRUE) {
+
   # If missing title argument, function returns
   # list of states and abbreviations
   if (missing(title)) {
@@ -183,7 +169,6 @@ code_parties <- function(title, memberships = NULL, activity = TRUE) {
                       paste0(parties, "[", out, "]"))
     }
     parties
-  }
   }
 }
 
@@ -476,7 +461,6 @@ code_acronym <- function(title) {
 #' to a main agreement.
 #' @param title A character vector of treaty title
 #' @param date A date variable
-#' @param memberships A memberships variable
 #' @param return_all Do you want all the variables to be returned in a list?
 #' By default, FALSE.
 #' @importFrom textclean add_comma_space
@@ -498,7 +482,7 @@ code_acronym <- function(title) {
 #' code_linkage(IEADB$Title, IEADB$Signature)
 #' }
 #' @export
-code_linkage <- function(title, date, memberships = NULL, return_all = FALSE) {
+code_linkage <- function(title, date, return_all = FALSE) {
 
   if(missing(title) & missing(date)) {
     pred <- as.data.frame(predictable_words)
@@ -509,7 +493,7 @@ code_linkage <- function(title, date, memberships = NULL, return_all = FALSE) {
     qID <- standardise_titles(as.character(title))
 
     # Step two: code parties if present
-    parties <- code_parties(qID, memberships)
+    parties <- code_parties(qID)
     usethis::ui_done("Coded agreement parties")
 
     # Step three: code agreement type
