@@ -4,19 +4,27 @@
 \alias{get_memberships}
 \title{Get memberships' list}
 \usage{
-get_memberships(country, dataset_id)
+get_memberships(database, actor, id)
 }
 \arguments{
-\item{country}{A country variable}
+\item{actor}{A country variable}
 
-\item{dataset_id}{A treaty ID variable}
+\item{id}{A treaty ID variable}
 }
 \value{
-A list of countries part of the treaty
+A dataframe of treaty IDs and countries
+part of the treaty
 }
 \description{
-Get memberships' list
+Memberships database have countries column and
+treaty title column but information on the other
+countries that are part to the treaties is often
+missing.
+The function allows to generate a dataframe of
+treaty IDs and the countries part to the treaty.
 }
 \examples{
-IEADB_MEM$Memberships <- get_memberships(IEADB_MEM$CountryID, IEADB_MEM$IEADB_ID)
+sample <- qEnviron::memberships$IEADB_MEM
+get_memberships(actor = sample$CountryID, id = sample$qID_ref)
+get_memberships(qEnviron::memberships)
 }
