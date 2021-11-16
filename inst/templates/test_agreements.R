@@ -1,4 +1,4 @@
-# Test if {{{dataset}}} meets the q ecosystem requirements
+# Test if {{{dataset}}} meets the many packages ecosystem requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {

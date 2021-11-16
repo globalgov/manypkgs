@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_export.R
 \name{export_data}
 \alias{export_data}
-\title{Adding datasets to the qPackage}
+\title{Adding datasets to the many packages ecosystem}
 \usage{
 export_data(..., database, URL)
 }
@@ -22,7 +22,7 @@ and creates and opens documentation for the dataset.
 \description{
 Save a cleaned data object, consistent with the qData ecosystem, ready to be
 lazy-loaded and create scripts for documenting and testing that object within
-the new qPackage.
+the new package.
 }
 \details{
 The function creates a data directory, if nonexistent, and

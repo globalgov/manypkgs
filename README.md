@@ -19,11 +19,11 @@ Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](ht
 <!-- ![GitHub All Releases](https://img.shields.io/github/downloads/jhollway/roctopus/total) -->
 <!-- badges: end -->
 
-`{manypkgs}` is a qPackage in the
+`{manypkgs}` is a package from the
 [qData](https://github.com/globalgov/qData) ecosystem. It provides
 contributors the necessary tools to put their data in the hands of
 users. The package includes many functions to make this easier,
-including functions to help set up a qPackage, import their existing
+including functions to help set up a package, import their existing
 data, and export them in structures consistent with the rest of the data
 ecosystem. This facilitates the interoperability, contrast, and
 comparison of data. There is a specific coding system that should be
@@ -44,12 +44,12 @@ remotes::install_github("globalgov/manypkgs")
 
 <a href="https://github.com/globalgov/manypkgs/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/manypkgs/main/man/figures/cheatsheet.png" width="525" height="378"/></a>
 
-## qPackages
+## Our ecosystem of packages
 
 The [qData](https://github.com/globalgov/qData) ecosystem aimed at
 collecting, connecting and correcting network data across issue-domains
 of global governance. The `qData::get_packages()` function can be used
-to discover the qPackages currently available.
+to discover the packages from our ecosystem currently available.
 
 ``` r
 # remotes::install_github("globalgov/qData")

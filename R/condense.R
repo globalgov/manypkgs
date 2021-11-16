@@ -6,7 +6,7 @@
 #' in different datasets actually refer to the same agreement.
 #' The function finds these occurences and returns the
 #' first qID argument entered as a replacement.
-#' @param database A qPackage database
+#' @param database A Package database
 #' @param var Two or more qID variables
 #' @import dplyr
 #' @importFrom purrr map

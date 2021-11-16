@@ -24,8 +24,8 @@ Authors@R:
              family = "Tan",
              role = "ctb",
              comment = c("IHEID", ORCID = "0000-0002-6234-9764")))
-Description: This is the developer's package of the qData ecosystem.
-    It includes functions to help contributors develop qPackages and
+Description: This is the developer's package of the many packages ecosystem.
+    It includes functions to help contributors develop packages and
     prepare event datasets on global governance.
 License: CC BY 4.0
 URL: https://github.com/globalgov/manypkgs

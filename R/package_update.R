@@ -1,8 +1,8 @@
-#' Updates qPackages
+#' Updates packages of our ecosystem
 #'
-#' As qPackages evolve, expectations about package structures
+#' As our packages evolve, expectations about package structures
 #' as well as templates might also change.
-#' This function updates files for qPackages setup with `setup_package()`.
+#' This function updates files for packages setup with `setup_package()`.
 #' @details Some of the files in the .github folder, such as workflow actions,
 #' pull request templates, and issue templates, are automatically updated.
 #' The function also asks developers if other files such as the package license,
@@ -20,7 +20,7 @@
 #' \dontrun{
 #' update_package("qStates")
 #' }
-#' @return Updated files in correct structure for qPackages.
+#' @return Updated files in correct structure for packages.
 #' @export
 update_package <- function(package = NULL, name = NULL, path = getwd()) {
 

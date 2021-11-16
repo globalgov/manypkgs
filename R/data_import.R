@@ -25,10 +25,10 @@
 #' @importFrom usethis use_directory ui_done
 #' @importFrom rlang is_string
 #' @details The function assists with importing existing raw data
-#' into a qPackage. The function does two main things.
+#' into our ecosystem of packages. The function does two main things.
 #'
 #' First, it moves or copies a chosen file into the "data-raw/"
-#' folder of the current qPackage.
+#' folder of the current package.
 #' A hierarchy to this folder is established.
 #' It first checks whether there is already a folder under "data-raw/" on
 #' the harddrive that is the same as the name of the database and, if there
@@ -54,7 +54,7 @@
 #' @return Places the chosen file into a folder hierarchy within
 #' the package such as "data-raw/\{database\}/\{dataset\}/" and
 #' creates and opens a script in the same folder for preparing
-#' the data for use in the qPackage.
+#' the data for use in the package.
 #' @examples
 #' \dontrun{
 #' import_data(dataset = "COW", database = "states")
@@ -136,7 +136,8 @@ import_data <- function(dataset = NULL,
 
 #' Add .bib file
 #'
-#' Add .bib file template to help cite the datasets in a qPackage
+#' Add .bib file template to help cite the datasets in a package from
+#' our ecosystem.
 #' @param database Name of the database dataset is a part of
 #' @param dataset Name of the dataset
 #' @importFrom fs path

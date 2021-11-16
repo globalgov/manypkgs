@@ -7,9 +7,9 @@
 get_links(database, dataset, treaty_type = "all")
 }
 \arguments{
-\item{database}{A qPackage database}
+\item{database}{A Package database}
 
-\item{dataset}{A qPackage dataset}
+\item{dataset}{A Package dataset}
 
 \item{treaty_type}{The type of treaties to be returned.
 By default, all treaties are returned.

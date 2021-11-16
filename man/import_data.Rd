@@ -42,7 +42,7 @@ By default TRUE.}
 Places the chosen file into a folder hierarchy within
 the package such as "data-raw/\{database\}/\{dataset\}/" and
 creates and opens a script in the same folder for preparing
-the data for use in the qPackage.
+the data for use in the package.
 }
 \description{
 Creates a data-raw folder, moves raw data files to a consistent location,
@@ -51,10 +51,10 @@ into a format consistent with the qData ecosystem.
 }
 \details{
 The function assists with importing existing raw data
-into a qPackage. The function does two main things.
+into our ecosystem of packages. The function does two main things.
 
 First, it moves or copies a chosen file into the "data-raw/"
-folder of the current qPackage.
+folder of the current package.
 A hierarchy to this folder is established.
 It first checks whether there is already a folder under "data-raw/" on
 the harddrive that is the same as the name of the database and, if there

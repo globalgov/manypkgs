@@ -1,7 +1,7 @@
 # {{{dataset}}} Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for the qPackage.
+# ready for many packages.
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
@@ -20,7 +20,7 @@
 
 # Stage three: Connecting data
 # Next run the following line to make {{{dataset}}} available
-# within the qPackage.
+# within the package.
 # This function also does two additional things.
 # First, it creates a set of tests for this object to ensure adherence
 # to certain standards.You can hit Cmd-Shift-T (Mac) or Ctrl-Shift-T (Windows)

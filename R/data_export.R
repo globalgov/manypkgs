@@ -1,8 +1,8 @@
-#' Adding datasets to the qPackage
+#' Adding datasets to the many packages ecosystem
 #'
 #' Save a cleaned data object, consistent with the qData ecosystem, ready to be
 #' lazy-loaded and create scripts for documenting and testing that object within
-#' the new qPackage.
+#' the new package.
 #' @param ... Unquoted name of the dataset object to save.
 #' @param database Quoted name of any existing database or of the database to
 #' be created.

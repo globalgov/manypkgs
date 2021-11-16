@@ -2,7 +2,7 @@
 % Please edit documentation in R/package_update.R
 \name{update_package}
 \alias{update_package}
-\title{Updates qPackages}
+\title{Updates packages of our ecosystem}
 \usage{
 update_package(package = NULL, name = NULL, path = getwd())
 }
@@ -18,12 +18,12 @@ Authors(s)last name(s) and first name(s) are separated by a comma.}
 If not specified, function gets the current working directory.}
 }
 \value{
-Updated files in correct structure for qPackages.
+Updated files in correct structure for packages.
 }
 \description{
-As qPackages evolve, expectations about package structures
+As our packages evolve, expectations about package structures
 as well as templates might also change.
-This function updates files for qPackages setup with \code{setup_package()}.
+This function updates files for packages setup with \code{setup_package()}.
 }
 \details{
 Some of the files in the .github folder, such as workflow actions,
