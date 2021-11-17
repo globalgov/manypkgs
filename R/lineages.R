@@ -1,3 +1,88 @@
+#' Code lineage from agreement titles
+#'
+#' @param database
+#' @return A list of lineages that combines agreement area
+#' and agreement action.
+#' @examples
+#' code_lineage(qEnviron::agreements)
+#' @export
+code_lineage <- function(database) {
+  title <- unname(unlist(purrr::map(database, "Title")))
+  lineage <- paste0(code_actions(title), "-", code_area(title))
+  lineage
+}
+
+#' Code Agreement Area
+#'
+#' @param title 
+#' @return The region of the agreement
+#' @importFrom dplyr case_when
+#' @examples
+#' code_area(qEnviron::agreements$IEADB$Title)
+#' @export
+code_area <- function(title) {
+  dplyr::case_when(
+  # Oceans
+  grepl("American North Atlantic|Northwest Atlantic|Northeast Atlantic|
+        |North Atlantic|Southeast Atlantic|South East Atlantic|
+        |South Atlantic|African Atlantic|Atlantic Ocean",
+        title, ignore.case = T) ~ "Atlantic Ocean",
+  grepl("Eastern Pacific|Northeast Pacific|South Pacific|
+        |Western Central Pacific", title, ignore.case = T) ~ "Pacific Ocean",
+  grepl("Indian Ocean", title, ignore.case = T) ~ "Indian Ocean",
+  grepl("Artic Ocean", title, ignore.case = T) ~ "Artic Ocean",
+  # Regions by UN subregion list
+  grepl("Central America", title, ignore.case = T) ~ "Central America",
+  grepl("South America", title, ignore.case = T) ~ "South America",
+  grepl("North America", title, ignore.case = T) ~ "North America",
+  grepl("Caribbean", title, ignore.case = T) ~ "Caribbean",
+  grepl("Latin America", title, ignore.case = T) ~ "Latin America",
+  grepl("Southeast Asia|South-eastern Asia", title, ignore.case = T) ~ "Southeast Asia",
+  grepl("Central Asia", title, ignore.case = T) ~ "Central Asia",
+  grepl("South Asia|Southern Asia", title, ignore.case = T) ~ "South Asia",
+  grepl("East Asia|Eastern Asia", title, ignore.case = T) ~ "East Asia",
+  grepl("West Asia|Western Asia", title, ignore.case = T) ~ "West Asia",
+  grepl("Northern Europe|North Europe", title, ignore.case = T) ~ "Northern Europe",
+  grepl("Western Europe|West Europe", title, ignore.case = T) ~ "Western Europe",
+  grepl("Eastern Europe|East Europe", title, ignore.case = T) ~ "Eastern Europe",
+  grepl("Southern Europe|South Europe", title, ignore.case = T) ~ "Eastern Europe",
+  grepl("West Africa|Western Africa", title, ignore.case = T) ~ "East Africa",
+  grepl("East Africa|Eastern Africa", title, ignore.case = T) ~ "East Africa",
+  grepl("Central Africa", title, ignore.case = T) ~ "Central Africa",
+  grepl("Southern Africa", title, ignore.case = T) ~ "Southern Africa",
+  grepl("Northern Africa|North Africa", title, ignore.case = T) ~ "North Africa",
+  grepl("Sub-Saharan Africa|Saharan Africa", title, ignore.case = T) ~ " Sub-Saharan Africa",
+  grepl("antartica", title, ignore.case = T) ~ "Antartica",
+  grepl("Polynesia", title, ignore.case = T) ~ "Polynesia",
+  grepl("Micronesia", title, ignore.case = T) ~ "Micronesia",
+  grepl("Melanesia", title, ignore.case = T) ~ "Melanesia",
+  grepl("Australia|New Zealand", title, ignore.case = T) ~ "Australia and New Zealand",
+  grepl("oceania", title, ignore.case = T) ~ "Oceania")
+}
+
+#' Code Actions from agreement titles
+#'
+#' @param title
+#' @return The action taken from agreement title
+#' @examples
+#' code_action(qEnviron::agreements$IEADB$Title)
+#' @export
+code_actions <- function(title) {
+  dplyr::case_when(
+    grepl("biodiversity|species|habitat|ecosystems|biological diversity|genetic resources|biosphere",
+          title, ignore.case = T) ~ "biodiversity",
+    grepl("air|atmos|climate|outer space|ozone|emissions|coal", title, ignore.case = T) ~ "climate change",
+    grepl("legal|organization|enforcement|policy|planning|institution|dispute|court|tribunal|law",
+          title, ignore.case = T) ~ "management",
+    grepl("energy|nuclear|oil|mining|gas|hydro|power", title, ignore.case = T) ~  "energy",
+    grepl("agricultur|food|livestock|crop|irrigation|cattle|meat|farm|cultivate",
+          title, ignore.case = T) ~  "agriculture",
+    grepl("waste|pollut|noise|toxic|hazard", title, ignore.case = T) ~  "waste",
+    grepl("culture|scien|techno|trade|research|exploration|navigation|data|information",
+          title, ignore.case = T) ~  "research",
+    grepl("weapon|military", title, ignore.case = T) ~  "military")
+}
+
 #' Get links from treaty titles
 #'
 #' Treaties that modify, amend, or expand other treaties

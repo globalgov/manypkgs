@@ -1,15 +1,15 @@
 #' Get memberships' list
 #'
-#' Memberships database have countries column and 
-#' treaty title column but information on the other
+#' Memberships database have actor column(s) and 
+#' treaty column(s) but information on the other
 #' countries that are part to the treaties is often
-#' missing.
+#' hard to read.
 #' The function allows to generate a dataframe of 
-#' treaty IDs and the countries part to the treaty.
-#' @param actor A country variable
+#' treaty IDs and actors part to the treaty.
+#' @param database A database
+#' @param actor A actor variable (e.g. country)
 #' @param id A treaty ID variable
-#'
-#' @return A dataframe of treaty IDs and countries
+#' @return A dataframe of treaty IDs and actors
 #' part of the treaty
 #' @import dplyr
 #' @examples

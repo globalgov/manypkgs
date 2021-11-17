@@ -7,21 +7,23 @@
 get_memberships(database, actor, id)
 }
 \arguments{
-\item{actor}{A country variable}
+\item{database}{A database}
+
+\item{actor}{A actor variable (e.g. country)}
 
 \item{id}{A treaty ID variable}
 }
 \value{
-A dataframe of treaty IDs and countries
+A dataframe of treaty IDs and actors
 part of the treaty
 }
 \description{
-Memberships database have countries column and
-treaty title column but information on the other
+Memberships database have actor column(s) and
+treaty column(s) but information on the other
 countries that are part to the treaties is often
-missing.
+hard to read.
 The function allows to generate a dataframe of
-treaty IDs and the countries part to the treaty.
+treaty IDs and actors part to the treaty.
 }
 \examples{
 sample <- qEnviron::memberships$IEADB_MEM
