@@ -13,5 +13,5 @@ The action taken from agreement title
 Code Actions from agreement titles
 }
 \examples{
-code_action(qEnviron::agreements$IEADB$Title)
+code_actions(qEnviron::agreements$IEADB$Title)
 }

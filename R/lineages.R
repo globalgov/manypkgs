@@ -65,7 +65,7 @@ code_area <- function(title) {
 #' @param title
 #' @return The action taken from agreement title
 #' @examples
-#' code_action(qEnviron::agreements$IEADB$Title)
+#' code_actions(qEnviron::agreements$IEADB$Title)
 #' @export
 code_actions <- function(title) {
   dplyr::case_when(
