@@ -6,6 +6,9 @@
 \usage{
 code_lineage(database)
 }
+\arguments{
+\item{database}{A database from the many packages ecosystem.}
+}
 \value{
 A list of lineages that combines agreement area
 and agreement action.

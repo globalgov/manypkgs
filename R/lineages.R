@@ -1,8 +1,9 @@
 #' Code lineage from agreement titles
 #'
-#' @param database
+#' @param database A database from the many packages ecosystem.
 #' @return A list of lineages that combines agreement area
 #' and agreement action.
+#' @importFrom purrr map
 #' @examples
 #' code_lineage(qEnviron::agreements)
 #' @export
@@ -14,56 +15,46 @@ code_lineage <- function(database) {
 
 #' Code Agreement Area
 #'
-#' @param title 
+#' @param title Treaty titles
+#' @param destination Do you want regions or continents
+#' returned instead of location names?
+#' By default NULL.
+#' Options include continent and region.
 #' @return The region of the agreement
-#' @importFrom dplyr case_when
+#' @importFrom entity location_entity
+#' @importFrom countrycode countrycode
 #' @examples
-#' code_area(qEnviron::agreements$IEADB$Title)
+#' title <- head(qEnviron::agreements$IEADB$Title)
+#' code_area(title)
 #' @export
-code_area <- function(title) {
-  dplyr::case_when(
-  # Oceans
-  grepl("American North Atlantic|Northwest Atlantic|Northeast Atlantic|
-        |North Atlantic|Southeast Atlantic|South East Atlantic|
-        |South Atlantic|African Atlantic|Atlantic Ocean",
-        title, ignore.case = T) ~ "Atlantic Ocean",
-  grepl("Eastern Pacific|Northeast Pacific|South Pacific|
-        |Western Central Pacific", title, ignore.case = T) ~ "Pacific Ocean",
-  grepl("Indian Ocean", title, ignore.case = T) ~ "Indian Ocean",
-  grepl("Artic Ocean", title, ignore.case = T) ~ "Artic Ocean",
-  # Regions by UN subregion list
-  grepl("Central America", title, ignore.case = T) ~ "Central America",
-  grepl("South America", title, ignore.case = T) ~ "South America",
-  grepl("North America", title, ignore.case = T) ~ "North America",
-  grepl("Caribbean", title, ignore.case = T) ~ "Caribbean",
-  grepl("Latin America", title, ignore.case = T) ~ "Latin America",
-  grepl("Southeast Asia|South-eastern Asia", title, ignore.case = T) ~ "Southeast Asia",
-  grepl("Central Asia", title, ignore.case = T) ~ "Central Asia",
-  grepl("South Asia|Southern Asia", title, ignore.case = T) ~ "South Asia",
-  grepl("East Asia|Eastern Asia", title, ignore.case = T) ~ "East Asia",
-  grepl("West Asia|Western Asia", title, ignore.case = T) ~ "West Asia",
-  grepl("Northern Europe|North Europe", title, ignore.case = T) ~ "Northern Europe",
-  grepl("Western Europe|West Europe", title, ignore.case = T) ~ "Western Europe",
-  grepl("Eastern Europe|East Europe", title, ignore.case = T) ~ "Eastern Europe",
-  grepl("Southern Europe|South Europe", title, ignore.case = T) ~ "Eastern Europe",
-  grepl("West Africa|Western Africa", title, ignore.case = T) ~ "East Africa",
-  grepl("East Africa|Eastern Africa", title, ignore.case = T) ~ "East Africa",
-  grepl("Central Africa", title, ignore.case = T) ~ "Central Africa",
-  grepl("Southern Africa", title, ignore.case = T) ~ "Southern Africa",
-  grepl("Northern Africa|North Africa", title, ignore.case = T) ~ "North Africa",
-  grepl("Sub-Saharan Africa|Saharan Africa", title, ignore.case = T) ~ " Sub-Saharan Africa",
-  grepl("antartica", title, ignore.case = T) ~ "Antartica",
-  grepl("Polynesia", title, ignore.case = T) ~ "Polynesia",
-  grepl("Micronesia", title, ignore.case = T) ~ "Micronesia",
-  grepl("Melanesia", title, ignore.case = T) ~ "Melanesia",
-  grepl("Australia|New Zealand", title, ignore.case = T) ~ "Australia and New Zealand",
-  grepl("oceania", title, ignore.case = T) ~ "Oceania")
+code_area <- function(title, destination = NULL) {
+  # Code was adopted from entity package on GitHub
+  outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
+  if (!outcome) {
+      utils::install.packages(
+        "http://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz",
+        repos=NULL,
+        type="source")
+  }
+  out <- entity::location_entity(title)
+  if(!is.null(destination)) {
+    if (destination == "continent") {
+      out <- lapply(out, function(x) countrycode::countrycode(x, origin = "country.name",
+                                                              destination = "continent"))
+      }
+    if (destination == "region") {
+      out <- lapply(out, function(x) countrycode::countrycode(x, origin = "country.name",
+                                                              destination = "region"))
+    }
+  }
+  out
 }
 
 #' Code Actions from agreement titles
 #'
-#' @param title
+#' @param title Treaty titles
 #' @return The action taken from agreement title
+#' @importFrom dplyr case_when
 #' @examples
 #' code_actions(qEnviron::agreements$IEADB$Title)
 #' @export
@@ -96,6 +87,7 @@ code_actions <- function(title) {
 #' By default, all treaties are returned.
 #' Other options include bilateral or multilateral treaties. 
 #' @return A dataframe of agreements' qID and their linkages.
+#' @importFrom purrr map map_chr
 #' @examples
 #' get_links(database = qEnviron::agreements)
 #' get_links(database = qEnviron::agreements, treaty_type = "multilateral")

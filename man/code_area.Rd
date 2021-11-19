@@ -4,10 +4,15 @@
 \alias{code_area}
 \title{Code Agreement Area}
 \usage{
-code_area(title)
+code_area(title, destination = NULL)
 }
 \arguments{
-\item{title}{}
+\item{title}{Treaty titles}
+
+\item{destination}{Do you want regions or continents
+returned instead of location names?
+By default NULL.
+Options include continent and region.}
 }
 \value{
 The region of the agreement
@@ -16,5 +21,6 @@ The region of the agreement
 Code Agreement Area
 }
 \examples{
-code_area(qEnviron::agreements$IEADB$Title)
+title <- head(qEnviron::agreements$IEADB$Title)
+code_area(title)
 }

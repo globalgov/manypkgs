@@ -6,6 +6,9 @@
 \usage{
 code_actions(title)
 }
+\arguments{
+\item{title}{Treaty titles}
+}
 \value{
 The action taken from agreement title
 }

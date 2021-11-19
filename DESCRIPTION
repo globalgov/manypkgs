@@ -53,7 +53,9 @@ Imports:
     stringdist,
     tidyr,
     tm,
-    stringi
+    stringi,
+    entity,
+    countrycode
 Suggests:
     testthat (>= 3.0.0),
     librarian,
@@ -75,6 +77,7 @@ Suggests:
     cld2
 Remotes:
     globalgov/qEnviron
+    trinker/entity
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
