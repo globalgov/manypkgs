@@ -128,15 +128,18 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   if (interactive()) {
     file.copy(fs::path_package(package = "manypkgs",
                                "templates", "Package-Check.yml"),
-              fs::path(".github", "workflows", "prchecks.yml"))
+              fs::path(".github", "workflows", "prchecks.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated workflow checks for push releases.")
     file.copy(fs::path_package(package = "manypkgs",
                                "templates", "Package-Commands.yml"),
-              fs::path(".github", "workflows", "prcommands.yml"))
+              fs::path(".github", "workflows", "prcommands.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated commands workflow for push releases.")
     file.copy(fs::path_package(package = "manypkgs",
                                "templates", "Package-Release.yml"),
-              fs::path(".github", "workflows", "pushrelease.yml"))
+              fs::path(".github", "workflows", "pushrelease.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated release workflow for merging push releases.")
   }
 
