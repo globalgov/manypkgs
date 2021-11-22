@@ -65,7 +65,7 @@ get_treaty <- function(t, article = NULL, match = NULL) {
     t <- purrr::map_chr(t, c(as.numeric(article) + 1))
   }
   if (isTRUE(article == "preamble")) {
-    t <- purrr::map_chr(t, c(1))
+    t <- purrr::map_chr(t, 1)
   }
   if(!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, value = TRUE))

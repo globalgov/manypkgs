@@ -1,4 +1,4 @@
-treaty <- c("preamble: this is the preamble \narticle 1: this is the article 1 \narticle 2: this is the article 2")
+treaty <- "preamble: this is the preamble \narticle 1: this is the article 1 \narticle 2: this is the article 2"
 
 test_that("Treaty text is splitted correctly", {
   t <- split_treaty(treaty)
