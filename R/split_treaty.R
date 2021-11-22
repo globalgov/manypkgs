@@ -7,7 +7,7 @@
 #' @importFrom stringi stri_trans_general
 #' @return A structured list for each agreement
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' t <- head(qEnviron::texts$IEADB_TXT$Text)
 #' split_treaty(t)
 #' }
@@ -43,7 +43,7 @@ split_treaty <- function(textvar) {
 #' @importFrom purrr map_chr
 #' @return A list of treaty sections of the same length
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' t <- head(qEnviron::texts$IEADB_TXT$Text)
 #' t <- split_treaty(t)
 #' get_treaty(t, article = "preamble")

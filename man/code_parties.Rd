@@ -33,7 +33,7 @@ false positives being generated since
 multiple, different, bileteral treaties are
 often signed in the same day.
 For the complete list of parties coded please run the
-function without and argument (i.e. \code{code_parties()}).
+function without an argument (i.e. \code{code_parties()}).
 }
 \examples{
 \donttest{

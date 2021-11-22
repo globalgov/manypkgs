@@ -120,7 +120,7 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' multiple, different, bileteral treaties are
 #' often signed in the same day.
 #' For the complete list of parties coded please run the
-#' function without and argument (i.e. `code_parties()`).
+#' function without an argument (i.e. `code_parties()`).
 #' @examples
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
@@ -248,7 +248,7 @@ code_activity <- function(title) {
 #' @details Types of agreements differentiate agreements
 #' from protocols or amendments, for example.
 #' For the complete list of types of agreements coded
-#' please run the function without and argument
+#' please run the function without an argument
 #' (i.e. `code_type()`).
 #' @examples
 #' \donttest{

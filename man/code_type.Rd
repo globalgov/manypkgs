@@ -23,7 +23,7 @@ if they contain words in title.
 Types of agreements differentiate agreements
 from protocols or amendments, for example.
 For the complete list of types of agreements coded
-please run the function without and argument
+please run the function without an argument
 (i.e. \code{code_type()}).
 }
 \examples{

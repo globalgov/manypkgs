@@ -2,7 +2,7 @@
 % Please edit documentation in R/package_update.R
 \name{update_package}
 \alias{update_package}
-\title{Updates packages of our ecosystem}
+\title{Updates packages of our data universe}
 \usage{
 update_package(package = NULL, name = NULL, path = getwd())
 }

@@ -25,7 +25,7 @@
 #' @importFrom usethis use_directory ui_done
 #' @importFrom rlang is_string
 #' @details The function assists with importing existing raw data
-#' into our ecosystem of packages. The function does two main things.
+#' into our universe of packages. The function does two main things.
 #'
 #' First, it moves or copies a chosen file into the "data-raw/"
 #' folder of the current package.

@@ -1,4 +1,4 @@
-#' Adding datasets to the many packages ecosystem
+#' Adding datasets to the many packages universe
 #'
 #' Save a cleaned data object, consistent with the qData ecosystem, ready to be
 #' lazy-loaded and create scripts for documenting and testing that object within

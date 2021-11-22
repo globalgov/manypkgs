@@ -2,7 +2,7 @@
 % Please edit documentation in R/data_export.R
 \name{export_data}
 \alias{export_data}
-\title{Adding datasets to the many packages ecosystem}
+\title{Adding datasets to the many packages universe}
 \usage{
 export_data(..., database, URL)
 }

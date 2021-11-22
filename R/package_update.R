@@ -1,4 +1,4 @@
-#' Updates packages of our ecosystem
+#' Updates packages of our data universe
 #'
 #' As our packages evolve, expectations about package structures
 #' as well as templates might also change.
