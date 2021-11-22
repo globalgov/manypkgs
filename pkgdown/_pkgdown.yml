@@ -54,7 +54,7 @@ navbar:
           href: https://globalgov.github.io/qTrade/
 reference:
   - title: "Setup functions"
-    desc: "These functions were created to assist data providers with the setup of packages"
+    desc: "These functions were created to assist data providers with the setup of many packages"
     contents:
       - setup_package
       - add_author
