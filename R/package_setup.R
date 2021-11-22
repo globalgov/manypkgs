@@ -99,23 +99,23 @@ setup_package <- function(package = NULL,
     comment <- as.character(orcid)
     # Use correct template
     if (length(orcid) == 1 & is.null(role)) {
-      qtemplate("qPackage-DESC.dcf",
-                "DESCRIPTION",
-                data = list(package = package,
-                            given = given,
-                            family = family,
-                            comment = comment,
-                            role = rolefirst),
-                path = path)
+      manytemplate("Package-DESC.dcf",
+                   "DESCRIPTION",
+                   data = list(package = package,
+                               given = given,
+                               family = family,
+                               comment = comment,
+                               role = rolefirst),
+                   path = path)
     } else if (length(orcid) == 1 & !is.null(role)) {
-      qtemplate("qPackage-DESC.dcf",
-                "DESCRIPTION",
-                data = list(package = package,
-                            given = given,
-                            family = family,
-                            comment = comment,
-                            role = role),
-                path = path)
+      manytemplate("Package-DESC.dcf",
+                   "DESCRIPTION",
+                   data = list(package = package,
+                               given = given,
+                               family = family,
+                               comment = comment,
+                               role = role),
+                   path = path)
     }
   }
 
@@ -131,21 +131,21 @@ setup_package <- function(package = NULL,
     }
 
     if (length(fullname) == 1 & is.null(role)) {
-      qtemplate("qPackage-DESC.dcf",
-                "DESCRIPTION",
-                data = list(package = package,
-                            given = given,
-                            family = family,
-                            role = rolefirst),
-                path = path)
+      manytemplate("Package-DESC.dcf",
+                   "DESCRIPTION",
+                   data = list(package = package,
+                               given = given,
+                               family = family,
+                               role = rolefirst),
+                   path = path)
     } else if (length(fullname) == 1 & !is.null(role)) {
-      qtemplate("qPackage-DESC.dcf",
-                "DESCRIPTION",
-                data = list(package = package,
-                            given = given,
-                            family = family,
-                            role = role),
-                path = path)
+      manytemplate("Package-DESC.dcf",
+                   "DESCRIPTION",
+                   data = list(package = package,
+                               given = given,
+                               family = family,
+                               role = role),
+                   path = path)
     }
   }
 
@@ -164,29 +164,29 @@ setup_package <- function(package = NULL,
   usethis::ui_done("Created NAMESPACE file. Don't modify it.")
 
   # Add LICENSE
-  qtemplate("LICENSE.md",
-            ignore = TRUE,
-            path = path,
-            open = FALSE)
+  manytemplate("LICENSE.md",
+               ignore = TRUE,
+               path = path,
+               open = FALSE)
   usethis::ui_done("Added CC BY 4.0 license.")
 
   # Add NEWS
   if (!file.exists(paste0(path, "/NEWS.md"))) {
-     qtemplate("qPackage-NEWS.md",
-              "NEWS.md",
-              data = list(package = package),
-              path = path)
+     manytemplate("Package-NEWS.md",
+                  "NEWS.md",
+                  data = list(package = package),
+                  path = path)
     usethis::ui_done("Added starter NEWS file. Update for every release.")
   }
 
   # Add README
-  qtemplate("qPackage-README.Rmd",
-            "README.Rmd",
-            data = list(package = package,
+  manytemplate("Package-README.Rmd",
+               "README.Rmd",
+               data = list(package = package,
                         author = author),
-            path = path)
+               path = path)
   usethis::ui_done("Added standard README.")
-  # TODO: Add badges to qPackage README
+  # TODO: Add badges to the Package README
 
   # Step two: ensure/create core package files
   usethis::use_testthat()
@@ -194,60 +194,60 @@ setup_package <- function(package = NULL,
   # Step three: ensure/create Github files
   create_directory(paste0(path, "/.github"))
   usethis::ui_done("Created .github folder.")
-  qtemplate("qPackage-COC.md",
-            fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
-            data = list(package = package,
+  manytemplate("Package-COC.md",
+               fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Created CODE_OF_CONDUCT file. Modify if necessary.")
 
-  qtemplate("qPackage-CONTRIB.md",
-            fs::path(".github", "CONTRIBUTING.md"),
-            data = list(package = package,
+  manytemplate("Package-CONTRIB.md",
+               fs::path(".github", "CONTRIBUTING.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Created CONTRIBUTING file. Modify if necessary.")
 
-  qtemplate("qPackage-PR.md",
-            fs::path(".github", "pull_request_template.md"),
-            data = list(package = package,
+  manytemplate("Package-PR.md",
+               fs::path(".github", "pull_request_template.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
 
   create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
 
-  qtemplate("qPackage-Bugs.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
-            data = list(package = package,
+  manytemplate("Package-Bugs.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Created bug report issue template. Modify if necessary.")
 
-  qtemplate("qPackage-Features.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
-            data = list(package = package,
+  manytemplate("Package-Features.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
 
   # Add CITATION file
   create_directory(paste0(path, "/inst"))
   year <- date()
   year <- stringr::word(year, -1)
-  qtemplate("qPackage-cite",
-            fs::path("inst", "CITATION"),
-            data = list(package = package,
+  manytemplate("Package-cite",
+               fs::path("inst", "CITATION"),
+               data = list(package = package,
                         author = name,
                         year = year),
-            path = path,
-            open = TRUE)
+               path = path,
+               open = TRUE)
   usethis::ui_done("Added CITATION file to inst folder. Please do not forget to complete.")
 
   create_directory(paste0(path, "/.github/workflows"))
@@ -255,15 +255,15 @@ setup_package <- function(package = NULL,
 
   if (interactive()) {
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Check.yml"),
+                               "templates", "Package-Check.yml"),
               fs::path(".github", "workflows", "prchecks.yml"))
     usethis::ui_done("Added checks workflow upon opening a push release.")
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Commands.yml"),
+                               "templates", "Package-Commands.yml"),
               fs::path(".github", "workflows", "prcommands.yml"))
     usethis::ui_done("Added commands workflow upon labelling a push release.")
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Release.yml"),
+                               "templates", "Package-Release.yml"),
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Added release workflow upon merging a push release.")
   }

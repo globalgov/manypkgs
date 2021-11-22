@@ -131,7 +131,7 @@ jobs:
         run: ls -R
 
       - name: Rename Mac release
-        run: mv ./macOS/*.tgz qPackage_macOS.tgz
+        run: mv ./macOS/*.tgz Package_macOS.tgz
 
       - name: Upload Mac binary
         id: upload-mac
@@ -140,12 +140,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: qPackage_macOS.tgz
-          asset_name: qPackage_macOS.tgz
+          asset_path: Package_macOS.tgz
+          asset_name: Package_macOS.tgz
           asset_content_type: application/zip
 
       - name: Rename Linux release
-        run: mv ./linuxOS/*.tar.gz qPackage_linuxOS.tar.gz
+        run: mv ./linuxOS/*.tar.gz Package_linuxOS.tar.gz
 
       - name: Upload Linux binary
         id: upload-lin
@@ -154,12 +154,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: qPackage_linuxOS.tar.gz
-          asset_name: qPackage_linuxOS.tar.gz
+          asset_path: Package_linuxOS.tar.gz
+          asset_name: Package_linuxOS.tar.gz
           asset_content_type: application/zip
 
       - name: Rename Windows release
-        run: mv ./winOS/*.zip qPackage_winOS.zip
+        run: mv ./winOS/*.zip Package_winOS.zip
 
       - name: Upload Windows binary
         id: upload-win
@@ -168,8 +168,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: qPackage_winOS.zip
-          asset_name: qPackage_winOS.zip
+          asset_path: Package_winOS.zip
+          asset_name: Package_winOS.zip
           asset_content_type: application/zip
 
   render:
@@ -204,7 +204,7 @@ jobs:
       #- name: install qData package
       #  run: Rscript -e 'remotes::install_github("globalgov/qData")'
       
-      # Install qPackage
+      # Install Package
       - name: Install package
         run: R CMD INSTALL .
 

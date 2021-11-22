@@ -73,69 +73,69 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   # Step three: update License
   if (utils::askYesNo(
     "Would you like to update package LICENSE file?") == TRUE) {
-    qtemplate("LICENSE.md",
-              ignore = TRUE,
-              path = path,
-              open = FALSE)
+    manytemplate("LICENSE.md",
+                 ignore = TRUE,
+                 path = path,
+                 open = FALSE)
     # desc::desc_set("License", "CC BY 4.0")
     usethis::ui_done("Updated License file.")
   }
 
   # Step four: update Code of Conduct and Contributing files
   if (utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
-    qtemplate("qPackage-COC.md",
-              fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
-              data = list(package = package,
+    manytemplate("Package-COC.md",
+                 fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
+                 data = list(package = package,
                           author = author),
-              path = path,
-              open = FALSE)
+                 path = path,
+                 open = FALSE)
     usethis::ui_done("Updated CODE_OF_CONDUCT.")
 
-    qtemplate("qPackage-CONTRIB.md",
-              fs::path(".github", "CONTRIBUTING.md"),
-              data = list(package = package,
+    manytemplate("Package-CONTRIB.md",
+                 fs::path(".github", "CONTRIBUTING.md"),
+                 data = list(package = package,
                           author = author),
-              path = path,
-              open = FALSE)
+                 path = path,
+                 open = FALSE)
     usethis::ui_done("Updated CONTRIBUTING.")
   }
 
   # Step five: update templates
-  qtemplate("qPackage-PR.md",
-            fs::path(".github", "pull_request_template.md"),
-            data = list(package = package,
+  manytemplate("Package-PR.md",
+               fs::path(".github", "pull_request_template.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated PR template.")
 
-  qtemplate("qPackage-Bugs.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
-            data = list(package = package,
+  manytemplate("Package-Bugs.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated bug report issue template.")
 
-  qtemplate("qPackage-Features.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
-            data = list(package = package,
+  manytemplate("Package-Features.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated feature request issue template.")
 
   if (interactive()) {
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Check.yml"),
+                               "templates", "Package-Check.yml"),
               fs::path(".github", "workflows", "prchecks.yml"))
     usethis::ui_done("Updated workflow checks for push releases.")
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Commands.yml"),
+                               "templates", "Package-Commands.yml"),
               fs::path(".github", "workflows", "prcommands.yml"))
     usethis::ui_done("Updated commands workflow for push releases.")
     file.copy(fs::path_package(package = "manypkgs",
-                               "templates", "qPackage-Release.yml"),
+                               "templates", "Package-Release.yml"),
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Updated release workflow for merging push releases.")
   }

@@ -116,7 +116,7 @@ import_data <- function(dataset = NULL,
     } else stop("File type not recognised")
 
   # Create preparation template
-  qtemplate(
+  manytemplate(
     "qData-prep.R",
     save_as = fs::path("data-raw", database, dataset,
                        paste0("prepare-", dataset), ext = "R"),
@@ -150,7 +150,7 @@ import_data <- function(dataset = NULL,
 #' @export
 add_bib <- function(database, dataset) {
 
-  qtemplate(
+  manytemplate(
     "qData-bib",
     save_as = fs::path("data-raw", database, dataset,
                        dataset, ext = "bib"),

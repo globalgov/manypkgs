@@ -107,65 +107,64 @@ export_data <- function(..., database, URL) {
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   package <- get_package_name()
-  qtemplate("qDataDBDoc.R",
-            save_as = fs::path("R", paste0(package, "-", database, ".R")),
-            data = list(dat = dataset_name,
+  manytemplate("qDataDBDoc.R",
+               save_as = fs::path("R", paste0(package, "-", database, ".R")),
+               data = list(dat = dataset_name,
                         nd = dblen,
                         strdsnames = strdsnames,
                         dsvarstr = dsvarstr,
                         database = database,
                         describe = describe,
                         source = sourceelem),
-            open = TRUE,
-            ignore = FALSE,
-            path = getwd())
+               ignore = FALSE,
+               path = getwd())
 
   # Step four: create the right kind of test script for the type of object it is
   if (database == "states") {
-    qtemplate("test_states.R",
-              save_as = fs::path("tests", "testthat",
+    manytemplate("test_states.R",
+                 save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
-              data = list(dat = dataset_name,
+                 data = list(dat = dataset_name,
                           dab = database),
-              open = FALSE,
-              ignore = FALSE,
-              path = getwd())
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   } else if (database == "agreements") {
-    qtemplate("test_agreements.R",
-              save_as = fs::path("tests", "testthat",
+    manytemplate("test_agreements.R",
+                 save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
-              data = list(dat = dataset_name,
+                 data = list(dat = dataset_name,
                           dab = database),
-              open = FALSE,
-              ignore = FALSE,
-              path = getwd())
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   } else if (database == "memberships") {
-    qtemplate("test_memberships.R",
-              save_as = fs::path("tests", "testthat",
+    manytemplate("test_memberships.R",
+                 save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
-              data = list(dat = dataset_name,
+                 data = list(dat = dataset_name,
                           dab = database),
-              open = FALSE,
-              ignore = FALSE,
-              path = getwd())
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   } else if (database == "actors") {
-    qtemplate("test_actors.R",
-              save_as = fs::path("tests", "testthat",
+    manytemplate("test_actors.R",
+                 save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
-              data = list(dat = dataset_name,
+                 data = list(dat = dataset_name,
                           dab = database),
-              open = FALSE,
-              ignore = FALSE,
-              path = getwd())
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   } else {
-    qtemplate("test_general.R",
-              save_as = fs::path("tests", "testthat",
+    manytemplate("test_general.R",
+                 save_as = fs::path("tests", "testthat",
                                  paste0("test_", dataset_name, ".R")),
-              data = list(dat = dataset_name,
+                 data = list(dat = dataset_name,
                           dab = database),
-              open = FALSE,
-              ignore = FALSE,
-              path = getwd())
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   }
   ui_done("A test script has been created for this data.")
   ui_todo("Press Cmd/Ctrl-Shift-T to run all tests or run devtools::test().")

@@ -14,12 +14,12 @@
 #' @importFrom whisker whisker.render
 #' @examples
 #' \dontrun{
-#' qtemplate("test_states.R",
+#' manytemplate("test_states.R",
 #' save_as = fs::path("tests", "testthat", paste0("test_", dataset_name, ".R")),
 #' open = FALSE,
 #' path = getwd())
 #' }
-qtemplate <- function(template,
+manytemplate <- function(template,
                       save_as = template,
                       data = list(),
                       ignore = FALSE,
