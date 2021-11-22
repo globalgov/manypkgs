@@ -1,7 +1,7 @@
 # {{{dataset}}} Preparation Script
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages.
+# ready for many packages universe.
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
