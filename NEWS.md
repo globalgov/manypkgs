@@ -1,3 +1,18 @@
+# manypkgs 0.2.0
+
+## Package
+* Closed #58 by renaming package from `qCreate` to `manypkgs`
+* Closed #28 by adding cheatsheet
+
+## Correction
+* Closed #57 by updating `code_agreements()` and `condense_qID()`for more concise code
+* Closed #48 by updating data preparation template in `export_data()`
+
+## Connection
+* Updated `standardise_titles()`
+  * Closed #9 by adding `lingua()` function
+* Closed #47 by adding `split_treaty()` function
+
 # manypkgs 0.1.1
 
 ## Package
