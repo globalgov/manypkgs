@@ -72,6 +72,19 @@ code_actions <- function(title) {
     grepl("culture|scien|techno|trade|research|exploration|navigation|data|information",
           title, ignore.case = T) ~  "research",
     grepl("weapon|military", title, ignore.case = T) ~  "military")
+  ## We can also try to do this with tagging sentence properties
+  # title <- head(qEnviron::agreements$IEADB$Title)
+  # We need to remove predicted_words here
+  # out <- data.frame(title)
+  # out <- rowid_to_column(out, var = "id")
+  # library(udpipe)
+  # ud_model <- udpipe_download_model(language = "english")
+  # ud_model <- udpipe_load_model(ud_model$file_model)
+  # x <- udpipe_annotate(ud_model, x = out$title, doc_id = out$id)
+  # x <- as.data.frame(x)
+  # abc <- "VB"
+  # stats <- dplyr::filter(x,grepl(pattern = "VB", x = xpos, ignore.case = T))
+  # There are no verbs...
 }
 
 #' Get links from treaty titles
