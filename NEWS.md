@@ -1,3 +1,20 @@
+# manypkgs 0.2.0
+
+## Package
+* Closed #58 by renaming package from `qCreate` to `manypkgs`
+* Closed #28 by adding cheatsheet to README
+
+## Correction
+* Closed #57 by updating `code agreements()` and `condense_qID()` to make code more concise
+* Closed #48 by updating data preparation template in `export_data()`
+
+## Connection
+* Updated `standardise_titles()`
+  * Closed #9 by adding `lingua()` function for translating text to English
+* Closed #47 by adding functions to structure treaty text
+  * Added `split_treaty()` to split treaty text into preamble and articles
+  * Added `get_treaty()` to get all matching articles by number or word match
+
 # manypkgs 0.1.1
 
 ## Package
