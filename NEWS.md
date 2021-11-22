@@ -7,6 +7,7 @@
 ## Correction
 * Closed #57 by updating `code agreements()` and `condense_qID()` to make code more concise
 * Closed #48 by updating data preparation template in `export_data()`
+* Updated the countryregex table used in `code_parties()` so that countries are detected more accurately
 
 ## Connection
 * Updated `standardise_titles()`
@@ -15,7 +16,7 @@
   * Added `split_treaty()` to split treaty text into preamble and articles
   * Added `get_treaty()` to get all matching articles by number or word match
 
-# manypkgs 0.1.1
+# qCreate 0.1.1
 
 ## Package
 
@@ -44,14 +45,14 @@
 * Closed #50 and #23 by adding `condense_qID()` function to match similar, but not identical, qIDs for a database and return a qID_ref vector
 * Added tests for `condense_qID()`
 
-# manypkgs 0.1.0
+# qCreate 0.1.0
 
 ## Package
 
 * Added `update_package()` function which updates packages created with `setup_package()`
-* Moved `interleave()` from `{qData}` to `{manypkgs}` to avoid dependency knots among q Packages
+* Moved `interleave()` from `{qData}` to `{qCreate}` to avoid dependency knots among q Packages
   * Added tests for `interleave()`
-* Updated templates and scripts to correctly call `{manypkgs}` instead of `{qData}` where necessary
+* Updated templates and scripts to correctly call `{qCreate}` instead of `{qData}` where necessary
 * Updated agreements vignette to reflect new changes with `code_agreements()` function
 
 ## Correction
@@ -75,11 +76,11 @@
   * Updated `code_type()` and `code_known_agreements()`  to return coding lists when function is called without arguments
   * Updated test for `code_agreements()` to reflect the changes made to function
 
-# manypkgs 0.0.1
+# qCreate 0.0.1
 
 ## Package
 
-* Setup the `{manypkgs}`  package for developers and data contributors 
+* Setup the `{qCreate}`  package for developers and data contributors 
   * Moved `setup_package()` and related functions from `{qData}`
   * Moved `import_data()` and related functions from `{qData}`
   * Moved `export_data()` and related functions from `{qData}`
@@ -87,9 +88,9 @@
 
 ## Correction
 
-* Moved `standardise_titles()` from `{qData}` to `{manypkgs}` 
+* Moved `standardise_titles()` from `{qData}` to `{qCreate}` 
   * Updated `standardise_titles()` to translate strings to English when API key is provided as an argument
-* Moved `standardise_dates()` from `{qData}` to `{manypkgs}`
+* Moved `standardise_dates()` from `{qData}` to `{qCreate}`
 
 ## Connection
 
