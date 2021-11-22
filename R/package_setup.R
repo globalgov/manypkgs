@@ -2,7 +2,7 @@
 #'
 #' Creates a new package in, and consistent with, the qData ecosystem
 #' @param package A string giving the desired name of the package,
-#' must start with "q"
+#' must start with "many"
 #' @param orcid A vector of strings of all the ORCID numbers of the authors.
 #' Needs `{rorcid}` package to be installed.
 #' Takes precedence over manual entries if specified.
@@ -45,14 +45,14 @@ setup_package <- function(package = NULL,
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
       package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
       usethis::ui_done("Obtained package name from existing DESCRIPTION file.")
-      if (!startsWith(package, "q")) stop("Package name must start with a 'q'")
+      if (!startsWith(package, "many")) stop("Package name must start with a 'many'")
     } else {
       stop("Please declare a package name")
     }
   }
 
-  ifelse(!startsWith(package, "q"),
-          stop("Package name must start with a 'q'"), package)
+  ifelse(!startsWith(package, "many"),
+          stop("Package name must start with a 'many'"), package)
 
   if (is.null(name)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
