@@ -107,7 +107,7 @@ export_data <- function(..., database, URL) {
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
   #Output
   package <- get_package_name()
-  manytemplate("qDataDBDoc.R",
+  manytemplate("packageDBDoc.R",
                save_as = fs::path("R", paste0(package, "-", database, ".R")),
                data = list(dat = dataset_name,
                         nd = dblen,
