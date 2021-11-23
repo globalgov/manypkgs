@@ -117,7 +117,7 @@ import_data <- function(dataset = NULL,
 
   # Create preparation template
   manytemplate(
-    "Package-prep.R",
+    "Package-preparation.R",
     save_as = fs::path("data-raw", database, dataset,
                        paste0("prepare-", dataset), ext = "R"),
     data = list(dataset = dataset,
@@ -151,7 +151,7 @@ import_data <- function(dataset = NULL,
 add_bib <- function(database, dataset) {
 
   manytemplate(
-    "Package-bib",
+    "Package-bibliograhy",
     save_as = fs::path("data-raw", database, dataset,
                        dataset, ext = "bib"),
     data = list(dataset = dataset),

@@ -241,7 +241,7 @@ setup_package <- function(package = NULL,
   create_directory(paste0(path, "/inst"))
   year <- date()
   year <- stringr::word(year, -1)
-  manytemplate("Package-cite",
+  manytemplate("Package-citation",
                fs::path("inst", "CITATION"),
                data = list(package = package,
                         author = name,
