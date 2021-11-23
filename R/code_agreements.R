@@ -464,7 +464,6 @@ code_acronym <- function(title) {
 #' @param date A date variable
 #' @param return_all Do you want all the variables to be returned in a list?
 #' By default, FALSE.
-#' @importFrom textclean add_comma_space
 #' @importFrom stringr str_replace_all str_squish str_remove_all
 #' @importFrom purrr map
 #' @import dplyr
