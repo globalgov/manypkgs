@@ -15,7 +15,7 @@ setup_package(
 }
 \arguments{
 \item{package}{A string giving the desired name of the package,
-must start with "q"}
+must start with "many"}
 
 \item{name}{A list of vectors giving the package author(s)' name(s).
 Authors(s)last name(s) and first name(s) are separated by a comma.}
@@ -45,8 +45,8 @@ folder structures required for a qData-consistent data package.
 }
 \examples{
 \dontrun{
-setup_package("qStates", name = "Hollway, James")
-setup_package("qStates",
+setup_package("manystates", name = "Hollway, James")
+setup_package("manystates",
                orcid = c("0000-0002-8361-9647"))
 }
 }

@@ -3,11 +3,11 @@ test_that("package name is required", {
 })
 
 test_that("author names must be declared", {
-  expect_error(setup_package("qtest"), "Please declare one author")
+  expect_error(setup_package("manytest"), "Please declare one author")
 })
 
-test_that("package name must start with the letter q", {
-  expect_error(setup_package("test"), "Package name must start with a 'q'")
+test_that("package name must start with the word many", {
+  expect_error(setup_package("test"), "Package name must start with a 'many'")
 })
 
 test_that("additional authors are added correctly", {
