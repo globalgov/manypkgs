@@ -186,7 +186,6 @@ setup_package <- function(package = NULL,
                         author = author),
                path = path)
   usethis::ui_done("Added standard README. Please modify to fit your specific package")
-  # TODO: Add badges to the Package README
 
   # Step two: ensure/create core package files
   usethis::use_testthat()
