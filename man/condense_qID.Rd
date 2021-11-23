@@ -7,7 +7,7 @@
 condense_qID(database = NULL, var = NULL)
 }
 \arguments{
-\item{database}{A qPackage database}
+\item{database}{A "many" package database}
 
 \item{var}{Two or more qID variables}
 }

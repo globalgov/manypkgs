@@ -7,7 +7,7 @@ output: github_document
 Describe your {{{package}}} here.
 
 ## How to install:
-We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, [qData](https://github.com/globalgov/qData), as follows, and then you can discover, install and update various qPackages from the console.
+We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, [qData](https://github.com/globalgov/qData), as follows, and then you can discover, install and update various packages of our ecosystem from the console.
 
 ```{r, eval = FALSE}
 # install.packages(remotes)
@@ -28,8 +28,8 @@ Working with ensembles of related data has many advantages for robust
 analysis. Just take a look at our vignettes
 [here](https://globalgov.github.io/qData/articles/user.html).
 
-While some qPackages can and do include novel data, much of what they
-offer involves standing on the shoulders of giants. qPackages endeavour
+While some of our packages can and do include novel data, much of what they
+offer involves standing on the shoulders of giants. Our packages endeavour
 to be as transparent as possible about where data comes from, how it has
 been coded and/or relabeled, and who has done the work. As such, we
 make it easy to cite both the particular datasets you use by listing the
@@ -55,7 +55,7 @@ can be used easily.
 If you have collected or developed other data that may not be best for
 this package, but could be useful within the wider ecosystem,
 [qData](https://github.com/globalgov/qData) includes a number of
-functions that make it easy to create a new qPackage and populate with
+functions that make it easy to create a new package and populate with
 clean, consistent global governance data.
 
 If you have any other ideas about how this package or the qData

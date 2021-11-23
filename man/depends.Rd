@@ -23,6 +23,6 @@ for GitHub username/repo are required as argument.
 }
 \examples{
 \donttest{
-depends("qCreate")
+depends("manypkgs")
 }
 }

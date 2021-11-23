@@ -7,7 +7,7 @@
 fuzzy_agreements_multilateral(qID)
 }
 \arguments{
-\item{qID}{qID variable created with \code{qCreate::code_agreements()}}
+\item{qID}{qID variable created with \code{manypkgs::code_agreements()}}
 }
 \value{
 A data frame with acronyms and qID matches without linkages
@@ -18,5 +18,5 @@ Fuzzy match agreements' acronyms for multilateral treaties
 \details{
 Extracts agreement acronyms from qIDs and fuzzy
 match their similarities.
-See \code{qCreate::code_acronym()} for more details on acronyms.
+See \code{manypkgs::code_acronym()} for more details on acronyms.
 }

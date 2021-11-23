@@ -1,8 +1,8 @@
-#' Updates qPackages
+#' Updates packages of our data universe
 #'
-#' As qPackages evolve, expectations about package structures
+#' As our packages evolve, expectations about package structures
 #' as well as templates might also change.
-#' This function updates files for qPackages setup with `setup_package()`.
+#' This function updates files for packages setup with `setup_package()`.
 #' @details Some of the files in the .github folder, such as workflow actions,
 #' pull request templates, and issue templates, are automatically updated.
 #' The function also asks developers if other files such as the package license,
@@ -20,7 +20,7 @@
 #' \dontrun{
 #' update_package("qStates")
 #' }
-#' @return Updated files in correct structure for qPackages.
+#' @return Updated files in correct structure for packages.
 #' @export
 update_package <- function(package = NULL, name = NULL, path = getwd()) {
 
@@ -73,70 +73,73 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   # Step three: update License
   if (utils::askYesNo(
     "Would you like to update package LICENSE file?") == TRUE) {
-    qtemplate("LICENSE.md",
-              ignore = TRUE,
-              path = path,
-              open = FALSE)
+    manytemplate("LICENSE.md",
+                 ignore = TRUE,
+                 path = path,
+                 open = FALSE)
     # desc::desc_set("License", "CC BY 4.0")
     usethis::ui_done("Updated License file.")
   }
 
   # Step four: update Code of Conduct and Contributing files
   if (utils::askYesNo("Would you like to update package Code of Conduct and Contributing files?") == TRUE) {
-    qtemplate("qPackage-COC.md",
-              fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
-              data = list(package = package,
+    manytemplate("Package-COC.md",
+                 fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
+                 data = list(package = package,
                           author = author),
-              path = path,
-              open = FALSE)
+                 path = path,
+                 open = FALSE)
     usethis::ui_done("Updated CODE_OF_CONDUCT.")
 
-    qtemplate("qPackage-CONTRIB.md",
-              fs::path(".github", "CONTRIBUTING.md"),
-              data = list(package = package,
+    manytemplate("Package-CONTRIB.md",
+                 fs::path(".github", "CONTRIBUTING.md"),
+                 data = list(package = package,
                           author = author),
-              path = path,
-              open = FALSE)
+                 path = path,
+                 open = FALSE)
     usethis::ui_done("Updated CONTRIBUTING.")
   }
 
   # Step five: update templates
-  qtemplate("qPackage-PR.md",
-            fs::path(".github", "pull_request_template.md"),
-            data = list(package = package,
+  manytemplate("Package-PR.md",
+               fs::path(".github", "pull_request_template.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated PR template.")
 
-  qtemplate("qPackage-Bugs.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
-            data = list(package = package,
+  manytemplate("Package-Bugs.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated bug report issue template.")
 
-  qtemplate("qPackage-Features.md",
-            fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
-            data = list(package = package,
+  manytemplate("Package-Features.md",
+               fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
+               data = list(package = package,
                         author = author),
-            path = path,
-            open = FALSE)
+               path = path,
+               open = FALSE)
   usethis::ui_done("Updated feature request issue template.")
 
   if (interactive()) {
-    file.copy(fs::path_package(package = "qCreate",
-                               "templates", "qPackage-Check.yml"),
-              fs::path(".github", "workflows", "prchecks.yml"))
+    file.copy(fs::path_package(package = "manypkgs",
+                               "templates", "Package-Check.yml"),
+              fs::path(".github", "workflows", "prchecks.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated workflow checks for push releases.")
-    file.copy(fs::path_package(package = "qCreate",
-                               "templates", "qPackage-Commands.yml"),
-              fs::path(".github", "workflows", "prcommands.yml"))
+    file.copy(fs::path_package(package = "manypkgs",
+                               "templates", "Package-Commands.yml"),
+              fs::path(".github", "workflows", "prcommands.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated commands workflow for push releases.")
-    file.copy(fs::path_package(package = "qCreate",
-                               "templates", "qPackage-Release.yml"),
-              fs::path(".github", "workflows", "pushrelease.yml"))
+    file.copy(fs::path_package(package = "manypkgs",
+                               "templates", "Package-Release.yml"),
+              fs::path(".github", "workflows", "pushrelease.yml"),
+              overwrite = TRUE)
     usethis::ui_done("Updated release workflow for merging push releases.")
   }
 

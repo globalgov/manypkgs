@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Ubuntu+Mono');
 
 /* Color Palette
-qCreate grey #595959, used for standard links
+manypkgs grey #595959, used for standard links
 Caput Mortuum (crimson red) #591818, used for hovered links
 Dark White #f3f3f3, used for discrete active things, like the active dropdown
                     menu link.
@@ -187,7 +187,7 @@ pre {
   color: #595959;
   font-size: 14px;
 }
-/*qPackage name in the navbar*/
+/*Package name in the navbar*/
 .navbar-default .navbar-link{
   color: #595959;
   font-size: 30px;

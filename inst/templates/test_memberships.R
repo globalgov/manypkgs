@@ -1,4 +1,4 @@
-# Test if {{{dataset}}} meets the q ecosystem requirements
+# Test if {{{dataset}}} meets the many packages universe requirements
 
 # Report missing values
 test_that("missing observations are reported correctly", {
@@ -13,8 +13,7 @@ test_that("missing observations are reported correctly", {
 # Uniformity tests (agreements have a source ID, a string title, a signature and
 # entry into force date)
 test_that("datasets have the required variables", {
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
+  expect_col_exists({{{dab}}}[["{{{dat}}}"]], c("Beg", ".*ID$"))
 })
 
 # Date columns should be in messydt class

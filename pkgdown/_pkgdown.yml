@@ -1,4 +1,4 @@
-url: https://globalgov.github.io/qCreate/
+url: https://globalgov.github.io/manypkgs/
 development:
     mode: auto
 template:
@@ -18,7 +18,9 @@ navbar:
     - articles
     - tutorials
     - news
-    right: github
+    right:
+    - packages
+    - github
   components:
     home:
       icon: fa-home fa-lg
@@ -36,21 +38,35 @@ navbar:
     news:
       text: News
       href: news/index.html
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/globalgov/qStates
+    packages:
+      text: Other packages
+      menu:
+        - text: qData
+          href: https://globalgov.github.io/qData/
+        - text: manypkgs
+          href: https://globalgov.github.io/manypkgs/
+        - text: qEnviron
+          href: https://globalgov.github.io/qEnviron/
+        - text: qTrade
+          href: https://globalgov.github.io/qTrade/
 reference:
-  - title: "qPackage setup functions"
-    desc: "These functions were created to assist data providers with the setup of new qVerse packages"
+  - title: "Setup functions"
+    desc: "These functions were created to assist data providers with the setup of many packages"
     contents:
       - setup_package
       - add_author
   - title: "Processing functions"
-    desc: "These functions were created to assist data providers with the processing of data when creating qVerse packages"
+    desc: "These functions were created to assist data providers with the processing of data when creating packages"
     contents:
       - import_data
       - export_data
       - starts_with("standardise")
       - starts_with("code")
   - title: "Other utility functions"
-    desc: "Other utility functions that are useful during the creation of a new qPackage"
+    desc: "Other utility functions that are useful during the creation of a new package"
     contents:
       - get_package_name
       - depends

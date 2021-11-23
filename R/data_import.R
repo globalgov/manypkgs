@@ -25,10 +25,10 @@
 #' @importFrom usethis use_directory ui_done
 #' @importFrom rlang is_string
 #' @details The function assists with importing existing raw data
-#' into a qPackage. The function does two main things.
+#' into our universe of packages. The function does two main things.
 #'
 #' First, it moves or copies a chosen file into the "data-raw/"
-#' folder of the current qPackage.
+#' folder of the current package.
 #' A hierarchy to this folder is established.
 #' It first checks whether there is already a folder under "data-raw/" on
 #' the harddrive that is the same as the name of the database and, if there
@@ -54,7 +54,7 @@
 #' @return Places the chosen file into a folder hierarchy within
 #' the package such as "data-raw/\{database\}/\{dataset\}/" and
 #' creates and opens a script in the same folder for preparing
-#' the data for use in the qPackage.
+#' the data for use in the package.
 #' @examples
 #' \dontrun{
 #' import_data(dataset = "COW", database = "states")
@@ -83,7 +83,7 @@ import_data <- function(dataset = NULL,
   usethis::use_directory("data-raw", ignore = TRUE)
   usethis::use_directory(paste("data-raw", database, sep = "/"), ignore = TRUE)
   usethis::use_directory(paste(paste("data-raw", database, sep = "/"),
-                               dataset, sep = "/"), ignore = TRUE)
+                               dataset, sep = "/"))
   usethis::ui_done("Made sure data folder hierarchy exists.")
 
   # Step two: move raw data file to correct location
@@ -116,8 +116,8 @@ import_data <- function(dataset = NULL,
     } else stop("File type not recognised")
 
   # Create preparation template
-  qtemplate(
-    "qData-prep.R",
+  manytemplate(
+    "Package-preparation.R",
     save_as = fs::path("data-raw", database, dataset,
                        paste0("prepare-", dataset), ext = "R"),
     data = list(dataset = dataset,
@@ -130,27 +130,28 @@ import_data <- function(dataset = NULL,
 
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
-  usethis::ui_todo("Use {usethis::ui_code('qCreate::export_data()')} to add prepared data to package")
+  usethis::ui_todo("Use {usethis::ui_code('manypkgs::export_data()')} to add prepared data to package")
 
 }
 
 #' Add .bib file
 #'
-#' Add .bib file template to help cite the datasets in a qPackage
+#' Add .bib file template to help cite the datasets in a package from
+#' our universe.
 #' @param database Name of the database dataset is a part of
 #' @param dataset Name of the dataset
 #' @importFrom fs path
 #' @importFrom usethis ui_done ui_todo
 #' @return A .bib template saved to the data-raw folder to be completed
-#' @example
+#' @examples
 #' \dontrun{
 #' add_bib("states", "COW")
 #' }
 #' @export
 add_bib <- function(database, dataset) {
 
-  qtemplate(
-    "qData-bib",
+  manytemplate(
+    "Package-bibliograhy",
     save_as = fs::path("data-raw", database, dataset,
                        dataset, ext = "bib"),
     data = list(dataset = dataset),

@@ -15,5 +15,11 @@ add_bib(database, dataset)
 A .bib template saved to the data-raw folder to be completed
 }
 \description{
-Add .bib file template to help cite the datasets in a qPackage
+Add .bib file template to help cite the datasets in a package from
+our universe.
+}
+\examples{
+\dontrun{
+add_bib("states", "COW")
+}
 }
