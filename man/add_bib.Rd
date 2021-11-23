@@ -16,7 +16,7 @@ A .bib template saved to the data-raw folder to be completed
 }
 \description{
 Add .bib file template to help cite the datasets in a package from
-our ecosystem.
+our universe.
 }
 \examples{
 \dontrun{

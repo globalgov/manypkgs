@@ -117,7 +117,7 @@ import_data <- function(dataset = NULL,
 
   # Create preparation template
   manytemplate(
-    "package-prep.R",
+    "Package-prep.R",
     save_as = fs::path("data-raw", database, dataset,
                        paste0("prepare-", dataset), ext = "R"),
     data = list(dataset = dataset,
@@ -137,7 +137,7 @@ import_data <- function(dataset = NULL,
 #' Add .bib file
 #'
 #' Add .bib file template to help cite the datasets in a package from
-#' our ecosystem.
+#' our universe.
 #' @param database Name of the database dataset is a part of
 #' @param dataset Name of the dataset
 #' @importFrom fs path
@@ -151,7 +151,7 @@ import_data <- function(dataset = NULL,
 add_bib <- function(database, dataset) {
 
   manytemplate(
-    "package-bib",
+    "Package-bib",
     save_as = fs::path("data-raw", database, dataset,
                        dataset, ext = "bib"),
     data = list(dataset = dataset),

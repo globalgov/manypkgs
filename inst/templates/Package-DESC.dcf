@@ -1,5 +1,5 @@
 Package: {{{package}}}
-Title: A Package for the "many"" packages universe
+Title: A Package for the "many" packages universe
 Version: 0.0.1
 Authors@R: 
     c(person(given = "{{{given}}}",
