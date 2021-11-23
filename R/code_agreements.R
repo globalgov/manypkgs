@@ -518,7 +518,8 @@ code_linkage <- function(title, date, return_all = FALSE) {
 
     # Step eight: remove numbers, signs and parentheses
     out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
-    out <- stringr::str_replace_all(out, ",|-|[0-9]", "")
+    out <- stringr::str_replace_all(out, ",|-", "")
+    out <- stringr::str_remove_all(out, "[0-9]")
     out <- stringr::str_squish(out)
     out <- as.data.frame(out)
 
@@ -536,7 +537,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     out <- out %>%
       dplyr::group_by_at(dplyr::vars(out)) %>%
       dplyr::mutate(dup = dplyr::row_number() > 1,
-      ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id))) %>%
+                    ref = ifelse(dup, paste0(dplyr::first(id)), as.character(id))) %>%
       dplyr::group_by(ref) %>%
       dplyr::mutate(n = dplyr::n()) %>%
       dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
@@ -564,8 +565,13 @@ code_linkage <- function(title, date, return_all = FALSE) {
 #' @import stringr
 #' @return A character vector with meangniful numbers from titles
 order_agreements <- function(title) {
-
-  # Step one: remove dates from title
+  
+  # Step one: remove dates signs title
+  title <- stringr::str_replace_all(title, " \\- ", "")
+  title <- stringr::str_replace_all(title, "\\-|\\/", " ")
+  title <- stringr::str_squish(title)
+  
+  # Step two: remove dates from title
   rd <- stringr::str_remove_all(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|
                                 |[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}|
                                 |[:digit:]{2}\\s[:alpha:]{5}\\s[:digit:]{4}|
@@ -573,18 +579,33 @@ order_agreements <- function(title) {
                                 |[:digit:]{2}\\s[:alpha:]{7}\\s[:digit:]{4}|
                                 |[:digit:]{2}\\s[:alpha:]{8}\\s[:digit:]{4}|
                                 |[:digit:]{2}\\s[:alpha:]{9}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}|
-                                | [:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}|
-                                |[:digit:]{4}| [:digit:]{2}\\s[:digit:]{4}")
+                                |[:digit:]{1}\\s[:alpha:]{3}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{4}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{5}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{6}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{7}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{8}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:alpha:]{9}\\s[:digit:]{4}|
+                                |[:digit:]{4}\\s[:alpha:]{3}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{4}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{5}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{6}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{7}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{8}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:alpha:]{9}\\s[:digit:]{2}|
+                                |[:digit:]{4}| [:digit:]{2}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:digit:]{2}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:digit:]{2}\\s[:digit:]{1}|
+                                |[:digit:]{4}\\s[:digit:]{1}\\s[:digit:]{2}|
+                                |[:digit:]{4}\\s[:digit:]{1}\\s[:digit:]{1}|
+                                |[:digit:]{2}\\s[:digit:]{2}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:digit:]{2}\\s[:digit:]{4}|
+                                |[:digit:]{2}\\s[:digit:]{1}\\s[:digit:]{4}|
+                                |[:digit:]{1}\\s[:digit:]{1}\\s[:digit:]{4}")
   # remove also numbers in parenthesis
   rd <- stringr::str_remove_all(rd, "\\s\\(No\\s.{3,7}\\)")
 
-  # Step two: standardises ordinal numbers and ordering text into digits
+  # Step three: standardises ordinal numbers and ordering text into digits
   oa <- gsub("\\<one\\>|\\<first\\>|  I ", "1", rd)
   oa <- gsub("\\<two\\>|\\<second\\>| Ii ", "2", oa)
   oa <- gsub("\\<three\\>|\\<third\\>| Iii ", "3", oa)
@@ -606,11 +627,9 @@ order_agreements <- function(title) {
   oa <- gsub("\\<nineteen\\>|\\<nineteenth\\>", "19", oa)
   oa <- gsub("\\<twenty\\>|\\<twentieth\\>", "20", oa)
 
-  # Step three: make sure meaningful numbers extracted correctly
-  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|^[:digit:]{1}\\s|
-                             |\\s[:digit:]{2}\\s|\\s[:digit:]{3}\\s|
-                             |\\s[:digit:]{1}|\\s[:digit:]{2}|
-                             |\\s[:digit:]{3}")
+  # Step four: make sure meaningful numbers extracted correctly
+  oa <- stringr::str_extract(oa, "\\s[:digit:]{1}\\s|\\s[:digit:]{2}\\s|\\s[:digit:]{2}|
+                             |[:digit:]{2}\\s|\\s[:digit:]{1}|[:digit:]{1}\\s")
   oa <- stringr::str_replace_all(oa, "\\s", "")
   oa <- stringr::str_replace_na(oa)
   oa <- stringr::str_remove_all(oa, "NA")
