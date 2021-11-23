@@ -188,7 +188,7 @@ code_parties <- function(title, activity = TRUE) {
 #' @return A character vector of abbreviations of
 #' last words in treaty title
 code_activity <- function(title) {
-  
+
   # Step one: remove states' names and agreements' type
   out <- as.character(title)
   states <- countryregex$Label
@@ -200,13 +200,13 @@ code_activity <- function(title) {
   # Some states and abbreviations are missed
   out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>",
               "", out, ignore.case = TRUE)
-    
+
   # Step two: remove stop words, numbers and parenthesis
   out <- tm::removeWords(tolower(out), tm::stopwords("SMART"))
   out <- gsub("[0-9]", "", out)
   out <- gsub("\\(|\\)|\U00AC|\U00F1 ", "", out)
   out <- gsub("-", " ", out)
-    
+
   # Step three: remove months and unimportant words
   out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december",
               "", out, ignore.case = TRUE)
@@ -215,14 +215,14 @@ code_activity <- function(title) {
               "", out, ignore.case = TRUE)
   out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
               |\\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
-               "", out, ignore.case = TRUE)
+              "", out, ignore.case = TRUE)
   out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|
               |\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|
               |\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|
               |\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|
               |\\<partnership\\>|\\<science\\>|\\<matters\\>",
               "", out, ignore.case = TRUE)
-    
+
   # Step four: get abbreviations for last three words and counting of words
   out <- stringr::str_squish(out)
   out <- suppressWarnings(abbreviate(out, minlength = 3,
@@ -266,7 +266,7 @@ code_type <- function(title) {
     type$words[5] <- paste(substr(type$words[5], 0, 120), "...")
     type$words[6] <- paste(substr(type$words[6], 0, 120), "...")
     type <- knitr::kable(type, "simple")
-  }  else {
+  } else {
     # Step one: get type codes
     out <- purrr::map(title, as.character)
     type <- as.data.frame(agreement_type)
@@ -322,14 +322,14 @@ code_dates <- function(date) {
 
   # Step one: collapse dates
   uID <- stringr::str_remove_all(date, "-")
-
+  
   # Step two: get NA dates to appear as far
   # future dates to facilitate identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
-
+  
   # Step three: remove ranges, first date is taken
   uID <- stringr::str_replace_all(uID, "\\:[:digit:]{8}$", "")
-
+  
   # Step four: keep year only
   uID <- ifelse(nchar(uID) > 4, substr(uID, 1, nchar(uID) - 4), uID)
   uID
@@ -416,7 +416,8 @@ code_known_agreements <- function(title) {
 code_acronym <- function(title) {
 
   # Step one: standardise titles
-  x <- tm::removeWords(tolower(title),tm::stopwords("en"))
+  x <- standardise_titles(tm::removeWords(tolower(title),
+                                          tm::stopwords("en")))
 
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
@@ -433,7 +434,7 @@ code_acronym <- function(title) {
   # (these often appear inconsistently across datasets)
   x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>|\\<Kyoto\\>|\\<Hong Kong\\>", "", x)
   x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
-
+  
   # Step four: remove unimportant but differentiating words
   x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|\\<concerning\\>|\\<priority\\>|
             |\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|
@@ -518,7 +519,8 @@ code_linkage <- function(title, date, return_all = FALSE) {
 
     # Step eight: remove numbers, signs and parentheses
     out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
-    out <- stringr::str_replace_all(out, ",|-", "")
+    out <- gsub("-", " ", out, ignore.case = FALSE)
+    out <- stringr::str_replace_all(out, ",", "")
     out <- stringr::str_remove_all(out, "[0-9]")
     out <- stringr::str_squish(out)
     out <- as.data.frame(out)
@@ -565,12 +567,12 @@ code_linkage <- function(title, date, return_all = FALSE) {
 #' @import stringr
 #' @return A character vector with meangniful numbers from titles
 order_agreements <- function(title) {
-  
+
   # Step one: remove dates signs title
   title <- stringr::str_replace_all(title, " \\- ", "")
   title <- stringr::str_replace_all(title, "\\-|\\/", " ")
   title <- stringr::str_squish(title)
-  
+
   # Step two: remove dates from title
   rd <- stringr::str_remove_all(title, "[:digit:]{2}\\s[:alpha:]{3}\\s[:digit:]{4}|
                                 |[:digit:]{2}\\s[:alpha:]{4}\\s[:digit:]{4}|
