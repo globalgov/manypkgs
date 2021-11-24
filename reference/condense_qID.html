@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Condense similar qIDs — condense_qID • qCreate</title>
+<title>Condense similar qIDs — condense_qID • manypkgs</title>
 
 
 <!-- jquery -->
@@ -78,8 +78,8 @@ first qID argument entered as a replacement." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <a class="navbar-link" href="../index.html">manypkgs</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ first qID argument entered as a replacement." />
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
@@ -155,7 +155,7 @@ first qID argument entered as a replacement." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Condense similar qIDs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/condense.R'><code>R/condense.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/condense.R'><code>R/condense.R</code></a></small>
     <div class="hidden name"><code>condense_qID.Rd</code></div>
     </div>
 
@@ -175,7 +175,7 @@ first qID argument entered as a replacement.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>database</th>
-      <td><p>A qPackage database</p></td>
+      <td><p>A "many" package database</p></td>
     </tr>
     <tr>
       <th>var</th>
@@ -188,16 +188,16 @@ first qID argument entered as a replacement.</p>
     <p>A dataframe of qID and qID references</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CPV-PRT[FSD]_1980A"</span>,
-<span class='st'>"CPV-PRT[FSD]_1990P:FSD_1980A"</span>,
-<span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>, <span class='st'>"WIIEWH_1982P"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>,
-<span class='st'>"WIIEWH_1982P:RAMSA_1971A"</span>,
-<span class='st'>"PRTRPC_1976A"</span>, <span class='st'>"PRTRPC_1983E1:PRTRPC_1976A"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>qID_ref</span> <span class='op'>&lt;-</span> <span class='fu'>condense_qID</span><span class='op'>(</span>var <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>data1</span><span class='op'>$</span><span class='va'>qID</span>, <span class='va'>data2</span><span class='op'>$</span><span class='va'>qID</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data1</span>, <span class='va'>qID_ref</span><span class='op'>)</span>
-<span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data2</span>, <span class='va'>qID_ref</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CPV-PRT[FSD]_1980A"</span>,</span>
+<span class='r-in'><span class='st'>"CPV-PRT[FSD]_1990P:FSD_1980A"</span>,</span>
+<span class='r-in'><span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>, <span class='st'>"WIIEWH_1982P"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>qID <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TD06LJ_1981A"</span>, <span class='st'>"RAMSA_1971A"</span>,</span>
+<span class='r-in'><span class='st'>"WIIEWH_1982P:RAMSA_1971A"</span>,</span>
+<span class='r-in'><span class='st'>"PRTRPC_1976A"</span>, <span class='st'>"PRTRPC_1983E1:PRTRPC_1976A"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>qID_ref</span> <span class='op'>&lt;-</span> <span class='fu'>condense_qID</span><span class='op'>(</span>var <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>data1</span><span class='op'>$</span><span class='va'>qID</span>, <span class='va'>data2</span><span class='op'>$</span><span class='va'>qID</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data1</span>, <span class='va'>qID_ref</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>data2</span>, <span class='va'>qID_ref</span><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

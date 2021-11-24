@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Code treaty termination date — code_term • manypkgs</title>
+<title>Helper function for finding and rendering templates — manytemplate • manypkgs</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Code treaty termination date — code_term" />
-<meta property="og:description" content="Creates a column with the date of termination
-of the treaty." />
+<meta property="og:title" content="Helper function for finding and rendering templates — manytemplate" />
+<meta property="og:description" content="Helper function for finding and rendering templates from the manypkgs package" />
 
 
 
@@ -150,40 +149,72 @@ of the treaty." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Code treaty termination date</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/code_term.R'><code>R/code_term.R</code></a></small>
-    <div class="hidden name"><code>code_term.Rd</code></div>
+    <h1>Helper function for finding and rendering templates</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/package_templates.R'><code>R/package_templates.R</code></a></small>
+    <div class="hidden name"><code>manytemplate.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a column with the date of termination
-of the treaty.</p>
+    <p>Helper function for finding and rendering templates from the manypkgs package</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_term</span><span class='op'>(</span><span class='va'>title</span>, text <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>manytemplate</span><span class='op'>(</span>
+  <span class='va'>template</span>,
+  save_as <span class='op'>=</span> <span class='va'>template</span>,
+  data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  ignore <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>path</span>,
+  open <span class='op'>=</span> <span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/is_interactive.html'>is_interactive</a></span><span class='op'>(</span><span class='op'>)</span>,
+  package <span class='op'>=</span> <span class='st'>"manypkgs"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>title</th>
-      <td><p>title column variable.</p></td>
+      <th>template</th>
+      <td><p>Template called</p></td>
     </tr>
     <tr>
-      <th>text</th>
-      <td><p>treaty text column variable</p></td>
+      <th>save_as</th>
+      <td><p>Path to where the rendered template should be saved</p></td>
+    </tr>
+    <tr>
+      <th>data</th>
+      <td><p>Any elements to be entered into the template via Whisker</p></td>
+    </tr>
+    <tr>
+      <th>ignore</th>
+      <td><p>For use with usethis::use_build_ignore()</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Path to where template was gathered from</p></td>
+    </tr>
+    <tr>
+      <th>open</th>
+      <td><p>Whether the resulting template will be opened</p></td>
+    </tr>
+    <tr>
+      <th>package</th>
+      <td><p>Package called</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a character vector with the term date of the
-treaty</p>
+    <p>A rendered template, saved into the correct folder</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function is an adaptation of the usethis variant
+for use in the qData ecosystem.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'>agreements</span><span class='op'>$</span><span class='va'>GNEVAR</span>, n <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Term_dates</span> <span class='op'>&lt;-</span> <span class='fu'>code_term</span><span class='op'>(</span><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>manytemplate</span><span class='op'>(</span><span class='st'>"test_states.R"</span>,</span>
+<span class='r-in'>save_as <span class='op'>=</span> <span class='fu'>fs</span><span class='fu'>::</span><span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span><span class='op'>(</span><span class='st'>"tests"</span>, <span class='st'>"testthat"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"test_"</span>, <span class='va'>dataset_name</span>, <span class='st'>".R"</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span class='r-in'>open <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span class='r-in'>path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 </pre>
   </div>

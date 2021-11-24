@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Updates qPackages — update_package • qCreate</title>
+<title>Updates packages of our data universe — update_package • manypkgs</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Updates qPackages — update_package" />
-<meta property="og:description" content="As qPackages evolve, expectations about package structures
+<meta property="og:title" content="Updates packages of our data universe — update_package" />
+<meta property="og:description" content="As our packages evolve, expectations about package structures
 as well as templates might also change.
-This function updates files for qPackages setup with setup_package()." />
+This function updates files for packages setup with setup_package()." />
 
 
 
@@ -75,8 +75,8 @@ This function updates files for qPackages setup with setup_package()." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <a class="navbar-link" href="../index.html">manypkgs</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ This function updates files for qPackages setup with setup_package()." />
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
@@ -151,15 +151,15 @@ This function updates files for qPackages setup with setup_package()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Updates qPackages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/package_update.R'><code>R/package_update.R</code></a></small>
+    <h1>Updates packages of our data universe</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/package_update.R'><code>R/package_update.R</code></a></small>
     <div class="hidden name"><code>update_package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>As qPackages evolve, expectations about package structures
+    <p>As our packages evolve, expectations about package structures
 as well as templates might also change.
-This function updates files for qPackages setup with <code><a href='setup_package.html'>setup_package()</a></code>.</p>
+This function updates files for packages setup with <code><a href='setup_package.html'>setup_package()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>update_package</span><span class='op'>(</span>package <span class='op'>=</span> <span class='cn'>NULL</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, path <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -187,7 +187,7 @@ If not specified, function gets the current working directory.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Updated files in correct structure for qPackages.</p>
+    <p>Updated files in correct structure for packages.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Some of the files in the .github folder, such as workflow actions,
@@ -196,10 +196,10 @@ The function also asks developers if other files such as the package license,
 contributing file, and code of conduct should be updated.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='fu'>update_package</span><span class='op'>(</span><span class='st'>"qStates"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='fu'>update_package</span><span class='op'>(</span><span class='st'>"qStates"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

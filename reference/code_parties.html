@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Code Agreement Parties — code_parties • qCreate</title>
+<title>Code Agreement Parties — code_parties • manypkgs</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <a class="navbar-link" href="../index.html">manypkgs</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -120,7 +120,7 @@
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
@@ -150,7 +150,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Code Agreement Parties</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/code_agreements.R'><code>R/code_agreements.R</code></a></small>
     <div class="hidden name"><code>code_parties.Rd</code></div>
     </div>
 
@@ -158,7 +158,7 @@
     <p>Identify the countries that are part of an agreement.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_parties</span><span class='op'>(</span><span class='va'>title</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>code_parties</span><span class='op'>(</span><span class='va'>title</span>, activity <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,6 +166,11 @@
     <tr>
       <th>title</th>
       <td><p>A character vector of treaty titles</p></td>
+    </tr>
+    <tr>
+      <th>activity</th>
+      <td><p>Do you want the activity of treaty to be coded?
+By default, TRUE.</p></td>
     </tr>
     </table>
 
@@ -178,18 +183,24 @@ that are mentioned in the treaty title</p>
     <p>The function codes states in treaties alongside,
 returning only parties for bileteral treaties
 (i.e. 2 parties coded).
-The number of meaningful words (removes articles, numbers and other common
-words)in title for bilateral tretaies is returned next to parties.
-For the complete list of words removed from title to identify
-duplicates please run <code><a href='pred_words.html'>pred_words()</a></code>.
-This is done to avoid false duplicates as often bileteral treaties between
-the same two countries are signed in the same day.</p>
+The function also returns the "activity" for bilateral
+treaties coded, if activity is TRUE.
+Bilateral agreements usully detail their
+activity and specify area in the last words of the titles.
+These last words are abbreviated by the function to
+differentiate between bilateral treaties and avoid
+false positives being generated since
+multiple, different, bileteral treaties are
+often signed in the same day.
+For the complete list of parties coded please run the
+function without an argument (i.e. <code>code_parties()</code>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/qEnviron/man/agreements.html'>agreements</a></span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-<span class='fu'>code_parties</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] NA             NA             NA             NA             "CAN-USA[NIS]"
-#&gt;  [6] NA             "BGR-GRC[HNW]" NA             NA             "BGR-HUN[ANH]"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='va'>IEADB</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'>agreements</span><span class='op'>$</span><span class='va'>IEADB</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>code_parties</span><span class='op'>(</span><span class='va'>IEADB</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Code treaty termination date — code_term • manypkgs</title>
+<title>Translate Strings — lingua • manypkgs</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,11 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Code treaty termination date — code_term" />
-<meta property="og:description" content="Creates a column with the date of termination
-of the treaty." />
+<meta property="og:title" content="Translate Strings — lingua" />
+<meta property="og:description" content="Translates strings in data and returns object of the same length as original string.
+The function automatically identifies language from strings by rows
+so that translations to target language are more accurate and allows
+for text in multiple languages to be present in string." />
 
 
 
@@ -150,42 +152,50 @@ of the treaty." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Code treaty termination date</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/code_term.R'><code>R/code_term.R</code></a></small>
-    <div class="hidden name"><code>code_term.Rd</code></div>
+    <h1>Translate Strings</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/standardise_titles.R'><code>R/standardise_titles.R</code></a></small>
+    <div class="hidden name"><code>lingua.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a column with the date of termination
-of the treaty.</p>
+    <p>Translates strings in data and returns object of the same length as original string.
+The function automatically identifies language from strings by rows
+so that translations to target language are more accurate and allows
+for text in multiple languages to be present in string.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_term</span><span class='op'>(</span><span class='va'>title</span>, text <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lingua</span><span class='op'>(</span><span class='va'>s</span>, <span class='va'>api_key</span>, target_lang <span class='op'>=</span> <span class='st'>"en"</span>, translate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>title</th>
-      <td><p>title column variable.</p></td>
+      <th>s</th>
+      <td><p>A character string</p></td>
     </tr>
     <tr>
-      <th>text</th>
-      <td><p>treaty text column variable</p></td>
+      <th>api_key</th>
+      <td><p>Google API key.
+For more information please go to: https://cloud.google.com/translate/docs/setup</p></td>
+    </tr>
+    <tr>
+      <th>target_lang</th>
+      <td><p>Which language would you like this translated to?
+Please provide a two letter language abbreviation (e.g. "en" or "pt").
+By default english.</p></td>
+    </tr>
+    <tr>
+      <th>translate</th>
+      <td><p>Do you want strings to be translated?
+By default TRUE.
+If FALSE returns source language for each string.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a character vector with the term date of the
-treaty</p>
+    <p>A character vector of the same length of original.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'>agreements</span><span class='op'>$</span><span class='va'>GNEVAR</span>, n <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Term_dates</span> <span class='op'>&lt;-</span> <span class='fu'>code_term</span><span class='op'>(</span><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span></span>
-<span class='r-in'><span class='op'>}</span></span>
-</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

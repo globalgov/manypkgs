@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Keep objects from the global environment — retain • qCreate</title>
+<title>Keep objects from the global environment — retain • manypkgs</title>
 
 
 <!-- jquery -->
@@ -76,8 +76,8 @@ regular expression or both." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <a class="navbar-link" href="../index.html">manypkgs</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ regular expression or both." />
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
@@ -153,7 +153,7 @@ regular expression or both." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Keep objects from the global environment</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/qCreate/blob/master/R/package_tools.R'><code>R/package_tools.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/package_tools.R'><code>R/package_tools.R</code></a></small>
     <div class="hidden name"><code>retain.Rd</code></div>
     </div>
 
@@ -218,21 +218,24 @@ and efficient way. The function is also useful for developers
 preparing and assembling a pipeline</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>origins</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"New Zealand"</span>, <span class='st'>"Brazil"</span>, <span class='st'>"Switzerland"</span><span class='op'>)</span>
-<span class='va'>members</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span>
-<span class='va'>team</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>origins</span>, <span class='va'>members</span><span class='op'>)</span>
-<span class='va'>team</span>
-</div><div class='output co'>#&gt;       origins members
-#&gt; 1 New Zealand       1
-#&gt; 2      Brazil       1
-#&gt; 3 Switzerland       2</div><div class='input'><span class='fu'>retain</span><span class='op'>(</span><span class='st'>"origins"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in retain("origins"): All the items in the keep should be a real existing</span>
-#&gt; <span class='error'>                   variable or valid regular expressions.</span>
-#&gt; <span class='error'>The following</span>
-#&gt; <span class='error'>                   is/are not among variables of selected environment or</span>
-#&gt; <span class='error'>                   patterns that match anything!</span>
-#&gt; <span class='error'> origins</span></div><div class='input'><span class='va'>origins</span>
-</div><div class='output co'>#&gt; [1] "New Zealand" "Brazil"      "Switzerland"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>origins</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"New Zealand"</span>, <span class='st'>"Brazil"</span>, <span class='st'>"Switzerland"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>members</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>team</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>origins</span>, <span class='va'>members</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>team</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       origins members</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 New Zealand       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2      Brazil       1</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 Switzerland       2</span>
+<span class='r-in'><span class='fu'>retain</span><span class='op'>(</span><span class='st'>"origins"</span><span class='op'>)</span></span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error in retain("origins"):</span> All the items in the keep should be a real existing</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span>                    variable or valid regular expressions.</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> The following</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span>                    is/are not among variables of selected environment or</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span>                    patterns that match anything!</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span>  origins</span>
+<span class='r-in'><span class='va'>origins</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "New Zealand" "Brazil"      "Switzerland"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

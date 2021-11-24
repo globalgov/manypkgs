@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • qCreate</title>
+<title>Changelog • manypkgs</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">qCreate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <a class="navbar-link" href="../index.html">manypkgs</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -119,7 +119,7 @@
       <a href="https://globalgov.github.io/qData/">qData</a>
     </li>
     <li>
-      <a href="https://globalgov.github.io/qCreate/">qCreate</a>
+      <a href="https://globalgov.github.io/manypkgs/">manypkgs</a>
     </li>
     <li>
       <a href="https://globalgov.github.io/qEnviron/">qEnviron</a>
@@ -149,15 +149,55 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/globalgov/qCreate/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/globalgov/manypkgs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="qcreate-011" class="section level1">
-<h1 class="page-header" data-toc-text="0.1.1">
-<a href="#qcreate-011" class="anchor"></a>qCreate 0.1.1</h1>
+    <div id="manypkgs-020" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0">
+<a href="#manypkgs-020" class="anchor"></a>manypkgs 0.2.0</h1>
 <div id="package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package" class="anchor"></a>Package</h2>
+<ul>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/58'>#58</a> by renaming package from <code>qCreate</code> to <code>manypkgs</code>
+</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/28'>#28</a> by adding cheatsheet to README</li>
+</ul>
+</div>
+<div id="correction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#correction" class="anchor"></a>Correction</h2>
+<ul>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/57'>#57</a> by updating <code>code agreements()</code> and <code><a href="../reference/condense_qID.html">condense_qID()</a></code> to make code more concise</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/48'>#48</a> by updating data preparation template in <code><a href="../reference/export_data.html">export_data()</a></code>
+</li>
+<li>Updated the countryregex table used in <code><a href="../reference/code_parties.html">code_parties()</a></code> so that countries are detected more accurately</li>
+</ul>
+</div>
+<div id="connection" class="section level2">
+<h2 class="hasAnchor">
+<a href="#connection" class="anchor"></a>Connection</h2>
+<ul>
+<li>Updated <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
+<ul>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/9'>#9</a> by adding <code><a href="../reference/lingua.html">lingua()</a></code> function for translating text to English</li>
+</ul>
+</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/47'>#47</a> by adding functions to structure treaty text
+<ul>
+<li>Added <code><a href="../reference/split_treaty.html">split_treaty()</a></code> to split treaty text into preamble and articles</li>
+<li>Added <code><a href="../reference/get_treaty.html">get_treaty()</a></code> to get all matching articles by number or word match</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+    <div id="qcreate-011" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.1">
+<a href="#qcreate-011" class="anchor"></a>qCreate 0.1.1</h1>
+<div id="package-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#package-1" class="anchor"></a>Package</h2>
 <ul>
 <li>Updated <code><a href="../reference/setup_package.html">setup_package()</a></code> function
 <ul>
@@ -167,38 +207,38 @@
 </li>
 <li>Updated <code><a href="../reference/import_data.html">import_data()</a></code> function
 <ul>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/44'>#44</a> by adding argument to import codebook if available</li>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/45'>#45</a> by allowing text function to accept text delimited files</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/44'>#44</a> by adding argument to import codebook if available</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/45'>#45</a> by allowing text function to accept text delimited files</li>
 </ul>
 </li>
 <li>Updated <code><a href="../reference/export_data.html">export_data()</a></code> function
 <ul>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/43'>#43</a> by adding qPackage name as an argument of <code><a href="../reference/export_data.html">export_data()</a></code>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/43'>#43</a> by adding qPackage name as an argument of <code><a href="../reference/export_data.html">export_data()</a></code>
 </li>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/41'>#41</a> by adding test templates for actor databases and memberships databases</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/41'>#41</a> by adding test templates for actor databases and memberships databases</li>
 </ul>
 </li>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/42'>#42</a> by adding <code><a href="../reference/add_bib.html">add_bib()</a></code> function to help developers cite datasets in the expected formats</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/42'>#42</a> by adding <code><a href="../reference/add_bib.html">add_bib()</a></code> function to help developers cite datasets in the expected formats</li>
 <li>Updated agreements vignette by simplifying code chunks and expanding hand-coded sample</li>
 </ul>
 </div>
-<div id="correction" class="section level2">
+<div id="correction-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correction" class="anchor"></a>Correction</h2>
+<a href="#correction-1" class="anchor"></a>Correction</h2>
 <ul>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/40'>#40</a> by adding the helper function <code><a href="../reference/correct_words.html">correct_words()</a></code> into <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/40'>#40</a> by adding the helper function <code><a href="../reference/correct_words.html">correct_words()</a></code> into <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
 </li>
 </ul>
 </div>
-<div id="connection" class="section level2">
+<div id="connection-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#connection" class="anchor"></a>Connection</h2>
+<a href="#connection-1" class="anchor"></a>Connection</h2>
 <ul>
 <li>Added <code><a href="../reference/code_term.html">code_term()</a></code> which extracts the date term from the treaty title</li>
 <li>Added <code><a href="../reference/code_grounds.html">code_grounds()</a></code> which indicates the type of termination clause the treaty has</li>
 <li>Added tests for <code><a href="../reference/code_term.html">code_term()</a></code> and <code><a href="../reference/code_grounds.html">code_grounds()</a></code> functions</li>
 <li>Updated the countryregex table with more regex options for certain countries</li>
-<li>Closed <a href='https://github.com/globalgov/qCreate/issues/50'>#50</a> and <a href='https://github.com/globalgov/qCreate/issues/23'>#23</a> by adding <code><a href="../reference/condense_qID.html">condense_qID()</a></code> function to match similar, but not identical, qIDs for a database and return a qID_ref vector</li>
+<li>Closed <a href='https://github.com/globalgov/manypkgs/issues/50'>#50</a> and <a href='https://github.com/globalgov/manypkgs/issues/23'>#23</a> by adding <code><a href="../reference/condense_qID.html">condense_qID()</a></code> function to match similar, but not identical, qIDs for a database and return a qID_ref vector</li>
 <li>Added tests for <code><a href="../reference/condense_qID.html">condense_qID()</a></code>
 </li>
 </ul>
@@ -207,25 +247,25 @@
     <div id="qcreate-010" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
 <a href="#qcreate-010" class="anchor"></a>qCreate 0.1.0</h1>
-<div id="package-1" class="section level2">
+<div id="package-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package-1" class="anchor"></a>Package</h2>
+<a href="#package-2" class="anchor"></a>Package</h2>
 <ul>
 <li>Added <code><a href="../reference/update_package.html">update_package()</a></code> function which updates packages created with <code><a href="../reference/setup_package.html">setup_package()</a></code>
 </li>
-<li>Moved <code><a href="../reference/interleave.html">interleave()</a></code> from <a href="https://github.com/globalgov/qData">qData</a> to <a href="https://github.com/globalgov/qCreate">qCreate</a> to avoid dependency knots among q Packages
+<li>Moved <code><a href="../reference/interleave.html">interleave()</a></code> from <code>{qData}</code> to <code>{qCreate}</code> to avoid dependency knots among q Packages
 <ul>
 <li>Added tests for <code><a href="../reference/interleave.html">interleave()</a></code>
 </li>
 </ul>
 </li>
-<li>Updated templates and scripts to correctly call <a href="https://github.com/globalgov/qCreate">qCreate</a> instead of <a href="https://github.com/globalgov/qData">qData</a> where necessary</li>
+<li>Updated templates and scripts to correctly call <code>{qCreate}</code> instead of <code>{qData}</code> where necessary</li>
 <li>Updated agreements vignette to reflect new changes with <code><a href="../reference/code_agreements.html">code_agreements()</a></code> function</li>
 </ul>
 </div>
-<div id="correction-1" class="section level2">
+<div id="correction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correction-1" class="anchor"></a>Correction</h2>
+<a href="#correction-2" class="anchor"></a>Correction</h2>
 <ul>
 <li>Updated <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code>
 <ul>
@@ -243,9 +283,9 @@
 </li>
 </ul>
 </div>
-<div id="connection-1" class="section level2">
+<div id="connection-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#connection-1" class="anchor"></a>Connection</h2>
+<a href="#connection-2" class="anchor"></a>Connection</h2>
 <ul>
 <li>Updated code_agreements() and added more functions
 <ul>
@@ -265,17 +305,17 @@
     <div id="qcreate-001" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.1">
 <a href="#qcreate-001" class="anchor"></a>qCreate 0.0.1</h1>
-<div id="package-2" class="section level2">
+<div id="package-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package-2" class="anchor"></a>Package</h2>
+<a href="#package-3" class="anchor"></a>Package</h2>
 <ul>
-<li>Setup the <a href="https://github.com/globalgov/qCreate">qCreate</a> package for developers and data contributors
+<li>Setup the <code>{qCreate}</code> package for developers and data contributors
 <ul>
-<li>Moved <code><a href="../reference/setup_package.html">setup_package()</a></code> and related functions from <a href="https://github.com/globalgov/qData">qData</a>
+<li>Moved <code><a href="../reference/setup_package.html">setup_package()</a></code> and related functions from <code>{qData}</code>
 </li>
-<li>Moved <code><a href="../reference/import_data.html">import_data()</a></code> and related functions from <a href="https://github.com/globalgov/qData">qData</a>
+<li>Moved <code><a href="../reference/import_data.html">import_data()</a></code> and related functions from <code>{qData}</code>
 </li>
-<li>Moved <code><a href="../reference/export_data.html">export_data()</a></code> and related functions from <a href="https://github.com/globalgov/qData">qData</a>
+<li>Moved <code><a href="../reference/export_data.html">export_data()</a></code> and related functions from <code>{qData}</code>
 </li>
 </ul>
 </li>
@@ -283,22 +323,22 @@
 </li>
 </ul>
 </div>
-<div id="correction-2" class="section level2">
+<div id="correction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#correction-2" class="anchor"></a>Correction</h2>
+<a href="#correction-3" class="anchor"></a>Correction</h2>
 <ul>
-<li>Moved <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code> from <a href="https://github.com/globalgov/qData">qData</a> to <a href="https://github.com/globalgov/qCreate">qCreate</a>
+<li>Moved <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code> from <code>{qData}</code> to <code>{qCreate}</code>
 <ul>
 <li>Updated <code><a href="../reference/standardise_titles.html">standardise_titles()</a></code> to translate strings to English when API key is provided as an argument</li>
 </ul>
 </li>
-<li>Moved <code><a href="../reference/standardise_dates.html">standardise_dates()</a></code> from <a href="https://github.com/globalgov/qData">qData</a> to <a href="https://github.com/globalgov/qCreate">qCreate</a>
+<li>Moved <code><a href="../reference/standardise_dates.html">standardise_dates()</a></code> from <code>{qData}</code> to <code>{qCreate}</code>
 </li>
 </ul>
 </div>
-<div id="connection-2" class="section level2">
+<div id="connection-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#connection-2" class="anchor"></a>Connection</h2>
+<a href="#connection-3" class="anchor"></a>Connection</h2>
 <ul>
 <li>Added <code><a href="../reference/code_agreements.html">code_agreements()</a></code> that extracts meaningful information from agreements titles and dates
 <ul>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Code treaty termination date — code_term • manypkgs</title>
+<title>Split Treaty Texts — split_treaty • manypkgs</title>
 
 
 <!-- jquery -->
@@ -41,9 +41,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Code treaty termination date — code_term" />
-<meta property="og:description" content="Creates a column with the date of termination
-of the treaty." />
+<meta property="og:title" content="Split Treaty Texts — split_treaty" />
+<meta property="og:description" content="Split treaty texts into lists that reflect a structure
+based on having a preamble and several articles." />
 
 
 
@@ -150,40 +150,35 @@ of the treaty." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Code treaty termination date</h1>
-    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/code_term.R'><code>R/code_term.R</code></a></small>
-    <div class="hidden name"><code>code_term.Rd</code></div>
+    <h1>Split Treaty Texts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/globalgov/manypkgs/blob/master/R/split_treaty.R'><code>R/split_treaty.R</code></a></small>
+    <div class="hidden name"><code>split_treaty.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a column with the date of termination
-of the treaty.</p>
+    <p>Split treaty texts into lists that reflect a structure
+based on having a preamble and several articles.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>code_term</span><span class='op'>(</span><span class='va'>title</span>, text <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>split_treaty</span><span class='op'>(</span><span class='va'>textvar</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>title</th>
-      <td><p>title column variable.</p></td>
-    </tr>
-    <tr>
-      <th>text</th>
-      <td><p>treaty text column variable</p></td>
+      <th>textvar</th>
+      <td><p>text variable</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a character vector with the term date of the
-treaty</p>
+    <p>A structured list for each agreement</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'>agreements</span><span class='op'>$</span><span class='va'>GNEVAR</span>, n <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span></span>
-<span class='r-in'><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Term_dates</span> <span class='op'>&lt;-</span> <span class='fu'>code_term</span><span class='op'>(</span><span class='va'>GNEVAR</span><span class='op'>$</span><span class='va'>Title</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>t</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>qEnviron</span><span class='fu'>::</span><span class='va'>texts</span><span class='op'>$</span><span class='va'>IEADB_TXT</span><span class='op'>$</span><span class='va'>Text</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>split_treaty</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span></span>
 <span class='r-in'><span class='op'>}</span></span>
 </pre>
   </div>
