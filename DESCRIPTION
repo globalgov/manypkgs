@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
 Version: 0.2.0
-Date: 2021-11-22
+Date: 2021-11-24
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -68,13 +68,10 @@ Suggests:
     rorcid,
     desc,
     WVPlots,
-    qEnviron,
     rmarkdown,
     bibtex,
     translateR,
     cld2
-Remotes:
-    globalgov/qEnviron
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

@@ -27,7 +27,7 @@ or first articles, or articles that contain certain words
 with this function.
 }
 \examples{
-\donttest{
+\dontrun{
 t <- head(qEnviron::texts$IEADB_TXT$Text)
 t <- split_treaty(t)
 get_treaty(t, article = "preamble")

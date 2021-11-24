@@ -33,7 +33,7 @@ parties to an agreement, the type of agreement, the date
 and the linkage to other agreements in the dataset.
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_agreements(dataset = IEADB)
 code_agreements(title = IEADB$Title, date = IEADB$Signature)

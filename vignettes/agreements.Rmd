@@ -54,16 +54,18 @@ we construct a sample of treaty titles from three different datasets in the `qEn
 Let's take only titles of treaties established in a particular decade, the 1980s, 
 so that we can increase the probability of matches.
 
-The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known.
-
-```{r data, warning=FALSE, message=FALSE}
-library(manypkgs)
+```{r sample, eval=FALSE}
+library(qEnviron)
 samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
 dates <- unlist(purrr::map(samples, "Beg"))
 sample <- cbind.data.frame(titles, dates)
+```
 
-# We hand coded 400 agreements from the sample to compare duplicates identification.
+The sample has been hand coded so that the exact number of agreements that are duplicates or linked to one another is known. We hand coded 400 agreements from the sample to compare duplicates identification.
+
+```{r data, warning=FALSE, message=FALSE}
+library(manypkgs)
 library(readr)
 agreements <- read_csv("hand-coded-sample.csv")
 ```
