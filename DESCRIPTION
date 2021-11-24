@@ -68,13 +68,10 @@ Suggests:
     rorcid,
     desc,
     WVPlots,
-    qEnviron,
     rmarkdown,
     bibtex,
     translateR,
     cld2
-Remotes:
-    globalgov/qEnviron
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
