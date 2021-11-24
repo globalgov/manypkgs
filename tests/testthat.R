@@ -1,4 +1,4 @@
 library(testthat)
-library(qData)
+library(manypkgs)
 
 test_check("manypkgs")
