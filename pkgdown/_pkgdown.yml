@@ -71,5 +71,5 @@ reference:
       - get_package_name
       - depends
       - retain
-      - resequence
-      - recent
+      - split_treaty
+      - get_treaty
