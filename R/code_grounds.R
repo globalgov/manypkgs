@@ -7,8 +7,10 @@
 #' @return a character vector with the termination clause type
 #' of the treaty
 #' @examples
+#' \dontrun{
 #' GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 200)
 #' GNEVAR$Term_Type <- code_grounds(GNEVAR$Title)
+#' }
 #' @export
 code_grounds <- function(title, text = NULL) {
 

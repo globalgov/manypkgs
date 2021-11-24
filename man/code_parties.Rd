@@ -36,7 +36,7 @@ For the complete list of parties coded please run the
 function without an argument (i.e. \code{code_parties()}).
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_parties(IEADB$Title)
 }

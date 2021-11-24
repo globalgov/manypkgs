@@ -22,7 +22,7 @@
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom purrr map
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_agreements(dataset = IEADB)
 #' code_agreements(title = IEADB$Title, date = IEADB$Signature)
@@ -122,7 +122,7 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' For the complete list of parties coded please run the
 #' function without an argument (i.e. `code_parties()`).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_parties(IEADB$Title)
 #' }
@@ -251,7 +251,7 @@ code_activity <- function(title) {
 #' please run the function without an argument
 #' (i.e. `code_type()`).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_type(IEADB$Title)
 #' }
@@ -313,7 +313,7 @@ code_type <- function(title) {
 #' @return A character vector with condensed dates
 #' @import stringr
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_dates(IEADB$Title)
 #' }
@@ -350,7 +350,7 @@ code_dates <- function(date) {
 #' the function without an argument
 #' (i.e. `code_known_agreements()`).
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_known_agreements(IEADB$Title)
 #' }
@@ -408,7 +408,7 @@ code_known_agreements <- function(title) {
 #' first letter of first word followed by the number of words in
 #' and title first letter of last word in title.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_acronym(IEADB$Title)
 #' }
@@ -477,7 +477,7 @@ code_acronym <- function(title) {
 #' duplicates please run the function without arguments
 #' (i.e. `code_linkage()`.)
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 #' code_linkage(IEADB$Title, IEADB$Signature)
 #' }

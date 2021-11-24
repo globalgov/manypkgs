@@ -27,7 +27,7 @@ please run the function without an argument
 (i.e. \code{code_type()}).
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
 code_type(IEADB$Title)
 }
