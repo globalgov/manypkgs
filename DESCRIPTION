@@ -77,7 +77,7 @@ Suggests:
     manystates
 Remotes:
     globalgov/manydata,
-    globalgov/manyenviron
+    globalgov/manyenviron,
     globalgov/manystates
 Encoding: UTF-8
 LazyData: true
