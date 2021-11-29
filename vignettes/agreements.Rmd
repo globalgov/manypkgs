@@ -168,7 +168,7 @@ and the more information we require, the higher the false negative rate.
 
 Using our current version of `{manypkgs}` we obtain:
 
-```{r qiid, warning=FALSE, message=FALSE}
+```{r qid, warning=FALSE, message=FALSE}
 agreements$treaty_ID <- manypkgs::code_agreements(agreements, agreements$titles, agreements$dates)
 agreements$idinfo <- ifelse(duplicated(agreements$treaty_ID) | 
                                   duplicated(agreements$treaty_ID, fromLast = TRUE), 1, 0)
