@@ -38,10 +38,10 @@ while not _required_ are certainly very helpful:
 
 For some databases, unique identifiers are not too much of a problem because
 there exists a relatively comprehensive, authoritative, succinct, and intelligible registry.
-An example of this is the central `states` database in the `{qStates}` package.
+An example of this is the central `states` database in the `{manystates}` package.
 Here we can rely on ISO-3166 alpha-3 codes for most modern states,
 complementing them with COW or other codes for more historical states.
-This combined registry is made available through the `qStates::code_states()` function.
+This combined registry is made available through the `manystates::code_states()` function.
 
 But we are not aware of comprehensive, authoritative, succinct, and intelligible registry of treaties.
 To solve this problem, we need to think both about how observations might be coded
@@ -50,13 +50,13 @@ and what this codes might represent.
 ## Setting up the problem
 
 To test different solutions to the problem, 
-we construct a sample of treaty titles from three different datasets in the `qEnviron::agreements` database.
+we construct a sample of treaty titles from three different datasets in the `manyenviron::agreements` database.
 Let's take only titles of treaties established in a particular decade, the 1980s, 
 so that we can increase the probability of matches.
 
 ```{r sample, eval=FALSE}
-library(qEnviron)
-samples <- lapply(qEnviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
+library(manyenviron)
+samples <- lapply(manyenviron::agreements, function(x) x[x$Beg > "1990-01-01" & x$Beg < "2000-01-01", ])
 titles <- unlist(purrr::map(samples, "Title"))
 dates <- unlist(purrr::map(samples, "Beg"))
 sample <- cbind.data.frame(titles, dates)

@@ -17,8 +17,8 @@
 #' @import usethis
 #' @importFrom stringr str_detect str_replace
 #' @examples
-#' \dontrun{
-#' update_package("qStates")
+#' \donttest{
+#' update_package("manystates")
 #' }
 #' @return Updated files in correct structure for packages.
 #' @export

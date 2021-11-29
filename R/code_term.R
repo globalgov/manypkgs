@@ -8,8 +8,8 @@
 #' treaty
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
-#' \dontrun{
-#' GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 200)
+#' \donttest{
+#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
 #' GNEVAR$Term_dates <- code_term(GNEVAR$Title)
 #' }
 #' @export

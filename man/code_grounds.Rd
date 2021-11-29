@@ -20,8 +20,8 @@ Creates a column with the type of termination
 of the treaty.
 }
 \examples{
-\dontrun{
-GNEVAR <- dplyr::slice_sample(qEnviron::agreements$GNEVAR, n = 200)
+\donttest{
+GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
 GNEVAR$Term_Type <- code_grounds(GNEVAR$Title)
 }
 }

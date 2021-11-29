@@ -12,7 +12,7 @@ Depends:
     tibble,
     pointblank
 Imports:
-    qData,
+    manydata,
     lubridate,
     dplyr,
     roxygen2,
@@ -23,7 +23,7 @@ Suggests:
     rlang,
     testthat (>= 3.0.0)
 Remotes:
-    globalgov/qData
+    globalgov/manydata
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

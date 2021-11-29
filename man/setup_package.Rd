@@ -2,7 +2,7 @@
 % Please edit documentation in R/package_setup.R
 \name{setup_package}
 \alias{setup_package}
-\title{Create a new package in the qData ecosystem}
+\title{Create a new package in the manydata universe}
 \usage{
 setup_package(
   package = NULL,
@@ -37,11 +37,11 @@ overwritten, by default TRUE.}
 A new package structure
 }
 \description{
-Creates a new package in, and consistent with, the qData ecosystem
+Creates a new package in, and consistent with, the manydata universe
 }
 \details{
 The function establishes many of the required files and
-folder structures required for a qData-consistent data package.
+folder structures required for a manydata-consistent data package.
 }
 \examples{
 \dontrun{

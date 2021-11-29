@@ -40,18 +40,18 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/globalgov/qStates
+      href: https://github.com/globalgov/manystates
     packages:
       text: Other packages
       menu:
-        - text: qData
-          href: https://globalgov.github.io/qData/
+        - text: manydata
+          href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
-        - text: qEnviron
-          href: https://globalgov.github.io/qEnviron/
-        - text: qTrade
-          href: https://globalgov.github.io/qTrade/
+        - text: manyenviron
+          href: https://globalgov.github.io/manyenviron/
+        - text: manytrade
+          href: https://globalgov.github.io/manytrade/
 reference:
   - title: "Setup functions"
     desc: "These functions were created to assist data providers with the setup of many packages"

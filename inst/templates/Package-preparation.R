@@ -11,7 +11,7 @@
 # formats of the '{{{dataset}}}' object until the object created
 # below (in stage three) passes all the tests.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
-  qData::transmutate(ID = {id_variable_name_here},
+  manydata::transmutate(ID = {id_variable_name_here},
               Beg = manypkgs::standardise_dates({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
 # manypkgs includes several functions that should help cleaning

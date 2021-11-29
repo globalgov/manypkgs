@@ -1,6 +1,6 @@
-#' Create a new package in the qData ecosystem
+#' Create a new package in the manydata universe
 #'
-#' Creates a new package in, and consistent with, the qData ecosystem
+#' Creates a new package in, and consistent with, the manydata universe
 #' @param package A string giving the desired name of the package,
 #' must start with "many"
 #' @param orcid A vector of strings of all the ORCID numbers of the authors.
@@ -15,7 +15,7 @@
 #' overwritten, by default TRUE.
 #' @param path A string, if missing default is path to the working directory
 #' @details The function establishes many of the required files and
-#' folder structures required for a qData-consistent data package.
+#' folder structures required for a manydata-consistent data package.
 #' @return A new package structure
 #' @import usethis
 #' @importFrom stringr str_replace_all str_split word

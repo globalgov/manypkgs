@@ -22,8 +22,8 @@ first letter of first word followed by the number of words in
 and title first letter of last word in title.
 }
 \examples{
-\dontrun{
-IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+\donttest{
+IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_acronym(IEADB$Title)
 }
 }

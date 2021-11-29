@@ -2,7 +2,7 @@
 #'
 #' Creates a data-raw folder, moves raw data files to a consistent location,
 #' and provides a script that makes it easy to clean and wrangle the data
-#' into a format consistent with the qData ecosystem.
+#' into a format consistent with the manydata universe.
 #' @param dataset Intended (short) name of the dataset.
 #' That is, the name of the two-dimensional tabular data format.
 #' For consistency reasons, this should be a unique name in all capitals.
@@ -44,7 +44,7 @@
 #' alongside the raw data file.
 #' By default, it also opens this script in RStudio or equivalent IDE.
 #' The purpose of this script is to read the file into R,
-#' cleaning the data and wrangling it into a qData-consistent format,
+#' cleaning the data and wrangling it into a manydata-consistent format,
 #' and then exporting it for use in the package.
 #' Quite a bit of this is pre-populated either using information
 #' given to `import_data()`, or inferring what is required from

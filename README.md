@@ -10,7 +10,7 @@ date)](https://img.shields.io/github/v/release/globalgov/manypkgs)
 Date](https://img.shields.io/github/release-date/globalgov/manypkgs)
 ![GitHub
 issues](https://img.shields.io/github/issues-raw/globalgov/manypkgs)
-<!-- [![HitCount](http://hits.dwyl.com/globalgov/qData.svg)](http://hits.dwyl.com/globalgov/qData) -->
+<!-- [![HitCount](http://hits.dwyl.com/globalgov/manydata.svg)](http://hits.dwyl.com/globalgov/manydata) -->
 [![Codecov test
 coverage](https://codecov.io/gh/globalgov/manypkgs/branch/main/graph/badge.svg)](https://codecov.io/gh/globalgov/manypkgs?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manypkgs/badge)](https://www.codefactor.io/repository/github/globalgov/manypkgs)
@@ -20,7 +20,7 @@ Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](ht
 <!-- badges: end -->
 
 `{manypkgs}` is a package from the
-[qData](https://github.com/globalgov/qData) ecosystem. It provides
+[manydata](https://github.com/globalgov/manydata) ecosystem. It provides
 contributors the necessary tools to put their data in the hands of
 users. The package includes many functions to make this easier,
 including functions to help set up a package, import their existing
@@ -46,17 +46,17 @@ remotes::install_github("globalgov/manypkgs")
 
 ## Our ecosystem of packages
 
-The [qData](https://github.com/globalgov/qData) ecosystem aimed at
+The [manydata](https://github.com/globalgov/manydata) universe aimed at
 collecting, connecting and correcting network data across issue-domains
-of global governance. The `qData::get_packages()` function can be used
-to discover the packages from our ecosystem currently available.
+of global governance. The `manydata::get_packages()` function can be
+used to discover the packages from our ecosystem currently available.
 
 ``` r
-# remotes::install_github("globalgov/qData")
-qData::get_packages()
+# remotes::install_github("globalgov/manydata")
+manydata::get_packages()
 ```
 
 Please see [the website](https://globalgov.github.io/manypkgs/) for more
 information about how to use `{manypkgs}` as a developer or as a data
-contributor. For more information on `{qData}`, please see [the
-website](https://globalgov.github.io/qData/).
+contributor. For more information on `{manydata}`, please see [the
+website](https://globalgov.github.io/manydata/).

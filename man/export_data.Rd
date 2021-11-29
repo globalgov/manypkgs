@@ -20,14 +20,14 @@ silently creates a set of tests for this dataset,
 and creates and opens documentation for the dataset.
 }
 \description{
-Save a cleaned data object, consistent with the qData ecosystem, ready to be
+Save a cleaned data object, consistent with the manydata universe, ready to be
 lazy-loaded and create scripts for documenting and testing that object within
 the new package.
 }
 \details{
 The function creates a data directory, if nonexistent, and
 saves cleaned data. The functions also creates a script for testing
-the cleaned data and make sure it complies with qData requirements.
+the cleaned data and make sure it complies with manydata requirements.
 As well, it creates a documentation script to help documenting data
 sources and describing variables. Note that users need to provide a \code{.bib}
 file for citation purposes alongside their dataset in the corresponding

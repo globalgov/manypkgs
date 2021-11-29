@@ -17,8 +17,8 @@ Split treaty texts into lists that reflect a structure
 based on having a preamble and several articles.
 }
 \examples{
-\dontrun{
-t <- head(qEnviron::texts$IEADB_TXT$Text)
+\donttest{
+t <- head(manyenviron::texts$IEADB_TXT$Text)
 split_treaty(t)
 }
 }

@@ -4,7 +4,7 @@ author: "James Hollway"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contributing to qData}
+  %\VignetteIndexEntry{Contributing to manydata}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,19 +16,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Contributing to the qData ecosystem of packages with manypkgs
+## Contributing to the manydata universe of packages with manypkgs
 
 `{manypkgs}` has package related functions that help developers contribute to the ecosystem of 
-packages by helping with the set-up of packages consistent with `{qData}`. 
+packages by helping with the set-up of packages consistent with `{manydata}`. 
 The function `setup_package()`, for example, establishes many of the required files and folder 
-structures for a `{qData}`-consistent data package. 
+structures for a `{manydata}`-consistent data package. 
 It requires that the package name starts with a the letter "q" as well as that 
 the name of one author is declared.
 For author's name, please declare surname(s) first and then given name(s) separated by commas.
 The function accepts ORCID numbers instead of author names as well. 
 
 ```{r eval=FALSE}
-manypkgs::setup_package("qStates", name = "Hollway, James")
+manypkgs::setup_package("manystates", name = "Hollway, James")
 ```
 
 For adding on package contributors or authors to q Package later on, use to the `add_author()` function.
@@ -42,7 +42,7 @@ For automatically updating packages for changes in templates, documentation, and
 contributors can use the `update_package()` function.
 
 ```{r eval=FALSE}
-manypkgs::update_package("qStates")
+manypkgs::update_package("manystates")
 ```
 
 ## Collecting data
@@ -66,10 +66,10 @@ manypkgs::import_data("COW", "states")
 ## Correcting data
 
 Once a dataset is collected with `import_data()`, it needs to be corrected so that it can be 
-connected into a database. `{qData}` contains several functions geared towards data wrangling. 
+connected into a database. `{manydata}` contains several functions geared towards data wrangling. 
 These include, for example, the `transmutate()` function which is between `{dplyr}`'s 
 transmute and mutate but that returns only the mutated variables and none of the variables
-used in the mutations. `{qData}` also includes functions that help correct and standardise dates. 
+used in the mutations. `{manydata}` also includes functions that help correct and standardise dates. 
 These include, for example, the `standardise_dates()` function which creates nested vectors of 
 dates for vague date inputs into a range of dates. 
 As well, the `standardise_title()` function capitalises all words in a string
@@ -83,13 +83,13 @@ COW <- manypkgs::transmutate(ID = stateabb,
                    COW_Nr = manypkgs::standardise_titles(as.character(ccode)))
 ```
 
-Contributors should make sure the variables names in the datasets are in line with `{qData}` ecosystem.
+Contributors should make sure the variables names in the datasets are in line with `{manydata}` ecosystem.
 Datasets part of the same database should have similar variables which allows to build up the 'datacube' 
 for comparison.
 
 ## Connecting data
 
-Once the dataset has been corrected in `{qData}`, the cleaned dataset can be loaded with `{manypkgs}` into the 
+Once the dataset has been corrected in `{manydata}`, the cleaned dataset can be loaded with `{manypkgs}` into the 
 package using the `export_data()` function which take as inputs the dataset name and the database name as a string. 
 Corrected datasets can be connected to form a three dimensional database that resembles a data cube.
 The website source of the data should be indicated in the third argument of the function.

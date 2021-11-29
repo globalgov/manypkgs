@@ -37,7 +37,7 @@ Helper function for finding and rendering templates from the manypkgs package
 }
 \details{
 This function is an adaptation of the usethis variant
-for use in the qData ecosystem.
+for use in the manydata universe.
 }
 \examples{
 \dontrun{

@@ -38,7 +38,7 @@ test_that("standardise_dates() treats multiple inconsistent dates correctly", {
                                       "1403-06-27", "1407-03-10",
                                       "1656-07-17", "NA",
                                       "1867-04-29")))
-  # # Example of errors from datasets in qEnviron
+  # # Example of errors from datasets in manyenviron
   expect_equal(as.character(standardise_dates(dat1$date)),
                c(messydates::as_messydate("1351-08-01"),
                  messydates::as_messydate("1353-10-20"),

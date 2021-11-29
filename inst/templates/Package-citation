@@ -5,6 +5,6 @@ citEntry(
   title    = "{{{package}}}",
   author   = "{{{author}}}",
   year     = "{{{year}}}",
-  note = "For more information on the qVerse: https://github.com/globalgov/qData"
+  note = "For more information on the qVerse: https://github.com/globalgov/manydata"
   textVersion = paste("{{{author}}}", "{{{package}}}", "{{{year}}}", sep = ".")
 )
