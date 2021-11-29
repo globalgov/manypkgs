@@ -4,19 +4,19 @@
 \alias{fuzzy_agreements_bilateral}
 \title{Helper function for fuzzy matching bilateral agreements}
 \usage{
-fuzzy_agreements_bilateral(qID)
+fuzzy_agreements_bilateral(treaty_ID)
 }
 \arguments{
-\item{qID}{qID variable created with \code{manypkgs::code_agreements()}}
+\item{treaty_ID}{treaty_ID variable created with \code{manypkgs::code_agreements()}}
 }
 \value{
-A data frame with acronyms and qID matches without linkages
+A data frame with acronyms and treaty_ID matches without linkages
 }
 \description{
 Fuzzy match agreements' acronyms for bilateral treaties
 }
 \details{
-Extracts agreement acronyms from qIDs and fuzzy
+Extracts agreement acronyms from treaty_IDs and fuzzy
 match their similarities.
 See \code{manypkgs::code_acronym()} for more details on acronyms.
 }
