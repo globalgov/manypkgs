@@ -73,10 +73,12 @@ Suggests:
     translateR,
     cld2,
     manydata,
-    manyenviron
+    manyenviron,
+    manystates
 Remotes:
     globalgov/manydata,
     globalgov/manyenviron
+    globalgov/manystates
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
