@@ -44,7 +44,7 @@ The function establishes many of the required files and
 folder structures required for a manydata-consistent data package.
 }
 \examples{
-\dontrun{
+\donttest{
 setup_package("manystates", name = "Hollway, James")
 setup_package("manystates",
                orcid = c("0000-0002-8361-9647"))

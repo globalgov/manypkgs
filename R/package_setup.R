@@ -21,7 +21,7 @@
 #' @importFrom stringr str_replace_all str_split word
 #' @importFrom fs path
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' setup_package("manystates", name = "Hollway, James")
 #' setup_package("manystates",
 #'                orcid = c("0000-0002-8361-9647"))

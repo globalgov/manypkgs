@@ -71,7 +71,12 @@ Suggests:
     rmarkdown,
     bibtex,
     translateR,
-    cld2
+    cld2,
+    manydata,
+    manyenviron
+Remotes:
+    globalgov/manydata,
+    globalgov/manyenviron
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
