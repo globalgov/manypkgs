@@ -35,26 +35,30 @@ split_treaty <- function(textvar) {
 #' @param t A list of treaty texts that has been "splitted" with
 #' `manypkgs::split_treaty()`
 #' @param article Either the "preamble" or an article number
-#' across all treties to be returned.
+#' across all treaties to be returned.
 #' It can be left NULL if user intends to look for a word in
 #' all treaties.
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
+#' @param memberships 
+#' @param termination 
 #' @importFrom purrr map_chr
 #' @return A list of treaty sections of the same length
 #' @examples
-#' \dontrun{
-#' t <- head(qEnviron::texts$IEADB_TXT$Text)
+#' \donttest{
+#' t <- head(manyenviron::texts$AGR_TXT$Text)
 #' t <- split_treaty(t)
 #' get_treaty(t, article = "preamble")
 #' get_treaty(t, article = 1)
 #' get_treaty(t, match = "constitution")
 #' get_treaty(t, article = "preamble", match = "unofficial")
+#' get_treaty(t, memberships = TRUE)
+#' get_treaty(t, termination = TRUE)
 #' }
 #' @export
-get_treaty <- function(t, article = NULL, match = NULL) {
-
-  if (is.null(article) & is.null(match)) {
+get_treaty <- function(t, article = NULL, match = NULL, memberships = NULL, termination = NULL) {
+  
+  if (is.null(article) & is.null(match) & is.null(memberships) & is.null(termination)) {
     stop("Please declare either an article to be returned or a word match to be found")
   }
   if (is.numeric(article)) {
@@ -65,10 +69,17 @@ get_treaty <- function(t, article = NULL, match = NULL) {
     t <- purrr::map_chr(t, c(as.numeric(article) + 1))
   }
   if (isTRUE(article == "preamble")) {
-    t <- purrr::map_chr(t, c(1))
+    t <- purrr::map_chr(t, 1)
   }
   if(!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, value = TRUE))
   }
+  if (!is.null(memberships)){
+    t <- lapply(t, function(x) grep("shall be open for accession|can accede to|any other state may join|agreement is open for joining", x, value = TRUE))
+  }
+  if (!is.null(termination)){
+    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
+  }
+  t <- na_if(t, "character(0)")
   t
 }

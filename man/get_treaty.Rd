@@ -4,19 +4,29 @@
 \alias{get_treaty}
 \title{Get treaty articles by number or match}
 \usage{
-get_treaty(t, article = NULL, match = NULL)
+get_treaty(
+  t,
+  article = NULL,
+  match = NULL,
+  memberships = NULL,
+  termination = NULL
+)
 }
 \arguments{
 \item{t}{A list of treaty texts that has been "splitted" with
 \code{manypkgs::split_treaty()}}
 
 \item{article}{Either the "preamble" or an article number
-across all treties to be returned.
+across all treaties to be returned.
 It can be left NULL if user intends to look for a word in
 all treaties.}
 
 \item{match}{A regex match for a word(s) or expression.
 For multiple words, please use "|" to divide them.}
+
+\item{memberships}{}
+
+\item{termination}{}
 }
 \value{
 A list of treaty sections of the same length
@@ -27,12 +37,14 @@ or first articles, or articles that contain certain words
 with this function.
 }
 \examples{
-\dontrun{
-t <- head(qEnviron::texts$IEADB_TXT$Text)
+\donttest{
+t <- head(manyenviron::texts$AGR_TXT$Text)
 t <- split_treaty(t)
 get_treaty(t, article = "preamble")
 get_treaty(t, article = 1)
 get_treaty(t, match = "constitution")
 get_treaty(t, article = "preamble", match = "unofficial")
+get_treaty(t, memberships = TRUE)
+get_treaty(t, termination = TRUE)
 }
 }
