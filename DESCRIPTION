@@ -53,7 +53,8 @@ Imports:
     stringdist,
     tidyr,
     tm,
-    stringi
+    stringi,
+    entity
 Suggests:
     testthat (>= 3.0.0),
     librarian,
@@ -75,7 +76,6 @@ Suggests:
     manydata,
     manyenviron,
     manystates,
-    entity,
     migraph
 Remotes:
     globalgov/manydata,
