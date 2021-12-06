@@ -60,18 +60,34 @@ code_area <- function(title, destination = NULL) {
 #' @export
 code_actions <- function(title) {
   dplyr::case_when(
+    # For environmental treaties
     grepl("biodiversity|species|habitat|ecosystems|biological diversity|genetic resources|biosphere",
           title, ignore.case = T) ~ "biodiversity",
     grepl("air|atmos|climate|outer space|ozone|emissions|coal", title, ignore.case = T) ~ "climate change",
     grepl("legal|organization|enforcement|policy|planning|institution|dispute|court|tribunal|law",
           title, ignore.case = T) ~ "management",
     grepl("energy|nuclear|oil|mining|gas|hydro|power", title, ignore.case = T) ~  "energy",
-    grepl("agricultur|food|livestock|crop|irrigation|cattle|meat|farm|cultivate",
+    grepl("agricultur|food|livestock|crop|irrigation|cattle|meat|farm|cultivate|poultry",
           title, ignore.case = T) ~  "agriculture",
     grepl("waste|pollut|noise|toxic|hazard", title, ignore.case = T) ~  "waste",
     grepl("culture|scien|techno|trade|research|exploration|navigation|data|information",
           title, ignore.case = T) ~  "research",
-    grepl("weapon|military", title, ignore.case = T) ~  "military")
+    grepl("weapon|military", title, ignore.case = T) ~  "military",
+    grepl("fish|salmon|herring|tuna|aquaculture|mariculture|molluscs", title,
+          ignore.case = T) ~  "fishing",
+    grepl("mammal|fauna|dolphin|whale|gorilla|elephant|animal|cattle|sheep|swine|wildlife|bird", title,
+          ignore.case = T) ~  "fauna protection",
+    grepl("flora|plant|fruit|vegetable|seed", title, ignore.case = T) ~  "flora protection",
+    grepl("forest|tree", title, ignore.case = T) ~  "forestry",
+    grepl("land|soil|wetland|desert|erosion", title, ignore.case = T) ~  "land protection",
+    grepl("water|freshwater|river|rhine|hydro|basin|drought", title, ignore.case = T) ~  "freshwater",
+    grepl("ocean|sea|marine|maritime|coastal|eez|continental shelf|aquatic", title, ignore.case = T) ~  "marine resources exploitation",
+    # For trade treaties
+    grepl("finance|fund", title, ignore.case = T) ~  "finance",
+    grepl("economic union|economic community|free trade|common market|economic partnership|economic cooperation", title, ignore.case = T) ~  "market integration",
+    grepl("invest", title, ignore.case = T) ~  "investement",
+    grepl("water|freshwater|river|rhine|hydro|basin|drought", title, ignore.case = T) ~  "freshwater",
+    )
   ## We can also try to do this with tagging sentence properties
   # title <- head(qEnviron::agreements$IEADB$Title)
   # We need to remove predicted_words here
