@@ -4,15 +4,10 @@
 \alias{code_entity}
 \title{Code Agreement Entity}
 \usage{
-code_entity(title, destination = NULL)
+code_entity(title)
 }
 \arguments{
 \item{title}{Treaty titles}
-
-\item{destination}{Do you want regions or continents
-returned instead of location names?
-By default NULL.
-Options include continent and region.}
 }
 \value{
 The region of the agreement
@@ -22,7 +17,7 @@ Code Agreement Entity
 }
 \examples{
 \donttest{
-title <- head(qEnviron::agreements$IEADB$Title)
+title <- sample(manyenviron::agreements$IEADB$Title, 30)
 code_entity(title)
 }
 }

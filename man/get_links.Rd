@@ -27,10 +27,10 @@ links for a database.
 }
 \examples{
 \donttest{
-get_links(database = qEnviron::agreements)
-get_links(database = qEnviron::agreements, treaty_type = "multilateral")
-get_links(dataset = qEnviron::agreements$IEADB, treaty_type = "bilateral")
-samples <- lapply(qEnviron::agreements,
+get_links(database = manyenviron::agreements)
+get_links(database = manyenviron::agreements, treaty_type = "multilateral")
+get_links(dataset = manyenviron::agreements$IEADB, treaty_type = "bilateral")
+samples <- lapply(manyenviron::agreements,
 function(x) x[x$Beg > "1991-12-31" & x$Beg < "1993-01-01", ])
 migraph::gglineage(get_links(samples))
 }

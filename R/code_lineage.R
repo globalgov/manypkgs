@@ -21,19 +21,15 @@ code_lineage <- function(database) {
 #' Code Agreement Entity
 #'
 #' @param title Treaty titles
-#' @param destination Do you want regions or continents
-#' returned instead of location names?
-#' By default NULL.
-#' Options include continent and region.
 #' @return The region of the agreement
 #' @importFrom entity location_entity
 #' @examples
 #' \donttest{
-#' title <- head(qEnviron::agreements$IEADB$Title)
+#' title <- sample(manyenviron::agreements$IEADB$Title, 30)
 #' code_entity(title)
 #' }
 #' @export
-code_entity <- function(title, destination = NULL) {
+code_entity <- function(title) {
   # MAke sure necessary model is available (adapted from entity package)
   outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
   if (!outcome) {
@@ -45,7 +41,8 @@ code_entity <- function(title, destination = NULL) {
   # Code entity
   out <- entity::location_entity(title)
   # Remove states
-  
+  parties <- paste(countryregex$Regex, collapse = "|")
+  out <- gsub(parties, "", out, ignore.case = TRUE, perl = TRUE)
   out
 }
 
@@ -56,7 +53,8 @@ code_entity <- function(title, destination = NULL) {
 #' @importFrom dplyr case_when
 #' @examples
 #' \donttest{
-#' code_actions(qEnviron::agreements$IEADB$Title)
+#' title <- sample(manyenviron::agreements$IEADB$Title, 30)
+#' code_actions(title)
 #' }
 #' @export
 code_actions <- function(title) {
@@ -85,7 +83,7 @@ code_actions <- function(title) {
   # x <- as.data.frame(x)
   # abc <- "VB"
   # stats <- dplyr::filter(x,grepl(pattern = "VB", x = xpos, ignore.case = T))
-  # There are no verbs...
+  # But there are no verbs...
 }
 
 #' Get links from treaty titles
@@ -104,10 +102,10 @@ code_actions <- function(title) {
 #' @importFrom purrr map map_chr
 #' @examples
 #' \donttest{
-#' get_links(database = qEnviron::agreements)
-#' get_links(database = qEnviron::agreements, treaty_type = "multilateral")
-#' get_links(dataset = qEnviron::agreements$IEADB, treaty_type = "bilateral")
-#' samples <- lapply(qEnviron::agreements,
+#' get_links(database = manyenviron::agreements)
+#' get_links(database = manyenviron::agreements, treaty_type = "multilateral")
+#' get_links(dataset = manyenviron::agreements$IEADB, treaty_type = "bilateral")
+#' samples <- lapply(manyenviron::agreements,
 #' function(x) x[x$Beg > "1991-12-31" & x$Beg < "1993-01-01", ])
 #' migraph::gglineage(get_links(samples))
 #' }

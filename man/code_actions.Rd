@@ -17,6 +17,7 @@ Code Actions from agreement titles
 }
 \examples{
 \donttest{
-code_actions(qEnviron::agreements$IEADB$Title)
+title <- sample(manyenviron::agreements$IEADB$Title, 30)
+code_actions(title)
 }
 }
