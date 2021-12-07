@@ -1,20 +1,30 @@
 #' Code lineage from agreement titles
 #'
+#' @param title A title column for agreements
 #' @param database A database from the many packages ecosystem.
 #' @return A list of lineages that combines agreement area
 #' and agreement action.
 #' @importFrom purrr map
+#' @importFrom stringr str_squish
 #' @examples
 #' \donttest{
-#' code_lineage(qEnviron::agreements)
+#' code_lineage(title = manyenviron::agreements$IEADB$Title)
+#' code_lineage(database = manyenviron::agreements)
 #' }
 #' @export
-code_lineage <- function(database) {
-  title <- unname(unlist(purrr::map(database, "Title")))
+code_lineage <- function(title = NULL, database = NULL) {
+  if (is.null(title) & is.null(database)) {
+    stop("Please declare a title column or a many database")
+  }
+  if (is.null(title)) {
+    title <- unname(unlist(purrr::map(database, "Title")))
+  }
   entity <- code_entity(title)
   action <- code_actions(title)
   parties <- code_parties(title)
   lineage <- ifelse(is.na(entity), paste0(parties, "-", action), paste0(entity, "-", action))
+  lineage <- gsub("-NA|NULL|^-", "", lineage)
+  lineage <- stringr::str_squish(lineage)
   lineage
 }
 
@@ -23,6 +33,7 @@ code_lineage <- function(database) {
 #' @param title Treaty titles
 #' @return The region of the agreement
 #' @importFrom entity location_entity
+#' @importFrom stringr str_squish
 #' @examples
 #' \donttest{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
@@ -43,7 +54,7 @@ code_entity <- function(title) {
   # Remove states
   parties <- paste(countrynames$c, collapse = "|")
   out <- gsub(parties, "", out, ignore.case = TRUE)
-  out <- gsub("^c", "", out)
+  out <- gsub("^c|Britain|England", "", out)
   out <- gsub("[^[:alnum:]]", " ", out)
   out <- stringr::str_squish(out)
   out <- gsub("NULL", NA_character_, out)
@@ -63,7 +74,7 @@ code_entity <- function(title) {
 #' }
 #' @export
 code_actions <- function(title) {
-  dplyr::case_when(
+  actions <- dplyr::case_when(
     grepl("biodiversity|species|habitat|ecosystems|biological diversity|genetic resources|biosphere",
           title, ignore.case = T) ~ "biodiversity",
     grepl("air|atmos|climate|outer space|ozone|emissions|coal", title, ignore.case = T) ~ "climate change",
@@ -75,20 +86,9 @@ code_actions <- function(title) {
     grepl("waste|pollut|noise|toxic|hazard", title, ignore.case = T) ~  "waste",
     grepl("culture|scien|techno|trade|research|exploration|navigation|data|information",
           title, ignore.case = T) ~  "research",
-    grepl("weapon|military", title, ignore.case = T) ~  "military")
-  ## We can also try to do this with tagging sentence properties
-  # title <- head(qEnviron::agreements$IEADB$Title)
-  # We need to remove predicted_words here
-  # out <- data.frame(title)
-  # out <- rowid_to_column(out, var = "id")
-  # library(udpipe)
-  # ud_model <- udpipe_download_model(language = "english")
-  # ud_model <- udpipe_load_model(ud_model$file_model)
-  # x <- udpipe_annotate(ud_model, x = out$title, doc_id = out$id)
-  # x <- as.data.frame(x)
-  # abc <- "VB"
-  # stats <- dplyr::filter(x,grepl(pattern = "VB", x = xpos, ignore.case = T))
-  # But there are no verbs...
+    grepl("weapon|military", title, ignore.case = T) ~  "military",
+    grepl("trade|finance|tax", title, ignore.case = T) ~ "trade")
+  actions
 }
 
 #' Get links from treaty titles

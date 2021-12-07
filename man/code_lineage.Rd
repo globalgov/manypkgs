@@ -4,9 +4,11 @@
 \alias{code_lineage}
 \title{Code lineage from agreement titles}
 \usage{
-code_lineage(database)
+code_lineage(title = NULL, database = NULL)
 }
 \arguments{
+\item{title}{A title column for agreements}
+
 \item{database}{A database from the many packages ecosystem.}
 }
 \value{
@@ -18,6 +20,7 @@ Code lineage from agreement titles
 }
 \examples{
 \donttest{
-code_lineage(qEnviron::agreements)
+code_lineage(title = manyenviron::agreements$IEADB$Title)
+code_lineage(database = manyenviron::agreements)
 }
 }
