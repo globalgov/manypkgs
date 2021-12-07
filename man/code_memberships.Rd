@@ -4,16 +4,32 @@
 \alias{code_memberships}
 \title{Get conditions and processes to accede memberships}
 \usage{
-code_memberships(t, condition = NULL, process = NULL)
+code_memberships(t, title = NULL, memberships = NULL)
 }
 \arguments{
-\item{condition}{}
+\item{t}{A text variable}
 
-\item{process}{}
+\item{title}{A title variable}
+
+\item{memberships}{Either "condition" or "process"}
 }
 \value{
-
+Either the conditions to be part of the treaty
+or the different process steps to become a member
 }
 \description{
-Get conditions and processes to accede memberships
+The function allows to get information on the conditions
+to enter the treaty. It could be limited to a geographic
+area, a certain activity or that State parties have to
+nominate new members.
+The function also allows to get information on the
+process by which a new member has to go through in
+order to accede memberships
+}
+\examples{
+\donttest{
+m <- manyenviron::texts$AGR_TXT[100:300,]
+m$cond_mem <- code_memberships(m$Text, m$Title, memberships = "condition")
+m$proc_mem <- code_memberships(m$Text, memberships = "process")
+}
 }

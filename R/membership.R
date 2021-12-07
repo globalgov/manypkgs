@@ -1,14 +1,68 @@
 #' Get conditions and processes to accede memberships
 #' 
-#' @param condition 
-#' @param process 
+#' The function allows to get information on the conditions
+#' to enter the treaty. It could be limited to a geographic
+#' area, a certain activity or that State parties have to
+#' nominate new members. 
+#' The function also allows to get information on the
+#' process by which a new member has to go through in
+#' order to accede memberships
+#' @param t A text variable
+#' @param title A title variable
+#' @param memberships Either "condition" or "process"
 #'
-#' @return
-#' @export
-#'
+#' @return Either the conditions to be part of the treaty
+#' or the different process steps to become a member
+#' @importFrom dplyr case_when
+#' @importFrom stringr str_remove_all
 #' @examples
-code_memberships <- function(t, condition = NULL, process = NULL){
+#' \donttest{
+#' m <- manyenviron::texts$AGR_TXT[100:300,]
+#' m$cond_mem <- code_memberships(m$Text, m$Title, memberships = "condition")
+#' m$proc_mem <- code_memberships(m$Text, memberships = "process")
+#' }
+#' @export
+code_memberships <- function(t, title = NULL, memberships = NULL){
+  # First step: select all the articles concerning memberships
   memb <- get_articles(t, article = "membership")
+  if (isTRUE(memberships == "condition")){
+    # Second step: match terms to identify memberships conditions
+    condition_1 <- dplyr::case_when(
+      grepl("any government|any", memb, ignore.case = T) ~ "open",
+      )
+    condition_2 <- dplyr::case_when(
+      grepl("nomination", memb, ignore.case = T) ~ "by nomination",
+      )
+    condition_3 <- manypkgs::code_entity(title)
+    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), "geographic", NA)
+    condition_4 <- manypkgs::code_actions(title)
+    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), "activity", NA)
+    condition <- paste0(condition_1, "-", condition_2, "-", condition_3,"-", condition_4)
+    condition <- stringr::str_remove_all(condition, "NA-|-NA")
+    condition
+  } else {
+    # Third step: when the user select "process" instead of "condition",
+    # the terms to detect specific processes to accede memberships match are used here
+    # to create categories
+    process_1 <- dplyr::case_when(
+      grepl("open for signature", memb, ignore.case = T) ~ "signature",
+      )
+    process_2 <- dplyr::case_when(
+      grepl("ratification", memb, ignore.case = T) ~ "ratification",
+    )
+    process_3 <- dplyr::case_when(
+      grepl("accession shall be notified|notified", memb, ignore.case = T) ~ "notification",
+      )
+    process_4 <- dplyr::case_when(
+      grepl("by a two-thirds majority of its membership", memb, ignore.case = T) ~ "majority vote",
+      )
+    process_5 <- dplyr::case_when(
+      grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
+      )
+    process <- paste0(process_1, "-", process_2, "-", process_3, "-", process_4, "-", process_5)
+    process <- stringr::str_remove_all(process, "NA-|-NA")
+    process
+  }
 }
 
 #' Get memberships' list
