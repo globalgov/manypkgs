@@ -1,3 +1,16 @@
+#' Get conditions and processes to accede memberships
+#' 
+#' @param condition 
+#' @param process 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+code_memberships <- function(t, condition = NULL, process = NULL){
+  
+}
+
 #' Get memberships' list
 #'
 #' Memberships database have actor column(s) and 

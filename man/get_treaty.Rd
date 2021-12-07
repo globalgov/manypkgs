@@ -28,9 +28,11 @@ with this function.
 }
 \examples{
 \donttest{
-t <- head(manyenviron::texts$IEADB_TXT$Text)
+t <- head(manyenviron::texts$AGR_TXT$Text)
 t <- split_treaty(t)
 get_treaty(t, article = "preamble")
+get_treaty(t, article = "memberships")
+get_treaty(t, article = "termination")
 get_treaty(t, article = 1)
 get_treaty(t, match = "constitution")
 get_treaty(t, article = "preamble", match = "unofficial")
