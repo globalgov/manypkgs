@@ -4,11 +4,10 @@
 \alias{get_articles}
 \title{Get treaty articles by number or match}
 \usage{
-get_articles(t, article = NULL, match = NULL)
+get_articles(textvar, article = NULL, match = NULL)
 }
 \arguments{
-\item{t}{A list of treaty texts that has been "splitted" with
-\code{manypkgs::split_treaty()}}
+\item{textvar}{A text variable}
 
 \item{article}{Either the "preamble" or an article number
 across all treties to be returned.
@@ -26,7 +25,7 @@ The function splits treaty texts into lists that reflect a structure
 based on having a preamble and several articles.
 Once articles are split,
 you can access all the "preambles",
-"membership" or "terminations" clauses,
+"membership" or "termination" clauses,
 or articles that contain certain word.
 }
 \details{

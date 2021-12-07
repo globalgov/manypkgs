@@ -7,7 +7,7 @@
 split_treaty(textvar)
 }
 \arguments{
-\item{textvar}{text variable}
+\item{textvar}{A text variable}
 }
 \value{
 A structured list for each agreement

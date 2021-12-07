@@ -4,10 +4,9 @@
 #' based on having a preamble and several articles.
 #' Once articles are split,
 #' you can access all the "preambles",
-#' "membership" or "terminations" clauses,
+#' "membership" or "termination" clauses,
 #'  or articles that contain certain word.
-#' @param t A list of treaty texts that has been "splitted" with
-#' `manypkgs::split_treaty()`
+#' @param textvar A text variable
 #' @param article Either the "preamble" or an article number
 #' across all treties to be returned.
 #' It can be left NULL if user intends to look for a word in
@@ -30,32 +29,32 @@
 #' get_articles(t, article = "preamble", match = "unofficial")
 #' }
 #' @export
-get_articles <- function(t, article = NULL, match = NULL) {
-  
+get_articles <- function(textvar, article = NULL, match = NULL) {
   if (is.null(article) & is.null(match)) {
-    t <- split_treaty(t)
+    t <- split_treaty(textvar)
   } else {
-  if (is.numeric(article)) {
-    for (k in seq_len(length(t))) {
-      a <- list(rep("NA",  as.numeric(article) + 1))
-      t[k] <- ifelse(lengths(t[k]) < as.numeric(article) + 1, t[k] <- a, t[k])
+    t <- split_treaty(textvar)
+    if (is.numeric(article)) {
+      for (k in seq_len(length(t))) {
+        a <- list(rep("NA",  as.numeric(article) + 1))
+        t[k] <- ifelse(lengths(t[k]) < as.numeric(article) + 1, t[k] <- a, t[k])
+        }
+      t <- purrr::map_chr(t, c(as.numeric(article) + 1))
+      }
+    if (isTRUE(article == "preamble")) {
+      t <- purrr::map_chr(t, 1)
     }
-    t <- purrr::map_chr(t, c(as.numeric(article) + 1))
-  }
-  if (isTRUE(article == "preamble")) {
-    t <- purrr::map_chr(t, 1)
-  }
-  if (isTRUE(article == "memberships")){
-    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
-  }
-  if (isTRUE(article == "termination")){
-    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
-  }
-  if(!is.null(match)) {
-    t <- lapply(t, function(x) grep(match, x, value = TRUE))
-  }
-  t <- na_if(t, "character(0)")
-  }
+    if (isTRUE(article == "memberships")){
+      t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
+    }
+    if (isTRUE(article == "termination")){
+      t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
+    }
+    if(!is.null(match)) {
+      t <- lapply(t, function(x) grep(match, x, value = TRUE))
+    }
+    t <- na_if(t, "character(0)")
+    }
   t
 }
 
@@ -64,12 +63,11 @@ get_articles <- function(t, article = NULL, match = NULL) {
 #' Helper function for spliting treaty texts into lists
 #' that reflect a structure
 #' based on having a preamble and several articles.
-#' @param textvar text variable
+#' @param textvar A text variable
 #' @importFrom stringr str_detect
 #' @importFrom stringi stri_trans_general
 #' @return A structured list for each agreement
 split_treaty <- function(textvar) {
-  
   # Lower case and standardizes all, just in case
   t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
   # Split list
