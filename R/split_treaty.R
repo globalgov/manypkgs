@@ -44,16 +44,18 @@ split_treaty <- function(textvar) {
 #' @return A list of treaty sections of the same length
 #' @examples
 #' \donttest{
-#' t <- head(manyenviron::texts$IEADB_TXT$Text)
+#' t <- head(manyenviron::texts$AGR_TXT$Text)
 #' t <- split_treaty(t)
 #' get_treaty(t, article = "preamble")
+#' get_treaty(t, article = "memberships")
+#' get_treaty(t, article = "termination")
 #' get_treaty(t, article = 1)
 #' get_treaty(t, match = "constitution")
 #' get_treaty(t, article = "preamble", match = "unofficial")
 #' }
 #' @export
 get_treaty <- function(t, article = NULL, match = NULL) {
-
+  
   if (is.null(article) & is.null(match)) {
     stop("Please declare either an article to be returned or a word match to be found")
   }
@@ -70,5 +72,13 @@ get_treaty <- function(t, article = NULL, match = NULL) {
   if(!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, value = TRUE))
   }
+  if (isTRUE(article == "memberships")){
+    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
+  }
+  if (isTRUE(article == "termination")){
+    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
+  }
+  t <- na_if(t, "character(0)")
   t
 }
+
