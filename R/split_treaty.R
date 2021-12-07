@@ -75,7 +75,7 @@ get_treaty <- function(t, article = NULL, match = NULL, memberships = NULL, term
     t <- lapply(t, function(x) grep(match, x, value = TRUE))
   }
   if (!is.null(memberships)){
-    t <- lapply(t, function(x) grep("shall be open for accession|can accede to|any other state may join|agreement is open for joining", x, value = TRUE))
+    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
   }
   if (!is.null(termination)){
     t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
