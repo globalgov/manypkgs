@@ -8,7 +8,7 @@
 #'
 #' @examples
 code_memberships <- function(t, condition = NULL, process = NULL){
-  
+  memb <- get_articles(t, article = "membership")
 }
 
 #' Get memberships' list
