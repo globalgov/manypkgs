@@ -20,7 +20,7 @@ Code lineage from agreement titles
 }
 \examples{
 \donttest{
-code_lineage(title = manyenviron::agreements$IEADB$Title)
+code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
 code_lineage(database = manyenviron::agreements)
 }
 }

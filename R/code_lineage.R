@@ -8,7 +8,7 @@
 #' @importFrom stringr str_squish
 #' @examples
 #' \donttest{
-#' code_lineage(title = manyenviron::agreements$IEADB$Title)
+#' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
 #' code_lineage(database = manyenviron::agreements)
 #' }
 #' @export
@@ -22,9 +22,10 @@ code_lineage <- function(title = NULL, database = NULL) {
   entity <- code_entity(title)
   action <- code_actions(title)
   parties <- code_parties(title)
-  lineage <- ifelse(is.na(entity), paste0(parties, "-", action), paste0(entity, "-", action))
-  lineage <- gsub("-NA|NULL|^-", "", lineage)
+  lineage <- ifelse(is.na(entity), paste0(parties, " - ", action), paste0(entity, " - ", action))
+  lineage <- gsub("- NA|NULL", "", lineage)
   lineage <- stringr::str_squish(lineage)
+  lineage <- trimws(gsub("^-", "", lineage))
   lineage
 }
 
@@ -92,7 +93,7 @@ code_actions <- function(title) {
           ignore.case = T) ~  "fishing",
     grepl("forest|tree", title, ignore.case = T) ~  "forestry", 
     grepl("finance|fund", title, ignore.case = T) ~  "finance",
-    grepl("economic union|economic community|free trade|common market|economic partnership|economic cooperation", title, ignore.case = T) ~  "market integration",
+    grepl("economic union|economic community|free trade|common market|economic partnership|economic cooperation", title, ignore.case = T) ~  "economic integration",
     grepl("invest", title, ignore.case = T) ~  "investement",
     grepl("trade", title, ignore.case = T) ~ "trade")
   actions
