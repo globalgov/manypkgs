@@ -5,10 +5,10 @@
 #' Once articles are split,
 #' you can access all the "preambles",
 #' "membership" or "termination" clauses,
-#'  or articles that contain certain word.
+#' or articles that contain certain word.
 #' @param textvar A text variable
 #' @param article Either the "preamble" or an article number
-#' across all treties to be returned.
+#' across all treaties to be returned.
 #' It can be left NULL if user intends to look for a word in
 #' all treaties.
 #' @param match A regex match for a word(s) or expression.

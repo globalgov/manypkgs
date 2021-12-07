@@ -10,7 +10,7 @@ get_articles(textvar, article = NULL, match = NULL)
 \item{textvar}{A text variable}
 
 \item{article}{Either the "preamble" or an article number
-across all treties to be returned.
+across all treaties to be returned.
 It can be left NULL if user intends to look for a word in
 all treaties.}
 
