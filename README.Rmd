@@ -1,7 +1,7 @@
 ---
 output: github_document
 ---
-# manypkgs <img src="man/figures/manypkgslogo.png" align="right" width="220"/>
+# manypkgs <img src="man/figures/manypkgslogo.png" align="right"/>
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
