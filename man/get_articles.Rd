@@ -34,8 +34,8 @@ a structured list for each agreement based on articles is returned.
 }
 \examples{
 \donttest{
-t <- head(manyenviron::texts$AGR_TXT$Text)
-t <- get_articles(t)
+t <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+get_articles(t)
 get_articles(t, article = "preamble")
 get_articles(t, article = "memberships")
 get_articles(t, article = "termination")

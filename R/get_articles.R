@@ -19,8 +19,8 @@
 #' @return A list of treaty sections of the same length
 #' @examples
 #' \donttest{
-#' t <- head(manyenviron::texts$AGR_TXT$Text)
-#' t <- get_articles(t)
+#' t <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+#' get_articles(t)
 #' get_articles(t, article = "preamble")
 #' get_articles(t, article = "memberships")
 #' get_articles(t, article = "termination")
@@ -30,31 +30,29 @@
 #' }
 #' @export
 get_articles <- function(textvar, article = NULL, match = NULL) {
-  if (is.null(article) & is.null(match)) {
-    t <- split_treaty(textvar)
-  } else {
-    t <- split_treaty(textvar)
-    if (is.numeric(article)) {
-      for (k in seq_len(length(t))) {
-        a <- list(rep("NA",  as.numeric(article) + 1))
-        t[k] <- ifelse(lengths(t[k]) < as.numeric(article) + 1, t[k] <- a, t[k])
-        }
-      t <- purrr::map_chr(t, c(as.numeric(article) + 1))
+  # Split treaty texts into articles
+  t <- split_treaty(textvar)
+  # Get articles if declared
+  if (is.numeric(article)) {
+    for (k in seq_len(length(t))) {
+      a <- list(rep("NA",  as.numeric(article) + 1))
+      t[k] <- ifelse(lengths(t[k]) < as.numeric(article) + 1, t[k] <- a, t[k])
       }
-    if (isTRUE(article == "preamble")) {
-      t <- purrr::map_chr(t, 1)
-    }
-    if (isTRUE(article == "memberships")){
-      t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
-    }
-    if (isTRUE(article == "termination")){
-      t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
-    }
-    if(!is.null(match)) {
-      t <- lapply(t, function(x) grep(match, x, value = TRUE))
-    }
-    t <- na_if(t, "character(0)")
-    }
+    t <- purrr::map_chr(t, c(as.numeric(article) + 1))
+  }
+  if (isTRUE(article == "preamble")) {
+    t <- purrr::map_chr(t, 1)
+  }
+  if (isTRUE(article == "memberships")) {
+    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
+  }
+  if (isTRUE(article == "termination")) {
+    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
+  }
+  if(!is.null(match)) {
+    t <- lapply(t, function(x) grep(match, x, value = TRUE))
+  }
+  t <- na_if(t, "character(0)")
   t
 }
 
