@@ -76,7 +76,7 @@ As well, the `standardise_title()` function capitalises all words in a string
 and removes unnecessary symbols to enable comparison.
 
 ```{r eval=FALSE}
-COW <- manypkgs::transmutate(ID = stateabb,
+COW <- manydata::transmutate(ID = stateabb,
                    Beg = manypkgs::standardise_dates(styear, stmonth, stday),
                    End = manypkgs::standardise_dates(endyear, endmonth, endday),
                    Label = manypkgs::standardise_titles(statenme),
