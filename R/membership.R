@@ -10,7 +10,6 @@
 #' @param t A text variable
 #' @param title A title variable
 #' @param memberships Either "condition" or "process"
-#'
 #' @return Either the conditions to be part of the treaty
 #' or the different process steps to become a member
 #' @importFrom dplyr case_when
@@ -81,7 +80,7 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
 #' @import dplyr
 #' @examples
 #' \donttest{
-#' sample <- qEnviron::memberships$IEADB_MEM
+#' sample <- manyenviron::memberships$IEADB_MEM
 #' get_memberships(actor = sample$CountryID, id = sample$qID_ref)
 #' get_memberships(qEnviron::memberships)
 #' }

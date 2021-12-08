@@ -27,7 +27,7 @@ treaty IDs and actors part to the treaty.
 }
 \examples{
 \donttest{
-sample <- qEnviron::memberships$IEADB_MEM
+sample <- manyenviron::memberships$IEADB_MEM
 get_memberships(actor = sample$CountryID, id = sample$qID_ref)
 get_memberships(qEnviron::memberships)
 }
