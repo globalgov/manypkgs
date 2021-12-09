@@ -17,7 +17,7 @@
 #' @import usethis
 #' @importFrom stringr str_detect str_replace
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' update_package("manystates")
 #' }
 #' @return Updated files in correct structure for packages.

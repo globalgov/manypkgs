@@ -19,8 +19,8 @@ and agreement action.
 Code lineage from agreement titles
 }
 \examples{
-\donttest{
+\dontrun{
 code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-code_lineage(database = manyenviron::agreements)
+# code_lineage(database = manyenviron::agreements)
 }
 }

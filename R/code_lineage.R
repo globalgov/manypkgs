@@ -7,9 +7,9 @@
 #' @importFrom purrr map
 #' @importFrom stringr str_squish
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-#' code_lineage(database = manyenviron::agreements)
+#' # code_lineage(database = manyenviron::agreements)
 #' }
 #' @export
 code_lineage <- function(title = NULL, database = NULL) {
@@ -114,7 +114,7 @@ code_actions <- function(title) {
 #' @return A dataframe of agreements' qID and their linkages.
 #' @importFrom purrr map map_chr
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_links(database = manyenviron::agreements)
 #' get_links(database = manyenviron::agreements, treaty_type = "multilateral")
 #' get_links(dataset = manyenviron::agreements$IEADB, treaty_type = "bilateral")

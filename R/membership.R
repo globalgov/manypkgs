@@ -79,13 +79,14 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
 #' part of the treaty
 #' @import dplyr
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' sample <- manyenviron::memberships$IEADB_MEM
 #' get_memberships(actor = sample$CountryID, id = sample$qID_ref)
 #' get_memberships(qEnviron::memberships)
 #' }
 #' @export
-get_memberships <- function(database, actor, id){
+get_memberships <- function(database, actor, id) {
+  Memberships <- NULL
   if (!missing(database)) {
     id <- unname(unlist(purrr::map(database, "qID_ref")))
     actor <- unname(unlist(purrr::map(database, "CountryID")))
@@ -97,7 +98,7 @@ get_memberships <- function(database, actor, id){
     s <- dplyr::left_join(s, k, by = "id") %>% 
       dplyr::select(id, Memberships) %>% unique()
     s
-  }else {
+  } else {
     actor <- as.character(actor)
     id <- as.character(id)
     s <- cbind(actor, id)

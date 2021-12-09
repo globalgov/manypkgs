@@ -32,7 +32,7 @@ The function also asks developers if other files such as the package license,
 contributing file, and code of conduct should be updated.
 }
 \examples{
-\donttest{
+\dontrun{
 update_package("manystates")
 }
 }

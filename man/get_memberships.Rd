@@ -26,7 +26,7 @@ The function allows to generate a dataframe of
 treaty IDs and actors part to the treaty.
 }
 \examples{
-\donttest{
+\dontrun{
 sample <- manyenviron::memberships$IEADB_MEM
 get_memberships(actor = sample$CountryID, id = sample$qID_ref)
 get_memberships(qEnviron::memberships)
