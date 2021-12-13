@@ -9,7 +9,7 @@
 #' @examples
 #' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-#' code_lineage(database = sample(manyenviron::texts$AGR_TXT, 100))
+#' code_lineage(database = manyenviron::texts)
 #' }
 #' @export
 code_lineage <- function(title = NULL, database = NULL) {

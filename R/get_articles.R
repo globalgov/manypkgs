@@ -41,7 +41,7 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
     t <- purrr::map_chr(t, c(as.numeric(article) + 1))
   }
   if (isTRUE(article == "preamble")) {
-    t <- purrr::map_chr(t, 1)
+    t <- ifelse(lengths(t) > 0, purrr::map_chr(t, 1), NA)
   }
   if (isTRUE(article == "memberships")) {
     t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted",
@@ -78,5 +78,6 @@ split_treaty <- function(textvar) {
   for(i in seq_len(length(articles))) {
     attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
   }
+  articles <- gsub("character\\(0\\)", NA, articles)
   articles
 }
