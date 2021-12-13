@@ -24,7 +24,6 @@ code_lineage <- function(title = NULL, database = NULL) {
   parties <- code_parties(title)
   lineage <- ifelse(is.na(entity), paste0(parties, " - ", action), paste0(entity, " - ", action))
   lineage <- gsub("- NA|NULL", "", lineage)
-  lineage <- stringr::str_squish(lineage)
   lineage <- trimws(gsub("^-", "", lineage))
   lineage
 }
