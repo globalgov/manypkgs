@@ -40,7 +40,7 @@ standardise_titles <- standardize_titles <- function(s,
 
   # Step two: translate strings if API is provided
   if (!is.null(api_key)) {
-    out <- lingua(out, api_key == api_key)
+    out <- lingua(out, api_key = api_key, translate = TRUE)
   }
 
   # Step three: standardise strings returned
@@ -122,7 +122,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
          For more information please go to: https://cloud.google.com/translate/docs/setup")
   }
   
-  # Get strings as character and initialize varibles
+  # Get strings as character and initialize variables
   out <- data.frame(out = as.character(s))
   s <- purrr::map(s, as.character)
   . <- NULL
@@ -141,7 +141,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
     for (k in seq_len(nrow(out))) {
       if (is.na(out$language[k])) {
         out$out[k] == out$out[k]
-        # print(paste0("Could not translate ", [k], ", langauge not detect."))
+        # print(paste0("Could not translate ", [k], ", language not detected."))
       } else if (out$language[k] == target_lang) {
         out$out[k] == out$out[k]
         } else {
