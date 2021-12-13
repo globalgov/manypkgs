@@ -22,6 +22,11 @@
 #' }
 #' @export
 code_memberships <- function(t, title = NULL, memberships = NULL){
+  if (missing(t) & missing(title) & missing(memberships)) {
+    me <- member
+    me <- knitr::kable(me, "simple", caption = "Memberships process steps and criterion")
+    me
+  } else{
   # First step: select all the articles concerning memberships
   memb <- get_articles(t, article = "membership")
   if (isTRUE(memberships == "condition")){
@@ -33,11 +38,11 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
       grepl("nomination", memb, ignore.case = T) ~ "by nomination",
       )
     condition_3 <- manypkgs::code_entity(title)
-    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), "geographic", NA)
+    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), paste0("geographic: ", condition_3), NA)
     condition_4 <- manypkgs::code_actions(title)
-    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), "activity", NA)
-    condition <- paste0(condition_1, "-", condition_2, "-", condition_3,"-", condition_4)
-    condition <- stringr::str_remove_all(condition, "NA-|-NA")
+    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), paste0("activity: ", condition_4), NA)
+    condition <- paste0(condition_1, " + ", condition_2, " + ", condition_3, " + ", condition_4)
+    condition <- stringr::str_remove_all(condition, "NA\\s\\+\\s|\\s\\+\\sNA")
     condition
   } else {
     # Third step: when the user select "process" instead of "condition",
@@ -58,9 +63,10 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
     process_5 <- dplyr::case_when(
       grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
       )
-    process <- paste0(process_1, "-", process_2, "-", process_3, "-", process_4, "-", process_5)
-    process <- stringr::str_remove_all(process, "NA-|-NA")
+    process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ", process_4, " + ", process_5)
+    process <- stringr::str_remove_all(process, "NA\\s\\+\\s|\\s\\+\\sNA")
     process
+  }
   }
 }
 
