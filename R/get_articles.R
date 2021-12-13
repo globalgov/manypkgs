@@ -44,11 +44,11 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
     t <- ifelse(lengths(t) > 0, purrr::map_chr(t, 1), NA)
   }
   if (isTRUE(article == "memberships")) {
-    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted",
+    t <- lapply(t, function(x) grep("open for accession|accession shall be|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for",
+    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|is concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
