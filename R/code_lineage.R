@@ -9,19 +9,33 @@
 #' @examples
 #' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-#' # code_lineage(database = manyenviron::agreements)
+#' code_lineage(database = sample(manyenviron::texts$AGR_TXT, 100))
 #' }
 #' @export
 code_lineage <- function(title = NULL, database = NULL) {
   if (is.null(title) & is.null(database)) {
     stop("Please declare a title column or a many database")
   }
+  # Get title variable from database, if available
   if (is.null(title)) {
     title <- unname(unlist(purrr::map(database, "Title")))
+    vars <- unlist(purrr::map(database, names))
   }
+  # Find text variable fromdatabase, if available
+  if (any("Text" == vars)) {
+   txt <- unname(unlist(purrr::map(database, "Text")))
+   txt <- get_articles(txt, "preamble")
+  }
+  # code entity and actions for titles
   entity <- code_entity(title)
   action <- code_actions(title)
   parties <- code_parties(title)
+  # Get entity and actions from preamble if missing from title
+  if (exists("txt")) {
+    entity <- ifelse(is.na(entity), code_entity(txt), entity)
+    action <- ifelse(is.na(action), code_actions(txt), action)
+  }
+  # Paste all together
   lineage <- ifelse(is.na(entity), paste0(parties, " - ", action), paste0(entity, " - ", action))
   lineage <- gsub("- NA|NULL", "", lineage)
   lineage <- trimws(gsub("^-", "", lineage))
