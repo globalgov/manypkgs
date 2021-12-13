@@ -44,13 +44,15 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
     t <- purrr::map_chr(t, 1)
   }
   if (isTRUE(article == "memberships")) {
-    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted", x, value = TRUE))
+    t <- lapply(t, function(x) grep("open for accession|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted",
+                                    x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for", x, value = TRUE))
+    t <- lapply(t, function(x) grep("shall terminate as|shall remain in force|will expire on|is concluded for a period|shall apply for",
+                                    x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
-    t <- lapply(t, function(x) grep(match, x, value = TRUE))
+    t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
   }
   t <- na_if(t, "character(0)")
   t

@@ -37,7 +37,6 @@ code_grounds <- function(title, text = NULL) {
   }
 }
 
-
 #' Code treaty termination date
 #'
 #' Creates a column with the date of termination
