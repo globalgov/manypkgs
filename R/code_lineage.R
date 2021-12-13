@@ -101,14 +101,20 @@ code_actions <- function(title) {
     grepl("waste|pollut|noise|toxic|hazard", title, ignore.case = T) ~  "waste",
     grepl("culture|scien|techno|trade|research|exploration|navigation|data|information",
           title, ignore.case = T) ~  "research",
-    grepl("weapon|military", title, ignore.case = T) ~  "military",
+    grepl("weapon|military|proliferation|nuclear material", title, ignore.case = T) ~  "military",
+    grepl("alliance|peace|mutual defense|defence|friendship|allied|non-agression", title, ignore.case = T) ~  "alliance",
+    grepl("police|security|terrorism", title, ignore.case = T) ~  "security",
     grepl("fish|salmon|herring|tuna|aquaculture|mariculture|molluscs", title,
           ignore.case = T) ~  "fishing",
     grepl("forest|tree", title, ignore.case = T) ~  "forestry", 
-    grepl("finance|fund", title, ignore.case = T) ~  "finance",
-    grepl("economic union|economic community|free trade|common market|economic partnership|economic cooperation", title, ignore.case = T) ~  "economic integration",
-    grepl("invest", title, ignore.case = T) ~  "investement",
-    grepl("trade", title, ignore.case = T) ~ "trade")
+    grepl("financ|fund|loan|lease|debt", title, ignore.case = T) ~  "finance",
+    grepl("trade|tariff|tax|exchange|business|economic", title, ignore.case = T) ~ "trade",
+    grepl("economic union|economic community|free trade|common market|economic partnership|economic cooperation|economic zone", title, ignore.case = T) ~  "economic integration",
+    grepl("invest| BIT | BITs | Tips ", title, ignore.case = T) ~ "investment",
+    grepl("human rights|refugee|genocide|discrimination|cultural rights|political rights|torture|indigenous|migrants|disabilities|stateless|geneva convention|mines", title, ignore.case = T) ~ "human rights",
+    grepl("health|disease|tobacco|asbestos|chemicals|mercury|nursing|cancer|radiation|accidents", title, ignore.case = T) ~ "health",
+    grepl("boundary|territorial|delimitation|frontiers|border|limits", title, ignore.case = T) ~ "delimitation",
+    grepl("outer space|moon|satellite|space liability|space station", title, ignore.case = T) ~ "space")
   actions
 }
 
