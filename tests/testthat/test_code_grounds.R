@@ -14,6 +14,26 @@ test_that("treaty type is identified from treaty title", {
                c("EXP", "EXP", NA, "EXP", NA, "EXP", "EXP"))
 })
 
+data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
+                             "Amendments 34 Of The Limitation Amounts In The 1992 Convention",
+                             "Amendments Of The Limitation Amounts In The 1992 Convention (Annex 4)"),
+                   text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
+                            from the date when either of the high contracting parties shall give notice to the other of its desire to 
+                            terminate it",
+                            "this convention shall, from the date of the exchange of ratifications be deemed to supplant the 
+                            convention between his britannic majesty and the united states of america for the preservation of the halibut 
+                            fishery of the northern pacific ocean including bering sea, concluded march 2, 1923",
+                            " 9. the duration of the present convention shall be for four years in accordance with the provisions of article 
+                            14; denunciation of the convention may only take place within six months from the end of this period and shall be 
+                            communicated to the ministry of foreign relations of el salvador. the duration shall be prolonged automatically and 
+                            tacitly so long as the convention continues in effect for four or more of the signatory countries."))
+
+test_that("treaty termination is identified from treaty text", {
+  expect_equal(code_grounds(data2$title, data2$text),
+               c("EXP", "SUB", "EXP"))
+})
+
+
 # Test that table appears if no argument is mentioned
 test_that("function returns information when no argument is mentioned", {
   expect_type(code_grounds(), "character")
