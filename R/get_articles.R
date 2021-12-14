@@ -49,7 +49,7 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|is concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant",
+    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
