@@ -21,7 +21,8 @@ of the treaty.
 }
 \examples{
 \donttest{
-GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-GNEVAR$Term_Type <- code_grounds(GNEVAR$Title)
+sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
+sample$Term_Type <- code_grounds(sample$Title)
+sample$Term_type <- code_grounds(sample$Title, sample$Text)
 }
 }

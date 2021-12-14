@@ -8,13 +8,14 @@
 #' of the treaty
 #' @examples
 #' \donttest{
-#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-#' GNEVAR$Term_Type <- code_grounds(GNEVAR$Title)
+#' sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
+#' sample$Term_Type <- code_grounds(sample$Title)
+#' sample$Term_type <- code_grounds(sample$Title, sample$Text)
 #' }
 #' @export
 code_grounds <- function(title, text = NULL) {
   
-  if (missing(title)) {
+  if (missing(title) & is.null(text)) {
     # If missing argument, function returns list of termination clause types
     type <- as_tibble(termination_type)
     type$meaning[7] <- paste(substr(type$meaning[7], 0, 100), "...")
@@ -23,8 +24,8 @@ code_grounds <- function(title, text = NULL) {
     type$meaning[12] <- paste(substr(type$meaning[12], 0, 100), "...")
     type <- knitr::kable(type, "simple",
                          caption = "Treaty Termination Type, source: https://www.srdlawnotes.com/2017/08/termination-of-treaties.html")
-    type
-  }  else {
+  } else {
+    if(!missing(title) & is.null(text)) {
     # Step one: if the term date is mentioned in the treaty title,
     # it should be classified as "Sunset/Expiry"
     title <- as.character(title)
@@ -33,8 +34,24 @@ code_grounds <- function(title, text = NULL) {
     type <- ifelse(grepl("For The Period", title) &
                      grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}", 
                            title, ignore.case = T), paste0("EXP"), NA)
-    type
+    } else {
+    title <- as.character(title)
+    # All the treaties having the term date in the title had the
+    # word "For the Period"
+    type <- ifelse(grepl("For The Period", title) &
+                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}", 
+                           title, ignore.case = T), paste0("EXP"), NA)
+    # Get the termination clauses
+    term <- get_articles(text, article = "termination")
+    term <- dplyr::case_when(
+      grepl("shall terminate the agreement|shall supersede|shall.*supplant", term, ignore.case = T) ~ "SUB",
+      grepl("for a period|shall be for.*years|shall apply for.*years|shall be extended through|concluded for a period.*years|will expire on|shall remain in force until|shall remain in force for", term, ignore.case = T) ~ "EXP",
+      )
+    type <- ifelse(!is.na(type), type, term)
+    # dplyr::coalesce(type, term)
+    }
   }
+  type
 }
 
 #' Code treaty termination date
@@ -53,6 +70,7 @@ code_grounds <- function(title, text = NULL) {
 #' }
 #' @export
 code_term <- function(title, text = NULL) {
+  if (is.null(text)){
   # Step one: extract term date if present in treaty title
   title <- as.character(title)
   # Treaties with the term date in the title had the word "For the Period"
@@ -63,5 +81,19 @@ code_term <- function(title, text = NULL) {
   date <- stringr::str_extract_all(date, "\\d{1,2}.\\w{3,}.\\d{4}$")
   # Standardise the date format
   date <- as.Date(as.character(date), format = "%d %B %Y")
+  } else {
+    # repeat same operation for the titles
+    title <- as.character(title)
+    date <- ifelse(grepl("For The Period", title),
+                   stringr::str_extract_all(title, "\\d{1,2}.\\w{3,}.\\d{4}"), NA)
+    date <- suppressWarnings(stringr::str_remove_all(date, "^c|\\(|\\)|\""))
+    date <- stringr::str_extract_all(date, "\\d{1,2}.\\w{3,}.\\d{4}$")
+    date <- as.Date(as.character(date), format = "%d %B %Y")
+    #Then, complement it with text information (to be re-worked)
+    # term <- get_articles(text, article = "termination")
+    # term <- ifelse(stringr::str_detect(term, "will expire on d{1,2}.*d{4}"), s)
+    # 
+    # date <- ifelse(!is.na(date), date, term)
+  }
   date
 }
