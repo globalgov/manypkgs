@@ -16,6 +16,7 @@
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr
+#' @importFrom dplyr na_if
 #' @return A list of treaty sections of the same length
 #' @examples
 #' \donttest{
@@ -48,13 +49,13 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|is concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated",
+    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|is concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
   }
-  t <- na_if(t, "character(0)")
+  t <- dplyr::na_if(t, "character(0)")
   t
 }
 
@@ -72,12 +73,11 @@ split_treaty <- function(textvar) {
   t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
   # Split list
   articles <- ifelse(stringr::str_detect(t, "\n"), strsplit(t, "\narticle|\nart\\."),
-                     strsplit(t, "\\. article"))
+                     strsplit(t, "\\.\\sarticle\\s"))
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
   for(i in seq_len(length(articles))) {
     attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
   }
-  articles <- gsub("character\\(0\\)", NA, articles)
   articles
 }
