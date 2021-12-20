@@ -46,6 +46,10 @@ code_grounds <- function(title, text = NULL) {
     term <- dplyr::case_when(
       grepl("shall terminate the agreement|shall supersede|shall.*supplant", term, ignore.case = T) ~ "SUB",
       grepl("for a period|shall be for.*years|shall apply for.*years|shall be extended through|concluded for a period.*years|will expire on|shall remain in force until|shall remain in force for", term, ignore.case = T) ~ "EXP",
+      grepl("agreement.*shall terminate upon.*completion.*project", term, ignore.case = T) ~ "COM",
+      grepl("have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved", term, ignore.case = T) ~ "REC",
+      grepl("renounce its membership", term, ignore.case = T) ~ "REN",
+      grepl("may withdraw", term, ignore.case = T) ~ "WIT",
       )
     type <- ifelse(!is.na(type), type, term)
     # dplyr::coalesce(type, term)

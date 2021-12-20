@@ -16,7 +16,10 @@ test_that("treaty type is identified from treaty title", {
 
 data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substances To Protocol 18 Of The 1868 Revised Convention On The Navigation Of The Rhine",
                              "Amendments 34 Of The Limitation Amounts In The 1992 Convention",
-                             "Amendments Of The Limitation Amounts In The 1992 Convention (Annex 4)"),
+                             "Amendments Of The Limitation Amounts In The 1992 Convention (Annex 4)",
+                             "Convention of the Lake",
+                             "Treaty on the environment",
+                             "Protocol on the Convention of the Sea"),
                    text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
                             from the date when either of the high contracting parties shall give notice to the other of its desire to 
                             terminate it",
@@ -26,12 +29,15 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                             " 9. the duration of the present convention shall be for four years in accordance with the provisions of article 
                             14; denunciation of the convention may only take place within six months from the end of this period and shall be 
                             communicated to the ministry of foreign relations of el salvador. the duration shall be prolonged automatically and 
-                            tacitly so long as the convention continues in effect for four or more of the signatory countries."))
+                            tacitly so long as the convention continues in effect for four or more of the signatory countries.",
+                            "Any member states may withdraw from this present convention",
+                            "This agreement shall terminate upon the complete completion of the project",
+                            "Member state can renounce its memberships at any time after ratification"))
 
 # Termination types identified through treaty texts
 test_that("treaty termination is identified from treaty text", {
   expect_equal(code_grounds(data2$title, data2$text),
-               c("EXP", "SUB", "EXP"))
+               c("EXP", "SUB", "EXP", "WIT", "COM", "REN"))
 })
 
 
