@@ -49,7 +49,7 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through",
+    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through|have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|renounce its membership|may withdraw",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
@@ -70,7 +70,8 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
 #' @return A structured list for each agreement
 split_treaty <- function(textvar) {
   # Lower case and standardizes all, just in case
-  t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
+  txt <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
+  t <- stringr::str_remove_all(txt, "\nannex.*$|\n annex.*$")
   # Split list
   articles <- ifelse(stringr::str_detect(t, "\n"), strsplit(t, "\narticle|\nart\\."),
                      strsplit(t, "\\.\\sarticle\\s"))
@@ -78,6 +79,14 @@ split_treaty <- function(textvar) {
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
   for(i in seq_len(length(articles))) {
     attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
+  }
+  annexes <- ifelse(stringr::str_detect(txt, "\n"), strsplit(txt, "\n annex|\nannex"),
+                     strsplit(txt, "\\.\\sannex"))
+  
+  for(i in seq_len(length(annexes))) attr(annexes[[i]], "Treaty") <- paste0("Treaty_", i)
+  for(i in seq_len(length(annexes))) annexes[[i]][1] <- NA
+  for(i in seq_len(length(annexes))) {
+    attr(annexes[[i]], "Annexe") <- paste0("Annexe = ", (lengths(annexes[i])-1))
   }
   articles
 }
