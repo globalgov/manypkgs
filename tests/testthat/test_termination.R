@@ -19,7 +19,8 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                              "Amendments Of The Limitation Amounts In The 1992 Convention (Annex 4)",
                              "Convention of the Lake",
                              "Treaty on the environment",
-                             "Protocol on the Convention of the Sea"),
+                             "Protocol on the Convention of the Sea",
+                             "Amendment on Convention on biodiversity"),
                    text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
                             from the date when either of the high contracting parties shall give notice to the other of its desire to 
                             terminate it",
@@ -32,12 +33,13 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                             tacitly so long as the convention continues in effect for four or more of the signatory countries.",
                             "Any member states may withdraw from this present convention",
                             "This agreement shall terminate upon the complete completion of the project",
-                            "Member state can renounce its memberships at any time after ratification"))
+                            "Member state can renounce its memberships at any time after ratification",
+                            "In the cases of extraordinary events, members states can withdrawal"))
 
 # Termination types identified through treaty texts
 test_that("treaty termination is identified from treaty text", {
   expect_equal(code_grounds(data2$title, data2$text),
-               c("EXP", "SUB", "EXP", "WIT", "COM", "REN"))
+               c("EXP", "SUB", "EXP", "WIT", "COM", "REN", "REB"))
 })
 
 
