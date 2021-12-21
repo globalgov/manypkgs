@@ -50,6 +50,7 @@ code_grounds <- function(title, text = NULL) {
       grepl("have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved", term, ignore.case = T) ~ "REC",
       grepl("renounce its membership", term, ignore.case = T) ~ "REN",
       grepl("may withdraw", term, ignore.case = T) ~ "WIT",
+      grepl("extraordinary events", term, ignore.case = T) ~ "REB",
       )
     type <- ifelse(!is.na(type), type, term)
     # dplyr::coalesce(type, term)
