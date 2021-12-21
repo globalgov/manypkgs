@@ -35,7 +35,7 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
       grepl("any government|any", memb, ignore.case = T) ~ "open",
       )
     condition_2 <- dplyr::case_when(
-      grepl("nomination", memb, ignore.case = T) ~ "by nomination",
+      grepl("nomination", memb, ignore.case = T) ~ "Semi-open",
       )
     condition_3 <- manypkgs::code_entity(title)
     condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), paste0("geographic: ", condition_3), NA)
