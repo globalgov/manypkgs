@@ -51,6 +51,12 @@ code_grounds <- function(title, text = NULL) {
       grepl("renounce its membership", term, ignore.case = T) ~ "REN",
       grepl("may withdraw", term, ignore.case = T) ~ "WIT",
       grepl("extraordinary events", term, ignore.case = T) ~ "REB",
+      grepl("failure of obligation|nonperformance of obligations", term, ignore.case = T) ~ "PER",
+      grepl("conflict with.*jus cogens", term, ignore.case = T) ~ "COG",
+      grepl("state party existence.*come to.*end", term, ignore.case = T) ~ "EXT",
+      grepl("incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter", term, ignore.case = T) ~ "INC",
+      grepl("in the case of war.*end", term, ignore.case = T) ~ "WAR",
+      grepl("party injurious.*end.*obligations", term, ignore.case = T) ~ "INJ",
       )
     type <- ifelse(!is.na(type), type, term)
     # dplyr::coalesce(type, term)

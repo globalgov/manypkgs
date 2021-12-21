@@ -20,7 +20,10 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                              "Convention of the Lake",
                              "Treaty on the environment",
                              "Protocol on the Convention of the Sea",
-                             "Amendment on Convention on biodiversity"),
+                             "Amendment on Convention on biodiversity",
+                             "Convention on the delimitation of the border between x and y",
+                             "Convention between switzerland and france",
+                             "Treaty to preserve the lake of Geneva"),
                    text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
                             from the date when either of the high contracting parties shall give notice to the other of its desire to 
                             terminate it",
@@ -34,12 +37,15 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                             "Any member states may withdraw from this present convention",
                             "This agreement shall terminate upon the complete completion of the project",
                             "Member state can renounce its memberships at any time after ratification",
-                            "In the cases of extraordinary events, members states can withdrawal"))
+                            "In the cases of extraordinary events, members states can withdrawal",
+                            "In the case of war, the parties to the treaties will end this agreement",
+                            "If one become party injurious, the treaty come to an end and parties are liberate from their obligations",
+                            "Nonperformance of obligations will generate the end of the treaty"))
 
 # Termination types identified through treaty texts
 test_that("treaty termination is identified from treaty text", {
   expect_equal(code_grounds(data2$title, data2$text),
-               c("EXP", "SUB", "EXP", "WIT", "COM", "REN", "REB"))
+               c("EXP", "SUB", "EXP", "WIT", "COM", "REN", "REB", "WAR", "INJ", "PER"))
 })
 
 
