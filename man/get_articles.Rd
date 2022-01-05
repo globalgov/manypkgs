@@ -41,6 +41,7 @@ get_articles(t, article = "memberships")
 get_articles(t, article = "termination")
 get_articles(t, article = 1)
 get_articles(t, match = "constitution")
+get_articles(t, "annex")
 get_articles(t, article = "preamble", match = "unofficial")
 }
 }

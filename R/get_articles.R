@@ -27,6 +27,7 @@
 #' get_articles(t, article = "termination")
 #' get_articles(t, article = 1)
 #' get_articles(t, match = "constitution")
+#' get_articles(t, "annex")
 #' get_articles(t, article = "preamble", match = "unofficial")
 #' }
 #' @export
@@ -51,6 +52,10 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
   if (isTRUE(article == "termination")) {
     t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through|have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|renounce its membership|may withdraw|extraordinary events|
                                     failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations",
+                                    x, ignore.case = TRUE, value = TRUE))
+  }
+  if (isTRUE(article == "annex")) {
+    t <- lapply(t, function(x) grep("∑",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
@@ -79,8 +84,10 @@ split_treaty <- function(textvar) {
 
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
-  for(i in seq_len(length(articles))) {
-    attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
+  for(i in seq_len(length(articles))){
+  suppressWarnings(ifelse(stringr::str_detect(articles[i], "∑"),
+        (attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i])-1, "(+Annexe[s])")),
+        (attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i])))))
   }
   
   articles
