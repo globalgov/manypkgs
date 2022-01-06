@@ -79,8 +79,8 @@ split_treaty <- function(textvar) {
   t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
   
   # Split list
-  articles <- ifelse(stringr::str_detect(t, "\n"), strsplit(sub("\nannex", "∑", t), "\narticle|\nart\\.|(?<=.)(?=[∑])", perl = TRUE),
-                    strsplit(t, "\\.\\sarticle\\s"))
+  articles <- ifelse(stringr::str_detect(t, "\nannex|\narticle|\nart\\."), strsplit(sub("\nannex", "∑", t), "\narticle|\nart\\.|(?<=.)(?=[∑])", perl = TRUE),
+                    strsplit(t, "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
 
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
