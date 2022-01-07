@@ -43,20 +43,21 @@ code_grounds <- function(title, text = NULL) {
                            title, ignore.case = T), paste0("EXP"), NA)
     # Get the termination clauses
     term <- get_articles(text, article = "termination")
+    # Classify them according to key terms
     term <- dplyr::case_when(
       grepl("shall terminate the agreement|shall supersede|shall.*supplant", term, ignore.case = T) ~ "SUB",
       grepl("for a period|shall be for.*years|shall apply for.*years|shall be extended through|concluded for a period.*years|will expire on|shall remain in force until|shall remain in force for", term, ignore.case = T) ~ "SUN",
       grepl("agreement.*shall terminate upon.*completion.*project", term, ignore.case = T) ~ "SUC",
-      grepl("have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved", term, ignore.case = T) ~ "DIS",
-      grepl("renounce its membership", term, ignore.case = T) ~ "REN",
-      grepl("may withdraw", term, ignore.case = T) ~ "WTH",
+      grepl("have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|may.*denounce", term, ignore.case = T) ~ "DIS",
+      grepl("renounce its membership|renunciation.*by.*party", term, ignore.case = T) ~ "REN",
+      grepl("may withdraw|any member.*may.*withdraw|party.*may withraw", term, ignore.case = T) ~ "WTH",
       grepl("extraordinary events", term, ignore.case = T) ~ "REB",
       grepl("failure of obligation|nonperformance of obligations", term, ignore.case = T) ~ "NON",
       grepl("conflict with.*jus cogens", term, ignore.case = T) ~ "JUS",
       grepl("state party existence.*come to.*end", term, ignore.case = T) ~ "EXT",
       grepl("incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter", term, ignore.case = T) ~ "INC",
       grepl("in the case of war.*end", term, ignore.case = T) ~ "WAR",
-      grepl("party injurious.*end.*obligations", term, ignore.case = T) ~ "INJ",
+      grepl("party injurious.*end.*obligations|injured party.*end.*obligations", term, ignore.case = T) ~ "INJ",
       )
     type <- ifelse(!is.na(type), type, term)
     # dplyr::coalesce(type, term)

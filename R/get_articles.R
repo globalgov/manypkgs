@@ -51,7 +51,7 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
   }
   if (isTRUE(article == "termination")) {
     t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through|have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|renounce its membership|may withdraw|extraordinary events|
-                                    failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations",
+                                    failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations|may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "annex")) {
