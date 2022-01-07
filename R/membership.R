@@ -55,10 +55,10 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
       grepl("ratification", memb, ignore.case = T) ~ "ratification",
     )
     process_3 <- dplyr::case_when(
-      grepl("accession shall be notified|notified", memb, ignore.case = T) ~ "notification",
+      grepl("accession shall be notified|notified|any notification|receipt of any notice", memb, ignore.case = T) ~ "notification",
       )
     process_4 <- dplyr::case_when(
-      grepl("by a two-thirds majority of its membership", memb, ignore.case = T) ~ "majority vote",
+      grepl("two-thirds majority of its membership", memb, ignore.case = T) ~ "majority vote",
       )
     process_5 <- dplyr::case_when(
       grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
