@@ -7,7 +7,7 @@
 #' "membership" or "termination" clauses,
 #' or articles that contain certain word.
 #' @param textvar A text variable
-#' @param article Would you like to access a specific article?
+#' @param article Would you like to get a specific article?
 #' Null by default.
 #' Other options include the "preamble",
 #' "termination" clause, "membership" clause, "annex",
@@ -16,10 +16,10 @@
 #' across all treaties will be returned.
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
-#' @param treaty_type What types of treaty do aou want to look at?
+#' @param treaty_type What types of treaty do you want to look at?
 #' By default, "all".
 #' Other treaty types include:
-#' "agreements", "declaration", "exchange of notes" and "amendements".
+#' "agreements", "declaration", "exchange of notes" and "amendments".
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr
