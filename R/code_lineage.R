@@ -20,11 +20,10 @@ code_lineage <- function(title = NULL, database = NULL) {
   if (is.null(title)) {
     title <- unname(unlist(purrr::map(database, "Title")))
     vars <- unlist(purrr::map(database, names))
-  }
-  # Find text variable fromdatabase, if available
-  if (any("Text" == vars)) {
-   txt <- unname(unlist(purrr::map(database, "Text")))
-   txt <- get_articles(txt, "preamble")
+    if (any("Text" == vars)) { # Find text variable in database, if available
+      txt <- unname(unlist(purrr::map(database, "Text")))
+      txt <- get_articles(txt, "preamble")
+    }
   }
   # code entity and actions for titles
   entity <- code_entity(title)
