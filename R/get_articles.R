@@ -7,12 +7,18 @@
 #' "membership" or "termination" clauses,
 #' or articles that contain certain word.
 #' @param textvar A text variable
-#' @param article Either the "preamble" or an article number
-#' across all treaties to be returned.
-#' It can be left NULL if user intends to look for a word in
-#' all treaties.
+#' @param article Would you like to access a specific article?
+#' Null by default. Options include the "preamble",
+#' "termination" clause, "membership" clause, "annex",
+#' or an article number.
+#' The specified portion or number
+#' across all treaties will be returned.
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
+#' @param treaty_type What types of treaty do aou want to look at?
+#' By default, "all".
+#' Other treaty types include:
+#' "agreements", "declaration", "exchange of notes" and "amendements".
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr
@@ -25,13 +31,17 @@
 #' get_articles(t, article = "preamble")
 #' get_articles(t, article = "memberships")
 #' get_articles(t, article = "termination")
+#' get_articles(t, article = "annex")
 #' get_articles(t, article = 1)
 #' get_articles(t, match = "constitution")
-#' get_articles(t, "annex")
 #' get_articles(t, article = "preamble", match = "unofficial")
 #' }
 #' @export
-get_articles <- function(textvar, article = NULL, match = NULL) {
+get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "all") {
+  # Selects treaties
+  if (treaty_type == "agreements") {
+    print("a")
+  }
   # Split treaty texts into articles
   t <- split_treaty(textvar)
   # Get articles if declared
@@ -51,11 +61,11 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
   }
   if (isTRUE(article == "termination")) {
     t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through|have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|renounce its membership|may withdraw|extraordinary events|
-                                    failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations|may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|party.*may withraw|renunciation.*by.*party",
+                                    |failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations|may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "annex")) {
-    t <- lapply(t, function(x) grep("∑",
+    t <- lapply(t, function(x) grep("^annex",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if(!is.null(match)) {
@@ -77,19 +87,17 @@ get_articles <- function(textvar, article = NULL, match = NULL) {
 split_treaty <- function(textvar) {
   # Lower case and standardizes all, just in case
   t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
-  
+  # detect annexes
+  articles <- ifelse(stringr::str_detect(t, "\nannex"), stringr::str_replace(t, "\nannex", "\nannex annex"), t)
   # Split list
-  articles <- ifelse(stringr::str_detect(t, "\nannex|\narticle|\nart\\."), strsplit(sub("\nannex", "∑", t), "\narticle|\nart\\.|(?<=.)(?=[∑])", perl = TRUE),
-                    strsplit(t, "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
-
+  articles <- ifelse(stringr::str_detect(articles, "\n"),
+                     strsplit(articles, "\nannex|\narticle|\nart\\.", perl = TRUE),
+                     strsplit(articles, "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
-  for(i in seq_len(length(articles))){
-  suppressWarnings(ifelse(stringr::str_detect(articles[i], "∑"),
-        (attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i])-1, "(+Annexe[s])")),
-        (attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i])))))
+  for(i in seq_len(length(articles))) {
+    attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
   }
-  
+  articles <- lapply(articles, stringr::str_trim)
   articles
 }
-
