@@ -45,7 +45,7 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
 # Termination types identified through treaty texts
 test_that("treaty termination is identified from treaty text", {
   expect_equal(code_grounds(data2$title, data2$text),
-               c("EXP", "SUB", "EXP", "WIT", "COM", "REN", "REB", "WAR", "INJ", "PER"))
+               c("SUN", "SUB", "SUN", "WTH", "SUC", "REN", "REB", "WAR", "INJ", "NON"))
 })
 
 
