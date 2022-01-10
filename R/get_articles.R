@@ -8,7 +8,8 @@
 #' or articles that contain certain word.
 #' @param textvar A text variable
 #' @param article Would you like to access a specific article?
-#' Null by default. Options include the "preamble",
+#' Null by default.
+#' Other options include the "preamble",
 #' "termination" clause, "membership" clause, "annex",
 #' or an article number.
 #' The specified portion or number
