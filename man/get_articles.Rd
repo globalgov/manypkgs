@@ -9,7 +9,7 @@ get_articles(textvar, article = NULL, match = NULL, treaty_type = "all")
 \arguments{
 \item{textvar}{A text variable}
 
-\item{article}{Would you like to access a specific article?
+\item{article}{Would you like to get a specific article?
 Null by default.
 Other options include the "preamble",
 "termination" clause, "membership" clause, "annex",
@@ -20,10 +20,11 @@ across all treaties will be returned.}
 \item{match}{A regex match for a word(s) or expression.
 For multiple words, please use "|" to divide them.}
 
-\item{treaty_type}{What types of treaty do aou want to look at?
+\item{treaty_type}{What types of treaty do you want to look at?
 By default, "all".
 Other treaty types include:
-"agreements", "declaration", "exchange of notes" and "amendements".}
+"agreements", "protocols", "amendments",
+"notes", "memorandum", and "resolutions".}
 }
 \value{
 A list of treaty sections of the same length
@@ -51,5 +52,8 @@ get_articles(t, article = "annex")
 get_articles(t, article = 1)
 get_articles(t, match = "constitution")
 get_articles(t, article = "preamble", match = "unofficial")
+get_articles(t, treaty_type = "agreements")
+get_articles(t, treaty_type = "protocols")
+get_articles(t, treaty_type = "amendments")
 }
 }
