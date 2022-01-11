@@ -19,7 +19,8 @@
 #' @param treaty_type What types of treaty do you want to look at?
 #' By default, "all".
 #' Other treaty types include:
-#' "agreements", "declaration", "exchange of notes" and "amendments".
+#' "agreements", "protocols", "amendments",
+#' "notes", "memorandum", and "resolutions".
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr
@@ -36,13 +37,45 @@
 #' get_articles(t, article = 1)
 #' get_articles(t, match = "constitution")
 #' get_articles(t, article = "preamble", match = "unofficial")
+#' get_articles(t, treaty_type = "agreements")
+#' get_articles(t, treaty_type = "protocols")
+#' get_articles(t, treaty_type = "amendments")
 #' }
 #' @export
 get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "all") {
-  # Selects treaties
-  if (treaty_type == "agreements") {
-    print("a")
+  
+  # Get treaty type (adapted from code_type)
+  if (treaty_type != "all") {
+    out <- purrr::map(textvar, as.character)
+    type <- as.data.frame(agreement_type)
+    for (k in seq_len(nrow(type))) {
+      out <- gsub(paste0(type$word[[k]]),
+                  paste0(type$category[[k]]),
+                  out, ignore.case = TRUE,
+                  perl = T)
+    }
+    type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
+    if (treaty_type == "agreements") {
+      textvar <- ifelse(type == "AGREE", textvar, "character(0)") 
+    } 
+    if (treaty_type == "protocols") {
+      textvar <- ifelse(type == "PROTO", textvar, "character(0)") 
+    }
+    if (treaty_type == "amendments") {
+      textvar <- ifelse(type == "AMEND", textvar, "character(0)") 
+    }
+    if (treaty_type == "notes") {
+      textvar <- ifelse(type == "NOTES", textvar, "character(0)") 
+    }
+    if (treaty_type == "memorandum") {
+      textvar <- ifelse(type == "STRAT", textvar, "character(0)") 
+    }
+    if (treaty_type == "resolution") {
+      textvar <- ifelse(type == "RESOL", textvar, "character(0)") 
+    }
+    textvar
   }
+  
   # Split treaty texts into articles
   t <- split_treaty(textvar)
   # Get articles if declared
