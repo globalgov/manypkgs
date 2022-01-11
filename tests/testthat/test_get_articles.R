@@ -19,7 +19,7 @@ test_that("Treaty text is splitted correctly", {
   expect_equal(get_articles(treaty, match = "preamble"), list("preamble: this is the preamble",
                                                               "preamble: this is the preamble"))
   expect_equal(get_articles(treaty, treaty_type = "agreements"),
-               ist("na",c("preamble: this is the preamble",
+               list("na",c("preamble: this is the preamble",
                           "1: this is the article 1",
                           "2: this is the article of an agreement")))
   expect_equal(get_articles(treaty, treaty_type = "amendments"), list("NA", NA))
