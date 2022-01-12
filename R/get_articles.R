@@ -23,8 +23,10 @@
 #' "notes", "memorandum", and "resolutions".
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
-#' @importFrom purrr map_chr
+#' @importFrom purrr map_chr map
+#' @importFrom stringr str_extract
 #' @importFrom dplyr na_if
+#' @importFrom stringi stri_trans_general
 #' @return A list of treaty sections of the same length
 #' @examples
 #' \donttest{
@@ -43,10 +45,11 @@
 #' }
 #' @export
 get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "all") {
-  
-  # Get treaty type (adapted from code_type)
+  # Get textvar standardized
+  t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
+  # Get treaty type if declared (adapted from code_type)
   if (treaty_type != "all") {
-    out <- purrr::map(textvar, as.character)
+    out <- purrr::map(t, as.character)
     type <- as.data.frame(agreement_type)
     for (k in seq_len(nrow(type))) {
       out <- gsub(paste0(type$word[[k]]),
@@ -56,28 +59,27 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
     }
     type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
     if (treaty_type == "agreements") {
-      textvar <- ifelse(type == "AGREE", textvar, "character(0)") 
+      t <- ifelse(type == "AGREE", t, "character(0)") 
     } 
     if (treaty_type == "protocols") {
-      textvar <- ifelse(type == "PROTO", textvar, "character(0)") 
+      t <- ifelse(type == "PROTO", t, "character(0)") 
     }
     if (treaty_type == "amendments") {
-      textvar <- ifelse(type == "AMEND", textvar, "character(0)") 
+      t <- ifelse(type == "AMEND", t, "character(0)") 
     }
     if (treaty_type == "notes") {
-      textvar <- ifelse(type == "NOTES", textvar, "character(0)") 
+      t <- ifelse(type == "NOTES", t, "character(0)") 
     }
     if (treaty_type == "memorandum") {
-      textvar <- ifelse(type == "STRAT", textvar, "character(0)") 
+      t <- ifelse(type == "STRAT", t, "character(0)") 
     }
     if (treaty_type == "resolution") {
-      textvar <- ifelse(type == "RESOL", textvar, "character(0)") 
+      t <- ifelse(type == "RESOL", t, "character(0)") 
     }
-    textvar
+    t
   }
-  
   # Split treaty texts into articles
-  t <- split_treaty(textvar)
+  t <- split_treaty(t)
   # Get articles if declared
   if (is.numeric(article)) {
     for (k in seq_len(length(t))) {
@@ -115,18 +117,17 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
 #' that reflect a structure
 #' based on having a preamble and several articles.
 #' @param textvar A text variable
-#' @importFrom stringr str_detect
-#' @importFrom stringi stri_trans_general
+#' @importFrom stringr str_detect str_replace str_trim
 #' @return A structured list for each agreement
 split_treaty <- function(textvar) {
-  # Lower case and standardizes all, just in case
-  t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
-  # detect annexes
-  articles <- ifelse(stringr::str_detect(t, "\nannex"), stringr::str_replace(t, "\nannex", "\nannex annex"), t)
+  # Detect annexes
+  t <- purrr::map(textvar, as.character)
+  articles <- ifelse(stringr::str_detect(t, "\nannex"),
+                     stringr::str_replace(t, "\nannex", "\nannex annex"), t)
   # Split list
   articles <- ifelse(stringr::str_detect(articles, "\n"),
-                     strsplit(articles, "\nannex|\narticle|\nart\\.", perl = TRUE),
-                     strsplit(articles, "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
+                     strsplit(as.character(articles), "\nannex|\narticle|\nart\\.", perl = TRUE),
+                     strsplit(as.character(articles), "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
   # Add attributes
   for(i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
   for(i in seq_len(length(articles))) {
