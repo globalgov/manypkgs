@@ -6,6 +6,7 @@
 #' and agreement action.
 #' @importFrom purrr map
 #' @importFrom stringr str_squish
+#' @importFrom stringi stri_trans_general
 #' @examples
 #' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
@@ -26,6 +27,7 @@ code_lineage <- function(title = NULL, database = NULL) {
     }
   }
   # code entity and actions for titles
+  title <- stringi::stri_trans_general(title, id = "Latin-ASCII")
   entity <- code_entity(title)
   action <- code_actions(title)
   parties <- code_parties(title)
