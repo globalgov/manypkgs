@@ -92,12 +92,28 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
     t <- ifelse(lengths(t) > 0, purrr::map_chr(t, 1), NA)
   }
   if (isTRUE(article == "memberships")) {
-    t <- lapply(t, function(x) grep("open for accession|accession shall be|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|become parties|request accession|may be admitted|any notification|receipt of any notice",
+    t <- lapply(t, function(x) grep("open for accession|accession shall be|can accede to|may join|
+                                    |open for joining|open for signature|shall be open|may accede|
+                                    |to accede to|may become a member|accession shall bind|
+                                    |accede thereto|become parties|request accession|
+                                    |may be admitted|any notification|receipt of any notice",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|concluded for a period|shall apply for|période de|shall be terminated|expiration of the period|denunciation|terminated|shall supersede|shall.*supplant|shall be extended through|have denounced this convention|shall be dissolved|may decide.*to dissolve|may be dissolved|renounce its membership|may withdraw|extraordinary events|
-                                    |failure of obligation|nonperformance of obligations|conflict with.*jus cogens|state party existence.*come to.*end|incompatibility between.*agreement and UN charter|incompatibility between.*agreement and United Nations charter|in the case of war.*end|party injurious.*end.*obligations|may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|party.*may withraw|renunciation.*by.*party",
+    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|
+                                    |concluded for a period|shall apply for|
+                                    |periode de|shall be terminated|expiration of the period|
+                                    |denunciation|terminated|shall supersede|shall.*supplant|
+                                    |shall be extended through|have denounced this convention|
+                                    |shall be dissolved|may decide.*to dissolve|may be dissolved|
+                                    |renounce its membership|may withdraw|extraordinary events|
+                                    |failure of obligation|nonperformance of obligations|
+                                    |conflict with.*jus cogens|state party existence.*come to.*end|
+                                    |incompatibility between.*agreement and UN charter|
+                                    |incompatibility between.*agreement and United Nations charter|
+                                    |in the case of war.*end|party injurious.*end.*obligations|
+                                    |may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|
+                                    |party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "annex")) {
