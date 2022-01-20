@@ -73,3 +73,4 @@ test_that("treaty term date is identified from treaty title", {
                          NA, "2009-03-12",
                          "1998-09-18")))
 })
+

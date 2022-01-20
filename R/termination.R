@@ -14,7 +14,6 @@
 #' }
 #' @export
 code_grounds <- function(title, text = NULL) {
-  
   if (missing(title) & is.null(text)) {
     # If missing argument, function returns list of termination clause types
     type <- as_tibble(termination_type)
