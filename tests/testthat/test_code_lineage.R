@@ -12,9 +12,10 @@ data <- tibble::tibble(title = c("Agreement Between Cape Verde And Portugal On F
                                "RUS-USA[KTC]_1973A", "RUS-USA[UFO]_1973A"))
 
 test_that("code_lineage function works", {
-  expect_equal(code_lineage(title = data$title), c("CPV-PRT[FSD] - fishing", "NA - biodiversity",
-                                                   "NA - delimitation", "River", "NA - trade",
-                                                   "River Basin", "NA - biodiversity",
+  expect_equal(code_lineage(title = data$title), c("CPV-PRT[FSD] - fishing", "NA - environment",
+                                                   "NA - territorial boundaries", "River",
+                                                   "NA - trade and investment",
+                                                   "River Basin", "NA - environment",
                                                    "RUS-USA[KTC] - fishing", "Pacific Ocean - fishing"))
 })
 
