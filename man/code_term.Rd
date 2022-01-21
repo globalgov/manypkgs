@@ -2,26 +2,27 @@
 % Please edit documentation in R/termination.R
 \name{code_term}
 \alias{code_term}
-\title{Code treaty termination date}
+\title{Code Treaty Termination Type}
 \usage{
 code_term(title, text = NULL)
 }
 \arguments{
-\item{title}{title column variable.}
+\item{title}{title column variable}
 
 \item{text}{treaty text column variable}
 }
 \value{
-a character vector with the term date of the
-treaty
+a character vector with the termination clause type
+of the treaty
 }
 \description{
-Creates a column with the date of termination
+Creates a column with the type of termination
 of the treaty.
 }
 \examples{
 \donttest{
-GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-GNEVAR$Term_dates <- code_term(GNEVAR$Title)
+sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
+code_termination(sample$Title)
+code_termination(sample$Title, sample$Text)
 }
 }

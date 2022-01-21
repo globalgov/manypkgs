@@ -9,11 +9,11 @@
 #' @examples
 #' \donttest{
 #' sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
-#' sample$Term_Type <- code_grounds(sample$Title)
-#' sample$Term_type <- code_grounds(sample$Title, sample$Text)
+#' code_termination(sample$Title)
+#' code_termination(sample$Title, sample$Text)
 #' }
 #' @export
-code_grounds <- function(title, text = NULL) {
+code_term <- function(title, text = NULL) {
   if (missing(title) & is.null(text)) {
     # If missing argument, function returns list of termination clause types
     type <- as_tibble(termination_type)
@@ -80,7 +80,7 @@ code_grounds <- function(title, text = NULL) {
 #' GNEVAR$Term_dates <- code_term(GNEVAR$Title)
 #' }
 #' @export
-code_term <- function(title, text = NULL) {
+code_term_date <- function(title, text = NULL) {
   if (is.null(text)){
   # Step one: extract term date if present in treaty title
   title <- as.character(title)
