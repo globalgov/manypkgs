@@ -9,19 +9,23 @@ code_memberships(t, title = NULL, memberships = NULL)
 \arguments{
 \item{t}{A text variable}
 
-\item{title}{A title variable}
+\item{title}{A title variable.
+If not declared, NULL by default.}
 
-\item{memberships}{Either "condition" or "process"}
+\item{memberships}{The "condition" or "process"
+for parties to accede a treaty.
+If not declared, returns the "process".}
 }
 \value{
 Either the conditions to be part of the treaty
-or the different process steps to become a member
+or the different process steps to become a member.
 }
 \description{
 The function allows to get information on the conditions
-to enter the treaty. It could be limited to a geographic
-area, a certain activity or that State parties have to
-nominate new members.
+for parties to enter a treaty.
+It could be limited to a entity area,
+a certain domain,
+or on State party nominations for new members.
 The function also allows to get information on the
 process by which a new member has to go through in
 order to accede memberships
@@ -29,7 +33,8 @@ order to accede memberships
 \examples{
 \donttest{
 m <- manyenviron::texts$AGR_TXT[100:300,]
-m$cond_mem <- code_memberships(m$Text, m$Title, memberships = "condition")
-m$proc_mem <- code_memberships(m$Text, memberships = "process")
+code_memberships(m$Text, m$Title, memberships = "condition")
+code_memberships(m$Text, memberships = "process")
+code_memberships()
 }
 }

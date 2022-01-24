@@ -1,35 +1,40 @@
 #' Get conditions and processes to accede memberships
 #' 
 #' The function allows to get information on the conditions
-#' to enter the treaty. It could be limited to a geographic
-#' area, a certain activity or that State parties have to
-#' nominate new members. 
+#' for parties to enter a treaty.
+#' It could be limited to a entity area,
+#' a certain domain,
+#' or on State party nominations for new members. 
 #' The function also allows to get information on the
 #' process by which a new member has to go through in
 #' order to accede memberships
 #' @param t A text variable
-#' @param title A title variable
-#' @param memberships Either "condition" or "process"
+#' @param title A title variable.
+#' If not declared, NULL by default.
+#' @param memberships The "condition" or "process"
+#' for parties to accede a treaty.
+#' If not declared, returns the "process".
 #' @return Either the conditions to be part of the treaty
-#' or the different process steps to become a member
+#' or the different process steps to become a member.
 #' @importFrom dplyr case_when
-#' @importFrom stringr str_remove_all
+#' @importFrom stringr str_remove_all str_trim
 #' @examples
 #' \donttest{
 #' m <- manyenviron::texts$AGR_TXT[100:300,]
-#' m$cond_mem <- code_memberships(m$Text, m$Title, memberships = "condition")
-#' m$proc_mem <- code_memberships(m$Text, memberships = "process")
+#' code_memberships(m$Text, m$Title, memberships = "condition")
+#' code_memberships(m$Text, memberships = "process")
+#' code_memberships()
 #' }
 #' @export
-code_memberships <- function(t, title = NULL, memberships = NULL){
-  if (missing(t) & missing(title) & missing(memberships)) {
+code_memberships <- function(t, title = NULL, memberships = NULL) {
+  if (missing(t)) {
     me <- member
     me <- knitr::kable(me, "simple", caption = "Memberships process steps and criterion")
     me
-  } else{
+  } else {
   # First step: select all the articles concerning memberships
   memb <- get_articles(t, article = "membership")
-  if (isTRUE(memberships == "condition")){
+  if (isTRUE(memberships == "condition")) {
     # Second step: match terms to identify memberships conditions
     condition_1 <- dplyr::case_when(
       grepl("any government|any", memb, ignore.case = T) ~ "open",
@@ -38,9 +43,9 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
       grepl("nomination", memb, ignore.case = T) ~ "Semi-open",
       )
     condition_3 <- manypkgs::code_entity(title)
-    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), paste0("geographic: ", condition_3), NA)
-    condition_4 <- manypkgs::code_actions(title)
-    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), paste0("activity: ", condition_4), NA)
+    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), paste0("entity: ", condition_3), NA)
+    condition_4 <- manypkgs::code_domain(title)
+    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), paste0("domain: ", condition_4), NA)
     condition <- paste0(condition_1, " + ", condition_2, " + ", condition_3, " + ", condition_4)
     condition <- stringr::str_remove_all(condition, "NA\\s\\+\\s|\\s\\+\\sNA")
     condition
@@ -64,7 +69,8 @@ code_memberships <- function(t, title = NULL, memberships = NULL){
       grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
       )
     process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ", process_4, " + ", process_5)
-    process <- stringr::str_remove_all(process, "NA\\s\\+\\s|\\s\\+\\sNA")
+    process <- stringr::str_remove_all(process, "\\+ NA|NA \\+")
+    process <- stringr::str_trim(process)
     process
   }
   }
