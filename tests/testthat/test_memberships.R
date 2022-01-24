@@ -15,7 +15,7 @@ data <- data.frame(title = c("Amendments On The Transport Of Corrosive Substance
 
 
 test_that("code_memberships works properly", {
-  expect_equal(code_memberships(data$text, data$title, memberships = "condition"), c("open + activity: research", NA, NA))
+  expect_equal(code_memberships(data$text, data$title, memberships = "condition"), c("open + domain: waste", NA, NA))
   expect_equal(code_memberships(data$text, data$title, memberships = "process"), c("signature + ratification",
                                                                                    "signature + ratification", NA))
   expect_type(code_memberships(), "character")
