@@ -22,7 +22,7 @@ of the treaty.
 \examples{
 \donttest{
 sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
-code_termination(sample$Title)
-code_termination(sample$Title, sample$Text)
+code_term(sample$Title)
+code_term(sample$Title, sample$Text)
 }
 }

@@ -22,6 +22,6 @@ of the treaty.
 \examples{
 \donttest{
 GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-GNEVAR$Term_dates <- code_term(GNEVAR$Title)
+code_term_date(GNEVAR$Title)
 }
 }

@@ -9,12 +9,12 @@
 #' @examples
 #' \donttest{
 #' sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
-#' code_termination(sample$Title)
-#' code_termination(sample$Title, sample$Text)
+#' code_term(sample$Title)
+#' code_term(sample$Title, sample$Text)
 #' }
 #' @export
 code_term <- function(title, text = NULL) {
-  if (missing(title) & is.null(text)) {
+  if (missing(title)) {
     # If missing argument, function returns list of termination clause types
     type <- as_tibble(termination_type)
     type$meaning[7] <- paste(substr(type$meaning[7], 0, 100), "...")
@@ -24,7 +24,7 @@ code_term <- function(title, text = NULL) {
     type <- knitr::kable(type, "simple",
                          caption = "Treaty Termination Type, source: https://www.srdlawnotes.com/2017/08/termination-of-treaties.html")
   } else {
-    if(!missing(title) & is.null(text)) {
+    if(is.null(text)) {
     # Step one: if the term date is mentioned in the treaty title,
     # it should be classified as "Sunset/Expiry"
     title <- as.character(title)
@@ -77,7 +77,7 @@ code_term <- function(title, text = NULL) {
 #' @examples
 #' \donttest{
 #' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-#' GNEVAR$Term_dates <- code_term(GNEVAR$Title)
+#' code_term_date(GNEVAR$Title)
 #' }
 #' @export
 code_term_date <- function(title, text = NULL) {
