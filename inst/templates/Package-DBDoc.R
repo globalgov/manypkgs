@@ -5,4 +5,10 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 {{{describe}}}
-{{{sourceelem}}} "{{{database}}}"
+{{{sourceelem}}}
+#'
+#' @details
+#' ``` {r, echo = FALSE, warning = FALSE}
+#' lapply({{{database}}}, skimr::skim_without_charts)
+#' ```
+"{{{database}}}"
