@@ -1,3 +1,4 @@
+# Test if the dataset meets the many packages universe requirements
 # Test that certain columns exist
 test_that("datasets have the required variables", {
   expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Title))
