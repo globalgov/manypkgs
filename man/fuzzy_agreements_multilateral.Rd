@@ -4,19 +4,19 @@
 \alias{fuzzy_agreements_multilateral}
 \title{Helper function for fuzzy matching multilateral agreements}
 \usage{
-fuzzy_agreements_multilateral(treaty_ID)
+fuzzy_agreements_multilateral(treatyID)
 }
 \arguments{
-\item{treaty_ID}{treaty_ID variable created with \code{manypkgs::code_agreements()}}
+\item{treatyID}{treatyID variable created with \code{manypkgs::code_agreements()}}
 }
 \value{
-A data frame with acronyms and treaty_ID matches without linkages
+A data frame with acronyms and treatyID matches without linkages
 }
 \description{
 Fuzzy match agreements' acronyms for multilateral treaties
 }
 \details{
-Extracts agreement acronyms from treaty_IDs and fuzzy
+Extracts agreement acronyms from treatyIDs and fuzzy
 match their similarities.
 See \code{manypkgs::code_acronym()} for more details on acronyms.
 }

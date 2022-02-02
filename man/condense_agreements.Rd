@@ -2,34 +2,34 @@
 % Please edit documentation in R/condense.R
 \name{condense_agreements}
 \alias{condense_agreements}
-\title{Condense similar treaty_IDs}
+\title{Condense similar treatyIDs}
 \usage{
 condense_agreements(database = NULL, var = NULL)
 }
 \arguments{
 \item{database}{A "many" package database}
 
-\item{var}{Two or more treaty_ID variables}
+\item{var}{Two or more treatyID variables}
 }
 \value{
-A dataframe of treaty_ID and treaty_ID references
+A dataframe of treatyID and treatyID references
 }
 \description{
-Different treaty_IDs generated for different datasets
+Different treatyIDs generated for different datasets
 might have minor differences in terms of acronym or linkage.
-Some minor differences in treaty_IDs could mean different treaty_IDS
+Some minor differences in treatyIDs could mean different treatyIDS
 in different datasets actually refer to the same agreement.
 The function finds these occurences and returns the
-first treaty_ID argument entered as a replacement.
+first treatyID argument entered as a replacement.
 }
 \examples{
-data1 <- data.frame(treaty_ID = c("CPV-PRT[FSD]_1980A",
+data1 <- data.frame(treatyID = c("CPV-PRT[FSD]_1980A",
 "CPV-PRT[FSD]_1990P:FSD_1980A",
 "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P"))
-data2 <- data.frame(treaty_ID = c("TD06LJ_1981A", "RAMSA_1971A",
+data2 <- data.frame(treatyID = c("TD06LJ_1981A", "RAMSA_1971A",
 "WIIEWH_1982P:RAMSA_1971A",
 "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
-many_ID <- condense_agreements(var = c(data1$treaty_ID, data2$treaty_ID))
-data1 <- merge(data1, many_ID)
-data2 <- merge(data2, many_ID)
+manyID <- condense_agreements(var = c(data1$treatyID, data2$treatyID))
+data1 <- merge(data1, manyID)
+data2 <- merge(data2, manyID)
 }

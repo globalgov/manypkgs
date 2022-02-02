@@ -1,65 +1,65 @@
-#' Condense similar treaty_IDs
+#' Condense similar treatyIDs
 #'
-#' Different treaty_IDs generated for different datasets
+#' Different treatyIDs generated for different datasets
 #' might have minor differences in terms of acronym or linkage.
-#' Some minor differences in treaty_IDs could mean different treaty_IDS
+#' Some minor differences in treatyIDs could mean different treatyIDS
 #' in different datasets actually refer to the same agreement.
 #' The function finds these occurences and returns the
-#' first treaty_ID argument entered as a replacement.
+#' first treatyID argument entered as a replacement.
 #' @param database A "many" package database
-#' @param var Two or more treaty_ID variables
+#' @param var Two or more treatyID variables
 #' @import dplyr
 #' @importFrom purrr map
 #' @importFrom stringr str_detect str_trim
 #' @importFrom tidyr fill
-#' @return A dataframe of treaty_ID and treaty_ID references
+#' @return A dataframe of treatyID and treatyID references
 #' @examples
-#' data1 <- data.frame(treaty_ID = c("CPV-PRT[FSD]_1980A",
+#' data1 <- data.frame(treatyID = c("CPV-PRT[FSD]_1980A",
 #' "CPV-PRT[FSD]_1990P:FSD_1980A",
 #' "TD06LJ_1981A", "RAMSA_1971A", "WIIEWH_1982P"))
-#' data2 <- data.frame(treaty_ID = c("TD06LJ_1981A", "RAMSA_1971A",
+#' data2 <- data.frame(treatyID = c("TD06LJ_1981A", "RAMSA_1971A",
 #' "WIIEWH_1982P:RAMSA_1971A",
 #' "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
-#' many_ID <- condense_agreements(var = c(data1$treaty_ID, data2$treaty_ID))
-#' data1 <- merge(data1, many_ID)
-#' data2 <- merge(data2, many_ID)
+#' manyID <- condense_agreements(var = c(data1$treatyID, data2$treatyID))
+#' data1 <- merge(data1, manyID)
+#' data2 <- merge(data2, manyID)
 #' @export
 condense_agreements <- function(database = NULL, var = NULL) {
 
   # Step one: identify if database is present
   if (is.null(var)) {
-    treaty_ID <- lapply(database, function(x) x[["treaty_ID"]])
-    treaty_ID <- unname(unlist(purrr::map(treaty_ID, as.character)))
+    treatyID <- lapply(database, function(x) x[["treatyID"]])
+    treatyID <- unname(unlist(purrr::map(treatyID, as.character)))
   } else {
-    treaty_ID <- unlist(var)
+    treatyID <- unlist(var)
   }
 
   # Step two: rbind variables and remove duplicates
-  treaty_ID <- data.frame(treaty_ID = treaty_ID)
-  treaty_ID <- treaty_ID %>%
-    dplyr::distinct(treaty_ID) %>%
-    dplyr::mutate(treaty_ID = stringr::str_trim(treaty_ID, "both"))
+  treatyID <- data.frame(treatyID = treatyID)
+  treatyID <- treatyID %>%
+    dplyr::distinct(treatyID) %>%
+    dplyr::mutate(treatyID = stringr::str_trim(treatyID, "both"))
   # Initialize variables to avoid CMD notes/issues
-  ID <- linkage <- ID1 <- year_type <- many_ID <- match_bt <- match_yt <- NULL
+  ID <- linkage <- ID1 <- year_type <- manyID <- match_bt <- match_yt <- NULL
 
-  # step two: split treaty_ID and organize data
-  similar <- treaty_ID %>%
-    dplyr::mutate(linkage = ifelse(grepl(":", treaty_ID), gsub(".*:", "", treaty_ID), NA),
-                  ID1 = gsub("\\:.*", "", treaty_ID),
+  # step two: split treatyID and organize data
+  similar <- treatyID %>%
+    dplyr::mutate(linkage = ifelse(grepl(":", treatyID), gsub(".*:", "", treatyID), NA),
+                  ID1 = gsub("\\:.*", "", treatyID),
                   acronym = as.character(gsub("\\_.*", "", ID1)),
-                  parties = as.character(ifelse(stringr::str_detect(treaty_ID, "\\["),
+                  parties = as.character(ifelse(stringr::str_detect(treatyID, "\\["),
                                                 gsub("\\[.*", "", ID1), 0)),
                   year_type = gsub(".*_", "", ID1))
 
   # Step three: identify very similar acronyms, for multilateral treaties
-  fuzzy <- fuzzy_agreements_multilateral(treaty_ID$treaty_ID)
+  fuzzy <- fuzzy_agreements_multilateral(treatyID$treatyID)
   # Join data
   similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
   # Tranform match NAs into 0
   similar$match <- ifelse(is.na(similar$match), 0, similar$match)
 
   # Step four: repeat same operations for bilateral treaties
-  bt <- fuzzy_agreements_bilateral(treaty_ID$treaty_ID)
+  bt <- fuzzy_agreements_bilateral(treatyID$treatyID)
   # Join data
   similar <- dplyr::full_join(similar, bt, by = "acronym")
   # Tranform match NAs into 0
@@ -67,7 +67,7 @@ condense_agreements <- function(database = NULL, var = NULL) {
 
   # Step five: re-organize data and assign fuzzy matches to observation
   similar <- similar %>%
-    dplyr::distinct(treaty_ID, .keep_all = TRUE) %>% # join can add duplication
+    dplyr::distinct(treatyID, .keep_all = TRUE) %>% # join can add duplication
     dplyr::mutate(fuzzy = gsub("\\_.*", "", match),
                   match_yt = gsub(".*_", "", match),
                   fuzzy_bi = gsub("\\_.*", "", match_bt),
@@ -87,9 +87,9 @@ condense_agreements <- function(database = NULL, var = NULL) {
     dplyr::group_by(ID) %>%
     tidyr::fill(linkage, .direction = "updown") %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(many_ID = stringr::str_trim((
+    dplyr::mutate(manyID = stringr::str_trim((
       ifelse(is.na(linkage), ID, paste0(ID, ":", linkage))), "both")) %>%
-    dplyr::select(treaty_ID, many_ID) %>%
+    dplyr::select(treatyID, manyID) %>%
     dplyr::distinct()
 
   similar
@@ -98,19 +98,19 @@ condense_agreements <- function(database = NULL, var = NULL) {
 #' Helper function for fuzzy matching multilateral agreements
 #'
 #' Fuzzy match agreements' acronyms for multilateral treaties
-#' @details Extracts agreement acronyms from treaty_IDs and fuzzy
+#' @details Extracts agreement acronyms from treatyIDs and fuzzy
 #' match their similarities.
 #' See `manypkgs::code_acronym()` for more details on acronyms.
-#' @param treaty_ID treaty_ID variable created with `manypkgs::code_agreements()`
+#' @param treatyID treatyID variable created with `manypkgs::code_agreements()`
 #' @importFrom dplyr filter
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
-#' @return A data frame with acronyms and treaty_ID matches without linkages
-fuzzy_agreements_multilateral <- function(treaty_ID) {
+#' @return A data frame with acronyms and treatyID matches without linkages
+fuzzy_agreements_multilateral <- function(treatyID) {
 
-  # Split treaty_ID
-  ID <- as.character(gsub("\\:.*", "", treaty_ID))
-  acronym <- as.character(gsub("\\_.*", "", treaty_ID))
+  # Split treatyID
+  ID <- as.character(gsub("\\:.*", "", treatyID))
+  acronym <- as.character(gsub("\\_.*", "", treatyID))
 
   # Fuzzy match acronyms
   fuzzy <- stringdist::stringsimmatrix(acronym, acronym, method = "jaccard")
@@ -139,19 +139,19 @@ fuzzy_agreements_multilateral <- function(treaty_ID) {
 #' Helper function for fuzzy matching bilateral agreements
 #'
 #' Fuzzy match agreements' acronyms for bilateral treaties
-#' @details Extracts agreement acronyms from treaty_IDs and fuzzy
+#' @details Extracts agreement acronyms from treatyIDs and fuzzy
 #' match their similarities.
 #' See `manypkgs::code_acronym()` for more details on acronyms.
-#' @param treaty_ID treaty_ID variable created with `manypkgs::code_agreements()`
+#' @param treatyID treatyID variable created with `manypkgs::code_agreements()`
 #' @importFrom dplyr filter
 #' @importFrom stringr str_detect
 #' @importFrom stringdist stringsimmatrix
-#' @return A data frame with acronyms and treaty_ID matches without linkages
-fuzzy_agreements_bilateral <- function(treaty_ID) {
+#' @return A data frame with acronyms and treatyID matches without linkages
+fuzzy_agreements_bilateral <- function(treatyID) {
 
-  # Get acronyms and IDs from treaty_IDs
-  ID <- as.character(gsub("\\:.*", "", treaty_ID))
-  acronym <- as.character(gsub("\\_.*", "", treaty_ID))
+  # Get acronyms and IDs from treatyIDs
+  ID <- as.character(gsub("\\:.*", "", treatyID))
+  acronym <- as.character(gsub("\\_.*", "", treatyID))
 
   # Fuzzy match acronyms
   fuzzy <- stringdist::stringsimmatrix(acronym, acronym)
