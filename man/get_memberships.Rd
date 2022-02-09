@@ -28,7 +28,7 @@ treaty IDs and actors part to the treaty.
 \examples{
 \dontrun{
 sample <- manyenviron::memberships$IEADB_MEM
-get_memberships(actor = sample$CountryID, id = sample$qID_ref)
+get_memberships(actor = sample$CountryID, id = sample$manyID)
 get_memberships(qEnviron::memberships)
 }
 }

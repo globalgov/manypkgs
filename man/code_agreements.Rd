@@ -25,7 +25,7 @@ The function "expects" that the variable has been
 standardised using \code{standardise_dates()}}
 }
 \value{
-a character vector with the treaty_IDs
+a character vector with the treatyIDs
 }
 \description{
 Creates an ID that contains information on the

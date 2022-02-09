@@ -93,14 +93,14 @@ code_memberships <- function(t, title = NULL, memberships = NULL) {
 #' @examples
 #' \dontrun{
 #' sample <- manyenviron::memberships$IEADB_MEM
-#' get_memberships(actor = sample$CountryID, id = sample$qID_ref)
+#' get_memberships(actor = sample$CountryID, id = sample$manyID)
 #' get_memberships(qEnviron::memberships)
 #' }
 #' @export
 get_memberships <- function(database, actor, id) {
   Memberships <- NULL
   if (!missing(database)) {
-    id <- unname(unlist(purrr::map(database, "qID_ref")))
+    id <- unname(unlist(purrr::map(database, "manyID")))
     actor <- unname(unlist(purrr::map(database, "CountryID")))
     s <- cbind(actor, id)
     s <- as.data.frame(s)

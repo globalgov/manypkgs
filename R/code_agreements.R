@@ -17,7 +17,7 @@
 #' @param date date variable.
 #' The function "expects" that the variable has been
 #' standardised using `standardise_dates()`
-#' @return a character vector with the treaty_IDs
+#' @return a character vector with the treatyIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom purrr map
@@ -61,40 +61,40 @@ code_agreements <- function(dataset = NULL, title, date) {
   out <- vector(mode = "character", length = length(title)) # initialize vector
   # for agreements (A) where abbreviation is known and
   # bilateral agreement is made subsequently
-  treaty_ID <- ifelse(!is.na(abbrev) & (type == "A") & !is.na(parties),
+  treatyID <- ifelse(!is.na(abbrev) & (type == "A") & !is.na(parties),
                 paste0(parties, "_", uID, type, ":", abbrev), out)
-  treaty_ID <- ifelse(!is.na(abbrev) & (type != "A") & !is.na(parties),
-                paste0(parties, "_", uID, type, ":", line), treaty_ID)
+  treatyID <- ifelse(!is.na(abbrev) & (type != "A") & !is.na(parties),
+                paste0(parties, "_", uID, type, ":", line), treatyID)
   # for agreements (A) where abbreviation is known
-  treaty_ID <- ifelse(!is.na(abbrev) & (type == "A") & is.na(parties),
-                paste0(abbrev, type), treaty_ID)
+  treatyID <- ifelse(!is.na(abbrev) & (type == "A") & is.na(parties),
+                paste0(abbrev, type), treatyID)
   # when abbreviation is known but treaty type is not agreement
-  treaty_ID <- ifelse(!is.na(abbrev) & (type != "A") & is.na(parties),
-                paste0(acronym, "_", uID, type, ":", line), treaty_ID)
+  treatyID <- ifelse(!is.na(abbrev) & (type != "A") & is.na(parties),
+                paste0(acronym, "_", uID, type, ":", line), treatyID)
   # when parties were not identified and treaty type is agreement (A)
-  treaty_ID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev),
-                paste0(acronym, "_", uID, type), treaty_ID)
+  treatyID <- ifelse(is.na(parties) & (type == "A") & is.na(abbrev),
+                paste0(acronym, "_", uID, type), treatyID)
   # when parties were not identified and type is not agreement
-  treaty_ID <- ifelse(is.na(parties) & (type != "A") & is.na(abbrev),
-                paste0(acronym, "_", uID, type, ":", line), treaty_ID)
+  treatyID <- ifelse(is.na(parties) & (type != "A") & is.na(abbrev),
+                paste0(acronym, "_", uID, type, ":", line), treatyID)
   # when parties were identified and type is agreement (A)
-  treaty_ID <- ifelse(!is.na(parties) & (type == "A") & is.na(abbrev),
-                paste0(parties, "_", uID, type), treaty_ID)
+  treatyID <- ifelse(!is.na(parties) & (type == "A") & is.na(abbrev),
+                paste0(parties, "_", uID, type), treatyID)
   # when parties were identified and type is not agreement
-  treaty_ID <- ifelse(!is.na(parties) & (type != "A") & is.na(abbrev),
-                paste0(parties, "_", uID, type, ":", line), treaty_ID)
+  treatyID <- ifelse(!is.na(parties) & (type != "A") & is.na(abbrev),
+                paste0(parties, "_", uID, type, ":", line), treatyID)
   # deletes empty line or linkage
-  treaty_ID <- stringr::str_remove_all(treaty_ID, "_$")
-  treaty_ID <- stringr::str_remove_all(treaty_ID, ":$")
+  treatyID <- stringr::str_remove_all(treatyID, "_$")
+  treatyID <- stringr::str_remove_all(treatyID, ":$")
 
   # step three: inform users about observations
   # not matched and duplicates
-  cat(sum(is.na(treaty_ID)), "entries were not matched at all.\n")
-  cat("There were", sum(duplicated(treaty_ID,
+  cat(sum(is.na(treatyID)), "entries were not matched at all.\n")
+  cat("There were", sum(duplicated(treatyID,
                                    incomparables = NA)), "duplicated IDs.\n")
   usethis::ui_done(
     "Please run `vignette('agreements')` for more information.")
-  treaty_ID
+  treatyID
 }
 
 #' Code Agreement Parties
@@ -490,18 +490,18 @@ code_linkage <- function(title, date, return_all = FALSE) {
     pred_words
   } else {
     # Step one: standardise titles to improve matching
-    treaty_ID <- standardise_titles(as.character(title))
+    treatyID <- standardise_titles(as.character(title))
 
     # Step two: code parties if present
-    parties <- code_parties(treaty_ID)
+    parties <- code_parties(treatyID)
     usethis::ui_done("Coded agreement parties")
 
     # Step three: code agreement type
-    type <- code_type(treaty_ID)
+    type <- code_type(treatyID)
     usethis::ui_done("Coded agreement type")
 
     # Step four: code known agreements
-    abbrev <- code_known_agreements(treaty_ID)
+    abbrev <- code_known_agreements(treatyID)
     usethis::ui_done("Coded known agreements")
 
     # Step five: give the observation a unique ID and acronym
@@ -514,7 +514,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     
     # Step seven: remove 'predictable words' in agreements
     pw <- paste0("\\<", paste(predictable_words$predictable_words, collapse = "\\>|\\<"), "\\>") 
-    out <- gsub(pw, "", treaty_ID, ignore.case = TRUE)
+    out <- gsub(pw, "", treatyID, ignore.case = TRUE)
 
     # Step eight: remove numbers, signs and parentheses
     out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
