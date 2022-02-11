@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_lineage.R
 \name{get_links}
 \alias{get_links}
-\title{Get links from treaty titles}
+\title{Get links from manyID}
 \usage{
 get_links(database, dataset, treaty_type = "all")
 }

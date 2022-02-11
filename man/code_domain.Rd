@@ -2,7 +2,7 @@
 % Please edit documentation in R/code_lineage.R
 \name{code_domain}
 \alias{code_domain}
-\title{Code Domain from agreement titles}
+\title{Code domains from agreement titles}
 \usage{
 code_domain(title)
 }
@@ -13,7 +13,7 @@ code_domain(title)
 The domain taken from agreement title
 }
 \description{
-Code Domain from agreement titles
+Code domains from agreement titles
 }
 \examples{
 \donttest{

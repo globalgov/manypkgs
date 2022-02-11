@@ -77,7 +77,7 @@ code_entity <- function(title) {
   out
 }
 
-#' Code Domain from agreement titles
+#' Code domains from agreement titles
 #'
 #' @param title Treaty titles
 #' @return The domain taken from agreement title
@@ -150,7 +150,7 @@ code_domain <- function(title) {
   domain
 }
 
-#' Get links from treaty titles
+#' Get links from manyID
 #'
 #' Treaties that modify, amend, or expand other treaties
 #' usually specify so in the title.
