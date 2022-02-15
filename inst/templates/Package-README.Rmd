@@ -8,7 +8,7 @@ Describe your {{{package}}} here.
 
 ## How to install:
 
-We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, [manydata](https://github.com/globalgov/manydata), as follows, and you can discover, install, and update various packages from the many packages universe.
+We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, [manydata](https://github.com/globalgov/manydata), as outlined below, to discover, install, and update various packages from the many packages universe.
 
 ```{r, eval = FALSE}
 # install.packages(remotes)
@@ -33,11 +33,14 @@ While some of our packages can and do include novel data,
 much of what they offer involves standing on the shoulders of giants.
 Our packages endeavour to be as transparent as possible about where data comes from,
 how it has been coded and/or relabeled, and who has done the work.
-As such, we make it easy to cite both the particular datasets you use by listing the
-official references in the function above, as well as the package
-providers for their work assembling the data using the function below.
+As such, we make it easy to cite both the particular datasets you use by listing their
+original references with the first function below, as well as the package
+providers for their work assembling the data using the second function.
 
 ``` {r cites}
+# Citing the original data
+manydata::data_source("{{{package}}}")
+# Citing the package
 citation("{{{package}}}")
 ```
 
@@ -46,17 +49,18 @@ citation("{{{package}}}")
 [manydata](https://github.com/globalgov/manydata) and [manypkgs](https://github.com/globalgov/manypkgs) also makes it easy to contribute in lots of different ways.
 
 If you have already developed a dataset salient to this package,
-please reach out by flagging this as an
+please reach out by flagging it as an
 [issue](https://github.com/globalgov/{{{package}}}/issues) for us, or by
 forking, further developing the package yourself, and opening a [pull
 request](https://github.com/globalgov/{{{package}}}/pulls) so that your data
-can be used easily.
+can easily be integrated into the package.
 
-If you have collected or developed other data that may not be best for this package,
+If you have collected or developed other data that may not thematically fit
+in this package,
 but could be useful within the many packages universe,
 [manypkgs](https://github.com/globalgov/manypkgs) includes a number of
 functions that make it easy to create a new package and populate with global governance data.
 
-If you have any other ideas about how this package, or the avrious 'many packages',
+If you have any further ideas about how this package, or the various other 'many packages',
 might better facilitate your empirical analysis,
 we’d be very happy to hear from you.
