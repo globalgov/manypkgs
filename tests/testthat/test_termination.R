@@ -24,10 +24,10 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                              "Convention on the delimitation of the border between x and y",
                              "Convention between switzerland and france",
                              "Treaty to preserve the lake of Geneva"),
-                   text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
+                   text = c("the present convention shall remain in force for a period of five years and thereafter until two years
                             from the date when either of the high contracting parties shall give notice to the other of its desire to
                             term_dateinate it",
-                            "this convention shall, from the date of the exchange of ratifications be deemed to supplant the 
+                            "this convention shall, from the date of the exchange of ratifications be deemed to supplant the
                             convention between his britannic majesty and the united states of america for the preservation of the halibut
                             fishery of the northern pacific ocean including bering sea, concluded march 2, 1923",
                             " 9. the duration of the present convention shall be for four years in accordance with the provisions of article

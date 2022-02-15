@@ -24,7 +24,7 @@ code_term <- function(title, text = NULL) {
     type <- knitr::kable(type, "simple",
                          caption = "Treaty Termination Type, source: https://www.srdlawnotes.com/2017/08/termination-of-treaties.html")
   } else {
-    if(is.null(text)) {
+    if (is.null(text)) {
     # Step one: if the term date is mentioned in the treaty title,
     # it should be classified as "Sunset/Expiry"
     title <- as.character(title)

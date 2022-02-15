@@ -109,7 +109,8 @@ get_memberships <- function(database, actor, id) {
       dplyr::summarise(Memberships = toString(actor)) %>%
       dplyr::ungroup()
     s <- dplyr::left_join(s, k, by = "id") %>%
-      dplyr::select(id, Memberships) %>% unique()
+      dplyr::select(id, Memberships) %>%
+      unique()
     s
   } else {
     actor <- as.character(actor)
