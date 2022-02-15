@@ -4,7 +4,7 @@ author: "James Hollway"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contributing to manydata}
+  %\VignetteIndexEntry{Contributing with manypkgs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
