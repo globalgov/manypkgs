@@ -30,11 +30,11 @@ h4 {
 
 /* Package name in the navbar*/
 .navbar-light .navbar-brand {
-  color: #8B3031;
+  color: #595959;
 }
 /* Navbar menu names*/
 .navbar-light .navbar-nav .nav-link {
-  color: #8B3031;
+  color: #595959;
 }
 
 .version {
