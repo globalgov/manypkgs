@@ -54,6 +54,10 @@ aside .h2 {
 aside ul {
   font-size: 0.95rem;
 }
+/* Fontsize of elements in function reference*/
+dd {
+  font-size: 14px;
+}
 /* End of changes Bootstrap 5 theme switch */
 /* ---- particles.js container ---- */
 #particles-js {
