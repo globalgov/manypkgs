@@ -20,9 +20,9 @@ silently creates a set of tests for this dataset,
 and creates and opens documentation for the dataset.
 }
 \description{
-Save a cleaned data object, consistent with the manydata universe, ready to be
-lazy-loaded and create scripts for documenting and testing that object within
-the new package.
+Save a cleaned data object, consistent with the manydata universe,
+ready to be lazy-loaded and create scripts for documenting and
+testing that object within the new package.
 }
 \details{
 The function creates a data directory, if nonexistent, and
