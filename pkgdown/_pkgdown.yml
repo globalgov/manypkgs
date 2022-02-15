@@ -59,14 +59,18 @@ reference:
     desc: "These functions were created to assist data providers with the setup of many packages"
     contents:
       - setup_package
+      - update_package
+      - manytemplate
       - add_author
   - title: "Processing functions"
     desc: "These functions were created to assist data providers with the processing of data when creating packages"
     contents:
       - import_data
       - export_data
+      - add_bib
       - starts_with("standardise")
       - starts_with("code")
+      - starts_with("fuzzy")
   - title: "Other utility functions"
     desc: "Other utility functions that are useful during the creation of a new package"
     contents:
@@ -74,7 +78,14 @@ reference:
       - depends
       - retain
       - split_treaty
-      - get_treaty
+      - get_articles
+      - get_links
+      - get_memberships
+      - lingua
+      - correct_words
+      - condense_agreements
+      - order_agreements
+      - create_directory
 footer:
   structure:
     left: devs
