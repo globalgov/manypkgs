@@ -1,8 +1,8 @@
 #' Adding datasets to the many packages universe
 #'
-#' Save a cleaned data object, consistent with the manydata universe, ready to be
-#' lazy-loaded and create scripts for documenting and testing that object within
-#' the new package.
+#' Save a cleaned data object, consistent with the manydata universe,
+#' ready to be lazy-loaded and create scripts for documenting and 
+#' testing that object within the new package.
 #' @param ... Unquoted name of the dataset object to save.
 #' @param database Quoted name of any existing database or of the database to
 #' be created.

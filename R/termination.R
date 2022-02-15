@@ -31,14 +31,14 @@ code_term <- function(title, text = NULL) {
     # All the treaties having the term date in the title had the
     # word "For the Period"
     type <- ifelse(grepl("For The Period", title) &
-                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}", 
+                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                            title, ignore.case = T), paste0("EXP"), NA)
     } else {
     title <- as.character(title)
     # All the treaties having the term date in the title had the
     # word "For the Period"
     type <- ifelse(grepl("For The Period", title) &
-                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}", 
+                     grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                            title, ignore.case = T), paste0("EXP"), NA)
     # Get the termination clauses
     term <- get_articles(text, article = "termination")
@@ -81,7 +81,7 @@ code_term <- function(title, text = NULL) {
 #' }
 #' @export
 code_term_date <- function(title, text = NULL) {
-  if (is.null(text)){
+  if (is.null(text)) {
   # Step one: extract term date if present in treaty title
   title <- as.character(title)
   # Treaties with the term date in the title had the word "For the Period"
@@ -103,7 +103,6 @@ code_term_date <- function(title, text = NULL) {
     #Then, complement it with text information (to be re-worked)
     # term <- get_articles(text, article = "termination")
     # term <- ifelse(stringr::str_detect(term, "will expire on d{1,2}.*d{4}"), s)
-    # 
     # date <- ifelse(!is.na(date), date, term)
   }
   date

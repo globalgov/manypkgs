@@ -152,16 +152,16 @@ code_parties <- function(title, activity = TRUE) {
     out[out == ""] <- NA
     parties <- unname(out)
     parties <- stringr::str_replace_all(parties, "_", "-")
-    
+
     # Step two: add NAs to observations not matched
     parties[!grepl("-", parties)] <- NA
-    
+
     # Step three:: get bilateral agreements where
     # two parties have been identified
     parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
                       ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                              ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
-    
+
     # Step four: get activity
     if (isTRUE(activity)) {
       out <- code_activity(title)
@@ -198,7 +198,8 @@ code_activity <- function(title) {
   out <- gsub(states, "", out, ignore.case = TRUE)
   out <- gsub(words, "", out, ignore.case = TRUE)
   # Some states and abbreviations are missed
-  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|\\<US\\>||\\<united\\>|\\<america\\>",
+  out <- gsub("Soviet Socialist Republics|\\<USSR\\>|\\<UK\\>|
+              |\\<US\\>||\\<united\\>|\\<america\\>",
               "", out, ignore.case = TRUE)
 
   # Step two: remove stop words, numbers and parenthesis
@@ -208,18 +209,24 @@ code_activity <- function(title) {
   out <- gsub("-", " ", out)
 
   # Step three: remove months and unimportant words
-  out <- gsub("january|february|march|april|may|june|july|august|september|october|november|december",
+  out <- gsub("january|february|march|april|may|june|july|
+              |august|september|october|november|december",
               "", out, ignore.case = TRUE)
-  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|\\<republic\\>|\\<states\\>|
-              |\\<confederation\\>|\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
+  out <- gsub("\\<text\\>|\\<signed\\>|\\<government\\>|\\<federal\\>|
+              |\\<republic\\>|\\<states\\>|\\<confederation\\>|
+              |\\<federative\\>|\\<kingdom\\>|\\<republics\\>",
               "", out, ignore.case = TRUE)
-  out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
-              |\\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
+  out <- gsub("\\<coast\\>|\\<ocean\\>|\\<eastern\\>|\\<western\\>|
+              |\\<north\\>|\\<south\\>|\\<west\\>|\\<east\\>|
+              |\\<southern\\>|\\<northern\\>|\\<middle\\>|\\<atlantic\\>|
+              |\\<pacific\\>|\\<columbia\\>|\\<danube\\>",
               "", out, ignore.case = TRUE)
-  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|\\<scientific\\>|\\<technical\\>|
-              |\\<basic\\>|\\<border\\>|\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|
-              |\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|\\<relating\\>|\\<iron\\>|
-              |\\<gates\\>|\\<power\\>|\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|
+  out <- gsub("\\<between\\>|\\<cooperation\\>|\\<cooperative\\>|
+              |\\<scientific\\>|\\<technical\\>|\\<basic\\>|\\<border\\>|
+              |\\<pollution\\>|\\<river\\>|\\<basin\\>|\\<water\\>|
+              |\\<resources\\>|\\<aim\\>|\\<reducing\\>|\\<cross\\>|
+              |\\<relating\\>|\\<iron\\>|\\<gates\\>|\\<power\\>|
+              |\\<navigation\\>|\\<system\\>|\\<sphere\\>|\\<field\\>|
               |\\<partnership\\>|\\<science\\>|\\<matters\\>",
               "", out, ignore.case = TRUE)
 
@@ -319,17 +326,16 @@ code_type <- function(title) {
 #' }
 #' @export
 code_dates <- function(date) {
-
   # Step one: collapse dates
   uID <- stringr::str_remove_all(date, "-")
-  
+
   # Step two: get NA dates to appear as far
   # future dates to facilitate identification
   uID[is.na(uID)] <- paste0(sample(5000:9999, 1), "NULL")
-  
+
   # Step three: remove ranges, first date is taken
   uID <- stringr::str_replace_all(uID, "\\:[:digit:]{8}$", "")
-  
+
   # Step four: keep year only
   uID <- ifelse(nchar(uID) > 4, substr(uID, 1, nchar(uID) - 4), uID)
   uID
@@ -421,8 +427,10 @@ code_acronym <- function(title) {
 
   # Step two: remove agreement types, numbers, punctuations marks, and
   # short abbreviations within parenthesis from titles
-  x <- gsub("protocol|protocols|amendment|amendments|amend|amending|Agreement|agreements|convention|
-            |Exchange|Exchanges|Notes|Strategy|strategies|Resolution|resolutions",
+  x <- gsub("protocol|protocols|amendment|amendments|amend|
+            |amending|Agreement|agreements|convention|
+            |Exchange|Exchanges|Notes|Strategy|strategies|
+            |Resolution|resolutions",
             "", x, ignore.case = TRUE)
   x <- stringr::str_remove_all(x, "\\s\\([:alpha:]{3,9}\\)")
   x <- stringr::str_remove_all(x, "\\s\\(.{3,20}\\)")
@@ -432,13 +440,16 @@ code_acronym <- function(title) {
 
   # Step three: remove known agreement cities or short titles
   # (these often appear inconsistently across datasets)
-  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|\\<Stockholm\\>|\\<Kyoto\\>|\\<Hong Kong\\>", "", x)
+  x <- gsub("\\<Nairobi\\>|\\<Basel\\>|\\<Bamako\\>|\\<Lusaka\\>|
+            |\\<Stockholm\\>|\\<Kyoto\\>|\\<Hong Kong\\>", "", x)
   x <- ifelse(grepl("^Fisheries", x), gsub("Fisheries", "", x), x)
-  
+
   # Step four: remove unimportant but differentiating words
-  x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|\\<concerning\\>|\\<priority\\>|
-            |\\<revised\\>|\\<version\\>|\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|
-            |\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>|\\<activities\\>",
+  x <- gsub("\\<populations\\>|\\<basin\\>|\\<resources\\>|\\<stock\\>|
+            |\\<concerning\\>|\\<priority\\>|\\<revised\\>|\\<version\\>|
+            |\\<national\\>|\\<trilateral\\>|\\<multilateral\\>|\\<between\\>|
+            |\\<marine\\>|\\<Fao\\>|\\<field\\>|\\<sphere\\>|\\<adjustment\\>|
+            |\\<activities\\>",
             "", x, ignore.case = TRUE)
 
   # Step five: get abbreviations for words left
@@ -484,7 +495,7 @@ code_acronym <- function(title) {
 #' @export
 code_linkage <- function(title, date, return_all = FALSE) {
 
-  if(missing(title) & missing(date)) {
+  if (missing(title) & missing(date)) {
     pred <- as.data.frame(predictable_words)
     pred_words <- knitr::kable(pred, "simple")
     pred_words
@@ -511,9 +522,9 @@ code_linkage <- function(title, date, return_all = FALSE) {
     #Step six: code acronyms from titles
     acronym <- code_acronym(title)
     usethis::ui_done("Coded acronyms for agreements")
-    
+
     # Step seven: remove 'predictable words' in agreements
-    pw <- paste0("\\<", paste(predictable_words$predictable_words, collapse = "\\>|\\<"), "\\>") 
+    pw <- paste0("\\<", paste(predictable_words$predictable_words, collapse = "\\>|\\<"), "\\>")
     out <- gsub(pw, "", treatyID, ignore.case = TRUE)
 
     # Step eight: remove numbers, signs and parentheses
@@ -528,7 +539,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     id <- ifelse((!is.na(abbrev)), paste0(abbrev, "A"),
                  (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
                          (ifelse((!is.na(parties)), paste0(parties, "_", uID, type), NA)))))
-    
+
     # Step ten: bind data
     out <- cbind(out, id)
     # Initialize variables to suppress CMD notes
@@ -548,7 +559,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     line <- stringr::str_replace_all(line, "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|
                                      |[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx")
     line <- ifelse(nchar(as.character(line)) > 20, "", line)
-    
+
     if (return_all == TRUE) {
       line <- data.frame(cbind(parties, type, abbrev, uID, acronym, line))
     }

@@ -61,8 +61,8 @@ code_entity <- function(title) {
   if (!outcome) {
     utils::install.packages(
       "http://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz",
-      repos=NULL,
-      type="source")
+      repos = NULL,
+      type = "source")
   }
   # Code entity
   out <- entity::location_entity(title)
@@ -161,7 +161,7 @@ code_domain <- function(title) {
 #' @param dataset A Package dataset
 #' @param treaty_type The type of treaties to be returned.
 #' By default, all treaties are returned.
-#' Other options include bilateral or multilateral treaties. 
+#' Other options include bilateral or multilateral treaties.
 #' @return A dataframe of agreements' treatyID and their linkages.
 #' @importFrom purrr map map_chr
 #' @examples
@@ -191,7 +191,7 @@ get_links <- function(database, dataset, treaty_type = "all") {
   }
   if (treaty_type == "multilateral") {
     treatyID <- grep("-", treatyID, value = TRUE, invert = TRUE)
-  } 
+  }
   # Split treatyID
   link <- purrr::map_chr(strsplit(treatyID, ":"), 2)
   agreement <- purrr::map_chr(strsplit(treatyID, ":"), 1)

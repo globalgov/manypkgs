@@ -25,14 +25,14 @@ data2 <- data.frame(title = c("Amendments On The Transport Of Corrosive Substanc
                              "Convention between switzerland and france",
                              "Treaty to preserve the lake of Geneva"),
                    text = c("the present convention shall remain in force for a period of five years and thereafter until two years 
-                            from the date when either of the high contracting parties shall give notice to the other of its desire to 
+                            from the date when either of the high contracting parties shall give notice to the other of its desire to
                             term_dateinate it",
                             "this convention shall, from the date of the exchange of ratifications be deemed to supplant the 
-                            convention between his britannic majesty and the united states of america for the preservation of the halibut 
+                            convention between his britannic majesty and the united states of america for the preservation of the halibut
                             fishery of the northern pacific ocean including bering sea, concluded march 2, 1923",
-                            " 9. the duration of the present convention shall be for four years in accordance with the provisions of article 
-                            14; denunciation of the convention may only take place within six months from the end of this period and shall be 
-                            communicated to the ministry of foreign relations of el salvador. the duration shall be prolonged automatically and 
+                            " 9. the duration of the present convention shall be for four years in accordance with the provisions of article
+                            14; denunciation of the convention may only take place within six months from the end of this period and shall be
+                            communicated to the ministry of foreign relations of el salvador. the duration shall be prolonged automatically and
                             tacitly so long as the convention continues in effect for four or more of the signatory countries.",
                             "Any member states may withdraw from this present convention",
                             "This agreement shall term_dateinate upon the complete completion of the project",
@@ -47,7 +47,6 @@ test_that("treaty term is identified from treaty text", {
   expect_equal(code_term(data2$title, data2$text),
                c("SUN", "SUB", "SUN", "WTH", "NA", "REN", "REB", "WAR", "INJ", "NON"))
 })
-
 
 # Test that table appears if no argument is mentioned
 test_that("function returns information when no argument is mentioned", {

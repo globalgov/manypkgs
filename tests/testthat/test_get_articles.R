@@ -1,7 +1,7 @@
-treaty <- list("preamble: this is the preamble \narticle 1: this is the article 1 
+treaty <- list("preamble: this is the preamble \narticle 1: this is the article 1
 \narticle 2: this is the article 2 \narticle 3: open for accession
 \narticle 4: shall terminate as \n shall be dissolved
-\nannex: this is an annex", "preamble: this is the preamble \narticle 1: this is the article 1 
+\nannex: this is an annex", "preamble: this is the preamble \narticle 1: this is the article 1
 \narticle 2: this is the article of an agreement")
 
 test_that("Treaty text is splitted correctly", {
@@ -19,7 +19,7 @@ test_that("Treaty text is splitted correctly", {
   expect_equal(get_articles(treaty, match = "preamble"), list("preamble: this is the preamble",
                                                               "preamble: this is the preamble"))
   expect_equal(get_articles(treaty, treaty_type = "agreements"),
-               list("NA",c("preamble: this is the preamble",
+               list("NA", c("preamble: this is the preamble",
                           "1: this is the article 1",
                           "2: this is the article of an agreement")))
   expect_equal(get_articles(treaty, treaty_type = "amendments"), list("NA", NA))

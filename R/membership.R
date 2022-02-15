@@ -1,10 +1,10 @@
 #' Get conditions and processes to accede memberships
-#' 
+#'
 #' The function allows to get information on the conditions
 #' for parties to enter a treaty.
 #' It could be limited to a entity area,
 #' a certain domain,
-#' or on State party nominations for new members. 
+#' or on State party nominations for new members.
 #' The function also allows to get information on the
 #' process by which a new member has to go through in
 #' order to accede memberships
@@ -78,11 +78,11 @@ code_memberships <- function(t, title = NULL, memberships = NULL) {
 
 #' Get memberships' list
 #'
-#' Memberships database have actor column(s) and 
+#' Memberships database have actor column(s) and
 #' treaty column(s) but information on the other
 #' countries that are part to the treaties is often
 #' hard to read.
-#' The function allows to generate a dataframe of 
+#' The function allows to generate a dataframe of
 #' treaty IDs and actors part to the treaty.
 #' @param database A database
 #' @param actor A actor variable (e.g. country)
@@ -104,10 +104,11 @@ get_memberships <- function(database, actor, id) {
     actor <- unname(unlist(purrr::map(database, "CountryID")))
     s <- cbind(actor, id)
     s <- as.data.frame(s)
-    k <- s %>% 
-      dplyr::group_by(id) %>% dplyr::summarise(Memberships = toString(actor)) %>% 
+    k <- s %>%
+      dplyr::group_by(id) %>%
+      dplyr::summarise(Memberships = toString(actor)) %>%
       dplyr::ungroup()
-    s <- dplyr::left_join(s, k, by = "id") %>% 
+    s <- dplyr::left_join(s, k, by = "id") %>%
       dplyr::select(id, Memberships) %>% unique()
     s
   } else {
@@ -115,10 +116,11 @@ get_memberships <- function(database, actor, id) {
     id <- as.character(id)
     s <- cbind(actor, id)
     s <- as.data.frame(s)
-    k <- s %>% 
-      dplyr::group_by(id) %>% dplyr::summarise(Memberships = toString(actor)) %>% 
+    k <- s %>%
+      dplyr::group_by(id) %>%
+      dplyr::summarise(Memberships = toString(actor)) %>%
       dplyr::ungroup()
-    s <- dplyr::left_join(s, k, by = "id") %>% 
+    s <- dplyr::left_join(s, k, by = "id") %>%
       dplyr::select(id, Memberships)
     s
   }

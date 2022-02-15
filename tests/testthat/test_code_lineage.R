@@ -8,7 +8,7 @@ data <- tibble::tibble(title = c("Agreement Between Cape Verde And Portugal On F
                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing For King And Tanner Crab",
                              "Agreement Between The Government Of The United States Of America And The Government Of The Union Of Soviet Socialist Republics Relating To Fishing Operations In The Northeastern Pacific Ocean"),
                        manyID = c("CPV-PRT[FSD]_1980A", "WIIEWH_1990E1:RAMSA_1971A", "TD06LJ_1981A",
-                               "DCLRMR_1982R", "CEBRIP_1976N", "RIVER_1983S", "RAMSA_1971A", 
+                               "DCLRMR_1982R", "CEBRIP_1976N", "RIVER_1983S", "RAMSA_1971A",
                                "RUS-USA[KTC]_1973A", "RUS-USA[UFO]_1973A"))
 
 test_that("code_lineage function works", {
