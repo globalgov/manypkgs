@@ -19,6 +19,7 @@
 #' open = FALSE,
 #' path = getwd())
 #' }
+#' @noRd
 manytemplate <- function(template,
                       save_as = template,
                       data = list(),

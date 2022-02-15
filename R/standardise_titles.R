@@ -166,6 +166,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
 #' @return A list of character vector with the words changed
 #' @importFrom purrr map
 #' @importFrom knitr kable
+#' @noRd
 correct_words <- function(s) {
 
   s <- purrr::map(s, as.character)

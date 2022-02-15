@@ -271,9 +271,9 @@ setup_package <- function(package = NULL,
 
 }
 
-#' Helper function for adding an author to the current package
+#' Add an author to the current package
 #'
-#' Helper function for adding an author to the description file of
+#' Adds an author to the description file of
 #' the current package.
 #' @param orcid Character string of the author's ORCID number.
 #' If this is null,
@@ -374,6 +374,7 @@ add_author <- function(orcid = NULL,
 #' Helper function from usethis:::create_directory()
 #' @param path path to directory
 #' @return a path to the directory
+#' @noRd
 create_directory <- function(path) {
   if (dir.exists(path)) {
     return(invisible(FALSE))

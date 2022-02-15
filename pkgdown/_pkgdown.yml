@@ -60,7 +60,6 @@ reference:
     contents:
       - setup_package
       - update_package
-      - manytemplate
       - add_author
   - title: "Processing functions"
     desc: "These functions were created to assist data providers with the processing of data when creating packages"
@@ -82,10 +81,8 @@ reference:
       - get_links
       - get_memberships
       - lingua
-      - correct_words
       - condense_agreements
       - order_agreements
-      - create_directory
 footer:
   structure:
     left: devs
