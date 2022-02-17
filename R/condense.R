@@ -95,17 +95,6 @@ condense_agreements <- function(database = NULL, var = NULL) {
   similar
 }
 
-#' Helper function for fuzzy matching multilateral agreements
-#'
-#' Fuzzy match agreements' acronyms for multilateral treaties
-#' @details Extracts agreement acronyms from treatyIDs and fuzzy
-#' match their similarities.
-#' See `manypkgs::code_acronym()` for more details on acronyms.
-#' @param treatyID treatyID variable created with `manypkgs::code_agreements()`
-#' @importFrom dplyr filter
-#' @importFrom stringr str_detect
-#' @importFrom stringdist stringsimmatrix
-#' @return A data frame with acronyms and treatyID matches without linkages
 fuzzy_agreements_multilateral <- function(treatyID) {
 
   # Split treatyID
@@ -136,17 +125,6 @@ fuzzy_agreements_multilateral <- function(treatyID) {
   fuzzy
 }
 
-#' Helper function for fuzzy matching bilateral agreements
-#'
-#' Fuzzy match agreements' acronyms for bilateral treaties
-#' @details Extracts agreement acronyms from treatyIDs and fuzzy
-#' match their similarities.
-#' See `manypkgs::code_acronym()` for more details on acronyms.
-#' @param treatyID treatyID variable created with `manypkgs::code_agreements()`
-#' @importFrom dplyr filter
-#' @importFrom stringr str_detect
-#' @importFrom stringdist stringsimmatrix
-#' @return A data frame with acronyms and treatyID matches without linkages
 fuzzy_agreements_bilateral <- function(treatyID) {
 
   # Get acronyms and IDs from treatyIDs
