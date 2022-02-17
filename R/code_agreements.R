@@ -567,15 +567,6 @@ code_linkage <- function(title, date, return_all = FALSE) {
   }
 }
 
-#' Extracts Ordering Numbers from Titles
-#'
-#' Identifies and extracts meaningful numbers from agreements titles
-#' that are important information about the order of the agreement.
-#' Dates can cause an issue when trying to extract meaningful numbers
-#' from titles for ordering purposes, this function also removes dates.
-#' @param title A character vector of treaty title
-#' @import stringr
-#' @return A character vector with meangniful numbers from titles
 order_agreements <- function(title) {
 
   # Step one: remove dates signs title
