@@ -61,28 +61,24 @@ reference:
       - setup_package
       - update_package
       - add_author
+      - add_bib
   - title: "Processing functions"
     desc: "These functions were created to assist data providers with the processing of data when creating packages"
     contents:
       - import_data
       - export_data
-      - add_bib
       - starts_with("standardise")
       - starts_with("code")
-      - starts_with("fuzzy")
+      - condense_agreements
   - title: "Other utility functions"
     desc: "Other utility functions that are useful during the creation of a new package"
     contents:
-      - get_package_name
       - depends
       - retain
-      - split_treaty
-      - get_articles
       - get_links
       - get_memberships
+      - get_articles
       - lingua
-      - condense_agreements
-      - order_agreements
 footer:
   structure:
     left: devs
