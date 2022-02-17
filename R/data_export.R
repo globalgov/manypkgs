@@ -179,15 +179,6 @@ export_data <- function(..., database, URL) {
   ui_todo("Press Cmd/Ctrl-Shift-T to run all tests or run devtools::test().")
 }
 
-#' Get the name of the package
-#'
-#' @param path A string, if missing default is path to the working directory
-#' @return The name of the package
-#' @examples
-#' \dontrun{
-#' get_package_name()
-#' }
-#' @export
 get_package_name <- function(path = getwd()) {
   file.exists(paste0(path, "/DESCRIPTION"))
   package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
