@@ -127,14 +127,6 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
   t
 }
 
-#' Split Treaty Texts
-#'
-#' Helper function for spliting treaty texts into lists
-#' that reflect a structure
-#' based on having a preamble and several articles.
-#' @param textvar A text variable
-#' @importFrom stringr str_detect str_replace str_trim
-#' @return A structured list for each agreement
 split_treaty <- function(textvar) {
   # Detect annexes
   t <- purrr::map(textvar, as.character)
