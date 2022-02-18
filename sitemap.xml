@@ -1,108 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://globalgov.github.io/manypkgs//index.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/404.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/add_author.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/add_bib.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_acronym.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_activity.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/articles/agreements.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_agreements.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/articles/contributor.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_dates.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_grounds.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/authors.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_known_agreements.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/index.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_linkage.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/news/index.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_parties.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/pull_request_template.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_term.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/add_author.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/code_type.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/add_bib.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/condense_qID.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_acronym.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/correct_words.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_activity.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/create_directory.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_agreements.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/depends.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_dates.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/export_data.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_domain.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/fuzzy_agreements_bilateral.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_entity.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/fuzzy_agreements_multilateral.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_known_agreements.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/get_package_name.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_lineage.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/get_treaty.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_linkage.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/import_data.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_memberships.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/interleave.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_parties.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/lingua.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_term.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/manytemplate.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_term_date.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/order_agreements.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_type.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/retain.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/condense_agreements.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/setup_package.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/depends.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/split_treaty.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/export_data.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/standardise_dates.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/get_articles.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/standardise_titles.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/get_links.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//reference/update_package.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/get_memberships.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//articles/agreements.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/import_data.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs//articles/contributor.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/lingua.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/retain.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/setup_package.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/standardise_dates.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/standardise_titles.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/update_package.html</loc>
   </url>
 </urlset>

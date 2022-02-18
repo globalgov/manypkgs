@@ -1,11 +1,11 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   agreements: agreements.html
   contributor: contributor.html
-last_built: 2021-11-24T10:39Z
+last_built: 2022-02-18T12:40Z
 urls:
-  reference: https://globalgov.github.io/manypkgs//reference
-  article: https://globalgov.github.io/manypkgs//articles
+  reference: https://globalgov.github.io/manypkgs/reference
+  article: https://globalgov.github.io/manypkgs/articles
 
