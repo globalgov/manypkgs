@@ -1,15 +1,15 @@
 #' Adding datasets to the many packages universe
 #'
-#' Save a cleaned data object, consistent with the qData ecosystem, ready to be
-#' lazy-loaded and create scripts for documenting and testing that object within
-#' the new package.
+#' Save a cleaned data object, consistent with the manydata universe,
+#' ready to be lazy-loaded and create scripts for documenting and
+#' testing that object within the new package.
 #' @param ... Unquoted name of the dataset object to save.
 #' @param database Quoted name of any existing database or of the database to
 #' be created.
 #' @param URL website URL to the source of a dataset.
 #' @details The function creates a data directory, if nonexistent, and
 #' saves cleaned data. The functions also creates a script for testing
-#' the cleaned data and make sure it complies with qData requirements.
+#' the cleaned data and make sure it complies with manydata requirements.
 #' As well, it creates a documentation script to help documenting data
 #' sources and describing variables. Note that users need to provide a `.bib`
 #' file for citation purposes alongside their dataset in the corresponding
@@ -156,6 +156,15 @@ export_data <- function(..., database, URL) {
                  open = FALSE,
                  ignore = FALSE,
                  path = getwd())
+  } else if (database == "texts") {
+    manytemplate("test_texts.R",
+                 save_as = fs::path("tests", "testthat",
+                                    paste0("test_", dataset_name, ".R")),
+                 data = list(dat = dataset_name,
+                             dab = database),
+                 open = FALSE,
+                 ignore = FALSE,
+                 path = getwd())
   } else {
     manytemplate("test_general.R",
                  save_as = fs::path("tests", "testthat",
@@ -170,15 +179,6 @@ export_data <- function(..., database, URL) {
   ui_todo("Press Cmd/Ctrl-Shift-T to run all tests or run devtools::test().")
 }
 
-#' Get the name of the package
-#'
-#' @param path A string, if missing default is path to the working directory
-#' @return The name of the package
-#' @examples
-#' \dontrun{
-#' get_package_name()
-#' }
-#' @export
 get_package_name <- function(path = getwd()) {
   file.exists(paste0(path, "/DESCRIPTION"))
   package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]

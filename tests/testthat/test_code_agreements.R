@@ -60,8 +60,8 @@ test_that("certain functions return coding information when argument is missing"
   expect_type(code_known_agreements(), "character")
 })
 
-# Test that the punctuation marks are not in the qID
-test_that("Punctation marks are not in the qID", {
-  qID <- code_agreements(data5, data5$title, data5$date)
-  expect_false(any(grepl("\\(|\\)", qID)))
+# Test that the punctuation marks are not in the treatyID
+test_that("Punctation marks are not in the treatyID", {
+  treatyID <- code_agreements(data5, data5$title, data5$date)
+  expect_false(any(grepl("\\(|\\)", treatyID)))
 })

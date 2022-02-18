@@ -2,8 +2,9 @@ url: https://globalgov.github.io/manypkgs/
 development:
     mode: auto
 template:
+  bootstrap: 5
   params:
-    bootswatch: paper
+    bootswatch: litera
 authors:
   James Hollway:
     href: https://jameshollway.com
@@ -16,10 +17,10 @@ navbar:
     - intro
     - reference
     - articles
-    - tutorials
     - news
     right:
     - packages
+    - search
     - github
   components:
     home:
@@ -40,24 +41,26 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/globalgov/qStates
+      href: https://github.com/globalgov/manystates
     packages:
       text: Other packages
       menu:
-        - text: qData
-          href: https://globalgov.github.io/qData/
+        - text: manydata
+          href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
-        - text: qEnviron
-          href: https://globalgov.github.io/qEnviron/
-        - text: qTrade
-          href: https://globalgov.github.io/qTrade/
+        - text: manyenviron
+          href: https://globalgov.github.io/manyenviron/
+        - text: manytrade
+          href: https://globalgov.github.io/manytrade/
 reference:
   - title: "Setup functions"
     desc: "These functions were created to assist data providers with the setup of many packages"
     contents:
       - setup_package
+      - update_package
       - add_author
+      - add_bib
   - title: "Processing functions"
     desc: "These functions were created to assist data providers with the processing of data when creating packages"
     contents:
@@ -65,11 +68,20 @@ reference:
       - export_data
       - starts_with("standardise")
       - starts_with("code")
+      - condense_agreements
   - title: "Other utility functions"
     desc: "Other utility functions that are useful during the creation of a new package"
     contents:
-      - get_package_name
       - depends
       - retain
-      - split_treaty
-      - get_treaty
+      - get_links
+      - get_memberships
+      - get_articles
+      - lingua
+footer:
+  structure:
+    left: devs
+    right: panarchic
+  components:
+    devs: Developed by [James Hollway](https://jameshollway.com/).
+    panarchic: Part of the [PANARCHIC project](https://panarchic.ch/).

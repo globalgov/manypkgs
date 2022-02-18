@@ -1,6 +1,6 @@
-#' Create a new package in the qData ecosystem
+#' Create a new package in the manydata universe
 #'
-#' Creates a new package in, and consistent with, the qData ecosystem
+#' Creates a new package in, and consistent with, the manydata universe
 #' @param package A string giving the desired name of the package,
 #' must start with "many"
 #' @param orcid A vector of strings of all the ORCID numbers of the authors.
@@ -15,7 +15,7 @@
 #' overwritten, by default TRUE.
 #' @param path A string, if missing default is path to the working directory
 #' @details The function establishes many of the required files and
-#' folder structures required for a qData-consistent data package.
+#' folder structures required for a manydata-consistent data package.
 #' @return A new package structure
 #' @import usethis
 #' @importFrom stringr str_replace_all str_split word
@@ -271,9 +271,9 @@ setup_package <- function(package = NULL,
 
 }
 
-#' Helper function for adding an author to the current package
+#' Add an author to the current package
 #'
-#' Helper function for adding an author to the description file of
+#' Adds an author to the description file of
 #' the current package.
 #' @param orcid Character string of the author's ORCID number.
 #' If this is null,
@@ -374,6 +374,7 @@ add_author <- function(orcid = NULL,
 #' Helper function from usethis:::create_directory()
 #' @param path path to directory
 #' @return a path to the directory
+#' @noRd
 create_directory <- function(path) {
   if (dir.exists(path)) {
     return(invisible(FALSE))

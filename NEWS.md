@@ -1,3 +1,36 @@
+# manypkgs 0.2.1
+
+## Package
+
+* Closed #11 by adding more informative `{skimr}` output in documentation
+* Closed #52 by moving `interleave()` to the `{messydates}` package
+* Closed #61 and #63 by changing references from "qPackages" into "manyPackages"
+* Closed #71 by changing references from many_ID and treaty_ID to manyID and treatyID
+
+## Correction
+
+* Updated termination and membership functions
+  * Renamed `code_grounds()` function `code_memberships()` for clarity and consistency
+  * Added `code_term_date()` to code treaty termination date
+  * Added `get_memberships()` to get memberships' lists as a data frame
+  * Closed #51 by integrating texts into `code_term()` and `code_memberships()`
+  * Closed #64 by improving how `code_term()` and `code_memberships()` extract information from texts
+* Added `code_lineage()` function to code lineage from agreement titles
+  * Added `code_entity()` function to extract entities from treaty titles
+  * Added `code_domain()` function to code domains from agreement titles
+  * Closed #65 and #70 by updating dictionary of words used to identify domains from treaty titles
+  * Added `get_links()` to get links from manyID facilitate plotting with `{migraph}` 
+  * Closed #68 by writing tests for `code_lineage()` and related functions
+
+## Connection
+
+* Closed #17 by updating translate argument in `standardise_titles()`
+* Closed #66 by fixing bugs with `lingua()` function
+* Updated functions to structure texts function
+  * Renamed `get_treaty()` function `get_articles()` for clarity
+  * Updated `split_treaty()` to become a helper function to `get_articles()`
+  * Closed #69 by making `get_articles()` and `split_treaty()` work on various types of treaty texts
+
 # manypkgs 0.2.0
 
 ## Package

@@ -1,12 +1,12 @@
 # Contributing
 
-Contributions to `{packageName}`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
+Contributions to `{ {{{package}}} }`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
 
 * [Submit an issue](#issues)
 * [Fix a bug or implement new features](#adding-new-code)
 * [Document existing code](#documentation)
 
-This outlines how to propose a change to a package from the Global Governance Observatory's ecosystem. Please note that the `{packageName}` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).By contributing to this project, you agree to abide by its terms.
+This outlines how to propose a change to a package from the Global Governance Observatory's ecosystem. Please note that the `{ {{{package}}} }` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).By contributing to this project, you agree to abide by its terms.
 
 ## Issues
 Please use the issue tracker on GitHub to identify problems or suggest new functionality, before submitting changes to the code.
@@ -42,7 +42,7 @@ The title of your PR should briefly describe the change. Please include a summar
 
 If you want to make a bigger change, it's a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request. If you’ve found a bug, please file an issue that illustrates the bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
 
-Please follow the qData pull request guideline (https://github.com/globalgov/qData/blob/main/.github/pull_request_template.md)  
+Please follow the manydata pull request guideline (https://github.com/globalgov/manydata/blob/main/.github/pull_request_template.md)  
 
 ### Branches
 We use two **main branches** in this project:

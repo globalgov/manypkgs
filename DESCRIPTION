@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
-Version: 0.2.0
-Date: 2021-11-24
+Version: 0.2.1
+Date: 2022-02-17
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -34,14 +34,11 @@ Depends:
     R (>= 2.10),
     tibble
 Imports:
-    covr,
     dplyr,
     english,
     pkgdown,
-    pointblank,
     purrr,
     rlang,
-    roxygen2,
     stringr,
     textclean,
     usethis,
@@ -53,25 +50,35 @@ Imports:
     stringdist,
     tidyr,
     tm,
-    stringi
+    stringi,
+    entity
 Suggests:
     testthat (>= 3.0.0),
-    librarian,
-    lubridate,
-    anytime,
-    mice,
-    xfun,
-    withr,
+    pointblank,
+    covr,
+    roxygen2,
     haven,
     readxl,
     readr,
+    xfun,
+    lubridate,
+    anytime,
     rorcid,
     desc,
     WVPlots,
     rmarkdown,
     bibtex,
     translateR,
-    cld2
+    cld2,
+    manydata,
+    manyenviron,
+    manystates,
+    migraph
+Remotes:
+    globalgov/manydata,
+    globalgov/manyenviron,
+    globalgov/manystates,
+    trinker/entity
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

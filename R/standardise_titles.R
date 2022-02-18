@@ -40,7 +40,7 @@ standardise_titles <- standardize_titles <- function(s,
 
   # Step two: translate strings if API is provided
   if (!is.null(api_key)) {
-    out <- lingua(out, api_key == api_key)
+    out <- lingua(out, api_key = api_key, translate = TRUE)
   }
 
   # Step three: standardise strings returned
@@ -107,7 +107,7 @@ standardise_titles <- standardize_titles <- function(s,
 #' By default english.
 #' @param translate Do you want strings to be translated?
 #' By default TRUE.
-#' If FALSE returns source language for each string. 
+#' If FALSE returns source language for each string.
 #' @importFrom purrr map map_chr
 #' @importFrom dplyr rename
 #' @return A character vector of the same length of original.
@@ -117,12 +117,12 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
   depends(c("translateR", "cld2"))
 
   # Check if API key is declared
-  if(missing(api_key) & translate == TRUE) {
+  if (missing(api_key) & translate == TRUE) {
     stop("Please declare a Google API key.
          For more information please go to: https://cloud.google.com/translate/docs/setup")
   }
-  
-  # Get strings as character and initialize varibles
+
+  # Get strings as character and initialize variables
   out <- data.frame(out = as.character(s))
   s <- purrr::map(s, as.character)
   . <- NULL
@@ -130,9 +130,9 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
   # Find source language
   source_lang <- s %>%
     vapply(., purrr::map_chr, "", cld2::detect_language) %>%
-    data.frame(check.names = FALSE) %>% 
+    data.frame(check.names = FALSE) %>%
     dplyr::rename(language = ".")
-  
+
   # Return source language if translate is false, else translate string
   if (missing(api_key) & translate == FALSE) {
     out <- source_lang
@@ -141,7 +141,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
     for (k in seq_len(nrow(out))) {
       if (is.na(out$language[k])) {
         out$out[k] == out$out[k]
-        # print(paste0("Could not translate ", [k], ", langauge not detect."))
+        # print(paste0("Could not translate ", [k], ", language not detected."))
       } else if (out$language[k] == target_lang) {
         out$out[k] == out$out[k]
         } else {
@@ -166,6 +166,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
 #' @return A list of character vector with the words changed
 #' @importFrom purrr map
 #' @importFrom knitr kable
+#' @noRd
 correct_words <- function(s) {
 
   s <- purrr::map(s, as.character)

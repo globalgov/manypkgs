@@ -25,7 +25,7 @@ The function "expects" that the variable has been
 standardised using \code{standardise_dates()}}
 }
 \value{
-a character vector with the qIDs
+a character vector with the treatyIDs
 }
 \description{
 Creates an ID that contains information on the
@@ -33,8 +33,8 @@ parties to an agreement, the type of agreement, the date
 and the linkage to other agreements in the dataset.
 }
 \examples{
-\dontrun{
-IEADB <- dplyr::slice_sample(qEnviron::agreements$IEADB, n = 10)
+\donttest{
+IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_agreements(dataset = IEADB)
 code_agreements(title = IEADB$Title, date = IEADB$Signature)
 }

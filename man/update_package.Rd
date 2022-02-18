@@ -33,6 +33,6 @@ contributing file, and code of conduct should be updated.
 }
 \examples{
 \dontrun{
-update_package("qStates")
+update_package("manystates")
 }
 }

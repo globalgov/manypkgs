@@ -2,7 +2,7 @@
 % Please edit documentation in R/package_setup.R
 \name{add_author}
 \alias{add_author}
-\title{Helper function for adding an author to the current package}
+\title{Add an author to the current package}
 \usage{
 add_author(
   orcid = NULL,
@@ -33,7 +33,7 @@ miscellaneous information such as his/her institution.}
 Adds a new author to the description file of the package
 }
 \description{
-Helper function for adding an author to the description file of
+Adds an author to the description file of
 the current package.
 }
 \details{

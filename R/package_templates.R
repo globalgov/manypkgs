@@ -9,7 +9,7 @@
 #' @param open Whether the resulting template will be opened
 #' @param package Package called
 #' @details This function is an adaptation of the usethis variant
-#' for use in the qData ecosystem.
+#' for use in the manydata universe.
 #' @return A rendered template, saved into the correct folder
 #' @importFrom whisker whisker.render
 #' @examples
@@ -19,6 +19,7 @@
 #' open = FALSE,
 #' path = getwd())
 #' }
+#' @noRd
 manytemplate <- function(template,
                       save_as = template,
                       data = list(),

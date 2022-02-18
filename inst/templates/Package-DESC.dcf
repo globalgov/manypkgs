@@ -1,5 +1,5 @@
 Package: {{{package}}}
-Title: A Package for the "many" packages universe
+Title: A Package for the 'many' packages universe
 Version: 0.0.1
 Authors@R: 
     c(person(given = "{{{given}}}",
@@ -12,7 +12,7 @@ Depends:
     tibble,
     pointblank
 Imports:
-    qData,
+    manydata,
     lubridate,
     dplyr,
     roxygen2,
@@ -23,7 +23,7 @@ Suggests:
     rlang,
     testthat (>= 3.0.0)
 Remotes:
-    globalgov/qData
+    globalgov/manydata
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
