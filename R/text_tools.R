@@ -13,12 +13,6 @@ treaty_pdf <- function(path) {
     out <- pdftools::pdf_text(f)
     contains_text <- nchar(out) > 15
     out <- ifelse(!contains_text, pdftools::pdf_ocr_text(f), out)
-    out <- data.frame(text = out)
   })
-  out <- out %>%
-   dplyr::bind_rows() %>%
-   trimws(which = "both")
+  out
 }
-
-path = getwd()
-treaty_pdf(path)

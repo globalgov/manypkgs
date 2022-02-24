@@ -51,7 +51,8 @@ Imports:
     tidyr,
     tm,
     stringi,
-    entity
+    entity,
+    pdftools
 Suggests:
     testthat (>= 3.0.0),
     pointblank,
