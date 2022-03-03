@@ -2,9 +2,12 @@
 % Please edit documentation in R/standardise_titles.R
 \name{standardise_titles}
 \alias{standardise_titles}
+\alias{standardize_titles}
 \title{Standardise titles}
 \usage{
 standardise_titles(s, strict = FALSE, api_key = NULL)
+
+standardize_titles(s, strict = FALSE, api_key = NULL)
 }
 \arguments{
 \item{s}{A string}

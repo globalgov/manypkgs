@@ -7,6 +7,7 @@
 #' historical dates and future dates. It also creates nested
 #' vectors of dates for vague date inputs, ambiguous and ranged dates,
 #' into a range of dates.
+#' @name standardise_dates
 #' @param ... One (ymd) or three (yyyy, mm, dd) variables
 #' @details The function seeks to convert a wide range of dates into
 #' dates so that these can be meaningfully used for analysis.
@@ -32,7 +33,7 @@
 #' manypkgs = manypkgs::standardise_dates(OriginalDate)
 #' ) %>% print(n = 25)
 #' @export
-standardise_dates <- standardize_dates <- function(...) {
+standardise_dates <- function(...) {
   dots <- list(...)
   if (length(dots) == 1) {
     x <- messydates::as_messydate(...)
@@ -40,3 +41,7 @@ standardise_dates <- standardize_dates <- function(...) {
     x <- messydates::make_messydate(...)
   }
 }
+
+#' @rdname standardise_dates
+#' @export
+standardize_dates <- standardise_dates

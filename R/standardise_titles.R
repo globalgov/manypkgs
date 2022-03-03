@@ -3,6 +3,7 @@
 #' Standardises words in a character title variable to improve readability,
 #' facilitate string matching and enable more accurate comparisons
 #' for variables in different datatsets.
+#' @name standardise_titles
 #' @param s A string
 #' @param strict By default FALSE
 #' @param api_key If google API key is provided, the function will
@@ -25,9 +26,7 @@
 #' e <- standardise_titles("A treaty concerning things")
 #' e==c("A Treaty Concerning Things")
 #' @export
-standardise_titles <- standardize_titles <- function(s,
-                                                     strict = FALSE,
-                                                     api_key = NULL) {
+standardise_titles <- function(s, strict = FALSE, api_key = NULL) {
 
   # Step one: capitalises first letter in words
   cap <- function(s) paste(toupper(substring(s, 1, 1)), {
@@ -92,6 +91,10 @@ standardise_titles <- standardize_titles <- function(s,
   out <- stringr::str_squish(out)
   out
 }
+
+#' @rdname standardise_titles
+#' @export
+standardize_titles <- standardise_titles
 
 #' Translate Strings
 #'

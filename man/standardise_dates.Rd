@@ -2,9 +2,12 @@
 % Please edit documentation in R/standardise_dates.R
 \name{standardise_dates}
 \alias{standardise_dates}
+\alias{standardize_dates}
 \title{Standardises a wide range of date inputs}
 \usage{
 standardise_dates(...)
+
+standardize_dates(...)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
