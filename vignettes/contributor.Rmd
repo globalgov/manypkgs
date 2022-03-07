@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 packages by helping with the set-up of packages consistent with `{manydata}`. 
 The function `setup_package()`, for example, establishes many of the required files and folder 
 structures for a `{manydata}`-consistent data package. 
-It requires that the package name starts with a the letter "q" as well as that 
+It requires that the package name starts with the prefix 'many' as well as that 
 the name of one author is declared.
 For author's name, please declare surname(s) first and then given name(s) separated by commas.
 The function accepts ORCID numbers instead of author names as well. 
@@ -31,7 +31,7 @@ The function accepts ORCID numbers instead of author names as well.
 manypkgs::setup_package("manystates", name = "Hollway, James")
 ```
 
-For adding on package contributors or authors to q Package later on, use to the `add_author()` function.
+For adding on package contributors or authors to packages later on, use the `add_author()` function.
 This function also accepts ORCID numbers instead of author names. 
 
 ```{r eval=FALSE}
