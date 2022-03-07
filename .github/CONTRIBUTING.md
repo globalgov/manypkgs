@@ -136,6 +136,11 @@ Please make sure of:
 * Explaining in details the changes made and why you made them by using bullet points.
 * Separating each paragraph with a blank line.
 
+To keep the tracking and, if needed, the reversing of changes as easy as possible,
+please follow the ['atomic approach'](https://www.freshconsulting.com/insights/blog/atomic-commits/)
+when committing changes. Each commit should address separate aspects as much as possible,
+such as making bug fixes and additions of data in separate commits.
+
 ### Testing 
 We use the [testthat](https://testthat.r-lib.org/) package to write unit tests.
 By convention, tests are located in [testthat/tests/](manypkgs/tests/testthat).
