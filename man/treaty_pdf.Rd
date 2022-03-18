@@ -2,7 +2,7 @@
 % Please edit documentation in R/text_tools.R
 \name{treaty_pdf}
 \alias{treaty_pdf}
-\title{Convert treaty PDFs to text}
+\title{Convert PDFs to text}
 \source{
 https://stackoverflow.com/questions/71064939/how-to-check-if-pdf-is-scanned-image-or-contains-text-in-r
 }
@@ -10,7 +10,7 @@ https://stackoverflow.com/questions/71064939/how-to-check-if-pdf-is-scanned-imag
 treaty_pdf(path)
 }
 \arguments{
-\item{path}{The file path.
+\item{path}{The file(s) path.
 The path can also be specified to a folder with multiple PDF files,
 in this case all PDF files in the folder will be converted.}
 }
@@ -18,5 +18,10 @@ in this case all PDF files in the folder will be converted.}
 A list with the converted texts.
 }
 \description{
-Convert treaty PDFs to text
+Convert PDFs to text
+}
+\examples{
+\dontrun{
+treaty_pdf(path = getwd())
+}
 }
