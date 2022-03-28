@@ -41,7 +41,7 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/globalgov/manystates
+      href: https://github.com/globalgov/manypkgs
     packages:
       text: Other packages
       menu:
