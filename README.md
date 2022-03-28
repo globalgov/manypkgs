@@ -1,5 +1,5 @@
 
-# manypkgs <img src="man/figures/manypkgslogo.png" align="right"/>
+# manypkgs <img src="man/figures/manypkgslogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
 
