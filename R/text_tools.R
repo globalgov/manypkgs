@@ -6,6 +6,7 @@
 #' @return A list with the converted texts.
 #' @importFrom pdftools pdf_text pdf_ocr_text
 #' @importFrom stringi stri_trans_general
+#' @importFrom tm stripWhitespace
 #' @source https://stackoverflow.com/questions/71064939/how-to-check-if-pdf-is-scanned-image-or-contains-text-in-r
 #' @examples
 #' \dontrun{
@@ -23,8 +24,9 @@ treaty_pdf <- function(path) {
   })
   # unlist and do some pre-processing
   out <- lapply(pdfs, function(g) {
-    out <- unlist(g)
+    out <- paste(g, collapse = " ")
     out <- stringi::stri_trans_general(out, "latin-ascii")
+    out <- tm::stripWhitespace(out)
   })
   out
 }
