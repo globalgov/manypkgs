@@ -80,7 +80,7 @@ code_memberships <- function(t, title = NULL, memberships = NULL) {
 #'
 #' Memberships database have actor column(s) and
 #' treaty column(s) but information on the other
-#' countries that are part to the treaties is often
+#' countries that are party to the treaties is often
 #' hard to read.
 #' The function allows to generate a dataframe of
 #' treaty IDs and actors part to the treaty.
@@ -94,7 +94,7 @@ code_memberships <- function(t, title = NULL, memberships = NULL) {
 #' \dontrun{
 #' sample <- manyenviron::memberships$IEADB_MEM
 #' get_memberships(actor = sample$CountryID, id = sample$manyID)
-#' get_memberships(qEnviron::memberships)
+#' get_memberships(manyenviron::memberships)
 #' }
 #' @export
 get_memberships <- function(database, actor, id) {

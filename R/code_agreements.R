@@ -176,12 +176,12 @@ code_parties <- function(title, activity = TRUE) {
 #'
 #' Code abbreviations for activity in bilateral treaty titles
 #' @param title A character vector of treaty titles
-#' @details Bilateral agreements usully detail their
+#' @details Bilateral agreements usually detail their
 #' activity and specify area in the last words of the titles.
 #' These last words are abbreviated by the function to
 #' differentiate between bilateral treaties and avoid
 #' false positives being generated since
-#' multiple, different, bileteral treaties are
+#' multiple, different, bilateral treaties are
 #' often signed in the same day.
 #' @importFrom stringr str_squish str_extract
 #' @importFrom tm stopwords removeWords
