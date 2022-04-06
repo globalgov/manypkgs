@@ -189,8 +189,8 @@ jobs:
         run: Rscript -e 'install.packages("rmarkdown")'
 
       # install manydata
-      #- name: install manypkgs package
-      #  run: Rscript -e 'remotes::install_github("globalgov/manydata")'
+      - name: install manypkgs package
+       run: Rscript -e 'install.packages("manydata")'
 
       # Render README.md using rmarkdown
       - name: render README
