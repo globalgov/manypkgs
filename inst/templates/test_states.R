@@ -20,10 +20,10 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Contains the required variables
 test_that("object has the correct variables", {
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(End))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Label))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(End))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Label))
 })
 
 # Variables with dates are standardized

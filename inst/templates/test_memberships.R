@@ -12,8 +12,8 @@ test_that("missing observations are reported correctly", {
 
 # Uniformity tests (agreements have a countryID and Beg columns)
 test_that("datasets have the required variables", {
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(CountryID))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(CountryID))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
 })
 
 # Date columns should be in messydt class

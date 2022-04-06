@@ -13,10 +13,10 @@ test_that("missing observations are reported correctly", {
 
 # Contains the required variables
 test_that("object has the correct variables", {
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Actor))
-  expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Actor))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Country))
 })
 
 # Date columns should be in messydt class
