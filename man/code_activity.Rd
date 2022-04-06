@@ -17,11 +17,11 @@ last words in treaty title
 Code abbreviations for activity in bilateral treaty titles
 }
 \details{
-Bilateral agreements usully detail their
+Bilateral agreements usually detail their
 activity and specify area in the last words of the titles.
 These last words are abbreviated by the function to
 differentiate between bilateral treaties and avoid
 false positives being generated since
-multiple, different, bileteral treaties are
+multiple, different, bilateral treaties are
 often signed in the same day.
 }

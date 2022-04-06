@@ -24,7 +24,7 @@
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr map
-#' @importFrom stringr str_extract
+#' @importFrom stringr str_extract str_replace_all str_trim
 #' @importFrom dplyr na_if
 #' @importFrom stringi stri_trans_general
 #' @return A list of treaty sections of the same length
@@ -38,15 +38,17 @@
 #' get_articles(t, article = "annex")
 #' get_articles(t, article = 1)
 #' get_articles(t, match = "constitution")
-#' get_articles(t, article = "preamble", match = "unofficial")
+#' get_articles(t, article = "preamble", match = "amend")
 #' get_articles(t, treaty_type = "agreements")
 #' get_articles(t, treaty_type = "protocols")
 #' get_articles(t, treaty_type = "amendments")
 #' }
 #' @export
 get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "all") {
-  # Get textvar standardized
-  t <- stringi::stri_trans_general(tolower(as.character(textvar)), id = "Latin-ASCII")
+  # Get textvar into lower case and remove accents
+  t <- purrr::map(textvar, function(x) {
+    stringi::stri_trans_general(tolower(as.character(x)), id = "Latin-ASCII")
+  })
   # Get treaty type if declared (adapted from code_type)
   if (treaty_type != "all") {
     out <- purrr::map(t, as.character)
@@ -78,8 +80,25 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
     }
     t
   }
-  # Split treaty texts into articles
-  t <- split_treaty(t)
+  # Standardize components
+  t <- lapply(t, function(x) {
+    x <- stringr::str_replace_all(x, "\nannex|\n annex", "ANNEXannex")
+    x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|\\.\\sarticle\\s", "ARTICLE")
+    x <- stringr::str_replace_all(x, "_", "")
+    x <- stringr::str_replace_all(x, "\n", "")
+    x <- stringr::str_replace_all(x, "\\h+", " ")
+    x <- stringr::str_trim(x, "both")
+    x
+  })
+  # Split list (if already not split by paragraph marks)
+  t <- lapply(t, function(x) {
+    if (lengths(x) < 10) strsplit(as.character(x), "ARTICLE|ANNEX")
+  })
+  # Add attributes
+  for (i in seq_len(length(t))) attr(t[[i]], "Treaty") <- paste0("Treaty_", i)
+  for (i in seq_len(length(t))) {
+    attr(t[[i]], "Article") <- paste0("Articles = ", lengths(t[i]))
+  }
   # Get articles if declared
   if (is.numeric(article)) {
     for (k in seq_len(length(t))) {
@@ -89,7 +108,9 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
     t <- purrr::map_chr(t, c(as.numeric(article) + 1))
   }
   if (isTRUE(article == "preamble")) {
-    t <- ifelse(lengths(t) > 0, purrr::map_chr(t, 1), NA)
+    p <- lapply(t, function(x) grep("^preface|^preamble",
+                                    x, ignore.case = TRUE, value = TRUE))
+    t <- ifelse(p == "character(0)", purrr::map_chr(t, 1), p)
   }
   if (isTRUE(article == "memberships")) {
     t <- lapply(t, function(x) grep("open for accession|accession shall be|can accede to|may join|
@@ -117,31 +138,11 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
                                     x, ignore.case = TRUE, value = TRUE))
   }
   if (isTRUE(article == "annex")) {
-    t <- lapply(t, function(x) grep("^annex",
-                                    x, ignore.case = TRUE, value = TRUE))
+    t <- lapply(t, function(x) grep("^annex", x, value = TRUE))
   }
   if (!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
   }
   t <- dplyr::na_if(t, "character(0)")
   t
-}
-
-split_treaty <- function(textvar) {
-  # Detect annexes
-  t <- purrr::map(textvar, as.character)
-  articles <- ifelse(stringr::str_detect(t, "\nannex"),
-                     stringr::str_replace(t, "\nannex", "\nannex annex"), t)
-  # Split list
-  articles <- ifelse(stringr::str_detect(articles, "\n"),
-                     strsplit(as.character(articles), "\nannex|\narticle|\nart\\.", perl = TRUE),
-                     strsplit(as.character(articles), "\\.\\sarticle\\s|\nnote [a-z]{1,4}\n|
-                              |\n[a-z]{1,4}\n|\n[a-z]{1,4} paragraph|\n[1-9]{1,2}) paragraph"))
-  # Add attributes
-  for (i in seq_len(length(articles))) attr(articles[[i]], "Treaty") <- paste0("Treaty_", i)
-  for (i in seq_len(length(articles))) {
-    attr(articles[[i]], "Article") <- paste0("Articles = ", lengths(articles[i]))
-  }
-  articles <- lapply(articles, stringr::str_trim)
-  articles
 }
