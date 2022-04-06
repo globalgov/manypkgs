@@ -60,7 +60,7 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("globalgov/manydata")
+          remotes::install_cran("manydata")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
@@ -201,8 +201,8 @@ jobs:
         run: Rscript -e 'install.packages("rmarkdown")'
 
       # install manydata
-      #- name: install manydata package
-      #  run: Rscript -e 'remotes::install_github("globalgov/manydata")'
+      - name: install manydata package
+       run: Rscript -e 'install.packages("manydata")'
 
       # Install Package
       - name: Install package
