@@ -33,7 +33,7 @@ code_memberships <- function(t, title = NULL, memberships = NULL) {
     me
   } else {
   # First step: select all the articles concerning memberships
-  memb <- get_articles(t, article = "membership")
+  memb <- get_articles(t, article = "memberships")
   if (isTRUE(memberships == "condition")) {
     # Second step: match terms to identify memberships conditions
     condition_1 <- dplyr::case_when(
