@@ -76,7 +76,6 @@ Suggests:
     manystates,
     migraph
 Remotes:
-    globalgov/manydata,
     globalgov/manyenviron,
     globalgov/manystates,
     trinker/entity
