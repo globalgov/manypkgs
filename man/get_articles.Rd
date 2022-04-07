@@ -42,7 +42,7 @@ If no article or match are declared, only text,
 a structured list for each agreement based on articles is returned.
 }
 \examples{
-\donttest{
+\dontrun{
 t <- sample(manyenviron::texts$AGR_TXT$Text, 30)
 get_articles(t)
 get_articles(t, article = "preamble")

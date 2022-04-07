@@ -10,7 +10,7 @@ Describe your {{{package}}} here.
 
 We’ve made it easier than ever to install and start analysing global governance data in R. Simply install the core package, [manydata](https://github.com/globalgov/manydata), as outlined below, to discover, install, and update various packages from the many packages universe.
 
-```{r, eval = FALSE}
+```{r get, warning=FALSE, message=FALSE}
 # install.packages(remotes)
 remotes::install_github("globalgov/manydata") # this installs our core package, the only one you need to do independently
 manydata::get_packages() # this prints a list of the publicly available data packages currently available
