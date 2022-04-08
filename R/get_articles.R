@@ -10,10 +10,8 @@
 #' @param article Would you like to get a specific article?
 #' Null by default.
 #' Other options include the "preamble",
-#' "termination" clause, "membership" clause, "annex",
-#' or an article number.
-#' The specified portion or number
-#' across all treaties will be returned.
+#' "termination" clause, "membership" clause, or "annex".
+#' The specified portion for all treaties will be returned.
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
 #' @param treaty_type What types of treaty do you want to look at?
@@ -24,19 +22,17 @@
 #' @details If no article or match are declared, only text,
 #' a structured list for each agreement based on articles is returned.
 #' @importFrom purrr map_chr map
-#' @importFrom stringr str_extract str_replace_all str_trim
-#' @importFrom dplyr na_if
+#' @importFrom stringr str_extract str_replace_all str_trim str_split
 #' @importFrom stringi stri_trans_general
 #' @return A list of treaty sections of the same length
 #' @examples
-#' \donttest{
-#' t <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+#' \dontrun{
+#' textvar <- sample(manyenviron::texts$AGR_TXT$Text, 30)
 #' get_articles(t)
 #' get_articles(t, article = "preamble")
 #' get_articles(t, article = "memberships")
 #' get_articles(t, article = "termination")
 #' get_articles(t, article = "annex")
-#' get_articles(t, article = 1)
 #' get_articles(t, match = "constitution")
 #' get_articles(t, article = "preamble", match = "amend")
 #' get_articles(t, treaty_type = "agreements")
@@ -44,10 +40,17 @@
 #' get_articles(t, treaty_type = "amendments")
 #' }
 #' @export
-get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "all") {
-  # Get textvar into lower case and remove accents
+get_articles <- function(textvar, article = NULL,
+                         match = NULL, treaty_type = "all") {
+  # Standardize components
   t <- purrr::map(textvar, function(x) {
-    stringi::stri_trans_general(tolower(as.character(x)), id = "Latin-ASCII")
+    x <- stringi::stri_trans_general(tolower(as.character(x)),
+                                     id = "Latin-ASCII")
+    x <- stringr::str_replace_all(x, "\nannex|\n annex", "ANNEXannex")
+    x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
+                                  |\\.\\sarticle\\s|\\.article\\s", "ARTICLE")
+    x <- tm::stripWhitespace(x)
+    x
   })
   # Get treaty type if declared (adapted from code_type)
   if (treaty_type != "all") {
@@ -61,66 +64,32 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
     }
     type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
     if (treaty_type == "agreements") {
-      t <- ifelse(type == "AGREE", t, "character(0)")
-    }
-    if (treaty_type == "protocols") {
-      t <- ifelse(type == "PROTO", t, "character(0)")
-    }
-    if (treaty_type == "amendments") {
-      t <- ifelse(type == "AMEND", t, "character(0)")
-    }
-    if (treaty_type == "notes") {
-      t <- ifelse(type == "NOTES", t, "character(0)")
-    }
-    if (treaty_type == "memorandum") {
-      t <- ifelse(type == "STRAT", t, "character(0)")
-    }
-    if (treaty_type == "resolution") {
-      t <- ifelse(type == "RESOL", t, "character(0)")
+      t <- ifelse(type == "AGREE", t, NA_character_)
+    } else if (treaty_type == "protocols") {
+      t <- ifelse(type == "PROTO", t, NA_character_)
+    } else if (treaty_type == "amendments") {
+      t <- ifelse(type == "AMEND", t, NA_character_)
+    } else if (treaty_type == "notes") {
+      t <- ifelse(type == "NOTES", t, NA_character_)
+    } else if (treaty_type == "memorandum") {
+      t <- ifelse(type == "STRAT", t, NA_character_)
+    } else if (treaty_type == "resolution") {
+      t <- ifelse(type == "RESOL", t, NA_character_)
     }
     t
   }
-  # Standardize components
-  t <- lapply(t, function(x) {
-    x <- stringr::str_replace_all(x, "\nannex|\n annex", "ANNEXannex")
-    x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|\\.\\sarticle\\s", "ARTICLE")
-    x <- stringr::str_replace_all(x, "_", "")
-    x <- stringr::str_replace_all(x, "\n", "")
-    x <- stringr::str_replace_all(x, "\\h+", " ")
-    x <- stringr::str_trim(x, "both")
-    x
-  })
   # Split list (if already not split by paragraph marks)
-  t <- lapply(t, function(x) {
-    if (lengths(x) < 10) strsplit(as.character(x), "ARTICLE|ANNEX")
-  })
-  # Add attributes
-  for (i in seq_len(length(t))) attr(t[[i]], "Treaty") <- paste0("Treaty_", i)
-  for (i in seq_len(length(t))) {
-    attr(t[[i]], "Article") <- paste0("Articles = ", lengths(t[i]))
-  }
+  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t), "ARTICLE|ANNEX"), t)
   # Get articles if declared
-  if (is.numeric(article)) {
-    for (k in seq_len(length(t))) {
-      a <- list(rep("NA",  as.numeric(article) + 1))
-      t[k] <- ifelse(lengths(t[k]) < as.numeric(article) + 1, t[k] <- a, t[k])
-      }
-    t <- purrr::map_chr(t, c(as.numeric(article) + 1))
-  }
   if (isTRUE(article == "preamble")) {
-    p <- lapply(t, function(x) grep("^preface|^preamble",
-                                    x, ignore.case = TRUE, value = TRUE))
-    t <- ifelse(p == "character(0)", purrr::map_chr(t, 1), p)
-  }
-  if (isTRUE(article == "memberships")) {
-    t <- lapply(t, function(x) grep("open for accession|accession shall be|can accede to|may join|
-                                    |open for joining|open for signature|shall be open|may accede|
-                                    |to accede to|may become a member|accession shall bind|
-                                    |accede thereto|become parties|request accession|
-                                    |may be admitted|any notification|receipt of any notice",
-                                    x, ignore.case = TRUE, value = TRUE))
-  }
-  if (isTRUE(article == "termination")) {
+    p <- lapply(t, function(x) grep("^preface|^preamble", x, ignore.case = TRUE, value = TRUE))
+    t <- ifelse(lengths(p) == 0, purrr::map_chr(t, 1), p)
+  } else if (isTRUE(article == "memberships")) {
+    t <- lapply(t, function(x) {
+    grep("open for accession|accession shall be|can accede to|may join|open for joining|open for signature|shall be open|may accede|to accede to|may become a member|accession shall bind|accede thereto|
+         |become parties|request accession|may be admitted|any notification|receipt of any notice", x, ignore.case = TRUE, value = TRUE)
+      })
+  } else if (isTRUE(article == "termination")) {
     t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|
                                     |concluded for a period|shall apply for|
                                     |periode de|shall be terminated|expiration of the period|
@@ -136,13 +105,12 @@ get_articles <- function(textvar, article = NULL, match = NULL, treaty_type = "a
                                     |may.*denounce|any member.*may.*withdraw|injured party.*end.*obligations|
                                     |party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
-  }
-  if (isTRUE(article == "annex")) {
+  } else if (isTRUE(article == "annex")) {
     t <- lapply(t, function(x) grep("^annex", x, value = TRUE))
   }
   if (!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
   }
-  t <- dplyr::na_if(t, "character(0)")
+  t <- ifelse(lengths(t) == 0, NA_character_, t)
   t
 }

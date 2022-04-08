@@ -12,10 +12,8 @@ get_articles(textvar, article = NULL, match = NULL, treaty_type = "all")
 \item{article}{Would you like to get a specific article?
 Null by default.
 Other options include the "preamble",
-"termination" clause, "membership" clause, "annex",
-or an article number.
-The specified portion or number
-across all treaties will be returned.}
+"termination" clause, "membership" clause, or "annex".
+The specified portion for all treaties will be returned.}
 
 \item{match}{A regex match for a word(s) or expression.
 For multiple words, please use "|" to divide them.}
@@ -43,13 +41,12 @@ a structured list for each agreement based on articles is returned.
 }
 \examples{
 \dontrun{
-t <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+textvar <- sample(manyenviron::texts$AGR_TXT$Text, 30)
 get_articles(t)
 get_articles(t, article = "preamble")
 get_articles(t, article = "memberships")
 get_articles(t, article = "termination")
 get_articles(t, article = "annex")
-get_articles(t, article = 1)
 get_articles(t, match = "constitution")
 get_articles(t, article = "preamble", match = "amend")
 get_articles(t, treaty_type = "agreements")
