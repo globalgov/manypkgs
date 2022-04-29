@@ -5,12 +5,16 @@
 \alias{standardize_dates}
 \title{Standardises a wide range of date inputs}
 \usage{
-standardise_dates(...)
+standardise_dates(..., interactive = FALSE)
 
-standardize_dates(...)
+standardize_dates(..., interactive = FALSE)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
+
+\item{interactive}{By default FALSE.
+If TRUE, it allows users to choose the correct order for
+ambiguous 6 digit date in a messydt vector.}
 }
 \value{
 Nested vector of dates under messydt class
