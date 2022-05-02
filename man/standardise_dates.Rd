@@ -5,12 +5,15 @@
 \alias{standardize_dates}
 \title{Standardises a wide range of date inputs}
 \usage{
-standardise_dates(..., interactive = FALSE)
+standardise_dates(..., text = FALSE, interactive = FALSE)
 
-standardize_dates(..., interactive = FALSE)
+standardize_dates(..., text = FALSE, interactive = FALSE)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
+
+\item{text}{By default false.
+If TRUE, the function finds dates from text vectors.}
 
 \item{interactive}{By default FALSE.
 If TRUE, it allows users to choose the correct order for
@@ -24,7 +27,8 @@ The function is wrapper for \code{messydates::as_messydate()}.
 The function standardises a wide range of date inputs parsed through it,
 and convert it into a messydt class
 It accepts date inputs in different formats, incomplete dates,
-historical dates and future dates. It also creates nested
+historical dates and future dates.
+It also creates nested
 vectors of dates for vague date inputs, ambiguous and ranged dates,
 into a range of dates.
 }
@@ -35,7 +39,7 @@ There are several limitations of other date wrangling packages
 and/or functions for dealing with incomplete dates, dates with
 different or inconsistent formats or historical dates for which
 \code{standardise_dates()}, and \code{{messydates}} more broadly, can be used.
-It also converts  ambiguous and ranged dates into a
+It also converts ambiguous and ranged dates into a
 range of dates.
 }
 \examples{

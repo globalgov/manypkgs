@@ -51,3 +51,8 @@ test_that("standardise_dates() treats multiple inconsistent dates correctly", {
   expect_equal(as.character(standardise_dates(lubridate::mdy(dat2$date))),
                c("2009-09-12", "2019-10-01", "1998-11-13", "2003-05-13"))
 })
+
+test_that("standardise_dates() handles text correctly", {
+  expect_equal(standardise_dates("Today is 1 January 2010", text = TRUE),
+               messydates::as_messydate("01-01-2010"))
+})
