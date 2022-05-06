@@ -5,17 +5,19 @@
 \alias{standardize_dates}
 \title{Standardises a wide range of date inputs}
 \usage{
-standardise_dates(..., text = FALSE, interactive = FALSE)
+standardise_dates(..., from_text = FALSE, interactive = FALSE)
 
-standardize_dates(..., text = FALSE, interactive = FALSE)
+standardize_dates(..., from_text = FALSE, interactive = FALSE)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
 
-\item{text}{By default false.
+\item{from_text}{Inherited from \code{messydates::as_messydate()}.
+By default false.
 If TRUE, the function finds dates from text vectors.}
 
-\item{interactive}{By default FALSE.
+\item{interactive}{Inherited from \code{messydates::as_messydate()}.
+By default FALSE.
 If TRUE, it allows users to choose the correct order for
 ambiguous 6 digit date in a messydt vector.}
 }

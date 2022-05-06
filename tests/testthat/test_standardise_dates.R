@@ -53,6 +53,6 @@ test_that("standardise_dates() treats multiple inconsistent dates correctly", {
 })
 
 test_that("standardise_dates() handles text correctly", {
-  expect_equal(standardise_dates("Today is 1 January 2010", text = TRUE),
+  expect_equal(standardise_dates("Today is 1 January 2010", from_text = TRUE),
                messydates::as_messydate("01-01-2010"))
 })
