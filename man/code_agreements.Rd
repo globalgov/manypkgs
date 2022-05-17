@@ -14,7 +14,7 @@ columns in the dataset.
 The function "expects" that there are variables
 named \code{Title} and \code{Signature} that they have been
 standardised using \code{standardise_titles()} and
-\code{standardise_dates()}, respectively.}
+\code{messydates::as_messydate()}, respectively.}
 
 \item{title}{title variable.
 The function "expects" that the variable has been
@@ -22,7 +22,7 @@ standardised using \code{standardise_titles()}}
 
 \item{date}{date variable.
 The function "expects" that the variable has been
-standardised using \code{standardise_dates()}}
+standardised using \code{messydates::as_messydate()}.}
 }
 \value{
 a character vector with the treatyIDs

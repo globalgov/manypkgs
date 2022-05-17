@@ -5,9 +5,9 @@
 \alias{standardize_dates}
 \title{Standardises a wide range of date inputs}
 \usage{
-standardise_dates(..., from_text = FALSE, interactive = FALSE)
+standardise_dates(...)
 
-standardize_dates(..., from_text = FALSE, interactive = FALSE)
+standardize_dates(...)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}

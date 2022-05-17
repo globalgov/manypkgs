@@ -10,13 +10,6 @@
 #' into a range of dates.
 #' @name standardise_dates
 #' @param ... One (ymd) or three (yyyy, mm, dd) variables
-#' @param from_text Inherited from `messydates::as_messydate()`.
-#' By default false.
-#' If TRUE, the function finds dates from text vectors.
-#' @param interactive Inherited from `messydates::as_messydate()`.
-#' By default FALSE.
-#' If TRUE, it allows users to choose the correct order for
-#' ambiguous 6 digit date in a messydt vector.
 #' @details The function seeks to convert a wide range of dates into
 #' dates so that these can be meaningfully used for analysis.
 #' There are several limitations of other date wrangling packages
@@ -44,14 +37,8 @@
 #' manypkgs = manypkgs::standardise_dates(OriginalDate)
 #' ) %>% print(n = 25)
 #' @export
-standardise_dates <- function(..., from_text = FALSE, interactive = FALSE) {
-  dots <- list(...)
-  if (length(dots) == 1) {
-    x <- messydates::as_messydate(..., from_text, interactive)
-  } else if (length(dots) == 3) {
-    x <- messydates::make_messydate(..., from_text, interactive)
-  }
-  x
+standardise_dates <- function(...) {
+  .Deprecated("messydates::as_messydate()")
 }
 
 #' @rdname standardise_dates
