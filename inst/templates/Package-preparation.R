@@ -14,7 +14,7 @@
 # away from issues with ambiguous names down the road.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   manydata::transmutate(ID = {id_variable_name_here},
-              Beg = messydates::as_messydate({date_variable_name_here})) %>%
+              Beg = messydates::make_messydate({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
 # manypkgs includes several functions that should help cleaning
 # and standardising your data such as `standardise_titles()`.
