@@ -195,7 +195,7 @@ jobs:
 
       # install manydata
       - name: install manypkgs package
-       run: Rscript -e 'install.packages("manydata")'
+        run: Rscript -e 'install.packages("manydata")'
 
       # Render README.md using rmarkdown
       - name: render README
