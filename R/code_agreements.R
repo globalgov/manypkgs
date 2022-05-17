@@ -10,13 +10,13 @@
 #' The function "expects" that there are variables
 #' named `Title` and `Signature` that they have been
 #' standardised using `standardise_titles()` and
-#' `standardise_dates()`, respectively.
+#' `messydates::as_messydate()`, respectively.
 #' @param title title variable.
 #' The function "expects" that the variable has been
 #' standardised using `standardise_titles()`
 #' @param date date variable.
 #' The function "expects" that the variable has been
-#' standardised using `standardise_dates()`
+#' standardised using `messydates::as_messydate()`.
 #' @return a character vector with the treatyIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
