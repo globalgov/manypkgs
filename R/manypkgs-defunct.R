@@ -15,9 +15,9 @@ standardise_dates <- function(...) {
               please use messydates::make_messydate() directly instead.")
   dots <- list(...)
   if (length(dots) == 1) {
-    x <- messydates::as_messydate(..., from_text, interactive)
+    x <- messydates::as_messydate(...)
   } else if (length(dots) == 3) {
-    x <- messydates::make_messydate(..., from_text, interactive)
+    x <- messydates::make_messydate(...)
   }
   x
 }
