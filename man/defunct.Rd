@@ -6,9 +6,9 @@
 \alias{standardize_dates}
 \title{Functions that have been renamed, superseded, or are no longer working}
 \usage{
-standardise_dates(..., from_text = FALSE, interactive = FALSE)
+standardise_dates(...)
 
-standardize_dates(..., from_text = FALSE, interactive = FALSE)
+standardize_dates(...)
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}

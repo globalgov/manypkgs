@@ -10,8 +10,7 @@ NULL
 #' original `make_messydates()` function. Please refer to its documentation
 #' for more details about the new implementation.
 #' @export
-
-standardise_dates <- function(..., from_text = FALSE, interactive = FALSE) {
+standardise_dates <- function(...) {
   .Defunct(msg = "This function has been removed in {manypkgs} v.0.2.2,
               please use messydates::make_messydate() directly instead.")
   dots <- list(...)
