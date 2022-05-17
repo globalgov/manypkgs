@@ -36,7 +36,6 @@ Imports:
     dplyr,
     tibble,
     english,
-    pkgdown,
     purrr,
     rlang,
     stringr,
