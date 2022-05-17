@@ -11,15 +11,6 @@ standardize_dates(...)
 }
 \arguments{
 \item{...}{One (ymd) or three (yyyy, mm, dd) variables}
-
-\item{from_text}{Inherited from \code{messydates::as_messydate()}.
-By default false.
-If TRUE, the function finds dates from text vectors.}
-
-\item{interactive}{Inherited from \code{messydates::as_messydate()}.
-By default FALSE.
-If TRUE, it allows users to choose the correct order for
-ambiguous 6 digit date in a messydt vector.}
 }
 \value{
 Nested vector of dates under messydt class
