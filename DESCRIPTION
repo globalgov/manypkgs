@@ -68,7 +68,7 @@ Suggests:
     desc,
     WVPlots,
     rmarkdown,
-    bibtex,
+    RefManageR,
     translateR,
     cld2,
     manydata,

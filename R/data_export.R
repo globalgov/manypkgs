@@ -60,7 +60,7 @@ export_data <- function(..., database, URL) {
 
     #Adding static source attributes to each dataset
     attr(env[[database]][[dataset_name]], "source_URL") <- URL
-    attr(env[[database]][[dataset_name]], "source_bib") <- bibtex::read.bib(file = paste0("data-raw/",
+    attr(env[[database]][[dataset_name]], "source_bib") <- RefManageR::ReadBib(file = paste0("data-raw/",
                                                                                           database, "/",
                                                                                           dataset_name, "/",
                                                                                           dataset_name, ".bib"))
@@ -77,7 +77,7 @@ export_data <- function(..., database, URL) {
     env <- new.env()
     env[[database]] <- tibble::lst(...)
     attr(env[[database]][[dataset_name]], "source_URL") <- URL
-    attr(env[[database]][[dataset_name]], "source_bib") <- bibtex::read.bib(file = paste0("data-raw/",
+    attr(env[[database]][[dataset_name]], "source_bib") <- RefManageR::ReadBib(file = paste0("data-raw/",
                                                                                           database, "/",
                                                                                           dataset_name, "/",
                                                                                           dataset_name, ".bib"))
