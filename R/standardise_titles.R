@@ -103,8 +103,8 @@ standardize_titles <- standardise_titles
 #' so that translations to target language are more accurate and allows
 #' for text in multiple languages to be present in string.
 #' @param s A character string
-#' @param api_key Google API key.
-#' For more information please go to: https://cloud.google.com/translate/docs/setup
+#' @param api_json Path to a Google API key as a JSON file.
+#' For more information please go to: https://docs.ropensci.org/googleLanguageR/articles/setup.html
 #' @param target_lang Which language would you like this translated to?
 #' Please provide a two letter language abbreviation (e.g. "en" or "pt").
 #' By default english.
@@ -115,14 +115,14 @@ standardize_titles <- standardise_titles
 #' @importFrom dplyr rename
 #' @return A character vector of the same length of original.
 #' @export
-lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
+lingua <- function(s, api_json, target_lang = "en", translate = TRUE) {
 
-  depends(c("translateR", "cld2"))
+  depends(c("googleLanguageR", "cld2"))
 
   # Check if API key is declared
   if (missing(api_key) & translate == TRUE) {
-    stop("Please declare a Google API key.
-         For more information please go to: https://cloud.google.com/translate/docs/setup")
+    stop("Please declare a Google API key in a JSON file.
+         For more information please go to: https://docs.ropensci.org/googleLanguageR/articles/setup.html")
   }
 
   # Get strings as character and initialize variables
@@ -137,7 +137,7 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
     dplyr::rename(language = ".")
 
   # Return source language if translate is false, else translate string
-  if (missing(api_key) & translate == FALSE) {
+  if (missing(api_json) & translate == FALSE) {
     out <- source_lang
   } else {
     out <- cbind(out, source_lang)
@@ -148,10 +148,11 @@ lingua <- function(s, api_key, target_lang = "en", translate = TRUE) {
       } else if (out$language[k] == target_lang) {
         out$out[k] == out$out[k]
         } else {
-          out$out[k] <- suppressWarnings(translateR::translate(content.vec = out$out[k],
-                                                               google.api.key = api_key,
-                                                               source.lang = out$language[k],
-                                                               target.lang = target_lang))
+          # Authenticate user
+          googleLanguageR::gl_auth(json_file = api_json)
+          out$out[k] <- suppressWarnings(googleLanguageR::gl_translate(t_string = out$out[k],
+                                                               sourc = out$language[k],
+                                                               target = target_lang))
         }
       }
     out <- out$out

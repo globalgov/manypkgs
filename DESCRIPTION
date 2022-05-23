@@ -68,7 +68,7 @@ Suggests:
     WVPlots,
     rmarkdown,
     RefManageR,
-    translateR,
+    googleLanguageR,
     cld2,
     manydata,
     manyenviron,
