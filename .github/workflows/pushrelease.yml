@@ -56,20 +56,14 @@ jobs:
             eval sudo $cmd
           done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "20.04"), sep = "\n")')
 
-      - name: Install X11 dependencies on MacOS for pdftools
-        if: runner.os == 'macOS'
-        run: |
-          brew install --cask xquartz
-
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_github("globalgov/manyenviron")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Document
-        run: Rscript -e 'roxygen2::roxygenise()'
+#      - name: Document
+#        run: Rscript -e 'roxygen2::roxygenise()'
 
       - name: Check
         env:
@@ -104,7 +98,7 @@ jobs:
   release:
     name: Bump version and release
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout one
         uses: actions/checkout@master
@@ -193,10 +187,6 @@ jobs:
       - name: install required packages
         run: Rscript -e 'install.packages("rmarkdown")'
 
-      # install manydata
-      - name: install manypkgs package
-        run: Rscript -e 'install.packages("manydata")'
-
       # Render README.md using rmarkdown
       - name: render README
         run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
@@ -219,10 +209,6 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
-
-      - name: Install X11 dependencies on MacOS for pdftools
-        run: |
-          brew install --cask xquartz
 
       - name: Query dependencies
         run: |
