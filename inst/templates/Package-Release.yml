@@ -60,7 +60,6 @@ jobs:
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("manydata")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
@@ -94,10 +93,13 @@ jobs:
           name: ${{ matrix.config.asset_name }}
           path: build/
 
+      - name: Calculate code coverage
+        run: Rscript -e "covr::codecov()"
+
   release:
     name: Bump version and release
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout one
         uses: actions/checkout@master
@@ -131,7 +133,7 @@ jobs:
         run: ls -R
 
       - name: Rename Mac release
-        run: mv ./macOS/*.tgz Package_macOS.tgz
+        run: mv ./macOS/*.tgz package_macOS.tgz
 
       - name: Upload Mac binary
         id: upload-mac
@@ -140,12 +142,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: Package_macOS.tgz
-          asset_name: Package_macOS.tgz
+          asset_path: package_macOS.tgz
+          asset_name: package_macOS.tgz
           asset_content_type: application/zip
 
       - name: Rename Linux release
-        run: mv ./linuxOS/*.tar.gz Package_linuxOS.tar.gz
+        run: mv ./linuxOS/*.tar.gz package_linuxOS.tar.gz
 
       - name: Upload Linux binary
         id: upload-lin
@@ -154,12 +156,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: Package_linuxOS.tar.gz
-          asset_name: Package_linuxOS.tar.gz
+          asset_path: package_linuxOS.tar.gz
+          asset_name: package_linuxOS.tar.gz
           asset_content_type: application/zip
 
       - name: Rename Windows release
-        run: mv ./winOS/*.zip Package_winOS.zip
+        run: mv ./winOS/*.zip package_winOS.zip
 
       - name: Upload Windows binary
         id: upload-win
@@ -168,8 +170,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: Package_winOS.zip
-          asset_name: Package_winOS.zip
+          asset_path: package_winOS.zip
+          asset_name: package_winOS.zip
           asset_content_type: application/zip
 
   render:
@@ -182,7 +184,33 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
 
-      # Query and install dependencies as well as rmarkdown package since its a new runner for each job
+      # install packages needed
+      - name: install required packages
+        run: Rscript -e 'install.packages("rmarkdown")'
+
+      # Render README.md using rmarkdown
+      - name: render README
+        run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
+      # Add man/figures/README-* to the git add call if plots are generated
+      - name: commit rendered README
+        run: |
+          git add README.md
+          git commit -m "Re-build README.md" || echo "No changes to commit"
+          git push origin main || echo "No changes to commit"
+
+  pkgdown:
+    name: Build and deploy website
+    needs: render
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -190,30 +218,24 @@ jobs:
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
 
+      - name: Cache R packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
-          install.packages("rmarkdown", type = "binary")
+          install.packages("pkgdown", type = "binary")
         shell: Rscript {0}
 
-      # install packages needed
-      - name: install required packages
-        run: Rscript -e 'install.packages("rmarkdown")'
-
-      # install manydata
-      - name: install manydata package
-       run: Rscript -e 'install.packages("manydata")'
-
-      # Install Package
       - name: Install package
         run: R CMD INSTALL .
 
-      # Render README.md using rmarkdown
-      - name: render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
-
-      - name: commit rendered README
+      - name: Deploy package
         run: |
-          git add README.md
-          git commit -m "Re-build README.md" || echo "No changes to commit"
-          git push origin master || echo "No changes to commit"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'
