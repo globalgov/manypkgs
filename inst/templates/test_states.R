@@ -20,16 +20,20 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Contains the required variables
 test_that("object has the correct variables", {
-  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(ID))
-  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Beg))
-  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(End))
-  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]], vars(Label))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
+                                pointblank::vars(ID))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
+                                pointblank::vars(Beg))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
+                                pointblank::vars(End))
+  pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
+                                pointblank::vars(Label))
 })
 
 # Variables with dates are standardized
 test_that("dates are standardised", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "messydt")
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$End), "messydt")
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "mdate")
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$End), "mdate")
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$End)))
 })
