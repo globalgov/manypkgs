@@ -12,7 +12,8 @@ NULL
 #' @export
 standardise_dates <- function(...) {
   .Defunct(msg = "This function has been removed in {manypkgs} v.0.2.2,
-              please use messydates::make_messydate() directly instead.")
+  please use messydates::as_messydate() directly when passing one date varible (e.g. ymd) or
+           messydates::make_messydate() when passing three (e.g. yyyy, mm, dd) variables.")
   dots <- list(...)
   if (length(dots) == 1) {
     x <- messydates::as_messydate(...)
