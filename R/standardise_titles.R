@@ -26,7 +26,7 @@
 #' e <- standardise_titles("A treaty concerning things")
 #' e==c("A Treaty Concerning Things")
 #' @export
-standardise_titles <- function(s, api_key = NULL) {
+standardise_titles <- function(s, auth_key = NULL) {
   # Step one: capitalises first letter in words
   cap <- function(s) paste(toupper(substring(s, 1, 1)), {
     s <- substring(s, 2)

@@ -5,9 +5,9 @@
 \alias{standardize_titles}
 \title{Standardise titles}
 \usage{
-standardise_titles(s, api_key = NULL)
+standardise_titles(s, auth_key = NULL)
 
-standardize_titles(s, api_key = NULL)
+standardize_titles(s, auth_key = NULL)
 }
 \arguments{
 \item{s}{A string}
