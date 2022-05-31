@@ -212,7 +212,7 @@ setup_package <- function(package = NULL,
   manytemplate("Package-PR.md",
                fs::path(".github", "pull_request_template.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
@@ -223,7 +223,7 @@ setup_package <- function(package = NULL,
   manytemplate("Package-Bugs.md",
                fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created bug report issue template. Modify if necessary.")
@@ -231,7 +231,7 @@ setup_package <- function(package = NULL,
   manytemplate("Package-Features.md",
                fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
