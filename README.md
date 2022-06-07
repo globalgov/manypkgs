@@ -29,20 +29,21 @@ packages universe.
 For more details, please see the
 [vignette](https://globalgov.github.io/manypkgs/articles/developer.html).
 
-## Downloading and installing manypkgs
+Downloading and installing manypkgs
+-----------------------------------
 
 The development version of `{manypkgs}` can be downloaded from GitHub.
 
-``` r
-# install.packages("remotes")
-remotes::install_github("globalgov/manypkgs")
-```
+    # install.packages("remotes")
+    remotes::install_github("globalgov/manypkgs")
 
-## Cheat Sheet
+Cheat Sheet
+-----------
 
 <a href="https://github.com/globalgov/manypkgs/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/manypkgs/main/man/figures/cheatsheet.png" width="525" height="378"/></a>
 
-## The many packages universe
+The many packages universe
+--------------------------
 
 The many packages universe aims at making it easier to collect, correct,
 and and connect network data across issue-domains of global governance.
@@ -55,6 +56,7 @@ the packages currently available in the many packages universe.
 ``` r
 manydata::get_packages()
 ```
+
 
     ## # A tibble: 7 × 6
     ##   name        full_name            
