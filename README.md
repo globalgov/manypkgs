@@ -77,13 +77,13 @@ manydata::get_packages()
     ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
     ##   installed latest        updated   
     ##   <chr>     <chr>         <date>    
-    ## 1 0.7.3     0.7.3         2022-03-31
+    ## 1 0.7.4     0.7.4         2022-06-03
     ## 2 0.1.2     0.1.2         2022-03-16
     ## 3 <NA>      0.1.1-272ea19 2022-02-15
     ## 4 0.2.1     0.2.1         2022-02-18
     ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.1     0.1.1         2022-03-23
-    ## 7 0.2.1     0.2.1         2022-02-18
+    ## 6 0.1.2     0.1.1         2022-03-23
+    ## 7 0.3.0     0.2.1         2022-02-18
 
 Please see [the website](https://globalgov.github.io/manypkgs/) for more
 information about how to use `{manypkgs}` as a developer or as a data
