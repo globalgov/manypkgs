@@ -21,12 +21,12 @@
 #' @examples
 #' \donttest{
 #' m <- manyenviron::texts$AGR_TXT[100:300,]
-#' code_memberships(m$Text, m$Title, memberships = "condition")
-#' code_memberships(m$Text, memberships = "process")
-#' code_memberships()
+#' code_accession_terms(m$Text, m$Title, memberships = "condition")
+#' code_accession_terms(m$Text, memberships = "process")
+#' code_accession_terms()
 #' }
 #' @export
-code_memberships <- function(t, title = NULL, memberships = NULL) {
+code_accession_terms <- function(t, title = NULL, memberships = NULL) {
   if (missing(t)) {
     me <- member
     me <- knitr::kable(me, "simple", caption = "Memberships process steps and criterion")
