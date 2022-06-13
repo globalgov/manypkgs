@@ -37,7 +37,8 @@ code_accession_terms <- function(t, title = NULL, memberships = NULL) {
   if (isTRUE(memberships == "condition")) {
     # Second step: match terms to identify memberships conditions
     condition_1 <- dplyr::case_when(
-      grepl("any government|any", memb, ignore.case = T) ~ "open",
+      grepl("accession.*a government|accession.*any government",
+            memb, ignore.case = T) ~ "open",
       )
     condition_2 <- dplyr::case_when(
       grepl("nomination", memb, ignore.case = T) ~ "Semi-open",
@@ -57,16 +58,20 @@ code_accession_terms <- function(t, title = NULL, memberships = NULL) {
       grepl("open for signature", memb, ignore.case = T) ~ "signature",
       )
     process_2 <- dplyr::case_when(
-      grepl("ratification", memb, ignore.case = T) ~ "ratification",
+      grepl("ratification|ratified", memb, ignore.case = T) ~ "ratification",
     )
     process_3 <- dplyr::case_when(
-      grepl("accession shall be notified|notified|any notification|receipt of any notice", memb, ignore.case = T) ~ "notification",
+      grepl("accession shall be notified|any notification|receipt of any notice|
+            |member.*notified.*application)",
+            memb, ignore.case = T) ~ "notification",
       )
     process_4 <- dplyr::case_when(
-      grepl("two-thirds majority of its membership", memb, ignore.case = T) ~ "majority vote",
+      grepl("accession.*decisions?.*two[-]?thirds majority",
+            memb, ignore.case = T) ~ "majority vote",
       )
     process_5 <- dplyr::case_when(
-      grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
+      grepl("accession.*decisions?.*unanimity|unanimously", 
+            memb, ignore.case = T) ~ "unanimity",
       )
     process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ", process_4, " + ", process_5)
     process <- stringr::str_remove_all(process, "\\+ NA|NA \\+")
