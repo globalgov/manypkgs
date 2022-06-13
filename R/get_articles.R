@@ -24,10 +24,10 @@
 #' @importFrom purrr map_chr map
 #' @importFrom stringr str_extract str_replace_all str_trim str_split
 #' @importFrom stringi stri_trans_general
-#' @return A list of treaty sections of the same length
+#' @return A list of treaty sections of the same length.
 #' @examples
 #' \dontrun{
-#' textvar <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+#' t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 #' get_articles(t)
 #' get_articles(t, article = "preamble")
 #' get_articles(t, article = "memberships")
@@ -42,16 +42,9 @@
 #' @export
 get_articles <- function(textvar, article = NULL,
                          match = NULL, treaty_type = "all") {
-  # Standardize components
-  t <- purrr::map(textvar, function(x) {
-    x <- stringi::stri_trans_general(tolower(as.character(x)),
-                                     id = "Latin-ASCII")
-    x <- stringr::str_replace_all(x, "\nannex|\n annex", "ANNEXannex")
-    x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
-                                  |\\.\\sarticle\\s|\\.article\\s", "ARTICLE")
-    x <- tm::stripWhitespace(x)
-    x
-  })
+  usethis::ui_info("Please make sure treaty texts have been standardised first
+                   using `standardise_texts()`")
+  t <- textvar
   # Get treaty type if declared (adapted from code_type)
   if (treaty_type != "all") {
     out <- purrr::map(t, as.character)
@@ -79,10 +72,11 @@ get_articles <- function(textvar, article = NULL,
     t
   }
   # Split list (if already not split by paragraph marks)
-  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t), "ARTICLE|ANNEX"), t)
+  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t), "((?=ARTICLE)|(?=ANNEX))"), t)
   # Get articles if declared
   if (isTRUE(article == "preamble")) {
-    p <- lapply(t, function(x) grep("^preface|^preamble", x, ignore.case = TRUE, value = TRUE))
+    p <- lapply(t, function(x) grep("^preface|^preamble", x,
+                                    ignore.case = TRUE, value = TRUE))
     t <- ifelse(lengths(p) == 0, purrr::map_chr(t, 1), p)
   } else if (isTRUE(article == "memberships")) {
     t <- lapply(t, function(x) {
@@ -106,7 +100,8 @@ get_articles <- function(textvar, article = NULL,
                                     |party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
   } else if (isTRUE(article == "annex")) {
-    t <- lapply(t, function(x) grep("^annex", x, value = TRUE))
+    t <- lapply(t, function(x) grep("^annex", x, ignore.case = TRUE,
+                                    value = TRUE))
   }
   if (!is.null(match)) {
     t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))

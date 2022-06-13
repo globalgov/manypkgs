@@ -25,7 +25,7 @@ Other treaty types include:
 "notes", "memorandum", and "resolutions".}
 }
 \value{
-A list of treaty sections of the same length
+A list of treaty sections of the same length.
 }
 \description{
 The function splits treaty texts into lists that reflect a structure
@@ -41,7 +41,7 @@ a structured list for each agreement based on articles is returned.
 }
 \examples{
 \dontrun{
-textvar <- sample(manyenviron::texts$AGR_TXT$Text, 30)
+t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 get_articles(t)
 get_articles(t, article = "preamble")
 get_articles(t, article = "memberships")
