@@ -1,3 +1,29 @@
+#' Standardise treaty texts
+#' 
+#' Standardise treaty texts by removing punctuation and markers,
+#' while splitting these into articles and annexes. 
+#' @param textvar A text variable.
+#' @return A list of treaty sections of the same length.
+#' @examples
+#' \dontrun{
+#' t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' }
+#' @export
+standardise_texts <- function(textvar) {
+  t <- purrr::map(textvar, function(x) {
+    x <- stringi::stri_trans_general(tolower(as.character(x)),
+                                     id = "Latin-ASCII")
+    x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s",
+                                  " ANNEX ")
+    x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
+                                  |\\.\\sarticle\\s|\\.article\\s", " ARTICLE ")
+    x <- tm::stripWhitespace(x)
+    x
+  })
+  t <- ifelse(lengths(t) == 0, NA_character_, t)
+  t
+}
+
 #' Convert PDFs to text
 #'
 #' @param path The file(s) path.
