@@ -17,6 +17,9 @@ standardise_texts <- function(textvar) {
                                   " ANNEX ")
     x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
                                   |\\.\\sarticle\\s|\\.article\\s", " ARTICLE ")
+    x <- stringr::str_replace_all(x, "\nappendix|\n appendix|\\.\\sappendix\\s|
+                                  |\\.appendix\\s", " APPENDIX ")
+    x <- stringr::str_remove_all(x, "<.*?>")
     x <- tm::stripWhitespace(x)
     x
   })
