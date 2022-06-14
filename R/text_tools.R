@@ -13,12 +13,14 @@ standardise_texts <- function(textvar) {
   t <- purrr::map(textvar, function(x) {
     x <- stringi::stri_trans_general(tolower(as.character(x)),
                                      id = "Latin-ASCII")
-    x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s",
-                                  " ANNEX ")
+    x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s|
+                                  |\\d\\sannex\\s"," ANNEX ")
     x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
                                   |\\.\\sarticle\\s|\\.article\\s", " ARTICLE ")
     x <- stringr::str_replace_all(x, "\nappendix|\n appendix|\\.\\sappendix\\s|
                                   |\\.appendix\\s", " APPENDIX ")
+    x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
+                                  |\\.protocol\\s|\\d\\sprotocol\\s", " PROTOCOL ")
     x <- stringr::str_remove_all(x, "<.*?>")
     x <- tm::stripWhitespace(x)
     x
