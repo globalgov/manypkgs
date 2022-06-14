@@ -37,7 +37,8 @@ code_accession_terms <- function(t, title = NULL, memberships = NULL) {
   if (isTRUE(memberships == "condition")) {
     # Second step: match terms to identify memberships conditions
     condition_1 <- dplyr::case_when(
-      grepl("accession.*a government|accession.*any government",
+      grepl("accession.*a government|accession.*any government|
+            |open.*all states|open.*any state|open.*all governments|open.*any government",
             memb, ignore.case = T) ~ "open",
       )
     condition_2 <- dplyr::case_when(
