@@ -12,6 +12,7 @@
 * Closed #75 by fixing memory usage issues with `get_articles()` function
 * Closed #77 by making `standardise_dates()` defunct and favour calling `{messydates}` directly for dates conversion
 * Closed #80 by updating `standardise_titles()` to use `{deeplr}` package for translating titles
+* Closed #84 by adding `standardise_texts()` function to standardise treaty texts in data preparation scripts
 
 # manypkgs 0.2.1
 
