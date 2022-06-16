@@ -22,10 +22,6 @@ standardise_texts <- function(textvar) {
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
                                   |\\.protocol\\s|\\d\\sprotocol\\s", " PROTOCOL ")
     x <- stringr::str_remove_all(x, "<.*?>")
-    x <- stringr::str_remove_all(x, "<h3>")
-    x <- stringr::str_remove_all(x, "</h3>")
-    x <- stringr::str_remove_all(x, "</p>")
-    x <- stringr::str_remove_all(x, "<p>")
     x <- tm::stripWhitespace(x)
     x <- stringr::str_remove_all(x, "\r")
     x <- stringr::str_remove_all(x, "\t")
