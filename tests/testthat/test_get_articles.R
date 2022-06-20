@@ -9,7 +9,7 @@ test_that("Treaty text is splitted correctly", {
   expect_length(get_articles(treaty), 2)
   expect_equal(get_articles(treaty, article = "preamble"), list("preamble: this is the preamble ",
                                                                 "preamble: this is the preamble "))
-  expect_equal(get_articles(treaty, article = "memberships"), list("ARTICLE 3: open for accession ", "NA"))
+  expect_equal(get_articles(treaty, article = "accession"), list("ARTICLE 3: open for accession ", "NA"))
   expect_equal(get_articles(treaty, article = "termination"),
                list("ARTICLE 4: shall terminate as shall be dissolved ", "NA"))
   expect_equal(get_articles(treaty, article = "annex"), list("ANNEX : this is an annex", "NA"))
