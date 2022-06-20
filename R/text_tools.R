@@ -25,6 +25,7 @@ standardise_texts <- function(textvar) {
     x <- tm::stripWhitespace(x)
     x <- stringr::str_remove_all(x, "\r")
     x <- stringr::str_remove_all(x, "\t")
+    x <- stringr::str_remove_all(x, "\n")
     x
   })
   t <- ifelse(lengths(t) == 0, NA_character_, t)
