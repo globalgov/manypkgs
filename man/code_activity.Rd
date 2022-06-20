@@ -14,7 +14,8 @@ A character vector of abbreviations of
 last words in treaty title
 }
 \description{
-Code abbreviations for activity in bilateral treaty titles
+Code in abbreviated form the activity of bilateral treaties
+from treaty titles.
 }
 \details{
 Bilateral agreements usually detail their

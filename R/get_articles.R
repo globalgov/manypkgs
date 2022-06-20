@@ -4,7 +4,7 @@
 #' based on having a preamble and several articles.
 #' Once articles are split,
 #' you can access all the "preambles",
-#' "membership" or "termination" clauses,
+#' "accession" or "termination" clauses,
 #' or articles that contain certain word.
 #' @param textvar A text variable
 #' @param article Would you like to get a specific article?
@@ -30,7 +30,7 @@
 #' t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 #' get_articles(t)
 #' get_articles(t, article = "preamble")
-#' get_articles(t, article = "memberships")
+#' get_articles(t, article = "accession")
 #' get_articles(t, article = "termination")
 #' get_articles(t, article = "annex")
 #' get_articles(t, match = "constitution")
@@ -78,7 +78,7 @@ get_articles <- function(textvar, article = NULL,
     p <- lapply(t, function(x) grep("^preface|^preamble", x,
                                     ignore.case = TRUE, value = TRUE))
     t <- ifelse(lengths(p) == 0, purrr::map_chr(t, 1), p)
-  } else if (isTRUE(article == "memberships")) {
+  } else if (isTRUE(article == "accession")) {
     t <- lapply(t, function(x) {
     grep("open for accession|accession shall be|can accede to|may join|
          |open for joining|open for signature|shall be open|may accede|

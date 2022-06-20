@@ -11,7 +11,7 @@
 #' @param t A text variable
 #' @param title A title variable.
 #' If not declared, NULL by default.
-#' @param memberships The "condition" or "process"
+#' @param accession The "condition" or "process"
 #' for parties to accede a treaty.
 #' If not declared, returns the "process".
 #' @return Either the conditions to be part of the treaty
@@ -21,21 +21,21 @@
 #' @examples
 #' \donttest{
 #' m <- manyenviron::texts$AGR_TXT[100:300,]
-#' code_accession_terms(m$Text, m$Title, memberships = "condition")
-#' code_accession_terms(m$Text, memberships = "process")
+#' code_accession_terms(m$Text, m$Title, accession = "condition")
+#' code_accession_terms(m$Text, accession = "process")
 #' code_accession_terms()
 #' }
 #' @export
-code_accession_terms <- function(t, title = NULL, memberships = NULL) {
+code_accession_terms <- function(t, title = NULL, accession = NULL) {
   if (missing(t)) {
     me <- member
-    me <- knitr::kable(me, "simple", caption = "Memberships process steps and criterion")
+    me <- knitr::kable(me, "simple", caption = "accession process steps and criterion")
     me
   } else {
-  # First step: select all the articles concerning memberships
-  memb <- get_articles(t, article = "memberships")
-  if (isTRUE(memberships == "condition")) {
-    # Second step: match terms to identify memberships conditions
+  # First step: select all the articles concerning accession
+  memb <- get_articles(t, article = "accession")
+  if (isTRUE(accession == "condition")) {
+    # Second step: match terms to identify accession conditions
     condition_1 <- dplyr::case_when(
       grepl("accession.*a government|accession.*any government|
             |open.*all states|open.*any state|open.*all governments|open.*any government",
@@ -53,7 +53,7 @@ code_accession_terms <- function(t, title = NULL, memberships = NULL) {
     condition
   } else {
     # Third step: when the user select "process" instead of "condition",
-    # the terms to detect specific processes to accede memberships match are used here
+    # the terms to detect specific processes to accede accession match are used here
     # to create categories
     process_1 <- dplyr::case_when(
       grepl("open for signature", memb, ignore.case = T) ~ "signature",

@@ -32,7 +32,7 @@ The function splits treaty texts into lists that reflect a structure
 based on having a preamble and several articles.
 Once articles are split,
 you can access all the "preambles",
-"membership" or "termination" clauses,
+"accession" or "termination" clauses,
 or articles that contain certain word.
 }
 \details{
@@ -44,7 +44,7 @@ a structured list for each agreement based on articles is returned.
 t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 get_articles(t)
 get_articles(t, article = "preamble")
-get_articles(t, article = "memberships")
+get_articles(t, article = "accession")
 get_articles(t, article = "termination")
 get_articles(t, article = "annex")
 get_articles(t, match = "constitution")
