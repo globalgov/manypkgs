@@ -22,7 +22,7 @@ test_that("datasets have the required variables", {
                                 pointblank::vars(Signature))
 })
 
-# Date columns should be in messydt class
+# Date columns should be in mdate class
 test_that("Columns are not in date, POSIXct or POSIXlt class", {
   expect_false(any(lubridate::is.Date({{{dab}}}[["{{{dat}}}"]])))
   expect_false(any(lubridate::is.POSIXct({{{dab}}}[["{{{dat}}}"]])))
