@@ -4,7 +4,7 @@
 \alias{code_accession_terms}
 \title{Get conditions and processes to accede memberships}
 \usage{
-code_accession_terms(t, title = NULL, memberships = NULL)
+code_accession_terms(t, title = NULL, accession = NULL)
 }
 \arguments{
 \item{t}{A text variable}
@@ -12,7 +12,7 @@ code_accession_terms(t, title = NULL, memberships = NULL)
 \item{title}{A title variable.
 If not declared, NULL by default.}
 
-\item{memberships}{The "condition" or "process"
+\item{accession}{The "condition" or "process"
 for parties to accede a treaty.
 If not declared, returns the "process".}
 }
@@ -33,8 +33,8 @@ order to accede memberships
 \examples{
 \donttest{
 m <- manyenviron::texts$AGR_TXT[100:300,]
-code_accession_terms(m$Text, m$Title, memberships = "condition")
-code_accession_terms(m$Text, memberships = "process")
+code_accession_terms(m$Text, m$Title, accession = "condition")
+code_accession_terms(m$Text, accession = "process")
 code_accession_terms()
 }
 }
