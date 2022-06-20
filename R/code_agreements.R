@@ -174,7 +174,8 @@ code_parties <- function(title, activity = TRUE) {
 
 #' Code Abbreviations for Activity
 #'
-#' Code abbreviations for activity in bilateral treaty titles
+#' Code in abbreviated form the activity of bilateral treaties
+#' from treaty titles.
 #' @param title A character vector of treaty titles
 #' @details Bilateral agreements usually detail their
 #' activity and specify area in the last words of the titles.
