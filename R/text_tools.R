@@ -22,10 +22,10 @@ standardise_texts <- function(textvar) {
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
                                   |\\.protocol\\s|\\d\\sprotocol\\s", " PROTOCOL ")
     x <- stringr::str_remove_all(x, "<.*?>")
-    x <- tm::stripWhitespace(x)
     x <- stringr::str_remove_all(x, "\r")
     x <- stringr::str_remove_all(x, "\t")
     x <- stringr::str_remove_all(x, "\n")
+    x <- tm::stripWhitespace(x)
     x
   })
   t <- ifelse(lengths(t) == 0, NA_character_, t)
