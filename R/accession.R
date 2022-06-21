@@ -63,13 +63,13 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
     )
     process_3 <- dplyr::case_when(
       grepl("accession shall be notified|any notification|receipt of any notice|
-            |member.*notified.*application|shall notify", memb, ignore.case = T) ~ "notification",
+            |member.*notified.*application", memb, ignore.case = T) ~ "notification",
       )
     process_4 <- dplyr::case_when(
       grepl("accession.*decisions?.*two[-]?thirds majority", memb, ignore.case = T) ~ "majority vote",
       )
     process_5 <- dplyr::case_when(
-      grepl("unanimity|unanimous|unanimously", memb, ignore.case = T) ~ "unanimity",
+      grepl("unanimity", memb, ignore.case = T) ~ "unanimity",
       )
     process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ", process_4, " + ", process_5)
     process <- stringr::str_remove_all(process, "\\+ NA|NA \\+")
