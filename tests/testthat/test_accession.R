@@ -12,7 +12,7 @@ data <- data.frame(title = c("Amendments On The Transport Of Corrosive Substance
                              "x 1. states interested in co-operating in the regulation of hunting operations and the
                              conservation of stocks of the species of animals to which this agreement applies may, with
                              the consent of the contracting parties, become parties to the agreement."))
-data$text <- manypkgs::standardise_texts(data$text)
+data$text <- standardise_texts(data$text)
 
 test_that("code_accession_terms works properly", {
   expect_equal(code_accession_terms(data$text, data$title, accession = "condition"), c("open + domain: waste", "open", NA))

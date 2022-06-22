@@ -27,7 +27,7 @@
 #' }
 #' @export
 code_accession_terms <- function(t, title = NULL, accession = NULL) {
-  if (missing(t)) {
+  if (missing(t)) { 
     me <- member
     me <- knitr::kable(me, "simple", caption = "accession process steps and criterion")
     me
@@ -37,8 +37,7 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
   if (isTRUE(accession == "condition")) {
     # Second step: match terms to identify accession conditions
     condition_1 <- dplyr::case_when(
-      grepl("accession.*a government|accession.*any government|
-            |open.*all states|open.*any state|open.*all governments|open.*any government",
+      grepl("a government|any government|all governments|all states|any state",
             memb, ignore.case = T) ~ "open",
       )
     condition_2 <- dplyr::case_when(
@@ -63,10 +62,10 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
     )
     process_3 <- dplyr::case_when(
       grepl("accession shall be notified|any notification|receipt of any notice|
-            |member.*notified.*application|shall notify", memb, ignore.case = T) ~ "notification",
+            |notified.*application|shall notify", memb, ignore.case = T) ~ "notification",
       )
     process_4 <- dplyr::case_when(
-      grepl("accession.*decisions?.*two[-]?thirds majority", memb, ignore.case = T) ~ "majority vote",
+      grepl("two[-]?thirds majority", memb, ignore.case = T) ~ "majority vote",
       )
     process_5 <- dplyr::case_when(
       grepl("unanimity|unanimous|unanimously", memb, ignore.case = T) ~ "unanimity",
