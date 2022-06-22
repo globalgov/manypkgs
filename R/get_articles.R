@@ -80,11 +80,19 @@ get_articles <- function(textvar, article = NULL,
     t <- ifelse(lengths(p) == 0, purrr::map_chr(t, 1), p)
   } else if (isTRUE(article == "accession")) {
     t <- lapply(t, function(x) {
-    grep("open for accession|accession shall be|can accede to|may join|
-         |open for joining|open for signature|shall be open|may accede|
-         |to accede to|may become a member|accession shall bind|accede thereto|
-         |become parties|request accession|may be admitted|any notification|
-         |receipt of any notice", x, ignore.case = TRUE, value = TRUE)
+    grep("([^\\s]+\\s+){0,50}open for accession([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}accession shall be([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}accede to([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}may join([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}open for joining([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}open for signature([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}may become a member([^\\s]+\\s+){0,50}}|
+          |([^\\s]+\\s+){0,50}accede thereto([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}become parties([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}become a party([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}request accession([^\\s]+\\s+){0,50}|
+          |([^\\s]+\\s+){0,50}may be admitted([^\\s]+\\s+){0,50}",
+         x, ignore.case = TRUE, perl = TRUE, value = TRUE)
       })
   } else if (isTRUE(article == "termination")) {
     t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|
