@@ -88,6 +88,17 @@ import_data <- function(dataset = NULL,
 
   # Step two: move raw data file to correct location
   if (is.null(path)) path <- file.choose()
+  # Make sure names are consistent
+  if (!grepl(paste0(dataset, "/", dataset), path)) {
+    stop("Please make sure that raw data file and dataset have the same name for consistency.")
+  }
+  # check if data raw is in .csv
+  if (!grepl(".csv", path)) {
+    if(isFALSE(utils::askYesNo("Raw data should ideally be in text format (i.e. .csv file).
+                               Would you like to continue or convert the raw data first?"))) {
+      stop("Please convert raw data to text format before importing it to package.")
+    }
+  }
   new_path <- fs::path("data-raw", database, dataset, fs::path_file(path))
   file.copy(path, new_path)
   usethis::ui_done("Copied data to {new_path}.")
