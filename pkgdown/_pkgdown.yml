@@ -77,7 +77,7 @@ reference:
       - get_links
       - get_memberships
       - get_articles
-      - lingua
+      - treaty_pdf
 footer:
   structure:
     left: devs
