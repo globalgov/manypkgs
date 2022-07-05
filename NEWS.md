@@ -10,6 +10,9 @@
 
 * Closed #18 by adding `treaty_pdf()` function that extract texts from PDF files
 * Closed #75 by fixing memory usage issues with `get_articles()` function
+* Updated accession and termination functions
+  * Renamed `code_memebership()` function `code_accession_terms()` for clarity
+  * Closed #76 by improving dictionary matching for these functions
 * Closed #77 by making `standardise_dates()` defunct and favour calling `{messydates}` directly for dates conversion
 * Closed #80 by updating `standardise_titles()` to use `{deeplr}` package for translating titles
 * Closed #84 by adding `standardise_texts()` function to standardise treaty texts in data preparation scripts
