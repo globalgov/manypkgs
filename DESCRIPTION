@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
 Version: 0.2.2
-Date: 2022-06-07
+Date: 2022-07-05
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
