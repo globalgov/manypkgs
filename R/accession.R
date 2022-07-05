@@ -27,50 +27,50 @@
 #' }
 #' @export
 code_accession_terms <- function(t, title = NULL, accession = NULL) {
-  if (missing(t)) { 
+  if (missing(t)) {
     me <- member
-    me <- knitr::kable(me, "simple", caption = "accession process steps and criterion")
+    me <- knitr::kable(me, "simple",
+                       caption = "accession process steps and criterion")
     me
   } else {
-  # First step: select all the articles concerning accession
-  memb <- get_articles(t, article = "accession")
-  if (isTRUE(accession == "condition")) {
-    # Second step: match terms to identify accession conditions
-    condition_1 <- dplyr::case_when(
-      grepl("a government|any government|all governments|all states|any state",
-            memb, ignore.case = T) ~ "open",
-      )
-    condition_2 <- dplyr::case_when(
-      grepl("nomination", memb, ignore.case = T) ~ "Semi-open",
-      )
-    condition_3 <- manypkgs::code_entity(title)
-    condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"), paste0("entity: ", condition_3), NA)
-    condition_4 <- manypkgs::code_domain(title)
-    condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"), paste0("domain: ", condition_4), NA)
-    condition <- paste0(condition_1, " + ", condition_2, " + ", condition_3, " + ", condition_4)
-    condition <- stringr::str_remove_all(condition, "NA\\s\\+\\s|\\s\\+\\sNA")
-    condition
+    # First step: select all the articles concerning accession
+    memb <- get_articles(t, article = "accession")
+    if (isTRUE(accession == "condition")) {
+      # Second step: match terms to identify accession conditions
+      condition_1 <- dplyr::case_when(grepl("a government|any government|
+                                            |all governments|all states|
+                                            |any state",
+                                            memb, ignore.case = T) ~ "open",)
+      condition_2 <- dplyr::case_when(grepl("nomination", memb,
+                                            ignore.case = T) ~ "Semi-open",)
+      condition_3 <- manypkgs::code_entity(title)
+      condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"),
+                          paste0("entity: ", condition_3), NA)
+      condition_4 <- manypkgs::code_domain(title)
+      condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"),
+                          paste0("domain: ", condition_4), NA)
+      condition <- paste0(condition_1, " + ", condition_2, " + ",
+                        condition_3, " + ", condition_4)
+      condition <- stringr::str_remove_all(condition, "NA\\s\\+\\s|\\s\\+\\sNA")
+      condition
   } else {
     # Third step: when the user select "process" instead of "condition",
-    # the terms to detect specific processes to accede accession match are used here
-    # to create categories
-    process_1 <- dplyr::case_when(
-      grepl("open for signature", memb, ignore.case = T) ~ "signature",
-      )
-    process_2 <- dplyr::case_when(
-      grepl("ratification|ratified", memb, ignore.case = T) ~ "ratification",
-    )
-    process_3 <- dplyr::case_when(
-      grepl("accession shall be notified|any notification|receipt of any notice|
-            |notified.*application|shall notify", memb, ignore.case = T) ~ "notification",
-      )
-    process_4 <- dplyr::case_when(
-      grepl("two[-]?thirds majority", memb, ignore.case = T) ~ "majority vote",
-      )
-    process_5 <- dplyr::case_when(
-      grepl("unanimity|unanimous|unanimously", memb, ignore.case = T) ~ "unanimity",
-      )
-    process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ", process_4, " + ", process_5)
+    # the terms to detect specific processes to accede accession match are
+    # used here to create categories
+    process_1 <- dplyr::case_when(grepl("open for signature", memb,
+                                        ignore.case = T) ~ "signature",)
+    process_2 <- dplyr::case_when(grepl("ratification|ratified", memb,
+                                        ignore.case = T) ~ "ratification",)
+    process_3 <- dplyr::case_when(grepl("accession shall be notified|any notification|
+                                        |receipt of any notice|notified.*application|
+                                        |shall notify", memb,
+                                        ignore.case = T) ~ "notification",)
+    process_4 <- dplyr::case_when(grepl("two[-]?thirds majority", memb,
+                                        ignore.case = T) ~ "majority vote",)
+    process_5 <- dplyr::case_when(grepl("unanimity|unanimous|unanimously", memb,
+                                        ignore.case = T) ~ "unanimity",)
+    process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ",
+                      process_4, " + ", process_5)
     process <- stringr::str_remove_all(process, "\\+ NA|NA \\+")
     process <- stringr::str_trim(process)
     process
@@ -100,7 +100,7 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
 #' }
 #' @export
 get_memberships <- function(database, actor, id) {
-  Memberships <- NULL
+  memberships <- NULL
   if (!missing(database)) {
     id <- unname(unlist(purrr::map(database, "manyID")))
     actor <- unname(unlist(purrr::map(database, "CountryID")))
@@ -108,10 +108,10 @@ get_memberships <- function(database, actor, id) {
     s <- as.data.frame(s)
     k <- s %>%
       dplyr::group_by(id) %>%
-      dplyr::summarise(Memberships = toString(actor)) %>%
+      dplyr::summarise(memberships = toString(actor)) %>%
       dplyr::ungroup()
     s <- dplyr::left_join(s, k, by = "id") %>%
-      dplyr::select(id, Memberships) %>%
+      dplyr::select(id, memberships) %>%
       unique()
     s
   } else {
@@ -121,10 +121,10 @@ get_memberships <- function(database, actor, id) {
     s <- as.data.frame(s)
     k <- s %>%
       dplyr::group_by(id) %>%
-      dplyr::summarise(Memberships = toString(actor)) %>%
+      dplyr::summarise(memberships = toString(actor)) %>%
       dplyr::ungroup()
     s <- dplyr::left_join(s, k, by = "id") %>%
-      dplyr::select(id, Memberships)
+      dplyr::select(id, memberships)
     s
   }
 }

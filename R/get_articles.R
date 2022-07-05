@@ -72,7 +72,8 @@ get_articles <- function(textvar, article = NULL,
     t
   }
   # Split list (if already not split by paragraph marks)
-  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t), "((?=ARTICLE)|(?=ANNEX))"), t)
+  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t),
+                                                  "((?=ARTICLE)|(?=ANNEX))"), t)
   # Get articles if declared
   if (isTRUE(article == "preamble")) {
     p <- lapply(t, function(x) grep("^preface|^preamble", x,
