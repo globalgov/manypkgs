@@ -89,7 +89,7 @@ import_data <- function(dataset = NULL,
   # Step two: move raw data file to correct location
   if (is.null(path)) path <- file.choose()
   # Make sure names are consistent
-  if (!grepl(paste0(dataset, "/", dataset), path)) {
+  if (!grepl(paste0(dataset), path)) {
     stop("Please make sure that raw data file and dataset have the same name for consistency.")
   }
   # check if data raw is in .csv
