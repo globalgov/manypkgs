@@ -10,18 +10,11 @@ License: CC BY 4.0
 Depends: 
     R (>= 3.5.0),
 Imports:
-    manydata,
-    tibble,
-    pointblank,
-    lubridate,
-    dplyr,
-    roxygen2,
-    usethis,
-    remotes,
-    messydates
+    manydata
 Suggests:
-    rlang,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    pointblank,
+    lubridate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
