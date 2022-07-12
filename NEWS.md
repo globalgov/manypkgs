@@ -4,14 +4,14 @@
 
 * Closed #55 by updating README and workflow files to download `{manydata}` from CRAN
 * Closed #74 by increasing package logo size
-* Updated workflow action files to run faster by implementing package caching
+* Updated workflow action files by implementing package caching
 
 ## Correction
 
 * Closed #18 by adding `treaty_pdf()` function that extract texts from PDF files
 * Closed #75 by fixing memory usage issues with `get_articles()` function
 * Updated accession and termination functions
-  * Renamed `code_memebership()` function `code_accession_terms()` for clarity
+  * Renamed `code_membership()` function `code_accession_terms()` for clarity
   * Closed #76 by improving dictionary matching for these functions
 * Closed #77 by making `standardise_dates()` defunct and favour calling `{messydates}` directly for dates conversion
 * Closed #80 by updating `standardise_titles()` to use `{deeplr}` package for translating titles
