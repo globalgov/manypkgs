@@ -94,7 +94,7 @@ import_data <- function(dataset = NULL,
   }
   # check if data raw is in .csv
   if (!grepl(".csv", path)) {
-    if (isFALSE(utils::askYesNo("Raw data should ideally be in text format (i.e. .csv file).
+    if (isFALSE(utils::askYesNo("Raw data should ideally be in .csv format.
                                 Would you like to continue or convert the raw data first?"))) {
       stop("Please convert raw data to text format before importing it to package.")
     }
