@@ -88,11 +88,15 @@ import_data <- function(dataset = NULL,
 
   # Step two: move raw data file to correct location
   if (is.null(path)) path <- file.choose()
-  # Make sure names are consistent
+  # Check data raw and dataset name consistency
   if (!grepl(paste0(dataset), path)) {
-    stop("Please make sure that raw data file and dataset have the same name for consistency.")
+    if (isFALSE(utils::askYesNo("Raw data file and dataset have different names.
+                                Would you like to continue or rename raw data
+                                file and dataset for consistency?"))) {
+      stop("Please make sure that raw data file and dataset have the same name for consistency.")
+    }
   }
-  # check if data raw is in .csv
+  # Check if data raw is in .csv format
   if (!grepl(".csv", path)) {
     if (isFALSE(utils::askYesNo("Raw data should ideally be in .csv format.
                                 Would you like to continue or convert the raw data first?"))) {
