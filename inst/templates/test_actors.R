@@ -32,7 +32,7 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Column Beg is in mdate class
 test_that("Beg column is in mdate class and standardized", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "mdate")
+  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$Beg, "mdate")
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
   expect_false(any(grepl("^[:alpha:]$",
                          {{{dab}}}[["{{{dat}}}"]]$Beg)))

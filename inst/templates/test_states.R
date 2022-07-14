@@ -32,8 +32,8 @@ test_that("object has the correct variables", {
 
 # Variables with dates are standardized
 test_that("dates are standardised", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "mdate")
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$End), "mdate")
+  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$Beg, "mdate")
+  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$End, "mdate")
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$End)))
 })
