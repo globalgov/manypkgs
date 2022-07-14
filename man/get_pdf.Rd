@@ -20,6 +20,10 @@ A list with the converted texts.
 \description{
 Get and convert PDFs to text
 }
+\details{
+If PDF file is not in "readable" format, function attempts to apply
+optical character recognition (OCR) to convert these to text.
+}
 \examples{
 \dontrun{
 get_pdf(path = getwd())
