@@ -38,6 +38,13 @@ goodpractice::gp(path = "manypkgs/",
 styler::style_file("filePath")
 ```
 
+## Writing in markdown/roxygen
+When writing passages of text in markdown or roxygen documents,
+please consider that text should be written such that sentences,
+and sometimes clauses of a sentence, start on a new line.
+This facilitates comparison of documents and feedback on GitHub.
+Lines of text should, ideally, not be over 80 characters in length.
+
 ## Pull request process
 The title of your PR should briefly describe the change. 
 Please include a summary of the changes and which issues are fixed and the relevant motivation and context. 
@@ -147,6 +154,7 @@ By convention, tests are located in [testthat/tests/](manypkgs/tests/testthat).
 
 You should verify that all tests pass before issuing a commit to existing code.
 To run all tests for the latest version manually:
+
 ```
 git pull
 library("testthat")
