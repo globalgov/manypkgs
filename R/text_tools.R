@@ -33,11 +33,11 @@ standardise_texts <- function(textvar) {
   t
 }
 
-#' Convert PDFs to text
+#' Get and convert PDFs to text
 #'
 #' @param path The file(s) path.
 #' The path can also be specified to a folder with multiple PDF files,
-#' in this case all PDF files in the folder will be converted.
+#' in that case all PDF files in the folder will be converted.
 #' @return A list with the converted texts.
 #' @importFrom pdftools pdf_text pdf_ocr_text
 #' @importFrom stringi stri_trans_general
@@ -45,10 +45,10 @@ standardise_texts <- function(textvar) {
 #' @source https://stackoverflow.com/questions/71064939/how-to-check-if-pdf-is-scanned-image-or-contains-text-in-r
 #' @examples
 #' \dontrun{
-#' treaty_pdf(path = getwd())
+#' get_pdf(path = getwd())
 #' }
 #' @export
-treaty_pdf <- function(path) {
+get_pdf <- function(path) {
   # get all PDFs
   files <- list.files(path, pattern = ".pdf$")
   # transform to text if readable, or ocr if not
