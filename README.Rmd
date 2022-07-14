@@ -17,9 +17,7 @@ output: github_document
 
 `{manypkgs}` is a package from the [many](https://github.com/globalgov) packages universe. 
 It provides contributors the necessary tools to put their data in the hands of users.
-The package includes functions to make this easier to set up a 'many' package, 
-import their existing data, and export them in structures consistent with other packages
-in the many packages universe.
+The package includes functions to make this easier to set up a 'many' package, import their existing data, and export them in structures consistent with other packages in the many packages universe.
 
 For more details, please see the [vignette](https://globalgov.github.io/manypkgs/articles/developer.html).
 
@@ -38,8 +36,8 @@ remotes::install_github("globalgov/manypkgs")
 
 ## The many packages universe
 
-The many packages universe aims at making it easier to collect, correct, and and connect network data across issue-domains of global governance. [manydata](https://github.com/globalgov/manydata) is the core package of
-the many packages universe. The package makes it easy to find, download, and analyze all the data included in the various 'many packages'. For example, the `manydata::get_packages()` function can be used to discover the packages currently available in the many packages universe.
+The many packages universe aims at making it easier to collect, correct, and and connect network data across issue-domains of global governance.
+[manydata](https://github.com/globalgov/manydata) is the core package ofnthe many packages universe. The package makes it easy to find, download, and analyze all the data included in the various 'many packages'. For example, the `manydata::get_packages()` function can be used to discover the packages currently available in the many packages universe.
 
 ```{r get, warning=FALSE, message=FALSE}
 manydata::get_packages()

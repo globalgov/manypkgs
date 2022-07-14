@@ -18,6 +18,6 @@ while splitting these into articles and annexes.
 }
 \examples{
 \dontrun{
-t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
+standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 }
 }

@@ -6,7 +6,7 @@
 #' @return A list of treaty sections of the same length.
 #' @examples
 #' \dontrun{
-#' t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
 #' }
 #' @export
 standardise_texts <- function(textvar) {
