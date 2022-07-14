@@ -71,7 +71,7 @@ code_term <- function(title, text = NULL) {
             term, ignore.case = T) ~ "INC",
       grepl("in the case of war.*end", term, ignore.case = T) ~ "WAR",
       grepl("party injurious.*end.*obligations|injured party.*end.*obligations",
-            term, ignore.case = T) ~ "INJ",)
+            term, ignore.case = T) ~ "INJ", )
     type <- ifelse(!is.na(type), type, term)
     }
   }

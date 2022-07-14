@@ -40,9 +40,9 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
       condition_1 <- dplyr::case_when(grepl("a government|any government|
                                             |all governments|all states|
                                             |any state",
-                                            memb, ignore.case = T) ~ "open",)
+                                            memb, ignore.case = T) ~ "open", )
       condition_2 <- dplyr::case_when(grepl("nomination", memb,
-                                            ignore.case = T) ~ "Semi-open",)
+                                            ignore.case = T) ~ "Semi-open", )
       condition_3 <- manypkgs::code_entity(title)
       condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"),
                           paste0("entity: ", condition_3), NA)
@@ -58,17 +58,17 @@ code_accession_terms <- function(t, title = NULL, accession = NULL) {
     # the terms to detect specific processes to accede accession match are
     # used here to create categories
     process_1 <- dplyr::case_when(grepl("open for signature", memb,
-                                        ignore.case = T) ~ "signature",)
+                                        ignore.case = T) ~ "signature", )
     process_2 <- dplyr::case_when(grepl("ratification|ratified", memb,
-                                        ignore.case = T) ~ "ratification",)
+                                        ignore.case = T) ~ "ratification", )
     process_3 <- dplyr::case_when(grepl("accession shall be notified|any notification|
                                         |receipt of any notice|notified.*application|
                                         |shall notify", memb,
-                                        ignore.case = T) ~ "notification",)
+                                        ignore.case = T) ~ "notification", )
     process_4 <- dplyr::case_when(grepl("two[-]?thirds majority", memb,
-                                        ignore.case = T) ~ "majority vote",)
+                                        ignore.case = T) ~ "majority vote", )
     process_5 <- dplyr::case_when(grepl("unanimity|unanimous|unanimously", memb,
-                                        ignore.case = T) ~ "unanimity",)
+                                        ignore.case = T) ~ "unanimity", )
     process <- paste0(process_1, " + ", process_2, " + ", process_3, " + ",
                       process_4, " + ", process_5)
     process <- stringr::str_remove_all(process, "\\+ NA|NA \\+")

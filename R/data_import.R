@@ -128,12 +128,12 @@ import_data <- function(dataset = NULL,
       import_type <- "read.table"
     } else stop("File type not recognised")
   # Create preparation template
-  manytemplate( "Package-preparation.R",
-                save_as = fs::path("data-raw", database, dataset,
-                                   paste0("prepare-", dataset), ext = "R"),
-                data = list(dataset = dataset, database = database,
-                path = new_path, import_type = import_type),
-                ignore = FALSE, open = open, path = getwd())
+  manytemplate("Package-preparation.R",
+               save_as = fs::path("data-raw", database, dataset,
+                                  paste0("prepare-", dataset), ext = "R"),
+               data = list(dataset = dataset, database = database,
+               path = new_path, import_type = import_type),
+               ignore = FALSE, open = open, path = getwd())
 
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
