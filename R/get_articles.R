@@ -2,10 +2,15 @@
 #'
 #' The function splits treaty texts into lists that reflect a structure
 #' based on having a preamble and several articles.
-#' Once articles are split,
-#' you can access all the "preambles",
-#' "accession" or "termination" clauses,
-#' or articles that contain certain word.
+#' Once articles are split, users can access the "preambles",
+#' "accession" and "termination" clauses, or "annexes"
+#' within a collection of treaty texts.
+#' The selection of each of these articles relies on regex matching
+#' certain expressions unique to each of them.
+#' Alternatively, users can get all the articles that contain a certain
+#' 'desired' word within a collection of treaty texts.
+#' As well, users can select only certain types of treaties for which
+#' specific articles are to be returned (e.g. agreements).
 #' @param textvar A text variable
 #' @param article Would you like to get a specific article?
 #' Null by default.
@@ -16,11 +21,10 @@
 #' For multiple words, please use "|" to divide them.
 #' @param treaty_type What types of treaty do you want to look at?
 #' By default, "all".
-#' Other treaty types include:
-#' "agreements", "protocols", "amendments",
+#' Other treaty types include: "agreements", "protocols", "amendments",
 #' "notes", "memorandum", and "resolutions".
-#' @details If no article or match are declared, only text,
-#' a structured list for each agreement based on articles is returned.
+#' @details Please make sure treaty texts have been standardised first
+#' using `standardise_texts()` for best results.
 #' @importFrom purrr map_chr map
 #' @importFrom stringr str_extract str_replace_all str_trim str_split
 #' @importFrom stringi stri_trans_general
