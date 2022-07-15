@@ -1,20 +1,28 @@
 # Contributing
 
-Contributions to `manypkgs`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
+Contributions to `manypkgs`, whether in the form of issue identification,
+bug fixes, new code or documentation are encouraged and welcome,
+both from research assistants and (early) users of the package:
 
 * [Submit an issue](#issues)
 * [Fix a bug or implement new features](#adding-new-code)
 * [Document existing code](#documentation)
 
-This outlines how to propose a change to a package from the Global Governance Observatory's ecosystem. Please note that the `manypkgs` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+This outlines how to propose a change to a package from the 
+Global Governance Observatory's ecosystem. 
+Please note that the `manypkgs` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
 ## Issues
-Please use the issue tracker on GitHub to identify problems or suggest new functionality, before submitting changes to the code.
-We use issues to identify bugs and tasks, discuss feature requests, and to track implementation of changes.
+Please use the issue tracker on GitHub to identify problems or suggest new functionality,
+before submitting changes to the code.
+We use issues to identify bugs and tasks, discuss feature requests,
+and to track implementation of changes.
 
-When submitting an issue, please provide at least a 'Type' label that best describes what the issue is about.
-The most useful issues are ones that precisely identify a bug, or propose a test that should pass but instead fails.
+When submitting an issue, please provide at least a 'Type' label that best
+describes what the issue is about.
+The most useful issues are ones that precisely identify a bug,
+or propose a test that should pass but instead fails.
 
 ## Adding new code
 Independent or assigned code contributions are most welcome.
@@ -23,7 +31,8 @@ When writing new code, please follow [tidyverse style guide](https://style.tidyv
 
 It can help to use packages such as `lintr` and `goodpractice` to ensure these are followed. 
 These packages are incorporated into the checks made when a pull request is made. 
-The `styler` package fixes in a non-invasive way the code to adhere to the tidyverse formatting rules, and it also provides an RStudio Addins to help with this task.
+The `styler` package fixes in a non-invasive way the code to adhere to the tidyverse
+formatting rules, and it also provides an RStudio Addins to help with this task.
 To run the `lintr` and `goodpractice` checks or use `styler` in a file run:
 
 ```r
@@ -47,13 +56,18 @@ Lines of text should, ideally, not be over 80 characters in length.
 
 ## Pull request process
 The title of your PR should briefly describe the change. 
-Please include a summary of the changes and which issues are fixed and the relevant motivation and context. 
-List any dependencies that are required for this change, indicating whether this is a major (breaking), minor, or patch change. 
+Please include a summary of the changes and which issues are fixed and
+the relevant motivation and context. 
+List any dependencies that are required for this change, 
+indicating whether this is a major (breaking), minor, or patch change. 
 The body of your PR should contain `Fixes #issue-number`.
-A checklist is provided to check off the cases as the different elements listed have been completed to make sure all the steps have been respected.
-Make sure the package passes R CMD check by running `devtools::check()` before commiting changes to a pull request. 
+A checklist is provided to check off the cases as the different elements
+listed have been completed to make sure all the steps have been respected.
+Make sure the package passes R CMD check by running `devtools::check()` before
+commiting changes to a pull request. 
 
-If you want to make a bigger change, it's a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request. If you’ve found a bug, please file an issue that illustrates the bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
+If you want to make a bigger change, it's a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request.
+If you’ve found a bug, please file an issue that illustrates the bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
 
 Please follow the manypkgs pull request guideline (https://github.com/globalgov/manypkgs/blob/main/.github/pull_request_template.md)  
 
@@ -61,17 +75,26 @@ Please follow the manypkgs pull request guideline (https://github.com/globalgov/
 We use two **main branches** in this project:
 
 1. The `origin/main` branch is reserved for fully functional releases of the model. 
-When the `develop` branch reaches a stable point, a code maintainer merges it back into to the `master` branch, and tags it with a release number there. 
+When the `develop` branch reaches a stable point, a code maintainer merges
+it back into to the `master` branch, and tags it with a release number there. 
 
 2. The `origin/develop` branch reflects the latest model development stage.
-Contributers are encouraged to submit minor changes to this branch that enhance existing functionality.
+Contributers are encouraged to submit minor changes to this branch that
+enhance existing functionality.
 New features that may break existing functionality should be committed to supporting branches.
 
 We use two types of **supporting branches**:
 
-3. *Feature branches* are used to develop new functionality. They exist as long as the feature is developed, and are then either merged into the `develop` branch for incorporation in a release, or deleted if the feature is abandoned. Feature branches should branch off from `origin/develop`.
+3. *Feature branches* are used to develop new functionality.
+They exist as long as the feature is developed, and are then either merged into
+the `develop` branch for incorporation in a release,
+or deleted if the feature is abandoned.
+Feature branches should branch off from `origin/develop`.
 
-4. *Hotfix branches* are used to provide fixes to severe bugs in the `main` branch. That way, the code maintainer does not have to incorporate (potentially unstable) changes from the `develop` branch to fix an issue. Branch names should be prefixed with `hotfix-`.
+4. *Hotfix branches* are used to provide fixes to severe bugs in the `main` branch.
+That way, the code maintainer does not have to incorporate (potentially unstable)
+changes from the `develop` branch to fix an issue.
+Branch names should be prefixed with `hotfix-`.
 
 This branching model is based on: https://nvie.com/posts/a-successful-git-branching-model/.
 
@@ -126,12 +149,16 @@ Every hotfix should increment the [PATCH digit of the version number](#versionin
 Once merged into `master` and `develop`, the hotfix branch can be deleted: `git branch -d hotfix-VERSION`.
 
 ### Commit messages
-Commits that relate to existing issues should reference the updated status of those issues, and mention the issue number (preceded by a hash symbol: #) in the commit description:
+Commits that relate to existing issues should reference the updated status of those issues,
+and mention the issue number (preceded by a hash symbol: #) in the commit description:
 
 ``` Resolved #31 by adding a new function that does things, also updated documentation ```
 
-Where the issue hash (i.e. #31) is preceded by `resolve`, `resolves`, `resolved`, `close`, `closes`, `closed`, `fix`, `fixes`, or `fixed` (capitalised or not), the status of the issue(s) mentioned is updated automatically.
-Our current syntactical standard is to mention the issue first and then provide a short description of what the committed changes do in relation to that issue.
+Where the issue hash (i.e. #31) is preceded by `resolve`, `resolves`, `resolved`,
+`close`, `closes`, `closed`, `fix`, `fixes`, or `fixed` (capitalised or not),
+the status of the issue(s) mentioned is updated automatically.
+Our current syntactical standard is to mention the issue first and
+then provide a short description of what the committed changes do in relation to that issue.
 Any ancillary changes can be mentioned after a comma.
 
 It should all be written in a single line, like so: #`{verb} {issue} {describe main action/changes}, {additional actions/changes}`.
@@ -145,7 +172,8 @@ Please make sure of:
 
 To keep the tracking and, if needed, the reversing of changes as easy as possible,
 please follow the ['atomic approach'](https://www.freshconsulting.com/insights/blog/atomic-commits/)
-when committing changes. Each commit should address separate aspects as much as possible,
+when committing changes.
+Each commit should address separate aspects as much as possible,
 such as making bug fixes and additions of data in separate commits.
 
 ### Testing 
@@ -171,16 +199,23 @@ We follow several conventions for writing tests:
 - If a test requires auxiliary functions from the package, e.g. to initialize a network with sample data, these belong in a helper file. There should be only one helper file for each `R` file, named ``helper-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``. Re-using existing test data is preferable to creating new data for every test.
 
 ## Documentation
-A final way of contributing to the package is in developing the vignettes/articles that illustrate the value added in the package. 
-Please contact us directly with proposals for updating the documentation, or submit an issue if existing documentation is unclear.
+A final way of contributing to the package is in developing the
+vignettes/articles that illustrate the value added in the package. 
+Please contact us directly with proposals for updating the documentation,
+or submit an issue if existing documentation is unclear.
 
 ## Versioning
 Note that the package is versioned according to [semantic versioning](https://www.jvandemo.com/a-simple-guide-to-semantic-versioning/).
 This means that versions follow the Major.Minor.Patch semantic format.
 
-Each minor or major level version is also given a new version name, which should be updated in the `zzz.R` file.
+Each minor or major level version is also given a new version name,
+which should be updated in the `zzz.R` file.
 
 ## For developers using MacOS
-Develops using MacOS might meet problems compiling the packages since the compiling configuration of R in MacOS is usually incorrect. If one meet an error with error info "/usr/bin/ld: cannot find -lgfortran", then he can either correct the configuration himself or follows the following steps to solve the problem:
+Develops using MacOS might meet problems compiling the packages since the
+compiling configuration of R in MacOS is usually incorrect.
+If one meet an error with error info "/usr/bin/ld: cannot find -lgfortran",
+then he can either correct the configuration himself or follows
+the following steps to solve the problem:
 1. Run ".libPaths()" command in R and get a path, e.g. one might get "/Library/Frameworks/R.framework/Versions/3.6/Resources/library"
 2. If the path one get in the first step is "something/library",  then open the file "something/etc/Makeconf" and comment out the line starting with "FLIBS".  e.g. one might open the file  " /Library/Frameworks/R.framework/Versions/3.6/Resources/etc/Makeconf" and change the line "FLIBS =  -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm" to "#FLIBS =  -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath - lm"
