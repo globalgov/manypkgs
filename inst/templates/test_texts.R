@@ -12,7 +12,5 @@ test_that("datasets have the required variables", {
 
 # Date columns should be in mdate class
 test_that("Columns are not in date, POSIXct or POSIXlt class", {
-  expect_false(any(lubridate::is.Date({{{dab}}}[["{{{dat}}}"]]$Beg)))
-  expect_false(any(lubridate::is.POSIXct({{{dab}}}[["{{{dat}}}"]]$Beg)))
-  expect_false(any(lubridate::is.POSIXlt({{{dab}}}[["{{{dat}}}"]]$Beg)))
+  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$Beg, "mdate")
 })
