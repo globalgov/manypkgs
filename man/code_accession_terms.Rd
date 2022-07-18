@@ -4,31 +4,31 @@
 \alias{code_accession_terms}
 \title{Get conditions and processes to accede memberships}
 \usage{
-code_accession_terms(t, title = NULL, accession = NULL)
+code_accession_terms(text, title = NULL, accession = NULL)
 }
 \arguments{
-\item{t}{A text variable}
+\item{text}{A text variable}
 
 \item{title}{A title variable.
-If not declared, NULL by default.}
+NULL by default.}
 
-\item{accession}{The "condition" or "process"
-for parties to accede a treaty.
-If not declared, returns the "process".}
+\item{accession}{The "condition" or "process" for parties to accede a treaty.
+"process" by default.}
 }
 \value{
-Either the conditions to be part of the treaty
-or the different process steps to become a member.
+A list of the accession conditions or processes.
 }
 \description{
-The function allows to get information on the conditions
-for parties to enter a treaty.
-It could be limited to a entity area,
-a certain domain,
-or on State party nominations for new members.
-The function also allows to get information on the
-process by which a new member has to go through in
-order to accede memberships
+The function extracts information on the conditions for parties to become
+part of a treaty or the different processes to become a treaty member.
+}
+\details{
+The function helps provide metadata on accession to
+treaties allowing researchers to connect and compare this information.
+The processes relate to how new members accede treaty
+and include treaty signature, ratification, notification, or unanimity vote.
+The conditions might include an entity type or area, a certain issue-domain,
+open membership for all, or nomination of new members.
 }
 \examples{
 \donttest{
