@@ -22,6 +22,7 @@
 #' @export
 standardise_treaty_text <- function(textvar) {
   t <- purrr::map(textvar, function(x) {
+    x <- unlist(x)
     x <- stringi::stri_trans_general(tolower(as.character(x)),
                                      id = "Latin-ASCII")
     x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s|
