@@ -7,10 +7,10 @@
 #' @return a character vector with the termination clause type
 #' of the treaty
 #' @examples
-#' \donttest{
-#' sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
-#' code_term(sample$Title)
-#' code_term(sample$Title, sample$Text)
+#' \dontrun{
+#' m <- manyenviron::texts$AGR_TXT[200:300,]
+#' code_term(m$Title)
+#' code_term(m$Title, m$Text)
 #' }
 #' @export
 code_term <- function(title, text = NULL) {
@@ -42,7 +42,8 @@ code_term <- function(title, text = NULL) {
                      grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                            title, ignore.case = T), paste0("EXP"), NA)
     # Get the termination clauses
-    term <- get_articles(text, article = "termination")
+    term <- retrieve_clauses(standardise_treaty_text(text),
+                             article = "termination")
     # Classify them according to key terms
     term <- dplyr::case_when(
       grepl("shall terminate the agreement|shall supersede|shall.*supplant",

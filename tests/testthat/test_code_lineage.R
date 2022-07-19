@@ -22,5 +22,5 @@ test_that("code_lineage function works", {
 links <- data.frame(agreement = "WIIEWH_1990E1", link = "RAMSA_1971A")
 
 test_that("get_links function works", {
-  expect_equal(get_links(dataset = data), links)
+  expect_equal(retrieve_links(dataset = data), links)
 })

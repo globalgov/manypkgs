@@ -20,9 +20,9 @@ Creates a column with the type of termination
 of the treaty.
 }
 \examples{
-\donttest{
-sample <- dplyr::slice_sample(manyenviron::texts$AGR_TXT, n = 200)
-code_term(sample$Title)
-code_term(sample$Title, sample$Text)
+\dontrun{
+m <- manyenviron::texts$AGR_TXT[200:300,]
+code_term(m$Title)
+code_term(m$Title, m$Text)
 }
 }

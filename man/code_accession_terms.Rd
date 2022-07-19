@@ -4,10 +4,10 @@
 \alias{code_accession_terms}
 \title{Get conditions and processes to accede memberships}
 \usage{
-code_accession_terms(text, title = NULL, accession = NULL)
+code_accession_terms(textvar, title = NULL, accession = NULL)
 }
 \arguments{
-\item{text}{A text variable}
+\item{textvar}{A text variable}
 
 \item{title}{A title variable.
 NULL by default.}
@@ -26,13 +26,15 @@ part of a treaty or the different processes to become a treaty member.
 The function helps provide metadata on accession to
 treaties allowing researchers to connect and compare this information.
 The processes relate to how new members accede treaty
-and include treaty signature, ratification, notification, or unanimity vote.
-The conditions might include an entity type or area, a certain issue-domain,
-open membership for all, or nomination of new members.
+and include treaty signature, treaty ratification,
+notification of consent, or majority vote.
+The conditions for treaty accession include entity type or area,
+a certain issue-domain, open membership for all,
+or nomination of new members.
 }
 \examples{
-\donttest{
-m <- manyenviron::texts$AGR_TXT[100:300,]
+\dontrun{
+m <- manyenviron::texts$AGR_TXT[200:300,]
 code_accession_terms(m$Text, m$Title, accession = "condition")
 code_accession_terms(m$Text, accession = "process")
 code_accession_terms()
