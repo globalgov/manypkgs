@@ -2,7 +2,7 @@
 #'
 #' The function extracts information on the conditions for parties to become
 #' part of a treaty or the different processes to become a treaty member.
-#' @param text A text variable
+#' @param textvar A text variable
 #' @param title A title variable.
 #' NULL by default.
 #' @param accession The "condition" or "process" for parties to accede a treaty.
@@ -11,28 +11,28 @@
 #' @details The function helps provide metadata on accession to
 #' treaties allowing researchers to connect and compare this information.
 #' The processes relate to how new members accede treaty
-#' and include treaty signature, ratification, notification, or unanimity vote.
-#' The conditions might include an entity type or area, a certain issue-domain,
-#' open membership for all, or nomination of new members.
+#' and include treaty signature, treaty ratification,
+#' notification of consent, or majority vote.
+#' The conditions for treaty accession include entity type or area,
+#' a certain issue-domain, open membership for all,
+#' or nomination of new members.
 #' @importFrom dplyr case_when
 #' @importFrom stringr str_remove_all str_trim
 #' @examples
-#' \donttest{
-#' m <- manyenviron::texts$AGR_TXT[100:300,]
+#' \dontrun{
+#' m <- manyenviron::texts$AGR_TXT[200:300,]
 #' code_accession_terms(m$Text, m$Title, accession = "condition")
 #' code_accession_terms(m$Text, accession = "process")
 #' code_accession_terms()
 #' }
 #' @export
-code_accession_terms <- function(text, title = NULL, accession = NULL) {
-  if (missing(text)) {
-    me <- member
-    me <- knitr::kable(me, "simple",
-                       caption = "accession process steps and criterion")
-    me
+code_accession_terms <- function(textvar, title = NULL, accession = NULL) {
+  if (missing(textvar)) {
+    return(member)
   } else {
     # First step: select all the articles concerning accession
-    memb <- get_articles(text, article = "accession")
+    memb <- retrieve_clauses(standardise_treaty_text(textvar),
+                             article = "accession")
     if (isTRUE(accession == "condition")) {
       # Second step: match terms to identify accession conditions
       condition_1 <- dplyr::case_when(grepl("a government|any government|
