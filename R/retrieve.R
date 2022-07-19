@@ -31,53 +31,56 @@
 #' @return A list of treaty sections of the same length.
 #' @examples
 #' \dontrun{
-#' t <- standardise_texts(sample(manyenviron::texts$AGR_TXT$Text, 30))
-#' get_articles(t)
-#' get_articles(t, article = "preamble")
-#' get_articles(t, article = "accession")
-#' get_articles(t, article = "termination")
-#' get_articles(t, article = "annex")
-#' get_articles(t, match = "constitution")
-#' get_articles(t, article = "preamble", match = "amend")
-#' get_articles(t, treaty_type = "agreements")
-#' get_articles(t, treaty_type = "protocols")
-#' get_articles(t, treaty_type = "amendments")
+#' t <- standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' retrieve_clauses(t)
+#' retrieve_clauses(t, article = "preamble")
+#' retrieve_clauses(t, article = "accession")
+#' retrieve_clauses(t, article = "termination")
+#' retrieve_clauses(t, article = "annex")
+#' retrieve_clauses(t, match = "constitution")
+#' retrieve_clauses(t, article = "preamble", match = "amend")
+#' retrieve_clauses(t, treaty_type = "agreements")
+#' retrieve_clauses(t, treaty_type = "protocols")
+#' retrieve_clauses(t, treaty_type = "amendments")
 #' }
 #' @export
-get_articles <- function(textvar, article = NULL,
+retrieve_clauses <- function(textvar, article = NULL,
                          match = NULL, treaty_type = "all") {
-  usethis::ui_info("Please make sure treaty texts have been standardised first
-                   using `standardise_texts()`")
-  t <- textvar
+  # Check if textvar was standardised first
+  if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
+    stop("Please make sure treaty texts have been standardised first
+              using `standardise_texts()`")
+  }
   # Get treaty type if declared (adapted from code_type)
   if (treaty_type != "all") {
-    out <- purrr::map(t, as.character)
+    out <- purrr::map(textvar, as.character)
     type <- as.data.frame(agreement_type)
     for (k in seq_len(nrow(type))) {
       out <- gsub(paste0(type$word[[k]]),
                   paste0(type$category[[k]]),
                   out, ignore.case = TRUE,
-                  perl = T)
+                  perl = TRUE)
     }
     type <- stringr::str_extract(out, "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
     if (treaty_type == "agreements") {
-      t <- ifelse(type == "AGREE", t, NA_character_)
+      textvar <- ifelse(type == "AGREE", textvar, NA_character_)
     } else if (treaty_type == "protocols") {
-      t <- ifelse(type == "PROTO", t, NA_character_)
+      textvar <- ifelse(type == "PROTO", textvar, NA_character_)
     } else if (treaty_type == "amendments") {
-      t <- ifelse(type == "AMEND", t, NA_character_)
+      textvar <- ifelse(type == "AMEND", textvar, NA_character_)
     } else if (treaty_type == "notes") {
-      t <- ifelse(type == "NOTES", t, NA_character_)
+      textvar <- ifelse(type == "NOTES", textvar, NA_character_)
     } else if (treaty_type == "memorandum") {
-      t <- ifelse(type == "STRAT", t, NA_character_)
+      textvar <- ifelse(type == "STRAT", textvar, NA_character_)
     } else if (treaty_type == "resolution") {
-      t <- ifelse(type == "RESOL", t, NA_character_)
+      textvar <- ifelse(type == "RESOL", textvar, NA_character_)
     }
-    t
+    textvar
   }
   # Split list (if already not split by paragraph marks)
-  t <- ifelse(lengths(t) < 10, stringr::str_split(as.character(t),
-                                                  "((?=ARTICLE)|(?=ANNEX))"), t)
+  t <- ifelse(lengths(textvar) < 10,
+              stringr::str_split(as.character(textvar),
+                                 "((?=ARTICLE)|(?=ANNEX))"), t)
   # Get articles if declared
   if (isTRUE(article == "preamble")) {
     p <- lapply(t, function(x) grep("^preface|^preamble", x,
@@ -126,7 +129,7 @@ get_articles <- function(textvar, article = NULL,
   t
 }
 
-#' Get links from manyID
+#' Retrieve links from manyID
 #'
 #' Treaties that modify, amend, or expand other treaties
 #' usually specify so in the title.
@@ -142,15 +145,15 @@ get_articles <- function(textvar, article = NULL,
 #' @importFrom purrr map map_chr
 #' @examples
 #' \dontrun{
-#' get_links(database = manyenviron::agreements)
-#' get_links(database = manyenviron::agreements, treaty_type = "multilateral")
-#' get_links(dataset = manyenviron::agreements$IEADB, treaty_type = "bilateral")
+#' retrieve_links(database = manyenviron::agreements)
+#' retrieve_links(database = manyenviron::agreements, treaty_type = "multilateral")
+#' retrieve_links(dataset = manyenviron::agreements$IEADB, treaty_type = "bilateral")
 #' samples <- lapply(manyenviron::agreements,
 #' function(x) x[x$Beg > "1991-12-31" & x$Beg < "1993-01-01", ])
-#' migraph::gglineage(get_links(samples))
+#' migraph::gglineage(retrieve_links(samples))
 #' }
 #' @export
-get_links <- function(database, dataset, treaty_type = "all") {
+retrieve_links <- function(database, dataset, treaty_type = "all") {
   # Get manyID
   if (!missing(database)) {
     treatyID <- unname(unlist(purrr::map(database, "manyID")))
@@ -176,16 +179,15 @@ get_links <- function(database, dataset, treaty_type = "all") {
   out
 }
 
-#' Get memberships' list
+#' Retrieve memberships' list
 #'
-#' Memberships database have actor column(s) and
-#' treaty column(s) but information on the other
-#' countries that are party to the treaties is often
-#' hard to read.
-#' The function allows to generate a dataframe of
-#' treaty IDs and actors part to the treaty.
+#' Memberships database have actor column(s) and treaty column(s)
+#' but information on the other countries that are party to the treaties
+#' is often hard to read.
+#' The function generates a dataframe of
+#' treaty IDs and actors to a certain treaty.
 #' @param database A database
-#' @param actor A actor variable (e.g. country)
+#' @param actor An actor level variable (e.g. country)
 #' @param id A treaty ID variable
 #' @return A dataframe of treaty IDs and actors
 #' part of the treaty
@@ -193,11 +195,11 @@ get_links <- function(database, dataset, treaty_type = "all") {
 #' @examples
 #' \dontrun{
 #' sample <- manyenviron::memberships$IEADB_MEM
-#' get_memberships(actor = sample$CountryID, id = sample$manyID)
-#' get_memberships(manyenviron::memberships)
+#' retrieve_membership_list(actor = sample$CountryID, id = sample$manyID)
+#' retrieve_membership_list(manyenviron::memberships)
 #' }
 #' @export
-get_memberships <- function(database, actor, id) {
+retrieve_membership_list <- function(database, actor, id) {
   memberships <- NULL
   if (!missing(database)) {
     id <- unname(unlist(purrr::map(database, "manyID")))
