@@ -34,7 +34,7 @@ standardise_treaty_text <- function(textvar) {
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
                                   |\\.protocol\\s|\\d\\sprotocol\\s",
                                   " PROTOCOL ")
-    x <- gsub("<.*?>", "", x,)
+    x <- stringr::str_remove_all(x, "<.*?>")
     x <- stringr::str_remove_all(x, "\r")
     x <- stringr::str_remove_all(x, "\t")
     x <- stringr::str_remove_all(x, "\n")
