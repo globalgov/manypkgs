@@ -45,7 +45,7 @@
 #' }
 #' @export
 retrieve_clauses <- function(textvar, article = NULL,
-                         match = NULL, treaty_type = "all") {
+                             match = NULL, treaty_type = "all") {
   # Check if textvar was standardised first
   if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
     stop("Please make sure treaty texts have been standardised first
@@ -82,12 +82,23 @@ retrieve_clauses <- function(textvar, article = NULL,
               stringr::str_split(as.character(textvar),
                                  "((?=ARTICLE)|(?=ANNEX))"), t)
   # Get articles if declared
+  if (!is.null(article)) {
+    t <- get_articles(t, article)
+  }
+  if (!is.null(match)) {
+    t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
+  }
+  t <- ifelse(lengths(t) == 0, NA_character_, t)
+  t
+}
+
+get_articles <- function(textvar, article) {
   if (isTRUE(article == "preamble")) {
-    p <- lapply(t, function(x) grep("^preface|^preamble", x,
-                                    ignore.case = TRUE, value = TRUE))
-    t <- ifelse(lengths(p) == 0, purrr::map_chr(t, 1), p)
+    p <- lapply(textvar, function(x) grep("^preface|^preamble", x,
+                                          ignore.case = TRUE, value = TRUE))
+    t <- ifelse(lengths(p) == 0, purrr::map_chr(textvar, 1), p)
   } else if (isTRUE(article == "accession")) {
-    t <- lapply(t, function(x) {
+    t <- lapply(textvar, function(x) {
       grep("([^\\s]+\\s+){0,20}open for accession([^\\s]+\\s+){0,20}|
           |([^\\s]+\\s+){0,20}accession shall be([^\\s]+\\s+){0,20}|
           |([^\\s]+\\s+){0,20}accede to([^\\s]+\\s+){0,20}|
@@ -103,7 +114,7 @@ retrieve_clauses <- function(textvar, article = NULL,
            x, ignore.case = TRUE, perl = TRUE, value = TRUE)
     })
   } else if (isTRUE(article == "termination")) {
-    t <- lapply(t, function(x) grep("shall terminate|shall remain in force|will expire on|
+    t <- lapply(textvar, function(x) grep("shall terminate|shall remain in force|will expire on|
                                     |concluded for a period|shall apply for|
                                     |periode de|shall be terminated|expiration of the period|
                                     |denunciation|terminated|shall supersede|shall.*supplant|
@@ -119,13 +130,9 @@ retrieve_clauses <- function(textvar, article = NULL,
                                     |party.*may withraw|renunciation.*by.*party",
                                     x, ignore.case = TRUE, value = TRUE))
   } else if (isTRUE(article == "annex")) {
-    t <- lapply(t, function(x) grep("^annex", x, ignore.case = TRUE,
-                                    value = TRUE))
+    t <- lapply(textvar, function(x) grep("^annex", x, ignore.case = TRUE,
+                                          value = TRUE))
   }
-  if (!is.null(match)) {
-    t <- lapply(t, function(x) grep(match, x, ignore.case = TRUE, value = TRUE))
-  }
-  t <- ifelse(lengths(t) == 0, NA_character_, t)
   t
 }
 
