@@ -46,7 +46,7 @@
 #' @export
 retrieve_clauses <- function(textvar, article = NULL,
                              match = NULL, treaty_type = "all") {
-  # Check if textvar was standardised first
+  # Check if text variable was standardised first
   if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
     stop("Please make sure treaty texts have been standardised first
               using `standardise_texts()`")
@@ -92,6 +92,7 @@ retrieve_clauses <- function(textvar, article = NULL,
   t
 }
 
+# Helper function
 get_articles <- function(textvar, article) {
   if (isTRUE(article == "preamble")) {
     p <- lapply(textvar, function(x) grep("^preface|^preamble", x,
