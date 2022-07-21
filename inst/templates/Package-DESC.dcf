@@ -9,21 +9,12 @@ Description: Collection, correction, and connection.
 License: CC BY 4.0
 Depends: 
     R (>= 3.5.0),
-    tibble,
-    pointblank
 Imports:
-    manydata,
-    lubridate,
-    dplyr,
-    roxygen2,
-    usethis,
-    remotes,
-    messydates
+    manydata
 Suggests:
-    rlang,
-    testthat (>= 3.0.0)
-Remotes:
-    globalgov/manydata
+    testthat (>= 3.0.0),
+    pointblank,
+    lubridate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

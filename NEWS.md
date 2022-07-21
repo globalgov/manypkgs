@@ -1,3 +1,27 @@
+# manypkgs 0.2.2
+
+## Package
+
+* Closed #55 by updating README and workflow files to download `{manydata}` from CRAN
+* Closed #74 by increasing package logo size
+* Updated workflow action files to run faster by implementing package caching
+* Closed #78 by defining consistent ways of dealing with code errors in 'many' data packages
+* Closed #85 by adding guidelines for writing in markdown documents to contributing files
+
+## Correction
+
+* Closed #18 by adding `convert_pdf()` function that extract texts from PDF files
+* Added `retrieve_clauses()` function
+  * Divided `get_articles()` into `retrieve_clauses()` for retrieving treaty clauses and `standardise_treaty_text()` for standardising texts  
+  * Closed #75 by fixing memory usage issues with function
+* Updated accession and termination functions
+  * Renamed `code_memebership()` function `code_accession_terms()` for clarity
+  * Closed #76 by improving dictionary matching for these functions
+* Closed #77 by making `standardise_dates()` defunct and favour calling `{messydates}` directly for dates conversion
+* Closed #80 by updating `standardise_titles()` to use `{deeplr}` package for translating titles
+* Closed #84 by adding `standardise_texts()` function to standardise treaty texts in data preparation scripts
+* Renamed `get_memberships()` and `get_links()` to `retrieve_memberships()` and `retrieve_links()`, respectively, for clarity
+
 # manypkgs 0.2.1
 
 ## Package

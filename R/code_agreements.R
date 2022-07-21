@@ -10,13 +10,13 @@
 #' The function "expects" that there are variables
 #' named `Title` and `Signature` that they have been
 #' standardised using `standardise_titles()` and
-#' `standardise_dates()`, respectively.
+#' `messydates::as_messydate()`, respectively.
 #' @param title title variable.
 #' The function "expects" that the variable has been
 #' standardised using `standardise_titles()`
 #' @param date date variable.
 #' The function "expects" that the variable has been
-#' standardised using `standardise_dates()`
+#' standardised using `messydates::as_messydate()`.
 #' @return a character vector with the treatyIDs
 #' @importFrom usethis ui_done
 #' @importFrom stringr str_replace_all str_detect
@@ -174,14 +174,15 @@ code_parties <- function(title, activity = TRUE) {
 
 #' Code Abbreviations for Activity
 #'
-#' Code abbreviations for activity in bilateral treaty titles
+#' Code in abbreviated form the activity of bilateral treaties
+#' from treaty titles.
 #' @param title A character vector of treaty titles
-#' @details Bilateral agreements usully detail their
+#' @details Bilateral agreements usually detail their
 #' activity and specify area in the last words of the titles.
 #' These last words are abbreviated by the function to
 #' differentiate between bilateral treaties and avoid
 #' false positives being generated since
-#' multiple, different, bileteral treaties are
+#' multiple, different, bilateral treaties are
 #' often signed in the same day.
 #' @importFrom stringr str_squish str_extract
 #' @importFrom tm stopwords removeWords

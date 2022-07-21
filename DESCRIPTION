@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
-Version: 0.2.1
-Date: 2022-02-17
+Version: 0.2.2
+Date: 2022-07-21
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -31,12 +31,11 @@ License: CC BY 4.0
 URL: https://github.com/globalgov/manypkgs
 BugReports: https://github.com/globalgov/manypkgs/issues
 Depends:
-    R (>= 2.10),
-    tibble
+    R (>= 2.10)
 Imports:
     dplyr,
+    tibble,
     english,
-    pkgdown,
     purrr,
     rlang,
     stringr,
@@ -51,7 +50,8 @@ Imports:
     tidyr,
     tm,
     stringi,
-    entity
+    entity,
+    pdftools
 Suggests:
     testthat (>= 3.0.0),
     pointblank,
@@ -67,21 +67,18 @@ Suggests:
     desc,
     WVPlots,
     rmarkdown,
-    bibtex,
-    translateR,
-    cld2,
+    RefManageR,
+    deeplr,
     manydata,
     manyenviron,
     manystates,
     migraph
 Remotes:
-    globalgov/manydata,
     globalgov/manyenviron,
     globalgov/manystates,
     trinker/entity
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 VignetteBuilder: knitr
 Config/testthat/edition: 3

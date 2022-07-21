@@ -93,7 +93,8 @@ In reality, we often do not get a perfect score as we rarely know all the true d
 First we could simply offer a unique code for each title, no duplicates.
 Obviously this would generate errors on the side of false negatives 
 for many titles that are quite obviously (for humans) equivalent.
-That is, we would find zero false positives as well as zero true positives, as the ROC plot illustrates.
+That is, we would find zero false positives as well as zero true positives,
+as the ROC plot illustrates.
 
 ```{r unique, warning=FALSE, message=FALSE}
 agreements$unique <- 0
@@ -150,7 +151,8 @@ WVPlots::ROCPlot(agreements, "fuzzy", "duplicate", 1, title = "Fuzzy")
 
 The risk of finding incorrect matches with fuzzy matching.
 This explains the slightly lower AUC score we get here in comparison to strict matches.
-That is, although we do a better job at finding true matches with fuzzy, we also get a few false positives.
+That is, although we do a better job at finding true matches with fuzzy,
+we also get a few false positives.
 Moreover, this option is computationally expensive/takes a long time
 
 ### Identifying information extraction
@@ -177,13 +179,16 @@ WVPlots::ROCPlot(agreements, "idinfo", "duplicate", 1, title = "treatyID Strict"
 # PR plot illustrate similarities betwwen a perfect match and treatyID match.
 ```
 
-The AUC score with `code_agreements()` is higher than what we get with fuzzy and with strict matches.
-In relations to other options, `code_agreements()` improves the number of true observations matched while
-not generating many false positives. 
+The AUC score with `code_agreements()` is higher than what we get with fuzzy
+and with strict matches.
+In relations to other options, `code_agreements()` improves the number of true
+observations matched while not generating many false positives. 
 Still, this is not perfect and some true matches are still missing.
-This happens when the titles differ a great deal, even if they are refering to the same agreement.
-In those cases, we prefer to stay on the side of caution and refrain from trying to code these titles
-as duplicates, especially as such changes would likely lead to higher rates of false positives.
+This happens when the titles differ a great deal,
+even if they are refering to the same agreement.
+In those cases, we prefer to stay on the side of caution and refrain from
+trying to code these titles as duplicates,
+especially as such changes would likely lead to higher rates of false positives.
 
 ### Condensing treatyID matches
 

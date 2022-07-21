@@ -1,12 +1,13 @@
 # Contributing
 
-Contributions to `{ {{{package}}} }`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
+Contributions to `manypkgs`, whether in the form of issue identification, bug fixes, new code or documentation are encouraged and welcome, both from research assistants and (early) users of the package:
 
 * [Submit an issue](#issues)
 * [Fix a bug or implement new features](#adding-new-code)
 * [Document existing code](#documentation)
 
-This outlines how to propose a change to a package from the Global Governance Observatory's ecosystem. Please note that the `{ {{{package}}} }` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).By contributing to this project, you agree to abide by its terms.
+This outlines how to propose a change to a package from the Global Governance Observatory's ecosystem. Please note that the `manypkgs` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
 
 ## Issues
 Please use the issue tracker on GitHub to identify problems or suggest new functionality, before submitting changes to the code.
@@ -20,29 +21,41 @@ Independent or assigned code contributions are most welcome.
 When writing new code, please follow [tidyverse style guide](https://style.tidyverse.org/index.html) which is based on
 [standard R guidelines](https://google.github.io/styleguide/Rguide.xml).
 
-It can help to use packages such as `lintr` and `goodpractice` to ensure these are followed. The `styler` package fixes in a non-invasive way the code to adhere to the tidyverse formatting rules, and it also provides an RStudio Addins to help with this task.
+It can help to use packages such as `lintr` and `goodpractice` to ensure these are followed. 
+These packages are incorporated into the checks made when a pull request is made. 
+The `styler` package fixes in a non-invasive way the code to adhere to the tidyverse formatting rules, and it also provides an RStudio Addins to help with this task.
 To run the `lintr` and `goodpractice` checks or use `styler` in a file run:
 
 ```r
 # basic lintr checking
-lintr::lint_package(path = "packageName/")
+lintr::lint_package(path = "manypkgs/")
 
 # goodpractices checks. Exclude length 80
-goodpractice::gp(path = "packageName/",
+goodpractice::gp(path = "manypkgs/",
    checks = all_checks()[-c(8)])
 
 # styler fix some of the styling issues
 styler::style_file("filePath")
 ```
 
-If you develop new code in `C++`, please follow the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
+## Writing in markdown/roxygen
+When writing passages of text in markdown or roxygen documents,
+please consider that text should be written such that sentences,
+and sometimes clauses of a sentence, start on a new line.
+This facilitates comparison of documents and feedback on GitHub.
+Lines of text should, ideally, not be over 80 characters in length.
 
 ## Pull request process
-The title of your PR should briefly describe the change. Please include a summary of the changes and which issues are fixed and the relevant motivation and context. List any dependencies that are required for this change, indicating whether this is a major (breaking), minor, or patch change. The body of your PR should contain `Fixes #issue-number`. Make sure the package passes R CMD check by running `devtools::check()` before commiting changes to a pull request. 
+The title of your PR should briefly describe the change. 
+Please include a summary of the changes and which issues are fixed and the relevant motivation and context. 
+List any dependencies that are required for this change, indicating whether this is a major (breaking), minor, or patch change. 
+The body of your PR should contain `Fixes #issue-number`.
+A checklist is provided to check off the cases as the different elements listed have been completed to make sure all the steps have been respected.
+Make sure the package passes R CMD check by running `devtools::check()` before commiting changes to a pull request. 
 
 If you want to make a bigger change, it's a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request. If you’ve found a bug, please file an issue that illustrates the bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
 
-Please follow the manydata pull request guideline (https://github.com/globalgov/manydata/blob/main/.github/pull_request_template.md)  
+Please follow the manypkgs pull request guideline (https://github.com/globalgov/manypkgs/blob/main/.github/pull_request_template.md)  
 
 ### Branches
 We use two **main branches** in this project:
@@ -123,12 +136,25 @@ Any ancillary changes can be mentioned after a comma.
 
 It should all be written in a single line, like so: #`{verb} {issue} {describe main action/changes}, {additional actions/changes}`.
 
+Note that it is important to write a structured commit message to improve efficiency in collaboration.
+Please make sure of:
+* Making the title clear and concise with correct reference to an issue as described above. 
+* Using a subject line in the description part when the commit message outlines many different changes.
+* Explaining in details the changes made and why you made them by using bullet points.
+* Separating each paragraph with a blank line.
+
+To keep the tracking and, if needed, the reversing of changes as easy as possible,
+please follow the ['atomic approach'](https://www.freshconsulting.com/insights/blog/atomic-commits/)
+when committing changes. Each commit should address separate aspects as much as possible,
+such as making bug fixes and additions of data in separate commits.
+
 ### Testing 
 We use the [testthat](https://testthat.r-lib.org/) package to write unit tests.
-By convention, tests are located in [testthat/tests/](packageName/tests/testthat).
+By convention, tests are located in [testthat/tests/](manypkgs/tests/testthat).
 
 You should verify that all tests pass before issuing a commit to existing code.
 To run all tests for the latest version manually:
+
 ```
 git pull
 library("testthat")
@@ -140,7 +166,7 @@ We follow several conventions for writing tests:
 
 - A unit test file should test one or more aspects of a single function. This makes it easier to identify the source of bugs, and prevents lower-level tests from failing when higher-level functions change.
 
-- The [naming convention](https://www.tidyverse.org/articles/2019/04/testthat-2-1-0/) for test files is: ``test-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``, i.e. test files are named after the file containing the original function in the [R](packageName/R) directory, pre-fixed with "test", and optionally post-fixed with the name of the function that is being tested.
+- The [naming convention](https://www.tidyverse.org/articles/2019/04/testthat-2-1-0/) for test files is: ``test-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``, i.e. test files are named after the file containing the original function in the [R](manypkgs/R) directory, pre-fixed with "test", and optionally post-fixed with the name of the function that is being tested.
 
 - If a test requires auxiliary functions from the package, e.g. to initialize a network with sample data, these belong in a helper file. There should be only one helper file for each `R` file, named ``helper-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``. Re-using existing test data is preferable to creating new data for every test.
 

@@ -77,7 +77,7 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
                  ignore = TRUE,
                  path = path,
                  open = FALSE)
-    # desc::desc_set("License", "CC BY 4.0")
+    desc::desc_set("License", "CC BY 4.0")
     usethis::ui_done("Updated License file.")
   }
 
@@ -142,10 +142,4 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
               overwrite = TRUE)
     usethis::ui_done("Updated release workflow for merging push releases.")
   }
-
-  # step six: update Description file
-  # desc::desc_set_dep()
-  # desc::desc_add_remotes()
-  # usethis::ui_done("Updated description file.")
-
 }

@@ -39,7 +39,6 @@ setup_package <- function(package = NULL,
   family <- NULL
   comment <- NULL
   year <- NULL
-
   # Step zero: get details from existing files, if present
   if (is.null(package)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
@@ -50,10 +49,8 @@ setup_package <- function(package = NULL,
       stop("Please declare a package name")
     }
   }
-
   ifelse(!startsWith(package, "many"),
           stop("Package name must start with a 'many'"), package)
-
   if (is.null(name)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
       author <- read.dcf(paste0(path, "/DESCRIPTION"))[[4]]
@@ -65,8 +62,7 @@ setup_package <- function(package = NULL,
       given <- stringr::str_split(author, " ")[[1]][[1]]
       family <- stringr::str_split(author, " ")[[1]][[2]]
       comment <- NULL
-      usethis::ui_done(
-        "Obtained lead author name from existing DESCRIPTION file.")
+      usethis::ui_done("Obtained lead author name from existing DESCRIPTION file.")
     } else {
       stop("Please declare one author")
     }
@@ -74,9 +70,7 @@ setup_package <- function(package = NULL,
   # Small check to see if roles are defined. If there are
   # no roles declared it sets all roles, but first author declared,
   # to contributor.
-
   rolefirst <- 'c("aut", "cre", "ctb")'
-
   # Step 0.1 See if there are any ORCID numbers
   if (!is.null(orcid)) {
     # Check if rorcid package is installed.
@@ -118,18 +112,14 @@ setup_package <- function(package = NULL,
                    path = path)
     }
   }
-
   if (!is.null(name)) {
-
     # Treat author names
     fullname <- stringr::str_split(name, ",")
     given <- stringr::str_trim(paste0(fullname[[1]][2]))
     family <- paste0(fullname[[1]][1])
-
     if (length(fullname) > 2) {
       stop("Please specify author. Add the rest by using our add_author() function.")
     }
-
     if (length(fullname) == 1 & is.null(role)) {
       manytemplate("Package-DESC.dcf",
                    "DESCRIPTION",
@@ -148,28 +138,23 @@ setup_package <- function(package = NULL,
                    path = path)
     }
   }
-
   usethis::ui_done("Added DESCRIPTION file. Modify if necessary.")
   usethis::ui_done("Check out our new_author function if you need to add
                    authors down the line")
   authors <- as.vector(mapply(stringr::str_c, given, family, sep = " "))
   author <- paste0(authors, collapse = ", ")
-
   # Add R folder
   create_directory(paste0(path, "/R"))
   usethis::ui_done("Created R/ folder. Here is where any scripts go.")
-
   # Add NAMESPACE
   usethis::use_namespace()
   usethis::ui_done("Created NAMESPACE file. Don't modify it.")
-
   # Add LICENSE
   manytemplate("LICENSE.md",
                ignore = TRUE,
                path = path,
                open = FALSE)
   usethis::ui_done("Added CC BY 4.0 license.")
-
   # Add NEWS
   if (!file.exists(paste0(path, "/NEWS.md"))) {
      manytemplate("Package-NEWS.md",
@@ -178,7 +163,6 @@ setup_package <- function(package = NULL,
                   path = path)
     usethis::ui_done("Added starter NEWS file. Update for every release.")
   }
-
   # Add README
   manytemplate("Package-README.Rmd",
                "README.Rmd",
@@ -186,10 +170,8 @@ setup_package <- function(package = NULL,
                         author = author),
                path = path)
   usethis::ui_done("Added standard README. Please modify to fit your specific package")
-
   # Step two: ensure/create core package files
   usethis::use_testthat()
-
   # Step three: ensure/create Github files
   create_directory(paste0(path, "/.github"))
   usethis::ui_done("Created .github folder.")
@@ -200,7 +182,6 @@ setup_package <- function(package = NULL,
                path = path,
                open = FALSE)
   usethis::ui_done("Created CODE_OF_CONDUCT file. Modify if necessary.")
-
   manytemplate("Package-CONTRIB.md",
                fs::path(".github", "CONTRIBUTING.md"),
                data = list(package = package,
@@ -208,34 +189,29 @@ setup_package <- function(package = NULL,
                path = path,
                open = FALSE)
   usethis::ui_done("Created CONTRIBUTING file. Modify if necessary.")
-
   manytemplate("Package-PR.md",
                fs::path(".github", "pull_request_template.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
-
   create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
-
   manytemplate("Package-Bugs.md",
                fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created bug report issue template. Modify if necessary.")
-
   manytemplate("Package-Features.md",
                fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
                data = list(package = package,
-                        author = author),
+                           author = author),
                path = path,
                open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
-
   # Add CITATION file
   create_directory(paste0(path, "/inst"))
   year <- date()
@@ -248,10 +224,8 @@ setup_package <- function(package = NULL,
                path = path,
                open = TRUE)
   usethis::ui_done("Added CITATION file to inst folder. Please do not forget to complete.")
-
   create_directory(paste0(path, "/.github/workflows"))
   usethis::ui_done("Created workflows folder.")
-
   if (interactive()) {
     file.copy(fs::path_package(package = "manypkgs",
                                "templates", "Package-Check.yml"),
@@ -266,9 +240,7 @@ setup_package <- function(package = NULL,
               fs::path(".github", "workflows", "pushrelease.yml"))
     usethis::ui_done("Added release workflow upon merging a push release.")
   }
-
   usethis::ui_todo("Remember to set up your project together with Github for visibility etc.")
-
 }
 
 #' Add an author to the current package
@@ -310,11 +282,9 @@ add_author <- function(orcid = NULL,
                        role = NULL,
                        email = NULL,
                        affiliation = NULL) {
-
   # Check for correct input
   if (is.null(orcid) & is.null(name)) stop(
     "Either a correct ORCID number or name in the format 'Surname, Given Names' must be provided.")
-
   # Use ORCID data if available
   if (!is.null(orcid)) {
     if (!stringr::str_detect(orcid, "^[0-9]")) {
@@ -344,24 +314,19 @@ add_author <- function(orcid = NULL,
       }
     }
   }
-
   if (!is.null(name)) {
     name <- stringr::str_split(name, ", ")
     family <- name[[1]][1]
     given <- name[[1]][2]
   }
-
   # Unless otherwise provided, new authors added are listed as 'contributors'
   if (is.null(role)) role <- "ctb"
-
   if (!is.null(email) && !grepl("@", email, fixed = TRUE)) {
     stop("Please specify a correct email adress.")
   }
-
   if (!"desc" %in% rownames(utils::installed.packages())) {
     depends("desc")
   }
-
   # Write the new author to the description
   # TODO: check whether author already exists and update details instead
   desc::desc_add_author(given = given,

@@ -41,7 +41,7 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
-      href: https://github.com/globalgov/manystates
+      href: https://github.com/globalgov/manypkgs
     packages:
       text: Other packages
       menu:
@@ -62,7 +62,7 @@ reference:
       - add_author
       - add_bib
   - title: "Processing functions"
-    desc: "These functions were created to assist data providers with the processing of data when creating packages"
+    desc: "These functions were created to assist data providers with the processing of data"
     contents:
       - import_data
       - export_data
@@ -74,10 +74,8 @@ reference:
     contents:
       - depends
       - retain
-      - get_links
-      - get_memberships
-      - get_articles
-      - lingua
+      - starts_with("retrieve")
+      - convert_pdf
 footer:
   structure:
     left: devs

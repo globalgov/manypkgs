@@ -88,15 +88,28 @@ import_data <- function(dataset = NULL,
 
   # Step two: move raw data file to correct location
   if (is.null(path)) path <- file.choose()
+  # Check data raw and dataset name consistency
+  if (!grepl(paste0(dataset), path)) {
+    if (isFALSE(utils::askYesNo("Raw data file and dataset have different names.
+                                Would you like to continue or rename raw data
+                                file and dataset for consistency?"))) {
+      stop("Please make sure that raw data file and dataset have the same name for consistency.")
+    }
+  }
+  # Check if data raw is in .csv format
+  if (!grepl(".csv", path)) {
+    if (isFALSE(utils::askYesNo("Raw data should ideally be in .csv format.
+                                Would you like to continue or convert the raw data first?"))) {
+      stop("Please convert raw data to text format before importing it to package.")
+    }
+  }
   new_path <- fs::path("data-raw", database, dataset, fs::path_file(path))
   file.copy(path, new_path)
   usethis::ui_done("Copied data to {new_path}.")
   if (delete_original) file.remove(path)
   # Import codebook if its path is specified
   if (!is.null(codebook)) {
-    new_path_codebook <- fs::path("data-raw",
-                                  database,
-                                  dataset,
+    new_path_codebook <- fs::path("data-raw", database, dataset,
                                   fs::path_file(codebook))
     file.copy(codebook, new_path_codebook)
   }
@@ -114,24 +127,18 @@ import_data <- function(dataset = NULL,
     } else if (grepl("txt$", path)) {
       import_type <- "read.table"
     } else stop("File type not recognised")
-
   # Create preparation template
-  manytemplate(
-    "Package-preparation.R",
-    save_as = fs::path("data-raw", database, dataset,
-                       paste0("prepare-", dataset), ext = "R"),
-    data = list(dataset = dataset,
-                database = database,
-                path = new_path,
-                import_type = import_type),
-    ignore = FALSE,
-    open = open,
-    path = getwd())
+  manytemplate("Package-preparation.R",
+               save_as = fs::path("data-raw", database, dataset,
+                                  paste0("prepare-", dataset), ext = "R"),
+               data = list(dataset = dataset, database = database,
+               path = new_path, import_type = import_type),
+               ignore = FALSE, open = open, path = getwd())
 
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
-  usethis::ui_todo("Use {usethis::ui_code('manypkgs::export_data()')} to add prepared data to package")
-
+  usethis::ui_todo("Use {usethis::ui_code('manypkgs::export_data()')} to add
+                   prepared data to package")
 }
 
 #' Add .bib file

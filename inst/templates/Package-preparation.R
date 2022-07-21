@@ -10,12 +10,15 @@
 # In this stage you will want to correct the variable names and
 # formats of the '{{{dataset}}}' object until the object created
 # below (in stage three) passes all the tests.
+# We recommend that you avoid using one letter variable names to keep
+# away from issues with ambiguous names down the road.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   manydata::transmutate(ID = {id_variable_name_here},
-              Beg = manypkgs::standardise_dates({date_variable_name_here})) %>%
+                        Beg = messydates::as_messydate({date_variable_name_here})) %>%
   dplyr::arrange(Beg)
 # manypkgs includes several functions that should help cleaning
-# and standardising your data.
+# and standardising your data such as `standardise_titles()`
+# and `standardise_texts()`.
 # Please see the vignettes or website for more details.
 
 # Stage three: Connecting data
@@ -33,7 +36,7 @@
 # present in the data_raw folder of the package for citation purposes.
 # Therefore, please make sure that you have permission to use the dataset
 # that you're including in the package.
-# To add a template of .bib file to package,
-# run `manypkgs::add_bib({{{database}}}, {{{dataset}}})`.
+# To add a template of .bib file to the package,
+# please run `manypkgs::add_bib({{{database}}}, {{{dataset}}})`.
 manypkgs::export_data({{{dataset}}}, database = "{{{database}}}",
                      URL = NULL)

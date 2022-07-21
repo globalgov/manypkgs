@@ -9,6 +9,6 @@
 #'
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply({{{database}}}, skimr::skim_without_charts)
+#' lapply({{{database}}}, messydates::mreport)
 #' ```
 "{{{database}}}"
