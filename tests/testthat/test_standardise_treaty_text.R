@@ -5,7 +5,7 @@ treaty_text <- list("preamble: this is the preamble \narticle 1: this is the art
 \narticle 2: this is the article of an agreement, agreement on trade and commerce
                     <!-- if(window.location==) this page uses javascript//--> agreement
                     between the government of india and the government of bhutan.
-                    java script is required -->, <[document{the form}")
+                    javascript is required -->, <[document{the form}, http://www.wiki.org link")
 
 test_that("Treaty text is standardised correctly", {
   treaty <- standardise_treaty_text(treaty_text)

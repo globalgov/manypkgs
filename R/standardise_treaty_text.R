@@ -34,11 +34,13 @@ standardise_treaty_text <- function(textvar) {
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
                                   |\\.protocol\\s|\\d\\sprotocol\\s",
                                   " PROTOCOL ")
+    x <- stringr::str_remove_all(x, "(http\\:\\/\\/)(.+)(?=\\s)")
     x <- stringr::str_remove_all(x, "(?<=\\<)(.+)(?=\\>)")
     x <- stringr::str_remove_all(x, "\r|\t|\n")
     x <- stringr::str_remove_all(x, "\\<|\\>|\\-\\-")
-    x <- stringr::str_remove_all(x, "this page uses javascript|java script is required|
-                                 |javascript|java script")
+    x <- stringr::str_remove_all(x, "this page uses javascript|this website uses javascript|
+                                    |javascript is required (for this page)?|javascript|java script|
+                                    |please use a javascript enabled browser")
     x <- tm::stripWhitespace(x)
     x
   })
