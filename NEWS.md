@@ -5,6 +5,8 @@
 * Closed #55 by updating README and workflow files to download `{manydata}` from CRAN
 * Closed #74 by increasing package logo size
 * Updated workflow action files by implementing package caching
+* Closed #78 by defining consistent ways of dealing with code errors in 'many' data packages
+* Closed #85 by adding guidelines for writing in markdown documents to contributing files
 
 ## Correction
 
