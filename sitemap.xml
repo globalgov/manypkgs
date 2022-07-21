@@ -40,6 +40,9 @@
     <loc>https://globalgov.github.io/manypkgs/reference/add_bib.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/code_accession_terms.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/manypkgs/reference/code_acronym.html</loc>
   </url>
   <url>
@@ -67,9 +70,6 @@
     <loc>https://globalgov.github.io/manypkgs/reference/code_linkage.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/code_memberships.html</loc>
-  </url>
-  <url>
     <loc>https://globalgov.github.io/manypkgs/reference/code_parties.html</loc>
   </url>
   <url>
@@ -85,19 +85,16 @@
     <loc>https://globalgov.github.io/manypkgs/reference/condense_agreements.html</loc>
   </url>
   <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/convert_pdf.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/defunct.html</loc>
+  </url>
+  <url>
     <loc>https://globalgov.github.io/manypkgs/reference/depends.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/manypkgs/reference/export_data.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/get_articles.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/get_links.html</loc>
-  </url>
-  <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/get_memberships.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/manypkgs/reference/import_data.html</loc>
@@ -106,19 +103,25 @@
     <loc>https://globalgov.github.io/manypkgs/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/lingua.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/retain.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/retain.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/retrieve_clauses.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/retrieve_links.html</loc>
+  </url>
+  <url>
+    <loc>https://globalgov.github.io/manypkgs/reference/retrieve_membership_list.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/manypkgs/reference/setup_package.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/standardise_dates.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/standardise_titles.html</loc>
   </url>
   <url>
-    <loc>https://globalgov.github.io/manypkgs/reference/standardise_titles.html</loc>
+    <loc>https://globalgov.github.io/manypkgs/reference/standardise_treaty_text.html</loc>
   </url>
   <url>
     <loc>https://globalgov.github.io/manypkgs/reference/update_package.html</loc>
