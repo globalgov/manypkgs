@@ -9,7 +9,7 @@ treaty_text <- list("preamble: this is the preamble \narticle 1: this is the art
 test_that("Treaty text is standardised correctly", {
   treaty <- standardise_treaty_text(treaty_text)
   treaty1 <- standardize_treaty_text(treaty_text)
-  expect_false(any(stringr::str_detect(treaty, "<.*?>|\r|\t|\n")))
-  expect_length(treaty, 2)
+  expect_false(any(stringr::str_detect(treaty, "\\<|\\>|\r|\t|\n")))
+  expect_length(treaty, 4)
   expect_equal(treaty, treaty1)
 })
