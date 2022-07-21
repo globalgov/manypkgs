@@ -62,7 +62,7 @@ reference:
       - add_author
       - add_bib
   - title: "Processing functions"
-    desc: "These functions were created to assist data providers with the processing of data when creating packages"
+    desc: "These functions were created to assist data providers with the processing of data"
     contents:
       - import_data
       - export_data
@@ -74,10 +74,8 @@ reference:
     contents:
       - depends
       - retain
-      - get_links
-      - get_memberships
-      - get_articles
-      - treaty_pdf
+      - starts_with("retrieve")
+      - convert_pdf
 footer:
   structure:
     left: devs
