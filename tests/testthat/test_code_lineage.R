@@ -18,9 +18,3 @@ test_that("code_lineage function works", {
                                                    "River Basin", "NA - environment",
                                                    "RUS-USA[KTC] - fishing", "Pacific Ocean - fishing"))
 })
-
-links <- data.frame(agreement = "WIIEWH_1990E1", link = "RAMSA_1971A")
-
-test_that("get_links function works", {
-  expect_equal(retrieve_links(dataset = data), links)
-})

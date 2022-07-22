@@ -1,4 +1,4 @@
-#' Get treaty articles by number or match
+#' Read treaty articles by number or match
 #'
 #' The function splits treaty texts into lists that reflect a structure
 #' based on having a preamble and several articles.
@@ -32,19 +32,19 @@
 #' @examples
 #' \dontrun{
 #' t <- standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
-#' retrieve_clauses(t)
-#' retrieve_clauses(t, article = "preamble")
-#' retrieve_clauses(t, article = "accession")
-#' retrieve_clauses(t, article = "termination")
-#' retrieve_clauses(t, article = "annex")
-#' retrieve_clauses(t, match = "constitution")
-#' retrieve_clauses(t, article = "preamble", match = "amend")
-#' retrieve_clauses(t, treaty_type = "agreements")
-#' retrieve_clauses(t, treaty_type = "protocols")
-#' retrieve_clauses(t, treaty_type = "amendments")
+#' read_clauses(t)
+#' read_clauses(t, article = "preamble")
+#' read_clauses(t, article = "accession")
+#' read_clauses(t, article = "termination")
+#' read_clauses(t, article = "annex")
+#' read_clauses(t, match = "constitution")
+#' read_clauses(t, article = "preamble", match = "amend")
+#' read_clauses(t, treaty_type = "agreements")
+#' read_clauses(t, treaty_type = "protocols")
+#' read_clauses(t, treaty_type = "amendments")
 #' }
 #' @export
-retrieve_clauses <- function(textvar, article = NULL,
+read_clauses <- function(textvar, article = NULL,
                              match = NULL, treaty_type = "all") {
   # Check if text variable was standardised first
   if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
