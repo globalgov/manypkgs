@@ -23,7 +23,7 @@ code_lineage <- function(title = NULL, database = NULL) {
     vars <- unlist(purrr::map(database, names))
     if (any("Text" == vars)) { # Find text variable in database, if available
       txt <- unname(unlist(purrr::map(database, "Text")))
-      txt <- retrieve_clauses(standardise_treaty_text(txt), "preamble")
+      txt <- read_clauses(standardise_treaty_text(txt), "preamble")
     }
   }
   # code entity and actions for titles

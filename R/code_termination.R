@@ -42,8 +42,8 @@ code_term <- function(title, text = NULL) {
                      grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                            title, ignore.case = T), paste0("EXP"), NA)
     # Get the termination clauses
-    term <- retrieve_clauses(standardise_treaty_text(text),
-                             article = "termination")
+    term <- read_clauses(standardise_treaty_text(text),
+                         article = "termination")
     # Classify them according to key terms
     term <- dplyr::case_when(
       grepl("shall terminate the agreement|shall supersede|shall.*supplant",

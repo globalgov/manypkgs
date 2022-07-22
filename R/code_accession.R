@@ -31,8 +31,8 @@ code_accession_terms <- function(textvar, title = NULL, accession = NULL) {
     return(member)
   } else {
     # First step: select all the articles concerning accession
-    memb <- retrieve_clauses(standardise_treaty_text(textvar),
-                             article = "accession")
+    memb <- read_clauses(standardise_treaty_text(textvar),
+                         article = "accession")
     if (isTRUE(accession == "condition")) {
       # Second step: match terms to identify accession conditions
       condition_1 <- dplyr::case_when(grepl("a government|any government|
