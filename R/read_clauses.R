@@ -14,20 +14,19 @@
 #' @param textvar A text variable
 #' @param article Would you like to get a specific article?
 #' Null by default.
-#' Other options include the "preamble",
-#' "termination" clause, "membership" clause, or "annex".
+#' Other options include the "preamble", the "termination" clauses,
+#' "membership" clauses, or the "annex".
 #' The specified portion for all treaties will be returned.
 #' @param match A regex match for a word(s) or expression.
 #' For multiple words, please use "|" to divide them.
-#' @param treaty_type What types of treaty do you want to look at?
-#' By default, "all".
+#' @param treaty_type Would you like to get certain types of treaty only?
+#' Null by default.
 #' Other treaty types include: "agreements", "protocols", "amendments",
 #' "notes", "memorandum", and "resolutions".
 #' @details Please make sure treaty texts have been standardised first
 #' using `standardise_texts()` for best results.
-#' @importFrom purrr map_chr map
-#' @importFrom stringr str_extract str_replace_all str_trim str_split
-#' @importFrom stringi stri_trans_general
+#' @importFrom purrr map
+#' @importFrom stringr str_extract str_split
 #' @return A list of treaty sections of the same length.
 #' @examples
 #' \dontrun{
@@ -45,14 +44,14 @@
 #' }
 #' @export
 read_clauses <- function(textvar, article = NULL,
-                             match = NULL, treaty_type = "all") {
+                         match = NULL, treaty_type = NULL) {
   # Check if text variable was standardised first
   if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
     stop("Please make sure treaty texts have been standardised first
               using `standardise_texts()`")
   }
   # Get treaty type if declared (adapted from code_type)
-  if (treaty_type != "all") {
+  if (!is.null(treaty_type)) {
     out <- purrr::map(textvar, as.character)
     type <- as.data.frame(agreement_type)
     for (k in seq_len(nrow(type))) {
@@ -80,7 +79,7 @@ read_clauses <- function(textvar, article = NULL,
   # Split list (if already not split by paragraph marks)
   t <- ifelse(lengths(textvar) < 10,
               stringr::str_split(as.character(textvar),
-                                 "((?=ARTICLE)|(?=ANNEX))"), t)
+                                 "((?=ARTICLE)|(?=ANNEX))"), textvar)
   # Get articles if declared
   if (!is.null(article)) {
     t <- get_articles(t, article)

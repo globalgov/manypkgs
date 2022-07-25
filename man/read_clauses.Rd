@@ -4,22 +4,22 @@
 \alias{read_clauses}
 \title{Read treaty articles by number or match}
 \usage{
-read_clauses(textvar, article = NULL, match = NULL, treaty_type = "all")
+read_clauses(textvar, article = NULL, match = NULL, treaty_type = NULL)
 }
 \arguments{
 \item{textvar}{A text variable}
 
 \item{article}{Would you like to get a specific article?
 Null by default.
-Other options include the "preamble",
-"termination" clause, "membership" clause, or "annex".
+Other options include the "preamble", the "termination" clauses,
+"membership" clauses, or the "annex".
 The specified portion for all treaties will be returned.}
 
 \item{match}{A regex match for a word(s) or expression.
 For multiple words, please use "|" to divide them.}
 
-\item{treaty_type}{What types of treaty do you want to look at?
-By default, "all".
+\item{treaty_type}{Would you like to get certain types of treaty only?
+Null by default.
 Other treaty types include: "agreements", "protocols", "amendments",
 "notes", "memorandum", and "resolutions".}
 }
