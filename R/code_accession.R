@@ -20,7 +20,7 @@
 #' @importFrom stringr str_remove_all str_trim
 #' @examples
 #' \dontrun{
-#' m <- manyenviron::texts$AGR_TXT[200:300,]
+#' m <- manyenviron::texts$GNEVAR_TXT[200:300,]
 #' code_accession_terms(m$Text, m$Title, accession = "condition")
 #' code_accession_terms(m$Text, accession = "process")
 #' code_accession_terms()
