@@ -28,7 +28,9 @@ standardise_treaty_text <- function(textvar) {
     x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s|
                                   |\\d\\sannex\\s", " ANNEX ")
     x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
-                                  |\\.\\sarticle\\s|\\.article\\s", " ARTICLE ")
+                                  |\\.\\sarticle\\s|\\.article\\s|\nchapter|
+                                  |\n chapter|\\.\\schapter\\s|\\.chapter\\s",
+                                  " ARTICLE ")
     x <- stringr::str_replace_all(x, "\nappendix|\n appendix|\\.\\sappendix\\s|
                                   |\\.appendix\\s", " APPENDIX ")
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
