@@ -111,7 +111,7 @@ We can, for example, retrieve certain types of treaties with
 `retrieve_bilaterals()` and `retrieve_multilateras()`.
 
 ```{r retrieve, message=FALSE, warning=FALSE}
-manydata::retrieve_bilaterals(manytrade::memberships$DESTA_MEM)
+manydata::retrieve_bilaterals(manytrade::memberships$DESTA_MEM, actor = "stateID")
 manydata::retrieve_multilaterals(manytrade::memberships$GPTAD_MEM)
 ```
 
@@ -126,4 +126,3 @@ Or, even, retrive treaty membership lists with `retrieve_memberships()`.
 ```{r membs, message=FALSE, warning=FALSE}
 manydata::retrieve_membership_list(manytrade::memberships$DESTA_MEM, "stateID")
 ```
-
