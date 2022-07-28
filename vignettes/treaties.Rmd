@@ -28,7 +28,7 @@ in both `{manytrade}` and `{manyenviron}`.
 
 ```{r data_constrast, message=FALSE, warning=FALSE}
 manydata::data_contrast("manytrade", "agreements")
-manydata::data_contrast("manyenviron", "agreements")
+manydata::data_contrast("manytrade", "memberships")
 ```
 
 ## Assigning a 'many' ID
@@ -60,7 +60,7 @@ might contain minor differences that could mean these IDs actually refer to the 
 The `condense_agreements()` function to works to match these inconsistencies
 within databases or variables.
 
-```{r condesne, message=FALSE, warning=FALSE}
+```{r condense, message=FALSE, warning=FALSE}
 manyID <- manypkgs::condense_agreements(var = trade_agreements$treatyID)
 trade_agreements <- dplyr::left_join(trade_agreements, manyID, by = "treatyID") %>% 
   dplyr::mutate(compareID = ifelse(treatyID == manyID, "Equal", "Different"))
@@ -94,4 +94,36 @@ manypkgs::read_clauses(trade_treaties$TreatyText, match = "human rights")
 
 # Code accession and termination clauses
 
+With the standardized treaty text in hand, we can leverage `{manypkgs}` to code
+accession and termination rules for treaties. 
+
+```{r accession, message=FALSE, warning=FALSE}
+manypkgs::code_accession_terms(trade_treaties$TreatyText) # All NAs...
+manypkgs::code_term(trade_treaties$TreatyText) # 
+```
+
 # Retrieve 'many' additional information
+
+`{manydata}` also contains several functions to help easily retrieve additional
+from 'many' treaties.
+
+We can, for example, retrieve certain types of treaties with
+`retrieve_bilaterals()` and `retrieve_multilateras()`.
+
+```{r retrieve, message=FALSE, warning=FALSE}
+manydata::retrieve_bilaterals(manytrade::memberships$DESTA_MEM)
+manydata::retrieve_multilaterals(manytrade::memberships$GPTAD_MEM)
+```
+
+We can also retrieve treaty linkages with `retrieve_links()`.
+
+```{r links, message=FALSE, warning=FALSE}
+manydata::retrieve_links(manytrade::agreements)
+```
+
+Or, even, retrive treaty membership lists with `retrieve_memberships()`.
+
+```{r membs, message=FALSE, warning=FALSE}
+manydata::retrieve_membership_list(manytrade::memberships$DESTA_MEM, "stateID")
+```
+
