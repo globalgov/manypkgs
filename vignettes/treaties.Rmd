@@ -39,9 +39,9 @@ setting equivalences between observations from different datasets.
 To solve this issue we created the `code_agreements()` function to work at the dataset level.
 The function extract key identifying information from the titles and dates,
 rendering as equivalent any titles that have the same key identifying information.
-Please see check the [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.html) vignette for more information on how the `code_agreements()` function works
+Please see check the [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.html) vignette for more information on how `code_agreements()` works
 and its' performance vis-a-vis other matching options.
-Notice that titles in 'many' datasets were standardised using `standardise_titles()`.
+Notice that titles in 'many' datasets were first standardised using `standardise_titles()`.
 
 ```{r code_agreements, message=FALSE, warning=FALSE}
 manydata::get_packages("manytrade")
@@ -98,13 +98,13 @@ With the standardized treaty text in hand, we can leverage `{manypkgs}` to code
 accession and termination rules for treaties. 
 
 ```{r accession, message=FALSE, warning=FALSE}
-manypkgs::code_accession_terms(trade_treaties$TreatyText) # All NAs...
-manypkgs::code_term(trade_treaties$TreatyText) # 
+manypkgs::code_accession_terms(trade_treaties$TreatyText) # All NAs?
+manypkgs::code_term(trade_treaties$TreatyText)
 ```
 
 # Retrieve 'many' additional information
 
-`{manydata}` also contains several functions to help easily retrieve additional
+`{manydata}` contains several functions to help easily retrieve additional
 from 'many' treaties.
 
 We can, for example, retrieve certain types of treaties with
