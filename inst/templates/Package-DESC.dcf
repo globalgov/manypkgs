@@ -9,7 +9,6 @@ Description: Collection, correction, and connection.
 License: CC BY 4.0
 Depends: 
     R (>= 3.5.0),
-Imports:
     manydata
 Suggests:
     testthat (>= 3.0.0),
