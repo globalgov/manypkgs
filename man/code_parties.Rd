@@ -21,16 +21,16 @@ Identify the countries that are part of an agreement.
 }
 \details{
 The function codes states in treaties alongside,
-returning only parties for bileteral treaties
+returning only parties for bilateral treaties
 (i.e. 2 parties coded).
 The function also returns the "activity" for bilateral
 treaties coded, if activity is TRUE.
-Bilateral agreements usully detail their
+Bilateral agreements usually detail their
 activity and specify area in the last words of the titles.
 These last words are abbreviated by the function to
 differentiate between bilateral treaties and avoid
 false positives being generated since
-multiple, different, bileteral treaties are
+multiple, different, bilateral treaties are
 often signed in the same day.
 For the complete list of parties coded please run the
 function without an argument (i.e. \code{code_parties()}).
