@@ -23,25 +23,24 @@ governing certain issue-domain (e.g. `{manytrade}` and `{manyenviron}`).
 While `{manydata}` facilitates accessing 'many' data,
 `{manypks}` helps developers to standardise and work with treaty data.
 
-Using `{manydata}` we can check the datasets available in the "agreements" database
-in both `{manytrade}` and `{manyenviron}`. 
+Using `{manydata}`, we can check which databases and datasets are available in
+the packages.
 
 ```{r data_constrast, message=FALSE, warning=FALSE}
+manydata::data_contrast("manytrade")
 manydata::data_contrast("manytrade", "agreements")
-manydata::data_contrast("manytrade", "memberships")
 ```
 
 ## Assigning a 'many' ID
 
-One of the central problems in ensembled data packages is 
-setting equivalences between observations from different datasets.
+One of the central problems in assembled data packages is identifying
+equivalences between observations across datasets.
 
-To solve this issue we created the `code_agreements()` function to work at the dataset level.
-The function extract key identifying information from the titles and dates,
-rendering as equivalent any titles that have the same key identifying information.
-Please see check the [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.html) vignette for more information on how `code_agreements()` works
-and its' performance vis-a-vis other matching options.
-Notice that titles in 'many' datasets were first standardised using `standardise_titles()`.
+To solve this issue we created the `code_agreements()` function
+which extracts key identifying information from the titles and dates,
+rendering the same treatyID for observations that have the same key identifying information.
+Please see the [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.html) vignette for more information on how `code_agreements()` works
+and its performance vis-a-vis other matching options.
 
 ```{r code_agreements, message=FALSE, warning=FALSE}
 manydata::get_packages("manytrade")
@@ -55,7 +54,7 @@ trade_agreements$treatyID <- manypkgs::code_agreements(title = trade_agreements$
                                                        date = trade_agreements$Beg)
 ```
 
-Different treaty IDs generated with `code_agreements()` for different datasets
+Different treatyIDs generated with `code_agreements()` for different datasets
 might contain minor differences that could mean these IDs actually refer to the same agreement.
 The `condense_agreements()` function to works to match these inconsistencies
 within databases or variables.
@@ -67,48 +66,84 @@ trade_agreements <- dplyr::left_join(trade_agreements, manyID, by = "treatyID") 
 summary(as.factor(trade_agreements$compareID))
 ```
 
-## 'many' treaty texts
+## Standardising observations
 
-Texts databases in 'many' packages contain some treaty texts.
+Before analysing the data contained in the datasets,
+standardising observations to ensure that they have the same format (eg. in terms of spacing)
+can help make automated text analysis more convenient and straightforward.
+The data in `{manytrade}` and `{manyenviron}` are standardised
+using functions in `{manypkgs}` before being exported.
+Treaty titles in the 'many' datasets are first standardised using `standardise_titles()`,
+while `standardise_treaty_texts()` annotates the different segments of treaties (eg. preamble, articles, and annexes)
+and removes redundant paragraph, line, and website markers as much as possible.
+
+## Coding and analysing treaty texts
+
+The 'many' packages also contain texts databases that store the original texts of treaties,
+where available digitally,
+listed in the `agreements`, `memberships`, and `references` databases.
 `{manypkgs}` has several functions to standardize and extract information from these texts.
-`standardise_treaty_texts()` helps separating treaties into preamble, articles, and annexes.
-`read_clauses()` extracts specific portions of these treaties. 
+At its most basic, `read_clauses()` extracts specified portions of treaties,
+such as the 'preamble' or the 'accession' clause.
+To reduce the size of the output produced,
+`read_clauses()` matches a limited number of words only.
+This is currently set to a maximum of 20 words for accession articles,
+since these clauses are usually shorter than this length.
 
 ```{r text, message=FALSE, warning=FALSE}
-treaty_text <- lapply(manytrade::texts, function(x) 
-  x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
-treaty_text <- lapply(treaty_text, function(x) 
-  dplyr::select(x, manyID, TreatyText))
-treaty_text <- do.call(rbind, treaty_text)
-trade_treaties <- dplyr::left_join(trade_agreements, treaty_text, by = "manyID") %>%
-  select(c(manyID, Beg, TreatyText)) %>%
-  dplyr::distinct() %>% 
+trade_treaties <- lapply(manytrade::texts, function(x) 
+  x[x$Beg > "2000-01-01" & x$Beg < "2006-01-01", ])
+trade_treaties <- lapply(trade_treaties, function(x) 
+  dplyr::select(x, manyID, Title, Beg, TreatyText))
+trade_treaties <- do.call(rbind, trade_treaties)
+trade_treaties <- trade_treaties %>%
   filter(!is.na(TreatyText),
          !grepl("NULL", TreatyText))
-trade_treaties$TreatyText <- manypkgs::standardize_treaty_text(trade_treaties$TreatyText)
+trade_treaties <- subset(trade_treaties,
+                         subset = !duplicated(trade_treaties[, c(2,4)]))
+
 manypkgs::read_clauses(trade_treaties$TreatyText, article = "preamble") # needs to improve...
-manypkgs::read_clauses(trade_treaties$TreatyText, article = "accession") # get's nothing...
+manypkgs::read_clauses(trade_treaties$TreatyText, article = "accession")
 manypkgs::read_clauses(trade_treaties$TreatyText, treaty_type = "agreements")
 manypkgs::read_clauses(trade_treaties$TreatyText, match = "human rights")
 ```
 
-# Code accession and termination clauses
+### Code accession and termination clauses
 
-With the standardized treaty text in hand, we can leverage `{manypkgs}` to code
-accession and termination rules for treaties. 
+With the standardized treaty text in hand, we can leverage functions in 
+`{manypkgs}` to code accession and termination rules for treaties.
+`code_accession_terms()` locates the conditions and processes for accession to a treaty
+(depending on which is specified in the argument).
+Accession conditions are categorised either as 'open',
+where the treaty is open to any government,
+or 'semi-open', where nomination by an existing party to the treaty is required.
+The function identifies the category by matching keywords located in the
+clauses concerning accession (identified through `read_clauses()`:
+'any government', 'all governments', etc for 'open' and
+'nomination' for 'semi-open'.
 
 ```{r accession, message=FALSE, warning=FALSE}
 manypkgs::code_accession_terms(trade_treaties$TreatyText) # All NAs?
 manypkgs::code_term(trade_treaties$TreatyText)
 ```
 
-# Retrieve 'many' additional information
+### Code parties, domains and activities
+
+We can also code for specific details of treaties such as its domain, activity,
+and parties. These information are extracted from the titles of the treaties.
+
+
+### Code lineage
+See manydata vignette on lineage
+
+
+## Retrieve 'many' additional information
 
 `{manydata}` contains several functions to help easily retrieve additional
 from 'many' treaties.
 
 We can, for example, retrieve certain types of treaties with
-`retrieve_bilaterals()` and `retrieve_multilateras()`.
+`retrieve_bilaterals()` and `retrieve_multilaterals()`.
 
 ```{r retrieve, message=FALSE, warning=FALSE}
 manydata::retrieve_bilaterals(manytrade::memberships$DESTA_MEM, actor = "stateID")
@@ -121,7 +156,7 @@ We can also retrieve treaty linkages with `retrieve_links()`.
 manydata::retrieve_links(manytrade::agreements)
 ```
 
-Or, even, retrive treaty membership lists with `retrieve_memberships()`.
+Or, even, retrieve treaty membership lists with `retrieve_memberships()`.
 
 ```{r membs, message=FALSE, warning=FALSE}
 manydata::retrieve_membership_list(manytrade::memberships$DESTA_MEM, "stateID")
