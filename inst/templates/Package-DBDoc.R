@@ -4,6 +4,7 @@
 #' following {{{nd}}} datasets: {{{strdsnames}}}.
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
+#' @imports manydata
 {{{describe}}}
 {{{sourceelem}}}
 #'

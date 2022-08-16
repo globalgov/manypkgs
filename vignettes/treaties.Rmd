@@ -132,10 +132,8 @@ manypkgs::code_term(trade_treaties$TreatyText)
 We can also code for specific details of treaties such as its domain, activity,
 and parties. These information are extracted from the titles of the treaties.
 
-
 ### Code lineage
 See manydata vignette on lineage
-
 
 ## Retrieve 'many' additional information
 
