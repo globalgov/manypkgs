@@ -10,9 +10,6 @@ data <- data.frame(title = c("Agreement Between Cape Verde And Portugal On Fishe
                    date = c("1980-05-08", "1990-12-31", "1981-01-30", "1982-12-03", "1976-12-03", "1983-04-29", "1971-02-02", "1973-02-21", "1973-02-21"))
 
 test_that("Code_agreements helper functions work properly", {
-  expect_equal(code_parties(data$title), c("CPV-PRT[FSD]",
-                                           NA, NA, NA, NA, NA, NA,
-                                           "RUS-USA[KTC]", "RUS-USA[FON]"))
   expect_equal(code_type(data$title), c("A", "E1", "A", "R",
                                         "N", "S", "A", "A", "A"))
   expect_equal(code_dates(data$date), c("1980", "1990",
@@ -64,4 +61,70 @@ test_that("certain functions return coding information when argument is missing"
 test_that("Punctation marks are not in the treatyID", {
   treatyID <- code_agreements(data5, data5$title, data5$date)
   expect_false(any(grepl("\\(|\\)", treatyID)))
+})
+
+# Test that code_states works
+test_that("Code_states codes parties from treaty titles properly", {
+  expect_equal(code_states(data$title, parties = TRUE, activity = TRUE),
+               c("CPV-PRT[FSD]",NA, NA, NA, NA, NA, NA,
+                 "RUS-USA[KTC]", "RUS-USA[FON]"))
+  expect_equal(code_states(data$title, parties = TRUE),
+               c("CPV-PRT",NA, NA, NA, NA, NA, NA,
+                 "RUS-USA", "RUS-USA"))
+})
+
+test <- data.frame(title = c("Korea and Democratic People's Republic of Korea",
+                             "Guinea Equatorial",
+                             "Guinea",
+                             "Republic germany",
+                             "German Democratic Republic",
+                             "Austria-Hungary and Hungary",
+                             "Hungary and Austria",
+                             "East Pakistan",
+                             "Pakistan",
+                             "UK and US",
+                             "USA and U.K.",
+                             "UK/Uganda Treaty",
+                             "UAE treaty",
+                             "U.A.E.",
+                             "Great Colombia",
+                             "Gran Colombia",
+                             "The US and EU",
+                             "The US and E.U.",
+                             "South Georgia",
+                             "British east africa",
+                             "Luxembourg",
+                             "s. africa",
+                             "south-africa",
+                             "Northern rhodesia"))
+
+test_that("states are given the correct abbreviation", {
+  expect_equal(code_states(test$title, abbrev = TRUE), c("KOR_PRK", "GNQ",
+                                                         "GIN", "DEU", "DDR",
+                                                         "AUH_HUN", "AUT_HUN",
+                                                         "BGD", "PAK",
+                                                         "GBR_USA", "GBR_USA",
+                                                         "GBR_UGA",
+                                                         "ARE", "ARE",
+                                                         "GCL", "GCL",
+                                                         "EUE_USA", "EUE_USA",
+                                                         NA, "KEN",
+                                                         "LUX", "ZAF",
+                                                         "ZAF", "ZMB"))
+})
+
+test_that("states are given the correct label", {
+  expect_equal(code_states(test$title),
+               c("Republic of Korea_Democratic People's Republic of Korea",
+                 "Equatorial Guinea", "Guinea", "Germany (Prussia)",
+                 "German Democratic Republic", "Austria-Hungary_Hungary",
+                 "Austria_Hungary", "Bangladesh", "Pakistan",
+                 "United Kingdom_United States of America",
+                 "United Kingdom_United States of America",
+                 "United Kingdom_Buganda", "United Arab Emirates",
+                 "United Arab Emirates", "Gran Colombia", "Gran Colombia",
+                 "European Union_United States of America",
+                 "European Union_United States of America",
+                 "South Georgia", "Kenya", "Luxembourg", "South Africa",
+                 "South Africa", "Zambia"))
 })

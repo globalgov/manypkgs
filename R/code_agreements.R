@@ -97,79 +97,134 @@ code_agreements <- function(dataset = NULL, title, date) {
   treatyID
 }
 
-#' Code Agreement Parties
+#' Code States and Agreement Parties
 #'
-#' Identify the countries that are part of an agreement.
-#' @param title A character vector of treaty titles
+#' Retrieves countries from a character vector or
+#' identifies the countries that are part of an agreement.
+#' @param v A character vector containing names of states to translate 
+#' into English or abbreviated, or treaty titles if parties are to be coded.
+#' @param abbrev Do you want 3 letter country abbreviations to be returned?
+#' By default FALSE.
+#' @param parties Do you want to identify the parties of an agreement instead?
+#' By default FALSE.
 #' @param activity Do you want the activity of treaty to be coded?
-#' By default, TRUE.
+#' By default, FALSE.
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom knitr kable
 #' @return A character vector of parties
 #' that are mentioned in the treaty title
-#' @details The function codes states in treaties alongside,
-#' returning only parties for bilateral treaties
-#' (i.e. 2 parties coded).
+#' @details
+#' This function builds upon the `stat_actor` list and the
+#' `countrycode` package to identify and return the parties mentioned
+#' in a character vector of agreement titles or texts.
+#' If the function is ran without an argument (i.e. `code_states()`),
+#' a complete list of states' names and abbreviations is returned.
+#' The function codes states parties to bilateral treaties
+#' from the treaty title (please enter in v) if parties is TRUE.
 #' The function also returns the "activity" for bilateral
 #' treaties coded, if activity is TRUE.
 #' Bilateral agreements usually detail their
 #' activity and specify area in the last words of the titles.
-#' These last words are abbreviated by the function to
-#' differentiate between bilateral treaties and avoid
-#' false positives being generated since
-#' multiple, different, bilateral treaties are
-#' often signed in the same day.
-#' For the complete list of parties coded please run the
-#' function without an argument (i.e. `code_parties()`).
+#' These last words are abbreviated by the function (captured in [])
+#' to differentiate between bilateral treaties and
+#' avoid false positives being generated
+#' since multiple, different, bilateral treaties may be signed on the same day.
 #' @examples
+#' states <- c("Two are from Switzerland", "One from New Zealand",
+#' "And one from Brazil")
+#' code_states(states)
+#' code_states(states, abbrev = TRUE)
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
-#' code_parties(IEADB$Title)
+#' code_states(IEADB$Title, parties = TRUE, activity = TRUE)
 #' }
 #' @export
-code_parties <- function(title, activity = TRUE) {
+code_states <- function(v, abbrev = FALSE, parties = FALSE, activity = FALSE) {
 
-  # If missing title argument, function returns
-  # list of states and abbreviations
-  if (missing(title)) {
+  # If missing v argument, function returns list of states and abbreviations
+  if (missing(v)) {
+    message("List of states' names and abbreviations")
     out <- as.data.frame(countryregex)
     out$Regex[56] <- paste(substr(out$Regex[56], 0, 100), "...")
     out <- knitr::kable(out, "simple")
     out
   } else {
-    # Step one: get ISO country codes
-    # countryregex and match in title variable
-    title <- as.character(title)
-    title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
-                    gsub("\\s*\\([^\\)]+\\)", "", title), title)
-    coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
-                                                          ignore.case = T,
-                                                          perl = T) * 1)
+    if (isFALSE(parties)) {
+      # Translates string to ASCII
+      v <- stringi::stri_trans_general(v, "Latin-ASCII")
+      out <- code_labels(v, abbrev = abbrev)
+    }
+    else {
+      out <- code_parties(v, activity = activity)
+    }
+    out
+  }
+}
+
+# Helper functions for code_states
+code_labels <- function(v, abbrev = FALSE) {
+  if (abbrev == TRUE) {
+    # Find country codes from the statID column
+    coment <- vapply(countryregex[, 3],
+                     function(x) grepl(x, v, ignore.case = TRUE,
+                                       perl = TRUE) * 1,
+                     FUN.VALUE = double(length(v)))
     colnames(coment) <- countryregex[, 1]
-    rownames(coment) <- title
+    rownames(coment) <- v
     out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
                                               collapse = "_"))
     out[out == ""] <- NA
-    parties <- unname(out)
-    parties <- stringr::str_replace_all(parties, "_", "-")
-
-    # Step two: add NAs to observations not matched
-    parties[!grepl("-", parties)] <- NA
-
-    # Step three:: get bilateral agreements where
-    # two parties have been identified
-    parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
-                      ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
-                             ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
-
-    # Step four: get activity
-    if (isTRUE(activity)) {
-      out <- code_activity(title)
-      parties <- ifelse(is.na(parties), parties,
-                      paste0(parties, "[", out, "]"))
-    }
-    parties
+    out <- unname(out)
+  } else {
+    # Find country labels from the label column
+    coment <- vapply(countryregex[, 3],
+                     function(x) grepl(x, v, ignore.case = TRUE,
+                                       perl = TRUE) * 1,
+                     FUN.VALUE = double(length(v)))
+    colnames(coment) <- countryregex[, 2]
+    rownames(coment) <- v
+    out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                              collapse = "_"))
+    ind <- which(rowSums(coment) == 0)
+    out[out == ""] <- paste(rownames(coment)[ind])
+    out <- unname(out)
   }
+  out
+}
+
+code_parties <- function(title, activity = FALSE) {
+  # Step one: get ISO country codes
+  # countryregex and match in title variable
+  title <- as.character(title)
+  title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
+                  gsub("\\s*\\([^\\)]+\\)", "", title), title)
+  coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+                                                        ignore.case = T,
+                                                        perl = T) * 1)
+  colnames(coment) <- countryregex[, 1]
+  rownames(coment) <- title
+  out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                            collapse = "_"))
+  out[out == ""] <- NA
+  parties <- unname(out)
+  parties <- stringr::str_replace_all(parties, "_", "-")
+  
+  # Step two: add NAs to observations not matched
+  parties[!grepl("-", parties)] <- NA
+  
+  # Step three:: get bilateral agreements where
+  # two parties have been identified
+  parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
+                    ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
+                           ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
+  
+  # Step four: get activity
+  if (isTRUE(activity)) {
+    out <- code_activity(title)
+    parties <- ifelse(is.na(parties), parties,
+                      paste0(parties, "[", out, "]"))
+  }
+  parties
 }
 
 #' Code Abbreviations for Activity
