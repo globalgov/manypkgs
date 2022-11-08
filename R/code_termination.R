@@ -90,7 +90,7 @@ code_term <- function(title, text = NULL) {
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
 #' \donttest{
-#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
+#' HUGGO <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
 #' code_term_date(HUGGO$Title)
 #' }
 #' @export
