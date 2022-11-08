@@ -17,7 +17,7 @@
 #' at a later stage with the `retrieve_clauses()` function.
 #' @examples
 #' \dontrun{
-#' standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' standardise_treaty_text(sample(manyenviron::agreements$HUGGO$MainText, 30))
 #' }
 #' @export
 standardise_treaty_text <- function(textvar) {

@@ -30,7 +30,7 @@
 #' @return A list of treaty sections of the same length.
 #' @examples
 #' \dontrun{
-#' t <- standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' t <- standardise_treaty_text(sample(manyenviron::agreements$HUGGO$MainText, 30))
 #' read_clauses(t)
 #' read_clauses(t, article = "preamble")
 #' read_clauses(t, article = "accession")

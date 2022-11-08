@@ -8,7 +8,7 @@
 #' of the treaty
 #' @examples
 #' \dontrun{
-#' m <- manyenviron::texts$AGR_TXT[200:300,]
+#' m <- manyenviron::agreements$HUGGO[200:300,]
 #' code_term(m$Title)
 #' code_term(m$Title, m$Text)
 #' }
@@ -90,8 +90,8 @@ code_term <- function(title, text = NULL) {
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
 #' \donttest{
-#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-#' code_term_date(GNEVAR$Title)
+#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
+#' code_term_date(HUGGO$Title)
 #' }
 #' @export
 code_term_date <- function(title, text = NULL) {
