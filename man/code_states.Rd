@@ -2,55 +2,38 @@
 % Please edit documentation in R/code_agreements.R
 \name{code_states}
 \alias{code_states}
-\title{Code States and Agreement Parties}
+\title{Code Agreement Parties}
 \usage{
-code_states(v, abbrev = FALSE, parties = FALSE, activity = FALSE)
+code_states(title, activity = TRUE)
 }
 \arguments{
-\item{v}{A character vector containing names of states to translate
-into English or abbreviated, or treaty titles if parties are to be coded.}
-
-\item{abbrev}{Do you want 3 letter country abbreviations to be returned?
-By default FALSE.}
-
-\item{parties}{Do you want to identify the parties of an agreement instead?
-By default FALSE.}
+\item{title}{A character vector of treaty titles}
 
 \item{activity}{Do you want the activity of treaty to be coded?
-By default, FALSE.}
+By default, TRUE.}
 }
 \value{
 A character vector of parties
 that are mentioned in the treaty title
 }
 \description{
-Retrieves countries from a character vector or
-identifies the countries that are part of an agreement.
+Identify the countries that are part of an agreement.
 }
 \details{
-This function builds upon the \code{stat_actor} list and the
-\code{countrycode} package to identify and return the parties mentioned
-in a character vector of agreement titles or texts.
-If the function is ran without an argument (i.e. \code{code_states()}),
-a complete list of states' names and abbreviations is returned.
-The function codes states parties to bilateral treaties
-from the treaty title (please enter in v) if parties is TRUE.
-The function also returns the "activity" for bilateral
-treaties coded, if activity is TRUE.
-Bilateral agreements usually detail their
-activity and specify area in the last words of the titles.
-These last words are abbreviated by the function (captured in [])
-to differentiate between bilateral treaties and
-avoid false positives being generated
-since multiple, different, bilateral treaties may be signed on the same day.
+The function codes states in treaty titles.
+The function also returns the "activity" for bilateral treaties coded,
+if activity is TRUE.
+Bilateral agreements usually detail their activity and specify area in the
+last words of the titles.
+These last words are abbreviated by the function to differentiate between
+bilateral treaties and avoid false positives being generated since multiple,
+different, bileteral treaties are often signed in the same day.
+For the complete list of parties coded please run the function without
+an argument (i.e. \code{code_states()}).
 }
 \examples{
-states <- c("Two are from Switzerland", "One from New Zealand",
-"And one from Brazil")
-code_states(states)
-code_states(states, abbrev = TRUE)
 \donttest{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
-code_states(IEADB$Title, parties = TRUE, activity = TRUE)
+code_states(IEADB$Title)
 }
 }

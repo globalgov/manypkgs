@@ -45,7 +45,7 @@ using \code{standardise_texts()} for best results.
 }
 \examples{
 \dontrun{
-t <- standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+t <- standardise_treaty_text(sample(manyenviron::agreements$HUGGO$MainText, 30))
 read_clauses(t)
 read_clauses(t, article = "preamble")
 read_clauses(t, article = "accession")

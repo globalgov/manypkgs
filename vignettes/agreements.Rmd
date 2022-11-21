@@ -272,7 +272,7 @@ to make sure duplicates are actual duplicates.
 ### Parties
 
 The first element extracted from the title are the parties to a treaty.
-The function `code_parties()`returns the 3 digit ISO codes for states when there are 
+The function `code_states()`returns the 3 digit ISO codes for states when there are 
 two parties identified (i.e. bilateral treaty). 
 The three letters abbreviation in brackets pasted next to the parties represent the activity of the title.
 The activity is generated with `code_activity()`, which uses core words at the end of 
@@ -280,7 +280,7 @@ trety titles to generate 3 letter acronyms for activity.
 Parties and activity are only returned for bilateral treaties.
 
 ```{r parties, eval=FALSE}
-manypkgs::code_parties(agreements$titles)
+manypkgs::code_states(agreements$titles)
 ```
 
 ### Acronyms

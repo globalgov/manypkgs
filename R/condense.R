@@ -2,9 +2,9 @@
 #'
 #' Different treatyIDs generated for different datasets
 #' might have minor differences in terms of acronym or linkage.
-#' Some minor differences in treatyIDs could mean different treatyIDS
+#' Some minor differences in treatyIDs could mean different treatyIDs
 #' in different datasets actually refer to the same agreement.
-#' The function finds these occurences and returns the
+#' The function finds these occurrences and returns the
 #' first treatyID argument entered as a replacement.
 #' @param database A "many" package database
 #' @param var Two or more treatyID variables

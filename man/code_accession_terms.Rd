@@ -34,9 +34,10 @@ or nomination of new members.
 }
 \examples{
 \dontrun{
-m <- manyenviron::texts$GNEVAR_TXT[200:300,]
-code_accession_terms(m$Text, m$Title, accession = "condition")
-code_accession_terms(m$Text, accession = "process")
+m <- manyenviron::agreements$HUGGO[200:300,] \%>\%
+     dplyr::select(Title, Beg, MainText, AppendixText, AnnexText)
+code_accession_terms(m$MainText, m$Title, accession = "condition")
+code_accession_terms(m$MainText, accession = "process")
 code_accession_terms()
 }
 }

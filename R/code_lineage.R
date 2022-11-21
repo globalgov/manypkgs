@@ -30,7 +30,7 @@ code_lineage <- function(title = NULL, database = NULL) {
   title <- stringi::stri_trans_general(title, id = "Latin-ASCII")
   entity <- code_entity(title)
   domain <- code_domain(title)
-  parties <- code_parties(title)
+  parties <- code_states(title)
   # Get entity and actions from preamble if missing from title
   if (exists("txt")) {
     entity <- ifelse(is.na(entity), code_entity(txt), entity)

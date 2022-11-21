@@ -10,19 +10,15 @@ code_activity(title)
 \item{title}{A character vector of treaty titles}
 }
 \value{
-A character vector of abbreviations of
-last words in treaty title
+A character vector of abbreviations of last words in treaty title.
 }
 \description{
-Code in abbreviated form the activity of bilateral treaties
-from treaty titles.
+Code in abbreviated form the activity of bilateral treaties' titles.
 }
 \details{
-Bilateral agreements usually detail their
-activity and specify area in the last words of the titles.
-These last words are abbreviated by the function to
-differentiate between bilateral treaties and avoid
-false positives being generated since
-multiple, different, bilateral treaties are
-often signed in the same day.
+Bilateral agreements usually detail their activity and specify area
+in the last words of the titles.
+These last words are abbreviated by the function to differentiate between
+bilateral treaties and avoid false positives being generated since multiple,
+different, bilateral treaties are often signed in the same day.
 }

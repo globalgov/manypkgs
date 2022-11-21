@@ -92,7 +92,7 @@ This is currently set to a maximum of 20 words for accession articles,
 since these clauses are usually shorter than this length.
 
 ```{r text, message=FALSE, warning=FALSE}
-trade_treaties <- lapply(manytrade::texts, function(x) 
+trade_treaties <- lapply(manytrade::agreements$HUGGO, function(x) 
   x[x$Beg > "2000-01-01" & x$Beg < "2006-01-01", ])
 trade_treaties <- lapply(trade_treaties, function(x) 
   dplyr::select(x, manyID, Title, Beg, TreatyText))
