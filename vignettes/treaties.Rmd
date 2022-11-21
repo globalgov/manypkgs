@@ -92,17 +92,10 @@ This is currently set to a maximum of 20 words for accession articles,
 since these clauses are usually shorter than this length.
 
 ```{r text, message=FALSE, warning=FALSE}
-trade_treaties <- lapply(manytrade::agreements$HUGGO, function(x) 
-  x[x$Beg > "2000-01-01" & x$Beg < "2006-01-01", ])
-trade_treaties <- lapply(trade_treaties, function(x) 
-  dplyr::select(x, manyID, Title, Beg, TreatyText))
-trade_treaties <- do.call(rbind, trade_treaties)
-trade_treaties <- trade_treaties %>%
-  filter(!is.na(TreatyText),
-         !grepl("NULL", TreatyText))
-trade_treaties <- subset(trade_treaties,
-                         subset = !duplicated(trade_treaties[, c(2,4)]))
-# code below not working, need to fix it...
+trade_treaties <- manytrade::agreements$HUGGO %>%
+  dplyr::filter(Beg > "2000-01-01" & Beg < "2006-01-01",
+                !is.na(TreatyText), !grepl("NULL", TreatyText)) %>%
+  dplyr::select(manyID, Title, Beg, TreatyText)
 manypkgs::read_clauses(trade_treaties$TreatyText, article = "preamble") # needs to improve...
 manypkgs::read_clauses(trade_treaties$TreatyText, article = "accession")
 manypkgs::read_clauses(trade_treaties$TreatyText, treaty_type = "agreements")
