@@ -47,7 +47,7 @@ read_clauses <- function(textvar, article = NULL,
                          match = NULL, treaty_type = NULL) {
   # Check if text variable was standardised first
   if (any(grepl("<.*?>|\\\r|\\\t", textvar))) {
-    stop("Please make sure treaty texts have been standardised first
+    message("Please make sure treaty texts have been standardised first
               using `standardise_texts()`")
   }
   # Get treaty type if declared (adapted from code_type)
