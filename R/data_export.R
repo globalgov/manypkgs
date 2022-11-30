@@ -81,6 +81,7 @@ export_data <- function(..., database, URL) {
                        This might take a few minutes...")
       manyID <- condense_agreements(database)
       for (x in database) {
+        Beg <- Title <- NULL
         x <- dplyr::select(x, -manyID) %>%
           dplyr::mutate(Title = standardise_titles(Title),
                         treatyID = code_agreements(title = Title,
