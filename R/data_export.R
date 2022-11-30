@@ -19,6 +19,7 @@
 #' and creates and opens documentation for the dataset.
 #' @importFrom fs path
 #' @importFrom usethis ui_info ui_done
+#' @importFrom dplyr mutate select left_join distinct %>%
 #' @examples
 #' \dontrun{
 #' export_data(COW, database = "states",
@@ -26,9 +27,8 @@
 #' }
 #' @export
 export_data <- function(..., database, URL) {
-
-  # Step one: checks and set up directory
-  # Check if URL is present
+  
+  # Step one: check URL and set up directory
   if (missing(URL)) {
     stop("Please use the URL argument to provide a direct webURL to the source of your dataset.")
   }
@@ -43,7 +43,7 @@ export_data <- function(..., database, URL) {
          folder before proceding.")
   }
   usethis::use_directory("data", ignore = FALSE)
-
+  
   # Step two: join dataset to any related in a database
   if (file.exists(paste0("data/", database, ".rda"))) {
     usethis::ui_info("Found an existing {usethis::ui_value(database)} database.
@@ -59,7 +59,6 @@ export_data <- function(..., database, URL) {
                        yet exist in {usethis::ui_value(database)}. It will be added.")
     }
     env[[database]][[dataset_name]] <- get(dataset_name)
-
     #Adding static source attributes to each dataset
     attr(env[[database]][[dataset_name]], "source_URL") <- URL
     attr(env[[database]][[dataset_name]],
@@ -76,6 +75,20 @@ export_data <- function(..., database, URL) {
       usethis::ui_info("Saved a new version of the {usethis::ui_value(database)}
                        database that includes the {usethis::ui_value(dataset_name)} dataset.")
     }
+    if (utils::askYesNo("Would like to update IDs and titles in
+                        the other datasets in this database?") == TRUE) {
+      usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
+                       This might take a few minutes...")
+      manyID <- condense_agreements(database)
+      for (x in database) {
+        x <- dplyr::select(x, -manyID) %>%
+          dplyr::mutate(Title = standardise_titles(Title),
+                        treatyID = code_agreements(title = Title,
+                                                   date = Beg)) %>%
+          dplyr::left_join(manyID, by = "treatyID") %>%
+          dplyr::distinct()
+      }
+    }
   } else {
     usethis::ui_info("Didn't find an existing {usethis::ui_value(database)} database.")
     env <- new.env()
@@ -91,9 +104,8 @@ export_data <- function(..., database, URL) {
     usethis::ui_done("Saved a {usethis::ui_value(database)} database that
                      includes the {usethis::ui_value(deparse(substitute(...)))} dataset.")
   }
-
+  
   # Step three: create and open a documentation script
-  # Create a succinct database documentation.
   db <- get(load(paste0("data/", database, ".rda")))
   dblen <- length(db)
   dsnames <- names(db)
@@ -108,7 +120,6 @@ export_data <- function(..., database, URL) {
                             "#' ", dsnvar, " variables: ", dsvarstr,
                             ".}\n", collapse = ""), "#' }")
   sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
-  #Output
   package <- get_package_name()
   manytemplate("Package-DBDoc.R",
                save_as = fs::path("R", paste0(package, "-", database, ".R")),
@@ -117,7 +128,7 @@ export_data <- function(..., database, URL) {
                            database = database, describe = describe,
                            source = sourceelem),
                ignore = FALSE, path = getwd())
-
+  
   # Step four: create the right kind of test script for the type of object
   if (database == "states") {
     manytemplate("test_states.R",
