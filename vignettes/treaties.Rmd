@@ -4,14 +4,13 @@ author: "Henrique Sposito and Jael Tan"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Contributing with manypkgs}
+  %\VignetteIndexEntry{Working with 'many' treaties}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-library(manypkgs)
 library(manydata)
 library(dplyr)
 ```
@@ -48,10 +47,11 @@ trade_agreements <- lapply(manytrade::agreements, function(x)
   x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
 trade_agreements <- lapply(trade_agreements, function(x) 
   dplyr::select(x, Title, Beg))
-trade_agreements <- purrr::map_df(trade_agreements, ~as.data.frame(.x), .id = "Dataset")
+trade_agreements <- purrr::map_df(trade_agreements, ~as.data.frame(.x),
+                                  .id = "Dataset")
 trade_agreements <- trade_agreements[complete.cases(trade_agreements), ]
-trade_agreements$treatyID <- manypkgs::code_agreements(title = trade_agreements$Title,
-                                                       date = trade_agreements$Beg)
+trade_agreements$treatyID <- manypkgs::code_agreements(
+  title = trade_agreements$Title, date = trade_agreements$Beg)
 ```
 
 Different treatyIDs generated with `code_agreements()` for different datasets in a database
@@ -91,12 +91,13 @@ To reduce the size of the output produced,
 This is currently set to a maximum of 20 words for accession articles,
 since these clauses are usually shorter than this length.
 
-```{r text, message=FALSE, warning=FALSE}
+```{r text, message=FALSE, warning=FALSE, eval=FALSE}
 trade_treaties <- manytrade::agreements$HUGGO %>%
   dplyr::filter(Beg > "2000-01-01" & Beg < "2006-01-01",
                 !is.na(TreatyText), !grepl("NULL", TreatyText)) %>%
   dplyr::select(manyID, Title, Beg, TreatyText)
-manypkgs::read_clauses(trade_treaties$TreatyText, article = "preamble") # needs to improve...
+manypkgs::read_clauses(trade_treaties$TreatyText, article = "preamble")
+# needs to improve...
 manypkgs::read_clauses(trade_treaties$TreatyText, article = "accession")
 manypkgs::read_clauses(trade_treaties$TreatyText, treaty_type = "agreements")
 manypkgs::read_clauses(trade_treaties$TreatyText, match = "human rights")
@@ -116,7 +117,7 @@ clauses concerning accession (identified through `read_clauses()`:
 'any government', 'all governments', etc for 'open' and
 'nomination' for 'semi-open'.
 
-```{r accession, message=FALSE, warning=FALSE}
+```{r accession, message=FALSE, warning=FALSE, eval=FALSE}
 manypkgs::code_accession_terms(trade_treaties$TreatyText) # All NAs?
 manypkgs::code_term(trade_treaties$TreatyText)
 ```
@@ -129,19 +130,19 @@ from 'many' treaties.
 We can, for example, retrieve certain types of treaties with
 `retrieve_bilaterals()` and `retrieve_multilaterals()`.
 
-```{r retrieve, message=FALSE, warning=FALSE}
+```{r retrieve, message=FALSE, warning=FALSE, eval=FALSE}
 manydata::retrieve_bilaterals(manytrade::memberships$DESTA_MEM, actor = "stateID")
 manydata::retrieve_multilaterals(manytrade::memberships$GPTAD_MEM)
 ```
 
 We can also retrieve treaty linkages with `retrieve_links()`.
 
-```{r links, message=FALSE, warning=FALSE}
+```{r links, message=FALSE, warning=FALSE, eval=FALSE}
 manydata::retrieve_links(manytrade::agreements)
 ```
 
 Or, even, retrieve treaty membership lists with `retrieve_memberships()`.
 
-```{r membs, message=FALSE, warning=FALSE}
+```{r membs, message=FALSE, warning=FALSE, eval=FALSE}
 manydata::retrieve_membership_list(manytrade::memberships$DESTA_MEM, "stateID")
 ```
