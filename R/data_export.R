@@ -79,8 +79,9 @@ export_data <- function(..., database, URL) {
                         the other datasets in this database?") == TRUE) {
       usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
                        This might take a few minutes...")
-      manyID <- condense_agreements(database)
-      for (x in database) {
+      db <- get(database)
+      manyID <- condense_agreements(db)
+      for (x in db) {
         Beg <- Title <- NULL
         x <- dplyr::select(x, -manyID) %>%
           dplyr::mutate(Title = standardise_titles(Title),
