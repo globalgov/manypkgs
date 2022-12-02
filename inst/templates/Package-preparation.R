@@ -22,10 +22,11 @@
 
 # Remove duplicates and ensure NAs are coded correctly
 {{{dataset}}} <- {{{dataset}}} %>%
-  mutate(across(everything(), ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
-  mutate(Beg = messydates::as_messydate(Beg),
-         Signature = messydates::as_messydate(Signature),
-         Force = messydates::as_messydate(Force)) %>% 
+  dplyr::mutate(across(everything(),
+                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
+  dplyr::mutate(Beg = messydates::as_messydate(Beg),
+                Signature = messydates::as_messydate(Signature),
+                Force = messydates::as_messydate(Force)) %>% 
   dplyr::distinct(.keep_all = TRUE)
 
 # manypkgs includes several functions that should help with
@@ -52,4 +53,4 @@
 # To add a template of .bib file to the package,
 # please run `manypkgs::add_bib("{{{database}}}", "{{{dataset}}}")`.
 manypkgs::export_data({{{dataset}}}, database = "{{{database}}}",
-                     URL = NULL)
+                      URL = NULL)
