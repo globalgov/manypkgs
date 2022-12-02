@@ -4,13 +4,18 @@
 \alias{code_states}
 \title{Code Agreement Parties}
 \usage{
-code_states(title, activity = TRUE)
+code_states(title, activity = TRUE, replace = NULL)
 }
 \arguments{
 \item{title}{A character vector of treaty titles}
 
 \item{activity}{Do you want the activity of treaty to be coded?
 By default, TRUE.}
+
+\item{replace}{Do you want the state name or abbreviation to be returned?
+By default, NULL.
+Other options include, "names", for the state name,
+or "ID", for the 3 letter state abbreviation.}
 }
 \value{
 A character vector of parties
@@ -35,5 +40,8 @@ an argument (i.e. \code{code_states()}).
 \donttest{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_states(IEADB$Title)
+code_states(IEADB$Title, activity = FALSE)
+code_states(IEADB$Title, activity = FALSE, replace = "names")
+code_states(IEADB$Title, activity = FALSE, replace = "ID")
 }
 }

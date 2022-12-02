@@ -93,6 +93,10 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' @param title A character vector of treaty titles
 #' @param activity Do you want the activity of treaty to be coded?
 #' By default, TRUE.
+#' @param replace Do you want the state name or abbreviation to be returned?
+#' By default, NULL.
+#' Other options include, "names", for the state name,
+#' or "ID", for the 3 letter state abbreviation.
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom knitr kable
 #' @return A character vector of parties
@@ -111,9 +115,12 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 #' code_states(IEADB$Title)
+#' code_states(IEADB$Title, activity = FALSE)
+#' code_states(IEADB$Title, activity = FALSE, replace = "names")
+#' code_states(IEADB$Title, activity = FALSE, replace = "ID")
 #' }
 #' @export
-code_states <- function(title, activity = TRUE) {
+code_states <- function(title, activity = TRUE, replace = NULL) {
   # If missing title argument, returns list of states and abbreviations
   if (missing(title)) {
     out <- as.data.frame(countryregex)
@@ -125,28 +132,50 @@ code_states <- function(title, activity = TRUE) {
     title <- as.character(title)
     title <- ifelse(grepl("\\s*\\([^\\)]+\\)", title),
                     gsub("\\s*\\([^\\)]+\\)", "", title), title)
-    coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
-                                                          ignore.case = T,
-                                                          perl = T) * 1)
-    colnames(coment) <- countryregex[, 1]
-    rownames(coment) <- title
-    out <- apply(coment, 1, function(x) paste(names(x[x == 1]), collapse = "_"))
-    out[out == ""] <- NA
-    parties <- unname(out)
-    parties <- stringr::str_replace_all(parties, "_", "-")
-    # Step 2: add NAs to observations not matched
-    parties[!grepl("-", parties)] <- NA
-    # Step 3:: get bilateral agreements where two parties have been identified
-    parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
-                      ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
-                             ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
-    # Step 4: get activity
-    if (isTRUE(activity)) {
-      out <- code_activity(title)
-      parties <- ifelse(is.na(parties), parties, paste0(parties, "[", out, "]"))
+    if (is.null(replace)) {
+      coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+                                                            ignore.case = T,
+                                                            perl = T) * 1)
+      colnames(coment) <- countryregex[, 1]
+      rownames(coment) <- title
+      out <- apply(coment, 1, function(x) paste(names(x[x == 1]), collapse = "_"))
+      out[out == ""] <- NA
+      parties <- unname(out)
+      parties <- stringr::str_replace_all(parties, "_", "-")
+      # Step 2: add NAs to observations not matched
+      parties[!grepl("-", parties)] <- NA
+      # Step 3:: get bilateral agreements where two parties have been identified
+      parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
+                        ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
+                               ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
+    } else if (replace == "names") {
+      coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+                                                            ignore.case = T,
+                                                            perl = T) * 1)
+      colnames(coment) <- countryregex[, 2]
+      rownames(coment) <- title
+      out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                                collapse = " - "))
+      out[out == ""] <- NA
+      parties <- unname(out)
+    } else if (replace == "ID") {
+      coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+                                                            ignore.case = T,
+                                                            perl = T) * 1)
+      colnames(coment) <- countryregex[, 1]
+      rownames(coment) <- title
+      out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                                    collapse = " - "))
+      out[out == ""] <- NA
+      parties <- unname(out)
     }
-    parties
   }
+  # Step 4: get activity
+  if (isTRUE(activity)) {
+    out <- code_activity(title)
+    parties <- ifelse(is.na(parties), parties, paste0(parties, "[", out, "]"))
+  }
+  parties
 }
 
 #' Code Abbreviations for Activity
