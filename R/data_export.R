@@ -86,7 +86,7 @@ export_data <- function(..., database, URL) {
           dplyr::mutate(Title = standardise_titles(Title),
                         treatyID = code_agreements(title = Title,
                                                    date = Beg)) %>%
-          dplyr::left_join(manyID, by = "treatyID") %>%
+          dplyr::left_join(manyID) %>%
           dplyr::distinct()
       }
     }
