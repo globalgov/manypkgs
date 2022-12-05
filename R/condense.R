@@ -42,30 +42,32 @@ condense_agreements <- function(database = NULL, var = NULL) {
   # Initialize variables to avoid CMD notes/issues
   ID <- linkage <- ID1 <- year_type <- manyID <- match_bt <- match_yt <- NULL
 
-  # step two: split treatyID and organize data
+  # Step three: split treatyID and organize data
   similar <- treatyID %>%
-    dplyr::mutate(linkage = ifelse(grepl(":", treatyID), gsub(".*:", "", treatyID), NA),
+    dplyr::mutate(linkage = ifelse(grepl(":", treatyID), gsub(".*:", "",
+                                                              treatyID), NA),
                   ID1 = gsub("\\:.*", "", treatyID),
                   acronym = as.character(gsub("\\_.*", "", ID1)),
-                  parties = as.character(ifelse(stringr::str_detect(treatyID, "\\["),
+                  parties = as.character(ifelse(stringr::str_detect(treatyID,
+                                                                    "\\["),
                                                 gsub("\\[.*", "", ID1), 0)),
                   year_type = gsub(".*_", "", ID1))
 
-  # Step three: identify very similar acronyms, for multilateral treaties
+  # Step four: identify very similar acronyms, for multilateral treaties
   fuzzy <- fuzzy_agreements_multilateral(treatyID$treatyID)
   # Join data
   similar <- dplyr::full_join(similar, fuzzy, by = "acronym")
   # Tranform match NAs into 0
   similar$match <- ifelse(is.na(similar$match), 0, similar$match)
 
-  # Step four: repeat same operations for bilateral treaties
+  # Step five: repeat same operations for bilateral treaties
   bt <- fuzzy_agreements_bilateral(treatyID$treatyID)
   # Join data
   similar <- dplyr::full_join(similar, bt, by = "acronym")
   # Tranform match NAs into 0
   similar$match_bt <- ifelse(is.na(similar$match_bt), 0, similar$match_bt)
 
-  # Step five: re-organize data and assign fuzzy matches to observation
+  # Step six: re-organize data and assign fuzzy matches to observation
   similar <- similar %>%
     dplyr::distinct(treatyID, .keep_all = TRUE) %>% # join can add duplication
     dplyr::mutate(fuzzy = gsub("\\_.*", "", match),
@@ -82,7 +84,7 @@ condense_agreements <- function(database = NULL, var = NULL) {
                        paste0(similar$fuzzy_bi, "_",
                               similar$year_type), similar$ID)
 
-  # Step six: Get linkages standardized and return only pertinent columns
+  # Step seven: Get linkages standardized and return only pertinent columns
   similar <- similar %>%
     dplyr::group_by(ID) %>%
     tidyr::fill(linkage, .direction = "updown") %>%
@@ -107,7 +109,7 @@ fuzzy_agreements_multilateral <- function(treatyID) {
   rownames(fuzzy) <- acronym
   colnames(fuzzy) <- ID
   # Add names for the very similar acronyms (1 letter change)
-  fuzzy <- ifelse(fuzzy > 0.7, rownames(fuzzy), 0)
+  fuzzy <- ifelse(fuzzy > 0.75, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match = colnames(fuzzy)[row(fuzzy)],
                       acronym = as.character(c(t(fuzzy))),
@@ -132,12 +134,12 @@ fuzzy_agreements_bilateral <- function(treatyID) {
   acronym <- as.character(gsub("\\_.*", "", treatyID))
 
   # Fuzzy match acronyms
-  fuzzy <- stringdist::stringsimmatrix(acronym, acronym)
+  fuzzy <- stringdist::stringsimmatrix(acronym, acronym, method = "lv")
   fuzzy <- ifelse(fuzzy == 1, 0, fuzzy)
   rownames(fuzzy) <- acronym
   colnames(fuzzy) <- ID
   # Add names for the very similar acronyms (1 letter change)
-  fuzzy <- ifelse(fuzzy > 0.8, rownames(fuzzy), 0)
+  fuzzy <- ifelse(fuzzy > 0.83, rownames(fuzzy), 0)
   # Tranform matrix into data frame
   fuzzy <- data.frame(match_bt = colnames(fuzzy)[row(fuzzy)],
                       acronym = as.character(c(t(fuzzy))),
