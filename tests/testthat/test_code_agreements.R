@@ -21,10 +21,10 @@ test_that("Code_agreements helper functions work properly", {
   expect_equal(code_known_agreements(data$title), c(NA, "RAMSA_1971",
                                                     NA, NA, NA, NA,
                                                     "RAMSA_1971", NA, NA))
-  expect_equal(code_acronym(data$title), c("CPVPFD", "WIIEWH",
+  expect_equal(code_acronym(data$title), c("CPVPFD", "WTIIWH",
                                            "TD06LJ", "DCLRMR",
                                            "CEBRIP", "RIVER",
-                                           "WIIEWH", "GU11TC",
+                                           "WTIIWH", "GU11TC",
                                            "GU13PO"))
   expect_equal(code_linkage(data$title, data$date), c("", "RAMSA_1971A",
                                                       "", "", "", "",
