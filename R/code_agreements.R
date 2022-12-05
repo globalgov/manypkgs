@@ -138,7 +138,8 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
                                                             perl = T) * 1)
       colnames(coment) <- countryregex[, 1]
       rownames(coment) <- title
-      out <- apply(coment, 1, function(x) paste(names(x[x == 1]), collapse = "_"))
+      out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
+                                                collapse = "_"))
       out[out == ""] <- NA
       parties <- unname(out)
       parties <- stringr::str_replace_all(parties, "_", "-")
@@ -401,7 +402,7 @@ code_known_agreements <- function(title) {
 code_acronym <- function(title) {
   # Step 1: standardise titles
   x <- standardise_titles(tm::removeWords(tolower(title),
-                                          tm::stopwords("en")))
+                                          tm::stopwords("SMART")))
   # Step 2: remove agreement types, numbers, and punctuation marks
   x <- gsub("protocol|protocols|amendment|amendments|amend|
             |amending|Agreement|agreements|convention|
