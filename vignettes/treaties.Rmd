@@ -43,7 +43,6 @@ and its performance vis-a-vis other matching options.
 
 ```{r code_agreements, message=FALSE, warning=FALSE}
 manydata::get_packages("manytrade")
-library("manytrade")
 trade_agreements <- lapply(manytrade::agreements, function(x) 
   x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
 trade_agreements <- lapply(trade_agreements, function(x) 

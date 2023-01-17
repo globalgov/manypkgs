@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
 Version: 0.2.3
-Date: 2022-12-05
+Date: 2023-01-17
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -79,6 +79,6 @@ Remotes:
     trinker/entity
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3
