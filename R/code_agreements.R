@@ -150,6 +150,8 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
                         ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
                                ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
     } else if (replace == "names") {
+      # Translates string to ASCII
+      title <- stringi::stri_trans_general(title, "Latin-ASCII")
       coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
                                                             ignore.case = T,
                                                             perl = T) * 1)
@@ -160,6 +162,7 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
       out[out == ""] <- NA
       parties <- unname(out)
     } else if (replace == "ID") {
+      title <- stringi::stri_trans_general(title, "Latin-ASCII")
       coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
                                                             ignore.case = T,
                                                             perl = T) * 1)
