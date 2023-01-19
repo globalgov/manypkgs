@@ -1,6 +1,6 @@
 # {{{dataset}}} Preparation Script
 
-# <Please add more information about {{{dataset}}} here 
+# <Please add more information about {{{dataset}}} here
 # if it is an original dataset.>
 
 # This is a template for importing, cleaning, and exporting data
