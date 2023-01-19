@@ -108,7 +108,7 @@ code_agreements <- function(dataset = NULL, title, date) {
 #' last words of the titles.
 #' These last words are abbreviated by the function to differentiate between
 #' bilateral treaties and avoid false positives being generated since multiple,
-#' different, bileteral treaties are often signed in the same day.
+#' different, bilateral treaties are often signed in the same day.
 #' For the complete list of parties coded please run the function without
 #' an argument (i.e. `code_states()`).
 #' @examples
@@ -394,8 +394,8 @@ code_known_agreements <- function(title) {
 #' For shorter treaty titles, six words or less, acronym includes first letter
 #' of each word.
 #' For longer treaty titles, seven words or more, acronym includes first letter
-#' of first word followed by the number of words in and title first letter of
-#' last word in title.
+#' of first word in title, followed by the number of words in the title,
+#' and first letter of last word in title.
 #' @examples
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
