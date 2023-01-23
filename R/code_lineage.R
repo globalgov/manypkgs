@@ -57,7 +57,7 @@ code_lineage <- function(title = NULL, database = NULL) {
 #' @export
 code_entity <- function(title) {
   # Add a note about JavaScript
-  usethis::ui_info("Please make sure JavaScript is installed.")
+  usethis::ui_info("Please make sure JavaScript is installed (https://www.java.com/en/)")
   # Make sure necessary model is available (adapted from entity package)
   outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
   if (!outcome) {

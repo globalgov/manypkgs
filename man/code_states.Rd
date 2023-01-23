@@ -32,7 +32,7 @@ Bilateral agreements usually detail their activity and specify area in the
 last words of the titles.
 These last words are abbreviated by the function to differentiate between
 bilateral treaties and avoid false positives being generated since multiple,
-different, bileteral treaties are often signed in the same day.
+different, bilateral treaties are often signed in the same day.
 For the complete list of parties coded please run the function without
 an argument (i.e. \code{code_states()}).
 }

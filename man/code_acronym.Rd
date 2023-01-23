@@ -17,8 +17,8 @@ Codes acronyms that are 4 to 6 digits long.
 For shorter treaty titles, six words or less, acronym includes first letter
 of each word.
 For longer treaty titles, seven words or more, acronym includes first letter
-of first word followed by the number of words in and title first letter of
-last word in title.
+of first word in title, followed by the number of words in the title,
+and first letter of last word in title.
 }
 \examples{
 \donttest{
