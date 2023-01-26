@@ -50,7 +50,7 @@ Imports:
     tidyr,
     tm,
     stringi,
-    entity,
+    spacyr,
     pdftools
 Suggests:
     testthat (>= 3.0.0),
@@ -75,8 +75,7 @@ Suggests:
     migraph
 Remotes:
     globalgov/manyenviron,
-    globalgov/manystates,
-    trinker/entity
+    globalgov/manystates
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

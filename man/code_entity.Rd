@@ -15,9 +15,14 @@ The region of the agreement
 \description{
 Code Agreement Entity
 }
+\details{
+We rely on the spacyr package that uses the spacy python library.
+Using the spacy library might require users to install miniconda and python
+in their operating systems.
+}
 \examples{
 \donttest{
-title <- sample(manyenviron::agreements$IEADB$Title, 30)
-code_entity(title)
+#title <- sample(manyenviron::agreements$IEADB$Title, 30)
+#code_entity(title)
 }
 }
