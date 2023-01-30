@@ -47,9 +47,6 @@ code_lineage <- function(title = NULL, database = NULL) {
 #' Code Agreement Entity
 #'
 #' @param title Treaty titles
-#' @details We rely on the spacyr package that uses the spacy python library.
-#' Using the spacy library might require users to install miniconda and python
-#' in their operating systems.
 #' @return The region of the agreement
 #' @importFrom stringr str_squish
 #' @importFrom entity location_entity
