@@ -22,7 +22,7 @@ in their operating systems.
 }
 \examples{
 \donttest{
-#title <- sample(manyenviron::agreements$IEADB$Title, 30)
-#code_entity(title)
+title <- sample(manyenviron::agreements$IEADB$Title, 30)
+code_entity(title)
 }
 }

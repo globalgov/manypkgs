@@ -37,7 +37,8 @@ code_lineage <- function(title = NULL, database = NULL) {
     domain <- ifelse(is.na(domain), code_domain(txt), domain)
   }
   # Paste all together
-  lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain), paste0(entity, " - ", domain))
+  lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain),
+                    paste0(entity, " - ", domain))
   lineage <- gsub("- NA|NULL", "", lineage)
   lineage <- trimws(gsub("^-", "", lineage))
   lineage
@@ -51,27 +52,40 @@ code_lineage <- function(title = NULL, database = NULL) {
 #' in their operating systems.
 #' @return The region of the agreement
 #' @importFrom stringr str_squish
-#' @import spacyr
+#' @importFrom entity location_entity
 #' @examples
 #' \donttest{
-#' #title <- sample(manyenviron::agreements$IEADB$Title, 30)
-#' #code_entity(title)
+#' title <- sample(manyenviron::agreements$IEADB$Title, 30)
+#' code_entity(title)
 #' }
 #' @export
 code_entity <- function(title) {
+  # Add a note about JavaScript
+  usethis::ui_info("Please make sure JavaScript is installed.")
+  # Make sure necessary model is available (adapted from entity package)
+  outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
+  if (!outcome) {
+    utils::install.packages(
+      "http://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz",
+      repos = NULL,
+      type = "source")
+  }
+  # Code entity
+  out <- entity::location_entity(title)
   # Code entity (using spacy for better results)
-  # Add a note about python
-  usethis::ui_info("Please make sure spacyr, minicinda, python, and spacy are installed.
-                    This can be done by running 'spacyr::spacy_install()'")
-  spacyr::spacy_initialize()
-  out <- spacyr::entity_extract(spacyr::spacy_parse(title, entity = TRUE),
-                        type = "named") %>%
-    dplyr::group_by(doc_id) %>%
-    dplyr::summarise(entity_type = paste(entity_type, collapse = ", "),
-                     entity = paste(gsub("_", " ", entity), collapse = ", "))
-  title <- data.frame(title)
-  title$doc_id <- paste0("text", as.numeric(rownames(title)))
-  out <- dplyr::left_join(title, out, by = "doc_id")
+  # # Add a note about python
+  # usethis::ui_info("Please make sure spacyr, minicinda, python, and spacy are installed.
+  #                   This can be done by running 'spacyr::spacy_install()'")
+  # spacyr::spacy_initialize()
+  # out <- spacyr::entity_extract(spacyr::spacy_parse(title, entity = TRUE),
+  #                       type = "named")
+  #   dplyr::filter()
+  #   dplyr::group_by(doc_id) %>%
+  #   dplyr::summarise(entity_type = paste(entity_type, collapse = ", "),
+  #                    entity = paste(gsub("_", " ", entity), collapse = ", "))
+  # title <- data.frame(title)
+  # title$doc_id <- paste0("text", as.numeric(rownames(title)))
+  # out <- dplyr::left_join(title, out, by = "doc_id")
   # Remove states
   parties <- paste(countrynames$c, collapse = "|")
   out <- gsub(parties, "", out, ignore.case = TRUE)
