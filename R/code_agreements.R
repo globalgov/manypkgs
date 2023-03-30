@@ -53,12 +53,12 @@ code_agreements <- function(dataset = NULL, title, date) {
   line <- line$line
   # Step 2: add items together correctly
   out <- vector(mode = "character", length = length(title)) # initialize vector
-  # agreements (A) where abbreviation is known and bilateral agreement
+  # bilateral agreements (A) where abbreviation is known
   treatyID <- ifelse(!is.na(abbrev) & (type == "A") & !is.na(parties),
                 paste0(parties, "_", uID, type, ":", abbrev), out)
   treatyID <- ifelse(!is.na(abbrev) & (type != "A") & !is.na(parties),
                 paste0(parties, "_", uID, type, ":", line), treatyID)
-  # agreements (A) where abbreviation is known
+  # multilateral agreements (A) where abbreviation is known
   treatyID <- ifelse(!is.na(abbrev) & (type == "A") & is.na(parties),
                 paste0(abbrev, type), treatyID)
   # when abbreviation is known but treaty type is not agreement
@@ -515,6 +515,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
       dplyr::mutate(n = dplyr::n()) %>%
       dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
     # Step 12: keep only linkages for agreements
+    out$line <- ifelse(out$id == out$ref & type == "A", "1", out$line)
     line <- stringr::str_replace_all(out$line, "^1$", "")
     line <- stringr::str_replace_all(line, "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|
                                      |[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx")
