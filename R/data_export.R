@@ -80,17 +80,18 @@ export_data <- function(..., database, URL) {
       usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
                        This might take a few minutes...")
       db <- get(database)
-      manyID <- condense_agreements(db)
       for (x in db) {
         Beg <- Title <- NULL
-        x <- dplyr::select(x, -manyID) %>%
-          dplyr::mutate(Title = standardise_titles(Title),
-                        treatyID = code_agreements(title = Title,
-                                                   date = Beg)) %>%
-          dplyr::left_join(manyID) %>%
+        x <- dplyr::mutate(x, Title = standardise_titles(Title),
+                           treatyID = code_agreements(title = Title,
+                                                      date = Beg))
+      }
+      manyID <- condense_agreements(db)
+      for (x in db) {
+        x <- dplyr::left_join(x, manyID) %>%
           dplyr::distinct()
       }
-    }
+      }
   } else {
     usethis::ui_info("Didn't find an existing {usethis::ui_value(database)} database.")
     env <- new.env()
