@@ -103,10 +103,10 @@ update_ids <- function(database) {
   }
   mID <- condense_agreements(db_up)
   for (x in names(db_up)) {
-    db_up[[x]] <- dplyr::select(db_up[[x]], -manyID) %>%
-      dplyr::left_join(mID) %>%
+    db_up[[x]] <-  db_up[[x]][ , !names( db_up[[x]]) %in% c("manyID")]
+    db_up[[x]] <- dplyr::left_join(db_up[[x]], mID, by = "treatyID") %>%
       dplyr::distinct() %>%
-      dplyr::relocate(manyID)
+      dplyr::relocate(manyID, treatyID, Title, Beg)
   }
   db_up
 }
