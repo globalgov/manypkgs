@@ -72,7 +72,7 @@ export_data <- function(..., database, URL) {
   attr(env[[database]][[dataset_name]], "source_bib") <-
     RefManageR::ReadBib(file = paste0("data-raw/", database, "/",
                                       dataset_name, "/", dataset_name, ".bib"))
-  if (exists(db_up)) {
+  if (exists("db_up")) {
     save(db_up, envir = env,
          file = fs::path("data", database, ext = "rda"), compress = "bzip2")
   } else {
@@ -91,6 +91,7 @@ get_package_name <- function(path = getwd()) {
   package <- read.dcf(paste0(path, "/DESCRIPTION"))[[1]]
   package
 }
+
 # Helper functions to update titles and IDs
 update_ids <- function(database) {
   db_up <- if (is.list(database)) database else get(database)
@@ -110,6 +111,7 @@ update_ids <- function(database) {
   }
   db_up
 }
+
 # Helper functions to add tests for databases
 add_tests <- function(database) {
   if (database == "states") {
@@ -151,6 +153,7 @@ add_tests <- function(database) {
   }
   ui_done("A test script has been created for this data.")
 }
+
 # Helper functions to add documentation for dataset/database
 add_docs <- function(database) {
   db <- get(load(paste0("data/", database, ".rda"))) ######
