@@ -94,6 +94,7 @@ get_package_name <- function(path = getwd()) {
 
 # Helper functions to update titles and IDs
 update_ids <- function(database) {
+  Title <- Beg <- manyID <- treatyID <- NULL 
   db_up <- if (is.list(database)) database else get(database)
   for (x in names(db_up)) {
     db_up[[x]] <- dplyr::mutate(db_up[[x]],
