@@ -58,7 +58,7 @@ export_data <- function(..., database, URL) {
                         the other datasets in this database?") == TRUE) {
       usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
                        This might take a few minutes...")
-      db_up <- update_ids(database)
+      db_up <- update_ids(database = database)
     }
     } else {
     usethis::ui_info("Didn't find an existing {usethis::ui_value(database)} database.
@@ -101,12 +101,12 @@ update_ids <- function(database) {
                                                            date = Beg))
    
   }
-  manyID <- condense_agreements(db_up)
+  mID <- condense_agreements(db_up)
   for (x in names(db_up)) {
-    db_up[[x]] <- db_up[[x]] %>%
-      select(-manyID) %>%
-      dplyr::left_join(manyID) %>%
-      dplyr::distinct()
+    db_up[[x]] <- dplyr::select(db_up[[x]], -manyID) %>%
+      dplyr::left_join(mID) %>%
+      dplyr::distinct() %>%
+      dplyr::relocate(manyID)
   }
   db_up
 }
