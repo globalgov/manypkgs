@@ -80,9 +80,9 @@ export_data <- function(..., database, URL) {
          file = fs::path("data", database, ext = "rda"), compress = "bzip2")
   }
   # Step 5: create and open a documentation script
-  add_docs(database)
+  add_docs(database = database, dataset_name = dataset_name, URL = URL)
   # Step 6: create the right kind of test script for the type of object
-  add_tests(database)
+  add_tests(database = database, dataset_name = dataset_name)
 }
 
 # Helper functions to get package name
@@ -112,8 +112,34 @@ update_ids <- function(database) {
   db_up
 }
 
+# Helper functions to add documentation for dataset/database
+add_docs <- function(database, dataset_name, URL) {
+  db <- get(load(paste0("data/", database, ".rda"))) ######
+  dblen <- length(db)
+  dsnames <- names(db)
+  strdsnames <- str_c(names(db), collapse = ", ")
+  dsobs <- lapply(db, nrow)
+  dsnvar <- lapply(db, ncol)
+  dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
+  describe <- paste0("#'\\describe{\n",
+                     paste0("#' \\item{", dsnames, ": }",
+                            "{A dataset with ", dsobs,
+                            " observations and the following\n",
+                            "#' ", dsnvar, " variables: ", dsvarstr,
+                            ".}\n", collapse = ""), "#' }")
+  sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
+  package <- get_package_name()
+  manytemplate("Package-DBDoc.R",
+               save_as = fs::path("R", paste0(package, "-", database, ".R")),
+               data = list(dat = dataset_name, nd = dblen,
+                           strdsnames = strdsnames, dsvarstr = dsvarstr,
+                           database = database, describe = describe,
+                           source = sourceelem),
+               ignore = FALSE, path = getwd())
+}
+
 # Helper functions to add tests for databases
-add_tests <- function(database) {
+add_tests <- function(database, dataset_name) {
   if (database == "states") {
     manytemplate("test_states.R",
                  save_as = fs::path("tests", "testthat",
@@ -152,30 +178,4 @@ add_tests <- function(database) {
                  open = FALSE, ignore = FALSE, path = getwd())
   }
   ui_done("A test script has been created for this data.")
-}
-
-# Helper functions to add documentation for dataset/database
-add_docs <- function(database) {
-  db <- get(load(paste0("data/", database, ".rda"))) ######
-  dblen <- length(db)
-  dsnames <- names(db)
-  strdsnames <- str_c(names(db), collapse = ", ")
-  dsobs <- lapply(db, nrow)
-  dsnvar <- lapply(db, ncol)
-  dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
-  describe <- paste0("#'\\describe{\n",
-                     paste0("#' \\item{", dsnames, ": }",
-                            "{A dataset with ", dsobs,
-                            " observations and the following\n",
-                            "#' ", dsnvar, " variables: ", dsvarstr,
-                            ".}\n", collapse = ""), "#' }")
-  sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
-  package <- get_package_name()
-  manytemplate("Package-DBDoc.R",
-               save_as = fs::path("R", paste0(package, "-", database, ".R")),
-               data = list(dat = dataset_name, nd = dblen,
-                           strdsnames = strdsnames, dsvarstr = dsvarstr,
-                           database = database, describe = describe,
-                           source = sourceelem),
-               ignore = FALSE, path = getwd())
 }
