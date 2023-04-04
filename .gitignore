@@ -4,3 +4,7 @@
 .Ruserdata
 docs
 *.DS_Store
+.httr-oauth
+inst/.DS_Store
+CRAN-SUBMISSION
+*.RDataTmp

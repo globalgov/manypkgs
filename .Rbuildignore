@@ -6,4 +6,9 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^httr-oauth
+^\.httr-oauth$
+^data-raw$
 ^example_pdf\.pdf$
+^.DS_Store$
+^.RDataTmp$
