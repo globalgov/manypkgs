@@ -45,44 +45,43 @@ export_data <- function(..., database, URL) {
     env <- new.env()
     load(paste0("data/", database, ".rda"), envir = env)
     dataset_exists <- exists(dataset_name, envir = env)
-    env[[database]][[dataset_name]] <- get(dataset_name)
     if (dataset_exists) {
       usethis::ui_info("Found an existing {usethis::ui_value(dataset_name)} dataset.
                        Saving a new version of the {usethis::ui_value(database)} database
                        with an updated version of the {usethis::ui_value(dataset_name)} dataset.")
     } else {
-      usethis::ui_info("The {usethis::ui_value(dataset_name)} dataset will be added to {usethis::ui_value(database)}.")
+      usethis::ui_info("The {usethis::ui_value(dataset_name)} dataset will be
+                       added to {usethis::ui_value(database)}.")
     }
     # ask users if they want to update titles and IDs in database
     if (utils::askYesNo("Would like to update IDs and titles in
                         the other datasets in this database?") == TRUE) {
       usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
                        This might take a few minutes...")
-      db_up <- update_ids(database = database)
+      env[[database]] <- update_ids(database = database)
+    } else {
+      env[[database]][[dataset_name]] <- get(dataset_name)
     }
     } else {
     usethis::ui_info("Didn't find an existing {usethis::ui_value(database)} database.
-                     Saving a {usethis::ui_value(database)} database that
-                     includes the {usethis::ui_value(deparse(substitute(...)))} dataset.")
+                     Creating a {usethis::ui_value(database)} database that includes
+                     the {usethis::ui_value(deparse(substitute(...)))} dataset.")
       env <- new.env()
       env[[database]] <- tibble::lst(...)
+      ui_done("A documentation script has been created for the database.")
     }
   # Step 4: get attributes and URL to dataset
   attr(env[[database]][[dataset_name]], "source_URL") <- URL
   attr(env[[database]][[dataset_name]], "source_bib") <-
     RefManageR::ReadBib(file = paste0("data-raw/", database, "/",
                                       dataset_name, "/", dataset_name, ".bib"))
-  if (exists("db_up")) {
-    save(db_up, envir = env,
-         file = fs::path("data", database, ext = "rda"), compress = "bzip2")
-  } else {
-    save(list = database, envir = env,
-         file = fs::path("data", database, ext = "rda"), compress = "bzip2")
-  }
+  save(list = database, envir = env,
+       file = fs::path("data", database, ext = "rda"), compress = "bzip2")
   # Step 5: create and open a documentation script
   add_docs(database = database, dataset_name = dataset_name, URL = URL)
   # Step 6: create the right kind of test script for the type of object
-  add_tests(database = database, dataset_name = dataset_name)
+  add_tests(database = database, dataset_name = dataset_name,
+            dataset_exists = dataset_exists)
 }
 
 # Helper functions to get package name
@@ -140,7 +139,7 @@ add_docs <- function(database, dataset_name, URL) {
 }
 
 # Helper functions to add tests for databases
-add_tests <- function(database, dataset_name) {
+add_tests <- function(database, dataset_name, dataset_exists) {
   if (database == "states") {
     manytemplate("test_states.R",
                  save_as = fs::path("tests", "testthat",
@@ -178,5 +177,7 @@ add_tests <- function(database, dataset_name) {
                  data = list(dat = dataset_name, dab = database),
                  open = FALSE, ignore = FALSE, path = getwd())
   }
-  ui_done("A test script has been created for this data.")
+  if (dataset_exists == FALSE) {
+    ui_done("A test script has been created for this dataset.")
+  }
 }
