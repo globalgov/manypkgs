@@ -302,7 +302,7 @@ code_type <- function(title) {
     # Assign other (O) no type is found
     type <- stringr::str_replace_na(type, "O")
     # Add type and number if available
-    type <- paste0(type, number)
+    type <- ifelse(type != "A", paste0(type, number), type)
   }
   type
 }
