@@ -62,3 +62,36 @@ test_that("Punctation marks are not in the treatyID", {
   treatyID <- code_agreements(data5, data5$title, data5$date)
   expect_false(any(grepl("\\(|\\)", treatyID)))
 })
+
+# Test that linkages are not duplicates
+mem <- tibble::tibble(
+  Title = c("3 ACP-EEC Convention",
+            "2 Arrangement Implementing The Nauru Agreement Setting Forth Additional Terms And Conditions Of Access To The Fisheries Zones Of The Parties", 
+            "Agreement Between Sri Lanka And India On The Maritime Boundary Between The 2 Countries In The Gulf Of Mannar And The Bay Of Bengal And Related Matters", 
+            "European Outline Convention On Transfrontier Cooperation Between Territorial Communities Or Authorities (CETS No 106)", 
+            "Convention On International Civil Aviation Annex 16 Aircraft Noise", 
+            "1 Arrangement Implementing The Nauru Agreement Setting Forth Minimum Terms And Conditions Of Access To The Fisheries Zones Of The Parties", 
+            "2 Arrangement Implementing The Nauru Agreement Setting Forth Additional Terms And Conditions Of Access To The Fisheries Zones Of The Parties", 
+            "Convention On The Game Hunting Formalities Applicable To Tourists Entering Countries In The Conseil De 50Entente", 
+            "Agreement On The Protection Of The Scheldt 50Escaut", "Technical Arrangement Between The United Kingdom Of Great Britain And Northern Ireland The French Republic And Belgium Made Under Article 6 (4) Of The Agreement For Cooperation In Dealing With Pollution Of The North Sea By Oil", 
+            "International Convention For The Prevention Of Pollution Of The Sea By Oil 1954 As Amended In 1962 And 1969", 
+            "Application Of Safeguards On Implementation Of Article 3 (1) And (4) Of The Treaty On The Non-Proliferation Of Nuclear Weapons", 
+            "International Convention For The Prevention Of Pollution Of The Sea By Oil 1954 As Amended In 1962 And 1969", 
+            "Agreement Between Sri Lanka India And The Maldives On The Determination Of Trijunction Point Between The 3 Countries In The Gulf Of Mannar", 
+            "Agreement 2 Between Chad Egypt Libya And Sudan For Monitoring And Sharing Data For The Sustainable Development And Proper Management Of The Nubian Sandstone Aquifer System", 
+            "Agreement Between Sri Lanka And India On The Boundary In Historic Waters Between The 2 Countries And Related Matters", 
+            "Agreement Between The Government Of The Kingdom Of Thailand And The Socialist Republic Of Viet Nam On The Delimitation Of The Maritime Boundary Between The 2 Countries In The Gulf Of Thailand", 
+            "Maritime Agreement Between The Government Of The French Republic And The Government Of The Republic Of Latvia Signed In Riga December 5 1997", 
+            "3 ACP-EEC Convention",
+            "Convencin Para El Establecimiento De La RED De Acuicultura De Las Amricas (RAA)"),
+  Beg = messydates::as_messydate(
+    c("1984-12-08", "1990-09-19", "1976-03-23", "1980-05-21", "1944-12-07",
+      "1982-02-11", "1990-09-19", "1976-02-26", "1994-04-26", "1972-07-28",
+      "1954-05-12", "1973-04-05", "1954-05-12", "1976-07-31", "2000-10-05",
+      "1974-06-28", "1997-08-09", "1997-12-05", "1984-12-08", "2012-04-18"))) %>%
+  mutate(treatyID = code_agreements(title = Title, date = Beg),
+         a = ifelse(grepl(":", treatyID), sub(":.*$", "", treatyID), NA_character_),
+         b = ifelse(grepl(":", treatyID), sub("^.*?:", "",  treatyID), NA_character_))
+test_that("linkages are not duplicates", {
+  expect_true(is.na(any(mem$a == mem$b)))
+})
