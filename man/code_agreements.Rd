@@ -10,7 +10,7 @@ code_agreements(dataset = NULL, title, date)
 \item{dataset}{A 'many' dataset.
 If provided without a title and date variables, the function finds title and
 date conforming columns in the dataset.
-The function "expects" that there are variables named \code{Title} and \code{Signature}
+The function "expects" that there are variables named \code{Title} and \code{Beg}
 that they have been standardised using \code{standardise_titles()} and
 \code{messydates::as_messydate()}, respectively.}
 
@@ -33,6 +33,6 @@ the type of agreement, the date, and the linkage to other agreements.
 \donttest{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_agreements(dataset = IEADB)
-code_agreements(title = IEADB$Title, date = IEADB$Signature)
+code_agreements(title = IEADB$Title, date = IEADB$Beg)
 }
 }
