@@ -27,7 +27,7 @@ data4 <- data.frame(treatyID = c("PRTRPC_1976A",
                                 "WIIEWH_1982P:RAMSA_1971A"))
 
 test_that("Linkages are added correctly", {
-  a <- condense_agreements(var = c(data1$treatyID, data2$treatyID))
+  a <- condense_agreements(idvar = c(data1$treatyID, data2$treatyID))
   expect_equal(a$manyID, c("CPV-PRT[FSD]_1980A",
                             "CPV-PRT[FSD]_1990P:FSD_1980A",
                             "TD06LJ_1981A",

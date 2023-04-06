@@ -60,7 +60,7 @@ The `condense_agreements()` function to works to match these inconsistencies
 within databases or variables.
 
 ```{r condense, message=FALSE, warning=FALSE}
-manyID <- manypkgs::condense_agreements(var = trade_agreements$treatyID)
+manyID <- manypkgs::condense_agreements(idvar = trade_agreements$treatyID)
 trade_agreements <- dplyr::left_join(trade_agreements, manyID, by = "treatyID") %>% 
   dplyr::mutate(compareID = ifelse(treatyID == manyID, "Equal", "Different"))
 summary(as.factor(trade_agreements$compareID))
