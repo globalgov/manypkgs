@@ -5,7 +5,7 @@
 #' @param dataset A 'many' dataset.
 #' If provided without a title and date variables, the function finds title and
 #' date conforming columns in the dataset.
-#' The function "expects" that there are variables named `Title` and `Signature`
+#' The function "expects" that there are variables named `Title` and `Beg`
 #' that they have been standardised using `standardise_titles()` and
 #' `messydates::as_messydate()`, respectively.
 #' @param title A title variable.
@@ -22,7 +22,7 @@
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 #' code_agreements(dataset = IEADB)
-#' code_agreements(title = IEADB$Title, date = IEADB$Signature)
+#' code_agreements(title = IEADB$Title, date = IEADB$Beg)
 #' }
 #' @export
 code_agreements <- function(dataset = NULL, title, date) {
@@ -31,13 +31,13 @@ code_agreements <- function(dataset = NULL, title, date) {
     stop("Please declare a dataset or title and date columns.")
   }
   if (!is.null(dataset) & missing(title) & missing(date)) {
-    if (exists("Title", dataset) & exists("Signature", dataset)) {
+    if (exists("Title", dataset) & exists("Beg", dataset)) {
       title <- dataset$Title
-      date <- dataset$Signature
+      date <- dataset$Beg
       usethis::ui_done(
         "Title and date conforming columns in dataset automatically found")
-    } else if (!exists("Title", dataset) | !exists("Signature", dataset)) {
-      stop("Unable to find both 'Title' and 'Signature' columns in dataset.
+    } else if (!exists("Title", dataset) | !exists("Beg", dataset)) {
+      stop("Unable to find both 'Title' and 'Beg' columns in dataset.
          Please declare the name of these columns or rename them.")
     }
   }
@@ -460,7 +460,7 @@ code_acronym <- function(title) {
 #' @examples
 #' \donttest{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
-#' code_linkage(IEADB$Title, IEADB$Signature)
+#' code_linkage(IEADB$Title, IEADB$Beg)
 #' }
 #' @export
 code_linkage <- function(title, date, return_all = FALSE) {
