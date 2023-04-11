@@ -31,7 +31,7 @@ License: CC BY 4.0
 URL: https://github.com/globalgov/manypkgs
 BugReports: https://github.com/globalgov/manypkgs/issues
 Depends:
-    R (>= 2.10)
+    R (>= 3.5.0)
 Imports:
     dplyr,
     tibble,
