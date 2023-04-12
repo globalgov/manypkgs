@@ -42,9 +42,9 @@ code_accession_terms <- function(textvar, title = NULL, accession = NULL) {
                                             memb, ignore.case = T) ~ "open", )
       condition_2 <- dplyr::case_when(grepl("nomination", memb,
                                             ignore.case = T) ~ "Semi-open", )
-      # condition_3 <- manypkgs::code_entity(title)
-      # condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"),
-      #                     paste0("entity: ", condition_3), NA)
+      condition_3 <- manypkgs::code_entity(title)
+      condition_3 <- ifelse(!stringr::str_detect(condition_3, "NA"),
+                          paste0("entity: ", condition_3), NA)
       condition_4 <- manypkgs::code_domain(title)
       condition_4 <- ifelse(!stringr::str_detect(condition_4, "NA"),
                           paste0("domain: ", condition_4), NA)

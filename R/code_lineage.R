@@ -28,20 +28,70 @@ code_lineage <- function(title = NULL, database = NULL) {
   }
   # code entity and actions for titles
   title <- stringi::stri_trans_general(title, id = "Latin-ASCII")
-  # entity <- code_entity(title)
+  entity <- code_entity(title)
   domain <- code_domain(title)
   parties <- code_states(title)
   # Get entity and actions from preamble if missing from title
   if (exists("txt")) {
-    # entity <- ifelse(is.na(entity), code_entity(txt), entity)
+    entity <- ifelse(is.na(entity), code_entity(txt), entity)
     domain <- ifelse(is.na(domain), code_domain(txt), domain)
   }
   # Paste all together
-  # lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain),
-  #                   paste0(entity, " - ", domain))
+  lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain),
+                    paste0(entity, " - ", domain))
   lineage <- gsub("- NA|NULL", "", lineage)
   lineage <- trimws(gsub("^-", "", lineage))
   lineage
+}
+
+#' Code Agreement Entity
+#'
+#' @param title Treaty titles
+#' @return The region of the agreement
+#' @importFrom stringr str_squish
+#' @importFrom entity location_entity
+#' @examples
+#' \donttest{
+#' title <- sample(manyenviron::agreements$IEADB$Title, 30)
+#' code_entity(title)
+#' }
+#' @export
+code_entity <- function(title) {
+  # Add a note about JavaScript
+  usethis::ui_info("Please make sure JavaScript is installed.")
+  # Make sure necessary model is available (adapted from entity package)
+  outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
+  if (!outcome) {
+    utils::install.packages(
+      "http://datacube.wu.ac.at/src/contrib/openNLPmodels.en_1.5-1.tar.gz",
+      repos = NULL,
+      type = "source")
+  }
+  # Code entity
+  out <- entity::location_entity(title)
+  # Code entity (using spacy for better results)
+  # # Add a note about python
+  # usethis::ui_info("Please make sure spacyr, minicinda, python, and spacy are installed.
+  #                   This can be done by running 'spacyr::spacy_install()'")
+  # spacyr::spacy_initialize()
+  # out <- spacyr::entity_extract(spacyr::spacy_parse(title, entity = TRUE),
+  #                       type = "named")
+  #   dplyr::filter()
+  #   dplyr::group_by(doc_id) %>%
+  #   dplyr::summarise(entity_type = paste(entity_type, collapse = ", "),
+  #                    entity = paste(gsub("_", " ", entity), collapse = ", "))
+  # title <- data.frame(title)
+  # title$doc_id <- paste0("text", as.numeric(rownames(title)))
+  # out <- dplyr::left_join(title, out, by = "doc_id")
+  # Remove states
+  parties <- paste(countrynames$c, collapse = "|")
+  out <- gsub(parties, "", out, ignore.case = TRUE)
+  out <- gsub("^c|Britain|England", "", out)
+  out <- gsub("[^[:alnum:]]", " ", out)
+  out <- stringr::str_squish(out)
+  out <- gsub("NULL", NA_character_, out)
+  out <- ifelse(grepl("^$", out), NA_character_, out)
+  out
 }
 
 #' Code domains from agreement titles

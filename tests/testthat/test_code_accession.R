@@ -14,9 +14,9 @@ data <- data.frame(title = c("Amendments On The Transport Of Corrosive Substance
                              the consent of the contracting parties, become parties to the agreement."))
 data$text <- standardise_treaty_text(data$text)
 
-# test_that("code_accession_terms works properly", {
-#   expect_equal(code_accession_terms(data$text, data$title, accession = "condition"), c("open + domain: waste", "open", NA))
-#   expect_equal(code_accession_terms(data$text, data$title, accession = "process"), c("signature + ratification",
-#                                                                                    "signature + ratification", NA))
-#   expect_type(code_accession_terms(), "list")
-# })
+test_that("code_accession_terms works properly", {
+  expect_equal(code_accession_terms(data$text, data$title, accession = "condition"), c("open + domain: waste", "open", NA))
+  expect_equal(code_accession_terms(data$text, data$title, accession = "process"), c("signature + ratification",
+                                                                                   "signature + ratification", NA))
+  expect_type(code_accession_terms(), "list")
+})
