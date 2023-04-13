@@ -79,8 +79,9 @@ condense_agreements <- function(database = NULL, idvar = NULL) {
     dplyr::group_by(ID) %>%
     tidyr::fill(linkage, .direction = "updown") %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(manyID = stringr::str_trim((
-      ifelse(is.na(linkage), ID, paste0(ID, ":", linkage))), "both")) %>%
+    dplyr::mutate(manyID = stringr::str_trim((ifelse(is.na(linkage), ID,
+                                                     paste0(ID, ":", linkage))),
+                                             "both")) %>%
     dplyr::select(treatyID, manyID) %>%
     dplyr::distinct()
   similar
