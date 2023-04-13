@@ -92,6 +92,18 @@ mem <- tibble::tibble(
   mutate(treatyID = code_agreements(title = Title, date = Beg),
          a = ifelse(grepl(":", treatyID), sub(":.*$", "", treatyID), NA_character_),
          b = ifelse(grepl(":", treatyID), sub("^.*?:", "",  treatyID), NA_character_))
+
 test_that("linkages are not duplicates", {
   expect_true(is.na(any(mem$a == mem$b)))
+})
+
+# Test that linkages are added correctly for bilaterals treaties
+data9 <- data.frame(title = c("Supplementary Protocol To The Treaty Relating To The Utilization Of The Waters Of The Colorado And Tijuana Rivers And Of The Rio Grande (Rio Bravo) From Fort Quitman Texas To The Gulf Of Mexico",
+                             "Treaty Relating To The Utilization Of The Waters Of The Colorado And Tijuana Rivers And Of The Rio Grande (Rio Bravo) From Fort Quitman Texas To The Gulf Of Mexico"),
+                    date = c("1944-11-14", "1944-11-14"))
+treatyID <- c("MEX-TEX[FQG]_1944P:MEX-TEX[FQG]_1944A", "MEX-TEX[FQG]_1944A")
+cd <- code_agreements(title = data9$title, date = data9$date)
+
+test_that("linkages are added correctly for bilaterals treaties", {
+  expect_equal(cd, treatyID)
 })
