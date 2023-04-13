@@ -464,21 +464,23 @@ code_acronym <- function(title) {
 #' }
 #' @export
 code_linkage <- function(title, date, return_all = FALSE) {
+  # Initialize variables to suppress CMD notes
+  ref <- dup <- NULL
   if (missing(title) & missing(date)) {
     pred <- as.data.frame(predictable_words)
     pred_words <- knitr::kable(pred, "simple")
     pred_words
   } else {
     # Step 1: standardise titles to improve matching
-    treatyID <- standardise_titles(as.character(title))
+    treaty <- standardise_titles(as.character(title))
     # Step 2: code parties if present
-    parties <- code_states(treatyID)
+    parties <- code_states(treaty)
     usethis::ui_done("Coded agreement parties")
     # Step 3: code agreement type
-    type <- code_type(treatyID)
+    type <- code_type(treaty)
     usethis::ui_done("Coded agreement type")
     # Step 4: code known agreements
-    abbrev <- code_known_agreements(treatyID)
+    abbrev <- code_known_agreements(treaty)
     usethis::ui_done("Coded known agreements")
     # Step 5: give the observation a unique ID and acronym
     uID <- code_dates(date)
@@ -489,41 +491,42 @@ code_linkage <- function(title, date, return_all = FALSE) {
     # Step 7: remove 'predictable words' in agreements
     pw <- paste0("\\<", paste(predictable_words$predictable_words,
                               collapse = "\\>|\\<"), "\\>")
-    out <- gsub(pw, "", treatyID, ignore.case = TRUE)
+    treaty <- gsub(pw, "", treaty, ignore.case = TRUE)
     # Step 8: remove numbers, signs and parentheses
-    out <- gsub("\\s*\\([^\\)]+\\)", "", out, ignore.case = FALSE)
-    out <- gsub("-", " ", out, ignore.case = FALSE)
-    out <- stringr::str_replace_all(out, ",", "")
-    out <- stringr::str_remove_all(out, "[0-9]")
-    out <- stringr::str_squish(out)
-    out <- as.data.frame(out)
+    treaty <- gsub("\\s*\\([^\\)]+\\)", "", treaty, ignore.case = FALSE)
+    treaty <- gsub("-", " ", treaty, ignore.case = FALSE)
+    treaty <- stringr::str_replace_all(treaty, ",", "")
+    treaty <- stringr::str_remove_all(treaty, "[0-9]")
+    treaty <- data.frame(treaty = stringr::str_squish(treaty))
     # Step 9: assign ID to observations
     id <- ifelse((!is.na(abbrev)), paste0(abbrev, "A"),
                  (ifelse((is.na(parties)), paste0(acronym, "_", uID, type),
-                         (ifelse((!is.na(parties)), paste0(parties, "_", uID, type), NA)))))
-    # Step 10: bind data
-    out <- cbind(out, id)
-    # Initialize variables to suppress CMD notes
-    ref <- dup <- NULL
-    # Step 11: find duplicates and original values, and assign same id
-    out <- out %>%
-      dplyr::group_by_at(dplyr::vars(out)) %>%
+                         (ifelse((!is.na(parties)), paste0(parties, "_", uID,
+                                                           type), NA)))))
+    # Step 10: bind, arrange, find duplicates, original values, and assign same id
+    out <- cbind(treaty, id, parties, type, abbrev, uID, acronym) %>%
+      dplyr::mutate(row = dplyr::row_number()) %>%
+      dplyr::arrange(type) %>%
+      dplyr::group_by_at(dplyr::vars(treaty)) %>%
       dplyr::mutate(dup = dplyr::row_number() > 1,
                     ref = ifelse(dup, paste0(dplyr::first(id)),
                                  as.character(id))) %>%
       dplyr::group_by(ref) %>%
-      dplyr::mutate(n = dplyr::n()) %>%
-      dplyr::mutate(line = dplyr::case_when(n != 1 ~ paste(ref), n == 1 ~ "1"))
-    # Step 12: keep only linkages for agreements
-    out$line <- ifelse(out$id == out$ref & type == "A", "1", out$line)
-    line <- stringr::str_replace_all(out$line, "^1$", "")
-    line <- stringr::str_replace_all(line, "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|
-                                     |[0-9]{4}R", "xxxxxxxxxxxxxxxxxxxxXx")
-    line <- ifelse(nchar(as.character(line)) > 20, "", line)
-    if (return_all == TRUE) {
-      line <- data.frame(cbind(parties, type, abbrev, uID, acronym, line))
+      dplyr::mutate(n = dplyr::n(),
+                    line = dplyr::case_when(n != 1 ~ paste(ref),
+                                            n == 1 ~ "1")) %>%
+      dplyr::arrange(row)
+    # Step 11: keep only linkages for agreements
+    out$line <- ifelse(out$id == out$ref & out$type == "A", "1", out$line)
+    out$line <- stringr::str_replace_all(out$line, "^1$", "")
+    out$line <- stringr::str_replace_all(out$line,
+                                         "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R",
+                                         "xxxxxxxxxxxxxxxxxxxxXx")
+    out$line <- ifelse(nchar(as.character(out$line)) > 20, "", out$line)
+    if (return_all == FALSE) {
+      out <- out$line
     }
-    line
+    out
   }
 }
 
