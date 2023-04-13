@@ -87,6 +87,7 @@ condense_agreements <- function(database = NULL, idvar = NULL) {
 }
 
 fuzzy_agreements_multilateral <- function(dat) {
+  acronym <- NULL
   # Set variables
   dat <- tidyr::drop_na(dat, acronym)
   # Fuzzy match acronyms
@@ -110,6 +111,7 @@ fuzzy_agreements_multilateral <- function(dat) {
 }
 
 fuzzy_agreements_bilateral <- function(dat) {
+  activity <- NULL
   # Set variables
   dat <- tidyr::drop_na(dat, activity)
   # Fuzzy match acronyms
