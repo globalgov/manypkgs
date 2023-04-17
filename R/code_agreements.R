@@ -520,7 +520,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     out$line <- ifelse(out$id == out$ref & out$type == "A", "1", out$line)
     out$line <- stringr::str_replace_all(out$line, "^1$", "")
     out$line <- stringr::str_replace_all(out$line,
-                                         "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R",
+                                         "[0-9]{4}E|[0-9]{4}P|[0-9]{4}S|[0-9]{4}N|[0-9]{4}R|[0-9]{4}O",
                                          "xxxxxxxxxxxxxxxxxxxxXx")
     out$line <- ifelse(nchar(as.character(out$line)) > 20, "", out$line)
     if (return_all == FALSE) {
