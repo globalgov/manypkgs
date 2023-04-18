@@ -73,6 +73,8 @@ Suggests:
     migraph
 Remotes:
     trinker/entity
+    globalgov/manyenviron,
+    globalgov/manystates
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
