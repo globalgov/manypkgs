@@ -49,7 +49,6 @@ code_lineage <- function(title = NULL, database = NULL) {
 #' @param title Treaty titles
 #' @return The region of the agreement
 #' @importFrom stringr str_squish
-#' @importFrom entity location_entity
 #' @examples
 #' \donttest{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
@@ -59,6 +58,14 @@ code_lineage <- function(title = NULL, database = NULL) {
 code_entity <- function(title) {
   # Add a note about JavaScript
   usethis::ui_info("Please make sure JavaScript is installed.")
+  # Download entity package
+  pkgs <- NULL
+  pkgs <- data.frame(utils::installed.packages())
+  if (any(grepl("entity", pkgs$Package))) {
+    remotes::install_github("thinker/entity")
+    usethis::ui_info("Downloaded entity package.")
+  }
+  requireNamespace("entity", quietly = TRUE)
   # Make sure necessary model is available (adapted from entity package)
   outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
   if (!outcome) {
