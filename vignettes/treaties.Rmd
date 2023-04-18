@@ -22,10 +22,11 @@ governing certain issue-domain (e.g. `{manytrade}` and `{manyenviron}`).
 While `{manydata}` facilitates accessing 'many' data,
 `{manypks}` helps developers to standardise and work with treaty data.
 
-Using `{manydata}`, we can check which databases and datasets are available in
-the packages.
+Using `{manydata}`, we can download and check which databases and datasets are available in the packages.
 
 ```{r data_constrast, message=FALSE, warning=FALSE}
+manydata::get_packages("manytrade")
+library(manytrade)
 manydata::data_contrast("manytrade")
 manydata::data_contrast("manytrade", "agreements")
 ```
@@ -42,8 +43,7 @@ Please see the [Agreements](https://globalgov.github.io/manypkgs/articles/agreem
 and its performance vis-a-vis other matching options.
 
 ```{r code_agreements, message=FALSE, warning=FALSE}
-manydata::get_packages("manytrade")
-trade_agreements <- lapply(manytrade::agreements, function(x) 
+trade_agreements <- lapply(agreements, function(x) 
   x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
 trade_agreements <- lapply(trade_agreements, function(x) 
   dplyr::select(x, Title, Beg))
