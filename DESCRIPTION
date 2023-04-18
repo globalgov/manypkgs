@@ -54,7 +54,6 @@ Imports:
     pdftools
 Suggests:
     testthat (>= 3.0.0),
-    pointblank,
     covr,
     roxygen2,
     haven,
@@ -68,7 +67,6 @@ Suggests:
     WVPlots,
     rmarkdown,
     RefManageR,
-    deeplr,
     manydata,
     manyenviron,
     manystates,
