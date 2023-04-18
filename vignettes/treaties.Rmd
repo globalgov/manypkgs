@@ -43,7 +43,7 @@ Please see the [Agreements](https://globalgov.github.io/manypkgs/articles/agreem
 and its performance vis-a-vis other matching options.
 
 ```{r code_agreements, message=FALSE, warning=FALSE}
-trade_agreements <- lapply(agreements, function(x) 
+trade_agreements <- lapply(manytrade::agreements, function(x) 
   x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
 trade_agreements <- lapply(trade_agreements, function(x) 
   dplyr::select(x, Title, Beg))
