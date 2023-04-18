@@ -62,7 +62,7 @@ code_entity <- function(title) {
   pkgs <- NULL
   pkgs <- data.frame(utils::installed.packages())
   if (any(grepl("entity", pkgs$Package))) {
-    remotes::install_github("thinker/entity")
+    remotes::install_github("trinker/entity")
     usethis::ui_info("Downloaded entity package.")
   }
   requireNamespace("entity", quietly = TRUE)
