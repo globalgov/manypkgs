@@ -46,11 +46,11 @@ test_that("Linkages are added correctly", {
   expect_equal(m2, data4)
 })
 
-data5 <- data.frame(treatyID = c("DNK-SWE[FSC]_1899A"),
-                    manyID = c("DNK-SWE[FSC]_1899A"))
+data5 <- data.frame(treatyID = "DNK-SWE[FSC]_1899A",
+                    manyID = "DNK-SWE[FSC]_1899A")
 
-data6 <- data.frame(treatyID = c("DNK-SWE[FSS]_1899A"),
-                    manyID = c("DNK-SWE[FSS]_1899A"))
+data6 <- data.frame(treatyID = "DNK-SWE[FSS]_1899A",
+                    manyID = "DNK-SWE[FSS]_1899A")
 
 data7 <- data.frame(treatyID = c("DNK-SWE[FSC]_1899A",
                                  "DNK-SWE[FSC]_1902E:DNK-SWE[FSC]_1899A"),
