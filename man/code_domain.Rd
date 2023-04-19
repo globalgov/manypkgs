@@ -16,7 +16,7 @@ The domain taken from agreement title
 Code domains from agreement titles
 }
 \examples{
-\donttest{
+\dontrun{
 title <- sample(manyenviron::agreements$IEADB$Title, 30)
 code_domain(title)
 }

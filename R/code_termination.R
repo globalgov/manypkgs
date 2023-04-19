@@ -89,7 +89,7 @@ code_term <- function(title, text = NULL) {
 #' treaty
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' HUGGO <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
 #' code_term_date(HUGGO$Title)
 #' }

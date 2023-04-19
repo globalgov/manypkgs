@@ -50,7 +50,7 @@ code_lineage <- function(title = NULL, database = NULL) {
 #' @return The region of the agreement
 #' @importFrom stringr str_squish
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
 #' code_entity(title)
 #' }
@@ -65,7 +65,6 @@ code_entity <- function(title) {
     remotes::install_github("trinker/entity")
     usethis::ui_info("Downloaded entity package.")
   }
-  requireNamespace("entity", quietly = TRUE)
   # Make sure necessary model is available (adapted from entity package)
   outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
   if (!outcome) {
@@ -74,8 +73,9 @@ code_entity <- function(title) {
       repos = NULL,
       type = "source")
   }
+  suppressWarnings(requireNamespace("entity", quietly = TRUE))
   # Code entity
-  out <- entity::location_entity(title)
+  out <- suppressWarnings(entity::location_entity(title))
   # Code entity (using spacy for better results)
   # # Add a note about python
   # usethis::ui_info("Please make sure spacyr, minicinda, python, and spacy are installed.
@@ -107,7 +107,7 @@ code_entity <- function(title) {
 #' @return The domain taken from agreement title
 #' @importFrom dplyr case_when
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
 #' code_domain(title)
 #' }

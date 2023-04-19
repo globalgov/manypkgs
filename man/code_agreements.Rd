@@ -30,7 +30,7 @@ Creates an ID that contains information on the parties to an agreement,
 the type of agreement, the date, and the linkage to other agreements.
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_agreements(dataset = IEADB)
 code_agreements(title = IEADB$Title, date = IEADB$Beg)

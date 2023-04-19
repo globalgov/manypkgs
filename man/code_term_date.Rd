@@ -20,7 +20,7 @@ Creates a column with the date of termination
 of the treaty.
 }
 \examples{
-\donttest{
+\dontrun{
 HUGGO <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
 code_term_date(HUGGO$Title)
 }

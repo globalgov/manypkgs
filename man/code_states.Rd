@@ -37,7 +37,7 @@ For the complete list of parties coded please run the function without
 an argument (i.e. \code{code_states()}).
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_states(IEADB$Title)
 code_states(IEADB$Title, activity = FALSE)

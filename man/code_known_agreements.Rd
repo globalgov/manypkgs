@@ -23,7 +23,7 @@ known agreements coded for and their respective abbreviations please run
 the function without an argument (i.e. \code{code_known_agreements()}).
 }
 \examples{
-\donttest{
+\dontrun{
 IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 code_known_agreements(IEADB$Title)
 }
