@@ -11,7 +11,6 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-library(manydata)
 library(dplyr)
 ```
 
@@ -24,9 +23,9 @@ While `{manydata}` facilitates accessing 'many' data,
 
 Using `{manydata}`, we can download and check which databases and datasets are available in the packages.
 
-```{r data_constrast, message=FALSE, warning=FALSE}
+```{r data_constrast, message=FALSE, warning=FALSE, eval=FALSE}
+library(manydata)
 manydata::get_packages("manytrade")
-library(manytrade)
 manydata::data_contrast("manytrade")
 manydata::data_contrast("manytrade", "agreements")
 ```
@@ -42,7 +41,7 @@ rendering the same treatyID for observations that have the same key identifying 
 Please see the [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.html) vignette for more information on how `code_agreements()` works
 and its performance vis-a-vis other matching options.
 
-```{r code_agreements, message=FALSE, warning=FALSE}
+```{r code_agreements, message=FALSE, warning=FALSE, eval=FALSE}
 trade_agreements <- lapply(manytrade::agreements, function(x) 
   x[x$Beg > "1995-01-01" & x$Beg < "2000-01-01", ])
 trade_agreements <- lapply(trade_agreements, function(x) 
@@ -52,6 +51,10 @@ trade_agreements <- purrr::map_df(trade_agreements, ~as.data.frame(.x),
 trade_agreements <- trade_agreements[complete.cases(trade_agreements), ]
 trade_agreements$treatyID <- manypkgs::code_agreements(
   title = trade_agreements$Title, date = trade_agreements$Beg)
+```
+
+```{r data, warning=FALSE, message=FALSE, include=FALSE}
+trade_agreements <- read_csv("trade_agreements.csv")
 ```
 
 Different treatyIDs generated with `code_agreements()` for different datasets in a database
