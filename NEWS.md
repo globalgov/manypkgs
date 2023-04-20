@@ -1,3 +1,18 @@
+# manypkgs 0.3.0
+
+## Package
+
+- Closed #87 by updating data templates for new changes with HUGGO and AIGGO new structure
+- Renamed `retrieve_clauses()` to `read_clauses()`
+
+## Correction
+
+- Closed #89 by updating `code_agreements()` and `condense_agreements()`to improve duplicated matching and methods "fuzzy" matching of treatyIDs for the creation of manyIDs
+- Closed #90 by updating `code_states()`, previously called `code_parties()`, to work similarly as it did in `{manystates}` to avoid unnecessary overlaps
+- Updated country regex data to improve states' ID matching
+- Closed #91 by updating `standardising_treaty_titles()` to be faster, more concise, and consistent
+- Closed #92 by updating `export_data()` to ask users if treatyIDs, manyIDs, and treaty titles in datasets in a database need to also be updated
+
 # manypkgs 0.2.2
 
 ## Package
