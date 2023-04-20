@@ -285,7 +285,7 @@ code_type <- function(title) {
                   out, ignore.case = TRUE,
                   perl = T)
     }
-    # Step 3: eXtract only first category identified
+    # Step 3: extract only first category identified
     type <- stringr::str_extract(out,
                                  "PROTO|AMEND|AGREE|NOTES|STRAT|RESOL")
     # Step 4: assign type abbreviations

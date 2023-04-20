@@ -1,5 +1,5 @@
 test_that("url is valid", {
-  expect_error(export_data("COW", databse = "states", URL = 5),
+  expect_error(export_data("COW", database = "states", URL = 5),
                "Please provide the URL argument to the source of your dataset as a character string.")
 })
 
