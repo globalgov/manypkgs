@@ -152,9 +152,10 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
     } else if (replace == "names") {
       # Translates string to ASCII
       title <- stringi::stri_trans_general(title, "Latin-ASCII")
-      coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+      coment <- vapply(countryregex[, 3], function(x) grepl(x, title,
                                                             ignore.case = T,
-                                                            perl = T) * 1)
+                                                            perl = T) * 1,
+                       FUN.VALUE = numeric(length(title)))
       colnames(coment) <- countryregex[, 2]
       rownames(coment) <- title
       out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
@@ -163,9 +164,10 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
       parties <- unname(out)
     } else if (replace == "ID") {
       title <- stringi::stri_trans_general(title, "Latin-ASCII")
-      coment <- sapply(countryregex[, 3], function(x) grepl(x, title,
+      coment <- vapply(countryregex[, 3], function(x) grepl(x, title,
                                                             ignore.case = T,
-                                                            perl = T) * 1)
+                                                            perl = T) * 1,
+                       FUN.VALUE = numeric(length(title)))
       colnames(coment) <- countryregex[, 1]
       rownames(coment) <- title
       out <- apply(coment, 1, function(x) paste(names(x[x == 1]),
