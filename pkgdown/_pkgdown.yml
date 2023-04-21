@@ -36,6 +36,8 @@ navbar:
         href: articles/contributor.html
       - text: Agreements
         href: articles/agreements.html
+      - text: Text
+        href: articles/treaties.html
     news:
       text: News
       href: news/index.html
