@@ -23,10 +23,11 @@
 # Remove duplicates and ensure NAs are coded correctly
 {{{dataset}}} <- {{{dataset}}} %>%
   dplyr::mutate(across(everything(),
-                       ~stringr::str_replace_all(., "^NA$", NA_character_))) %>% 
+                       ~stringr::str_replace_all(.,
+                                                 "^NA$", NA_character_))) %>%
   dplyr::mutate(Beg = messydates::as_messydate(Beg),
                 Signature = messydates::as_messydate(Signature),
-                Force = messydates::as_messydate(Force)) %>% 
+                Force = messydates::as_messydate(Force)) %>%
   dplyr::distinct(.keep_all = TRUE)
 
 # manypkgs includes several functions that should help with

@@ -33,7 +33,7 @@ condense_agreements <- function(database = NULL, idvar = NULL) {
     treatyID <- unlist(idvar)
   }
   # Step two: rbind variables and remove duplicates
-  treatyID <- data.frame(treatyID = treatyID) %>% 
+  treatyID <- data.frame(treatyID = treatyID) %>%
     dplyr::distinct(treatyID) %>%
     dplyr::mutate(treatyID = stringr::str_trim(treatyID, "both"))
   # Step three: split treatyID and organize data
@@ -52,13 +52,13 @@ condense_agreements <- function(database = NULL, idvar = NULL) {
                     stringr::str_extract_all(treatyID, "\\[[^()]+\\]"),
                     NA_character_), "\\[|\\]"))
   # Step four: identify very similar acronyms and activities
-  if(all(is.na(similar$parties))) {
+  if (all(is.na(similar$parties))) {
     fuzzy <- fuzzy_agreements_multilateral(similar)
   } else if (all(is.na(similar$acronym))) {
     fuzzy <- fuzzy_agreements_bilateral(similar)
   } else {
     fuzzy <- dplyr::full_join(fuzzy_agreements_multilateral(similar),
-                              fuzzy_agreements_bilateral(similar)) 
+                              fuzzy_agreements_bilateral(similar))
   }
   similar <- dplyr::full_join(similar, fuzzy, multiple = "all") # Join data
   # Transform match NAs into 0

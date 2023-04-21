@@ -146,9 +146,15 @@ code_states <- function(title, activity = TRUE, replace = NULL) {
       # Step 2: add NAs to observations not matched
       parties[!grepl("-", parties)] <- NA
       # Step 3:: get bilateral agreements where two parties have been identified
-      parties <- ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{3}$"), parties,
-                        ifelse(stringr::str_detect(parties, "^[:alpha:]{2}-[:alpha:]{3}$"), parties,
-                               ifelse(stringr::str_detect(parties, "^[:alpha:]{3}-[:alpha:]{2}$"), parties, NA)))
+      parties <- ifelse(stringr::str_detect(parties,
+                                            "^[:alpha:]{3}-[:alpha:]{3}$"),
+                        parties,
+                        ifelse(stringr::str_detect(parties,
+                                                   "^[:alpha:]{2}-[:alpha:]{3}$"),
+                               parties,
+                               ifelse(stringr::str_detect(parties,
+                                                          "^[:alpha:]{3}-[:alpha:]{2}$"),
+                                      parties, NA)))
     } else if (replace == "names") {
       # Translates string to ASCII
       title <- stringi::stri_trans_general(title, "Latin-ASCII")

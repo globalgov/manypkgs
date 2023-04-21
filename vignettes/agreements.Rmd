@@ -116,7 +116,7 @@ WVPlots::ROCPlot(agreements, "random", "duplicate", 1, title = "Random")
 Here we only consider equivalent those titles that are exactly the same as one another.
 
 ```{r strict, warning=FALSE, message=FALSE}
-agreements$strict <- ifelse(duplicated(agreements$titles) | 
+agreements$strict <- ifelse(duplicated(agreements$titles) |
                                   duplicated(agreements$titles, fromLast = TRUE), 1, 0)
 WVPlots::ROCPlot(agreements, "strict", "duplicate", 1, title = "Strict")
 # WVPlots::PRPlot(agreements, "strict", "duplicate", 1, title = "Strict")
@@ -143,7 +143,7 @@ agreements$fuzzy <- apply(fuzzy, 1, max)
 agreements$fuzzy <- ifelse(agreements$fuzzy > 0.6, 1, 0)
 WVPlots::ROCPlot(agreements, "fuzzy", "duplicate", 1, title = "Fuzzy")
 # WVPlots::PRPlot(agreements, "fuzzy", "duplicate", 1, title = "Fuzzy")
-# Improvements are also visible in the PR plot. 
+# Improvements are also visible in the PR plot.
 ```
 
 The risk of finding incorrect matches using fuzzy matching increases in relation
@@ -169,7 +169,7 @@ Using our current version of `{manypkgs}` we obtain:
 
 ```{r treatyID, warning=FALSE, message=FALSE}
 agreements$treatyID <- manypkgs::code_agreements(agreements, agreements$titles, agreements$dates)
-agreements$idinfo <- ifelse(duplicated(agreements$treatyID) | 
+agreements$idinfo <- ifelse(duplicated(agreements$treatyID) |
                                   duplicated(agreements$treatyID, fromLast = TRUE), 1, 0)
 WVPlots::ROCPlot(agreements, "idinfo", "duplicate", 1, title = "treatyID Strict")
 # WVPlots::PRPlot(agreements, "idinfo", "duplicate", 1, title = "treatyID Strict")
@@ -212,7 +212,7 @@ WVPlots::ROCPlot(agreements, "qsim", "duplicate", 1, title = "treatyID Sim")
 We can compare the specificity versus sensitivity for each of the possible solutions discussed above in the same ROC plot. 
 
 ```{r comparison, warning=FALSE, message=FALSE}
-WVPlots::ROCPlotList(frame = agreements, xvar_names = c("strict", "fuzzy", "idinfo", "qsim"), 
+WVPlots::ROCPlotList(frame = agreements, xvar_names = c("strict", "fuzzy", "idinfo", "qsim"),
                      truthVar = "duplicate", truthTarget = TRUE, title = "Comparing the different solutions")
 ```
 

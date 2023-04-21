@@ -93,18 +93,17 @@ get_package_name <- function(path = getwd()) {
 
 # Helper functions to update titles and IDs
 update_ids <- function(database) {
-  Title <- Beg <- manyID <- treatyID <- NULL 
+  Title <- Beg <- manyID <- treatyID <- NULL
   db_up <- if (is.list(database)) database else get(database)
   for (x in names(db_up)) {
     db_up[[x]] <- dplyr::mutate(db_up[[x]],
                                 Title = standardise_titles(Title),
                                 treatyID = code_agreements(title = Title,
                                                            date = Beg))
-   
   }
   mID <- condense_agreements(db_up)
   for (x in names(db_up)) {
-    db_up[[x]] <-  db_up[[x]][ , !names( db_up[[x]]) %in% "manyID"]
+    db_up[[x]] <-  db_up[[x]][, !names( db_up[[x]]) %in% "manyID"]
     db_up[[x]] <- dplyr::left_join(db_up[[x]], mID, by = "treatyID") %>%
       dplyr::distinct() %>%
       dplyr::relocate(manyID, treatyID, Title, Beg)
