@@ -1,5 +1,5 @@
 #' Functions that have been renamed, superseded, or are no longer working
-#' 
+#'
 #' `r lifecycle::badge("deprecated")`
 #' @name defunct
 #' @keywords internal

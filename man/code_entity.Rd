@@ -16,7 +16,7 @@ The region of the agreement
 Code Agreement Entity
 }
 \examples{
-\donttest{
+\dontrun{
 title <- sample(manyenviron::agreements$IEADB$Title, 30)
 code_entity(title)
 }

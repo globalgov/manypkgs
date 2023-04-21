@@ -5,11 +5,6 @@
 #' for variables in different datatsets.
 #' @name standardise_titles
 #' @param s A string
-#' @param auth_key If a DeepL authentication key is provided as an argument,
-#' the function detects strings in other languages
-#' and translates them to English.
-#' To get a free (or paid) DeepL authentication key please see:
-#' https://www.deepl.com/pro#developer
 #' @details The function capitalises words in the strings passed to it.
 #' It trims white spaces from the start, middle and end of the strings.
 #' Removes ambiguous punctions and symbols from strings.
@@ -26,7 +21,7 @@
 #' e <- standardise_titles("A treaty concerning things")
 #' e==c("A Treaty Concerning Things")
 #' @export
-standardise_titles <- function(s, auth_key = NULL) {
+standardise_titles <- function(s) {
   # Step one: capitalises first letter in words
   cap <- function(s) paste(toupper(substring(s, 1, 1)), {
     s <- substring(s, 2)
@@ -34,12 +29,7 @@ standardise_titles <- function(s, auth_key = NULL) {
   , sep = "", collapse = " ")
   out <- vapply(strsplit(s, split = " "), cap, "",
                 USE.NAMES = !is.null(names(s)))
-  # Step two: translate strings, if API is provided
-  if (!is.null(auth_key)) {
-    depends("deeplr")
-    out <- deeplr::toEnglish(s, auth_key = auth_key)
-  }
-  # Step three: standardise strings returned
+  # Step two: standardise strings returned
   # Transforms strings to ASCII character encoding
   out <- suppressWarnings(stringi::stri_trans_general(out, id = "Latin-ASCII"))
   # standardises NAs
@@ -57,7 +47,7 @@ standardise_titles <- function(s, auth_key = NULL) {
   out <- gsub("\\#", "Number ", out)
   # standardise some country abbreviations and specific words
   out <- correct_words(out)
-  # Step four: Standardises how ordinal numbers are returned
+  # Step three: Standardises how ordinal numbers are returned
   out <- textclean::mgsub(out,
                           paste0("(?<!\\w)", as.roman(1:100), "(?!\\w)"),
                           as.numeric(1:100), safe = TRUE, perl = TRUE)
@@ -78,7 +68,7 @@ standardise_titles <- function(s, auth_key = NULL) {
                           paste0("(?<!\\w)", num, "(?!\\w)"),
                           as.numeric(1:100), safe = TRUE, perl = TRUE,
                           ignore.case = TRUE, fixed = FALSE)
-  # Step five: make sure most punctuations extra whitespaces are removed
+  # Step four: make sure most punctuations extra whitespaces are removed
   out <- gsub("(?!\\-|\\(|\\))[[:punct:]]", "", out, perl = TRUE)
   # removes all punctuations but hyphen and parentheses,
   # which may contain important information for distinguishing

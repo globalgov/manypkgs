@@ -20,9 +20,10 @@
 #' @importFrom stringr str_remove_all str_trim
 #' @examples
 #' \dontrun{
-#' m <- manyenviron::texts$AGR_TXT[200:300,]
-#' code_accession_terms(m$Text, m$Title, accession = "condition")
-#' code_accession_terms(m$Text, accession = "process")
+#' m <- manyenviron::agreements$HUGGO[200:300,] %>%
+#'      dplyr::select(Title, Beg, MainText, AppendixText, AnnexText)
+#' code_accession_terms(m$MainText, m$Title, accession = "condition")
+#' code_accession_terms(m$MainText, accession = "process")
 #' code_accession_terms()
 #' }
 #' @export
@@ -31,8 +32,8 @@ code_accession_terms <- function(textvar, title = NULL, accession = NULL) {
     return(member)
   } else {
     # First step: select all the articles concerning accession
-    memb <- retrieve_clauses(standardise_treaty_text(textvar),
-                             article = "accession")
+    memb <- read_clauses(standardise_treaty_text(textvar),
+                         article = "accession")
     if (isTRUE(accession == "condition")) {
       # Second step: match terms to identify accession conditions
       condition_1 <- dplyr::case_when(grepl("a government|any government|

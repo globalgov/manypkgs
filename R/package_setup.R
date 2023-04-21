@@ -343,8 +343,7 @@ add_author <- function(orcid = NULL,
 create_directory <- function(path) {
   if (dir.exists(path)) {
     return(invisible(FALSE))
-  }
-  else if (file.exists(path)) {
+  } else if (file.exists(path)) {
     usethis::ui_stop("{ui_path(path)} exists but is not a directory.")
   }
   dir.create(path, recursive = TRUE)

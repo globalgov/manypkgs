@@ -15,15 +15,15 @@ standardize_dates(...)
 }
 \section{Functions}{
 \itemize{
-\item \code{standardise_dates}: Deprecated on 2022-05-17.
+\item \code{standardise_dates()}: Deprecated on 2022-05-17.
 This wrapper function is deprecated and its functionality is included in the
 original \code{make_messydates()} function. Please refer to its documentation
 for more details about the new implementation.
 
-\item \code{standardize_dates}: Deprecated on 2022-05-17.
+\item \code{standardize_dates()}: Deprecated on 2022-05-17.
 This wrapper function is deprecated and its functionality is included in the
 original \code{make_messydates()} function. Please refer to its documentation
 for more details about the new implementation.
+
 }}
-
 \keyword{internal}

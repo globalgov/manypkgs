@@ -21,7 +21,7 @@ of the treaty.
 }
 \examples{
 \dontrun{
-m <- manyenviron::texts$AGR_TXT[200:300,]
+m <- manyenviron::agreements$HUGGO[200:300,]
 code_term(m$Title)
 code_term(m$Title, m$Text)
 }

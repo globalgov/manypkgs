@@ -71,8 +71,7 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
   }
 
   # Step three: update License
-  if (utils::askYesNo(
-    "Would you like to update package LICENSE file?") == TRUE) {
+  if (utils::askYesNo("Would you like to update package LICENSE file?") == TRUE) {
     manytemplate("LICENSE.md",
                  ignore = TRUE,
                  path = path,

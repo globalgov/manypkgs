@@ -5,18 +5,12 @@
 \alias{standardize_titles}
 \title{Standardise titles}
 \usage{
-standardise_titles(s, auth_key = NULL)
+standardise_titles(s)
 
-standardize_titles(s, auth_key = NULL)
+standardize_titles(s)
 }
 \arguments{
 \item{s}{A string}
-
-\item{auth_key}{If a DeepL authentication key is provided as an argument,
-the function detects strings in other languages
-and translates them to English.
-To get a free (or paid) DeepL authentication key please see:
-https://www.deepl.com/pro#developer}
 }
 \value{
 A capitalised, trimmed and standardised string

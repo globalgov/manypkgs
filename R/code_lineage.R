@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-#' code_lineage(database = manyenviron::texts)
+#' code_lineage(database = manyenviron::agreements)
 #' }
 #' @export
 code_lineage <- function(title = NULL, database = NULL) {
@@ -23,21 +23,22 @@ code_lineage <- function(title = NULL, database = NULL) {
     vars <- unlist(purrr::map(database, names))
     if (any("Text" == vars)) { # Find text variable in database, if available
       txt <- unname(unlist(purrr::map(database, "Text")))
-      txt <- retrieve_clauses(standardise_treaty_text(txt), "preamble")
+      txt <- read_clauses(standardise_treaty_text(txt), "preamble")
     }
   }
   # code entity and actions for titles
   title <- stringi::stri_trans_general(title, id = "Latin-ASCII")
   entity <- code_entity(title)
   domain <- code_domain(title)
-  parties <- code_parties(title)
+  parties <- code_states(title)
   # Get entity and actions from preamble if missing from title
   if (exists("txt")) {
     entity <- ifelse(is.na(entity), code_entity(txt), entity)
     domain <- ifelse(is.na(domain), code_domain(txt), domain)
   }
   # Paste all together
-  lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain), paste0(entity, " - ", domain))
+  lineage <- ifelse(is.na(entity), paste0(parties, " - ", domain),
+                    paste0(entity, " - ", domain))
   lineage <- gsub("- NA|NULL", "", lineage)
   lineage <- trimws(gsub("^-", "", lineage))
   lineage
@@ -47,10 +48,9 @@ code_lineage <- function(title = NULL, database = NULL) {
 #'
 #' @param title Treaty titles
 #' @return The region of the agreement
-#' @importFrom entity location_entity
 #' @importFrom stringr str_squish
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
 #' code_entity(title)
 #' }
@@ -58,6 +58,13 @@ code_lineage <- function(title = NULL, database = NULL) {
 code_entity <- function(title) {
   # Add a note about JavaScript
   usethis::ui_info("Please make sure JavaScript is installed.")
+  # Download entity package
+  pkgs <- NULL
+  pkgs <- data.frame(utils::installed.packages())
+  if (any(grepl("entity", pkgs$Package))) {
+    remotes::install_github("trinker/entity")
+    usethis::ui_info("Downloaded entity package.")
+  }
   # Make sure necessary model is available (adapted from entity package)
   outcome <- "openNLPmodels.en" %in% list.files(.libPaths())
   if (!outcome) {
@@ -66,8 +73,23 @@ code_entity <- function(title) {
       repos = NULL,
       type = "source")
   }
+  suppressWarnings(requireNamespace("entity", quietly = TRUE))
   # Code entity
-  out <- entity::location_entity(title)
+  out <- suppressWarnings(entity::location_entity(title))
+  # Code entity (using spacy for better results)
+  # # Add a note about python
+  # usethis::ui_info("Please make sure spacyr, minicinda, python, and spacy are installed.
+  #                   This can be done by running 'spacyr::spacy_install()'")
+  # spacyr::spacy_initialize()
+  # out <- spacyr::entity_extract(spacyr::spacy_parse(title, entity = TRUE),
+  #                       type = "named")
+  #   dplyr::filter()
+  #   dplyr::group_by(doc_id) %>%
+  #   dplyr::summarise(entity_type = paste(entity_type, collapse = ", "),
+  #                    entity = paste(gsub("_", " ", entity), collapse = ", "))
+  # title <- data.frame(title)
+  # title$doc_id <- paste0("text", as.numeric(rownames(title)))
+  # out <- dplyr::left_join(title, out, by = "doc_id")
   # Remove states
   parties <- paste(countrynames$c, collapse = "|")
   out <- gsub(parties, "", out, ignore.case = TRUE)
@@ -85,7 +107,7 @@ code_entity <- function(title) {
 #' @return The domain taken from agreement title
 #' @importFrom dplyr case_when
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' title <- sample(manyenviron::agreements$IEADB$Title, 30)
 #' code_domain(title)
 #' }

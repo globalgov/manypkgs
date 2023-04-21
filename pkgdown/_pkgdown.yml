@@ -36,6 +36,8 @@ navbar:
         href: articles/contributor.html
       - text: Agreements
         href: articles/agreements.html
+      - text: Text
+        href: articles/treaties.html
     news:
       text: News
       href: news/index.html
@@ -69,12 +71,12 @@ reference:
       - starts_with("standardise")
       - starts_with("code")
       - condense_agreements
+      - read_clauses
   - title: "Other utility functions"
     desc: "Other utility functions that are useful during the creation of a new package"
     contents:
       - depends
       - retain
-      - starts_with("retrieve")
       - convert_pdf
 footer:
   structure:

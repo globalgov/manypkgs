@@ -8,7 +8,7 @@
 #' of the treaty
 #' @examples
 #' \dontrun{
-#' m <- manyenviron::texts$AGR_TXT[200:300,]
+#' m <- manyenviron::agreements$HUGGO[200:300,]
 #' code_term(m$Title)
 #' code_term(m$Title, m$Text)
 #' }
@@ -42,8 +42,8 @@ code_term <- function(title, text = NULL) {
                      grepl("\\d{1,2}.\\w{3,}.\\d{4} To \\d{1,2}.\\w{3,}.\\d{4}",
                            title, ignore.case = T), paste0("EXP"), NA)
     # Get the termination clauses
-    term <- retrieve_clauses(standardise_treaty_text(text),
-                             article = "termination")
+    term <- read_clauses(standardise_treaty_text(text),
+                         article = "termination")
     # Classify them according to key terms
     term <- dplyr::case_when(
       grepl("shall terminate the agreement|shall supersede|shall.*supplant",
@@ -89,9 +89,9 @@ code_term <- function(title, text = NULL) {
 #' treaty
 #' @importFrom stringr str_remove_all str_extract_all
 #' @examples
-#' \donttest{
-#' GNEVAR <- dplyr::slice_sample(manyenviron::agreements$GNEVAR, n = 200)
-#' code_term_date(GNEVAR$Title)
+#' \dontrun{
+#' HUGGO <- dplyr::slice_sample(manyenviron::agreements$HUGGO, n = 200)
+#' code_term_date(HUGGO$Title)
 #' }
 #' @export
 code_term_date <- function(title, text = NULL) {

@@ -17,7 +17,7 @@
 #' at a later stage with the `retrieve_clauses()` function.
 #' @examples
 #' \dontrun{
-#' standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+#' standardise_treaty_text(sample(manyenviron::agreements$HUGGO$MainText, 30))
 #' }
 #' @export
 standardise_treaty_text <- function(textvar) {
@@ -25,15 +25,21 @@ standardise_treaty_text <- function(textvar) {
     x <- unlist(x)
     x <- stringi::stri_trans_general(tolower(as.character(x)),
                                      id = "Latin-ASCII")
-    x <- stringr::str_replace_all(x, "\nannex|\n annex|\\.\\sannex\\s|\\.annex\\s|
-                                  |\\d\\sannex\\s", " ANNEX ")
+    x <- stringr::str_replace_all(x, "\nannex| \nannex|\n annex| \n annex|
+                                  |\\.\\sannex\\s|\\.annex\\s|
+                                  |\\d\\sannex\\s", ". ANNEX ")
     x <- stringr::str_replace_all(x, "\narticle|\n article|\nart\\.|\n art\\.|
-                                  |\\.\\sarticle\\s|\\.article\\s", " ARTICLE ")
+                                  |\\.\\sarticle\\s|\\.article\\s|\nchapter|
+                                  |\n chapter|\\.\\schapter\\s|\\.chapter\\s|
+                                  | \narticle| \n article",
+                                  ". ARTICLE ")
     x <- stringr::str_replace_all(x, "\nappendix|\n appendix|\\.\\sappendix\\s|
-                                  |\\.appendix\\s", " APPENDIX ")
+                                  |\\.appendix\\s| \nappendix| \n appendix",
+                                  ". APPENDIX ")
     x <- stringr::str_replace_all(x, "\nprotocol|\n protocol|\\.\\sprotocol\\s|
-                                  |\\.protocol\\s|\\d\\sprotocol\\s",
-                                  " PROTOCOL ")
+                                  |\\.protocol\\s|\\d\\sprotocol\\s|
+                                  | \nprotocol| \n protocol",
+                                  ". PROTOCOL ")
     x <- stringr::str_remove_all(x, "(http\\:\\/\\/)(.+)(?=\\s)")
     x <- stringr::str_remove_all(x, "(?<=\\<)(.+)(?=\\>)")
     x <- stringr::str_remove_all(x, "\r|\t|\n")

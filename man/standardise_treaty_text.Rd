@@ -29,6 +29,6 @@ at a later stage with the \code{retrieve_clauses()} function.
 }
 \examples{
 \dontrun{
-standardise_treaty_text(sample(manyenviron::texts$AGR_TXT$Text, 30))
+standardise_treaty_text(sample(manyenviron::agreements$HUGGO$MainText, 30))
 }
 }
