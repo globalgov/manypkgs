@@ -58,33 +58,15 @@ manydata::get_packages()
 ```
 
     ## # A tibble: 7 × 6
-    ##   name        full_name            
-    ##   <chr>       <chr>                
-    ## 1 manydata    globalgov/manydata   
-    ## 2 manyenviron globalgov/manyenviron
-    ## 3 manyhealth  globalgov/manyhealth 
-    ## 4 manypkgs    globalgov/manypkgs   
-    ## 5 manystates  globalgov/manystates 
-    ## 6 manytrade   globalgov/manytrade  
-    ## 7 messydates  globalgov/messydates 
-    ##   description                                                          
-    ##   <chr>                                                                
-    ## 1 An R portal for ensembled global governance data                     
-    ## 2 R Package for ensembled data on environmental agreements             
-    ## 3 An R package for ensembled data on international health organisations
-    ## 4 Support for creating new manyverse packages                          
-    ## 5 An R package for ensembled data on sovereign states                  
-    ## 6 An R package for ensembled data on trade agreements                  
-    ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
-    ##   installed latest        updated   
-    ##   <chr>     <chr>         <date>    
-    ## 1 0.7.5     0.7.5         2022-06-07
-    ## 2 0.1.2     0.1.2         2022-03-16
-    ## 3 <NA>      0.1.1-272ea19 2022-02-15
-    ## 4 0.2.2     0.2.1         2022-02-18
-    ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.2     0.1.2         2022-07-14
-    ## 7 0.3.1     0.3.0         2022-07-04
+    ##   Name        Repository            Installed Latest Updated    Description     
+    ##   <chr>       <chr>                 <chr>     <chr>  <date>     <chr>           
+    ## 1 manydata    globalgov/manydata    0.8.2     0.8.2  2022-11-17 An R portal for…
+    ## 2 manyenviron globalgov/manyenviron 0.3.0     0.3.0  2023-03-22 Ensembled data …
+    ## 3 manyhealth  globalgov/manyhealth  0.1.1     0.2.0  2023-02-14 Ensembled data …
+    ## 4 manypkgs    globalgov/manypkgs    0.3.0     0.3.0  2023-04-21 Support for cre…
+    ## 5 manystates  globalgov/manystates  0.1.0     0.2.0  2022-10-17 Ensembled data …
+    ## 6 manytrade   globalgov/manytrade   0.3.0     0.3.0  2023-03-22 Ensembled data …
+    ## 7 messydates  globalgov/messydates  0.3.5     0.3.5  2023-01-20 An R package fo…
 
 Please see [the website](https://globalgov.github.io/manypkgs/) for more
 information about how to use `{manypkgs}` as a developer or as a data
