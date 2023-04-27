@@ -91,7 +91,7 @@
 "Convention de délimitation maritime entre le Gouvernement de la République française et le Gouvernement des îles Cook (ensemble une annexe), signée à Rarotonga le 3 août 1990","1990-08-03","ECOLEX30",0,0
 "Accord entre le Gouvernement de la République française et le Gouvernement de la République fédérale d'Allemagne relatif au contrat concernant les droits de propriété de la France sur la forêt du Mundat, conformément à l'accord du 10 mai 1984, signé à Nancy le 28 août 1990","1990-08-28","ECOLEX31",1,1
 "Agreement Between France And Germany Regarding Contracts Concerning Property Rights Of France In The Mundat Forest, Conforming To The Agreement Of 10 May 1984","1990-08-28","IEADB38",1,1
-"Agreement between the Government of the Union of Soviet Socialist republics and the Government of the Democratic People’s Republic of Korea concerning the regime of the Soviet-Korean State frontier of 1990","1990-09-03","ECOLEX32",0,0
+"Agreement between the Government of the Union of Soviet Socialist republics and the Government of the Democratic Peoples Republic of Korea concerning the regime of the Soviet-Korean State frontier of 1990","1990-09-03","ECOLEX32",0,0
 "Agreement between the European Economic Community and the Republic of Cote d'Ivoire on fishing off the coast of Cote d'Ivoire","1990-09-06","ECOLEX33",1,0
 "Agreement Between The European Economic Community And The Republic Of Cote D'ivoire On Fishing Off The Coast Of Cote D'ivoire","1990-09-06","HEIDI24",1,0
 "Agreement On The Organization For Indian Ocean Marine Affairs Cooperation","1990-09-07","HEIDI25",1,0
@@ -164,6 +164,14 @@
 "Agreement Between The European Economic Community And The United Republic Of Tanzania On Fishing Off Tanzania","1990-12-19","HEIDI44",1,0
 "Protocol Setting Out The Fishing Opportunities And Financial Payments Provided For Under The Agreement Between The European Economic Community And The United Republic Of Tanzania On Fishing Off Tanzania","1990-12-19","HEIDI45",1,0
 "Agreement establishing common fisheries surveillance zones of participating member States of the Organisation of Eastern Caribbean States, 1991","1991","CIESIN1",1,1
+"Agreement for the Establishment of Southern African Centre for Ivory Marketing (SACIM)","1991","CIESIN2",1,1
+"Agreement for the Establishment of the Intergovernmental Organization for Marketing Information and Cooperation Services for Fishery Products in Africa ( INFOPECHE)","1991","CIESIN3",1,1
+"Agreement on the Conservation of Bats in Europe","1991","CIESIN4",1,1
+"Amendment to the Treaty for the Prohibition of Nuclear Weapons in Latin America","1991","CIESIN5",1,1
+"Annex I to the Protocol on Environmental Protection to the Antarctic Treaty - Environmental Impact Assesment","1991","CIESIN6",1,0
+"Annex II to The Protocol on Environmental Protection to the Antarctic Treaty - Conservation of Antarctic Fauna and Flora","1991","CIESIN7",1,0
+"Annex III to the Protocol on Environmental Protection to the Antarctic Treaty - Waste Disposal and Waste Management","1991","CIESIN8",1,0
+"Annex IV to the Protocol on Environmental Protection to the Antarctic Treaty - Prevention of marine pollution","1991","CIESIN9",1,0
 "Annex V to the Protocol on Environmental Protection to the Antarctic Treaty - Area Protection and Management","1991","CIESIN10",1,0
 "Convention concerning the Protection of Alps","1991","CIESIN11",1,0
 "Convention on Environmental Impact Assessment in a Transboundary Context","1991","CIESIN12",1,0
@@ -174,16 +182,8 @@
 "Protocol additionnal to the Convention for the Protection of the Rhine from Pollution by Chlorides","1991","CIESIN17",1,0
 "Protocol to the 1979 Convention on Long-Range Transboundary Air Pollution concerning the Control of Emissions of Volatile Organic Compounds or their Transboundary Fluxes","1991","CIESIN18",1,1
 "Protocol to the Antarctic Treaty on Environmental Protection","1991","CIESIN19",1,1
-"Agreement for the Establishment of Southern African Centre for Ivory Marketing (SACIM)","1991","CIESIN2",1,1
 "Protocol to the Convention of 8 October 1990 between the Governments of the Federal Republic of Germany and the Slovak Federal Republic and the European Economic Community on the International Commission for the Protection of the Elbe","1991","CIESIN20",1,1
 "Treaty Establishing the African Economic Community","1991","CIESIN21",1,0
-"Agreement for the Establishment of the Intergovernmental Organization for Marketing Information and Cooperation Services for Fishery Products in Africa ( INFOPECHE)","1991","CIESIN3",1,1
-"Agreement on the Conservation of Bats in Europe","1991","CIESIN4",1,1
-"Amendment to the Treaty for the Prohibition of Nuclear Weapons in Latin America","1991","CIESIN5",1,1
-"Annex I to the Protocol on Environmental Protection to the Antarctic Treaty - Environmental Impact Assesment","1991","CIESIN6",1,0
-"Annex II to The Protocol on Environmental Protection to the Antarctic Treaty - Conservation of Antarctic Fauna and Flora","1991","CIESIN7",1,0
-"Annex III to the Protocol on Environmental Protection to the Antarctic Treaty - Waste Disposal and Waste Management","1991","CIESIN8",1,0
-"Annex IV to the Protocol on Environmental Protection to the Antarctic Treaty - Prevention of marine pollution","1991","CIESIN9",1,0
 "Protocol setting out the fishing opportunities and financial contribution provided for in the Agreement between the European Economic Community and the Islamic Federal Republic of the Comoros on fishing off the Comoros for the period 20 July 1991 to 19 July 1994","1991-01-01","HEIDI46",0,0
 "Convention establishing the Agency for the development of Joint Works","1991-01-05","HEIDI47",1,0
 "Convention establishing the Agency for the development of Joint Works","1991-01-05","IEADB61",1,0
@@ -298,11 +298,11 @@
 "Protocol Additional To The Convention For The Protection Of The Rhine From Pollution By Chlorides","1991-09-25","HEIDI70",1,0
 "Protocol Additional To The Convention For The Protection Of The Rhine From Pollution By Chlorides","1991-09-25","IEADB112",1,0
 "Bilateral Agreement between Norway and Hungary on cooperation in environmental protection","1991-09-27","IEADB113",0,0
-"Protocol to the Antarctic Treaty on Environmental Protection","1991-10-04","ECOLEX100",1,1
 "Annex IV to the Protocol on Environmental Protection to the Antarctic Treaty - Prevention of marine pollution","1991-10-04","ECOLEX96",1,0
 "Annex III to the Protocol on Environmental Protection to the Antarctic Treaty - Waste Disposal and Waste Management","1991-10-04","ECOLEX97",1,0
 "Annex I to the Protocol on Environmental Protection to the Antarctic Treaty - Environmental Impact Assesment","1991-10-04","ECOLEX98",1,0
 "Annex II to The Protocol on Environmental Protection to the Antarctic Treaty - Conservation of Antarctic Fauna and Flora","1991-10-04","ECOLEX99",1,0
+"Protocol to the Antarctic Treaty on Environmental Protection","1991-10-04","ECOLEX100",1,1
 "Protocol On Environmental Protection To The Antarctic Treaty","1991-10-04","HEIDI71",1,1
 "Protocol On Environmental Protection To The Antarctic Treaty","1991-10-04","IEADB114",1,1
 "Agreement On A Grant In Aid For The Belgrade Environmental Project Between The Socialist Federal Republic Of Yugoslavia And Mbor As The Coordinator Of The Grant-In-Aid Fund Provided By Japan","1991-10-04","IEADB115",0,0
@@ -348,16 +348,43 @@
 "Agreement For The Establishment Of The Intergovernmental Organization For Marketing Information And Cooperation Services For Fishery Products In Africa","1991-12-13","IEADB131",1,1
 "European Energy Charter","1991-12-17","ECOLEX112",0,0
 "Acuerdo de Transporte Fluvial por la Hidrovia Paraguay - Parana","1992","CIESIN22",0,0
-"Acuerdo entre los Gobiernos de la Republica Argentina, de la Republica de Bolivia y de la Republica del Paraguay sobre Aprovechamiento Multiple de la cuenca del Rio Pilcomayo","1992","CIESIN23",0,0
-"Agreement between the Government of the Russian Federation, the Government of Ukraine and the Government of the Republic of Hungary on cooperation in the field of transportation of nuclear fuel between the Republic of Hungary and the Russian Federation across the territory of the Ukraine (1992)","1992","CIESIN24",0,0
+"Acuerdo entre los Gobiernos de la Republica Argentina, de la Republica de Bolivia y de la Republica del Paraguay sobre Aprovechamiento Multiple de la cuenca del Rio Pilcomayo","1992","CIESIN23",1,0
+"Agreement between the Government of the Russian Federation, the Government of Ukraine and the Government of the Republic of Hungary on cooperation in the field of transportation of nuclear fuel between the Republic of Hungary and the Russian Federation across the territory of the Ukraine (1992)","1992","CIESIN24",1,0
 "Agreement between the Governments of Ukraine, Azerbaijan and the Islamic Republic of Iran on cooperation in oil and gas sector","1992","CIESIN25",1,0
 "Agreement between the Republic of Kazakhstan , the Republic of Kyrgyzstan, the Republic of Uzbekistan, the Republic of Tajikistan and Turkmenistan on cooperation in the field of joint water resources management and conservation of interstate sources","1992","CIESIN26",1,1
 "Agreement on cooperation in the sphere of ecology and environment protection","1992","CIESIN27",1,0
-"Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas","1992","CIESIN28",0,0
-"Agreement on the European Economic Area","1992","CIESIN29",0,0
-"Agreement on the Protection of the State Boundaries and Maritime Economic Zones of the States-Participants of the Commonwealth of Independent States, 1992","1992","CIESIN30",0,0
-"Agreement on the cooperation in research, conservation and management of marine mammals in the North Atlantic","1992","CIESIN31",0,0
+"Agreement on the Conservation of Small Cetaceans of the Baltic and North Seas","1992","CIESIN28",1,0
+"Agreement on the European Economic Area","1992","CIESIN29",1,0
+"Agreement on the Protection of the State Boundaries and Maritime Economic Zones of the States-Participants of the Commonwealth of Independent States, 1992","1992","CIESIN30",1,0
+"Agreement on the cooperation in research, conservation and management of marine mammals in the North Atlantic","1992","CIESIN31",1,0
 "Amendment to the Montreal Protocol on Substances that Deplete the Ozone Layer","1992","CIESIN32",1,1
+"Convention for the Conservation of Anadromous Stocks","1992","CIESIN33",1,0
+"Convention for the Conservation of the Biodiversity and the Protection of Wilderness Areas in Central America","1992","CIESIN34",1,0
+"Convention for the Protection of the Marine Environment of the North-East Atlantic","1992","CIESIN35",0,0
+"Convention on Biological Diversity","1992","CIESIN36",1,0
+"Convention on Transboundary Effects of Industrial Accidents","1992","CIESIN37",1,0
+"Convention on the Prohibition of the Development Production and their Destruction","1992","CIESIN38",1,1
+"Convention on the Protection and Use of Transboundary Watercourses and International Lakes","1992","CIESIN39",1,0
+"Convention on the Protection of the Black Sea against Pollution","1992","CIESIN40",1,0
+"Convention on the Protection of the Marine Environment of the Baltic Sea Area","1992","CIESIN41",1,0
+"Cooperation Agreement on the Forecast, Prevention and Mitigation of Natural and Technological Disasters","1992","CIESIN42",1,0
+"International Sugar Agreement, 1992","1992","CIESIN43",1,0
+"La Jolla Agreement for the Reduction of Dolphin Mortality in the Eastern Pacific Ocean","1992","CIESIN44",1,0
+"Niue Treaty on Cooperation in Fisheries Surveillance and Law Enforcement in the South Pacific Region","1992","CIESIN45",1,0
+"Palau Arrangement for the Management of the Western Pacific Purse Seine Fishery","1992","CIESIN46",1,0
+"Protocol on Cooperation in Combating Pollution of the Black Sea Marine Environment by Oil and other Harmful Substances in Emergency Situations","1992","CIESIN47",1,1
+"Protocol on the Protection of the Black Sea Marine Environment against Pollution by Dumping","1992","CIESIN48",1,0
+"Protocol on the Protection of the Black Sea Marine Environment against Pollution from Land-Based Sources","1992","CIESIN49",1,0
+"Protocol to amend Paragraph 2 of Article X of the International Convention for the Conservation of Atlantic Tunas","1992","CIESIN50",1,0
+"Protocol to amend the International Convention on Civil Liability for Oil Pollution Damage","1992","CIESIN51",1,0
+"Protocol to amend the International Convention on the Establishment of an International Fund for Compensation for Oil Pollution Damage","1992","CIESIN52",1,0
+"Protocole complementaire no 2 au Protocole concernant la constitution d'une Commission internationale pour la protection de la Moselle contre la pollution, signe a Paris le 20 decembre 1961 et au Protocole concernant la constitution d'une Commission internationale pour la protection de la Sarre contre la pollution signe a Paris le 20 decembre 1961 ainsi qu'au protocole complementaire a ces deux protocoles signe a Bruxelles le 22 mars 1990","1992","CIESIN53",1,1
+"Protocolo sobre el Programa para el estudio regional del fenomeno El Ni?o en el Pacifico Sudeste","1992","CIESIN54",1,1
+"Regional Agreement on the transboundary movement of hazardous wastes","1992","CIESIN55",1,1
+"Statuts de l'Agence africaine de biotechnologie","1992","CIESIN56",0,0
+"Treaty of the Southern African Development Community","1992","CIESIN57",1,0
+"Treaty on European Union","1992","CIESIN58",1,1
+"United Nations Framework Convention on Climate Change","1992","CIESIN59",1,0
 "Protocol establishing, for the period from 1 January 1992 to 31 December 1993, the fishing rights and financial compensation provided for in the Agreement between the European Economic Community and the Government of the Republic of Guinea on fishing off the Guinean coast","1992-01-01","HEIDI85",0,0
 "Agreement between the Government of the Russian Federation and the Government of Canada on delivery of grain","1992-01-02","ECOLEX113",0,0
 "Agreement between the Governments of Ukraine, Azerbaijan and the Islamic Republic of Iran on cooperation in oil and gas sector","1992-01-07","ECOLEX114",1,0
@@ -372,7 +399,7 @@
 "Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Regulaton 6 of Annex IV)","1992-02-04","IEADB133",0,0
 "Protocol Of Amendment To The European Convention For The Protection Of Animals Kept For Farming Purposes","1992-02-06","HEIDI89",1,0
 "Protocol Of Amendment To The European Convention For The Protection Of Animals Kept For Farming Purposes","1992-02-06","IEADB134",1,0
-"Treaty on European Union (amended by the Treaty of Lisbon)","1992-02-07","ECOLEX119",0,1
+"Treaty on European Union (amended by the Treaty of Lisbon)","1992-02-07","ECOLEX119",1,1
 "Agreement on cooperation in the sphere of ecology and environment protection","1992-02-08","ECOLEX120",1,0
 "Agreement on cooperation in the field of ecology and environmental protection","1992-02-08","HEIDI90",1,0
 "Agreement on cooperation in the field of ecology and environmental protection","1992-02-08","IEADB135",1,0
@@ -387,7 +414,9 @@
 "Agreement On Cooperation In The Field Of Joint Water Resources Management And Conservation Of Interstate Sources","1992-02-18","IEADB139",1,1
 "Agreement on Mutual Fisheries between Estonia and the Faeroe Islands","1992-02-20","ECOLEX123",0,0
 "Agreement between the Government of the United States of America and the Government of the Republic of Chile concerning the establishment of an enterprise for the Americas Environmental Fund and Environmental Board","1992-02-27","ECOLEX124",1,0
+"Agreement between the Ministry of Agriculture of the Russian Federation and the Ministry of Agriculture of Hungary on cooperation and establishment of economic, scientific, technical production ties","1992-02-27","ECOLEX125",0,0
 "Agreement Between The Government Of The United States of America And The Government Of The Republic Of Chile Concerning The Establishment Of An Enterprise For The Americas Environmental Fund And Environmental Board","1992-02-27","HEIDI94",1,0
+"Agreement Between The Government Of The United States of America And The Government Of The Republic Of Chile Concerning The Establishment Of An Enterprise For The Americas Environmental Fund And Environmental Board","1992-02-27","IEADB140",1,0
 "Agreement Between The Government Of Australia And The Government Of The United Mexican States Concerning Cooperation In Peaceful Uses Of Nuclear Energy","1992-02-28","IEADB141",0,0
 "Amendments To Annex I Of The International Convention For The Prevention Of Pollution From Ships","1992-03-06","IEADB142",0,0
 "Protocolo entre el Reino de España y la Republica Portuguesa sobre cooperación técnica y asistencia mutua en materia de protección civil","1992-03-09","ECOLEX126",0,0
@@ -399,3 +428,574 @@
 "Treaty on the Development and Utilisation of the Water Resources of the Komati River Basin between the Government of the Republic of South Africa and the government of the Kingdom of Swaziland","1992-03-13","IEADB144",1,1
 "Treaty on the Establishment and Functioning of the Joint Water Commission between the Government of the Republic of South Africa and the Government of the Kingdom of Swaziland","1992-03-13","IEADB145",1,1
 "Treaty On Development And Utilization Of The Water Resources Of The Komati River Basin Between The Kingdom Of Swaziland And The Government Of The Republic Of South Africa","1992-03-13","IEADB146",1,1
+"Convention on the Transboundary Effects of Industrial Accidents","1992-03-17","ECOLEX129",1,0
+"Convention on the Protection and Use of Transboundary Watercourses and International Lakes","1992-03-17","ECOLEX130",1,0
+"Agreement on the Conservation of Small Cetaceans of the Baltic, North East Atlantic, Irish and North Seas","1992-03-17","ECOLEX131",0,0
+"Convention On The Protection And Use Of Transboundary Watercourses And International Lakes","1992-03-17","HEIDI97",1,0
+"Convention On The Transboundary Effects Of Industrial Accidents","1992-03-17","HEIDI98",1,0
+"Agreement On The Conservation Of Small Cetaceans Of The Baltic And North Seas","1992-03-17","HEIDI99",1,0
+"Convention On The Protection And Use Of Transboundary Watercourses And International Lakes","1992-03-17","IEADB147",1,0
+"Convention On The Transboundary Effects Of Industrial Accidents","1992-03-17","IEADB148",1,0
+"Agreement On The Conservation Of Small Cetaceans Of The Baltic And North Seas","1992-03-17","IEADB149",1,0
+"International Sugar Agreement, 1992","1992-03-20","ECOLEX132",1,0
+"Agreement on the Protection of the State Boundaries and Maritime Economic Zones of the States-Participants of the Commonwealth of Independent States, 1992","1992-03-20","ECOLEX133",1,0
+"Acuerdo entre los Gobiernos de la Republica Argentina, de la Republica de Bolivia y de la Republica del Paraguay sobre Aprovechamiento Multiple de la cuenca del Rio Pilcomayo","1992-03-26","ECOLEX134",1,0
+"Agreement Between The Republic Of Estonia And The Kingdom Of Sweden On Cooperation In The Field Of Environment","1992-03-30","HEIDI100",1,0
+"Agreement Between The Republic Of Latvia And The Kingdom Of Sweden On Cooperation In The Field Of Environment","1992-03-30","IEADB150",0,0
+"Agreement Between The Republic Of Lithuania And The Kingdom Of Sweden On Cooperation In The Field Of Environment","1992-03-30","IEADB151",0,0
+"Agreement Between The Republic Of Estonia And The Kingdom Of Sweden On Cooperation In The Field Of Environment","1992-03-30","IEADB152",1,0
+"Agreement between the Government of the Russian Federation and the Government of Lithuania on cooperation in the sphere of development and application of new technologies for extraction of valuable components from ore deposits and ore mining and smelting industrial waste","1992-04-02","ECOLEX135",0,0
+"Agreement on the cooperation in research, conservation and management of marine mammals in the North Atlantic","1992-04-09","ECOLEX136",1,0
+"Convention on the Protection of the Marine Environment of the Baltic Sea Area","1992-04-09","ECOLEX137",1,0
+"Agreement On Cooperation In Research, Conservation And Management Of Marine Mammals In The North Atlantic","1992-04-09","HEIDI101",1,0
+"Convention On The Protection Of The Marine Environment Of The Baltic Sea Area","1992-04-09","HEIDI102",1,0
+"Agreement On Cooperation In Research, Conservation And Management Of Marine Mammals In The North Atlantic","1992-04-09","IEADB153",1,0
+"Convention On The Protection Of The Marine Environment Of The Baltic Sea Area","1992-04-09","IEADB154",1,0
+"La Jolla Agreement for the Reduction of Dolphin Mortality in the Eastern Pacific Ocean","1992-04-21","ECOLEX138",1,0
+"Protocol on the Protection of the Black Sea Marine Environment against Pollution from Land-Based Sources","1992-04-21","ECOLEX139",1,0
+"Protocol on Cooperation in Combating Pollution of the Black Sea Marine Environment by Oil and other Harmful Substances in Emergency Situations","1992-04-21","ECOLEX140",1,1
+"Protocol on the Protection of the Black Sea Marine Environment against Pollution by Dumping","1992-04-21","ECOLEX141",1,0
+"Convention on the Protection of the Black Sea against Pollution","1992-04-21","ECOLEX142",1,0
+"Protocol On Cooperation In Combating Pollution Of The Black Sea Marine Environment By Oil And 3 Harmful Substances In Emergency Situations","1992-04-21","HEIDI103",1,1
+"Protocol On The Protection Of The Black Sea Marine Environment Against Pollution By Dumping","1992-04-21","HEIDI104",1,0
+"Protocol On The Protection Of The Black Sea Marine Environment Against Pollution From Land-Based Sources","1992-04-21","HEIDI105",1,0
+"Convention On The Protection Of The Black Sea Against Pollution","1992-04-21","HEIDI106",1,0
+"Protocol On Cooperation In Combating Pollution Of The Black Sea Marine Environment By Oil And Other Harmful Substances In Emergency Situations","1992-04-21","IEADB155",1,1
+"Protocol On The Protection Of The Black Sea Marine Environment Against Pollution By Dumping","1992-04-21","IEADB156",1,0
+"Protocol On The Protection Of The Black Sea Marine Environment Against Pollution From Land-Based Sources","1992-04-21","IEADB157",1,0
+"Convention On The Protection Of The Black Sea Against Pollution","1992-04-21","IEADB158",1,0
+"La Jolla Agreement On The Reduction Of Dolphin Mortality In The Eastern Pacific Ocean","1992-04-21","IEADB159",1,0
+"Agreement between the Government of Australia and the Government of the Republic of Indonesia relating to Cooperation in Fisheries","1992-04-22","HEIDI107",1,0
+"Agreement between the Government of Australia and the Government of the Republic of Indonesia relating to Cooperation in Fisheries","1992-04-22","IEADB160",1,0
+"La Jolla Agreement On The Reduction Of Dolphin Mortality In The Eastern Pacific Ocean","1992-04-23","HEIDI108",1,0
+"Agreement between the Government of Belarus and the Government of Poland on basic principles of transboundary cooperation","1992-04-24","ECOLEX143",0,0
+"Agreement between the Ministry of Agriculture of the Russian Federation and the Ministry of Agriculture of Mongolia on economic, scientific, and technical cooperation in the sphere of agro-industrial complex","1992-04-24","ECOLEX144",0,0
+"Agreement Between The Government Of Finland And The Government Of The Russian Federation On Cooperation In The Field Of Environmental Protection","1992-04-29","HEIDI109",1,0
+"Agreement Between The Government Of Finland And The Government Of The Russian Federation On Cooperation In The Field Of Environmental Protection","1992-04-29","IEADB161",1,0
+"Agreement Between The Government Of The Republic Of Estonia Of The One Part And The Government Of Denmark And The Home Government Of The Faroe Islands Of The other Part On Mutual Fisheries Relations Between Estonia And The Faroe Islands","1992-05-01","HEIDI110",1,0
+"Agreement Between The Government Of The Republic Of Estonia Of The One Part And The Government Of Denmark And The Home Government Of The Faroe Islands Of The Other Part On Mutual Fisheries Relations Between Estonia And The Faroe Islands","1992-05-01","IEADB162",1,0
+"Agreement on the European Economic Area","1992-05-02","ECOLEX145",1,0
+"Agreement in the form of an exchange of letters between the European Economic Community and the Kingdom of Sweden concerning fisheries","1992-05-02","HEIDI111",0,0
+"Environmental Cooperation-Agreement Between the United States of America and Ukraine of 1992","1992-05-07","ECOLEX146",1,0
+"Environmental Cooperation Agreement Between The United States of America And Ukraine Of 1992","1992-05-07","HEIDI112",1,0
+"Environmental Cooperation Agreement Between The United States of America And Ukraine Of 1992","1992-05-07","IEADB163",1,0
+"United Nations Framework Convention on Climate Change","1992-05-09","ECOLEX147",1,0
+"United Nations Framework Convention On Climate Change","1992-05-09","HEIDI113",1,0
+"United Nations Framework Convention On Climate Change","1992-05-09","IEADB164",1,0
+"Agreement establishing the Inter-American Institute for Global Change Research","1992-05-13","ECOLEX148",1,0
+"Agreement Establishing The Inter-American Institute For Global Change Research","1992-05-13","HEIDI114",1,0
+"Agreement Establishing The Inter-American Institute For Global Change Research","1992-05-13","IEADB165",1,0
+"Amendments to the Treaty On Fisheries Between The Governments Of Certain Pacific Island States And The Government Of The United States of America","1992-05-14","IEADB166",0,0
+"Memorandum of Understanding between the Government of Canada and the Government of Lithuania on Mutual Fisheries Relations","1992-05-15","ECOLEX149",0,0
+"Agreement between the Government of the Hellenic Republic and the Government of the State of Israel on economic, industrial and technological co-operation","1992-05-18","ECOLEX150",0,0
+"Agreement between the Federal Republic of Germany and the Republic of Poland on cooperation on water resource management","1992-05-19","ECOLEX151",1,1
+"Agreement Between The Federal Republic Of Germany And The Republic Of Poland On Cooperation On Water Resource Management In The Border Waters","1992-05-19","HEIDI115",1,1
+"Agreement Between The Federal Republic Of Germany And The Republic Of Poland On Cooperation On Water Resource Management In The Border Waters","1992-05-19","IEADB167",1,1
+"Agreement between the Federal Republic of Germany and the Government of Estonia on cooperation on the environment","1992-05-25","ECOLEX152",1,0
+"Agreement on friendship, cooperation and mutual assistance between the Russian Federation and Kazakhstan","1992-05-25","ECOLEX153",0,0
+"Agreement Between The Federal Republic Of Germany And The Government Of Estonia On Cooperation On The Environment","1992-05-25","HEIDI116",1,0
+"Agreement Between The Federal Republic Of Germany And The Government Of Estonia On Cooperation On The Environment","1992-05-25","IEADB168",1,0
+"Agreement between the Government of the Russian Federation and the Government of the Federal Republic of Germany about cooperation in the field of environmental protection (framework agreement)","1992-05-28","HEIDI117",1,1
+"Agreement between the Ministry of Ecology and Natural Resources of the Russian Federation and the Federal Ministry of Environment, Conservation and Safety of Nuclear Reactors of the Republic of Germany about assistance to development of the economic cooperation directed on the solution of problems in the field of environmental protection (about creation of Ecological bureau)","1992-05-28","HEIDI118",1,1
+"Agreement between the Government of the Russian Federation and the Government of the Federal Republic of Germany about cooperation in the field of environmental protection","1992-05-28","IEADB169",1,1
+"Agreement between the Ministry of Ecology and Natural Resources of the Russian Federation and the Federal Ministry of Environment, Conservation and Safety of Nuclear Reactors about assistance to development of the economic cooperation directed on the solution of problems in the field of environmental protection (about creation of Ecological bureau)","1992-05-28","IEADB170",1,1
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The United States of America Concerning Fisheries Off The Coasts Of The United States","1992-06-01","HEIDI119",1,0
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The United States of America Concerning Fisheries Off The Coasts Of The United States","1992-06-01","IEADB171",1,0
+"Protocol to amend Paragraph 2 of Article X of the International Convention for the Conservation of Atlantic Tunas","1992-06-05","ECOLEX154",1,0
+"Convention for the Conservation of the Biodiversity and the Protection of Wilderness Areas in Central America","1992-06-05","ECOLEX155",1,0
+"Convention on Biological Diversity","1992-06-05","ECOLEX156",1,0
+"Convention On Biological Diversity","1992-06-05","HEIDI120",1,0
+"Protocol Amending The International Convention For The Conservation Of Atlantic Tunas","1992-06-05","HEIDI121",1,0
+"Convention For The Conservation Of The Biodiversity And The Protection Of Priority Wilderness Areas In Central America","1992-06-05","HEIDI122",1,0
+"Convention On Biological Diversity","1992-06-05","IEADB172",1,0
+"Protocol Amending The International Convention For The Conservation Of Atlantic Tunas","1992-06-05","IEADB173",1,0
+"Convention For The Conservation Of The Biodiversity And The Protection Of Priority Wilderness Areas In Central America","1992-06-05","IEADB174",1,0
+"Agreement between Norway and Greenland/Denmark on mutual fisheries relations","1992-06-09","HEIDI123",1,0
+"Agreement between Norway and Greenland/Denmark on mutual fisheries relations","1992-06-09","IEADB175",1,0
+"Fisheries: North Pacific Driftnet - Agreement Between the United States of America and Japan","1992-06-11","ECOLEX157",1,1
+"Agreement on cooperation in the field of plant quarantine and plant protection between Hungary and Albania","1992-06-12","ECOLEX158",0,0
+"Protocol Open for Signature by States not Parties to the Convention For The Conservation Of Salmon In The North Atlantic Ocean","1992-06-12","HEIDI124",1,0
+"Protocol Open for Signature by States not Parties to the Convention For The Conservation Of Salmon In The North Atlantic Ocean","1992-06-12","IEADB176",1,0
+"Amendment to the Benelux Convention On Nature Conservation And Landscape Protection (border park management plan)","1992-06-15","IEADB177",0,0
+"North Pacific Driftnet Agreement Between The United States of America And Japan","1992-06-16","HEIDI125",1,1
+"North Pacific Driftnet Agreement Between The United States of America And Japan","1992-06-16","IEADB178",1,1
+"Agreement on cooperation between the Government of the Russian Federation and the Government of the United States of America in the sphere of research and management of outer space for peaceful purposes","1992-06-17","ECOLEX159",0,0
+"Agreement On Cooperation In The Field Of Fuel And Energy","1992-06-17","HEIDI126",1,0
+"Agreement On Cooperation In The Field Of Fuel And Energy","1992-06-17","IEADB179",1,0
+"Agreement Of Cooperation Between Costa Rica And Argentina For The Development And Application Of Peaceful Uses Of Nuclear Energy","1992-06-18","IEADB180",0,0
+"Memorandum on common understanding between the Government of the Russian Federation and the Government of Canada on cooperation in the sphere of agriculture","1992-06-19","ECOLEX160",0,0
+"Agreement between the Government of the Russian Federation and the Government of Canada on cooperation in the Arctic Zone and i North","1992-06-19","ECOLEX161",1,1
+"Agreement Between Canada And The Russian Federation On Cooperation In The Arctic And The North","1992-06-19","HEIDI127",1,1
+"Agreement Between Canada And The Russian Federation On Cooperation In The Arctic And The North","1992-06-19","IEADB181",1,1
+"Agreement between Denmark (on behalf of Greenland), Iceland and Norway concerning the Stock of Capelin in the Waters between Greenland, Iceland and Jan Mayen","1992-06-25","HEIDI128",1,0
+"Agreement between Denmark (on behalf of Greenland), Iceland and Norway concerning the Stock of Capelin in the Waters between Greenland, Iceland and Jan Mayen","1992-06-25","IEADB182",1,0
+"Acuerdo de Transporte Fluvial por la Hidrovía Paraguay - Paraná","1992-06-26","ECOLEX162",0,0
+"Fisheries: North Pacific Driftnet - Agreement between the United States of America and the Republic of Korea extending the Agreement of May 8 and August 7, 1991","1992-06-30","ECOLEX163",1,1
+"North Pacific Driftnet Agreement Between The United States of America And The Republic Of Korea Extending The Agreement Of May 8 And August 7, 1991","1992-06-30","IEADB183",1,1
+"Amendments To The Schedule To The International Convention For The Regulation Of Whaling, Forty-Fourth Meeting","1992-07-02","IEADB184",0,0
+"Niue Treaty on Cooperation in Fisheries Surveillance and Law Enforcement in the South Pacific Region","1992-07-09","ECOLEX164",1,0
+"Niue Treaty On Cooperation In Fisheries Surveillance And Law Enforcement In The South Pacific Region","1992-07-09","HEIDI129",1,0
+"Niue Treaty On Cooperation In Fisheries Surveillance And Law Enforcement In The South Pacific Region","1992-07-09","IEADB185",1,0
+"Agreement on fisheries relations between the European Economic Community and the Republic of Lithuania","1992-07-14","HEIDI130",0,0
+"Cooperation Agreement on the Forecast, Prevention and Mitigation of Natural and Technological Disasters","1992-07-18","ECOLEX165",1,0
+"Cooperation Agreement On The Forecast, Prevention And Mitigation Of Natural And Technological Disasters","1992-07-18","HEIDI131",1,0
+"Cooperation Agreement On The Forecast, Prevention And Mitigation Of Natural And Technological Disasters","1992-07-18","IEADB186",1,0
+"Agreement between the Government of the Republic of The Gambia and the Federation of Japan Tuna Fisheries Co-operative Associations and the Japan Far Seas Purse Seine Fishing Association on Fishing Activities in the Waters of the Republic of The Gambia","1992-07-28","ECOLEX166",1,0
+"Agreement Between The Government Of The Republic Of The Gambia And The Federation Of Japan Tuna Fisheries Co-Operative Associations And The Japan Far Seas Purse Seine Fishing Association On Fishing Activities In The Waters Of The Republic Of The Gambia","1992-07-28","HEIDI132",1,0
+"Agreement Between The Government Of The Republic Of The Gambia And The Federation Of Japan Tuna Fisheries Co-Operative Associations And The Japan Far Seas Purse Seine Fishing Association On Fishing Activities In The Waters Of The Republic Of The Gambia","1992-07-28","IEADB187",1,0
+"Agreement between the Government of the Russian Federation and the Government of France on economic, scientific, and technical cooperation in the sphere of agro-industrial complex","1992-07-30","ECOLEX167",0,0
+"Agreement between the Government of Ukraine and the Government of Hungary on cooperation in the field of environmental protection and land use planning","1992-08-13","ECOLEX168",0,0
+"Treaty of the Southern African Development Community","1992-08-17","ECOLEX169",1,0
+"Treaty Of The Southern African Development Community","1992-08-17","IEADB188",1,0
+"Memorandum of Understanding between the Belize Ministry of Agriculture and Fisheries and the Ministry of Agriculture of Jamaica","1992-08-18","ECOLEX170",0,0
+"Amendment To The Treaty For The Prohibition Of Nuclear Weapons In Latin America (amending Articles 14-16 and 19)","1992-08-26","IEADB189",0,0
+"Agreement between the Ministry of Energy and Electrification, the Ministry of Environmental Protection of Ukraine and the Federal Minister for the Environment, Nature Conservation and Nuclear Safety on the implementation of the pilot project “Facility for the removal of sulphur from combustion gas for the 9th power-generating unit of the Dobrotvir Thermoelectric Power Plant”","1992-08-27","ECOLEX171",0,0
+"Agreement between the Government of the Russian Federation and the Government of Kazakhstan on join transboundary water management and protection","1992-08-27","ECOLEX172",1,1
+"Agreement Between The Government Of Kazakhstan And The Government Of The Russian Federation On Cooperative Use And Protection Of Transborder Water Resources","1992-08-27","HEIDI133",1,1
+"Agreement Between The Government Of Kazakhstan And The Government Of The Russian Federation On Cooperative Use And Protection Of Transborder Water Resources","1992-08-27","IEADB190",1,1
+"Agreement Concerning Fishing Matters","1992-08-31","IEADB191",0,0
+"Convention on the Prohibition of the Development, Production, Stockpiling and Use of Chemical Weapons and on their Destruction","1992-09-03","ECOLEX173",1,1
+"Agreement between the Government of the Russian Federation and the Kingdom Norway Government about cooperation in the field of environmental protection","1992-09-03","IEADB192",0,0
+"Statuts de l'Agence africaine de biotechnologie","1992-09-05","ECOLEX174",0,0
+"Agreement between the Government of the Republic of Namibia and the Government of the Republic of South Africa on the establishment of a permanent Water Commission signed at Noordoewer, 14 September 1992","1992-09-14","ECOLEX175",1,1
+"Agreement between the Government of the Republic of Namibia and the Government of the Republic of South Africa on the establishment of a permanent water commission","1992-09-14","HEIDI134",1,1
+"Convention for the Protection of the Marine Environment of the North-East Atlantic","1992-09-22","ECOLEX176",1,0
+"Convention For The Protection Of The Marine Environment Of The North East Atlantic","1992-09-22","HEIDI135",1,0
+"Convention For The Protection Of The Marine Environment Of The North East Atlantic","1992-09-22","IEADB193",1,0
+"Fisheries Agreement between the Russian Federation and the Ukraine","1992-09-24","ECOLEX177",1,0
+"Fisheries Agreement Between The Russian Federation And The Ukraine","1992-09-24","HEIDI136",1,0
+"Fisheries Agreement Between The Russian Federation And The Ukraine","1992-09-24","IEADB194",1,0
+"Bilateral Cooperation between Norway and the European Economic Community on research and development in the environmental sector: Science and technology for environmental protection (STEP)","1992-09-28","HEIDI137",1,0
+"Bilateral Cooperation between Norway and the European Economic Community on research and development in the environmental sector: Science and technology for environmental protection (STEP)","1992-09-28","IEADB195",1,0
+"International Boundary Agreement between the Sultanate of Oman and the Republic of Yemen","1992-10-01","ECOLEX178",0,0
+"Bilateral Commercial Agreement between Jordan and Lebanon","1992-10-01","ECOLEX179",0,0
+"Palau Arrangement for the Management of the Western Pacific Purse Seine Fishery","1992-10-02","ECOLEX180",1,0
+"Agreement between the Government of the Russian Federation and the Government of the Republic of Poland on the cooperation in the region of St-Petersburg and in the regions in the Republic of Poland","1992-10-02","HEIDI138",0,0
+"Agreement On Scientific And Technical Cooperation In The Fields Of Agriculture And Livestock Between The Government Of The Republic Of Cyprus And The Government Of The Republic Of Cuba","1992-10-09","IEADB196",0,0
+"Agreement between the Government of Ukraine and the Government of the Russian Federation on joint transboundary waterbodies management and protection","1992-10-19","ECOLEX181",1,0
+"Agreement between the Government of Ukraine and the Government of the Russian Federation about sharing and protection of cross-border water objects","1992-10-19","HEIDI139",1,0
+"Agreement On Animal Health Between The Governments Of Hungary And Romania","1992-10-19","HEIDI140",1,0
+"Agreement between the Government of Ukraine and the Government of the Russian Federation about sharing and protection of cross-border water objects","1992-10-19","IEADB197",1,0
+"Agreement On Animal Health Between The Governments Of Hungary And Romania","1992-10-19","IEADB198",1,0
+"Palau Arrangement For The Management Of The Western Pacific Purse Seine Fishery","1992-10-28","HEIDI141",1,0
+"Palau Arrangement For The Management Of The Western Pacific Purse Seine Fishery","1992-10-28","IEADB199",1,0
+"Agreement Between The Government Of Slovak Republic And Czech Republic On Cooperation In The Field Of Protection Of The Environment","1992-10-29","IEADB200",0,0
+"Convenio entre el Gobierno de la República Argentina y el Gobierno de la República del Paraguay en materia de salud fronteriza, y su Protocolo Adicional","1992-10-30","ECOLEX182",1,1
+"Convention between the Government of the Republic of Argentina and the Government of the Republic of Paraguay on border health","1992-10-30","HEIDI142",1,1
+"Amendments To The IBC Code Of The International Convention For The Prevention Of Pollution From Ships","1992-10-30","IEADB201",0,0
+"Amendments To The BCH Code Of The International Convention For The Prevention Of Pollution From Ships","1992-10-30","IEADB202",0,0
+"Amendments To Annex II Of The International Convention For The Prevention Of Pollution From Ships (Designating Antarctica as a Special Area)","1992-10-30","IEADB203",0,0
+"Amendments To Annex III To The International Convention For The Prevention Of Pollution From Ships","1992-10-30","IEADB204",0,0
+"Agreement on cooperation in the field of environmental protection between Hungary and Norway","1992-11-02","ECOLEX183",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Norway","1992-11-02","HEIDI143",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Norway","1992-11-02","IEADB205",1,0
+"Protocolo sobre el Programa para el estudio regional del fenómeno El Niño en el Pacifico Sudeste","1992-11-06","ECOLEX184",1,1
+"Protocol On The Programme For The Regional Study On The El Nino Phenomenon (ERFEN) In The Southeast Pacific Under The Permanent Commission Of The South Pacific","1992-11-06","HEIDI144",1,1
+"Protocol On The Programme For The Regional Study On The El Nino Phenomenon (ERFEN) In The Southeast Pacific Under The Permanent Commission Of The South Pacific","1992-11-06","IEADB206",1,1
+"Agreement between the Government of the Russian Federation and the Government of France on cooperation in the sphere of management for peaceful purposes of nuclear materials released after the destruction of nuclear weapons","1992-11-12","ECOLEX185",0,0
+"Agreement between the Government of the Russian Federation and the Government of France on safety and monitoring of radiation environment during transport, storage and destruction of nuclear weapons","1992-11-12","ECOLEX186",0,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The United States of America Concerning Fisheries Off The Coasts Of The United States","1992-11-12","HEIDI145",1,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The United States of America Concerning Fisheries Off The Coasts Of The United States","1992-11-12","IEADB207",1,0
+"Minute No. 289 of the International Boundary and Water Commission United States and Mexico entitled observation on the quality of the waters along the United States and Mexico Border","1992-11-13","ECOLEX187",0,0
+"Protocole complémentaire no 2 au Protocole concernant la constitution d'une Commission internationale pour la protection de la Moselle contre la pollution, signé à Paris le 20 décembre 1961 et au Protocole concernant la constitution d'une Commission internationale pour la protection de la Sarre contre la pollution signé à Paris le 20 décembre 1961 ainsi qu'au protocole complémentaire à ces deux protocoles signé à Bruxelles le 22 mars 1990","1992-11-13","ECOLEX188",1,1
+"Complementary Protocol 2 To The Constitution Of An International Commission On The Protection Of The Mosel Against Pollution And With The Protocol Concerning The Constitution Of An International Commission On The Protection Of The Saar Against Pollution","1992-11-13","HEIDI146",1,1
+"Complementary Protocol 2 To The Constitution Of An International Commission On The Protection Of The Mosel Against Pollution And With The Protocol Concerning The Constitution Of An International Commission On The Protection Of The Saar Against Pollution","1992-11-13","IEADB208",1,1
+"Amendment to the Montreal Protocol on Substances that Deplete the Ozone Layer","1992-11-25","ECOLEX189",1,0
+"Amendment To The Montreal Protocol On Substances That Deplete The Ozone Layer","1992-11-25","IEADB209",1,0
+"Adjustments to Annex A of The Montreal Protocol On Substances That Deplete The Ozone Layer agreed to at the Fourth Meeting of the Parties","1992-11-25","IEADB210",0,0
+"Adjustments to Annex B of The Montreal Protocol On Substances That Deplete The Ozone Layer agreed to at the Fourth Meeting of the Parties","1992-11-25","IEADB211",0,0
+"Exchange Of Notes Amending The Agreement Between The Government Of The United States of America And The Goverment Of Canada Concerning The Transboundary Movement Of Hazardous Wastes","1992-11-25","IEADB212",0,0
+"Protocol of 1992 to amend the International Convention on the Establishment of an International Fund for Compensation for Oil Pollution Damage, 1971","1992-11-27","ECOLEX190",1,1
+"Protocol of 1992 to amend the International Convention on Civil Liability for Oil Pollution Damage, 1969","1992-11-27","ECOLEX191",1,1
+"Protocol To Amend The International Convention On Civil Liability For Oil Pollution Damage","1992-11-27","HEIDI147",1,1
+"Protocol To Amend The International Convention On The Establishment Of An International Fund For Compensation For Oil Pollution Damage (replacing the 1971 Convention)","1992-11-27","HEIDI148",1,1
+"Protocol To Amend The International Convention On Civil Liability For Oil Pollution Damage","1992-11-27","IEADB213",1,1
+"Protocol To Amend The International Convention On The Establishment Of An International Fund For Compensation For Oil Pollution Damage (replacing the 1971 Convention)","1992-11-27","IEADB214",1,1
+"Amendment 3 To The Constitutional Agreement Of The Latin American Organization For Fisheries Development","1992-11-27","IEADB215",0,0
+"Agreement on relations in the sea fisheries sector between the European Economic Community and the Argentine Republic - Exchange of Letters - Protocol I establishing the fishing opportunities and financial compensation provided for in the Agreement on relations in the sea fisheries sector betweeen the Argentine Republic and the European Economic community","1992-11-30","ECOLEX192",1,1
+"Agreement On Relations In The Sea Fisheries Sector Between The European Economic Community And The Argentine Republic - Exchange Of Letters","1992-11-30","HEIDI149",1,1
+"Protocol I Establishing The Fishing Opportunities And Financial Compensation Provided For In The Agreement On Relations In The Sea Fisheries Sector Between The Argentine Republic And The European Economic Community","1992-11-30","HEIDI150",1,1
+"Technical Cooperation Committee for the Promotion of Development and Environmental Protection of the Basin (TECCONILE)","1992-12-01","IEADB216",0,0
+"Convention entre la Suisse et l'Italie concernant la navigation sur le lac Majeur et le lac de Lugano","1992-12-02","ECOLEX193",0,0
+"Agreement between the State Committee on Nuclear and Radiation Safety of Ukraine and the Federal Nuclear Safety Inspectorate of Switzerland","1992-12-04","ECOLEX194",0,0
+"Statute of the Interstate Commission for Water Coordination of Central Asia","1992-12-05","HEIDI151",1,0
+"Statute of the Interstate Commission for Water Coordination of Central Asia","1992-12-05","IEADB217",1,0
+"Treaty between the Czech Republic Government and the Slovak Republic Government on mutual relations and principles of cooperation in agriculture, food industry, forestry, and water economy under the conditions of the customs union","1992-12-10","ECOLEX195",1,0
+"Treaty Between The Czech Republic Government And The Slovak Republic Government On Mutual Relations And Principles Of Cooperation In Agriculture, Food Industry, Forestry, And Water Economy Under The Conditions Of The Customs Union","1992-12-10","HEIDI152",1,0
+"Treaty Between The Czech Republic Government And The Slovak Republic Government On Mutual Relations And Principles Of Cooperation In Agriculture, Food Industry, Forestry, And Water Economy Under The Conditions Of The Customs Union","1992-12-10","IEADB218",1,0
+"Fisheries Agreement between the Government of the Russian Federation and the Government of the Kingdom of Sweden","1992-12-11","ECOLEX196",1,1
+"Regional Agreement on the transboundary movement of hazardous wastes","1992-12-11","ECOLEX197",1,1
+"Central American Regional Agreement On The Transboundary Movement Of Hazardous Wastes","1992-12-11","HEIDI153",1,1
+"Agreement between the Government of the Kingdom of Sweden and the Government of the Russian Federation in the field of fisheries","1992-12-11","HEIDI154",1,1
+"Central American Regional Agreement On The Transboundary Movement Of Hazardous Wastes","1992-12-11","IEADB219",1,1
+"Amendment to the Agreement On The Network Of Aquaculture Centres In Asia And The Pacific","1992-12-11","IEADB220",0,0
+"Agreement between the Government of Ukraine and the Government of the Russian Federation on joint manufacturing of steam and gas equipment for thermoelectric power stations","1992-12-16","ECOLEX198",0,0
+"Agreement between the Government of the Russian Federation and the Government of Germany on mutual assistance in case of natural disasters and big accidents","1992-12-16","ECOLEX199",0,0
+"Agreement between the Government of Belarus and the Government of Ukraine on joint action for the mitigation of consequences of the Chernobyl disaster","1992-12-17","ECOLEX200",1,1
+"Agreement Between The Government Of Belarus And The Government Of Ukraine On Joint Efforts To Minimize And Eliminate Consequences Of Chernobyl Catastrophe","1992-12-17","HEIDI155",1,1
+"North American Free Trade Agreement","1992-12-17","IEADB221",0,0
+"Agreement Between The Government Of Belarus And The Government Of Ukraine On Joint Efforts To Minimize And Eliminate Consequences Of Chernobyl Catastrophe","1992-12-17","IEADB222",1,1
+"Agreement between the Republic of Italy and the Republic of Albania on the reciprocal delimitation of the continental shelf, with final act, made at Tirana on 18 December 1992","1992-12-18","ECOLEX201",1,1
+"Agreement between the Italian Republic and the Republic of Albania on the delimitation of the continental platform of the two States","1992-12-18","HEIDI156",1,1
+"Agreement between the Government of Belarus and the Government of Israel on cooperation in the sphere of agriculture and processing industry","1992-12-21","ECOLEX202",0,0
+"Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing","1992-12-21","HEIDI157",1,0
+"Agreement On The Exchange Of Information And Experience On Early Notification Of Nuclear Accidents And On Nuclear Safety And Protection Of Radiation","1992-12-21","HEIDI158",1,0
+"Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing","1992-12-21","IEADB223",1,0
+"Agreement On The Exchange Of Information And Experience On Early Notification Of Nuclear Accidents And On Nuclear Safety And Protection Of Radiation","1992-12-21","IEADB224",1,0
+"Acuerdo entre la República Oriental del Uruguay y la República Federativa del Brasil sobre Cooperación en materia ambiental","1992-12-28","ECOLEX203",1,1
+"Agreement On Environmental Cooperation Between Uruguay And Brazil","1992-12-28","HEIDI159",1,1
+"Agreement On Environmental Cooperation Between Uruguay And Brasil","1992-12-28","IEADB225",1,1
+"Agreement between the Government of the Russian Federation, the Government of Ukraine and the Government of the Republic of Hungary on cooperation in the field of transportation of nuclear fuel between the Republic of Hungary and the Russian Federation across the territory of the Ukraine (1992)","1992-12-29","ECOLEX204",1,0
+"Agreement between Denmark, Finland, Island, Norway and Sweden concerning Cooperation in taking Measures against Pollution of the Sea by Oil or Other Harmful Substances","1993","CIESIN60",1,1
+"Agreement between Kazakhstan, Kyrgyzstan, Uzbekistan, Tajikistan and Turkmenistan on ecological rehabilitation of the Aral Sea and the adjacent area","1993","CIESIN61",1,0
+"Agreement between the Government of the Republic of Lithuania of the one part and the Government of Denmark and the Home Government of the Faroe Islands of the other part on Mutual Fisheries Relations between Lithuania and the Faroe Islands","1993","CIESIN62",1,0
+"Agreement between the Government of the Union of Myanmar, the Government of the Republic of India and the Kingdom of Thailand on the Determination of trijunction points between the three Countries in the Andaman Sea","1993","CIESIN63",1,0
+"Agreement between the Government of the United Kingdom of Great Britain and Northern Ireland and the Government of the United States of America on the Delimitation in the Caribbean of a Maritime Boundary between Puerto Rico/US Virgin Islands and the British Virgin Islands","1993","CIESIN64",1,1
+"Agreement establishing the South Pacific Regional Environment Programme","1993","CIESIN65",1,0
+"Agreement for the Establishment of the Indian Ocean Tuna Commission","1993","CIESIN66",1,0
+"Agreement for the Establishment of the Near East Plant Protection Organization","1993","CIESIN67",1,0
+"Agreement to Promote Compliance with International Conservation and Management Measures by Fishing Vessels on the High Seas","1993","CIESIN68",1,0
+"Amendment of the Convention of 29 March 1985 on the creation of the Fisheries Sub-Regional Commission","1993","CIESIN69",1,1
+"Amendment to Annex I and II to the Convention on the Prevention of Marine Pollution by Dumping of Wastes and Other Matter, 1972","1993","CIESIN70",1,1
+"Constitution for the Center for International Forestry Research","1993","CIESIN71",1,0
+"Constitution of the Centre for Marketing Information and Advisory Services for Fishery Products in the Arab Region ( INFOSAMAK)","1993","CIESIN72",1,1
+"Convenio Regional sobre cambios climaticos","1993","CIESIN73",1,1
+"Convention No. 479/DP between Bulgaria, Georgia, Romania, the Russian Federation, Turkey and Ukraine on protection of the Black Sea against pollution","1993","CIESIN74",1,0
+"Convention for the Conservation of Southern Bluefin Tuna","1993","CIESIN75",1,0
+"Convention on civil liability for damage resulting from activities dangerous to the environment","1993","CIESIN76",1,0
+"Convention relative a la determination des condition d'acess et d'exploitation des ressources halieutiques au large des cotes des etats membres de la commission sous-regionale de peches","1993","CIESIN77",1,0
+"Convention sur la cooperation sous-regionale dans l'exercice du droit de poursuite maritime","1993","CIESIN78",1,1
+"Establishment Agreement for the Center for International Forestry Research","1993","CIESIN79",1,0
+"Framework Cooperation Agreement between the European Community and the Republics of Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua and Panama","1993","CIESIN80",1,0
+"North American Agreement on Environmental Cooperation","1993","CIESIN81",1,0
+"Protocol amending article 1 (a), article 14 (1) and article 14 (3) (b) of the European Agreement of 30 September 1957 concerning the International Carriage of Dangerous Goods by Road (ADR)","1993","CIESIN82",1,0
+"Protocol to the International Convention for the Safety of Fishing Vessels","1993","CIESIN83",0,0
+"Protocol to the agreement on cooperation in the sphere of ecology and enviroment protection","1993","CIESIN84",1,0
+"Regional Convention for the management and conservation of the natural forest ecosystems and the development of forest plantations","1993","CIESIN85",1,0
+"Règlement no 92 : Prescriptions uniformes relatives à l' homologation des dispositifs silencieux d' échappement de remplacement des motocycles","1993","CIESIN86",1,1
+"Treaty between the Government of the United Kingdom of Great Britain and Northern Ireland and the Government of the United States of America on the Delimitation in the Caribbean of a Maritime Boundary between the US Virgin Islands and Anguilla","1993","CIESIN87",1,1
+"Agreement in the form of exchanges of letters between the European Community and the Government of Canada concerning fisheries relations","1993-01-01","HEIDI160",0,0
+"Protocol defining, for the period 21 May 1992 to 20 May 1995, the fishing opportunities and the financial contribution provided for by the Agreement between the European Community and the Government of the Democratic Republic of Madagascar on fishing off Madagascar","1993-01-01","HEIDI161",0,0
+"Protocol defining for the period 18 January 1993 to 17 January 1996 the fishing opportunities and the financial contribution provided for by the Agreement between the European Community and the Republic of Seychelles on fishing off Seychelles","1993-01-01","HEIDI162",0,0
+"Protocol defining, for the period 2 October 1992 to 1 October 1994, the fishing rights and financial compensation provided for in the Agreement between the European Economic Community and the Government of the Republic of Senegal on fishing off the coast of Senegal","1993-01-01","HEIDI163",0,0
+"Protocol defining, for the period from 3 May 1992 to 2 May 1994, the fishing possibilities and financial compensation provided for in the Agreement between the European Community and the Government of the People's Republic of Angola on fishing off Angola","1993-01-01","HEIDI164",0,0
+"Protocol establishing, for the period from 1 January 1992 to 30 September 1993 the fishing opportunities and financial contribution provided for in the Agreement between the European Economic Community and the People's Republic of Mozambique on fisheries relations","1993-01-01","HEIDI165",0,0
+"Protocol establishing fishing rights and financial compensation provided for in the Agreement between the European Economic Community and the Government of the Democratic Republic of Sao Tome and Principe on fishing off Sao Tome and Principe for the period June 1, 1993 to may 31, 1996","1993-01-01","HEIDI166",0,0
+"Agreement between the Government of the Russian Federation and the Kingdom Denmark Government about cooperation in the field of environmental protection","1993-01-05","IEADB226",0,0
+"Convention On The Prohibition Of The Development, Production, Stockpiling And Use Of Chemical Weapons And On Their Destruction","1993-01-13","HEIDI167",1,0
+"Convention On The Prohibition Of The Development, Production, Stockpiling And Use Of Chemical Weapons And On Their Destruction","1993-01-13","IEADB227",1,0
+"Agreement on friendly relations and cooperation between the Russian Federation and Mongolia","1993-01-20","ECOLEX205",0,0
+"Agreement on Cooperation in the Field of Prevention Of And Response To Emergencies Of Natural And Technological Disasters","1993-01-22","HEIDI168",1,0
+"Agreement on Cooperation in the Field of Prevention Of And Response To Emergencies Of Natural And Technological Disasters","1993-01-22","IEADB228",1,0
+"Agreement between the Government of the Russian Federation and the Kingdom Sweden Government about cooperation in the field of environmental protection","1993-02-03","IEADB229",0,0
+"Amendments To The Convention On The Protection Of The Marine Environment Of The Baltic Sea Area (Regulation 9 of Annex IV)","1993-02-04","IEADB230",0,0
+"Agreement On The Movement Of Animals, Animal Products, Parasites And Infectious And Contaminated Things Between The Two Countries","1993-02-11","IEADB231",0,0
+"Agreement between the Government of the Republic of Lithuania of the one part and the Government of Denmark and the Home Government of the Faroe Islands of the other part on Mutual Fisheries Relations between Lithuania and the Faroe Islands","1993-02-15","ECOLEX206",1,0
+"Agreement Between The Government Of The Republic Of Lithuania Of The One Part And The Government Of Denmark And The Home Government Of The Faroe Islands Of The other Part On Mutual Fisheries Relations Between Lithuania And The Faroe Islands","1993-02-15","HEIDI169",1,0
+"Agreement Between The Government Of The Republic Of Lithuania Of The One Part And The Government Of Denmark And The Home Government Of The Faroe Islands Of The Other Part On Mutual Fisheries Relations Between Lithuania And The Faroe Islands","1993-02-15","IEADB232",1,0
+"Agreement on veterinary cooperation between the Government of the Republic of Croatia and the Government of the Republic of Hungary","1993-02-17","ECOLEX207",1,1
+"Agreement Between The Government Of Republic Of Croatia And The Government Of The Republic Of Hungary On Veterinary And Sanitary Cooperation","1993-02-17","HEIDI170",1,1
+"Agreement Between The Government Of Republic Of Croatia And The Government Of The Republic Of Hungary On Veterinary And Sanitary Cooperation","1993-02-17","IEADB233",1,1
+"Agreement for the Establishment of the Near East Plant Protection Organization","1993-02-18","ECOLEX208",1,0
+"Agreement On The Establishment Of The Near East Plant Protection Organization","1993-02-18","HEIDI171",1,0
+"Agreement On The Establishment Of The Near East Plant Protection Organization","1993-02-18","IEADB234",1,0
+"Framework Cooperation Agreement between the European Community and the Republics of Costa Rica, El Salvador, Guatemala, Honduras, Nicaragua and Panama","1993-02-22","ECOLEX209",1,0
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Kingdom Of Sweden On Fisheries","1993-02-24","HEIDI172",1,0
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Kingdom Of Sweden On Fisheries","1993-02-24","IEADB235",1,0
+"Agreement For Cooperation In The Peaceful Uses Of Nuclear Energy","1993-02-24","IEADB236",0,0
+"Convention No. 479/DP between Bulgaria, Georgia, Romania, the Russian Federation, Turkey and Ukraine on protection of the Black Sea against pollution","1993-02-26","ECOLEX210",1,0
+"Agreement between the Government of the Russian Federation and the Government of Armenia on cooperation in the development of oil and gas sector of Russia","1993-03-02","ECOLEX211",0,0
+"Agreement between the Government of the Russian Federation and the Government of Kyrgyzstan on cooperation in the development of oil and gas sector of Russia","1993-03-02","ECOLEX212",0,0
+"Constitution for the Center for International Forestry Research","1993-03-05","ECOLEX213",1,0
+"Establishment Agreement for the Center for International Forestry Research","1993-03-05","ECOLEX214",1,0
+"Constitution For The Center For International Forestry Research","1993-03-05","HEIDI173",1,0
+"Establishment Agreement For The Center For International Forestry Research","1993-03-05","HEIDI174",1,0
+"Constitution For The Center For International Forestry Research","1993-03-05","IEADB237",1,0
+"Establishment Agreement For The Center For International Forestry Research","1993-03-05","IEADB238",1,0
+"Agreement between the Government of the Russian Federation and the Government of Tajikistan on cooperation in the development of oil and gas sector of Russia","1993-03-12","ECOLEX215",1,0
+"Agreement between the Government of the Russian Federation and the Government of Tajikistan on cooperation for the development of oil and gas industry of Russia","1993-03-12","ECOLEX216",1,0
+"Agreement between the Government of the Russian Federation and the Government of Moldova on cooperation in the development of oil and gas sector of Russia","1993-03-12","ECOLEX217",0,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Kingdom Of Denmark On The Exchange Of Information And Cooperation In The Fields Of Nuclear Security And Radiation Safety","1993-03-16","IEADB239",0,0
+"Bilateral Agreement between Norway and Russia on the procedure for processing of claims for damage to fishing gear","1993-03-23","IEADB240",0,0
+"Agreement between Kazakhstan, Kyrgyzstan, Uzbekistan, Tajikistan and Turkmenistan on ecological rehabilitation of the Aral Sea and the adjacent area","1993-03-26","ECOLEX218",1,0
+"Agreement On Joint Activities In Addressing The Aral Sea And The Zone Around The Sea Crisis, Improving The Environment, And Ensuring The Social And Economic Development Of The Aral Sea Region","1993-03-26","HEIDI175",1,0
+"Agreement On Joint Activities In Addressing The Aral Sea And The Zone Around The Sea Crisis, Improving The Environment, And Ensuring The Social And Economic Development Of The Aral Sea Region","1993-03-26","IEADB241",1,0
+"Agreement between Denmark, Finland, Island, Norway and Sweden concerning Cooperation in taking Measures against Pollution of the Sea by Oil or Other Harmful Substances","1993-03-29","ECOLEX219",1,1
+"Agreement Between Denmark, Finland, Iceland, Norway And Sweden On Cooperation In Combatting Pollution Of The Sea Caused By Oil Or other Harmful Substances","1993-03-29","HEIDI176",1,1
+"Agreement Between Denmark, Finland, Iceland, Norway And Sweden On Cooperation In Combatting Pollution Of The Sea Caused By Oil Or Other Harmful Substances","1993-03-29","IEADB242",1,1
+"Torremolinos Protocol of 1993 relating to the Torremolinos International Convention for the Safety of Fishing Vessels, 1977","1993-04-02","ECOLEX220",0,0
+"Agreement Between Romania And The Federal Republic Of Germany Regarding Collaboration In The Field Of Environmental Protection","1993-04-05","HEIDI177",1,0
+"Agreement Between Romania And The Federal Republic Of Germany Regarding Collaboration In The Field Of Environmental Protection","1993-04-05","IEADB243",1,0
+"Fisheries of the United States Coast-Agreement Between the United States of America and Latvia","1993-04-08","ECOLEX221",1,1
+"Fisheries Of The United States Coast-Agreement Between The United States of America And Latvia","1993-04-08","HEIDI178",1,1
+"Fisheries Of The United States Coast-Agreement Between The United States of America And Latvia","1993-04-08","IEADB244",1,1
+"Agreement Between The Government Of The Republic Of Latvia And The Government Of The United States of America Concerning Fishery Off The Coasts Of The United States","1993-04-08","IEADB245",1,1
+"Agreement between the Ministry of Agriculture and Food of Ukraine and the Ministry of Agriculture of the Czech Republic on economic, scientific, technical and production cooperation","1993-04-09","ECOLEX222",0,0
+"Agreement between the Federal Republic of Germany and the Republic of Latvia on protection of the environment","1993-04-14","ECOLEX223",1,0
+"Agreement Between The Federal Republic Of Germany And The Republic Of Latvia On Protection Of The Environment","1993-04-14","HEIDI179",1,0
+"Agreement Between The Federal Republic Of Germany And The Republic Of Latvia On Protection Of The Environment","1993-04-14","IEADB246",1,0
+"Agreement between the Federal Republic of Germany and the Republic of Lithuania on protection of the environment","1993-04-16","ECOLEX224",1,0
+"Agreement Between The Federal Republic Of Germany And The Republic Of Lithuania On Protection Of The Environment","1993-04-16","HEIDI180",1,0
+"Agreement Between The Federal Republic Of Germany And The Republic Of Lithuania On Protection Of The Environment","1993-04-16","IEADB247",1,0
+"Agreement To Constitute The International Center For Living Aquatic Resources Management As An International Organization","1993-04-22","HEIDI181",1,0
+"Constitution Of The International Center For Living Aquatic Resources Management","1993-04-22","HEIDI182",0,0
+"Agreement To Constitute The International Center For Living Aquatic Resources Management As An International Organization","1993-04-22","IEADB248",1,0
+"Agreement on the Vioolsdrift and Noordoewer Joint Irrigation Scheme Between the Government of the Republic of South Africa and the Government of the Republic of Namibia","1993-04-26","IEADB249",0,0
+"Agreement Between The Government Of the Czech Republic And Kingdom Of Norway On Cooperation In The Field Of Environmental Protection","1993-04-28","IEADB250",0,0
+"Agreement Between The Government Of Slovak Republic And Kingdom Of Norway On Cooperation In The Field Of Environmental Protection","1993-04-28","IEADB251",0,0
+"Arrangement Implementing the Nauru Agreement Setting Forth Minimum Terms and Conditions of Access to the Fisheries Zones of the Parties","1993-05-05","ECOLEX225",0,0
+"Agreement Between Canada And The Russian Federation On Environmental Cooperation","1993-05-08","HEIDI183",1,0
+"Agreement Between Canada And The Russian Federation On Environmental Cooperation","1993-05-08","IEADB252",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And The Federal Republic Of Germany","1993-05-09","HEIDI184",0,0
+"Convention for the Conservation of Southern Bluefin Tuna","1993-05-10","ECOLEX226",1,0
+"Convention For The Conservation Of Southern Bluefin Tuna","1993-05-10","HEIDI185",1,0
+"Convention For The Conservation Of Southern Bluefin Tuna","1993-05-10","IEADB253",1,0
+"Amendments To The Schedule To The International Convention For The Regulation Of Whaling, Forty-Fifth Meeting","1993-05-14","IEADB254",0,0
+"Demarcation of the International Boundary Agreement between the Republic of Iraq and the State of Kuwait by the Iraq-Kuwait Boundary Demarcation Commission","1993-05-20","ECOLEX227",0,0
+"Agreement Between The Government Of The Republic Of Poland And The Government Of Ukraine On Early Notification Of Nuclear Accident, On Exchange Of Information And Cooperation In The Field Of Nuclear Safety And Radiation Protection","1993-05-24","IEADB255",0,0
+"Agreement on Environmental Management of the Lielupe River Basin","1993-05-25","IEADB256",0,0
+"Agreement on cooperation in the field of environmental protection between Hungary and the Federal Republic of Germany","1993-05-26","ECOLEX228",1,0
+"Protocol to the Memorandum from 26.03.91 about preservation of force of the Memorandum of mutual understanding","1993-05-26","IEADB257",0,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And The Federal Republic Of Germany","1993-05-26","IEADB258",1,0
+"Protocol to the agreement on cooperation in the sphere of ecology and enviroment protection","1993-05-28","ECOLEX229",1,0
+"Agreement on cooperation in the field of environmental protection and country planning between Hungary and Ukraine","1993-06-01","ECOLEX230",0,0
+"Agreement on principles of relations between Kazakhstan and Georgia","1993-06-01","ECOLEX231",0,0
+"Agreement On Cooperation In The Field Of Environmental Protection And Country Planning Between Hungary And Ukraine","1993-06-01","HEIDI186",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection And Country Planning Between Hungary And Ukraine","1993-06-01","IEADB259",1,0
+"Agreement between the Government of the Russian Federation and the Government of Latvia on joint management of oil and oil-products pipelines transiting through the territory of Latvia","1993-06-02","ECOLEX232",0,0
+"Agreement between the Government of the Republic of Lithuania and the Government of the Republic of Finland on Fisheries","1993-06-07","ECOLEX233",1,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Republic Of Finland On Fisheries","1993-06-07","HEIDI187",1,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Republic Of Finland On Fisheries","1993-06-07","IEADB260",1,0
+"Agreement Between The Government Of Germany And The Government Of Republic Of Bulgaria On Cooperation In The Field Of Environmental Protection","1993-06-11","IEADB261",0,0
+"Extension To The Treaty On Fisheries Between The Governments Of Certain Pacific Island States And The Government Of The United States of America","1993-06-15","IEADB262",0,0
+"Memorandum of Understanding Concerning Conservation Measures for the Siberian Crane","1993-06-16","ECOLEX234",0,0
+"Agreement establishing the South Pacific Regional Environment Programme","1993-06-16","ECOLEX235",1,0
+"Agreement Establishing The South Pacific Regional Environment Programme","1993-06-16","HEIDI188",1,0
+"Agreement Establishing The South Pacific Regional Environment Programme","1993-06-16","IEADB263",1,0
+"Notas Reversales relacionadas con la creación de la Autoridad Binacional Autónoma de la Cuenca del Sistema Lago Titicaca, Río Desaguadero, Lago Poopó, Salar de Coipasa (TDPS)","1993-06-21","ECOLEX236",0,0
+"Convention on civil liability for damage resulting from activities dangerous to the environment","1993-06-21","ECOLEX237",1,0
+"Convention On Civil Liability For Damage Resulting From Activities Dangerous To The Environment","1993-06-21","HEIDI189",1,0
+"Convention On Civil Liability For Damage Resulting From Activities Dangerous To The Environment","1993-06-21","IEADB264",1,0
+"Convention Concerning The Prevention Of Major Industrial Accidents","1993-06-22","HEIDI190",1,0
+"Convention Concerning The Prevention Of Major Industrial Accidents","1993-06-22","IEADB265",1,0
+"Agreement between the Government of the Russian Federation and the Government of Ukraine on cooperation in the development of oil and gas sector of Russia","1993-06-24","ECOLEX238",0,0
+"Agreement on fisheries and the marine environment between the European Economic Community and the Republic of Iceland","1993-06-24","ECOLEX239",1,0
+"Constitution of the Centre for Marketing Information and Advisory Services for Fishery Products in the Arab Region (INFOSAMAK)","1993-06-24","ECOLEX240",1,1
+"Agreement On Fisheries And The Marine Environment Between The European Economic Community And The Republic Of Iceland","1993-06-24","HEIDI191",1,0
+"Constitution Of The Centre For Marketing Information And Advisory Services For Fishery Products In The Arab Region","1993-06-24","HEIDI192",1,1
+"Constitution Of The Centre For Marketing Information And Advisory Services For Fishery Products In The Arab Region","1993-06-24","IEADB266",1,1
+"Agreement between the Government of the Russian Federation and the Government of the Islamic Republic of Mauritania on cooperation in the sphere of marine fisheries","1993-06-27","ECOLEX241",1,1
+"Agreement between the Government of the Russian Federation and the Government of the Islamic Republic of Mauritania on cooperation in the field of marine fisheries","1993-06-27","HEIDI193",1,1
+"Agreement between the Government of the Hellenic Republic and the Russian Federation on economic and technological co-operation","1993-06-30","ECOLEX242",0,0
+"Agreement establishing the framework for general cooperation between Egypt and Ethiopia","1993-07-01","ECOLEX243",0,0
+"Protocol establishing the fishing rights and financial compensation provided for in the Agreement between the European Economic Community and the Republic of The Gambia on fishing off the coast of The Gambia for the period 1 July 1993 to 30 June 1996","1993-07-01","ECOLEX244",1,0
+"Protocol Establishing The Fishing Rights And Financial Compensation Provided For In The Agreement Between The European Economic Community And The Republic Of The Gambia On Fishing Off The Coast Of The Gambia For The Period 1 July 1993 To 30 June 1996","1993-07-01","HEIDI194",1,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia In The Field Of Air Pollution Control","1993-07-02","HEIDI195",1,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia On Cooperation On Water Protection","1993-07-02","HEIDI196",1,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia In The Field Of Air Pollution Control","1993-07-02","IEADB267",1,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia On Cooperation On Water Protection","1993-07-02","IEADB268",1,0
+"Amendment of the Convention of 29 March 1985 on the creation of the Fisheries Sub-Regional Commission","1993-07-14","ECOLEX245",1,1
+"Convention relative a la determination des condition d'acess et d'exploitation des ressources halieutiques au large des cotes des etats membres de la commission sous-régionale de peches","1993-07-14","ECOLEX246",1,1
+"Convention regarding the Determination of Conditions of Access to and Exploitation of Fisheries Resources off the Coasts of the Sub-Regional Fisheries Commission Member States","1993-07-14","HEIDI197",1,0
+"Amendment To The Convention For The Establishment Of A Sub-Regional Commission On Fisheries","1993-07-14","IEADB269",1,1
+"Convention regarding the Determination of Conditions of Access to and Exploitation of Fisheries Resources off the Coasts of the Sub-Regional Fisheries Commission Member States","1993-07-14","IEADB270",1,0
+"Resolution No. 29/IV/93 approving the Treaty delimiting the maritime areas of the Republic of Cape Verde and the Republic of Senegal","1993-07-16","ECOLEX247",0,0
+"Convention Between The Government Of Kazakhstan And The Government Of Bulgaria On Cooperation In The Field Of Quarantine And Protection Of Plants","1993-07-30","IEADB271",0,0
+"Convention Between The Government Of Kazakhstan And The Government Of Bulgaria On Cooperation In The Field Of Veterinary Medicine","1993-07-30","IEADB272",0,0
+"Convenio de cooperación en materia de salud entre el Gobierno de la República Oriental del Uruguay y el Gobierno de la República del Paraguay","1993-08-11","ECOLEX248",0,0
+"Agreement between the Government of the Russian Federation and the Government of Czech Republic on economic, scientific and technical cooperation in the sphere of agro-industrial complex","1993-08-13","ECOLEX249",0,0
+"Agreement Between The Government Of The Republic Of Bulgaria And The Government Of The Republic Of Turkey On Mutual Aid And Cooperation In The Field Of Water For Reducing The Unsuitable Consequences From The 1993 Drought","1993-08-17","IEADB273",0,0
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Russian Federation On Cooperation In Environmental Protection","1993-08-25","IEADB274",0,0
+"Convention sur la coopération sous-régionale dans l'exercice du droit de poursuite maritime","1993-09-01","ECOLEX250",1,1
+"Convention Under The Sub-Regional Commission On Fisheries On Cooperation In The Exercise Of The Rights Of Maritime Pursuit","1993-09-01","HEIDI198",1,1
+"Protocol on Methods of Coordination of Surveillance Operations to the Convention Under The Sub-Regional Commission On Fisheries On Cooperation In The Exercise Of The Rights Of Maritime Pursuit","1993-09-01","HEIDI199",1,0
+"Convention Under The Sub-Regional Commission On Fisheries On Cooperation In The Exercise Of The Rights Of Maritime Pursuit","1993-09-01","IEADB275",1,1
+"Protocol on Methods of Coordination of Surveillance Operations to the Convention Under The Sub-Regional Commission On Fisheries On Cooperation In The Exercise Of The Rights Of Maritime Pursuit","1993-09-01","IEADB276",1,0
+"Agreement on cooperation on plant protection and quarantine between Egypt and Hungary","1993-09-06","ECOLEX251",1,0
+"Agreement On Cooperation On Plant Protection And Quarantine Between Egypt And Hungary","1993-09-06","HEIDI200",1,0
+"Agreement On Cooperation On Plant Protection And Quarantine Between Egypt And Hungary","1993-09-06","IEADB277",1,0
+"Fisheries-Pacific Salmon-Agreement between the United States of America and Canada extending Annex IV to the Treaty of 28 January 1985, as amended","1993-09-08","ECOLEX252",1,1
+"Exchange Of Letters Between Canada And The United States Extending Annex IV Of The Treaty Concerning Pacific Salmon","1993-09-08","IEADB278",1,1
+"Agreement between the Government of the Republic of Uzbekistan and the Government of Czech Republic on commercial, economic, scientific and technical cooperation","1993-09-10","ECOLEX253",0,0
+"International Agreement between the Government of the Ukraine and the Government of the Republic of Bulgaria regarding co-operation in the sphere of fisheries (1993)","1993-09-13","ECOLEX254",1,1
+"North American Agreement on Environmental Cooperation","1993-09-13","ECOLEX255",1,0
+"Agreement between the Government of Ukraine and the Government of the Republic of Bulgaria on cooperation in fisheries","1993-09-13","HEIDI201",1,1
+"Fisheries Agreement between the State Fisheries Committee of the Russian Federation and the State Committee on fisheries and fishing industry of Ukraine on fisheries in the Sea of Azov","1993-09-14","ECOLEX256",1,1
+"Agreement between State Committee of Fisheries and Fishing Industry of the Ukraine and Federal Fisheries Committee of the Russian Federation regarding fisheries (1993)","1993-09-14","ECOLEX257",1,1
+"North American Agreement On Environmental Cooperation","1993-09-14","HEIDI202",1,0
+"Agreement Between The Committee Of The Russian Federation On Fisheries And Ukrainian State Committee On Fisheries And Fishing Industry On Fisheries in The Sea of Azov","1993-09-14","HEIDI203",1,1
+"North American Agreement On Environmental Cooperation","1993-09-14","IEADB279",1,0
+"Agreement Between The Committee Of The Russian Federation On Fisheries And Ukrainian State Committee On Fisheries And Fishing Industry On Fisheries in The Sea of Azov","1993-09-14","IEADB280",1,1
+"Agreement between the Ministry of Agriculture of the Russian Federation and the Ministry of Land Management of Slovakia on economic, scientific and technical cooperation in the sphere of agriculture","1993-09-15","ECOLEX258",0,0
+"Agreement Between The Government Of The United States of America And The Government Of The Russian Federation Amending And Extending The Agreement On Mutual Fisheries Relations Of May 31, 1988","1993-09-15","HEIDI204",1,0
+"Agreement Between The Government Of The United States of America And The Government Of The Russian Federation Amending And Extending The Agreement On Mutual Fisheries Relations Of May 31, 1988","1993-09-15","IEADB281",1,0
+"Agreement on cooperation in the field of environmental protection between Hungary and Turkey","1993-09-21","ECOLEX259",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Turkey","1993-09-21","HEIDI205",1,0
+"Agreement On Cooperation In The Field Of Environmental Protection Between Hungary And Turkey","1993-09-21","IEADB282",1,0
+"Agreement Between The Government Of Kazakhstan And The Government Of The Russian Federation On Cooperation In The Field Of Peaceful Use Of Atomic Energy","1993-09-23","IEADB283",0,0
+"Agreement between the Russian Federation and Armenia on cooperation in the sphere of geodesy, cartography, cadastre and distant zoning of the Earth","1993-10-04","ECOLEX260",0,0
+"Accord de géstion et de coopération entre le gouvernement de la République du Sénégal et le gouvernement de la République de Guinée Bissau","1993-10-14","ECOLEX261",0,0
+"Agreement between Belarus and Bulgaria on friendly relations and cooperation","1993-10-19","ECOLEX262",0,0
+"Agreement between the Government of the United States of America and the Government of Ukraine on safety improvement and risk reduction at the civilian nuclear plants in Ukraine","1993-10-25","ECOLEX263",0,0
+"Agreement between the Government of the Union of Myanmar, the Government of the Republic of India and the Kingdom of Thailand on the Determination of trijunction points between the three Countries in the Andaman Sea","1993-10-27","ECOLEX264",1,0
+"Protocol amending article 1 (a), article 14 (1) and article 14 (3) (b) of the European Agreement of 30 September 1957 concerning the International Carriage of Dangerous Goods by Road (ADR)","1993-10-28","ECOLEX265",1,0
+"Agreement between the Republic of Portugal and the Democratic Republic of São Tomé e Príncipe on agricultural cooperation","1993-10-29","ECOLEX266",0,0
+"Convenio Regional sobre cambios climáticos","1993-10-29","ECOLEX267",1,1
+"Regional Convention for the management and conservation of the natural forest ecosystems and the development of forest plantations","1993-10-29","ECOLEX268",1,0
+"Regional Convention For The Management And Conservation Of The Natural Forest Ecosystems And The Development Of Forest Plantations","1993-10-29","HEIDI206",1,0
+"Regional Convention On Climate Change","1993-10-29","HEIDI207",1,1
+"Regional Convention For The Management And Conservation Of The Natural Forest Ecosystems And The Development Of Forest Plantations","1993-10-29","IEADB284",1,0
+"Regional Convention On Climate Change","1993-10-29","IEADB285",1,1
+"Regulation No. 92: Uniform provisions concerning the approval of non-original replacement exhaust silencing systems (RESS) for motorcycles, mopeds and three-wheeled vehicles","1993-11-01","ECOLEX269",1,1
+"Treaty between the Government of the United Kingdom of Great Britain and Northern Ireland and the Government of the United States of America on the Delimitation in the Caribbean of a Maritime Boundary between the US Virgin Islands and Anguilla","1993-11-05","ECOLEX270",1,1
+"Agreement between the Government of the United Kingdom of Great Britain and Northern Ireland and the Government of the United States of America on the Delimitation in the Caribbean of a Maritime Boundary between Puerto Rico/US Virgin Islands and the British Virgin Islands","1993-11-05","ECOLEX271",1,1
+"Protocol setting out the fishing opportunities and financial contribution provided for in the Agreement between the European Community and the Islamic Republic of Mauritania on fishing off the coast of Mauritania for the period 1 August 1993 to 31 July 1996","1993-11-05","ECOLEX272",1,0
+"Agreement between the Ministry of Agriculture of the Russian Federation and the Ministry of Agriculture of the Kingdom of Denmark on cooperation in the sphere of agriculture","1993-11-05","ECOLEX273",0,0
+"Protocol Setting Out The Fishing Opportunities And Financial Contribution Provided For In The Agreement Between The European Community And The Islamic Republic Of Mauritania On Fishing Off The Coast Of Mauritania For The Period 1 August 1993 To 31 July 1996","1993-11-05","HEIDI208",1,0
+"Agreement Between The Government Of The Republik Of Finland And The Government Of The Federation Of Russia On Implementation Of Environmental Projects In The Republik Of Carelia, Leningrad, Murmansk, Novgorod, Piskov Regions And In St Petersburg","1993-11-05","IEADB286",0,0
+"Agreement between the State of Israel and the Kingdom of Spain on Cooperation in the Field of Desertification","1993-11-09","HEIDI209",0,0
+"Agreement between the State of Israel and the Kingdom of Spain on Cooperation in Environmental Matters and Nature Conservation","1993-11-09","HEIDI210",0,0
+"Agreement Between The Government Of Malta And The Government Of The Republic Of Tunisia Concerning Cooperation In The Environmental Field","1993-11-10","IEADB287",0,0
+"Agreement between the Government of the Russian Federation and the Government of Tunis on cooperation in waterworks construction","1993-11-11","ECOLEX274",0,0
+"Agreement between the Government of the Russian Federation and the Government of Mongolia on cooperation in the sphere of plant quarantine and plant protection","1993-11-11","ECOLEX275",0,0
+"Maritime Delimitation Treaty between Jamaica and the Republic of Colombia","1993-11-12","ECOLEX276",1,1
+"Tratado de delimitación marítima entre la República de Colombia y Jamaica","1993-11-12","ECOLEX277",1,1
+"Amendment to Annex I and II to the Convention on the Prevention of Marine Pollution by Dumping of Wastes and Other Matter, 1972","1993-11-12","ECOLEX278",1,1
+"Amendment Regarding Radioactive Wastes To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter","1993-11-12","IEADB288",0,0
+"Amendment Regarding Annexes I And II To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter (Industrial Wastes)","1993-11-12","IEADB289",1,1
+"Amendment Regarding Annex I To The Convention On The Prevention Of Marine Pollution By Dumping Of Wastes And Other Matter (Incineration at Sea)","1993-11-12","IEADB290",0,0
+"Agreement on the monitoring project","1993-11-12","IEADB291",0,0
+"Agreement concerning the establishment of a Border Environment Cooperation Commission and a North American Development Bank","1993-11-16","ECOLEX279",1,0
+"Agreement between the Ministry of Transport of the Russian Federation and the Ministry of Communications of Lithuania on cooperation in the sphere of river transport","1993-11-18","ECOLEX280",0,0
+"Agreement Concerning The Establishment Of A Border Environment Cooperation Commission And A North American Development Bank","1993-11-18","HEIDI211",1,0
+"Agreement Concerning The Establishment Of A Border Environment Cooperation Commission And A North American Development Bank","1993-11-18","IEADB292",1,0
+"Agreement between the Government of the Russian Federation and the Government of Azerbaijan on cooperation in the sphere of fuel and energy sector","1993-11-20","ECOLEX281",0,0
+"Agreement To Promote Compliance With International Conservation And Management Measures By Fishing Vessels On The High Seas","1993-11-24","HEIDI212",1,0
+"Agreement To Promote Compliance With International Conservation And Management Measures By Fishing Vessels On The High Seas","1993-11-24","IEADB293",1,0
+"Agreement between the Government of the Republic of Lithuania and the Government of the Kingdom of Sweden on Fisheries","1993-11-25","ECOLEX282",1,0
+"Agreement for the Establishment of the Indian Ocean Tuna Commission","1993-11-25","ECOLEX283",1,0
+"Agreement For The Establishment Of The Indian Ocean Tuna Commission","1993-11-25","HEIDI213",1,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Kingdom Of Sweden On Fisheries","1993-11-25","HEIDI214",1,0
+"Agreement For The Establishment Of The Indian Ocean Tuna Commission","1993-11-25","IEADB294",1,0
+"Agreement Between The Government Of The Republic Of Lithuania And The Government Of The Kingdom Of Sweden On Fisheries","1993-11-25","IEADB295",1,0
+"Protocol on conditions relating to reciprocal access for fishing vessels of both Parties","1993-11-29","ECOLEX284",0,0
+"Agreement between the European Community and the Republic of Bulgaria on the reciprocal protection and control of wine names","1993-11-29","ECOLEX285",0,0
+"Agreement on fisheries between the European Economic Community and the Government of the Commonwealth of Dominica","1993-11-29","ECOLEX286",1,0
+"Agreement to Promote Compliance with International Conservation and Management Measures by Fishing Vessels on the High Seas","1993-11-29","ECOLEX287",0,0
+"Agreement On Fisheries Between The European Economic Community And The Government Of The Commonwealth Of Dominica","1993-11-29","HEIDI215",1,0
+"Agreement between the Government of the Russian Federation and the Government of Slovakia on cooperation in the sphere of plant quarantine and plant protection","1993-11-30","ECOLEX288",0,0
+"Amendments To Appendix I Of The Convention On The Conservation Of European Wildlife And Natural Habitats","1993-12-03","IEADB296",0,0
+"Amendments of 1993 To The Technical Annex Of The Protocol To The Convention On Long-Range Transboundary Air Pollution Concerning The Control Of Nitrogen Oxides Or Their Transboundary Fluxes","1993-12-03","IEADB297",0,0
+"Amendments To The Agreement For The Establishment Of The Indo-Pacific Fisheries Council","1993-12-04","IEADB298",0,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia On Cooperation In Combating Oil Pollution Incidents And A Protocol Relating To It","1993-12-08","HEIDI216",1,0
+"Agreement Between The Government Of The Republic Of Finland And The Government Of The Republic Of Estonia On Cooperation In Combating Oil Pollution Incidents And A Protocol Relating To It","1993-12-08","IEADB299",1,0
+"Protocol between the Ministry of Agriculture of the Russian Federation and the Ministry of Agriculture and Forestry of Finland on economic, scientific and technical cooperation in the sphere of agriculture","1993-12-10","ECOLEX289",0,0
+"Agreement on plant quarantine and plant protection between Hungary and the Russian Federation","1993-12-13","ECOLEX290",0,0
+"Agreement On Plant Quarantine And Plant Protection Between Hungary And The Russian Federation","1993-12-13","HEIDI217",0,0
+"Agreement On Plant Quarantine And Plant Protection Between Hungary And The Russian Federation","1993-12-13","IEADB300",0,0
+"Agreement between the Government of the Hellenic Republic and the Government of Romania on co-operation in science and technology","1993-12-14","ECOLEX291",0,0
+"Agreement On Grant For The Program On The Import Of Energy Conservation And Nature Conservation Equipment And Materials","1993-12-16","HEIDI218",0,0
+"Agreement On Grant For The Program On The Import Of Energy Conservation And Nature Conservation Equipment And Materials","1993-12-16","IEADB301",0,0
+"Agreement on fisheries relations between the Republic of Lithuania and the European Economic Community","1993-12-17","ECOLEX292",1,0
+"Agreement On Fisheries Relations Between The Republic Of Lithuania And The European Economic Community","1993-12-17","HEIDI219",1,0
+"Agreement in the form of Exchanges of Letters between the European Community and the Government of Canada concerning fisheries relations","1993-12-20","ECOLEX293",0,0
+"Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing","1993-12-24","HEIDI220",1,0
+"Subsidiary Agreement On Fisheries Between The Government Of Australia And The Government Of Japan Concerning Japanese Tuna Long Line Fishing","1993-12-24","IEADB302",1,0
+"Agreement between the Government of the Russian Federation and the Government of Kazakhstan on cooperation in the sphere of fuel and energy sector","1993-12-25","ECOLEX294",0,0
+"Convention reaffirmant la creation du Comite Permanent Inter-Etats de Lutte contre la Secheresse dans le Sahel (CILSS)","1994","CIESIN100",1,0
+"Agreement on the Protection of the Rivers Meuse and Scheldt","1994","CIESIN93",1,1
+"Agreement on Trade related aspects of Intellectual Property Rights (TRIPS)","1994","CIESIN90",1,0
+"Constitution of the Centre for Marketing Information and Advisory Services for Fishery Products in Latin America and the Caribbean (INFOPESCA)","1994","CIESIN95",1,1
+"International Tropical Timber Agreement","1994","CIESIN105",1,1
+"Agreement in the form of an Exchange of Letters between the European Economic Community and the Kingdom of Norway relating to the Agreement on fisheries between the European Economic Community and the Kingdom of Norway","1994-01-01","ECOLEX295",1,0
+"Agreement in the form of an Exchange of Letters between the European Economic Community and the Republic of Iceland concerning fisheries","1994-01-01","ECOLEX296",1,0
+"Agreement In The Form Of An Exchange Of Letters Between The European Economic Community And The Republic Of Iceland Concerning Fisheries","1994-01-01","HEIDI221",1,0
+"Agreement In The Form Of An Exchange Of Letters Between The European Economic Community And The Kingdom Of Norway Relating To The Agreement On Fisheries Between The European Economic Community And The Kingdom Of Norway","1994-01-01","HEIDI222",1,0
+"Agreement In The Form Of An Exchange Of Letters On The Provisional Application Of The Protocol Defining, For The Period 1 December 1993 To 30 November 1996, The Fishing Opportunities And The Financial Contribution Provided For By The Agreement Between The European Community And The Government Of Mauritius On Fishing In The Waters Of Mauritius","1994-01-01","HEIDI223",0,0
+"Protocol establishing for the period 16 June 1993 to 15 June 1995 the fishing rights and financial compensation provided for in the Agreement between the European Economic Community and the Government of the Republic of Guinea-Bissau on fishing off the coast of Guinea-Bissau","1994-01-01","HEIDI224",0,0
+"Protocol defining, for the period from 3 May 1994 to 2 May 1996, the fishing possibilities and financial compensation provided for in the Agreement between the European Economic Community and the Government of the People's Republic of Angola on fishing off Angola","1994-01-01","HEIDI225",0,0
+"Agreement between the Government of the Russian Federation and the Government of the United States of America on cooperation in the sphere of study of radiation impact for the purpose of minimization of the impact of radioactive pollution on human health and environment","1994-01-14","ECOLEX297",0,0
+"Agreement On Cooperation In The Field Of Radiation Influence Research To Minimize Influence Of Radioactive Pollution On Public Health And Environment","1994-01-14","HEIDI226",1,0
+"Agreement On Cooperation In The Field Of Protection Of Environment And Natural Resources","1994-01-14","IEADB303",0,0
+"Agreement On Cooperation In The Field Of Radiation Influence Research To Minimize Influence Of Radioactive Pollution On Public Health And Environment","1994-01-14","IEADB304",1,0
+"Protocol of the forth session of the Joint Greek-Albanian inter-ministerial Committee on economic, industrial, technical and scientific cooperation between the Governments of the Republic of Greece and the Republic of Albania","1994-01-20","ECOLEX298",0,0
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Finland On Fisheries","1994-01-21","HEIDI227",1,0
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Finland On Fisheries","1994-01-21","IEADB305",1,0
+"Agreement between Denmark, Norway and Sweden on the modification of the Annex to the Agreement For Cooperation In Dealing With Pollution Of The North Sea By Oil And Other Harmful Substances","1994-01-25","IEADB306",0,0
+"Protocol of Implementation of the Senegalo-Gambian Agreement in the Field of Maritime Fisheries","1994-01-26","ECOLEX299",0,0
+"International Tropical Timber Agreement, 1994","1994-01-26","ECOLEX300",1,1
+"International Tropical Timber Agreement","1994-01-26","HEIDI228",1,1
+"Protocol Of Implementation Of The Senegalo-Gambian Agreement In The Field Of Maritime Fisheries","1994-01-26","HEIDI229",1,0
+"International Tropical Timber Agreement","1994-01-26","IEADB307",1,1
+"Protocol Of Implementation Of The Senegalo-Gambian Agreement In The Field Of Maritime Fisheries","1994-01-26","IEADB308",1,0
+"Exchange of Notes constituting an Agreement concerning negotiations on the line of maritime delimitation in the area lying between Jersey and France","1994-01-28","ECOLEX301",0,0
+"Agreement between the European Community and Australia on trade in wine","1994-01-31","ECOLEX302",0,0
+"Agreement between the Government of the Russian Federation and the Government of Georgia on scientific and technical cooperation","1994-02-03","ECOLEX303",0,0
+"Agreement between the Government of the Russian Federation and the Government of Georgia on cooperation in the sphere of prevention and mitigation of disasters","1994-02-03","ECOLEX304",0,0
+"Accord entre le Gouvernement de la République française et le Gouvernement de la République de l'Inde pour la coopération dans les domaines de l'agriculture et de l'agroalimentaire, signé à Paris le 6 février 1994","1994-02-06","ECOLEX305",0,0
+"Treaty Between The Government Of The Republic Of Croatia And The Government Of The Republic Of Slovenia On Maritime Fishing","1994-02-07","IEADB309",0,0
+"Agreement between the Government of the Russian Federation and the Government of Mongolia on cooperation in the sphere of environmental protection","1994-02-15","ECOLEX306",1,0
+"Agreement between the Government of the Russian Federation and the Government of Mongolia about cooperation in the field of environmental protection (framework agreement)","1994-02-15","HEIDI230",1,0
+"Agreement between the Government of the Russian Federation and the Government of Mongolia about cooperation in the field of environmental protection","1994-02-15","IEADB310",1,0
+"Agreement between the Government of the Jamaica and the Government of the Republic of Cuba on the delimitation of the maritime boundary between the two States","1994-02-18","ECOLEX307",0,0
+"Constitution of the Centre for Marketing Information and Advisory Services for Fishery Products in Latin America and the Caribbean (INFOPESCA)","1994-02-18","ECOLEX308",1,1
+"Constitution Of The Centre For Marketing Information And Advisory Services For Fishery Products In Latin America And The Caribbean","1994-02-18","HEIDI231",1,1
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Latvia On Cooperation In The Field Of Environmental Protection","1994-02-18","HEIDI232",1,0
+"Constitution Of The Centre For Marketing Information And Advisory Services For Fishery Products In Latin America And The Caribbean","1994-02-18","IEADB311",1,1
+"Agreement Between The Government Of The Republic Of Estonia And The Government Of The Republic Of Latvia On Cooperation In The Field Of Environmental Protection","1994-02-18","IEADB312",1,0
+"Agreement between the Government of Belarus and the Government of Latvia on cooperation in the sphere of environmental protection","1994-02-21","ECOLEX309",1,0
+"Agreement Between The Government Of The Republic Of Latvia And The Government Of The Republic Of Belarus On Cooperation In The Field Of Protection Of The Environment","1994-02-21","HEIDI233",1,0
+"Agreement Between The Government Of The Republic Of Latvia And The Government Of The Republic Of Belarus On Cooperation In The Field Of Protection Of The Environment","1994-02-21","IEADB313",1,0
+"Treaty on Walvis Bay","1994-02-28","ECOLEX310",0,0
+"Agreement On Nature Conservation Functions In Walvis Bay","1994-03-01","IEADB314",0,0
+"Agreement On Sea Fisheries Functions In Walvis Bay","1994-03-01","IEADB315",0,0
+"Maritime Agreement between Lebanon and Turkey","1994-03-04","ECOLEX311",0,0
+"Agreement On Mineral And Energy Matters Relating To Walvis Bay","1994-03-04","IEADB316",0,0
+"Agreement Of Technical And Scientific Cooperation For The Development Of The Andean Towns And The Protection Of The Domestic South American Camelids (Vicuna)","1994-03-07","HEIDI234",1,0
+"Agreement Of Technical And Scientific Cooperation For The Development Of The Andean Towns And The Protection Of The Domestic South American Camelids (Vicuna)","1994-03-07","IEADB317",1,0
+"Agreement on plant protection, signed on 8 March 1994 between Hungary and the Czech Republic in Prague","1994-03-08","ECOLEX312",1,1
+"Agreement On Plant Protection Between Hungary And The Czech Republic In Prague","1994-03-08","HEIDI235",1,1
+"Agreement On Animal Health Between The Governments Of Hungary And The Czech Republic","1994-03-08","HEIDI236",1,0
+"Agreement On Plant Protection Between Hungary And The Czech Republic In Prague","1994-03-08","IEADB318",1,1
+"Agreement On Animal Health Between The Governments Of Hungary And The Czech Republic","1994-03-08","IEADB319",1,0
+"Fisheries Agreement between the Government of the Russian Federation and the Government of Finland","1994-03-11","ECOLEX313",1,1
+"Agreement between the Government of the Republic of Finland and the Government of the Russian Federation on fisheries","1994-03-11","HEIDI237",1,1
+"Acuerdo en materia de recursos naturales y medio ambiente entre los Gobiernos de la República del Paraguay y la República de Bolivia","1994-03-15","ECOLEX314",0,0
+"Instrument For The Establishment Of The Restructured Global Environment Facility","1994-03-16","HEIDI238",0,0
+"Tratado sobre medio ambiente","1994-03-17","ECOLEX315",0,0
+"Agreement between the Government of the Russian Federation and the Government of Armenia on deconservation and renewed operation of the Armenian atomic power-plant","1994-03-17","ECOLEX316",0,0
+"Treaty on the environment","1994-03-17","HEIDI239",1,0
+"Treaty on the environment","1994-03-17","IEADB320",1,0
+"Bilateral Agreement on plant protection cooperation signed by Hungary and Slovenia on 21 March 1994 in Ljubljana","1994-03-21","ECOLEX317",1,1
+"Bilateral Agreement Of Sustainable Development Between The Netherlands And Costa Rica","1994-03-21","HEIDI240",1,0
+"Bilateral Agreement On Plant Protection Cooperation Between Hungary And Slovenia","1994-03-21","HEIDI241",1,1
+"Agreement between the environmental protection ministry of the Republic of Lithuania and the ministry of environmental protection, nature conservation and forestry of the Republic Poland","1994-03-21","IEADB321",0,0
+"Bilateral Agreement Of Sustainable Development Between The Netherlands And Costa Rica","1994-03-21","IEADB322",1,0
+"Bilateral Agreement On Plant Protection Cooperation Between Hungary And Slovenia","1994-03-21","IEADB323",1,1
+"Agreement between the Government of the Russian Federation and the Government of Kazakhstan on cooperation in the sphere of prevention of industrial accidents, calamities, natural disasters and mitigation of the consequences thereof","1994-03-28","ECOLEX318",0,0
+"Agreement between the Russian Federation and the Republic of Kazakhstan on transport of special freight appurtenant to the Ministry of Nuclear Energy of the Russian Federation and to Agency of Nuclear Energy of the Republic of Kazakhstan","1994-03-28","ECOLEX319",0,0
+"Agreement on the reserve","1994-03-29","IEADB324",0,0
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Federal Republic Of Germany On Cooperation In Environmental Protection","1994-04-07","HEIDI242",1,0
+"Agreement Between The Government Of The Republic Of Poland And The Government Of The Federal Republic Of Germany On Cooperation In Environmental Protection","1994-04-07","IEADB325",1,0
+"Agreement between the Government of the Russian Federation and the Government of Spain on cooperation in the sphere of environmental protection","1994-04-11","ECOLEX320",1,1
+"Agreement between the Government of the State of Israel and the Government of the Republic of Turkey on Cooperation in Environmental Matters and Nature Conservation","1994-04-11","HEIDI243",0,0
+"Agreement between the Government of the Russian Federation and the Government of the Kingdom of Spain about cooperation in the field of environment (framework agreement)","1994-04-11","HEIDI244",1,1
+"Agreement between the Government of the Russian Federation and the Government of the Kingdom of Spain about cooperation in the field of environment","1994-04-11","IEADB326",1,1
+"Agreement between the Government of the Russian Federation and the Government of Turkmenistan on cooperation in the sphere of fuel and energy sector","1994-04-15","ECOLEX321",0,0
+"Agreement on Trade related aspects of Intellectual Property Rights (TRIPS)","1994-04-15","ECOLEX322",1,0
+"Agreement Establishing The World Trade Organization","1994-04-15","IEADB327",0,0
+"World Trade Organization Agreement on the Application of Sanitary and Phytosanitary Measures","1994-04-15","IEADB328",0,0
+"Agreement Between Canada And The United States On Cooperation In The Boreal Ecosystem-Atmosphere Study (Boreas)","1994-04-18","HEIDI245",1,0
+"Agreement Between Canada And The United States On Cooperation In The Boreal Ecosystem-Atmosphere Study (Boreas)","1994-04-18","IEADB329",1,0
+"Convention réaffirmant la création du Comité Permanent Inter-Etats de Lutte contre la Sécheresse dans le Sahel (CILSS)","1994-04-22","ECOLEX323",1,1
+"Revised Convention Of The Permanent Inter-State Drought Control Committee For The Sahel","1994-04-22","HEIDI246",1,1
+"Revised Convention Of The Permanent Inter-State Drought Control Committee For The Sahel","1994-04-22","IEADB330",1,1
+"Agreement between the Government of the Russian Federation and the Government of the State of Israel on cooperation in the sphere of agro-industrial complex","1994-04-25","ECOLEX324",0,0
+"Agreement between the Russian Federation and Ukraine on cooperation in the sphere of geodesy, cartography, cadastre and distant zoning of the Earth","1994-04-26","ECOLEX325",0,0
+"Agreement On The Protection Of The Scheldt/L'escaut","1994-04-26","HEIDI247",1,1
+"Agreement On The Protection Of The Maas/Meuse","1994-04-26","HEIDI248",1,1
+"Agreement On The Protection Of The Scheldt/L'escaut","1994-04-26","IEADB331",1,1
+"Agreement On The Protection Of The Maas/Meuse","1994-04-26","IEADB332",1,1
+"Agreement on the reserve in Nelidovo","1994-04-28","IEADB333",0,0
+"Agreement between the Government of the People's Republic of China and the Government of Mongolia on the Protection and Utilization of Transboundary Waters","1994-04-29","ECOLEX326",1,0
+"Agreement Between The Government Of The People's Republic Of China And The Government Of Mongolia On The Protection And Utilization Of Transboundary Waters","1994-04-29","HEIDI249",1,0
