@@ -115,7 +115,7 @@ If we randomly create a variable and use it to find duplicates, the AUC scores m
 The ROC plot illustrates how some true positives as well as a few false positives are matched.
 
 ```{r random, warning=FALSE, message=FALSE}
-agreements$random <- runif(400)
+agreements$random <- runif(1000)
 WVPlots::ROCPlot(agreements, "random", "duplicate", 1, title = "Random")
 # WVPlots::PRPlot(agreements, "random", "duplicate", 1, title = "Random")
 # PR results also illustrate well how Unique duplicate matches work.
