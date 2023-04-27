@@ -193,7 +193,7 @@ We can also improve the AUC scores by fuzzy matching the new treatyIDs generated
 `code_agreements()` from different datasets with the `condense_agreements()`.
 
 ```{r qsim, warning=FALSE, message=FALSE}
-qsim <- manypkgs::condense_agreements(idvar = agreements$treatyID)
+qsim <- manypkgs::condense_agreements(var = agreements$treatyID)
 agreements <- dplyr::left_join(agreements, qsim, by = "treatyID")
 agreements$qsim <- ifelse(duplicated(agreements$manyID) |
                             duplicated(agreements$manyID, fromLast = TRUE), 1, 0)
