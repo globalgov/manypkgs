@@ -213,8 +213,8 @@ For this we can use the `condense_agreements()` function.
 
 ```{r manyID, warning=FALSE, message=FALSE}
 qsim <- manypkgs::condense_agreements(idvar = agreements$treatyID)
-agreements <- dplyr::left_join(agreements, qsim)
 library(dplyr)
+agreements <- dplyr::left_join(agreements, qsim)
 agreements %>% 
   dplyr::filter(manyID != treatyID) %>%
   dplyr::select(treatyID, manyID)
