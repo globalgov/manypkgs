@@ -11,7 +11,6 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-library(readr)
 ```
 
 ## Outlining the problem
@@ -70,6 +69,7 @@ Notice that we remove all observations from HUGGO and AIGGO datasets,
 datasets coded by us, and use the original titles from other datasets.
 
 ```{r data, warning=FALSE, message=FALSE}
+library(readr)
 agreements <- read_csv("hand-coded-sample.csv")
 ```
 
@@ -109,21 +109,9 @@ WVPlots::ROCPlot(agreements, "unique", "duplicate", 1, title = "Unique")
 # WVPlots::PRPlot(agreements, "unique", "duplicate", 1, title = "Unique")
 ```
 
-### Random
-
-If we randomly create a variable and use it to find duplicates, the AUC scores might differ marginally. 
-The ROC plot illustrates how some true positives as well as a few false positives are matched.
-
-```{r random, warning=FALSE, message=FALSE}
-agreements$random <- runif(1000)
-WVPlots::ROCPlot(agreements, "random", "duplicate", 1, title = "Random")
-# WVPlots::PRPlot(agreements, "random", "duplicate", 1, title = "Random")
-# PR results also illustrate well how Unique duplicate matches work.
-```
-
 ### Strict matching
 
-Let's actually only consider equivalent those titles that are exactly
+We an also only consider equivalent those titles that are exactly
 the same as one another.
 
 ```{r strict, warning=FALSE, message=FALSE}
@@ -144,7 +132,7 @@ many of the true positives.
 
 ### Fuzzy matching
 
-Fuzzy matching relies on `stringdist` to match observations that
+We could also use fuzzy matching to match observations that
 are mostly similar but not identical.
 
 ```{r fuzzy, warning=FALSE, message=FALSE}
@@ -152,7 +140,7 @@ library(stringdist)
 fuzzy <- stringdist::stringsimmatrix(agreements$titles, agreements$titles)
 diag(fuzzy) <- 0
 agreements$fuzzy <- apply(fuzzy, 1, max)
-agreements$fuzzy <- ifelse(agreements$fuzzy > 0.8, 1, 0)
+agreements$fuzzy <- ifelse(agreements$fuzzy > 0.9, 1, 0)
 WVPlots::ROCPlot(agreements, "fuzzy", "duplicate", 1, title = "Fuzzy")
 # WVPlots::PRPlot(agreements, "fuzzy", "duplicate", 1, title = "Fuzzy")
 # Improvements are also visible in the PR plot.
@@ -162,7 +150,6 @@ The risk of finding incorrect matches using fuzzy matching increases in relation
 to strict matches.
 That is, although we might do a better job at finding true matches with fuzzy,
 we also might get more false positives.
-Moreover, this option is computationally expensive/takes a long time.
 
 ### Extracting key identifying information
 
@@ -188,10 +175,10 @@ and on "How `code_agreements()` work".
 ```{r treatyID, warning=FALSE, message=FALSE}
 agreements$treatyID <- manypkgs::code_agreements(title = agreements$titles, 
                                                  date = agreements$dates)
-agreements$treatyID_strict <- ifelse(duplicated(agreements$treatyID) |
+agreements$treatyIDs <- ifelse(duplicated(agreements$treatyID) |
                                   duplicated(agreements$treatyID,
                                              fromLast = TRUE), 1, 0)
-WVPlots::ROCPlot(agreements, "treatyID_strict", "duplicate", 1,
+WVPlots::ROCPlot(agreements, "treatyIDs", "duplicate", 1,
                  title = "treatyID Strict")
 # WVPlots::PRPlot(agreements, "idinfo", "duplicate", 1, title = "treatyID Strict")
 # PR plot illustrate similarities between a perfect match and treatyID match.
@@ -202,6 +189,16 @@ we get with fuzzy and with strict matches.
 In relations to other options, `code_agreements()` improves the number of
 true observations matched while not generating many false positives.
 
+We can also compare the specificity versus sensitivity
+for each of the possible solutions discussed above in the same ROC plot. 
+
+```{r comparison, warning=FALSE, message=FALSE}
+WVPlots::ROCPlotList(frame = agreements,
+                     xvar_names = c("strict", "fuzzy", "treatyIDs"),
+                     truthVar = "duplicate", truthTarget = TRUE,
+                     title = "Comparing the different solutions")
+```
+
 Still, this is not perfect and some true matches are still missing.
 This happens when the titles differ a great deal, even if they are
 referring to the same agreement.
@@ -209,99 +206,19 @@ In those cases, we prefer to stay on the side of caution and refrain
 from trying to code these titles as duplicates,
 especially as such changes would likely lead to higher rates of false positives.
 
-### Condensing treatyID matches
-
-We can also improve the AUC scores by fuzzy matching the new treatyIDs
-generated from different datasets with the `condense_agreements()` function.
+Once we have identified duplicates, we can also make sure the treaty information
+is standard and complete missing information regarding how treaties relate
+to other treaties in the database.
+For this we can use the `condense_agreements()` function.
 
 ```{r manyID, warning=FALSE, message=FALSE}
 qsim <- manypkgs::condense_agreements(idvar = agreements$treatyID)
-agreements <- dplyr::left_join(agreements, qsim, by = "treatyID")
-agreements$manyID_sim <- ifelse(duplicated(agreements$manyID) |
-                                  duplicated(agreements$manyID,
-                                             fromLast = TRUE), 1, 0)
-WVPlots::ROCPlot(agreements, "manyID_sim", "duplicate", 1, title = "treatyID Sim")
-# qsim <- stringdist::stringsimmatrix(agreements$treatyID, agreements$treatyID)
-# diag(qsim) <- 0
-# agreements$qsim <- apply(qsim, 1, max)
-# WVPlots::ROCPlot(agreements, "qsim", "duplicate", 1, title = "treatyID Sim")
-# WVPlots::PRPlot(agreements, "qsim", "duplicate", 1, title = "treatyID Sim")
-# Better than above!
+agreements <- dplyr::left_join(agreements, qsim)
+library(dplyr)
+agreements %>% 
+  dplyr::filter(manyID != treatyID) %>%
+  dplyr::select(treatyID, manyID)
 ```
-
-### Comparing specificity versus sensitivity
-
-We can compare the specificity versus sensitivity
-for each of the possible solutions discussed above in the same ROC plot. 
-
-```{r comparison, warning=FALSE, message=FALSE}
-WVPlots::ROCPlotList(frame = agreements,
-                     xvar_names = c("strict", "fuzzy", "treatyID_strict", "manyID_sim"),
-                     truthVar = "duplicate", truthTarget = TRUE,
-                     title = "Comparing the different solutions")
-```
-
-## How to read a treatyID
-
-A treatyID is a meaningful shorthand ID created from a combination of
-elements extracted from the agreement title and date. 
-The treatyID allows users to identify date, type and linkage.
-
-**Type** | **Pasting** | **Pasting**
---- | --- |--- 
-Bilateral | FRA-TON[DEZ]_1980A | parties[activity]_year(type)
-Bilateral + Protocol | 	RUS-USA[FKC]_1967E:RUS-USA[FKC]_1967A | parties[activity]_year(type):linkage
-
-A bilateral treaty that is an agreement will have the following treatyID: "FRA-TON[DEZ]_1980A". 
-This is a combination of the parties to the agreement (FRA-TON),
-the activity described in the treaty,
-which is here "Delimitation of Economic Zone (DEZ)",
-with the year of signature (1980),
-followed by the type (A = Agreement).
-
-A bilateral treaty that is any other type than an agreement
-(e.g. protocol, amendments) will have 
-the treatyID under this format: "RUS-USA[FKC]_1967E:FKC_1965A". 
-It is composed of the parties (RUS-USA),
-the activity abbreviation from treaty title "Fishing for King Crab (FKC)", 
-the year of signature of the amendment (1967), and
-the type (E) which refers to Amendment. 
-The linkage portion links the agreement to the treatyID its "mother" treaty 
-(RUS-USA[FKC]_1967A).
-
-**Type** | **Pasting** | **Pasting**
---- | --- |--- 
-Multilateral | HSPDF_2005A | acronym_year(type)
-Multilateral + Protocol | SFDP_2007E2:H08F_1992A | acronym_year(type and number):linkage
-
-A multilateral treaty that is an agreement will have the following treatyID: "HSPDF_2005A".
-The treatyID indicates the acronym (HSPDF),
-the signature year of the agreement (2005),
-and the type (A). 
-
-A multilateral treaty that is not an agreement will have this treatyID format: "SFDP_1992E2:H08F_2007". 
-This represents the acronym (SFDP),
-the signature year of the amendment (2007),
-the type (E = Amendment),
-the number of amendment (2),
-and the linkage number (H08F_2007) of the "mother" treaty. 
-
-**Type** | **Pasting** | **Pasting**
---- | --- |--- 
-Known treaties | 	UNCLOS1982A | abbreviation, uID, type
-Amendment of known treaties | J09H_1990E2:MARPOL1973A | acronym_uID, type(number):linkage
-
-Famous multilateral treaties have a simplified treatyID with a known abbreviation. 
-For example, the United Nations Convention On The Law Of The Sea
-will have the following treatyID: "UNCLOC1982A". 
-This is the known abbreviation (UNCLOS),
-the signature year (1982) and the treaty type (A). 
-
-Protocols or amendments of the known treaties will have this treatyID format: "J09H_1990E2:MARPOL1973A". 
-It indicates the acronym (J09H),
-the signature year of this specific amendment (1990),
-the type of treaty (E),
-its number (2), and the treatyID of the "mother" treaty (MARPOL197A).
 
 ## How `code_agreements()` work
 
@@ -410,3 +327,65 @@ manypkgs::code_linkage(agreements$titles, agreements$dates)
 Once added together, the information extracted from treaty title and date 
 forms a treatyID which is more authoritative, comprehensible,
 succinct and intelligible than other conventions.
+
+## How to read a treatyID
+
+A treatyID is a meaningful shorthand ID created from a combination of
+elements extracted from the agreement title and date. 
+The treatyID allows users to identify date, type and linkage.
+
+**Type** | **Pasting** | **Pasting**
+--- | --- |--- 
+Bilateral | FRA-TON[DEZ]_1980A | parties[activity]_year(type)
+Bilateral + Protocol | 	RUS-USA[FKC]_1967E:RUS-USA[FKC]_1967A | parties[activity]_year(type):linkage
+
+A bilateral treaty that is an agreement will have the following treatyID: "FRA-TON[DEZ]_1980A". 
+This is a combination of the parties to the agreement (FRA-TON),
+the activity described in the treaty,
+which is here "Delimitation of Economic Zone (DEZ)",
+with the year of signature (1980),
+followed by the type (A = Agreement).
+
+A bilateral treaty that is any other type than an agreement
+(e.g. protocol, amendments) will have 
+the treatyID under this format: "RUS-USA[FKC]_1967E:FKC_1965A". 
+It is composed of the parties (RUS-USA),
+the activity abbreviation from treaty title "Fishing for King Crab (FKC)", 
+the year of signature of the amendment (1967), and
+the type (E) which refers to Amendment. 
+The linkage portion links the agreement to the treatyID its "mother" treaty 
+(RUS-USA[FKC]_1967A).
+
+**Type** | **Pasting** | **Pasting**
+--- | --- |--- 
+Multilateral | HSPDF_2005A | acronym_year(type)
+Multilateral + Protocol | SFDP_2007E2:H08F_1992A | acronym_year(type and number):linkage
+
+A multilateral treaty that is an agreement will have the following treatyID: "HSPDF_2005A".
+The treatyID indicates the acronym (HSPDF),
+the signature year of the agreement (2005),
+and the type (A). 
+
+A multilateral treaty that is not an agreement will have this treatyID format: "SFDP_1992E2:H08F_2007". 
+This represents the acronym (SFDP),
+the signature year of the amendment (2007),
+the type (E = Amendment),
+the number of amendment (2),
+and the linkage number (H08F_2007) of the "mother" treaty. 
+
+**Type** | **Pasting** | **Pasting**
+--- | --- |--- 
+Known treaties | 	UNCLOS1982A | abbreviation, uID, type
+Amendment of known treaties | J09H_1990E2:MARPOL1973A | acronym_uID, type(number):linkage
+
+Famous multilateral treaties have a simplified treatyID with a known abbreviation. 
+For example, the United Nations Convention On The Law Of The Sea
+will have the following treatyID: "UNCLOC1982A". 
+This is the known abbreviation (UNCLOS),
+the signature year (1982) and the treaty type (A). 
+
+Protocols or amendments of the known treaties will have this treatyID format: "J09H_1990E2:MARPOL1973A". 
+It indicates the acronym (J09H),
+the signature year of this specific amendment (1990),
+the type of treaty (E),
+its number (2), and the treatyID of the "mother" treaty (MARPOL197A).
