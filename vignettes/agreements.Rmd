@@ -207,8 +207,7 @@ from trying to code these titles as duplicates,
 especially as such changes would likely lead to higher rates of false positives.
 
 Once we have identified duplicates, we can also make sure the treaty information
-is standard and complete missing information regarding how treaties relate
-to other treaties in the database.
+is standardized regarding how treaties relate to other treaties in the database.
 For this we can use the `condense_agreements()` function.
 
 ```{r manyID, warning=FALSE, message=FALSE}
