@@ -4,7 +4,7 @@
 # if it is an original dataset.>
 
 # This is a template for importing, cleaning, and exporting data
-# ready for many packages universe.
+# ready for the many package.
 
 # Stage one: Collecting data
 {{{dataset}}} <- {{{import_type}}}("{{{path}}}")
@@ -17,15 +17,15 @@
 # away from issues with ambiguous names down the road.
 {{{dataset}}} <- as_tibble({{{dataset}}}) %>%
   manydata::transmutate(ID = {id_variable_name_here},
-                        Beg = messydates::as_messydate({date_variable_name_here})) %>%
-  dplyr::arrange(Beg)
+                        Begin = messydates::as_messydate({date_variable_name_here})) %>%
+  dplyr::arrange(Begin)
 
 # Remove duplicates and ensure NAs are coded correctly
 {{{dataset}}} <- {{{dataset}}} %>%
   dplyr::mutate(across(everything(),
                        ~stringr::str_replace_all(.,
                                                  "^NA$", NA_character_))) %>%
-  dplyr::mutate(Beg = messydates::as_messydate(Beg),
+  dplyr::mutate(Begin = messydates::as_messydate(Begin),
                 Signature = messydates::as_messydate(Signature),
                 Force = messydates::as_messydate(Force)) %>%
   dplyr::distinct(.keep_all = TRUE)

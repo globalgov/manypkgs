@@ -23,7 +23,7 @@ test_that("object has the correct variables", {
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
                                 pointblank::vars(ID))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
-                                pointblank::vars(Beg))
+                                pointblank::vars(Begin))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
                                 pointblank::vars(End))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
@@ -32,9 +32,9 @@ test_that("object has the correct variables", {
 
 # Variables with dates are standardized
 test_that("dates are standardised", {
-  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$Beg, "mdate")
+  expect_s3_class({{{dab}}}[["{{{dat}}}"]]$Begin, "mdate")
   expect_s3_class({{{dab}}}[["{{{dat}}}"]]$End, "mdate")
-  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$End)))
 })
 
