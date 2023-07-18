@@ -6,7 +6,9 @@
 #' @param ... Unquoted name of the dataset object to save.
 #' @param database Quoted name of any existing database or of the database to
 #' be created.
-#' @param URL website URL to the source of a dataset.
+#' @param URL Website URL to the source of a dataset.
+#' Null by default.
+#' Please make sure to fill in documentation file by hand if not provided.
 #' @details The function creates a data directory, if nonexistent, and
 #' saves cleaned data. The functions also creates a script for testing
 #' the cleaned data and make sure it complies with manydata requirements.
@@ -26,20 +28,17 @@
 #' URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 #' }
 #' @export
-export_data <- function(..., database, URL) {
-  # Step 1: check URL argument
-  if (missing(URL) | !is.character(URL)) {
-    stop("Please provide the URL argument to the source of your dataset as a character string.")
-  }
-  # Step 2: check if bibliography file exists
+export_data <- function(..., database, URL = NULL) {
+  # Step 1: check if bibliography file exists
   dataset_name <- deparse(substitute(...))
-  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/", dataset_name, ".bib"))) {
+  if (!file.exists(paste0("data-raw/", database, "/", dataset_name, "/",
+                          dataset_name, ".bib"))) {
     stop("Bibliography file not found.
          Please run `manypkgs::add_bib()` to add a .bib file to the data-raw
          folder before proceding.")
   }
   usethis::use_directory("data", ignore = FALSE)
-  # Step 3: add datasets to related database, if exists, or create one
+  # Step 2: add datasets to related database, if exists, or create one
   if (file.exists(paste0("data/", database, ".rda"))) {
     usethis::ui_info("Found an existing {usethis::ui_value(database)} database.")
     env <- new.env()
@@ -70,18 +69,25 @@ export_data <- function(..., database, URL) {
       env[[database]] <- tibble::lst(...)
       ui_done("A documentation script has been created for the database.")
     }
-  # Step 4: get attributes and URL to dataset
-  attr(env[[database]][[dataset_name]], "source_URL") <- URL
+  # Step 3: get attributes and URL to dataset
+  if (is.null(URL)) {
+    message("Please make sure to fill the URL in documentation file by hand")
+    URL <- "Please add URL here"
+  } else {
+    attr(env[[database]][[dataset_name]], "source_URL") <- URL
+  }
   attr(env[[database]][[dataset_name]], "source_bib") <-
     RefManageR::ReadBib(file = paste0("data-raw/", database, "/",
                                       dataset_name, "/", dataset_name, ".bib"))
   save(list = database, envir = env,
        file = fs::path("data", database, ext = "rda"), compress = "bzip2")
-  # Step 5: create and open a documentation script
+  # Step 4: create and open a documentation script
   add_docs(database = database, dataset_name = dataset_name, URL = URL)
-  # Step 6: create the right kind of test script for the type of object
+  # Step 5: create the right kind of test script for the type of object
   add_tests(database = database, dataset_name = dataset_name,
             dataset_exists = dataset_exists)
+  usethis::ui_info("Please make sure to manually fill the variable mapping
+                   section in database documentation.")
 }
 
 # Helper functions to get package name
@@ -126,14 +132,33 @@ add_docs <- function(database, dataset_name, URL) {
                             " observations and the following\n",
                             "#' ", dsnvar, " variables: ", dsvarstr,
                             ".}\n", collapse = ""), "#' }")
-  sourceelem <- paste0("#' @source \\url{", URL, "}", collapse = "")
+  source <- paste0("#'\\itemize{\n",
+                   paste0("#' \\item{", dsnames, ": }{\n", "#' ",
+                          paste0(unlist(utils::capture.output(
+                            RefManageR::ReadBib(
+                              file = paste0("data-raw/", database, "/",
+                                            dataset_name, "/", dataset_name,
+                                            ".bib")))), collapse = ""),
+                            "}\n", collapse = ""), "#' }")
+  sourceURL <- paste0("#'\\itemize{\n",
+                      paste0("#' \\item{", dsnames, ": }{ \\url ",  URL, "}\n",
+                             collapse = ""), "#' }")
+  vmapping <- paste0("#'\\itemize{\n",
+                     paste0("#' \\item{", dsnames, ": }{\n",
+                            "#' Variable Mapping\n", "#'\n",
+                            "#' |  *from*  | *to*\n",
+                            "#' |:------------:|:------------:|\n",
+                            "#' | original_name | new_name |\n",
+                            "#' Please fill in variable mapping here as above.",
+                            "}\n", collapse = ""), "#' }")
   package <- get_package_name()
   manytemplate("Package-DBDoc.R",
                save_as = fs::path("R", paste0(package, "-", database, ".R")),
                data = list(dat = dataset_name, nd = dblen,
                            strdsnames = strdsnames, dsvarstr = dsvarstr,
                            database = database, describe = describe,
-                           source = sourceelem),
+                           sourceURL = sourceURL, vmapping = vmapping,
+                           source = source),
                ignore = FALSE, path = getwd())
 }
 
