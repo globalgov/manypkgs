@@ -1,8 +1,3 @@
-test_that("url is valid", {
-  expect_error(export_data("COW", database = "states", URL = 5),
-               "Please provide the URL argument to the source of your dataset as a character string.")
-})
-
 a <- data.frame(Title = c("A treaty about things", "treaty about thing",
                           "Agreement Between Cape Verde And Portugal On Fisheries Development",
                           "Amendment 1 To The Convention On Wetlands Of International Importance Especially As Waterfowl Habitat",

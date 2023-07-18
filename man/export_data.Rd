@@ -4,7 +4,7 @@
 \alias{export_data}
 \title{Adding datasets to the many packages universe}
 \usage{
-export_data(..., database, URL)
+export_data(..., database, URL = NULL)
 }
 \arguments{
 \item{...}{Unquoted name of the dataset object to save.}
@@ -12,7 +12,9 @@ export_data(..., database, URL)
 \item{database}{Quoted name of any existing database or of the database to
 be created.}
 
-\item{URL}{website URL to the source of a dataset.}
+\item{URL}{Website URL to the source of a dataset.
+Null by default.
+Please make sure to fill in documentation file by hand if not provided.}
 }
 \value{
 This function saves the dataset to the named database,
