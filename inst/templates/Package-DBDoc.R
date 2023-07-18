@@ -5,8 +5,13 @@
 #' For more information and references to each of the datasets used,
 #' please use the `data_source()` and `data_contrast()` functions.
 {{{describe}}}
-{{{sourceelem}}}
-#'
+#' @source
+{{{source}}}
+#' @section URL:
+{{{sourceURL}}}
+#' @section Mapping:
+{{{vmapping}}}
+#' @md
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
 #' lapply({{{database}}}, messydates::mreport)
