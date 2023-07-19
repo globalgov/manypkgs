@@ -71,8 +71,12 @@ export_data <- function(..., database, URL = NULL) {
     }
   # Step 3: get attributes and URL to dataset
   if (is.null(URL)) {
-    message("Please make sure to fill the URL in documentation file by hand")
-    URL <- "Please add URL here"
+    if (is.null(attributes(env[[database]][[dataset_name]])$source_URL)) {
+      message("Please make sure to fill the URL in documentation file by hand")
+      attr(env[[database]][[dataset_name]], "source_URL") <- "Please add URL here"
+    } else {
+      usethis::ui_info("Found an existing URL for the dataset.")
+    }
   } else {
     attr(env[[database]][[dataset_name]], "source_URL") <- URL
   }
@@ -82,7 +86,7 @@ export_data <- function(..., database, URL = NULL) {
   save(list = database, envir = env,
        file = fs::path("data", database, ext = "rda"), compress = "bzip2")
   # Step 4: create and open a documentation script
-  add_docs(database = database, dataset_name = dataset_name, URL = URL)
+  add_docs(database = database, dataset_name = dataset_name)
   # Step 5: create the right kind of test script for the type of object
   add_tests(database = database, dataset_name = dataset_name,
             dataset_exists = dataset_exists)
@@ -118,30 +122,30 @@ update_ids <- function(database) {
 }
 
 # Helper functions to add documentation for dataset/database
-add_docs <- function(database, dataset_name, URL) {
-  db <- get(load(paste0("data/", database, ".rda"))) ######
+add_docs <- function(database, dataset_name) {
+  db <- get(load(paste0("data/", database, ".rda")))
   dblen <- length(db)
   dsnames <- names(db)
-  strdsnames <- str_c(names(db), collapse = ", ")
+  strdsnames <- stringr::str_c(names(db), collapse = ", ")
   dsobs <- lapply(db, nrow)
   dsnvar <- lapply(db, ncol)
-  dsvarstr <- lapply(lapply(db, colnames), str_c, collapse = ", ")
+  dsvarstr <- lapply(lapply(db, colnames), stringr::str_c, collapse = ", ")
+  dsource <- lapply(dsnames, function(x) {
+    paste0(unlist(utils::capture.output(attributes(db[[x]])$source_bib)),
+                  collapse = "")
+  })
+  dURL <- lapply(dsnames, function(x) attributes(db[[x]])$source_URL)
   describe <- paste0("#'\\describe{\n",
                      paste0("#' \\item{", dsnames, ": }",
                             "{A dataset with ", dsobs,
                             " observations and the following\n",
                             "#' ", dsnvar, " variables: ", dsvarstr,
                             ".}\n", collapse = ""), "#' }")
-  source <- paste0("#'\\itemize{\n",
-                   paste0("#' \\item{", dsnames, ": }{\n", "#' ",
-                          paste0(unlist(utils::capture.output(
-                            RefManageR::ReadBib(
-                              file = paste0("data-raw/", database, "/",
-                                            dataset_name, "/", dataset_name,
-                                            ".bib")))), collapse = ""),
-                            "}\n", collapse = ""), "#' }")
+  source <- paste0("#'\\itemize{\n", paste0("#' \\item{", dsnames,
+                                            ": }{\n", "#' ", dsource,
+                                             "}\n", collapse = ""), "#' }")
   sourceURL <- paste0("#'\\itemize{\n",
-                      paste0("#' \\item{", dsnames, ": }{ \\url ",  URL, "}\n",
+                      paste0("#' \\item{", dsnames, ": }{ \\url ",  dURL, "}\n",
                              collapse = ""), "#' }")
   vmapping <- paste0("#'\\itemize{\n",
                      paste0("#' \\item{", dsnames, ": }{\n",
