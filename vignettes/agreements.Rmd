@@ -33,10 +33,10 @@ while not _required_ are certainly very helpful:
 1. **Succinct**: the registry codes should be as short as possible
 1. **Intelligible**: the registry codes should be as meaningful for humans as possible
 
-For some databases, unique identifiers are not too much of a problem because
+For some datacubes, unique identifiers are not too much of a problem because
 there exists a relatively comprehensive, authoritative, succinct,
 and intelligible registry.
-An example of this is the central `states` database in the `{manystates}` package.
+An example of this is the central `states` datacube in the `{manystates}` package.
 Here we can rely on ISO-3166 alpha-3 codes for most modern states,
 complementing them with COW or other codes for more historical states.
 
@@ -48,7 +48,7 @@ and what this codes might represent.
 ## Setting up the problem
 
 If we take a sample of environmental treaty titles from all the different datasets
-in the `manyenviron::agreements` database,
+in the `manyenviron::agreements` datacube,
 we see that there are several treaties present in the different datasets.
 However, titles referring to the same agreement are not necessarily the same
 (e.g. a preposition might be missing from the title).
@@ -207,7 +207,7 @@ from trying to code these titles as duplicates,
 especially as such changes would likely lead to higher rates of false positives.
 
 Once we have identified duplicates, we can also make sure the treaty information
-is standardized regarding how treaties relate to other treaties in the database.
+is standardized regarding how treaties relate to other treaties in the datacube.
 For this we can use the `condense_agreements()` function.
 
 ```{r manyID, warning=FALSE, message=FALSE}

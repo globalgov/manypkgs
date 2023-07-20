@@ -7,11 +7,11 @@
 #' That is, the name of the two-dimensional tabular data format.
 #' For consistency reasons, this should be a unique name in all capitals.
 #' Abbreviations make good dataset names, such as "COW" or "DESTA".
-#' @param database Intended name of the database or datacube.
+#' @param datacube Intended name of the datacube or datacube.
 #' That is, the name of the population or phenomenon to which the dataset
 #' relates.
 #' For consistency reasons, this should be a unique name
-#' in small letters. Concepts make good database names,
+#' in small letters. Concepts make good datacube names,
 #' such as "states" or "colonial_relations".
 #' @param path Path to raw data file.
 #' If left unspecified, a dialogue box is raised to
@@ -31,7 +31,7 @@
 #' folder of the current package.
 #' A hierarchy to this folder is established.
 #' It first checks whether there is already a folder under "data-raw/" on
-#' the harddrive that is the same as the name of the database and, if there
+#' the harddrive that is the same as the name of the datacube and, if there
 #' is no such folder, it creates one. It then also checks whether there
 #' is already a folder under that that is consistent with the name of
 #' the dataset. If there is no such folder, it creates one.
@@ -52,16 +52,16 @@
 #' `.csv`, `.xlsx`, `.xls`, `.dta` and, `.RData`.
 #'
 #' @return Places the chosen file into a folder hierarchy within
-#' the package such as "data-raw/\{database\}/\{dataset\}/" and
+#' the package such as "data-raw/\{datacube\}/\{dataset\}/" and
 #' creates and opens a script in the same folder for preparing
 #' the data for use in the package.
 #' @examples
 #' \dontrun{
-#' import_data(dataset = "COW", database = "states")
+#' import_data(dataset = "COW", datacube = "states")
 #' }
 #' @export
 import_data <- function(dataset = NULL,
-                        database = NULL,
+                        datacube = NULL,
                         path = NULL,
                         codebook = NULL,
                         delete_original = FALSE,
@@ -71,18 +71,18 @@ import_data <- function(dataset = NULL,
   if (is.null(dataset))
     stop("You need to name the dataset. We suggest a short, unique name,
          all capital letters, such as 'COW'.")
-  if (is.null(database))
-    stop("You need to name the database to which the dataset would belong.
+  if (is.null(datacube))
+    stop("You need to name the datacube to which the dataset would belong.
          We suggest a short, descriptive name, all small letters, such as
          'states'.")
   if (is.null(codebook))
     usethis::ui_info("Consider adding a codebook by importing it manually
                      into the newly created raw data folder.")
   stopifnot(rlang::is_string(dataset)) # Could also check if ASCII
-  stopifnot(rlang::is_string(database)) # Could also check if ASCII
+  stopifnot(rlang::is_string(datacube)) # Could also check if ASCII
   usethis::use_directory("data-raw", ignore = TRUE)
-  usethis::use_directory(paste("data-raw", database, sep = "/"), ignore = TRUE)
-  usethis::use_directory(paste(paste("data-raw", database, sep = "/"),
+  usethis::use_directory(paste("data-raw", datacube, sep = "/"), ignore = TRUE)
+  usethis::use_directory(paste(paste("data-raw", datacube, sep = "/"),
                                dataset, sep = "/"))
   usethis::ui_done("Made sure data folder hierarchy exists.")
 
@@ -103,13 +103,13 @@ import_data <- function(dataset = NULL,
       stop("Please convert raw data to text format before importing it to package.")
     }
   }
-  new_path <- fs::path("data-raw", database, dataset, fs::path_file(path))
+  new_path <- fs::path("data-raw", datacube, dataset, fs::path_file(path))
   file.copy(path, new_path)
   usethis::ui_done("Copied data to {new_path}.")
   if (delete_original) file.remove(path)
   # Import codebook if its path is specified
   if (!is.null(codebook)) {
-    new_path_codebook <- fs::path("data-raw", database, dataset,
+    new_path_codebook <- fs::path("data-raw", datacube, dataset,
                                   fs::path_file(codebook))
     file.copy(codebook, new_path_codebook)
   }
@@ -129,9 +129,9 @@ import_data <- function(dataset = NULL,
     } else stop("File type not recognised")
   # Create preparation template
   manytemplate("Package-preparation.R",
-               save_as = fs::path("data-raw", database, dataset,
+               save_as = fs::path("data-raw", datacube, dataset,
                                   paste0("prepare-", dataset), ext = "R"),
-               data = list(dataset = dataset, database = database,
+               data = list(dataset = dataset, datacube = datacube,
                path = new_path, import_type = import_type),
                ignore = FALSE, open = open, path = getwd())
 
@@ -145,7 +145,7 @@ import_data <- function(dataset = NULL,
 #'
 #' Add .bib file template to help cite the datasets in a package from
 #' our universe.
-#' @param database Name of the database dataset is a part of
+#' @param datacube Name of the datacube dataset is a part of
 #' @param dataset Name of the dataset
 #' @importFrom fs path
 #' @importFrom usethis ui_done ui_todo
@@ -155,11 +155,11 @@ import_data <- function(dataset = NULL,
 #' add_bib("states", "COW")
 #' }
 #' @export
-add_bib <- function(database, dataset) {
+add_bib <- function(datacube, dataset) {
 
   manytemplate(
     "Package-bibliograhy",
-    save_as = fs::path("data-raw", database, dataset,
+    save_as = fs::path("data-raw", datacube, dataset,
                        dataset, ext = "bib"),
     data = list(dataset = dataset),
     ignore = FALSE,

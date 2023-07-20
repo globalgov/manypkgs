@@ -4,12 +4,12 @@
 \alias{export_data}
 \title{Adding datasets to the many packages universe}
 \usage{
-export_data(..., database, URL = NULL)
+export_data(..., datacube, URL = NULL)
 }
 \arguments{
 \item{...}{Unquoted name of the dataset object to save.}
 
-\item{database}{Quoted name of any existing database or of the database to
+\item{datacube}{Quoted name of any existing datacube or of the datacube to
 be created.}
 
 \item{URL}{Website URL to the source of a dataset.
@@ -17,7 +17,7 @@ Null by default.
 Please make sure to fill in documentation file by hand if not provided.}
 }
 \value{
-This function saves the dataset to the named database,
+This function saves the dataset to the named datacube,
 silently creates a set of tests for this dataset,
 and creates and opens documentation for the dataset.
 }
@@ -37,7 +37,7 @@ file for citation purposes alongside their dataset in the corresponding
 }
 \examples{
 \dontrun{
-export_data(COW, database = "states",
+export_data(COW, datacube = "states",
 URL = "https://correlatesofwar.org/data-sets/state-system-membership")
 }
 }

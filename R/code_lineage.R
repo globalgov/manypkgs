@@ -1,7 +1,7 @@
 #' Code lineage from agreement titles
 #'
 #' @param title A title column for agreements
-#' @param database A database from the many packages ecosystem.
+#' @param datacube A datacube from the many packages ecosystem.
 #' @return A list of lineages that combines agreement area
 #' and agreement action.
 #' @importFrom purrr map
@@ -10,19 +10,19 @@
 #' @examples
 #' \dontrun{
 #' code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-#' code_lineage(database = manyenviron::agreements)
+#' code_lineage(datacube = manyenviron::agreements)
 #' }
 #' @export
-code_lineage <- function(title = NULL, database = NULL) {
-  if (is.null(title) & is.null(database)) {
-    stop("Please declare a title column or a many database")
+code_lineage <- function(title = NULL, datacube = NULL) {
+  if (is.null(title) & is.null(datacube)) {
+    stop("Please declare a title column or a many datacube")
   }
-  # Get title variable from database, if available
+  # Get title variable from datacube, if available
   if (is.null(title)) {
-    title <- unname(unlist(purrr::map(database, "Title")))
-    vars <- unlist(purrr::map(database, names))
-    if (any("Text" == vars)) { # Find text variable in database, if available
-      txt <- unname(unlist(purrr::map(database, "Text")))
+    title <- unname(unlist(purrr::map(datacube, "Title")))
+    vars <- unlist(purrr::map(datacube, names))
+    if (any("Text" == vars)) { # Find text variable in datacube, if available
+      txt <- unname(unlist(purrr::map(datacube, "Text")))
       txt <- read_clauses(standardise_treaty_text(txt), "preamble")
     }
   }

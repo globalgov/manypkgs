@@ -52,6 +52,6 @@
 # Therefore, please make sure that you have permission to use the dataset
 # that you're including in the package.
 # To add a template of .bib file to the package,
-# please run `manypkgs::add_bib("{{{database}}}", "{{{dataset}}}")`.
-manypkgs::export_data({{{dataset}}}, database = "{{{database}}}",
+# please run `manypkgs::add_bib("{{{datacube}}}", "{{{dataset}}}")`.
+manypkgs::export_data({{{dataset}}}, datacube = "{{{datacube}}}",
                       URL = NULL)

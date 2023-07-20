@@ -4,12 +4,12 @@
 \alias{code_lineage}
 \title{Code lineage from agreement titles}
 \usage{
-code_lineage(title = NULL, database = NULL)
+code_lineage(title = NULL, datacube = NULL)
 }
 \arguments{
 \item{title}{A title column for agreements}
 
-\item{database}{A database from the many packages ecosystem.}
+\item{datacube}{A datacube from the many packages ecosystem.}
 }
 \value{
 A list of lineages that combines agreement area
@@ -21,6 +21,6 @@ Code lineage from agreement titles
 \examples{
 \dontrun{
 code_lineage(title = sample(manyenviron::agreements$IEADB$Title, 30))
-code_lineage(database = manyenviron::agreements)
+code_lineage(datacube = manyenviron::agreements)
 }
 }
