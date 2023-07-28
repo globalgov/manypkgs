@@ -66,7 +66,6 @@ import_data <- function(dataset = NULL,
                         codebook = NULL,
                         delete_original = FALSE,
                         open = rlang::is_interactive()) {
-
   # Step one: checks and setup
   if (is.null(dataset))
     stop("You need to name the dataset. We suggest a short, unique name,
@@ -85,7 +84,6 @@ import_data <- function(dataset = NULL,
   usethis::use_directory(paste(paste("data-raw", datacube, sep = "/"),
                                dataset, sep = "/"))
   usethis::ui_done("Made sure data folder hierarchy exists.")
-
   # Step two: move raw data file to correct location
   if (is.null(path)) path <- file.choose()
   # Check data raw and dataset name consistency
@@ -113,7 +111,6 @@ import_data <- function(dataset = NULL,
                                   fs::path_file(codebook))
     file.copy(codebook, new_path_codebook)
   }
-
   # Step three: create preparation template
   # Get data type
   if (grepl("csv$", path)) {
@@ -134,7 +131,6 @@ import_data <- function(dataset = NULL,
                data = list(dataset = dataset, datacube = datacube,
                path = new_path, import_type = import_type),
                ignore = FALSE, open = open, path = getwd())
-
   # Step four: inform user what to do next
   usethis::ui_todo("Finish the opened data preparation script")
   usethis::ui_todo("Use {usethis::ui_code('manypkgs::export_data()')} to add
