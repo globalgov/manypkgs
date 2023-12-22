@@ -2,6 +2,7 @@
 
 export(add_author)
 export(add_bib)
+export(call_cran)
 export(code_accession_terms)
 export(code_acronym)
 export(code_agreements)

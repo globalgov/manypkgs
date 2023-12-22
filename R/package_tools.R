@@ -211,3 +211,17 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
     }
   }
 }
+
+#' @export
+call_cran <- function(author = "Hollway"){
+  cran_db <- tools::CRAN_package_db()
+  cran_db |> dplyr::tibble() |> 
+    dplyr::filter(grepl("Hollway", Author)) |> 
+    dplyr::mutate(SincePub = as.Date(lubridate::now()) - 
+                    as.Date(Published),
+                  Updateable = SincePub >= 10) |> 
+    dplyr::select(Package, Version, SincePub, Updateable) |> 
+    dplyr::arrange(SincePub)
+}
+
+
