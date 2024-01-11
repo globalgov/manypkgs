@@ -28,7 +28,7 @@ Description: This is the developer's package of the many packages ecosystem.
     It includes functions to help contributors develop packages and
     prepare event datasets on global governance.
 License: CC BY 4.0
-URL: https://github.com/globalgov/manypkgs
+URL: https://github.com/globalgov/manypkgs, https://globalgov.github.io/manypkgs/
 BugReports: https://github.com/globalgov/manypkgs/issues
 Depends:
     R (>= 3.4)
