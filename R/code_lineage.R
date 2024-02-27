@@ -104,6 +104,7 @@ code_entity <- function(title) {
 #' Code domains from agreement titles
 #'
 #' @param title Treaty titles
+#' @param type Issue-type of agreement, either environment or health
 #' @return The domain taken from agreement title
 #' @importFrom dplyr case_when
 #' @examples
@@ -112,64 +113,98 @@ code_entity <- function(title) {
 #' code_domain(title)
 #' }
 #' @export
-code_domain <- function(title) {
-  domain <- dplyr::case_when(
-    # For environmental treaties
-    grepl("\\<biodiversity\\>|\\<species\\>|\\<habitat\\>|
+code_domain <- function(title, type = c("environment", "health")) {
+  if(type == "environment") {
+    domain <- dplyr::case_when(
+      # For environmental treaties
+      grepl("\\<biodiversity\\>|\\<species\\>|\\<habitat\\>|
           |\\<ecosystems\\>|biological diversity|environment|
           |genetic resources|\\<biosphere\\>|forest|\\<tree\\>|plant",
-          title, ignore.case = T) ~  "environment",
-    grepl("\\<air\\>|atmos|\\<climate\\>|outer space|rising temperature|
+            title, ignore.case = T) ~  "environment",
+      grepl("\\<air\\>|atmos|\\<climate\\>|outer space|rising temperature|
           |\\<ozone\\>|\\<emissions\\>|\\<coal\\>|global warming|
           |clean energy|renewable",
-          title, ignore.case = T) ~ "climate change",
-    grepl("\\<legal\\>|\\<enforcement\\>|\\<policy\\>|
+            title, ignore.case = T) ~ "climate change",
+      grepl("\\<legal\\>|\\<enforcement\\>|\\<policy\\>|
           |\\<planning\\>|\\<institution\\>|\\<dispute\\>|
           |\\<court\\>|\\<tribunal\\>|\\<law\\>|settlement",
-          title, ignore.case = T) ~ "law enforcement",
-    grepl("\\<energy\\>|nuclear power|nuclear energy|\\<oil\\>|\\<mining\\>|
+            title, ignore.case = T) ~ "law enforcement",
+      grepl("\\<energy\\>|nuclear power|nuclear energy|\\<oil\\>|\\<mining\\>|
           |\\<gas\\>|hydro|\\<power\\>|generator|transmission lines",
-          title, ignore.case = T) ~  "energy",
-    grepl("agricultur|\\<food\\>|\\<livestock\\>|\\<crop\\>|
+            title, ignore.case = T) ~  "energy",
+      grepl("agricultur|\\<food\\>|\\<livestock\\>|\\<crop\\>|
           |\\<crops\\>|\\<irrigation\\>|\\<cattle\\>|productivity|
           |\\<meat\\>|\\<farm\\>|\\<cultivate\\>|\\<poultry\\>|pesticide",
-          title, ignore.case = T) ~  "agriculture",
-    grepl("\\<waste\\>|pollut|\\<noise\\>|\\<toxic\\>|\\<hazard\\>|
+            title, ignore.case = T) ~  "agriculture",
+      grepl("\\<waste\\>|pollut|\\<noise\\>|\\<toxic\\>|\\<hazard\\>|
           |chemical|\\<mercury\\>|residual|corrosive|substances",
-          title, ignore.case = T) ~  "waste",
-    grepl("\\<culture\\>|scien|techno|\\<trade\\>|\\<research\\>|
+            title, ignore.case = T) ~  "waste",
+      grepl("\\<culture\\>|scien|techno|\\<trade\\>|\\<research\\>|
           |\\<knowledge\\>|\\<data\\>|\\<information\\>|survey",
-          title, ignore.case = T) ~  "research",
-    grepl("weapon|\\<military\\>|\\<proliferation\\>|
+            title, ignore.case = T) ~  "research",
+      grepl("weapon|\\<military\\>|\\<proliferation\\>|
           |\\<police\\>|\\<security\\>|\\<terrorism\\>|
           |nuclear material|defense|mutual defense>|mass destruction",
-          title, ignore.case = T) ~  "defense",
-    grepl("alliance|peace|\\<friendship\\>|\\<allied\\>|
+            title, ignore.case = T) ~  "defense",
+      grepl("alliance|peace|\\<friendship\\>|\\<allied\\>|
           |non-agression|non agression", title, ignore.case = T) ~  "peace",
-    grepl("fish|\\<salmon\\>|\\<herring\\>|\\<tuna\\>|
+      grepl("fish|\\<salmon\\>|\\<herring\\>|\\<tuna\\>|
           |\\<aquaculture\\>|\\<mariculture\\>|
           |\\<molluscs\\>|whaling", title, ignore.case = T) ~  "fishing",
-    grepl("financ|\\<fund\\>|\\<funding\\>|\\<loan\\>|\\<lease\\>|
+      grepl("financ|\\<fund\\>|\\<funding\\>|\\<loan\\>|\\<lease\\>|
           |\\<debt\\>", title, ignore.case = T) ~  "finance",
-    grepl("\\<trade\\>|\\<tariff\\>|\\<tax\\>|\\<exchange\\>|
+      grepl("\\<trade\\>|\\<tariff\\>|\\<tax\\>|\\<exchange\\>|
           |\\<business\\>|economic union|economic community|free trade|
           |common market|economic partnership|
           |economic cooperation|economic zone|
           \\<invest\\>|\\<BIT\\>|\\<BITs\\>|\\<Tips\\>",
-          title, ignore.case = T) ~ "trade",
-    grepl("human rights|refugee|\\<genocide\\>|\\<discrimination\\>|
+            title, ignore.case = T) ~ "trade",
+      grepl("human rights|refugee|\\<genocide\\>|\\<discrimination\\>|
           |cultural rights|political rights|\\<torture\\>|\\<indigenous\\>|
           |\\<migrants\\>|\\<disabilities\\>|\\<stateless\\>|
           |geneva convention|\\<mines\\>|migration|peoples",
-          title, ignore.case = T) ~ "human rights",
-    grepl("\\<health\\>|disease|\\<tobacco\\>|\\<asbestos\\>|
+            title, ignore.case = T) ~ "human rights",
+      grepl("\\<health\\>|disease|\\<tobacco\\>|\\<asbestos\\>|
           |\\<nursing\\>|\\<cancer\\>|\\<COVID\\>|hospital|poison|
           |\\<radiation\\>|\\<accidents\\>|medicine|medical|
           medication", title, ignore.case = T) ~ "health",
-    grepl("boundar|\\<territorial\\>|delimit|
+      grepl("boundar|\\<territorial\\>|delimit|
           |frontier|\\<border\\>|\\<limit\\>|\\<limits\\>",
-          title, ignore.case = T) ~ "territorial boundaries",
-    grepl("outer space|\\<moon\\>|\\<satellite\\>|space liability|
+            title, ignore.case = T) ~ "territorial boundaries",
+      grepl("outer space|\\<moon\\>|\\<satellite\\>|space liability|
           |space station|mars", title, ignore.case = T) ~ "outer space")
-  domain
+    domain
+  } else{
+    domain <- dplyr::case_when(
+      # For health treaties
+      # Labour (ILO), Human Rights (Rights, Refugees, Euthanasia, Ethical Standards, Tehran Declaration)
+      # Protection (Prisoners, Juvenile Justice, Women, Disabilities, Minorities, Older Persons/Ageing, Social Charter, Social and Medical Assistance)
+      # Mental Health (Caracas Declaration), Prevention (Alcohol/Drugs/Tobacco, Diseases)
+      # Healthcare (Medical care, Data files), Pollution (Waste, pollution, transboundary), Climate change (Environment)
+      grepl("\\<ILO\\>|\\<labour\\>",
+            title, ignore.case = T) ~  "labour",
+      grepl("right|\\<refugees\\>|\\<euthanasia\\>|\\<ethical\\>|
+          |tehran declaration|genocide|nuremberg|teheran",
+            title, ignore.case = T) ~ "human rights",
+      grepl("\\<protection\\>|prisoner|\\<juvenile\\>|beijing|
+          |\\<child\\>|\\<women\\>|\\<disabilities\\>|disappearance|
+          |\\<minorities\\>|\\<ageing\\>|older persons|female|
+          |social charter|\\<assistance\\>|armed|geneva|\\<mines\\>|
+          |torture|humane|\\<oas\\>|discrimination|traffic|conduct",
+            title, ignore.case = T) ~ "protection",
+      grepl("\\<alcohol\\>|\\<drugs\\>|\\<narcotic\\>|\\<tobacco\\>",
+            title, ignore.case = T) ~  "prevention",
+      grepl("\\<mental\\>|caracas declaration|mental health|
+          |\\<psychosocial\\>",
+            title, ignore.case = T) ~  "mental health",
+      grepl("\\<waste\\>|pollut|\\<noise\\>|\\<toxic\\>|\\<hazard\\>|nuclear|
+          |chemical|\\<mercury\\>|residual|corrosive|substances|transboundary",
+            title, ignore.case = T) ~  "pollution",
+      grepl("\\<medical\\>|data files|world health organization|alma ata|
+          |population|",
+            title, ignore.case = T) ~  "healthcare",
+      grepl("climate|\\<rio\\>|\\<habitat\\>|\\<environment\\>|agenda 21",
+            title, ignore.case = T) ~  "climate change")
+    domain
+  }
 }
