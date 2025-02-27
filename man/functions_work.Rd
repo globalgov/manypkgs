@@ -16,6 +16,13 @@ Checking whether functions work across different types of objects
 }
 \examples{
  library(manynet)
- functions_work(c("node_in_optimal", "node_in_betweenness"), 
-                c(dplyr::pull(table_data(), dataset))[1:4])
+ functions <- c("node_in_optimal", "node_in_partition", "node_in_infomap",
+               "node_in_spinglass", "node_in_fluid", "node_in_louvain", 
+               "node_in_leiden", "node_in_betweenness", "node_in_greedy", 
+               "node_in_eigen", "node_in_walktrap")
+ objects <- table_data() \%>\% 
+                dplyr::distinct(directed, weighted, twomode, 
+                labelled, signed, .keep_all = TRUE) \%>\% 
+                dplyr::pull(dataset)
+ functions_work(functions, objects)
 }
