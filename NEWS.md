@@ -1,3 +1,25 @@
+# manypkgs 0.3.1
+
+## Package
+
+* Updated GitHub checks and release actions
+* Closed #99 and #98 with updated regex matches in countryregex to reduce double matching
+* Updated templates for preparation and test scripts to use standardized variables and refer to 'many package'.
+* Closed #95 with fixes and updates to 'agreements' vignette.
+* Added package startup message to `setup_package()` and `update_package()` functions.
+* Amended agreement_type matches in sysdata to correctly identify types of agreements.
+
+## Connection
+
+* Added `functions_work()` to see which functions work on which objects
+* Added `print_help()` for printing a function's help page to the console
+* Added `edit_tutorial()` for opening a tutorial for editing
+
+## Correction
+
+* Closed #97 by updating `code_agreements()` and `export_data()` functions  to expect 'Begin' rather than 'Beg' variable
+* Expanded `code_domain()` to code topics for health agreements.
+
 # manypkgs 0.3.0
 
 ## Package
