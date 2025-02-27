@@ -8,6 +8,8 @@
 * Closed #95 with fixes and updates to 'agreements' vignette.
 * Added package startup message to `setup_package()` and `update_package()` functions.
 * Amended agreement_type matches in sysdata to correctly identify types of agreements.
+* Updated documentation and functions to refer to datacubes rather than databases.
+* Updated test templates to refer to `Begin` rather than `Beg` variable.
 
 ## Connection
 
