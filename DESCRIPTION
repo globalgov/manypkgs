@@ -1,7 +1,7 @@
 Package: manypkgs
 Title: Support for Creating Ensembled Global Governance Data
-Version: 0.3.0
-Date: 2023-04-21
+Version: 0.3.1
+Date: 2025-02-27
 Authors@R:
     c(person(given = "James",
              family = "Hollway",
@@ -50,7 +50,8 @@ Imports:
     tidyr,
     tm,
     stringi,
-    pdftools
+    pdftools,
+    rstudioapi
 Suggests:
     testthat (>= 3.0.0),
     covr,
