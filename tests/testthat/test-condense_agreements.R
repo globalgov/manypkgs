@@ -104,7 +104,7 @@ set3 <- data.frame(title = "Agreement On Regional Cooperation In Combating Pollu
 
 test_that("linkage generated from agreements in same dataset", {
   # scenario 1: manyID generated with linkage when one of the datasets
-  # in the database contains both agreements so that treatyID in one dataset
+  # in the datacube contains both agreements so that treatyID in one dataset
   # is generated with linkage
   c <- condense_agreements(idvar = c(data8$treatyID, data9$treatyID))
   d <- condense_agreements(idvar = c(data9$treatyID, data10$treatyID))

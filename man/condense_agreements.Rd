@@ -4,10 +4,10 @@
 \alias{condense_agreements}
 \title{Condense similar treatyIDs}
 \usage{
-condense_agreements(database = NULL, idvar = NULL)
+condense_agreements(datacube = NULL, idvar = NULL)
 }
 \arguments{
-\item{database}{A "many" package database}
+\item{datacube}{A "many" package datacube}
 
 \item{idvar}{Two or more treatyID variables}
 }

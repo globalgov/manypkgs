@@ -123,6 +123,11 @@ update_package <- function(package = NULL, name = NULL, path = getwd()) {
                path = path,
                open = FALSE)
   usethis::ui_done("Updated feature request issue template.")
+  
+  manytemplate("package-zzz.R", fs::path("R", "zzz.R"),
+               data = list(package = package),
+               path = path, open = FALSE)
+  usethis::ui_done("Updated package startup message.")
 
   if (interactive()) {
     file.copy(fs::path_package(package = "manypkgs",

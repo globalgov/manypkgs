@@ -16,7 +16,7 @@ test_that("datasets have the required variables", {
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
                                 pointblank::vars(Title))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
-                                pointblank::vars(Beg))
+                                pointblank::vars(Begin))
   expect_true(any(grepl("ID$", colnames({{{dab}}}[["{{{dat}}}"]]))))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
                                 pointblank::vars(Signature))
@@ -31,16 +31,16 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 
 # Dates are standardized for mandatory column
 test_that("Column `Beg` has standardised dates", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "mdate")
-  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Begin), "mdate")
+  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:alpha:]$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{2}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{3}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{1}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
 })
 
 test_that("Column `Signature` has standardised dates", {
@@ -56,12 +56,12 @@ test_that("Column `Signature` has standardised dates", {
                          {{{dab}}}[["{{{dat}}}"]]$Signature)))
 })
 
-# Dataset should be ordered according to the "Beg" column
+# Dataset should be ordered according to the "Begin" column
 test_that("dataset is arranged by date variable", {
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[1] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[10])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[50] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[75])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[100] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[120])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[1] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[10])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[50] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[75])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[100] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[120])
 })

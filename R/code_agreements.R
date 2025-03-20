@@ -5,7 +5,7 @@
 #' @param dataset A 'many' dataset.
 #' If provided without a title and date variables, the function finds title and
 #' date conforming columns in the dataset.
-#' The function "expects" that there are variables named `Title` and `Beg`
+#' The function "expects" that there are variables named `Title` and `Begin`
 #' that they have been standardised using `standardise_titles()` and
 #' `messydates::as_messydate()`, respectively.
 #' @param title A title variable.
@@ -22,7 +22,7 @@
 #' \dontrun{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
 #' code_agreements(dataset = IEADB)
-#' code_agreements(title = IEADB$Title, date = IEADB$Beg)
+#' code_agreements(title = IEADB$Title, date = IEADB$Begin)
 #' }
 #' @export
 code_agreements <- function(dataset = NULL, title, date) {
@@ -31,13 +31,13 @@ code_agreements <- function(dataset = NULL, title, date) {
     stop("Please declare a dataset or title and date columns.")
   }
   if (!is.null(dataset) & missing(title) & missing(date)) {
-    if (exists("Title", dataset) & exists("Beg", dataset)) {
+    if (exists("Title", dataset) & exists("Begin", dataset)) {
       title <- dataset$Title
-      date <- dataset$Beg
+      date <- dataset$Begin
       usethis::ui_done(
         "Title and date conforming columns in dataset automatically found")
-    } else if (!exists("Title", dataset) | !exists("Beg", dataset)) {
-      stop("Unable to find both 'Title' and 'Beg' columns in dataset.
+    } else if (!exists("Title", dataset) | !exists("Begin", dataset)) {
+      stop("Unable to find both 'Title' and 'Begin' columns in dataset.
          Please declare the name of these columns or rename them.")
     }
   }
@@ -468,7 +468,7 @@ code_acronym <- function(title) {
 #' @examples
 #' \dontrun{
 #' IEADB <- dplyr::slice_sample(manyenviron::agreements$IEADB, n = 10)
-#' code_linkage(IEADB$Title, IEADB$Beg)
+#' code_linkage(IEADB$Title, IEADB$Begin)
 #' }
 #' @export
 code_linkage <- function(title, date, return_all = FALSE) {

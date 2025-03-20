@@ -4,10 +4,12 @@
 \alias{code_domain}
 \title{Code domains from agreement titles}
 \usage{
-code_domain(title)
+code_domain(title, type = c("environment", "health"))
 }
 \arguments{
 \item{title}{Treaty titles}
+
+\item{type}{Issue-type of agreement, either environment or health}
 }
 \value{
 The domain taken from agreement title

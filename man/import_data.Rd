@@ -6,7 +6,7 @@
 \usage{
 import_data(
   dataset = NULL,
-  database = NULL,
+  datacube = NULL,
   path = NULL,
   codebook = NULL,
   delete_original = FALSE,
@@ -19,11 +19,11 @@ That is, the name of the two-dimensional tabular data format.
 For consistency reasons, this should be a unique name in all capitals.
 Abbreviations make good dataset names, such as "COW" or "DESTA".}
 
-\item{database}{Intended name of the database or datacube.
+\item{datacube}{Intended name of the datacube or datacube.
 That is, the name of the population or phenomenon to which the dataset
 relates.
 For consistency reasons, this should be a unique name
-in small letters. Concepts make good database names,
+in small letters. Concepts make good datacube names,
 such as "states" or "colonial_relations".}
 
 \item{path}{Path to raw data file.
@@ -40,7 +40,7 @@ By default TRUE.}
 }
 \value{
 Places the chosen file into a folder hierarchy within
-the package such as "data-raw/\{database\}/\{dataset\}/" and
+the package such as "data-raw/\{datacube\}/\{dataset\}/" and
 creates and opens a script in the same folder for preparing
 the data for use in the package.
 }
@@ -57,7 +57,7 @@ First, it moves or copies a chosen file into the "data-raw/"
 folder of the current package.
 A hierarchy to this folder is established.
 It first checks whether there is already a folder under "data-raw/" on
-the harddrive that is the same as the name of the database and, if there
+the harddrive that is the same as the name of the datacube and, if there
 is no such folder, it creates one. It then also checks whether there
 is already a folder under that that is consistent with the name of
 the dataset. If there is no such folder, it creates one.
@@ -79,6 +79,6 @@ the name or format of the file. Currently supported formats include: \code{.txt}
 }
 \examples{
 \dontrun{
-import_data(dataset = "COW", database = "states")
+import_data(dataset = "COW", datacube = "states")
 }
 }

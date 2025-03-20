@@ -1,14 +1,19 @@
-#' {{{database}}} database documentation
+#' {{{datacube}}} datacube documentation
 #'
-#' @format The {{{database}}} database is a list that contains the
+#' @format The {{{datacube}}} datacube is a list that contains the
 #' following {{{nd}}} datasets: {{{strdsnames}}}.
 #' For more information and references to each of the datasets used,
-#' please use the `data_source()` and `data_contrast()` functions.
+#' please use the `manydata::call_sources()` and `manydata::compare_dimensions()` functions.
 {{{describe}}}
-{{{sourceelem}}}
-#'
+#' @source
+{{{source}}}
+#' @section URL:
+{{{sourceURL}}}
+#' @section Mapping:
+{{{vmapping}}}
+#' @md
 #' @details
 #' ``` {r, echo = FALSE, warning = FALSE}
-#' lapply({{{database}}}, messydates::mreport)
+#' lapply({{{datacube}}}, messydates::mreport)
 #' ```
-"{{{database}}}"
+"{{{datacube}}}"

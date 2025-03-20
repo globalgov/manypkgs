@@ -10,12 +10,12 @@ test_that("missing observations are reported correctly", {
   expect_false(any(grepl("n\\.a\\.$", {{{dab}}}[["{{{dat}}}"]])))
 })
 
-# Uniformity tests (agreements have a countryID and Beg columns)
+# Uniformity tests (agreements have a stateID and Begin columns)
 test_that("datasets have the required variables", {
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
                                 pointblank::vars(stateID))
   pointblank::expect_col_exists({{{dab}}}[["{{{dat}}}"]],
-                                pointblank::vars(Beg))
+                                pointblank::vars(Begin))
 })
 
 # Date columns should be in mdate class
@@ -26,25 +26,25 @@ test_that("Columns are not in date, POSIXct or POSIXlt class", {
 })
 
 # Dates are standardized for mandatory column
-test_that("Column `Beg` has standardised dates", {
-  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Beg), "mdate")
-  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Beg)))
+test_that("Column `Begin` has standardised dates", {
+  expect_equal(class({{{dab}}}[["{{{dat}}}"]]$Begin), "mdate")
+  expect_false(any(grepl("/", {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:alpha:]$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{2}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{3}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
   expect_false(any(grepl("^[:digit:]{1}$",
-                         {{{dab}}}[["{{{dat}}}"]]$Beg)))
+                         {{{dab}}}[["{{{dat}}}"]]$Begin)))
 })
 
-# Dataset should be ordered according to the "Beg" column
-test_that("dataset is arranged by the `Beg` variable", {
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[1] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[100])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[120] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[220])
-  expect_true({{{dab}}}[["{{{dat}}}"]]$Beg[250] <
-                {{{dab}}}[["{{{dat}}}"]]$Beg[350])
+# Dataset should be ordered according to the "Begin" column
+test_that("dataset is arranged by the `Begin` variable", {
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[1] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[100])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[120] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[220])
+  expect_true({{{dab}}}[["{{{dat}}}"]]$Begin[250] <
+                {{{dab}}}[["{{{dat}}}"]]$Begin[350])
 })
