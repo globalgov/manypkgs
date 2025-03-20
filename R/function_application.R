@@ -43,3 +43,20 @@ print_help <- function(topic, format=c("text", "html", "latex", "Rd"),
   invisible(hs)
 }
 
+#' @source https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
+#' @export
+find_nonascii <- function(pkg) {  
+  pkgs_data <- data(package = pkg)$results[,3]
+  lapply(pkgs_data, function(x){
+    attribs <- net_node_attributes(get(x))
+    print(x)
+    if(length(attribs)>0)
+      lapply(attribs, function(y){
+        print(paste(" ", y))
+        a <- node_attribute(get(x), y)
+        if(is.character(a))
+          if(!all(stringi::stri_enc_isascii(a), na.rm = TRUE))
+            print(paste(x, y))
+      })
+  })
+}
