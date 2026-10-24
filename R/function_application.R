@@ -28,23 +28,42 @@ functions_work <- function(functions, objects){
   out
 }
 
+#' Printing a help page to the console
+#'
+#' @description
+#'   `print_help()` prints the help page of a function to the console,
+#'   or into a knitr document, as text, HTML, LaTeX, or Rd.
+#' @param topic The name of the function or help topic,
+#'   as a character string or unquoted.
+#' @param format The format to print the help page in,
+#'   one of "text" (the default), "html", "latex", or "Rd".
+#' @param lines An optional integer vector that selects the lines to print.
+#' @param before,after Optional character vectors to print
+#'   before or after the help page.
+#' @return The lines of the help page, invisibly.
 #' @source https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
+#' @examples
+#' print_help("depends", lines = 1:5)
 #' @export
-print_help <- function(topic, format=c("text", "html", "latex", "Rd"),
-                         lines=NULL, before=NULL, after=NULL) {  
-  format=match.arg(format)
+print_help <- function(topic, format = c("text", "html", "latex", "Rd"),
+                       lines = NULL, before = NULL, after = NULL) {
+  format <- match.arg(format)
   if (!is.character(topic)) topic <- deparse(substitute(topic))
-  helpfile = utils:::.getHelpFile(help(topic))
-  hs <- capture.output(switch(format, 
-                              text=tools:::Rd2txt(helpfile),
-                              html=tools:::Rd2HTML(helpfile),
-                              latex=tools:::Rd2latex(helpfile),
-                              Rd=tools:::prepare_Rd(helpfile)
-  )
-  )
-  if(!is.null(lines)) hs <- hs[lines]
+  path <- as.character(utils::help(topic))
+  if (length(path) == 0)
+    stop("No help page found for ", topic, call. = FALSE)
+  path <- path[1]
+  pkg <- basename(dirname(dirname(path)))
+  helpfile <- tools::Rd_db(pkg)[[paste0(basename(path), ".Rd")]]
+  hs <- utils::capture.output(switch(format,
+                                     text = tools::Rd2txt(helpfile),
+                                     html = tools::Rd2HTML(helpfile),
+                                     latex = tools::Rd2latex(helpfile),
+                                     Rd = cat(as.character(helpfile), sep = "")
+  ))
+  if (!is.null(lines)) hs <- hs[lines]
   hs <- c(before, hs, after)
-  cat(hs, sep="\n")
+  cat(hs, sep = "\n")
   invisible(hs)
 }
 
