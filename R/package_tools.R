@@ -211,3 +211,65 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
     }
   }
 }
+
+#' @export
+call_cran <- function(author = "Hollway"){
+  cran_db <- tools::CRAN_package_db()
+  cran_db |> dplyr::tibble() |> 
+    dplyr::filter(grepl("Hollway", Author)) |> 
+    dplyr::mutate(SincePub = as.Date(lubridate::now()) - 
+                    as.Date(Published),
+                  Updateable = SincePub >= 10,
+                  When = as.Date(lubridate::now()) + (10 - SincePub),
+                  CanCRAN = paste(lubridate::wday(When, label=TRUE, abbr = FALSE),
+                                  lubridate::day(When),
+                                     lubridate::month(When, label = TRUE, abbr = FALSE),
+                                     lubridate::year(When))) |> 
+    dplyr::select(Package, Version, SincePub, Updateable, CanCRAN) |> 
+    dplyr::arrange(SincePub)
+}
+
+#' @source https://blog.r-hub.io/2022/09/12/r-dependency/
+#' @export
+find_transitive_minR <- function(package) {
+  
+  db <- tools::CRAN_package_db()
+  
+  recursive_deps <- tools::package_dependencies(
+    package, 
+    recursive = TRUE, 
+    db = db
+  )[[1]]
+  
+  # These code chunks are detailed below in the 'Minimum R dependencies in CRAN 
+  # packages' section
+  r_deps <- db |> 
+    dplyr::filter(Package %in% recursive_deps) |> 
+    # We exclude recommended pkgs as they're always shown as depending on R-devel
+    dplyr::filter(is.na(Priority) | Priority != "recommended") |>  
+    dplyr::pull(Depends) |> 
+    strsplit(split = ",") |> 
+    purrr::map(~ grep("^R ", .x, value = TRUE)) |> 
+    unlist()
+  
+  r_vers <- trimws(gsub("^R \\(>=?\\s(.+)\\)", "\\1", r_deps))
+  
+  return(max(package_version(r_vers)))
+}
+
+#' @importFrom rstudioapi navigateToFile
+#' @export
+edit_tutorial <- function(tute){
+  tutes <- list.files("inst/tutorials", recursive = TRUE)
+  tutes <- tutes[grepl(".Rmd$", tutes)]
+  if(grepl("^tut", tute)){
+    opts <- vapply(strsplit(tutes,"/"), `[`, 1, FUN.VALUE=character(1))
+  } else {
+    opts <- vapply(strsplit(tutes,"/"), `[`, 2, FUN.VALUE=character(1))
+  }
+  opt <- tutes[which.min(utils::adist(tute, opts, ignore.case = TRUE,
+                                      costs = list(ins=0, del=1, sub=1)))]
+  pth <- paste0("inst/tutorials/", opt)
+  if(rstudioapi::isAvailable())
+    rstudioapi::navigateToFile(pth)
+}

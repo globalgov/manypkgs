@@ -22,7 +22,7 @@ governing certain issue-domain (e.g. `{manytrade}` and `{manyenviron}`).
 While `{manydata}` facilitates accessing 'many' data,
 `{manypks}` helps developers to standardise and work with treaty data.
 
-Using `{manydata}`, we can download and check which databases and datasets are available in the packages.
+Using `{manydata}`, we can download and check which datacubes and datasets are available in the packages.
 
 ```{r data_constrast, message=FALSE, warning=FALSE, eval=FALSE}
 library(manydata)
@@ -58,10 +58,10 @@ trade_agreements$treatyID <- manypkgs::code_agreements(
 trade_agreements <- read_csv("trade_agreements.csv")
 ```
 
-Different treatyIDs generated with `code_agreements()` for different datasets in a database
+Different treatyIDs generated with `code_agreements()` for different datasets in a datacube
 might contain minor differences that could mean these IDs actually refer to the same agreement.
 The `condense_agreements()` function to works to match these inconsistencies
-within databases or variables.
+within datacubes or variables.
 
 ```{r condense, message=FALSE, warning=FALSE}
 manyID <- manypkgs::condense_agreements(idvar = trade_agreements$treatyID)
@@ -84,9 +84,9 @@ and website markers as much as possible.
 
 ## Coding and analysing treaty texts
 
-The 'many' packages contain databases that store the original texts of treaties,
+The 'many' packages contain datacubes that store the original texts of treaties,
 where available digitally,
-listed in the `agreements`, `memberships`, and `references` databases.
+listed in the `agreements`, `memberships`, and `references` datacubes.
 `{manypkgs}` has several functions to standardize and extract information from these texts.
 At its most basic, `read_clauses()` extracts specified portions of treaties,
 such as the 'preamble' or the 'accession' clause.

@@ -6,7 +6,7 @@
 #' in different datasets actually refer to the same agreement.
 #' The function finds these occurrences and returns the
 #' first treatyID argument entered as a replacement.
-#' @param database A "many" package database
+#' @param datacube A "many" package datacube
 #' @param idvar Two or more treatyID variables
 #' @import dplyr
 #' @importFrom purrr map
@@ -22,12 +22,12 @@
 #' "PRTRPC_1976A", "PRTRPC_1983E1:PRTRPC_1976A"))
 #' condense_agreements(idvar = c(data1$treatyID, data2$treatyID))
 #' @export
-condense_agreements <- function(database = NULL, idvar = NULL) {
+condense_agreements <- function(datacube = NULL, idvar = NULL) {
   # Initialize variables to avoid CMD notes/issues
   ID <- linkage <- ID1 <- year_type <- manyID <- match_bt <- match_yt <- NULL
-  # Step one: identify if database is present
+  # Step one: identify if datacube is present
   if (is.null(idvar)) {
-    treatyID <- lapply(database, function(x) x[["treatyID"]])
+    treatyID <- lapply(datacube, function(x) x[["treatyID"]])
     treatyID <- unname(unlist(purrr::map(treatyID, as.character)))
   } else {
     treatyID <- unlist(idvar)

@@ -49,42 +49,23 @@ and and connect network data across issue-domains of global governance.
 [manydata](https://github.com/globalgov/manydata) is the core package
 ofnthe many packages universe. The package makes it easy to find,
 download, and analyze all the data included in the various ‘many
-packages’. For example, the `manydata::get_packages()` function can be
+packages’. For example, the `manydata::call_packages()` function can be
 used to discover the packages currently available in the many packages
 universe.
 
 ``` r
-manydata::get_packages()
+manydata::call_packages()
 ```
 
-    ## # A tibble: 7 × 6
-    ##   name        full_name            
-    ##   <chr>       <chr>                
-    ## 1 manydata    globalgov/manydata   
-    ## 2 manyenviron globalgov/manyenviron
-    ## 3 manyhealth  globalgov/manyhealth 
-    ## 4 manypkgs    globalgov/manypkgs   
-    ## 5 manystates  globalgov/manystates 
-    ## 6 manytrade   globalgov/manytrade  
-    ## 7 messydates  globalgov/messydates 
-    ##   description                                                          
-    ##   <chr>                                                                
-    ## 1 An R portal for ensembled global governance data                     
-    ## 2 R Package for ensembled data on environmental agreements             
-    ## 3 An R package for ensembled data on international health organisations
-    ## 4 Support for creating new manyverse packages                          
-    ## 5 An R package for ensembled data on sovereign states                  
-    ## 6 An R package for ensembled data on trade agreements                  
-    ## 7 An R package for ISO's Extended Date/Time Format (EDTF)              
-    ##   installed latest        updated   
-    ##   <chr>     <chr>         <date>    
-    ## 1 0.7.5     0.7.5         2022-06-07
-    ## 2 0.1.2     0.1.2         2022-03-16
-    ## 3 <NA>      0.1.1-272ea19 2022-02-15
-    ## 4 0.2.2     0.2.1         2022-02-18
-    ## 5 0.1.0     0.0.6         2021-12-06
-    ## 6 0.1.2     0.1.2         2022-07-14
-    ## 7 0.3.1     0.3.0         2022-07-04
+    ## # A tibble: 5 × 4
+    ##   Name         Description                                    Installed Latest 
+    ##   <chr>        <chr>                                          <chr>     <chr>  
+    ## 1 manydata     The portal for global governance data          0.9.3     "0.9.3"
+    ## 2 manypkgs     Support for creating new manyverse packages    0.3.0     "0.3.0"
+    ## 3 manystates   Many data on sovereign states                  0.2.0     "0.2.0"
+    ## 4 manytreaties Many data on international agreements          0.0.1     ""     
+    ## 5 messydates   R package for Extended Date/Time Format (EDTF) 0.5.1     "0.5.1"
+    ## Would you like to update manytreaties ? (Yes/no/cancel)
 
 Please see [the website](https://globalgov.github.io/manypkgs/) for more
 information about how to use `{manypkgs}` as a developer or as a data

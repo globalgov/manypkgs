@@ -35,10 +35,7 @@ setup_package <- function(package = NULL,
                           path = getwd()) {
 
   # Initialize variables to suppress CMD notes
-  given <- NULL
-  family <- NULL
-  comment <- NULL
-  year <- NULL
+  given <- family <- comment <- year <- NULL
   # Step zero: get details from existing files, if present
   if (is.null(package)) {
     if (file.exists(paste0(path, "/DESCRIPTION"))) {
@@ -93,23 +90,15 @@ setup_package <- function(package = NULL,
     comment <- as.character(orcid)
     # Use correct template
     if (length(orcid) == 1 & is.null(role)) {
-      manytemplate("Package-DESC.dcf",
-                   "DESCRIPTION",
-                   data = list(package = package,
-                               given = given,
-                               family = family,
-                               comment = comment,
-                               role = rolefirst),
-                   path = path)
+      manytemplate("Package-DESC.dcf", "DESCRIPTION",
+                   data = list(package = package, given = given,
+                               family = family, comment = comment,
+                               role = rolefirst), path = path)
     } else if (length(orcid) == 1 & !is.null(role)) {
-      manytemplate("Package-DESC.dcf",
-                   "DESCRIPTION",
-                   data = list(package = package,
-                               given = given,
-                               family = family,
-                               comment = comment,
-                               role = role),
-                   path = path)
+      manytemplate("Package-DESC.dcf", "DESCRIPTION",
+                   data = list(package = package, given = given,
+                               family = family, comment = comment,
+                               role = role), path = path)
     }
   }
   if (!is.null(name)) {
@@ -121,21 +110,13 @@ setup_package <- function(package = NULL,
       stop("Please specify author. Add the rest by using our add_author() function.")
     }
     if (length(fullname) == 1 & is.null(role)) {
-      manytemplate("Package-DESC.dcf",
-                   "DESCRIPTION",
-                   data = list(package = package,
-                               given = given,
-                               family = family,
-                               role = rolefirst),
-                   path = path)
+      manytemplate("Package-DESC.dcf", "DESCRIPTION",
+                   data = list(package = package, given = given,
+                               family = family, role = rolefirst), path = path)
     } else if (length(fullname) == 1 & !is.null(role)) {
-      manytemplate("Package-DESC.dcf",
-                   "DESCRIPTION",
-                   data = list(package = package,
-                               given = given,
-                               family = family,
-                               role = role),
-                   path = path)
+      manytemplate("Package-DESC.dcf", "DESCRIPTION",
+                   data = list(package = package, given = given,
+                               family = family, role = role), path = path)
     }
   }
   usethis::ui_done("Added DESCRIPTION file. Modify if necessary.")
@@ -150,25 +131,17 @@ setup_package <- function(package = NULL,
   usethis::use_namespace()
   usethis::ui_done("Created NAMESPACE file. Don't modify it.")
   # Add LICENSE
-  manytemplate("LICENSE.md",
-               ignore = TRUE,
-               path = path,
-               open = FALSE)
+  manytemplate("LICENSE.md", ignore = TRUE, path = path, open = FALSE)
   usethis::ui_done("Added CC BY 4.0 license.")
   # Add NEWS
   if (!file.exists(paste0(path, "/NEWS.md"))) {
-     manytemplate("Package-NEWS.md",
-                  "NEWS.md",
-                  data = list(package = package),
-                  path = path)
+     manytemplate("Package-NEWS.md", "NEWS.md", 
+                  data = list(package = package), path = path)
     usethis::ui_done("Added starter NEWS file. Update for every release.")
   }
   # Add README
-  manytemplate("Package-README.Rmd",
-               "README.Rmd",
-               data = list(package = package,
-                        author = author),
-               path = path)
+  manytemplate("Package-README.Rmd", "README.Rmd",
+               data = list(package = package, author = author), path = path)
   usethis::ui_done("Added standard README. Please modify to fit your specific package")
   # Step two: ensure/create core package files
   usethis::use_testthat()
@@ -177,53 +150,41 @@ setup_package <- function(package = NULL,
   usethis::ui_done("Created .github folder.")
   manytemplate("Package-COC.md",
                fs::path(".github", "CODE_OF_CONDUCT", ext = "md"),
-               data = list(package = package,
-                        author = author),
-               path = path,
-               open = FALSE)
+               data = list(package = package, author = author),
+               path = path, open = FALSE)
   usethis::ui_done("Created CODE_OF_CONDUCT file. Modify if necessary.")
-  manytemplate("Package-CONTRIB.md",
-               fs::path(".github", "CONTRIBUTING.md"),
-               data = list(package = package,
-                        author = author),
-               path = path,
-               open = FALSE)
+  manytemplate("Package-CONTRIB.md", fs::path(".github", "CONTRIBUTING.md"),
+               data = list(package = package, author = author),
+               path = path, open = FALSE)
   usethis::ui_done("Created CONTRIBUTING file. Modify if necessary.")
-  manytemplate("Package-PR.md",
-               fs::path(".github", "pull_request_template.md"),
-               data = list(package = package,
-                           author = author),
-               path = path,
-               open = FALSE)
+  manytemplate("Package-PR.md", fs::path(".github", "pull_request_template.md"),
+               data = list(package = package, author = author),
+               path = path, open = FALSE)
   usethis::ui_done("Created PR template. Modify if necessary.")
   create_directory(paste0(path, "/.github/ISSUE_TEMPLATE"))
   usethis::ui_done("Created ISSUE_TEMPLATE folder.")
   manytemplate("Package-Bugs.md",
                fs::path(".github", "ISSUE_TEMPLATE", "bug_report.md"),
-               data = list(package = package,
-                           author = author),
-               path = path,
-               open = FALSE)
+               data = list(package = package, author = author),
+               path = path, open = FALSE)
   usethis::ui_done("Created bug report issue template. Modify if necessary.")
   manytemplate("Package-Features.md",
                fs::path(".github", "ISSUE_TEMPLATE", "feature_request.md"),
-               data = list(package = package,
-                           author = author),
-               path = path,
-               open = FALSE)
+               data = list(package = package, author = author),
+               path = path, open = FALSE)
   usethis::ui_done("Created feature request issue template. Modify if necessary.")
   # Add CITATION file
   create_directory(paste0(path, "/inst"))
   year <- date()
   year <- stringr::word(year, -1)
-  manytemplate("Package-citation",
-               fs::path("inst", "CITATION"),
-               data = list(package = package,
-                        author = name,
-                        year = year),
-               path = path,
-               open = TRUE)
+  manytemplate("Package-citation", fs::path("inst", "CITATION"),
+               data = list(package = package, author = name, year = year),
+               path = path, open = TRUE)
   usethis::ui_done("Added CITATION file to inst folder. Please do not forget to complete.")
+  manytemplate("package-zzz.R", fs::path("R", "zzz.R"),
+               data = list(package = package),
+               path = path, open = FALSE)
+  usethis::ui_done("Added package startup message.")
   create_directory(paste0(path, "/.github/workflows"))
   usethis::ui_done("Created workflows folder.")
   if (interactive()) {

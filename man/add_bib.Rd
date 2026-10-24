@@ -4,10 +4,10 @@
 \alias{add_bib}
 \title{Add .bib file}
 \usage{
-add_bib(database, dataset)
+add_bib(datacube, dataset)
 }
 \arguments{
-\item{database}{Name of the database dataset is a part of}
+\item{datacube}{Name of the datacube dataset is a part of}
 
 \item{dataset}{Name of the dataset}
 }
