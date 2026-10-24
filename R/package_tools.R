@@ -308,4 +308,25 @@ group_functions <- function(pattern = "", package = "manynet"){
   split(funs, sub("_.*", "", funs))
 }
 
+#' Finding the sizes of the installed packages
+#'
+#' @description
+#'   `find_installed_pkg_sizes()` lists the installed packages
+#'   in all the library paths, from the largest to the smallest.
+#'   It uses the `du` command, so it works on macOS and Linux only.
+#' @return A tibble with the size of each package in kilobytes (`size`)
+#'   and its name (`name`).
+#' @examples
+#' \dontrun{
+#' find_installed_pkg_sizes()
+#' }
+#' @export
+find_installed_pkg_sizes <- function() {
+  out <- do.call(rbind, lapply(.libPaths(), function(d) {
+    sizes <- utils::read.table(pipe(paste("du -k -d 1", shQuote(d))),
+                               col.names = c("size", "name"))
+    sizes[sizes$name != d, ]
+  }))
+  out$name <- basename(out$name)
+  dplyr::tibble(out[order(-out$size), ])
 }
