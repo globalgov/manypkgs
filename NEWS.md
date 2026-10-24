@@ -31,6 +31,7 @@
 
 - Added `build_tutorials()` to build the HTML and articles of learnr tutorials
 - Added `bigo_net()` to time a network function on networks of growing size
+- Fixed `call_cran()` to use its `author` argument
 
 # manypkgs 0.3.1
 
