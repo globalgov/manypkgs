@@ -51,33 +51,46 @@ navbar:
           href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
+        - text: manystates
+          href: https://globalgov.github.io/manystates/
+        - text: manytreaties
+          href: https://globalgov.github.io/manytreaties/
+        - text: manyios
+          href: https://globalgov.github.io/manyios/
         - text: manyenviron
           href: https://globalgov.github.io/manyenviron/
         - text: manytrade
           href: https://globalgov.github.io/manytrade/
 reference:
-  - title: "Setup functions"
-    desc: "These functions were created to assist data providers with the setup of many packages"
+  - title: "Setting up"
+    desc: "Functions that set up and update a 'many' package."
     contents:
       - setup_package
       - update_package
       - add_author
       - add_bib
-  - title: "Processing functions"
-    desc: "These functions were created to assist data providers with the processing of data"
+  - title: "Importing and exporting"
+    desc: "Functions that bring data into a 'many' package and save it as a datacube."
     contents:
       - import_data
       - export_data
-      - starts_with("standardise")
-      - starts_with("code")
+      - convert_pdf
+  - title: "Coding agreements"
+    desc: "Functions that code identifiers for international agreements."
+    contents:
+      - starts_with("code_")
       - condense_agreements
-      - read_clauses
-  - title: "Other utility functions"
-    desc: "Other utility functions that are useful during the creation of a new package"
+  - title: "Developing"
+    desc: "Functions that help with the development of R packages."
     contents:
       - depends
       - retain
-      - convert_pdf
+      - build_tutorials
+      - functions_work
+      - bigo_net
+  - title: "Defunct"
+    contents:
+      - defunct
 footer:
   structure:
     left: devs

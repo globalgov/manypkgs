@@ -4,6 +4,7 @@
 
 - Updated GitHub workflows, issue templates, and the pull request template
 - Updated CONTRIBUTING with a table of contents and `NEWS.md` conventions
+- Updated the website reference index to the functions now in the package
 
 ## Coding agreements
 
