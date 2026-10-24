@@ -243,7 +243,33 @@ call_cran <- function(author = "Hollway"){
   out[order(out$SincePub), ]
 }
 
+#' Finding the minimum R version that a package needs
+#'
+#' @description
+#'   `find_transitive_minR()` finds the highest minimum version of R
+#'   declared by the packages on CRAN that a package depends upon,
+#'   directly or indirectly.
+#'   `find_required_r()` does the same from the installed packages,
+#'   so it also works for packages that are not on CRAN,
+#'   and it also says which packages need that version.
+#' @param package,pkg The name of a package.
+#' @return `find_transitive_minR()` returns the minimum version of R
+#'   as a `package_version`.
+#'   `find_required_r()` returns a list with the version of R that the package
+#'   itself declares (`current`), the highest version that it or its
+#'   dependencies declare (`max_required_R`),
+#'   the packages that declare that version (`responsible_packages`),
+#'   and the version that each package declares (`all_requirements`).
 #' @source https://blog.r-hub.io/2022/09/12/r-dependency/
+#' @examples
+#' \dontrun{
+#' find_transitive_minR("manynet")
+#' find_required_r("manypkgs")
+#' }
+#' @name find_r
+NULL
+
+#' @rdname find_r
 #' @export
 find_transitive_minR <- function(package) {
   
@@ -257,11 +283,10 @@ find_transitive_minR <- function(package) {
   
   # These code chunks are detailed below in the 'Minimum R dependencies in CRAN 
   # packages' section
-  r_deps <- db |> 
-    dplyr::filter(Package %in% recursive_deps) |> 
-    # We exclude recommended pkgs as they're always shown as depending on R-devel
-    dplyr::filter(is.na(Priority) | Priority != "recommended") |>  
-    dplyr::pull(Depends) |> 
+  # We exclude recommended pkgs as they're always shown as depending on R-devel
+  db <- db[db$Package %in% recursive_deps &
+             (is.na(db$Priority) | db$Priority != "recommended"), ]
+  r_deps <- db$Depends |> 
     strsplit(split = ",") |> 
     purrr::map(~ grep("^R ", .x, value = TRUE)) |> 
     unlist()
@@ -304,6 +329,57 @@ edit_tutorial <- function(tute){
   invisible(pth)
 }
 
+#' @rdname find_r
+#' @export
+find_required_r <- function(pkg) {
+  # Get metadata for installed packages
+  db <- utils::installed.packages()
+  
+  # Get recursive dependencies
+  deps <- tools::package_dependencies(pkg, db = db, recursive = TRUE)[[1]]
+  all_pkgs <- c(pkg, deps)
+  
+  # Helper to extract R version requirement from a Depends string
+  extract_r_req <- function(dep_string) {
+    if (is.na(dep_string) || dep_string == "") return(NA)
+    m <- regmatches(dep_string, regexpr("R \\(>= [0-9.]+\\)", dep_string))
+    if (length(m) == 0) return(NA)
+    sub("R \\(>= ([0-9.]+)\\)", "\\1", m)
+  }
+  
+  # Extract R requirements for each package
+  reqs <- sapply(all_pkgs, function(p) extract_r_req(db[p, "Depends"]))
+  
+  # Convert to numeric_version for comparison
+  reqs_nv <- suppressWarnings(as.numeric_version(reqs))
+  
+  # Find the maximum required R version
+  max_req <- max(reqs_nv[!is.na(reqs_nv)])
+  
+  # Identify which packages require that version
+  responsible <- names(reqs_nv[!is.na(reqs_nv)])[reqs_nv[!is.na(reqs_nv)] == max_req]
+  
+  list(
+    current = reqs[pkg],
+    max_required_R = as.character(max_req),
+    responsible_packages = responsible,
+    all_requirements = reqs
+  )
+}
+
+find_defunct <- function(pkg) {
+  ns <- asNamespace(pkg)
+  objs <- ls(ns)
+  is_defunct <- function(f) {
+    is.function(f) && any(grepl("\\.Defunct|defunct|\\.Deprecated|fn_moved", deparse(body(f))))
+  }
+  defunct_funs <- objs[vapply(objs, function(x) is_defunct(ns[[x]]), logical(1))]
+  defunct_funs
+}  
+
+collect_functions <- function(pattern, package = "manynet"){
+  getNamespaceExports(package)[grepl(pattern, getNamespaceExports(package))]
+}
 
 #' Grouping the functions of a package
 #'

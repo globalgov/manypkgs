@@ -32,6 +32,7 @@
 - Added `build_tutorials()` to build the HTML and articles of learnr tutorials
 - Added `bigo_net()` to time a network function on networks of growing size
 - Added `group_functions()` to list the exported functions of a package by prefix
+- Added `find_required_r()` to find the R version that installed packages need
 - Added `find_installed_pkg_sizes()` to list the installed packages by size
 - Added `evaluate_bugs()` to get the GitHub issues of a package
 - Improved `functions_work()` to catch errors without `{berryFunctions}`
