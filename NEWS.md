@@ -31,6 +31,8 @@
 
 - Added `build_tutorials()` to build the HTML and articles of learnr tutorials
 - Added `bigo_net()` to time a network function on networks of growing size
+- Added `group_functions()` to list the exported functions of a package by prefix
+- Added `evaluate_bugs()` to get the GitHub issues of a package
 - Fixed `call_cran()` to use its `author` argument
 - Fixed `evaluate_bugs()` to pass the repository and not the URL to `{githubr}`
 

@@ -286,4 +286,26 @@ edit_tutorial <- function(tute){
   pth <- paste0("inst/tutorials/", opt)
   if(rstudioapi::isAvailable())
     rstudioapi::navigateToFile(pth)
+
+#' Grouping the functions of a package
+#'
+#' @description
+#'   `group_functions()` lists the exported functions of a package
+#'   that match a pattern, leaves out the defunct and deprecated functions,
+#'   and groups the rest by the prefix before the first underscore.
+#' @param pattern A regular expression that the function names must match.
+#'   By default "", which matches all of them.
+#' @param package The name of an installed package.
+#'   By default "manynet".
+#' @return A named list of character vectors of function names,
+#'   with one element for each prefix.
+#' @examples
+#' group_functions("^find", package = "manypkgs")
+#' @export
+group_functions <- function(pattern = "", package = "manynet"){
+  funs <- sort(collect_functions(pattern, package))
+  funs <- funs[!funs %in% find_defunct(package)]
+  split(funs, sub("_.*", "", funs))
+}
+
 }
