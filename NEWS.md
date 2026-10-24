@@ -36,6 +36,7 @@
 - Added `evaluate_bugs()` to get the GitHub issues of a package
 - Improved `functions_work()` to catch errors without `{berryFunctions}`
 - Improved `print_help()` to use only exported functions from `{tools}`
+- Improved `find_nonascii()` to check data frames as well as networks
 - Fixed `call_cran()` to use its `author` argument
 - Fixed `evaluate_bugs()` to pass the repository and not the URL to `{githubr}`
 

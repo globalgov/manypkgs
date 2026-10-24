@@ -67,20 +67,44 @@ print_help <- function(topic, format = c("text", "html", "latex", "Rd"),
   invisible(hs)
 }
 
-#' @source https://www.r-bloggers.com/2013/06/printing-r-help-files-in-the-console-or-in-knitr-documents/
+#' Finding non-ASCII characters in the data of a package
+#'
+#' @description
+#'   `find_nonascii()` looks through the datasets of a package for
+#'   character variables or node attributes that contain characters that are
+#'   not ASCII.
+#'   CRAN asks for the data in a package to be ASCII, or to declare an encoding.
+#' @param pkg The name of an installed package.
+#' @return A character vector of the datasets and variables,
+#'   in the form "dataset$variable", that contain non-ASCII characters,
+#'   invisibly.
+#'   Each is also printed.
+#' @examples
+#' find_nonascii("datasets")
 #' @export
-find_nonascii <- function(pkg) {  
-  pkgs_data <- data(package = pkg)$results[,3]
-  lapply(pkgs_data, function(x){
-    attribs <- net_node_attributes(get(x))
-    print(x)
-    if(length(attribs)>0)
-      lapply(attribs, function(y){
-        print(paste(" ", y))
-        a <- node_attribute(get(x), y)
-        if(is.character(a))
-          if(!all(stringi::stri_enc_isascii(a), na.rm = TRUE))
-            print(paste(x, y))
-      })
-  })
+find_nonascii <- function(pkg) {
+  items <- utils::data(package = pkg)$results[, "Item"]
+  # An item of the form "object (file)" is loaded from that file
+  pkgs_data <- sub(" .*", "", items)
+  files <- ifelse(grepl("\\(", items), sub(".*\\((.*)\\)$", "\\1", items),
+                  pkgs_data)
+  env <- new.env()
+  out <- unlist(lapply(seq_along(pkgs_data), function(i) {
+    x <- pkgs_data[i]
+    utils::data(list = files[i], package = pkg, envir = env)
+    obj <- get(x, envir = env)
+    vars <- if (is.data.frame(obj)) {
+      as.list(obj)
+    } else if (rlang::is_installed("manynet") && manynet::is_graph(obj)) {
+      attribs <- manynet::net_node_attributes(obj)
+      stats::setNames(lapply(attribs, function(y)
+        manynet::node_attribute(obj, y)), attribs)
+    } else list()
+    bad <- vapply(vars, function(a) is.character(a) &&
+                    !all(stringi::stri_enc_isascii(a), na.rm = TRUE),
+                  logical(1))
+    if (any(bad)) paste0(x, "$", names(vars)[bad])
+  }))
+  if (length(out) > 0) cat(out, sep = "\n")
+  invisible(out)
 }
