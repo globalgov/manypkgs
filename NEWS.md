@@ -27,6 +27,9 @@
   - Dropped the prompt to recode the IDs and titles of the other datasets
   - Dropped the documentation and test scripts that it added
 
+## Developing
+
+- Added `build_tutorials()` to build the HTML and articles of learnr tutorials
 
 # manypkgs 0.3.1
 
