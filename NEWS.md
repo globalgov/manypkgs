@@ -1,3 +1,15 @@
+# manypkgs 0.4.0
+
+## Package
+
+- Updated GitHub workflows, issue templates, and the pull request template
+- Updated CONTRIBUTING with a table of contents and `NEWS.md` conventions
+
+## Coding agreements
+
+- Removed `code_dates()` in favour of `messydates::year()`
+- Removed `code_acronym()` in favour of `manytreaties::code_acronyms()`
+
 # manypkgs 0.3.1
 
 ## Package

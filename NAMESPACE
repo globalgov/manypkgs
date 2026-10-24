@@ -25,11 +25,56 @@ export(update_package)
 import(dplyr)
 import(stringr)
 import(usethis)
+importFrom(dplyr,
+  "%>%",
+  case_when,
+  distinct,
+  left_join,
+  mutate,
+  select
+)
+importFrom(fs,
+  path,
+  path_file
+)
 importFrom(knitr,kable)
+importFrom(pdftools,
+  pdf_ocr_text,
+  pdf_text
+)
 importFrom(purrr,map)
 importFrom(remotes,install_github)
 importFrom(rlang,is_string)
 importFrom(rstudioapi,navigateToFile)
 importFrom(stringi,stri_trans_general)
+importFrom(stringr,
+  str_detect,
+  str_extract,
+  str_extract_all,
+  str_remove_all,
+  str_replace,
+  str_replace_all,
+  str_replace_na,
+  str_split,
+  str_squish,
+  str_trim,
+  word
+)
 importFrom(tidyr,fill)
+importFrom(tm,
+  removeWords,
+  stopwords,
+  stripWhitespace
+)
+importFrom(usethis,
+  ui_done,
+  ui_info,
+  ui_todo,
+  use_directory
+)
+importFrom(utils,
+  install.packages,
+  lsf.str,
+  object.size
+)
 importFrom(whisker,whisker.render)
