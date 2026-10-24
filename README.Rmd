@@ -4,12 +4,12 @@ output: github_document
 # manypkgs <img src="man/figures/manypkgslogo.png" align="right" width="220"/>
 
 <!-- badges: start -->
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/globalgov/manypkgs)
 ![GitHub Release Date](https://img.shields.io/github/release-date/globalgov/manypkgs)
 ![GitHub issues](https://img.shields.io/github/issues-raw/globalgov/manypkgs)
 <!-- [![HitCount](http://hits.dwyl.com/globalgov/manydata.svg)](http://hits.dwyl.com/globalgov/manydata) -->
-[![Codecov test coverage](https://codecov.io/gh/globalgov/manypkgs/branch/main/graph/badge.svg)](https://codecov.io/gh/globalgov/manypkgs?branch=main)
+[![Codecov test coverage](https://codecov.io/gh/globalgov/manypkgs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/globalgov/manypkgs?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manypkgs/badge)](https://www.codefactor.io/repository/github/globalgov/manypkgs)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867)
 <!-- ![GitHub All Releases](https://img.shields.io/github/downloads/jhollway/roctopus/total) -->
@@ -19,7 +19,7 @@ output: github_document
 It provides contributors the necessary tools to put their data in the hands of users.
 The package includes functions to make this easier to set up a 'many' package, import their existing data, and export them in structures consistent with other packages in the many packages universe.
 
-For more details, please see the [vignette](https://globalgov.github.io/manypkgs/articles/developer.html).
+For more details, please see the [vignette](https://globalgov.github.io/manypkgs/articles/contributor.html).
 
 ## Downloading and installing manypkgs
 
@@ -44,4 +44,4 @@ manydata::call_packages()
 ```
 
 Please see [the website](https://globalgov.github.io/manypkgs/) for more information about how to use `{manypkgs}` as a developer or as a data contributor.
-For more information on `{manydata}`, please see [the website](https://globalgov.github.io/manydata/).
+For more information on `{manydata}`, please see [the website](https://www.manydata.ch/).

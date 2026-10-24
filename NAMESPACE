@@ -23,7 +23,6 @@ export(standardise_dates)
 export(standardize_dates)
 export(update_package)
 import(dplyr)
-import(stringr)
 import(usethis)
 importFrom(dplyr,
   "%>%",

@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 ![GitHub release (latest by
 date)](https://img.shields.io/github/v/release/globalgov/manypkgs)
 ![GitHub Release
@@ -12,7 +12,7 @@ Date](https://img.shields.io/github/release-date/globalgov/manypkgs)
 issues](https://img.shields.io/github/issues-raw/globalgov/manypkgs)
 <!-- [![HitCount](http://hits.dwyl.com/globalgov/manydata.svg)](http://hits.dwyl.com/globalgov/manydata) -->
 [![Codecov test
-coverage](https://codecov.io/gh/globalgov/manypkgs/branch/main/graph/badge.svg)](https://codecov.io/gh/globalgov/manypkgs?branch=main)
+coverage](https://codecov.io/gh/globalgov/manypkgs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/globalgov/manypkgs?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/globalgov/manypkgs/badge)](https://www.codefactor.io/repository/github/globalgov/manypkgs)
 [![CII Best
 Practices](https://bestpractices.coreinfrastructure.org/projects/4867/badge)](https://bestpractices.coreinfrastructure.org/projects/4867)
@@ -27,7 +27,7 @@ export them in structures consistent with other packages in the many
 packages universe.
 
 For more details, please see the
-[vignette](https://globalgov.github.io/manypkgs/articles/developer.html).
+[vignette](https://globalgov.github.io/manypkgs/articles/contributor.html).
 
 ## Downloading and installing manypkgs
 
@@ -70,4 +70,4 @@ manydata::call_packages()
 Please see [the website](https://globalgov.github.io/manypkgs/) for more
 information about how to use `{manypkgs}` as a developer or as a data
 contributor. For more information on `{manydata}`, please see [the
-website](https://globalgov.github.io/manydata/).
+website](https://www.manydata.ch/).

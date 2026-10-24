@@ -5,8 +5,10 @@
 - Updated GitHub workflows, issue templates, and the pull request template
 - Updated CONTRIBUTING with a table of contents and `NEWS.md` conventions
 - Updated the website reference index to the functions now in the package
+- Dropped `{english}` and `{textclean}` from Imports
+- Updated CITATION to use `bibentry()`
 
-## Coding agreements
+## Coding
 
 - Removed `code_dates()` in favour of `messydates::year()`
 - Removed `code_acronym()` in favour of `manytreaties::code_acronyms()`
@@ -29,6 +31,9 @@
 * Added `functions_work()` to see which functions work on which objects
 * Added `print_help()` for printing a function's help page to the console
 * Added `edit_tutorial()` for opening a tutorial for editing
+* Added `call_cran()` for listing an author's CRAN packages and when each can be updated
+* Added `find_transitive_minR()` for finding the minimum R version a package needs
+* Added `find_nonascii()` for finding non-ASCII characters in a package's data
 
 ## Correction
 

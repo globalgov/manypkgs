@@ -34,11 +34,9 @@ Depends:
 Imports:
     dplyr,
     tibble,
-    english,
     purrr,
     rlang,
     stringr,
-    textclean,
     usethis,
     whisker,
     fs,
@@ -68,6 +66,10 @@ Suggests:
     RefManageR,
     migraph,
     manydata,
+    manynet,
+    manystates,
+    manytreaties,
+    githubr,
     entity (>= 0.1.0)
 Encoding: UTF-8
 Language: en-GB
@@ -84,5 +86,6 @@ Config/Needs/website:
     pkgdown
 Config/testthat/edition: 3
 Remotes: 
+    globalgov/manytreaties,
     trinker/entity
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1
