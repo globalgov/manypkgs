@@ -1,22 +1,27 @@
 #' Checking whether functions work across different types of objects
 #'
-#' @param functions blah
-#' @param objects blah
-#' @examples
+#' @description
+#'   `functions_work()` calls each of the functions on each of the objects,
+#'   and reports which calls run without an error.
+#' @param functions A character vector of the names of functions.
+#'   Each function must take the object as its first argument.
+#' @param objects A character vector of the names of objects.
+#' @return A logical matrix with a row for each function and
+#'   a column for each object.
+#'   An element is `TRUE` where the function runs on the object without an error.
+#' @examplesIf rlang::is_installed("manynet")
 #'  library(manynet)
-#'  functions <- c("node_in_optimal", "node_in_partition", "node_in_infomap",
-#'                "node_in_spinglass", "node_in_fluid", "node_in_louvain", 
-#'                "node_in_leiden", "node_in_betweenness", "node_in_greedy", 
-#'                "node_in_eigen", "node_in_walktrap")
-#'  objects <- table_data() %>% 
-#'                 dplyr::distinct(directed, weighted, twomode, 
-#'                 labelled, signed, .keep_all = TRUE) %>% 
-#'                 dplyr::pull(dataset)
-#'  functions_work(functions, objects)
+#'  functions_work(c("net_nodes", "net_ties", "net_density"),
+#'                 c("ison_adolescents", "ison_southern_women"))
 #' @export
 functions_work <- function(functions, objects){
-  opts <- expand.grid(functions, objects)
-  out <- apply(opts, 1, function(x) !berryFunctions::is.error(get(x[1])(get(x[2]))))
+  opts <- expand.grid(functions, objects, stringsAsFactors = FALSE)
+  out <- apply(opts, 1, function(x) {
+    tryCatch({
+      get(x[1], mode = "function")(get(x[2]))
+      TRUE
+    }, error = function(e) FALSE)
+  })
   out <- matrix(out, nrow = length(functions))
   rownames(out) <- functions
   colnames(out) <- objects
