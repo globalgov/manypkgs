@@ -315,7 +315,7 @@ code_linkage <- function(title, date, return_all = FALSE) {
     abbrev <- code_known_agreements(treaty)
     usethis::ui_done("Coded known agreements")
     # Step 5: give the observation a unique ID and acronym
-    uID <- as.character(messydates::year(date))
+    uID <- as.character(messydates::year(messydates::as_messydate(date)))
     usethis::ui_done("Coded agreement dates")
     # Step 6: code acronyms from titles
     acronym <- manytreaties::code_acronyms(title)
