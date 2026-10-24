@@ -10,6 +10,10 @@ standardise_dates(...)
 
 standardize_dates(...)
 }
+\value{
+These functions stop with an error that names the function
+to use instead.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }

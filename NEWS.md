@@ -21,6 +21,12 @@
 - Improved `code_linkage()` to code parties with `manystates::code_states()`
   - Keeps parties only where two are found, with their activity
 
+## Constructing
+
+- Improved `export_data()`
+  - Dropped the prompt to recode the IDs and titles of the other datasets
+  - Dropped the documentation and test scripts that it added
+
 
 # manypkgs 0.3.1
 
