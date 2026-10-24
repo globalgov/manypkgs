@@ -1,221 +1,275 @@
 # Contributing
 
-Contributions to `manypkgs`, whether in the form of issue identification,
-bug fixes, new code or documentation are encouraged and welcome,
-both from research assistants and (early) users of the package:
+Contributions to `manypkgs`,
+whether in the form of issue identification, bug fixes, new code or documentation,
+are encouraged and welcome.
 
-* [Submit an issue](#issues)
-* [Fix a bug or implement new features](#adding-new-code)
-* [Document existing code](#documentation)
-
-This outlines how to propose a change to a package from the 
-Global Governance Observatory's ecosystem. 
-Please note that the `manypkgs` project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+Please note that the `manypkgs` project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
-## Issues
-Please use the issue tracker on GitHub to identify problems or suggest new functionality,
-before submitting changes to the code.
-We use issues to identify bugs and tasks, discuss feature requests,
-and to track implementation of changes.
+## Contents
 
-When submitting an issue, please provide at least a 'Type' label that best
-describes what the issue is about.
-The most useful issues are ones that precisely identify a bug,
+Each entry says when to read the section.
+Update this list whenever a heading below is added, renamed, or moved.
+
+- [Identifying issues](#identifying-issues): before you report a bug or ask for a feature
+- [Package architecture](#package-architecture)
+  - [Project overview](#project-overview): to decide whether a function belongs here
+    or in another 'many' package
+- [Developing](#developing)
+  - [Common commands](#common-commands): to load, document, test, or check the package
+  - [File organization](#file-organization): to find a function, or the file for a new one
+  - [Tests](#tests): before you add a test
+  - [Deprecation](#deprecation): before you rename, move, or remove a function or an argument
+- [Documenting](#documenting)
+  - [README and website](#readme-and-website): before you edit the README or the website index,
+    and whenever you export a function
+  - [Writing in markdown and roxygen](#writing-in-markdown-and-roxygen):
+    before you write documentation or a vignette
+  - [`NEWS.md` conventions](#newsmd-conventions): before you write a `NEWS.md` entry
+    or a commit message
+- [Releasing](#releasing)
+  - [Branching and CI](#branching-and-ci): to choose a branch, or to read a failed check
+  - [Versioning](#versioning): before you bump the version
+- [Git for new contributors](#git-for-new-contributors): if git is new to you
+
+## Identifying issues
+
+Please use the issues tracker on GitHub to identify any function-related issues.
+You can use these issues to track progress on the issue and
+to comment or continue a conversation on that issue.
+The most useful issues are ones that precisely identify an error,
 or propose a test that should pass but instead fails.
+Examples for documentation are also most welcome.
 
-## Adding new code
-Independent or assigned code contributions are most welcome.
-When writing new code, please follow [tidyverse style guide](https://style.tidyverse.org/index.html) which is based on
-[standard R guidelines](https://google.github.io/styleguide/Rguide.xml).
+## Package architecture
 
-It can help to use packages such as `lintr` and `goodpractice` to ensure these are followed. 
-These packages are incorporated into the checks made when a pull request is made. 
-The `styler` package fixes in a non-invasive way the code to adhere to the tidyverse
-formatting rules, and it also provides an RStudio Addins to help with this task.
-To run the `lintr` and `goodpractice` checks or use `styler` in a file run:
+### Project overview
 
-```r
-# basic lintr checking
-lintr::lint_package(path = "manypkgs/")
+`manypkgs` is the developer's package of the
+[many packages](https://github.com/globalgov) ecosystem.
+It helps contributors set up a 'many' package,
+import and prepare its datasets, and export them into datacubes.
 
-# goodpractices checks. Exclude length 80
-goodpractice::gp(path = "manypkgs/",
-   checks = all_checks()[-c(8)])
+Other packages in the ecosystem hold the functions that users call
+or that code a particular kind of data:
 
-# styler fix some of the styling issues
-styler::style_file("filePath")
-```
+- `{manydata}` holds the functions that users call to find, compare,
+  and consolidate the data in the 'many' packages.
+- `{manytreaties}` holds the functions that standardise treaty titles and texts,
+  and that code treaty identifiers, lineages, and terms.
+- `{manystates}` holds `code_states()`, which codes the states in a text.
+- `{manyios}` holds `code_orgs()`, which codes the international organisations in a text.
+- `{messydates}` holds the functions for dates, for example `messydates::year()`.
 
-## Writing in markdown/roxygen
-When writing passages of text in markdown or roxygen documents,
-please consider that text should be written such that sentences,
-and sometimes clauses of a sentence, start on a new line.
-This facilitates comparison of documents and feedback on GitHub.
+Put a new function in `manypkgs` only if it helps contributors
+to make or update a 'many' package.
+A function that codes a kind of data goes in the package for that data.
+Do not copy a function from another 'many' package into `manypkgs`:
+call it with `::` and declare the package in `DESCRIPTION`.
+
+## Developing
+
+### Common commands
+
+This is a standard R package developed with `devtools`/`roxygen2`.
+Run these from an R console with the working directory set to the package root
+(or via `Rscript -e`).
+
+- Load for development: `devtools::load_all()`
+- Regenerate docs & NAMESPACE after editing roxygen comments: `devtools::document()`
+- Run full test suite: `devtools::test()`
+- Run a single test file: `devtools::test(filter = "export_data")`,
+  or `testthat::test_file("tests/testthat/test_export_data.R")`
+- Full package check (mirrors CI): `devtools::check()` or `rcmdcheck::rcmdcheck()`
+- Lint: `lintr::lint_package()`
+- Spell check: `spelling::spell_check_package()`
+- Code coverage: `covr::package_coverage()`
+- Build pkgdown site locally: `pkgdown::build_site()`
+
+Run R in a UTF-8 locale, e.g. `LANG=en_US.UTF-8 Rscript -e "devtools::document()"`.
+Under the C locale, `devtools::document()` writes byte escapes into `man/`
+in place of quotation marks and accented letters.
+
+`README.md` is generated from `README.Rmd`.
+See [README and website](#readme-and-website) below.
+
+### File organization
+
+The files in `R/` are named after the family of functions that they hold:
+
+- `package_setup.R`, `package_update.R`, and `package_templates.R`
+  set up and update a 'many' package, and write its template files
+  from `inst/templates/`.
+- `data_import.R` and `data_export.R` import raw data and export datasets
+  into a datacube.
+- `code_agreements.R` and `condense_agreements.R` code agreement identifiers.
+- `convert_pdf.R` extracts the text from PDF files.
+- `package_tools.R`, `package_complexity.R`, `package_evaluate.R`,
+  `function_application.R`, and `build_tutorials.R` hold tools for package development.
+- `manypkgs-defunct.R` holds the defunct functions.
+- `zzz.R` holds the startup message.
+
+Put a new function in the file of its family.
+Where no family fits, start a new file with a name of the form `<family>_<topic>.R`.
+
+### Tests
+
+This package uses the `testthat` package (edition 3) for testing functions.
+Please see the [testthat website](https://testthat.r-lib.org) for more details.
+
+Tests are in `tests/testthat/`.
+A test file is named after the file in `R/` that it tests,
+for example `test-condense_agreements.R` tests `R/condense_agreements.R`.
+Some older test files use `test_` in place of `test-`;
+rename such a file when you next change it.
+
+Write a test for each new exported function.
+A test that needs the internet, or data from another package that is not
+in `Imports`, must call `skip_on_cran()` or `skip_if_not_installed()`.
+Re-use existing test data rather than create new data for each test.
+
+### Deprecation
+
+A function that is renamed or removed first becomes defunct
+in [R/manypkgs-defunct.R](../R/manypkgs-defunct.R):
+
+- Document the function with `#' @describeIn defunct Deprecated on <date>.` and export it.
+- Call `.Defunct()` with a message that names the function that replaces it,
+  and the package that holds that function.
+- Record the change as `Removed ...` or `Moved ...` in `NEWS.md`.
+
+A function that only duplicated a function in another 'many' package
+can be removed without a defunct shim,
+if `NEWS.md` names the function that replaces it.
+
+## Documenting
+
+### README and website
+
+The README offers a landing page for new users, both on the GitHub repository
+and on the website.
+`README.md` is generated from `README.Rmd`:
+edit `README.Rmd` and re-knit it (`devtools::build_readme()`),
+and never edit `README.md` directly.
+
+The website is created by pkgdown from [pkgdown/_pkgdown.yml](../pkgdown/_pkgdown.yml),
+and is deployed automatically when changes reach `main`.
+pkgdown requires *every* documented topic to appear in the `reference:` section
+of `_pkgdown.yml`, or the website does not build.
+When you add, rename, or remove an exported function, update that section,
+and run `pkgdown::build_site()` locally before you open a pull request.
+The `reference:` titles are also the headings used in `NEWS.md` (see below),
+so keep the two in step.
+
+### Writing in markdown and roxygen
+
+When you write text in markdown or roxygen,
+start each sentence, and sometimes each clause of a sentence, on a new line.
+This makes it easier to compare versions and to comment on GitHub.
 Lines of text should, ideally, not be over 80 characters in length.
 
-## Pull request process
-The title of your PR should briefly describe the change. 
-Please include a summary of the changes and which issues are fixed and
-the relevant motivation and context. 
-List any dependencies that are required for this change, 
-indicating whether this is a major (breaking), minor, or patch change. 
-The body of your PR should contain `Fixes #issue-number`.
-A checklist is provided to check off the cases as the different elements
-listed have been completed to make sure all the steps have been respected.
-Make sure the package passes R CMD check by running `devtools::check()` before
-commiting changes to a pull request. 
+Every exported function needs roxygen documentation with at least a title,
+a description, a `@param` entry for each argument, a `@return` entry, and an example.
+`R CMD check` warns about an exported function with no documentation,
+and CRAN asks for a `@return` entry.
 
-If you want to make a bigger change, it's a good idea to first file an issue and make sure someone from the team agrees that it’s needed before openning a pull request.
-If you’ve found a bug, please file an issue that illustrates the bug with a minimal [reprex](https://www.tidyverse.org/help/#reprex).
+### `NEWS.md` conventions
 
-Please follow the manypkgs pull request guideline (https://github.com/globalgov/manypkgs/blob/main/.github/pull_request_template.md)  
+`NEWS.md` groups each version's changes under `##` headings that mirror the website
+reference index (the `reference:` titles in `pkgdown/_pkgdown.yml`).
+Lead with `## Package` (package-wide, website, and infrastructure changes),
+then the function families in the order of the index:
+`## Setting up`, `## Importing and exporting`, `## Coding agreements`, `## Developing`.
+Each heading appears at most once per version.
 
-### Branches
-We use two **main branches** in this project:
+Start each bullet with a verb matching the change type:
 
-1. The `origin/main` branch is reserved for fully functional releases of the model. 
-When the `develop` branch reaches a stable point, a code maintainer merges
-it back into to the `master` branch, and tags it with a release number there. 
+- `Added ...` — new functionality
+- `Fixed ...` — bug fixes; if it relates to a GitHub issue, suffix with `(closes #123)`.
+  Note that GitHub closes the issue only where the same phrase is in a commit message
+  or the pull request description
+- `Renamed ... to ...` — function or data name migrations
+- `Improved ...` — functional updates to existing behaviour
+- `Updated ...` — documentation changes
+- `Removed ...` / `Dropped ...` — functionality or dependencies taken out
+- `Moved ...` / `Migrated ...` — functionality relocated to another package or file
+- `Split ...` — one function or file divided into several
 
-2. The `origin/develop` branch reflects the latest model development stage.
-Contributers are encouraged to submit minor changes to this branch that
-enhance existing functionality.
-New features that may break existing functionality should be committed to supporting branches.
+Any of these verbs can also lead a sub-bullet.
 
-We use two types of **supporting branches**:
-
-3. *Feature branches* are used to develop new functionality.
-They exist as long as the feature is developed, and are then either merged into
-the `develop` branch for incorporation in a release,
-or deleted if the feature is abandoned.
-Feature branches should branch off from `origin/develop`.
-
-4. *Hotfix branches* are used to provide fixes to severe bugs in the `main` branch.
-That way, the code maintainer does not have to incorporate (potentially unstable)
-changes from the `develop` branch to fix an issue.
-Branch names should be prefixed with `hotfix-`.
-
-This branching model is based on: https://nvie.com/posts/a-successful-git-branching-model/.
-
-### Main Branch (code maintainer only)
-To create a release version of the code:
-
-1. Ensure that the repository is up-to-date: `git pull`.
-2. Switch to the **main** branch: `git checkout master`.
-3. Merge changes to the **develop** branch: `git merge --no-ff develop`.
-4. Tag release version: `git tag -a VX.Y.Z -m "VERSION-NAME"`.
-5. Push changes to this repository `git push origin master --tags`.
-
-### Develop Branch (minor changes to existing functionality)
-To make minor changes directly to the `develop` branch, follow standard git procedures:
-
-1. Make sure you switched to the **develop** branch of the project: `git checkout -b develop`.
-2. Make sure your local version of the code is up-to-date: `git pull origin develop`.
-3. Make your changes
-4. Stage your changes for a commit: `git add PATH-TO-CHANGED-FILE`.
-5. Commit your changes [using an appropriate message](#commit-messages): `git commit -m "DESCRIPTION"`.
-6. Push your commit: `git push origin develop`.
-
-### Feature Branches (new functionality)
-To create a new feature branch: `git checkout -b myfeature develop`.
-
-To merge a feature branch back into `develop`:
-```
-git checkout develop
-git merge --no-ff myfeature
-git branch -d myfeature
-git push origin develop
-```
-
-### Hotfix Branches (to fix critical bugs in release versions)
-To create a new hotfix branch: `git checkout -b hotfix-VERSION master`.
-
-To merge a hotfix back into `master` (code maintainer only):
-```
-git checkout master
-git merge --no-ff hotfix-VERSION 
-git tag -a VERSION
-git push origin develop
-```
-And into develop:
-```
-git checkout develop
-git merge --no-ff hotfix-VERSION
-```
-
-Every hotfix should increment the [PATCH digit of the version number](#versioning): a hotfix branch for `V1.3.0` is named `hotfix-V1.3.1`, and the new release is tagged as `V1.3.1`.
-
-Once merged into `master` and `develop`, the hotfix branch can be deleted: `git branch -d hotfix-VERSION`.
-
-### Commit messages
-Commits that relate to existing issues should reference the updated status of those issues,
-and mention the issue number (preceded by a hash symbol: #) in the commit description:
-
-``` Resolved #31 by adding a new function that does things, also updated documentation ```
-
-Where the issue hash (i.e. #31) is preceded by `resolve`, `resolves`, `resolved`,
-`close`, `closes`, `closed`, `fix`, `fixes`, or `fixed` (capitalised or not),
-the status of the issue(s) mentioned is updated automatically.
-Our current syntactical standard is to mention the issue first and
-then provide a short description of what the committed changes do in relation to that issue.
-Any ancillary changes can be mentioned after a comma.
-
-It should all be written in a single line, like so: #`{verb} {issue} {describe main action/changes}, {additional actions/changes}`.
-
-Note that it is important to write a structured commit message to improve efficiency in collaboration.
-Please make sure of:
-* Making the title clear and concise with correct reference to an issue as described above. 
-* Using a subject line in the description part when the commit message outlines many different changes.
-* Explaining in details the changes made and why you made them by using bullet points.
-* Separating each paragraph with a blank line.
-
-To keep the tracking and, if needed, the reversing of changes as easy as possible,
-please follow the ['atomic approach'](https://www.freshconsulting.com/insights/blog/atomic-commits/)
-when committing changes.
-Each commit should address separate aspects as much as possible,
-such as making bug fixes and additions of data in separate commits.
-
-### Testing 
-We use the [testthat](https://testthat.r-lib.org/) package to write unit tests.
-By convention, tests are located in [testthat/tests/](manypkgs/tests/testthat).
-
-You should verify that all tests pass before issuing a commit to existing code.
-To run all tests for the latest version manually:
+Where a function is removed or moved, name the function that replaces it
+and the package that holds it, e.g.:
 
 ```
-git pull
-library("testthat")
-testthat::test_dir("tests/testthat")
+- Moved `code_lineage()` to `{manytreaties}`
+- Removed `code_dates()` in favour of `messydates::year()`
 ```
 
-When writing a new function, consider writing a unit test for that function. 
-We follow several conventions for writing tests:
+Keep every bullet to one line of fewer than 81 characters ideally.
+If a bullet wraps, it holds too much:
+shorten it, or split it into a lead bullet and sub-bullets.
+Each bullet stands on its own, and states what changed, not why or how.
+Explanation belongs in the function documentation or the vignettes.
 
-- A unit test file should test one or more aspects of a single function. This makes it easier to identify the source of bugs, and prevents lower-level tests from failing when higher-level functions change.
+Where several bullets describe parallel changes, reuse the sentence structure,
+so that a reader sees the parallelism at a glance.
+Use one word for one thing throughout a version's entries,
+rather than varying the wording for effect.
 
-- The [naming convention](https://www.tidyverse.org/articles/2019/04/testthat-2-1-0/) for test files is: ``test-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``, i.e. test files are named after the file containing the original function in the [R](manypkgs/R) directory, pre-fixed with "test", and optionally post-fixed with the name of the function that is being tested.
+If a cited GitHub issue was **not** authored by @jhollway, thank the author with an
+`@`-tag in the bullet.
+Cluster related changes as indented sub-bullets under a lead bullet.
+Where several changes concern one function, lead with an `Improved ...` bullet that
+names the function, and put the individual `Fixed ...`/`Added ...` points beneath it.
+Under an `Improved ...` lead bullet, do not name the function again in the sub-bullets.
+Sub-bullets indent by two spaces, and nest at most one level further (four spaces).
 
-- If a test requires auxiliary functions from the package, e.g. to initialize a network with sample data, these belong in a helper file. There should be only one helper file for each `R` file, named ``helper-FILENAME_IN_R_DIRECTORY-FUNCTION_NAME.R``. Re-using existing test data is preferable to creating new data for every test.
+## Releasing
 
-## Documentation
-A final way of contributing to the package is in developing the
-vignettes/articles that illustrate the value added in the package. 
-Please contact us directly with proposals for updating the documentation,
-or submit an issue if existing documentation is unclear.
+### Branching and CI
 
-## Versioning
-Note that the package is versioned according to [semantic versioning](https://www.jvandemo.com/a-simple-guide-to-semantic-versioning/).
-This means that versions follow the Major.Minor.Patch semantic format.
+- `main` is the release branch; `develop` is the working branch.
+  Work on `develop`, and open a pull request from `develop` into `main` to release.
+- Pull requests into `main` trigger [prchecks.yml](workflows/prchecks.yml):
+  R CMD check (macOS/Windows/Linux), binary build, codecov, lintr, spell check,
+  and pull request metadata checks.
+  The metadata checks need the `DESCRIPTION` version to be bumped,
+  the pull request title to name the new version,
+  and the pull request description to group its changes under `##` headings,
+  as in `NEWS.md`.
+- Merges into `main` trigger [pushrelease.yml](workflows/pushrelease.yml):
+  check, version tag, GitHub release with binaries, then the pkgdown website.
+  The release notes are taken from the `NEWS.md` section of the new version.
+- R CMD check fails on any warning.
+  Run `devtools::check()` locally before you open a pull request.
 
-Each minor or major level version is also given a new version name,
-which should be updated in the `zzz.R` file.
+### Versioning
 
-## For developers using MacOS
-Develops using MacOS might meet problems compiling the packages since the
-compiling configuration of R in MacOS is usually incorrect.
-If one meet an error with error info "/usr/bin/ld: cannot find -lgfortran",
-then he can either correct the configuration himself or follows
-the following steps to solve the problem:
-1. Run ".libPaths()" command in R and get a path, e.g. one might get "/Library/Frameworks/R.framework/Versions/3.6/Resources/library"
-2. If the path one get in the first step is "something/library",  then open the file "something/etc/Makeconf" and comment out the line starting with "FLIBS".  e.g. one might open the file  " /Library/Frameworks/R.framework/Versions/3.6/Resources/etc/Makeconf" and change the line "FLIBS =  -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath -lm" to "#FLIBS =  -L/usr/local/gfortran/lib/gcc/x86_64-apple-darwin15/6.1.0 -L/usr/local/gfortran/lib -lgfortran -lquadmath - lm"
+The package is versioned according to [semantic versioning](https://semver.org):
+Major.Minor.Patch.
+
+- Bump the patch version for fixes and changes that do not remove anything.
+- Bump the minor version where a function is removed, renamed, or moved,
+  or where a function returns something different.
+- Make sure that the `Version` in `DESCRIPTION` equals the newest heading in `NEWS.md`.
+
+## Git for new contributors
+
+'many' packages are maintained using the git version control system.
+A plain-English introduction to git can be found [here](https://blog.red-badger.com/2016/11/29/gitgithub-in-plain-english),
+and a more recent motivation [here](https://www.r-bloggers.com/2024/04/git-gud-version-control-best-practices/).
+They explain the basics of git version control: committing and repos, pulling and pushing,
+branching and merging.
+
+Using git from the command line can be intimidating,
+so I recommend [Fork](https://git-fork.com) software for Mac and Windows,
+which allows mostly visual management of commits, diffs, and branches.
+
+- **Clone** the remote repository to your computer, and work on the `develop` branch.
+- **Pull** before you start working, so that you have the newest commits and files.
+- **Commit** once you have saved a change: check the diff one last time,
+  and write a commit message in the form of a `NEWS.md` bullet (see above),
+  with the issue it relates to.
+  Keep each commit to one change, so that it is easy to follow or to revert.

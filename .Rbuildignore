@@ -12,3 +12,5 @@
 ^example_pdf\.pdf$
 ^.DS_Store$
 ^.RDataTmp$
+^\.claude$
+^CLAUDE\.md$

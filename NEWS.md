@@ -1,3 +1,47 @@
+# manypkgs 0.4.0
+
+## Package
+
+- Updated GitHub workflows, issue templates, and the pull request template
+- Updated CONTRIBUTING with a table of contents and `NEWS.md` conventions
+- Updated the website reference index to the functions now in the package
+- Dropped `{english}` and `{textclean}` from Imports
+- Updated CITATION to use `bibentry()`
+
+## Coding
+
+- Removed `code_dates()` in favour of `messydates::year()`
+- Removed `code_acronym()` in favour of `manytreaties::code_acronyms()`
+- Moved `code_states()` to `{manystates}`
+- Moved `standardise_titles()` and `standardise_treaty_text()` to `{manytreaties}`
+- Moved `read_clauses()` to `{manytreaties}`
+- Moved `code_lineage()`, `code_domain()`, and `code_entity()` to `{manytreaties}`
+- Moved the accession and termination functions to `{manytreaties}`
+  - `code_accession_terms()`, `code_term()`, and `code_term_date()`
+- Improved `code_linkage()` to code parties with `manystates::code_states()`
+  - Keeps parties only where two are found, with their activity
+
+## Constructing
+
+- Improved `export_data()`
+  - Dropped the prompt to recode the IDs and titles of the other datasets
+  - Dropped the documentation and test scripts that it added
+
+## Developing
+
+- Added `build_tutorials()` to build the HTML and articles of learnr tutorials
+- Added `bigo_net()` to time a network function on networks of growing size
+- Added `group_functions()` to list the exported functions of a package by prefix
+- Added `find_required_r()` to find the R version that installed packages need
+- Added `find_undocumented_values()` to list the help files without a `\value{}`
+- Added `find_installed_pkg_sizes()` to list the installed packages by size
+- Added `evaluate_bugs()` to get the GitHub issues of a package
+- Improved `functions_work()` to catch errors without `{berryFunctions}`
+- Improved `print_help()` to use only exported functions from `{tools}`
+- Improved `find_nonascii()` to check data frames as well as networks
+- Fixed `call_cran()` to use its `author` argument
+- Fixed `evaluate_bugs()` to pass the repository and not the URL to `{githubr}`
+
 # manypkgs 0.3.1
 
 ## Package
@@ -16,6 +60,9 @@
 * Added `functions_work()` to see which functions work on which objects
 * Added `print_help()` for printing a function's help page to the console
 * Added `edit_tutorial()` for opening a tutorial for editing
+* Added `call_cran()` for listing an author's CRAN packages and when each can be updated
+* Added `find_transitive_minR()` for finding the minimum R version a package needs
+* Added `find_nonascii()` for finding non-ASCII characters in a package's data
 
 ## Correction
 

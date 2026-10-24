@@ -212,24 +212,64 @@ retain <- function(keep = NULL, envir = .GlobalEnv, keep_functions = TRUE,
   }
 }
 
+#' Calling CRAN for the packages of an author
+#'
+#' @description
+#'   `call_cran()` lists the packages on CRAN whose authors include `author`,
+#'   with the number of days since each was published,
+#'   and the first date on which a new version can be submitted.
+#'   CRAN asks that a package is not updated more often than every 10 days or so.
+#' @param author A character string that matches the name of an author.
+#'   By default "Hollway".
+#' @return A tibble with the variables `Package`, `Version`, `SincePub`
+#'   (days since the package was published), `Updateable`
+#'   (whether 10 days have passed), and `CanCRAN` (the first date on which
+#'   a new version can be submitted).
+#' @examples
+#' \dontrun{
+#' call_cran("Hollway")
+#' }
 #' @export
 call_cran <- function(author = "Hollway"){
   cran_db <- tools::CRAN_package_db()
-  cran_db |> dplyr::tibble() |> 
-    dplyr::filter(grepl("Hollway", Author)) |> 
-    dplyr::mutate(SincePub = as.Date(lubridate::now()) - 
-                    as.Date(Published),
-                  Updateable = SincePub >= 10,
-                  When = as.Date(lubridate::now()) + (10 - SincePub),
-                  CanCRAN = paste(lubridate::wday(When, label=TRUE, abbr = FALSE),
-                                  lubridate::day(When),
-                                     lubridate::month(When, label = TRUE, abbr = FALSE),
-                                     lubridate::year(When))) |> 
-    dplyr::select(Package, Version, SincePub, Updateable, CanCRAN) |> 
-    dplyr::arrange(SincePub)
+  cran_db <- cran_db[grepl(author, cran_db$Author), ]
+  since <- as.numeric(Sys.Date() - as.Date(cran_db$Published))
+  when <- Sys.Date() + pmax(0, 10 - since)
+  out <- dplyr::tibble(Package = cran_db$Package,
+                       Version = cran_db$Version,
+                       SincePub = since,
+                       Updateable = since >= 10,
+                       CanCRAN = format(when, "%A %d %B %Y"))
+  out[order(out$SincePub), ]
 }
 
+#' Finding the minimum R version that a package needs
+#'
+#' @description
+#'   `find_transitive_minR()` finds the highest minimum version of R
+#'   declared by the packages on CRAN that a package depends upon,
+#'   directly or indirectly.
+#'   `find_required_r()` does the same from the installed packages,
+#'   so it also works for packages that are not on CRAN,
+#'   and it also says which packages need that version.
+#' @param package,pkg The name of a package.
+#' @return `find_transitive_minR()` returns the minimum version of R
+#'   as a `package_version`.
+#'   `find_required_r()` returns a list with the version of R that the package
+#'   itself declares (`current`), the highest version that it or its
+#'   dependencies declare (`max_required_R`),
+#'   the packages that declare that version (`responsible_packages`),
+#'   and the version that each package declares (`all_requirements`).
 #' @source https://blog.r-hub.io/2022/09/12/r-dependency/
+#' @examples
+#' \dontrun{
+#' find_transitive_minR("manynet")
+#' find_required_r("manypkgs")
+#' }
+#' @name find_r
+NULL
+
+#' @rdname find_r
 #' @export
 find_transitive_minR <- function(package) {
   
@@ -243,11 +283,10 @@ find_transitive_minR <- function(package) {
   
   # These code chunks are detailed below in the 'Minimum R dependencies in CRAN 
   # packages' section
-  r_deps <- db |> 
-    dplyr::filter(Package %in% recursive_deps) |> 
-    # We exclude recommended pkgs as they're always shown as depending on R-devel
-    dplyr::filter(is.na(Priority) | Priority != "recommended") |>  
-    dplyr::pull(Depends) |> 
+  # We exclude recommended pkgs as they're always shown as depending on R-devel
+  db <- db[db$Package %in% recursive_deps &
+             (is.na(db$Priority) | db$Priority != "recommended"), ]
+  r_deps <- db$Depends |> 
     strsplit(split = ",") |> 
     purrr::map(~ grep("^R ", .x, value = TRUE)) |> 
     unlist()
@@ -257,19 +296,175 @@ find_transitive_minR <- function(package) {
   return(max(package_version(r_vers)))
 }
 
-#' @importFrom rstudioapi navigateToFile
+#' Finding what CRAN asks to fix
+#'
+#' @description
+#'   These functions find problems that `R CMD check --as-cran` reports
+#'   and that CRAN asks to be fixed before it accepts a package:
+#'
+#'   - `find_undocumented_values()` lists the help files of a package
+#'   that have no `\value{}` section.
+#'   CRAN asks for every help file of a function to say what the function returns.
+#'   Help files for data and for the package itself are left out.
+#'   - `find_nonascii()` looks through the datasets of a package for
+#'   character variables or node attributes that contain characters that are
+#'   not ASCII.
+#'   CRAN asks for the data in a package to be ASCII, or to declare an encoding.
+#' @param package The path to the root of a package, or the name of an
+#'   installed package.
+#'   By default `NULL`, which uses the working directory.
+#' @param pkg The name of an installed package.
+#' @return `find_undocumented_values()` returns a character vector of the names
+#'   of the help files that have no `\value{}` section.
+#'
+#'   `find_nonascii()` returns a character vector of the datasets and variables,
+#'   in the form "dataset$variable", that contain non-ASCII characters,
+#'   invisibly.
+#'   Each is also printed.
+#' @examples
+#' find_undocumented_values("manypkgs")
+#' find_nonascii("datasets")
+#' @name find_cran
+NULL
+
+#' @rdname find_cran
 #' @export
-edit_tutorial <- function(tute){
-  tutes <- list.files("inst/tutorials", recursive = TRUE)
-  tutes <- tutes[grepl(".Rmd$", tutes)]
-  if(grepl("^tut", tute)){
-    opts <- vapply(strsplit(tutes,"/"), `[`, 1, FUN.VALUE=character(1))
-  } else {
-    opts <- vapply(strsplit(tutes,"/"), `[`, 2, FUN.VALUE=character(1))
+find_undocumented_values <- function(package = NULL) {
+  if (is.null(package)) package <- getwd()
+  rd <- if (dir.exists(package)) tools::Rd_db(dir = package) else
+    tools::Rd_db(package)
+  tags <- function(x) vapply(x, function(y) attr(y, "Rd_tag"), character(1))
+  doc_type <- function(x) {
+    dt <- x[tags(x) == "\\docType"]
+    if (length(dt) == 0) "" else as.character(dt[[1]])
   }
-  opt <- tutes[which.min(utils::adist(tute, opts, ignore.case = TRUE,
-                                      costs = list(ins=0, del=1, sub=1)))]
-  pth <- paste0("inst/tutorials/", opt)
-  if(rstudioapi::isAvailable())
-    rstudioapi::navigateToFile(pth)
+  missing_value <- vapply(rd, function(x) {
+    !"\\value" %in% tags(x) && !doc_type(x) %in% c("data", "package")
+  }, logical(1))
+  names(rd)[missing_value]
+}
+
+#' @rdname find_cran
+#' @export
+find_nonascii <- function(pkg) {
+  items <- utils::data(package = pkg)$results[, "Item"]
+  # An item of the form "object (file)" is loaded from that file
+  pkgs_data <- sub(" .*", "", items)
+  files <- ifelse(grepl("\\(", items), sub(".*\\((.*)\\)$", "\\1", items),
+                  pkgs_data)
+  env <- new.env()
+  out <- unlist(lapply(seq_along(pkgs_data), function(i) {
+    x <- pkgs_data[i]
+    utils::data(list = files[i], package = pkg, envir = env)
+    obj <- get(x, envir = env)
+    vars <- if (is.data.frame(obj)) {
+      as.list(obj)
+    } else if (rlang::is_installed("manynet") && manynet::is_graph(obj)) {
+      attribs <- manynet::net_node_attributes(obj)
+      stats::setNames(lapply(attribs, function(y)
+        manynet::node_attribute(obj, y)), attribs)
+    } else list()
+    bad <- vapply(vars, function(a) is.character(a) &&
+                    !all(stringi::stri_enc_isascii(a), na.rm = TRUE),
+                  logical(1))
+    if (any(bad)) paste0(x, "$", names(vars)[bad])
+  }))
+  if (length(out) > 0) cat(out, sep = "\n")
+  invisible(out)
+}
+
+#' @rdname find_r
+#' @export
+find_required_r <- function(pkg) {
+  # Get metadata for installed packages
+  db <- utils::installed.packages()
+  
+  # Get recursive dependencies
+  deps <- tools::package_dependencies(pkg, db = db, recursive = TRUE)[[1]]
+  all_pkgs <- c(pkg, deps)
+  
+  # Helper to extract R version requirement from a Depends string
+  extract_r_req <- function(dep_string) {
+    if (is.na(dep_string) || dep_string == "") return(NA)
+    m <- regmatches(dep_string, regexpr("R \\(>= [0-9.]+\\)", dep_string))
+    if (length(m) == 0) return(NA)
+    sub("R \\(>= ([0-9.]+)\\)", "\\1", m)
+  }
+  
+  # Extract R requirements for each package
+  reqs <- sapply(all_pkgs, function(p) extract_r_req(db[p, "Depends"]))
+  
+  # Convert to numeric_version for comparison
+  reqs_nv <- suppressWarnings(as.numeric_version(reqs))
+  
+  # Find the maximum required R version
+  max_req <- max(reqs_nv[!is.na(reqs_nv)])
+  
+  # Identify which packages require that version
+  responsible <- names(reqs_nv[!is.na(reqs_nv)])[reqs_nv[!is.na(reqs_nv)] == max_req]
+  
+  list(
+    current = reqs[pkg],
+    max_required_R = as.character(max_req),
+    responsible_packages = responsible,
+    all_requirements = reqs
+  )
+}
+
+find_defunct <- function(pkg) {
+  ns <- asNamespace(pkg)
+  objs <- ls(ns)
+  is_defunct <- function(f) {
+    is.function(f) && any(grepl("\\.Defunct|defunct|\\.Deprecated|fn_moved", deparse(body(f))))
+  }
+  defunct_funs <- objs[vapply(objs, function(x) is_defunct(ns[[x]]), logical(1))]
+  defunct_funs
+}  
+
+collect_functions <- function(pattern, package = "manynet"){
+  getNamespaceExports(package)[grepl(pattern, getNamespaceExports(package))]
+}
+
+#' Grouping the functions of a package
+#'
+#' @description
+#'   `group_functions()` lists the exported functions of a package
+#'   that match a pattern, leaves out the defunct and deprecated functions,
+#'   and groups the rest by the prefix before the first underscore.
+#' @param pattern A regular expression that the function names must match.
+#'   By default "", which matches all of them.
+#' @param package The name of an installed package.
+#'   By default "manynet".
+#' @return A named list of character vectors of function names,
+#'   with one element for each prefix.
+#' @examples
+#' group_functions("^find", package = "manypkgs")
+#' @export
+group_functions <- function(pattern = "", package = "manynet"){
+  funs <- sort(collect_functions(pattern, package))
+  funs <- funs[!funs %in% find_defunct(package)]
+  split(funs, sub("_.*", "", funs))
+}
+
+#' Finding the sizes of the installed packages
+#'
+#' @description
+#'   `find_installed_pkg_sizes()` lists the installed packages
+#'   in all the library paths, from the largest to the smallest.
+#'   It uses the `du` command, so it works on macOS and Linux only.
+#' @return A tibble with the size of each package in kilobytes (`size`)
+#'   and its name (`name`).
+#' @examples
+#' \dontrun{
+#' find_installed_pkg_sizes()
+#' }
+#' @export
+find_installed_pkg_sizes <- function() {
+  out <- do.call(rbind, lapply(.libPaths(), function(d) {
+    sizes <- utils::read.table(pipe(paste("du -k -d 1", shQuote(d))),
+                               col.names = c("size", "name"))
+    sizes[sizes$name != d, ]
+  }))
+  out$name <- basename(out$name)
+  dplyr::tibble(out[order(-out$size), ])
 }

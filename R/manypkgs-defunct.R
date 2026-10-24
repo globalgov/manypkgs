@@ -3,6 +3,8 @@
 #' `r lifecycle::badge("deprecated")`
 #' @name defunct
 #' @keywords internal
+#' @return These functions stop with an error that names the function
+#'   to use instead.
 NULL
 
 #' @describeIn defunct Deprecated on 2022-05-17.

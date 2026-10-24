@@ -53,14 +53,14 @@ export_data <- function(..., datacube, URL = NULL) {
                        added to {usethis::ui_value(datacube)}.")
     }
     # ask users if they want to update titles and IDs in datacube
-    if (utils::askYesNo("Would like to update IDs and titles in
-                        the other datasets in this datacube?") == TRUE) {
-      usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
-                       This might take a few minutes...")
-      env[[datacube]] <- update_ids(datacube = datacube)
-    } else {
+    # if (utils::askYesNo("Would you like to update the IDs and titles in
+    #                     the other datasets in this datacube?") == TRUE) {
+    #   usethis::ui_info("Standardising titles and (re)coding agreements and manyIDs.
+    #                    This might take a few minutes...")
+    #   env[[datacube]] <- update_ids(datacube = datacube)
+    # } else {
       env[[datacube]][[dataset_name]] <- get(dataset_name)
-    }
+    # }
     } else {
     usethis::ui_info("Didn't find an existing {usethis::ui_value(datacube)} datacube.
                      Creating a {usethis::ui_value(datacube)} datacube that includes
@@ -85,11 +85,11 @@ export_data <- function(..., datacube, URL = NULL) {
                                       dataset_name, "/", dataset_name, ".bib"))
   save(list = datacube, envir = env,
        file = fs::path("data", datacube, ext = "rda"), compress = "bzip2")
-  # Step 4: create and open a documentation script
-  add_docs(datacube = datacube, dataset_name = dataset_name)
-  # Step 5: create the right kind of test script for the type of object
-  add_tests(datacube = datacube, dataset_name = dataset_name,
-            dataset_exists = dataset_exists)
+  # # Step 4: create and open a documentation script
+  # add_docs(datacube = datacube, dataset_name = dataset_name)
+  # # Step 5: create the right kind of test script for the type of object
+  # add_tests(datacube = datacube, dataset_name = dataset_name,
+  #           dataset_exists = dataset_exists)
   usethis::ui_info("Please make sure to manually fill the variable mapping
                    section in datacube documentation.")
 }
@@ -104,11 +104,12 @@ get_package_name <- function(path = getwd()) {
 # Helper functions to update titles and IDs
 update_ids <- function(datacube) {
   Title <- Begin <- manyID <- treatyID <- NULL
+  rlang::check_installed("manytreaties", reason = "to update agreement IDs")
   db_up <- if (is.list(datacube)) datacube else get(datacube)
   for (x in names(db_up)) {
     db_up[[x]] <- dplyr::mutate(db_up[[x]],
-                                Title = standardise_titles(Title),
-                                treatyID = code_agreements(title = Title,
+                                Title = manytreaties::standardise_titles(Title),
+                                treatyID = manytreaties::code_agreements(title = Title,
                                                            date = Begin))
   }
   mID <- condense_agreements(db_up)

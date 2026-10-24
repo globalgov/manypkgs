@@ -25,6 +25,7 @@ navbar:
   components:
     home:
       icon: fa-home fa-lg
+      aria-label: Home
       href: index.html
     reference:
       text: Reference
@@ -43,6 +44,7 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
+      aria-label: GitHub
       href: https://github.com/globalgov/manypkgs
     packages:
       text: Other packages
@@ -51,33 +53,51 @@ navbar:
           href: https://globalgov.github.io/manydata/
         - text: manypkgs
           href: https://globalgov.github.io/manypkgs/
+        - text: manystates
+          href: https://globalgov.github.io/manystates/
+        - text: manytreaties
+          href: https://globalgov.github.io/manytreaties/
+        - text: manyios
+          href: https://globalgov.github.io/manyios/
         - text: manyenviron
           href: https://globalgov.github.io/manyenviron/
         - text: manytrade
           href: https://globalgov.github.io/manytrade/
 reference:
-  - title: "Setup functions"
-    desc: "These functions were created to assist data providers with the setup of many packages"
+  - title: "Setting up"
+    desc: "Functions that set up and update a 'many' package."
     contents:
       - setup_package
       - update_package
       - add_author
       - add_bib
-  - title: "Processing functions"
-    desc: "These functions were created to assist data providers with the processing of data"
+  - title: "Importing and exporting"
+    desc: "Functions that bring data into a 'many' package and save it as a datacube."
     contents:
       - import_data
       - export_data
-      - starts_with("standardise")
-      - starts_with("code")
+      - convert_pdf
+  - title: "Coding agreements"
+    desc: "Functions that code identifiers for international agreements."
+    contents:
+      - starts_with("code_")
       - condense_agreements
-      - read_clauses
-  - title: "Other utility functions"
-    desc: "Other utility functions that are useful during the creation of a new package"
+  - title: "Developing"
+    desc: "Functions that help with the development of R packages."
     contents:
       - depends
       - retain
-      - convert_pdf
+      - call_cran
+      - starts_with("find_")
+      - group_functions
+      - functions_work
+      - print_help
+      - evaluate_bugs
+      - bigo_net
+      - tutorials
+  - title: "Defunct"
+    contents:
+      - defunct
 footer:
   structure:
     left: devs
