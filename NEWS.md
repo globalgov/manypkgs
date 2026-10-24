@@ -12,6 +12,15 @@
 
 - Removed `code_dates()` in favour of `messydates::year()`
 - Removed `code_acronym()` in favour of `manytreaties::code_acronyms()`
+- Moved `code_states()` to `{manystates}`
+- Moved `standardise_titles()` and `standardise_treaty_text()` to `{manytreaties}`
+- Moved `read_clauses()` to `{manytreaties}`
+- Moved `code_lineage()`, `code_domain()`, and `code_entity()` to `{manytreaties}`
+- Moved the accession and termination functions to `{manytreaties}`
+  - `code_accession_terms()`, `code_term()`, and `code_term_date()`
+- Improved `code_linkage()` to code parties with `manystates::code_states()`
+  - Keeps parties only where two are found, with their activity
+
 
 # manypkgs 0.3.1
 
