@@ -1,16 +1,20 @@
 ---
 name: Feature request
-about: Make a case for a new feature
+about: Suggest an idea for this project
+title: ''
+labels: feature_request
+assignees: ''
+
 ---
 
-## Brief description of the problem
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-As a <user type>, I want to <task> so that <goal>.
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-## Who is this affecting?
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-## Expected results (desired performance)
-
-## Actual results (current performance)
-
-*If you have a question, please don't use this form. Instead, ask on <https://stackoverflow.com/> or <https://community.rstudio.com/>.*
+**Additional context**
+Add any other context or screenshots about the feature request here.

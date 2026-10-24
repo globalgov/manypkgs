@@ -1,23 +1,31 @@
 ---
 name: Bug report
-about: Describe a bug you've seen
+about: Create a report to help us improve
+title: ''
+labels: bug
+assignees: ''
+
 ---
 
-## Checklist before proceeding
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-- [ ] I have restarted R and the bug is still there
-- [ ] I have restarted my OS and the bug is still there
+**Provide system information**
+ - OS: [e.g. MacOS Mojave 10.14.6]
+ - R version: [e.g. 3.5.3]
+ - manypkgs version: [e.g. 0.3.1]
 
-## Brief description of the problem
+**To Reproduce**
+Please consider providing a [reprex](https://reprex.tidyverse.org) (a reproducible example),
+or outline the steps taken to reproduce the behaviour, e.g.:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+If applicable, add screenshots to help explain your problem.
 
-Please briefly describe your problem and what output you expect. 
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-## Please include a minimal reproducible example (AKA a reprex). 
-
-If you've never heard of a [reprex](http://reprex.tidyverse.org/) before, start by reading <https://www.tidyverse.org/help/#reprex>.
-
-```r
-# insert reprex here
-```
-
-*If you have a question, please don't use this form. Instead, ask on <https://stackoverflow.com/> or <https://community.rstudio.com/>.*
+**Additional context**
+Add any other context about the problem here.
