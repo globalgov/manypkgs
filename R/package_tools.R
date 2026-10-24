@@ -296,6 +296,35 @@ find_transitive_minR <- function(package) {
   return(max(package_version(r_vers)))
 }
 
+#' Finding the help files without a value section
+#'
+#' @description
+#'   `find_undocumented_values()` lists the help files of a package
+#'   that have no `\\value{}` section.
+#'   CRAN asks for every help file of a function to say what the function returns.
+#'   Help files for data and for the package itself are left out.
+#' @param package The path to the root of a package, or the name of an
+#'   installed package.
+#'   By default `NULL`, which uses the working directory.
+#' @return A character vector of the names of the help files
+#'   that have no `\\value{}` section.
+#' @examples
+#' find_undocumented_values("manypkgs")
+#' @export
+find_undocumented_values <- function(package = NULL) {
+  if (is.null(package)) package <- getwd()
+  rd <- if (dir.exists(package)) tools::Rd_db(dir = package) else
+    tools::Rd_db(package)
+  tags <- function(x) vapply(x, function(y) attr(y, "Rd_tag"), character(1))
+  doc_type <- function(x) {
+    dt <- x[tags(x) == "\\docType"]
+    if (length(dt) == 0) "" else as.character(dt[[1]])
+  }
+  missing_value <- vapply(rd, function(x) {
+    !"\\value" %in% tags(x) && !doc_type(x) %in% c("data", "package")
+  }, logical(1))
+  names(rd)[missing_value]
+}
 
 #' Opening a tutorial for editing
 #'
