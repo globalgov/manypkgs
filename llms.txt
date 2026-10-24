@@ -1,0 +1,157 @@
+# manypkgs ![](reference/figures/manypkgslogo.png)
+
+[manypkgs](https://github.com/globalgov/manypkgs) is a package from the
+[many](https://github.com/globalgov) packages universe. It provides
+contributors the necessary tools to put their data in the hands of
+users. The package includes functions to make this easier to set up a
+‘many’ package, import their existing data, and export them in
+structures consistent with other packages in the many packages universe.
+
+For more details, please see the
+[vignette](https://globalgov.github.io/manypkgs/articles/contributor.html).
+
+## Downloading and installing manypkgs
+
+The development version of
+[manypkgs](https://github.com/globalgov/manypkgs) can be downloaded from
+GitHub.
+
+``` r
+
+# install.packages("remotes")
+remotes::install_github("globalgov/manypkgs")
+```
+
+## Cheat Sheet
+
+[![The manypkgs
+cheatsheet](https://raw.githubusercontent.com/globalgov/manypkgs/main/man/figures/cheatsheet.png)](https://github.com/globalgov/manypkgs/blob/main/man/figures/cheatsheet.pdf)
+
+## The many packages universe
+
+The many packages universe aims at making it easier to collect, correct,
+and and connect network data across issue-domains of global governance.
+[manydata](https://github.com/globalgov/manydata) is the core package
+ofnthe many packages universe. The package makes it easy to find,
+download, and analyze all the data included in the various ‘many
+packages’. For example, the
+[`manydata::call_packages()`](https://www.manydata.ch/reference/call_packages.html)
+function can be used to discover the packages currently available in the
+many packages universe.
+
+``` r
+
+manydata::call_packages()
+```
+
+``` R
+## # A tibble: 5 × 4
+##   Name         Description                                    Installed Latest 
+##   <chr>        <chr>                                          <chr>     <chr>  
+## 1 manydata     The portal for global governance data          0.9.3     "0.9.3"
+## 2 manypkgs     Support for creating new manyverse packages    0.3.0     "0.3.0"
+## 3 manystates   Many data on sovereign states                  0.2.0     "0.2.0"
+## 4 manytreaties Many data on international agreements          0.0.1     ""     
+## 5 messydates   R package for Extended Date/Time Format (EDTF) 0.5.1     "0.5.1"
+## Would you like to update manytreaties ? (Yes/no/cancel)
+```
+
+Please see [the website](https://globalgov.github.io/manypkgs/) for more
+information about how to use
+[manypkgs](https://github.com/globalgov/manypkgs) as a developer or as a
+data contributor. For more information on
+[manydata](https://www.manydata.ch/), please see [the
+website](https://www.manydata.ch/).
+
+# Package index
+
+## Setting up
+
+Functions that set up and update a ‘many’ package.
+
+- [`setup_package()`](https://globalgov.github.io/manypkgs/reference/setup_package.md)
+  : Create a new package in the manydata universe
+- [`update_package()`](https://globalgov.github.io/manypkgs/reference/update_package.md)
+  : Updates packages of our data universe
+- [`add_author()`](https://globalgov.github.io/manypkgs/reference/add_author.md)
+  : Add an author to the current package
+- [`add_bib()`](https://globalgov.github.io/manypkgs/reference/add_bib.md)
+  : Add .bib file
+
+## Importing and exporting
+
+Functions that bring data into a ‘many’ package and save it as a
+datacube.
+
+- [`import_data()`](https://globalgov.github.io/manypkgs/reference/import_data.md)
+  : Imports and establishes preparation of raw data
+- [`export_data()`](https://globalgov.github.io/manypkgs/reference/export_data.md)
+  : Adding datasets to the many packages universe
+- [`convert_pdf()`](https://globalgov.github.io/manypkgs/reference/convert_pdf.md)
+  : Get and convert PDFs to text
+
+## Coding agreements
+
+Functions that code identifiers for international agreements.
+
+- [`code_activity()`](https://globalgov.github.io/manypkgs/reference/code_activity.md)
+  : Code Abbreviations for Activity
+- [`code_agreements()`](https://globalgov.github.io/manypkgs/reference/code_agreements.md)
+  : Code Agreement Titles
+- [`code_known_agreements()`](https://globalgov.github.io/manypkgs/reference/code_known_agreements.md)
+  : Code Known Agreements Abbreviation
+- [`code_linkage()`](https://globalgov.github.io/manypkgs/reference/code_linkage.md)
+  : Code Agreement Linkages
+- [`code_type()`](https://globalgov.github.io/manypkgs/reference/code_type.md)
+  : Code Agreement Type
+- [`condense_agreements()`](https://globalgov.github.io/manypkgs/reference/condense_agreements.md)
+  : Condense similar treatyIDs
+
+## Developing
+
+Functions that help with the development of R packages.
+
+- [`depends()`](https://globalgov.github.io/manypkgs/reference/depends.md)
+  : Loading packages
+- [`retain()`](https://globalgov.github.io/manypkgs/reference/retain.md)
+  : Keep objects from the global environment
+- [`call_cran()`](https://globalgov.github.io/manypkgs/reference/call_cran.md)
+  : Calling CRAN for the packages of an author
+- [`find_undocumented_values()`](https://globalgov.github.io/manypkgs/reference/find_cran.md)
+  [`find_nonascii()`](https://globalgov.github.io/manypkgs/reference/find_cran.md)
+  : Finding what CRAN asks to fix
+- [`find_installed_pkg_sizes()`](https://globalgov.github.io/manypkgs/reference/find_installed_pkg_sizes.md)
+  : Finding the sizes of the installed packages
+- [`find_transitive_minR()`](https://globalgov.github.io/manypkgs/reference/find_r.md)
+  [`find_required_r()`](https://globalgov.github.io/manypkgs/reference/find_r.md)
+  : Finding the minimum R version that a package needs
+- [`group_functions()`](https://globalgov.github.io/manypkgs/reference/group_functions.md)
+  : Grouping the functions of a package
+- [`functions_work()`](https://globalgov.github.io/manypkgs/reference/functions_work.md)
+  : Checking whether functions work across different types of objects
+- [`print_help()`](https://globalgov.github.io/manypkgs/reference/print_help.md)
+  : Printing a help page to the console
+- [`evaluate_bugs()`](https://globalgov.github.io/manypkgs/reference/evaluate_bugs.md)
+  : Getting the GitHub issues of a package
+- [`bigo_net()`](https://globalgov.github.io/manypkgs/reference/bigo_net.md)
+  : Analyze Big-O algorithmic complexity of a network function
+- [`build_tutorials()`](https://globalgov.github.io/manypkgs/reference/tutorials.md)
+  [`edit_tutorial()`](https://globalgov.github.io/manypkgs/reference/tutorials.md)
+  : Building and editing the tutorials of a package
+
+## Defunct
+
+- [`standardise_dates()`](https://globalgov.github.io/manypkgs/reference/defunct.md)
+  [`standardize_dates()`](https://globalgov.github.io/manypkgs/reference/defunct.md)
+  **\[deprecated\]** : Functions that have been renamed, superseded, or
+  are no longer working
+
+# Articles
+
+### All vignettes
+
+- [Agreements](https://globalgov.github.io/manypkgs/articles/agreements.md):
+- [Contributing with
+  manypkgs](https://globalgov.github.io/manypkgs/articles/contributor.md):
+- [Working with 'many'
+  treaties](https://globalgov.github.io/manypkgs/articles/treaties.md):

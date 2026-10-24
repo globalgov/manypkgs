@@ -1,0 +1,67 @@
+# Create a new package in the manydata universe
+
+Creates a new package in, and consistent with, the manydata universe
+
+## Usage
+
+``` r
+setup_package(
+  package = NULL,
+  name = NULL,
+  role = NULL,
+  orcid = NULL,
+  update = TRUE,
+  path = getwd()
+)
+```
+
+## Arguments
+
+- package:
+
+  A string giving the desired name of the package, must start with
+  "many"
+
+- name:
+
+  A list of vectors giving the package author(s)' name(s).
+  Authors(s)last name(s) and first name(s) are separated by a comma.
+
+- role:
+
+  A list of vectors of the roles the package authors have in the
+  project. If there are no roles declared, roles are set contributor.
+
+- orcid:
+
+  A vector of strings of all the ORCID numbers of the authors. Needs
+  `{rorcid}` package to be installed. Takes precedence over manual
+  entries if specified.
+
+- update:
+
+  A logical indicating whether existing files should be overwritten, by
+  default TRUE.
+
+- path:
+
+  A string, if missing default is path to the working directory
+
+## Value
+
+A new package structure
+
+## Details
+
+The function establishes many of the required files and folder
+structures required for a manydata-consistent data package.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+setup_package("manystates", name = "Hollway, James")
+setup_package("manystates",
+               orcid = c("0000-0002-8361-9647"))
+} # }
+```

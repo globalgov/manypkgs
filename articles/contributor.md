@@ -1,0 +1,125 @@
+# Contributing with manypkgs
+
+## Contributing to the manydata universe of packages with manypkgs
+
+[manypkgs](https://github.com/globalgov/manypkgs) has package related
+functions that help developers contribute to the ecosystem of packages
+by helping with the set-up of packages consistent with
+[manydata](https://www.manydata.ch/). The function
+[`setup_package()`](https://globalgov.github.io/manypkgs/reference/setup_package.md),
+for example, establishes many of the required files and folder
+structures for a [manydata](https://www.manydata.ch/)-consistent data
+package. It requires that the package name starts with the prefix ‘many’
+as well as that the name of one author is declared. For author’s name,
+please declare surname(s) first and then given name(s) separated by
+commas. The function accepts ORCID numbers instead of author names as
+well.
+
+``` r
+
+manypkgs::setup_package("manystates", name = "Hollway, James")
+```
+
+For adding on package contributors or authors to packages later on, use
+the
+[`add_author()`](https://globalgov.github.io/manypkgs/reference/add_author.md)
+function. This function also accepts ORCID numbers instead of author
+names.
+
+``` r
+
+manypkgs::add_author(name = "Sposito, Henrique")
+```
+
+For automatically updating packages for changes in templates,
+documentation, and file structure, contributors can use the
+[`update_package()`](https://globalgov.github.io/manypkgs/reference/update_package.md)
+function.
+
+``` r
+
+manypkgs::update_package("manystates")
+```
+
+## Collecting data
+
+For data collection and loading into a new package with
+[manypkgs](https://github.com/globalgov/manypkgs), the function
+[`import_data()`](https://globalgov.github.io/manypkgs/reference/import_data.md)
+creates a data-raw folder into the package, copies the raw data into the
+folder and provides a script to facilitate data loading. The function
+requires that a name for the dataset - two dimensional data sheet being
+imported - is declared, in upper case letters, as well as the name of
+the issue-domain, in lower case letters, the dataset belongs. Note that
+for transparency and citation purposes, contributors need to provide a
+`.bib` file alongside their data in the corresponding data-raw
+subfolder. The domain issue name will be used to connect two-dimensional
+datasets into three-dimensional datacubes that resembles a data cube (a
+list object where entries are tibbles).
+
+``` r
+
+manypkgs::import_data("COW", "states")
+```
+
+## Correcting data
+
+Once a dataset is collected with
+[`import_data()`](https://globalgov.github.io/manypkgs/reference/import_data.md),
+it needs to be corrected so that it can be connected into a datacube.
+[manydata](https://www.manydata.ch/) contains several functions geared
+towards data wrangling. These include, for example, the
+[`transmutate()`](https://www.manydata.ch/reference/transmutate.html)
+function which is between [dplyr](https://dplyr.tidyverse.org)’s
+transmute and mutate but that returns only the mutated variables and
+none of the variables used in the mutations. Furthermore,
+`standardise_title()` function capitalises all words in a string and
+removes unnecessary symbols to enable comparison. Finally,
+[manydata](https://www.manydata.ch/) data preparation workflows also
+leverage [messydates](https://globalgov.github.io/messydates/) to
+correct uncertain dates. These include, for example, the
+[`messydates::make_messydate()`](https://globalgov.github.io/messydates/reference/class_mdate.html)
+function which creates nested vectors of dates for vague date inputs
+into a range of dates.
+
+``` r
+
+COW <- manydata::transmutate(ID = stateabb,
+                   Beg = messydates::make_messydate(styear, stmonth, stday),
+                   End = messydates::make_messydate(endyear, endmonth, endday),
+                   Label = manypkgs::standardise_titles(statenme),
+                   COW_Nr = manypkgs::standardise_titles(as.character(ccode)))
+```
+
+Contributors should make sure the variables names in the datasets are in
+line with [manydata](https://www.manydata.ch/) ecosystem. Datasets part
+of the same datacube should have similar variables which allows to build
+up the ‘datacube’ for comparison.
+
+## Connecting data
+
+Once the dataset has been corrected in
+[manydata](https://www.manydata.ch/), the cleaned dataset can be loaded
+with [manypkgs](https://github.com/globalgov/manypkgs) into the package
+using the
+[`export_data()`](https://globalgov.github.io/manypkgs/reference/export_data.md)
+function which take as inputs the dataset name and the datacube name as
+a string. Corrected datasets can be connected to form a three
+dimensional datacube that resembles a data cube. The website source of
+the data should be indicated in the third argument of the function. The
+function creates a datacube in a data folder to store corrected
+datasets, while providing a citation template and a test template. The
+citation template helps cite the source of the raw data and and describe
+the variables in the corrected dataset. The test template makes sure the
+corrected dataset is consistent with
+[manypkgs](https://github.com/globalgov/manypkgs) guidelines.
+
+``` r
+
+manypkgs::export_data(COW, "states", URL = "https://correlatesofwar.org/data-sets/state-system-membership")
+```
+
+The test template is meant to ensure consistency for the corrected
+dataset. If these tests fail, users can go back to correcting the data
+and then re-run
+[`export_data()`](https://globalgov.github.io/manypkgs/reference/export_data.md).
