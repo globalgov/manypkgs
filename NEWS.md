@@ -30,6 +30,7 @@
 ## Developing
 
 - Added `build_tutorials()` to build the HTML and articles of learnr tutorials
+- Added `bigo_net()` to time a network function on networks of growing size
 
 # manypkgs 0.3.1
 
