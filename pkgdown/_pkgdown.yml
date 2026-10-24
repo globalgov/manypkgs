@@ -25,6 +25,7 @@ navbar:
   components:
     home:
       icon: fa-home fa-lg
+      aria-label: Home
       href: index.html
     reference:
       text: Reference
@@ -43,6 +44,7 @@ navbar:
       href: news/index.html
     github:
       icon: "fab fa-github fa-lg"
+      aria-label: GitHub
       href: https://github.com/globalgov/manypkgs
     packages:
       text: Other packages
@@ -85,9 +87,14 @@ reference:
     contents:
       - depends
       - retain
-      - build_tutorials
+      - call_cran
+      - starts_with("find_")
+      - group_functions
       - functions_work
+      - print_help
+      - evaluate_bugs
       - bigo_net
+      - tutorials
   - title: "Defunct"
     contents:
       - defunct

@@ -40,7 +40,7 @@ remotes::install_github("globalgov/manypkgs")
 
 ## Cheat Sheet
 
-<a href="https://github.com/globalgov/manypkgs/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/manypkgs/main/man/figures/cheatsheet.png" width="525" height="378"/></a>
+<a href="https://github.com/globalgov/manypkgs/blob/main/man/figures/cheatsheet.pdf"><img src="https://raw.githubusercontent.com/globalgov/manypkgs/main/man/figures/cheatsheet.png" alt="The manypkgs cheatsheet" width="525" height="378"/></a>
 
 ## The many packages universe
 

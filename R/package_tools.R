@@ -296,20 +296,38 @@ find_transitive_minR <- function(package) {
   return(max(package_version(r_vers)))
 }
 
-#' Finding the help files without a value section
+#' Finding what CRAN asks to fix
 #'
 #' @description
-#'   `find_undocumented_values()` lists the help files of a package
-#'   that have no `\\value{}` section.
+#'   These functions find problems that `R CMD check --as-cran` reports
+#'   and that CRAN asks to be fixed before it accepts a package:
+#'
+#'   - `find_undocumented_values()` lists the help files of a package
+#'   that have no `\value{}` section.
 #'   CRAN asks for every help file of a function to say what the function returns.
 #'   Help files for data and for the package itself are left out.
+#'   - `find_nonascii()` looks through the datasets of a package for
+#'   character variables or node attributes that contain characters that are
+#'   not ASCII.
+#'   CRAN asks for the data in a package to be ASCII, or to declare an encoding.
 #' @param package The path to the root of a package, or the name of an
 #'   installed package.
 #'   By default `NULL`, which uses the working directory.
-#' @return A character vector of the names of the help files
-#'   that have no `\\value{}` section.
+#' @param pkg The name of an installed package.
+#' @return `find_undocumented_values()` returns a character vector of the names
+#'   of the help files that have no `\value{}` section.
+#'
+#'   `find_nonascii()` returns a character vector of the datasets and variables,
+#'   in the form "dataset$variable", that contain non-ASCII characters,
+#'   invisibly.
+#'   Each is also printed.
 #' @examples
 #' find_undocumented_values("manypkgs")
+#' find_nonascii("datasets")
+#' @name find_cran
+NULL
+
+#' @rdname find_cran
 #' @export
 find_undocumented_values <- function(package = NULL) {
   if (is.null(package)) package <- getwd()
@@ -326,36 +344,33 @@ find_undocumented_values <- function(package = NULL) {
   names(rd)[missing_value]
 }
 
-#' Opening a tutorial for editing
-#'
-#' @description
-#'   `edit_tutorial()` opens in RStudio the learnr tutorial in
-#'   `inst/tutorials/` of the package in the working directory
-#'   whose name is nearest to `tute`.
-#' @param tute The name of a tutorial, or of its folder.
-#'   A name that starts with "tut" is matched to the folder names,
-#'   and any other name to the file names.
-#' @return The path to the tutorial, invisibly.
-#' @examples
-#' \dontrun{
-#' edit_tutorial("centrality")
-#' }
-#' @importFrom rstudioapi navigateToFile
+#' @rdname find_cran
 #' @export
-edit_tutorial <- function(tute){
-  tutes <- list.files("inst/tutorials", recursive = TRUE)
-  tutes <- tutes[grepl(".Rmd$", tutes)]
-  if(grepl("^tut", tute)){
-    opts <- vapply(strsplit(tutes,"/"), `[`, 1, FUN.VALUE=character(1))
-  } else {
-    opts <- vapply(strsplit(tutes,"/"), `[`, 2, FUN.VALUE=character(1))
-  }
-  opt <- tutes[which.min(utils::adist(tute, opts, ignore.case = TRUE,
-                                      costs = list(ins=0, del=1, sub=1)))]
-  pth <- paste0("inst/tutorials/", opt)
-  if(rstudioapi::isAvailable())
-    rstudioapi::navigateToFile(pth)
-  invisible(pth)
+find_nonascii <- function(pkg) {
+  items <- utils::data(package = pkg)$results[, "Item"]
+  # An item of the form "object (file)" is loaded from that file
+  pkgs_data <- sub(" .*", "", items)
+  files <- ifelse(grepl("\\(", items), sub(".*\\((.*)\\)$", "\\1", items),
+                  pkgs_data)
+  env <- new.env()
+  out <- unlist(lapply(seq_along(pkgs_data), function(i) {
+    x <- pkgs_data[i]
+    utils::data(list = files[i], package = pkg, envir = env)
+    obj <- get(x, envir = env)
+    vars <- if (is.data.frame(obj)) {
+      as.list(obj)
+    } else if (rlang::is_installed("manynet") && manynet::is_graph(obj)) {
+      attribs <- manynet::net_node_attributes(obj)
+      stats::setNames(lapply(attribs, function(y)
+        manynet::node_attribute(obj, y)), attribs)
+    } else list()
+    bad <- vapply(vars, function(a) is.character(a) &&
+                    !all(stringi::stri_enc_isascii(a), na.rm = TRUE),
+                  logical(1))
+    if (any(bad)) paste0(x, "$", names(vars)[bad])
+  }))
+  if (length(out) > 0) cat(out, sep = "\n")
+  invisible(out)
 }
 
 #' @rdname find_r

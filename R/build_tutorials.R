@@ -34,7 +34,7 @@
 #   eval = TRUE`): these draw the explanatory figures that belong to the
 #   prose rather than to the exercises, so the preview shows them too
 
-#' Build the tutorials of a package
+#' Building and editing the tutorials of a package
 #'
 #' @description
 #'   `build_tutorials()` rebuilds every learnr tutorial in `inst/tutorials/`
@@ -53,6 +53,10 @@
 #'   The only chunks it runs are those with a label that starts with `explain-`.
 #'   These chunks draw the figures that explain the text,
 #'   so the article shows their output and hides their code.
+#'
+#'   `edit_tutorial()` opens in RStudio the learnr tutorial in
+#'   `inst/tutorials/` of the package in the working directory
+#'   whose name is nearest to `tute`.
 #' @param path Path to the root of the package.
 #'   By default this is the working directory.
 #' @param tutorials A character vector that selects the tutorials to build.
@@ -79,14 +83,21 @@
 #'   Do not embed such figures in the HTML file as base64 data:
 #'   learnr replaces an image with a video player
 #'   where the data of the image contains the text "v/".
-#' @return A character vector of the paths of the files and figure folders
-#'   that are built,
+#' @param tute The name of a tutorial, or of its folder.
+#'   A name that starts with "tut" is matched to the folder names,
+#'   and any other name to the file names.
+#' @return `build_tutorials()` returns a character vector of the paths of
+#'   the files and figure folders that are built,
 #'   returned invisibly.
+#'
+#'   `edit_tutorial()` returns the path to the tutorial, invisibly.
 #' @examples
 #' \dontrun{
 #' build_tutorials()
 #' build_tutorials(tutorials = "centrality", html = FALSE)
+#' edit_tutorial("centrality")
 #' }
+#' @name tutorials
 #' @importFrom usethis ui_done ui_info
 #' @export
 build_tutorials <- function(path = ".", tutorials = NULL,
@@ -321,4 +332,23 @@ build_article <- function(src_path, out_path) {
   dir.create(dirname(out_path), showWarnings = FALSE, recursive = TRUE)
   writeLines(text, out_path)
   invisible(text)
+}
+
+#' @rdname tutorials
+#' @importFrom rstudioapi navigateToFile
+#' @export
+edit_tutorial <- function(tute){
+  tutes <- list.files("inst/tutorials", recursive = TRUE)
+  tutes <- tutes[grepl(".Rmd$", tutes)]
+  if(grepl("^tut", tute)){
+    opts <- vapply(strsplit(tutes,"/"), `[`, 1, FUN.VALUE=character(1))
+  } else {
+    opts <- vapply(strsplit(tutes,"/"), `[`, 2, FUN.VALUE=character(1))
+  }
+  opt <- tutes[which.min(utils::adist(tute, opts, ignore.case = TRUE,
+                                      costs = list(ins=0, del=1, sub=1)))]
+  pth <- paste0("inst/tutorials/", opt)
+  if(rstudioapi::isAvailable())
+    rstudioapi::navigateToFile(pth)
+  invisible(pth)
 }
