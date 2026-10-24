@@ -271,6 +271,21 @@ find_transitive_minR <- function(package) {
   return(max(package_version(r_vers)))
 }
 
+
+#' Opening a tutorial for editing
+#'
+#' @description
+#'   `edit_tutorial()` opens in RStudio the learnr tutorial in
+#'   `inst/tutorials/` of the package in the working directory
+#'   whose name is nearest to `tute`.
+#' @param tute The name of a tutorial, or of its folder.
+#'   A name that starts with "tut" is matched to the folder names,
+#'   and any other name to the file names.
+#' @return The path to the tutorial, invisibly.
+#' @examples
+#' \dontrun{
+#' edit_tutorial("centrality")
+#' }
 #' @importFrom rstudioapi navigateToFile
 #' @export
 edit_tutorial <- function(tute){
@@ -286,6 +301,9 @@ edit_tutorial <- function(tute){
   pth <- paste0("inst/tutorials/", opt)
   if(rstudioapi::isAvailable())
     rstudioapi::navigateToFile(pth)
+  invisible(pth)
+}
+
 
 #' Grouping the functions of a package
 #'
